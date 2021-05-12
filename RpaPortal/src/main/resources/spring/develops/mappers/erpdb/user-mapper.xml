@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.UserRepository">
+
+	<select id="getUserInfo" statementType="CALLABLE" parameterType="userVO" resultType="userVO">
+		<![CDATA[
+			{ 
+	            call PRA_User_getUserInfo (
+	            	#{UserId}
+            	)
+			}
+		]]>
+	</select>
+	
+</mapper>

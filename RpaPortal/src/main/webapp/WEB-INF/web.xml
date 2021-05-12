@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_4_0.xsd">
+
+ 	<!-- 톰켓 표시 이름 등록 -->
+ 	<display-name>RpaPortal</display-name>
+
+	<!-- 로그인 페이지 등록 -->
+	<welcome-file-list>
+  		<welcome-file>/Account/Login.do</welcome-file>
+	</welcome-file-list>
+
+	<!-- 비지니스 콘텍스트 등록 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:spring/business/*-context.xml
+			classpath:spring/business/*/*-context.xml
+		</param-value>
+ 	</context-param>
+	
+	<!-- 리스너 등록 -->
+	<listener>
+		<!-- 기본 리스너 -->
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<!-- 스프링 시큐리티 리스너 (중복 로그인 방지) -->
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+	
+  	<!-- 서블릿 등록 -->
+  	<servlet>
+	    <servlet-name>appServlet</servlet-name>
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	    <init-param>
+      		<param-name>contextConfigLocation</param-name>
+      		<param-value>classpath:spring/servlets/*-context.xml</param-value>
+    	</init-param>
+    	<load-on-startup>1</load-on-startup>
+  	</servlet>
+  	
+  	<servlet-mapping>
+    	<servlet-name>appServlet</servlet-name>
+    	<url-pattern>*.do</url-pattern>
+    	<url-pattern>/</url-pattern>
+    	<!-- 루트 디렉토리 WEB-INF -->
+    	<!-- 현재 정적인 파일들의 위치를 루트 디렉토리 보다 상위라서 별도의 설정 없이 접근가능하다. -->
+    	<!-- 정적인 파일들의 위치를 루트 디렉토리 보다 하위에 위치 시킬때 .do만 등록된 경우 -->
+    	<!-- 모든 요청을 DispatcherServlet 에서 제어하기 때문에 .do가 아닌 요청은 페이지를 찾을수 없을것이다. -->
+    	<!-- /를 등록해서 접근 가능하도록 처리한다.  -->
+    	
+    	<!-- web-context.xml -->
+    	<!-- <resources mapping="/Test/**" location="/resources/" /> -->
+    	<!-- <resources mapping="/Last/**" location="/WEB-INF/test/" /> -->
+    	<!-- /Test/요청을 물리적으로 매핑할 수 있고, 루트 디렉토리 하위도 접근 가능하다. -->
+    	    	
+    	<!-- 외부폴더 접근시 -->
+    	<!-- web-context.xml -->
+    	<!-- <resources mapping="/Files/**" location="file:////70.71.11.159/Files/" /> -->
+    	<!-- server.xml -->
+    	<!--<Context docBase="\\70.71.11.159\Files" path="/Files" reloadable="true"/> -->
+    	<!-- 톰캣 -> 서블릿 이기 때문에 resources mapping으로 톰캣으로 나갈수 없는것 같다. -->
+   	   	
+   	   	<!-- ResourceUrlEncodingFilter 상관관계는 더 살펴보자 -->
+   	   	<!-- /와/*의 차이점도 더 살펴보자 -->
+	</servlet-mapping>
+	
+  	<!-- 한글 인코딩 필터 등록 -->
+	<filter>
+	    <filter-name>encodingFilter</filter-name>
+	    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	    <init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+    	<init-param>
+	      	<param-name>forceEncoding</param-name>
+      		<param-value>true</param-value>
+   		</init-param>
+  	</filter>
+
+	<filter-mapping>
+    	<filter-name>encodingFilter</filter-name>
+	    <url-pattern>*.do</url-pattern>
+	</filter-mapping>
+		
+	<!-- 시큐리티 체인 필터 등록 -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
+	<!-- 디바이스 체크 필터 등록 (컨트롤러에서 사용) -->
+	<filter>
+		<filter-name>deviceResolverRequestFilter</filter-name>
+		<filter-class>org.springframework.mobile.device.DeviceResolverRequestFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>deviceResolverRequestFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
+	<!-- 정적 리소스 접근 필터 등록 -->
+	<!-- web-context.xml에서 리소스를 등록하게 되면 에러가 발생 -->
+	<filter>
+		<filter-name>ResourceUrlEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.servlet.resource.ResourceUrlEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ResourceUrlEncodingFilter</filter-name>
+		<url-pattern>/</url-pattern>
+	</filter-mapping>
+	
+	<!-- 세션 만료 시간 등록 -->
+	<session-config>
+		<session-timeout>-1</session-timeout>
+	</session-config>
+	
+	<!-- 오류 페이지 등록 -->
+	<error-page>
+ 		<error-code>400</error-code>
+	    <location>/Common/ParameterError.do</location>
+	</error-page>
+	
+	<error-page>
+ 		<error-code>404</error-code>
+	    <location>/Common/PageNotFound.do</location>
+	</error-page>
+	
+	<error-page>
+ 		<error-code>500</error-code>
+	    <location>/Common/ProgramingError.do</location>
+	</error-page>
+    
+</web-app>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.CrawlKomisRepository">
+	
+	<select id="listCrawlKomis" statementType="CALLABLE" parameterType="crawlKomisVO" resultType="crawlKomisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlKomis (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listCrawlKomisManage" statementType="CALLABLE" parameterType="crawlKomisVO" resultType="crawlKomisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlKomisManage (
+            		#{YearMon}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listCrawlKomisManageAverage" statementType="CALLABLE" parameterType="crawlKomisVO" resultType="crawlKomisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlKomisManageAverage (
+            		#{YearMon}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="getCrawlKomisManageMinOrMaxData" statementType="CALLABLE" parameterType="crawlKomisVO" resultType="crawlKomisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_getCrawlKomisManageMinOrMaxData (
+            		#{YearMon}
+            	)
+			}
+		]]>
+	</select>
+	
+</mapper>

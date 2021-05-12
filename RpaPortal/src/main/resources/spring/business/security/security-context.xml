@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- 시큐리티 기본 설정 -->
+	<security:http auto-config="false" use-expressions="true">
+		<!-- 취약점 공격방어 설정 -->
+		<security:csrf disabled="true" />
+		
+		<!-- Iframe 사용여부 설정 -->
+		<security:headers>
+	         <security:frame-options disabled="true"></security:frame-options>
+	    </security:headers>
+	    
+	    <!-- Url 권한 설정 -->
+	    <security:intercept-url pattern="/Account/*.do" access="permitAll" />
+		<security:intercept-url pattern="/Common/*.do" access="permitAll" />
+		<security:intercept-url pattern="/Admin/*.do" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/**/*.do" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+	    
+		<!-- 로그인 설정 -->
+		<security:form-login login-page="/Account/LoginHandling.do?pParam=AuthError"
+	        username-parameter="UserId" 
+	        password-parameter="Pwd"
+         	login-processing-url="/Account/Login.do"
+	        authentication-success-handler-ref="useCustomAuthenticationSuccessHandler"
+	        authentication-failure-handler-ref="useCustomAuthenticationFailureHandler" />
+        
+       	<!-- 세션 관리 설정 (중복 로그인 방지) -->
+		<security:session-management>
+			<security:concurrency-control max-sessions="-1" error-if-maximum-exceeded="true" />
+		</security:session-management>
+		
+		<!-- 로그아웃 설정 -->
+		<!-- success-handler-ref 사용 가능하고, 별도 처리 없이 로그아웃 가능  -->
+		<security:logout logout-url="/Account/Logout.do"
+			logout-success-url="/Account/LoginHandling.do?pParam=Logout" 
+			invalidate-session="true"
+			delete-cookies="JSESSIONID" />
+		
+		<!-- 권한 제한 설정 -->
+		<security:access-denied-handler ref="useCustomAccessDeniedHandler" />
+		
+		<!-- 1. 스프링 시큐리티의 오류발생(EXCEPTION_TRANSLATION_FILTER)후에 처리됨으로 인증 오류를 캐치할 수 있다. -->
+		<!-- 2. 그러나 EXCEPTION_TRANSLATION_FILTER는 리다이렉트 후에 두번 동작하는 증상이 있다. -->
+		<!-- 3. <security:form-login login-page="/Account/LoginHandling.do?pParam=AuthError"> 스프링 시큐리티에서 권한 체크 후, --> 
+		<!--    로그인 페이지로 이동 시키는 로직, 사용자의 요청이 필터를 연달아 실행되는 케이스가 발생한다. -->
+		<!-- 4. chain.doFilter(req, res) 흐름에서 EXCEPTION 발생시 Ajax 오류를 발생시킨다. -->
+		<!-- 5. 해결방법 - BASIC_AUTH_FILTER를 사용하면 스프링 시큐리티에서 권한 체크 EXCEPTION 전에 동작하는것 같다. -->
+		<!--    chain.doFilter(req, res) 흐름 이전에 인증, 권한을 체크해서 Ajax 오류를 발생 시키고  -->
+		<!--    이후에 chain.doFilter(req, res) 흐름을 진행 시킴으로 해결. -->
+		<!-- AJAX 인증 및 권한 설정 -->
+		<security:custom-filter after="EXCEPTION_TRANSLATION_FILTER" ref="useCustomAuthenticationAjaxCertAndAuthFilter" />
+		
+	</security:http>
+
+	<!-- 시큐리티 인증 설정 -->
+	<!-- login-processing-url="/Account/Login.do" (post 요청에 대한 동작) -->
+	<security:authentication-manager>
+		<security:authentication-provider ref="useCustomAuthenticationProvider" /> 
+	</security:authentication-manager>
+	
+	<!-- 인증 동작 프로바이더 -->
+	<!-- 인증 오류 체크 (아이디, 비밀번호) -->
+	<bean id="useCustomAuthenticationProvider" class="com.kcc.auth.UseCustomAuthenticationProvider" />
+	
+	<!-- 인증 성공 핸들러 -->
+	<bean id="useCustomAuthenticationSuccessHandler" class="com.kcc.auth.UseCustomAuthenticationSuccessHandler" />
+	
+	<!-- 인증 실패 핸들러 -->
+	<!-- 인증 오류 체크 (중복 로그인) -->
+	<bean id="useCustomAuthenticationFailureHandler" class="com.kcc.auth.UseCustomAuthenticationFailureHandler">
+    	<property name="inputUserId" value="UserId" />
+	    <property name="inputPwd" value="Pwd" />
+	    <property name="loginHandlingUrl" value="/Account/LoginHandling.do?pParam=" />
+	</bean>
+	
+	<!-- 권한 제한 핸들러 -->
+	<bean id="useCustomAccessDeniedHandler" class="com.kcc.auth.UseCustomAccessDeniedHandler" />
+	
+	<!-- AJAX 세션 만료 필터 -->
+	<bean id="useCustomAuthenticationAjaxCertAndAuthFilter" class="com.kcc.auth.UseCustomAuthenticationAjaxCertAndAuthFilter">
+		<property name="ajaxHeader" value="AJAX" />
+	</bean>
+	
+</beans>

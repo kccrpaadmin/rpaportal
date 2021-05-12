@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Transaction 설정 -->
+	<bean id="txManagerErpDb" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceErpDb"></property>
+	</bean>
+	
+	<!-- Transaction 설정시, org.springframework 과 spring-jdbc 버전 호환 여부 확인 필요 -->
+	<tx:advice id="txAdviceErpDb" transaction-manager="txManagerErpDb">
+		<tx:attributes>
+			<tx:method name="*" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- AOP 설정 -->
+	<aop:config>
+		<!-- 패키지 중간에 모든 이름을 허용하고 싶은 경우 ..으로 처리 ex) com.kcc.biz.service.sc.impl, com.kcc.biz.service.cm.impl -->
+		<aop:pointcut id="txPointCut" expression="execution(* com.kcc.biz.service.impl..*.*(..))" />
+		<!-- biz-context.xml 빈 등록 된 com.kcc.code.CodeConfig 클래스 사용 -->
+		<aop:advisor pointcut-ref="#{codeConfig['pointCutRef']}" advice-ref="#{codeConfig['adviceRef']}" />
+	</aop:config>
+	
+</beans>

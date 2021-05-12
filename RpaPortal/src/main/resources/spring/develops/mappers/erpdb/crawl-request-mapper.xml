@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.CrawlRequestRepository">
+	
+	<select id="createCrawlRequest" statementType="CALLABLE" parameterType="crawlRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_createCrawlRequest (
+					#{MenuId}
+	            	,#{AttId}
+	            	,#{EmpNo}
+	            	,#{NewRequestNo, mode=OUT, jdbcType=VARCHAR}
+            	)
+			}
+		]]>
+	</select>
+	
+	<insert id="updateCrawlRequest" statementType="CALLABLE" parameterType="crawlRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_updateCrawlRequest (
+					#{RequestNo}
+	            	,#{ErrorMsg}
+	            	,#{StatusCd}
+	            	,#{EmpNo}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<select id="listCrawlRequest" statementType="CALLABLE" parameterType="crawlRequestVO" resultType="crawlRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlRequest (
+            		#{MenuId}
+            		,#{EmpNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="getCrawlRequestStatus" statementType="CALLABLE" parameterType="crawlRequestVO" resultType="crawlRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_getCrawlRequestStatus (
+            		#{MenuId}
+            		,#{EmpNo}
+            	)
+			}
+		]]>
+	</select>
+	
+</mapper>

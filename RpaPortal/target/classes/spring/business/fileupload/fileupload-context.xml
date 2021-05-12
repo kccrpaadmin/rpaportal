@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	
+ 	<!-- 파일 업로드 설정 -->
+ 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 		<!-- biz-context.xml 등록된 code-properties.xml 파일 사용 -->
+ 		<!-- 파일 업로드 용량을 <multipart-config> 및 multipartResolver 에서 제한하지 않고, 프로그램 단에서 처리 -->
+ 		<!-- 최대 업로드 가능한 바이트 크기, -1은 제한이 없음을 의미합니다. Default(-1) -->
+		<property name="maxUploadSize" value="#{codeProperties['maxUploadSize']}" />
+		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할 수 있는 최대 바이트 크기, 기본 값은 10240 바이트입니다. -->
+        <property name="maxInMemorySize" value="#{codeProperties['maxInMemorySize']}" />
+	</bean>
+	
+	<!-- FileUploadUtilServiceImpl 빈 등록 -->
+	<!-- 빈 등록 하지 않고, @Component("fileUploadUtilService") 사용 가능 -->
+	<!-- 풀 테스트를 위해 빈 등록 후, 서비스 사용 -->
+	<!-- biz-context.xml <context:component-scan base-package="com.kcc.util.*" /> 등록 되야 함 -->
+	<!-- 테스트 결과 - 빈 등록된 클래스는 component-scan 등록 필요 없음 -->
+	<bean id="fileUploadUtilService" class="com.kcc.util.service.impl.FileUploadUtilServiceImpl" />
+	
+</beans>

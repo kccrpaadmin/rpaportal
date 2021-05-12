@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+/* RESET(기본) */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:none 0;font-size:100%;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+ul,li,ol{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table,div{border-collapse:collapse;border-spacing:0;}
+
+/* RESET(추가) */
+body,div,input,strong,label,span,td,textarea,select,a{font-family:Dotum,Arial,Tahoma;font-size:12px;color:#595959;}
+form legend, table caption{width:0;height:0;line-height:0;font-size:0;text-indent:-9999px;}
+input,li,img,button,select{text-align:left;vertical-align:middle;}
+strong,label,span{display:inline-block;}
+a{display:inline-block;background-color:transparent;text-decoration:none;cursor:pointer;}
+table{width:100%;}
+textarea,select,input[type=text],input[type=password]{border:1px solid #cccccc;background-color:#ffffff;}
+input[type=radio],input[type=checkbox],input[type=image]{margin:0;border:none 0;background:none;outline:none;}
+
+/* 전체 */
+#wrap{width:100%;height:100%;}
+
+/* 컨테이너 */
+#container{overflow:hidden;padding:20px;}
+
+/* 컨텐츠 */
+.contents{overflow:hidden;}
+
+/* 제목 */
+.main_title{margin:15px 0;padding-left:20px;background:url("/resources/imgs/icon/icon_modal_dot1.png") no-repeat left 2px;font-family:'NanumSquare' ;font-size:12px;color:#000000;}
+.sub_title{margin:15px 0;padding-left:20px;background:url("/resources/imgs/icon/icon_modal_dot2.png") no-repeat left 2px;font-family:'NanumSquare' ;font-size:12px;color:#666666;}
+
+/* 업무설명 */
+.work_info{overflow:hidden;}
+.work_info .info_line{overflow:hidden;}
+.work_info .info_line .info_line_title{margin-bottom:15px;font-family:'NanumSquare' ;font-size:18px;font-weight:bold;color:#000000;}
+.work_info .info_line .info_line_content{line-height:21px; margin-bottom:15px;font-family:'NanumSquare' ;font-size:14px;color:#666666;word-wrap:break-word;}
+
+/* 상세영역 */
+.detail_box{overflow:hidden;}
+.detail_box .detail_tbl{table-layout:fixed;}
+.detail_box .detail_tbl .detail_th_l{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px 3px 3px 8px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:left;vertical-align:middle;}
+.detail_box .detail_tbl .detail_th_c{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:center;vertical-align:middle;}
+.detail_box .detail_tbl .detail_th_r{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px 8px 3px 3px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:right;vertical-align:middle;}
+.detail_box .detail_tbl .detail_td_l{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px 3px 3px 8px;;font-size:12px;color:#4c4c4c;text-align:left;vertical-align:middle;}
+.detail_box .detail_tbl .detail_td_c{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px;font-size:12px;color:#4c4c4c;text-align:center;vertical-align:middle;}
+.detail_box .detail_tbl .detail_td_r{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px 8px 3px 3px;font-size:12px;color:#4c4c4c;text-align:right;vertical-align:middle;}
+
+/* 검색,상세 - 라디오, 체크, 콤보(input) */
+.lbl_every{margin-right:6px;cursor:pointer;}
+.spn_every{margin:2px 2px 0 4px;vertical-align:middle;}
+.rdo_every{cursor:pointer;}
+.chk_every{cursor:pointer;}
+.combo_every{height:22px;line-height:22px;padding:0 22px 0 3px;background:url("/resources/imgs/icon/icon_every_combo_arrow.png") no-repeat 92% center;background-color:#ffffff;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;}
+.combo_every::-ms-expand{display:none;}
+
+/* 달력 */
+.datepicker_ymd{width:80px;height:22px;line-height:22px;text-align:center;box-sizing:border-box;}
+.datepicker_ym{width:60px;height:22px;line-height:22px;text-align:center;box-sizing:border-box;}
+.datepicker_y{width:40px;height:22px;line-height:22px;text-align:center;box-sizing:border-box;}
+.ui-datepicker-trigger{margin-left:1px;vertical-align:middle;cursor:pointer;}
+
+/* 버튼영역 */
+.btn_box{overflow:hidden;margin:20px 0;text-align:center;}
+.btn_box .btn_common{margin:0 3px;padding:7px 18px;background-color:#4d4cac;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;color:#ffffff;}
+
+/* 시스템체크 이미지 */
+.capture_img{width:1038px;height:550px;border:1px solid #000000;}
+.capture_file{height:24px;color:#0000ff;text-decoration:underline;}
+
+
+
+

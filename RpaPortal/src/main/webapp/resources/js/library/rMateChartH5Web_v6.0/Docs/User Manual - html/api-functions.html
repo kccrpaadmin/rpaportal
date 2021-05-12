@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: API Functions</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('api-functions.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트만들기">차트 만들기</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트만들기">차트 만들기</a>
+						<li class="level2"><a href="#API함수">API 함수</a></li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="API함수"></a>API 함수</h2>
+			<p>알메이트 차트는 자바스크립트 API 를 제공함으로써 차트 개발자에게 좀 더 유연한 개발 환경을 제공합니다. 제공되는 API 함수 리스트는 아래 표와 같습니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">API함수</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">setData(value)</td>
+					<td align="left"><p>차트 생성시 적용될 데이터셋을 설정합니다.</p>
+						<p>value: 배열, XML 형식의 스트링</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">setDataDrillDown(value)</td>
+					<td align="left"><p>설정된 데이터셋을 이용하여 드릴 다운을 실행합니다.</p>
+						<p>value: 배열, XML 형식의 스트링</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">setDataDrillDownURL(url)</td>
+					<td align="left"><p>설정된 경로의 데이터셋을 이용하여 드릴 다운을 실행합니다.</p>
+						<p>value: 경로값</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">setDataType(value)</td>
+					<td align="left"><p>차트 생성시 적용될 데이터셋의 형식을 설정합니다.</p>
+						<p>value: csv, json, xml</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">setDataURL(value)</td>
+					<td align="left"><p>차트 생성시 적용될 데이터셋에 대한 경로(URL)를 설정합니다.</p>
+						<p>value: 경로값</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">setLayout(value)</td>
+					<td align="left"><p>차트 생성시 적용될 레이아웃을 설정합니다.</p>
+						<p>value: XML 형식의 스트링</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">setLayoutURL(value)</td>
+					<td align="left"><p>차트 생성시 적용될 레이아웃에 대한 경로(URL)를 설정합니다.</p>
+						<p>value: 경로값</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">setSlideDataSet(value)</td>
+					<td align="left"><p>슬라이드 차트 생성시 데이터셋의 배열을 설정합니다.</p>
+						<p>value: 배열</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">setSlideLayoutSet(value)</td>
+					<td align="left"><p>슬라이드 차트 생성시 레이아웃의 배열을 설정합니다.</p>
+						<p>value: 배열</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">setTheme(value)</td>
+					<td align="left"><p>rMateChartH5.registerTheme() 함수를 통해서 설정된 디자인 테마를 적용합니다.</p>
+						<p>value: 테마명</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">getCSVData()</td>
+					<td align="left"><p>차트의 데이터를 CSV 형식으로 리턴합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">getDrillDownDepth()</td>
+					<td align="left"><p>현재 드릴 다운된 단계(depth)를 리턴합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">getSnapshot()</td>
+					<td align="left"><p>base64 로 인코딩된 차트의 스냅샷을 리턴합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">saveAsImage()</td>
+					<td align="left"><p>차트의 스냅샷을 이미지 형식으로 저장합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">showAdditionalPreloader()</td>
+					<td align="left"><p>프리로더 이미지를 표시합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">showDataEditor()</td>
+					<td align="left"><p>숨겨진 데이터 편집기를 표시합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">hideDataEditor()</td>
+					<td align="left"><p>표시된 데이터 편집기를 감추기합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">removeAdditionalPreloader()</td>
+					<td align="left"><p>프리로더 이미지를 표시하지 않습니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">sliderPause()</td>
+					<td align="left"><p>모션 차트에서 슬라이드 실행을 멈추기합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">sliderPlay()</td>
+					<td align="left"><p>모션 차트에서 슬라이드를 실행합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">sliderReset()</td>
+					<td align="left"><p>모션 차트에서 슬라이드를 초기화합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">legendCheck(value)</td>
+					<td align="left"><p><a href="../api/Legend.html" target="_blank">&lt;Legend&gt;</a> 노드의 useVisibleCheck 속성값이 <prop>“true”</prop> 인 경우, 파라미터값의 인덱스의 시리즈에 대한 선택/해제를 실행합니다.</p>
+						<p>value: 숫자</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">legendAllCheck(value)</td>
+					<td align="left"><p><a href="../api/Legend.html" target="_blank">&lt;Legend&gt;</a> 노드의 useVisibleCheck 속성값이 <prop>“true”</prop> 인 경우 전체 범례 아이템에 대한 선택(true) 혹은 해제(false)를 실행합니다.</p>
+						<p>value: true, false</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">changeScrollBarSize(value)</td>
+					<td align="left"><p>스크롤 차트에서 스크롤바의 크기를 설정합니다.</p>
+						<p>value: 객체 (arrowSize, scrollHeight, thumbHeight, thumbMinSize)</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">hasNoData()</td>
+					<td align="left"><p>데이터가 존재하지 않는다는(null) 창을 차트에 표시합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">resize()</td>
+					<td align="left"><p>차트의 크기를 변경합니다. resize() 함수를 실행하기 전에 차트가 표시되는 &lt;div&gt;의 width, height 스타일에 변경될 크기값을 지정해야 합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">visibleItemSize(value)</td>
+					<td align="left"><p>스크롤 차트의 화면에 표시될 데이터의 개수를 설정합니다.</p>
+						<p>value: 숫자</p>
+					</td>
+				</tr>
+			</table>
+
+		</div><!-- textbox -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

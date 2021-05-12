@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 다운로드 및 설치</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('download-and-installation.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="처음시작하기">처음 시작하기</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#처음시작하기">처음 시작하기</a>
+						<li class="level2"><a href="#다운로드및설치">다운로드 및 설치</a></li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="다운로드및설치"></a>다운로드 및 설치</h2>
+			<p>알메이트 차트 평가판은 리아모어 홈페이지에서 다운로드 받으실 수 있습니다. 평가판 다운로드를 원하시면 다음 링크에서 다운로드 버튼을 클릭하십시요.</p>
+			<p><a href="http://www.riamore.net/component/chart.html" target="_blank">http://www.riamore.net/component/chart.html</a>
+			<p>제품을 다운로드 받으신 후 압축을 풀면 다음과 같은 구성 요소(하위 디렉토리)들을 확인하실 수 있습니다.</p>
+
+			<ul style="list-style: none;">
+				<li>1.	rMateChartH5: 제품의 엔진인 자바스크립트 라이브러리 파일들(rMateChartH5.js 등)과 제품에서 사용되는 이미지 파일과 CSS 파일이 존재합니다. 이 디렉토리에는 다음과 같은 하위 디렉토리들이 존재합니다.
+					<ul style="list-style: none;">
+						<li>a. Assets: CSS 파일, 아이콘, 이미지, 패턴 이미지, 테마 (Theme) 라이브러리</li>
+						<li>b. JS: 엔진 라이브러리, 익스플로러 캔버스 라이브러리, PDF 변환 라이브러리, 테이블 변환 라이브러리</li>
+					</ul>
+				</li>
+				<br>
+				<li>2.	LicenseKey: 알메이트 차트 라이센스 파일(rMateChartH5License.js)이 존재하는 디렉토리입니다.</li>
+				<br>
+				<li>3.	Docs: 알메이트 차트 사용자 설명서 파일(rMate차트HTML5_사용설명서.pdf)과 API 문서 파일이 존재하는 디렉토리입니다. API 문서는 HTML 파일들로 구성되어 있고 api 디렉토리에 존재합니다.
+					<ul style="list-style: none;">
+						<li>a.	api: API 문서들이 존재하는 디렉토리</li>
+					</ul>
+				</li>
+				<br>
+				<li>4.	Samples: 각종 예제 파일들이 존재하는 디렉토리입니다.</li>
+				<br>
+				<li>5.	index.html: 제품에 포함된 샘플 차트들을 실행할 수 있는 시작 페이지입니다. 이 파일을 웹브라우저를 통해서 오픈하면 400 여개의 즉시 활용이 가능한 차트들을 실행할 수 있습니다.</li>
+			</ul>
+			<p>설치를 원하는 서버나 사용자 PC 의 특정 디렉토리에 설치 파일의 압축을 해제하시면 바로 알메이트 차트를 사용하실 수 있습니다.
+				압축 해제 후 어떠한 설정 작업도 필요없으며, 차트 생성을 원하는 웹페이지 파일에 <a href="your-first-chart.html">처음 차트 만들기</a> 에서 설명드린 3 가지 파일(라이센스, 라이브러리, CSS)에 대한 URL 을 설정하시면 됩니다.</p>
+
+		</div><!-- textbox -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

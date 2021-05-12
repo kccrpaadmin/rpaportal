@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.CrawlG2bRepository">
+	
+	<select id="listCrawlG2b" statementType="CALLABLE" parameterType="crawlG2bVO" resultType="crawlG2bVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlG2b (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listCrawlG2bManage" statementType="CALLABLE" parameterType="crawlG2bVO" resultType="crawlG2bVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlG2bManage (
+            		#{ShowYn}
+            		,#{StartDate}
+            		,#{EndDate}
+            		,#{ConstNm}
+            	)
+			}
+		]]>
+	</select>
+	
+	<update id="updateCrawlG2bManage" statementType="CALLABLE" parameterType="crawlG2bVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_updateCrawlG2bManage (
+            		#{ManageNo}
+            		,#{ShowYn}
+            		,#{EmpNo}
+            	)
+			}
+		]]>
+	</update>
+	
+</mapper>

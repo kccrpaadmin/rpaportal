@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 버블 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('bubble-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#버블차트">버블 차트</a>
+							<li class="level3"><a href="#다중시리즈버블차트">다중 시리즈 버블 차트</a></li>
+							<li class="level3"><a href="#3d버블차트">3D 버블 차트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="버블차트"></a>버블 차트</h2>
+			<p>버블 차트는 데이터 포인트가 버블로 표시되고 추가적인 데이터 차원을 버블 크기로 나타내는 <a href="plot-chart.html">플롯(스캐터) 차트</a>의 변형입니다.
+				<a href="plot-chart.html">플롯 차트</a>와 마찬가지로 일반적으로 버블 차트는 카테고리 축을 사용하지 않고, 가로 축과 세로 축 모두 값으로 표현되는 축을 사용합니다.</p>
+			<p>버블 차트는 <a href="../api/Bubble2DChart.html" target="_blank">&lt;Bubble2DChart&gt;</a> 노드의 series 속성값에 <a href="../api/Bubble2DSeries.html" target="_blank">&lt;Bubble2DSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				버블의 크기는 버블의 최소 크기와 최대 크기에 기반하여 데이터 값의 상대적 비율에 따라서 자동으로 계산됩니다. 버블의 최소 크기와 최대 크기는 <a href="../api/Bubble2DChart.html" target="_blank">&lt;Bubble2DChart&gt;</a> 노드의 minRadius 속성과 maxRadius 속성에 설정됩니다.</p>
+			<p>다음은 버블 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Bubble2DChart showDataTips="true" minRadius="5" maxRadius="40"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bubble2DSeries displayName="Profit/Cost/Revenue" xField="Profit" yField="Cost" radiusField="Revenue"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bubble2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">&lt;/Bubble2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="KeKvVM" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 버블 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/KeKvVM/">알메이트 차트 - 버블 차트</a></p>-->
+			<img class="capture" src="images/demo/버블-차트.jpg" alt="버블 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/KeKvVM/" target="_blank">알메이트 차트 - 버블 차트</a></p>
+
+			<h3><a class="anchor" id="다중시리즈버블차트"></a>다중 시리즈 버블 차트</h3>
+			<p>여러 개의 데이터 시리즈를 버블 차트에 적용할 수 있습니다. 다음은 A, B, C 부서 각각의 데이터 시리즈에 대한 Profit/Cost/Revenue 관계를 버블 차트로 표현하는 코드와이를 적용해서 출력한 차트의 예제입니다.
+				이 예제에서는 <a href="../api/Bubble2DSeries.html" target="_blank">&lt;Bubble2DSeries&gt;</a> 노드의 &lt;fill&gt; 속성에 <a href="../api/RadialGradient.html" target="_blank">&lt;RadialGradient&gt;</a> 노드를 적용하여 버블에 방사형(Radial) 그라디언트 색을 칠하였습니다.
+				방사형(Radial) 그라디언트 색 설정에 관해서는 <a href="color.html#영역에대한방사형그라디언트색설정하기">영역에 대한 방사형(Radial) 그라디언트 색 설정하기</a>를 참조하십시요.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Bubble2DChart maxRadius="40" minRadius="5" showDataTips="true"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bubble2DSeries displayName="A Dept." xField="A_Profit" yField="A_Cost" radiusField="A_Revenue"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bubble2DSeries&gt;</div>
+	<div class="line">    &lt;Bubble2DSeries displayName="B Dept." xField="B_Profit" yField="B_Cost" radiusField="B_Revenue"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bubble2DSeries&gt;</div>
+	<div class="line">    &lt;Bubble2DSeries displayName="C Dept." xField="C_Profit" yField="C_Cost" radiusField="C_Revenue"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bubble2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">&lt;/Bubble2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="OEJjbJ" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다중 시리즈 버블 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/OEJjbJ/">알메이트 차트 - 다중 시리즈 버블 차트</a></p>-->
+			<img class="capture" src="images/demo/다중-시리즈-버블-차트.jpg" alt="다중 시리즈 버블 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/OEJjbJ/" target="_blank">알메이트 차트 - 다중 시리즈 버블 차트</a></p>
+
+			<h3><a class="anchor" id="3d버블차트"></a>3D 버블 차트</h3>
+			<p>3D 형태의 X, Y 축을 적용한 3D 버블 차트를 생성할 수 있습니다.
+				3D 버블 차트는 <a href="../api/Bubble3DChart.html" target="_blank">&lt;Bubble3DChart&gt;</a> 노드의 series 속성값에 <a href="../api/Bubble3DSeries.html" target="_blank">&lt;Bubble3DSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				다음은 3D 버블 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다. 이 예제에서는 <a href="../api/Bubble3DSeries.html" target="_blank">&lt;Bubble3DSeries&gt;</a> 노드의 &lt;fill&gt; 속성에 <a href="../api/SolidColor.html" target="_blank">&lt;SolidColor&gt;</a> 노드를 적용하여 버블에 반 투명(alpha = <prop>“0.5”</prop>)한 색을 칠하였습니다.
+				색 설정에 관해서는 <a href="color.html#영역에대한색설정하기">영역에 대한 색 설정하기</a>를 참조하십시요.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Bubble3DChart showDataTips="true" minRadius="5" maxRadius="40"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bubble3DSeries displayName="A Dept." xField="A_Profit" yField="A_Cost" radiusField="A_Revenue"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bubble3DSeries&gt;</div>
+	<div class="line">    &lt;Bubble3DSeries displayName="B Dept." xField="B_Profit" yField="B_Cost" radiusField="B_Revenue"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bubble3DSeries&gt;</div>
+	<div class="line">    &lt;Bubble3DSeries displayName="C Dept." xField="C_Profit" yField="C_Cost" radiusField="C_Revenue"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bubble3DSeries&gt;</div>
+	<div class="line">    &lt;Bubble3DSeries displayName="D Dept." xField="D_Profit" yField="D_Cost" radiusField="D_Revenue"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bubble3DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">&lt;/Bubble3DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="gKPERr" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 3D 버블 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/gKPERr/">알메이트 차트 - 3D 버블 차트</a></p>-->
+			<img class="capture" src="images/demo/3D-버블-차트.jpg" alt="3D 버블 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/gKPERr/" target="_blank">알메이트 차트 - 3D 버블 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.OcrRequestRepository">
+	
+	<insert id="createOcrRequest" statementType="CALLABLE" parameterType="ocrRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Ocr_createOcrRequest (
+					#{MenuId}
+	            	,#{AttId}
+	            	,#{EmpNo}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<select id="listOcrRequest" statementType="CALLABLE" parameterType="ocrRequestVO" resultType="ocrRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Ocr_listOcrRequest (
+	            	#{MenuId}
+           			,#{EmpNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listOcrRequestAttFile" statementType="CALLABLE" parameterType="ocrRequestVO" resultType="ocrRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Ocr_listOcrRequestAttFile (
+	            	#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+</mapper>

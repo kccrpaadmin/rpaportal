@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- Spring과 MyBatis SqlSessionFactoryBean 연동 등록 -->
+	<bean id="factoryBeanErpDb" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceErpDb"></property>
+		<property name="configLocation" value="classpath:spring/develops/models/erpdb-model.xml"></property>
+		<property name="mapperLocations" value="classpath:spring/develops/mappers/erpdb/*mapper.xml"></property>
+	</bean>
+
+	<!-- DAO interface와 MyBatis SqlSessionFactoryBean 연동 등록 -->
+	<!-- dao.erpdb.cm / dao.erpdb.sc 등 여러개 있을땐 .*, 하나만 있는 경우는 넣지 않음 또는 *  -->
+	<mybatis-spring:scan base-package="com.kcc.biz.dao" factory-ref="factoryBeanErpDb" />
+	
+</beans>

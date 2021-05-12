@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+
+<configuration>
+
+	<settings>
+	    <setting name="cacheEnabled" value="true" />
+	    <setting name="useGeneratedKeys" value="false" />
+	    <setting name="defaultExecutorType" value="SIMPLE" />
+	    <setting name="defaultStatementTimeout" value="30000" />
+	    <setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<typeAliases>
+
+		<!-- 접근로그 -->
+		<typeAlias alias="accessVO" type="com.kcc.biz.model.AccessVO" />
+		<!-- 로그인 -->
+		<typeAlias alias="loginVO" type="com.kcc.biz.model.LoginVO" />
+		<!-- 사용자 -->
+		<typeAlias alias="userVO" type="com.kcc.biz.model.UserVO" />
+		<!-- 메뉴 -->
+		<typeAlias alias="menuVO" type="com.kcc.biz.model.MenuVO" />
+		<!-- 첨부파일 -->
+		<typeAlias alias="attFileVO" type="com.kcc.biz.model.AttFileVO" />
+		<!-- 코드 -->
+		<typeAlias alias="codeVO" type="com.kcc.biz.model.CodeVO" />
+		<!-- 게시판 -->
+		<typeAlias alias="boardVO" type="com.kcc.biz.model.BoardVO" />
+		
+		<!-- 웹크롤링 스케쥴 -->
+		<typeAlias alias="crawlScheduleVO" type="com.kcc.biz.model.CrawlScheduleVO" />
+		<!-- 웹크롤링 요청 -->
+		<typeAlias alias="crawlRequestVO" type="com.kcc.biz.model.CrawlRequestVO" />
+		<!-- 웹크롤링 시스템체크 -->
+		<typeAlias alias="crawlSystemCheckVO" type="com.kcc.biz.model.CrawlSystemCheckVO" />
+		<!-- 웹크롤링 나라장터 -->
+		<typeAlias alias="crawlG2bVO" type="com.kcc.biz.model.CrawlG2bVO" />
+		<!-- 웹크롤링 동관 및 환율정보 -->
+		<typeAlias alias="crawlKomisVO" type="com.kcc.biz.model.CrawlKomisVO" />
+		<!-- 발주처 직원정보 -->
+		<typeAlias alias="crawlPersonInfoVO" type="com.kcc.biz.model.CrawlPersonInfoVO" />
+		
+		<!-- Ocr 요청 -->
+		<typeAlias alias="ocrRequestVO" type="com.kcc.biz.model.OcrRequestVO" />
+		<!-- Ocr 텍스트 추출 -->
+		<typeAlias alias="ocrTextVO" type="com.kcc.biz.model.OcrTextVO" />
+		<!-- Ocr 사업자등록증 추출 -->
+		<typeAlias alias="ocrBusinessLicenseVO" type="com.kcc.biz.model.OcrBusinessLicenseVO" />
+		
+		<!-- BOT 요청 -->
+		<typeAlias alias="botRequestVO" type="com.kcc.biz.model.BotRequestVO" />
+		
+	</typeAliases>
+	
+</configuration>

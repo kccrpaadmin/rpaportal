@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+	<comment>codeProperties</comment>
+	
+	<!-- com.kcc.util.service.impl.FileUploadUtilServiceImpl 클래스 및 fileupload-context.xml 에서 사용 -->
+	<entry key="maxUploadSize">-1</entry>
+	<entry key="maxInMemorySize">1048576</entry>
+	<entry key="limitUploadSize">104857600</entry>
+	<entry key="uploadPath">X:\AttFiles</entry>
+	<!-- <entry key="realUploadPath">\\70.71.11.159\AttFiles</entry> -->
+	
+</properties>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.CrawlScheduleRepository">
+	
+	<insert id="createCrawlSchedule" statementType="CALLABLE" parameterType="crawlScheduleVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_createCrawlSchedule (
+	            	#{MenuId}
+	            	,#{Monthz}
+	            	,#{Dayz}
+	            	,#{Weekz}
+	            	,#{WeekDayz}
+	            	,#{StartTime}
+	            	,#{ExpDate}
+	            	,#{EmpNo}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<delete id="deleteCrawlSchedule" statementType="CALLABLE" parameterType="crawlScheduleVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_deleteCrawlSchedule (
+	            	#{MenuId}
+	            	,#{SeqStr}
+            	)
+			}
+		]]>
+	</delete>
+	
+	<select id="listCrawlSchedule" statementType="CALLABLE" parameterType="crawlScheduleVO" resultType="crawlScheduleVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlSchedule (
+            		#{MenuId}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listCrawlScheduleMenu" statementType="CALLABLE" parameterType="crawlScheduleVO" resultType="crawlScheduleVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlScheduleMenu (
+            		#{CallDate}
+            	)
+			}
+		]]>
+	</select>
+	
+</mapper>

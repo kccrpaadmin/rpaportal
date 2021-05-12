@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 데이터 시리즈</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('data-series.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트구성요소">차트 구성 요소</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트구성요소">차트 구성 요소</a>
+						<li class="level2"><a href="#데이터시리즈">데이터 시리즈</a>
+							<li class="level3"><a href="#데이터필드설정">데이터 필드 설정</a></li>
+							<li class="level3"><a href="#다중데이터시리즈설정">다중 데이터 시리즈 설정</a></li>
+							<li class="level3"><a href="#데이터시리즈와차트유형">데이터 시리즈와 차트 유형</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+	 		<h2><a class="anchor" id="데이터시리즈"></a>데이터 시리즈</h2>
+			<p>차트의 레이아웃을 구성하는 여러가지 요소들 중에서 데이터 시리즈는 가장 중요한 요소입니다.
+				적용되는 데이터셋과의 연결과 데이터 포인트들이 차트 상에 표현되는 다양한 방식은 데이터 시리즈의 설정을 통해서 이루어집니다.
+				알메이트 차트의 레이아웃에서 데이터 시리즈는 <“차트의 종류명” + “Series”> 로 표시되고, 차트 노드(<“차트의 종류명” + “Chart”>)의 series 속성에 정의됩니다.
+				예들 들면, 레이아웃에서 영역 차트의 데이터 시리즈는 <a href="../api/Area2DSeries.html" target="_blank">&lt;Area2DSeries&gt;</a> 로 표시되고 차트 노드는 <a href="../api/Area2DChart.html" target="_blank">&lt;Area2DChart&gt;</a> 로 표시됩니다.
+				다음은 <a href="your-first-chart.html">처음 차트 만들기</a>에서 예제에 적용된 <a href="column-chart.html">컬럼 차트</a> 생성을 위한 데이터 시리즈 설정 부분입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DChart showDataTips="true"&gt;</div>
+	<div class="line">...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column2DSeries labelPosition="outside" yField="2011" displayName="2011"/&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Column2DChart&gt;</div>
+</div>
+
+			<h3><a class="anchor" id="데이터필드설정"></a>데이터 필드 설정</h3>
+			<p>차트에 데이터 값을 표현하기 위해서는 데이터셋의 특정 데이터 필드를 데이터 시리즈의 특정한 속성값에 지정해야 합니다.
+				지정할 속성은 차트의 유형에 따라서 달라지는데, 데이터 값의 크기가 세로 축(Y 축) 상에 표현된다면 yField(예, <a href="column-chart.html">컬럼 차트</a>, <a href="area-chart.html">영역 차트</a> 등) 속성에,
+				가로 축(X 축) 상에 표현된다면 xField(예, <a href="bar-chart.html">바 차트</a>) 속성에 그리고 기타 차트 유형에 따라서(예, <a href="pie-chart.html">파이 차트</a>: field, <a href="pyramid-chart.html">피라미드 차트</a>: weightField) 정해진 속성에 지정해야만 합니다.
+				위 <a href="column-chart.html">컬럼 차트</a> 예제에서는 yField 속성에 데이터 필드명 <prop>“2011”</prop> 이 지정되었습니다.</p>
+
+			<h3><a class="anchor" id="다중데이터시리즈설정"></a>다중 데이터 시리즈 설정</h3>
+			<p>차트에 표현될 데이터 시리즈가 여러 개일 경우에는 표현하기 원하는 개수만큼의 데이터 시리즈 노드를 정의하면 됩니다.
+				다음 코드 예제는 <a href="column-chart.html">컬럼 차트</a>에서 3 개의 데이터 시리즈를 표현하기 위한 레이아웃과 데이터셋을 나타낸 것입니다.
+				위에 설명된 예제에서 <prop>“2012”</prop>, <prop>“2013”</prop> 데이터 필드가 추가되어 추가된 2 개의 데이터 시리즈에 지정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DChart showDataTips="true"&gt;</div>
+	<div class="line">...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column2DSeries labelPosition="outside" yField="2011" displayName="2011"/&gt;</div>
+	<div class="line">    &lt;Column2DSeries labelPosition="outside" yField="<span class="vhdllogic">2012</span>" displayName="2012"/&gt;</div>
+	<div class="line">    &lt;Column2DSeries labelPosition="outside" yField="<span class="vhdllogic">2013</span>" displayName="2013"/&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Column2DChart&gt;</div>
+	<div class="line"></div>
+	<div class="line">var chartData = </div>
+	<div class="line">  [{"Month":"Jan", "2011":2.4, "2012":3.1, "2013":2.5},</div>
+	<div class="line">  {"Month":"Feb", "2011":3.8, "2012":4.6, "2013":1.3},</div>
+	<div class="line">  {"Month":"Mar", "2011":8.1, "2012":9, "2013":6.0},</div>
+	<div class="line">  {"Month":"Apr", "2011":5.1, "2012":4, "2013":7.7},</div>
+	<div class="line">  {"Month":"May", "2011":2.1, "2012":3.9, "2013":1.9},</div>
+	<div class="line">  {"Month":"Jun", "2011":5.2, "2012":4.9, "2013":1.9},</div>
+	<div class="line">  {"Month":"Jul", "2011":4.2, "2012":3.2, "2013":1.9}]</div>
+</div>
+
+  			<p>차트의 유형 중 <a href="combination-chart.html">콤비네이션 차트</a>에서는 두 가지 이상의 서로 다른 종류의 데이터 시리즈가 차트 노드의 series 속성에 정의됩니다.
+					<a href="combination-chart.html">콤비네이션 차트</a>에서 특정 데이터 시리즈를 다중 데이터 시리즈로 표현하고자 할 경우에는 차트 노드의 &lt;series&gt; 속성에 해당 데이터 시리즈들를 바로 설정하지 않고 반드시 &lt;“차트의 종류명” + “Set”&gt;(예, <a href="../api/Column2DSet.html" target="_blank">&lt;Column2DSet&gt;</a>) 노드를 정의 하고 정의된 노드의 &lt;series&gt; 속성에 데이터 시리즈들을 정의해야 합니다.
+					다음은 1 개의 영역 시리즈, 2 개의 컬럼  시리즈, 1 개의 라인 시리즈를 정의한 레이아웃과 이를 적용해서 출력한 차트의 예제입니다.
+					2 개의 컬럼 시리즈를 표현하기 위해서 <a href="../api/Column2DSet.html" target="_blank">&lt;Column2DSet&gt;</a> 노드가 정의되었고 이 노드의 &lt;series&gt; 속성에 <a href="../api/Column2DSeries.html" target="_blank">&lt;Column2DSeries&gt;</a> 노드 2개가 설정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;series&gt;</div>
+	<div class="line">  &lt;Area2DSeries yField="Profit" form="curve" displayName="Profit"&gt;</div>
+	<div class="line">    ...</div>
+	<div class="line">  &lt;/Area2DSeries&gt;</div>
+	<div class="line">  &lt;<span class="vhdllogic">Column2DSet</span> type="clustered"&gt;</div>
+	<div class="line">    &lt;series&gt;</div>
+	<div class="line">      &lt;Column2DSeries yField="Cost" displayName="Cost"&gt;</div>
+	<div class="line">        ...</div>
+	<div class="line">      &lt;/Column2DSeries&gt;</div>
+	<div class="line">      &lt;Column2DSeries yField="Revenue" displayName="Revenue"&gt;</div>
+	<div class="line">        ...</div>
+	<div class="line">      &lt;/Column2DSeries&gt;</div>
+	<div class="line">    &lt;/series&gt;</div>
+	<div class="line">  &lt;/<span class="vhdllogic">Column2DSet</span>&gt;</div>
+	<div class="line">  &lt;Line2DSeries yField="Revenue" radius="4.5" itemRenderer="CircleItemRenderer" displayName="Revenue"&gt;</div>
+	<div class="line">    ...</div>
+	<div class="line">    &lt;verticalAxis&gt;</div>
+	<div class="line">      &lt;LinearAxis id="vAxis2" interval="400" formatter="{numFmt}"/&gt;</div>
+	<div class="line">    &lt;/verticalAxis&gt;</div>
+	<div class="line">    ...</div>
+	<div class="line">  &lt;/Line2DSeries&gt;</div>
+	<div class="line">&lt;/series&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="rKBGWg" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다중 데이터 시리즈 설정" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/rKBGWg/">알메이트 차트 - 다중 데이터 시리즈 설정</a></p>-->
+			<img class="capture" src="images/demo/다중-데이터-시리즈-설정.jpg" alt="다중 데이터 시리즈 설정" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/rKBGWg/" target="_blank">알메이트 차트 - 다중 데이터 시리즈 설정</a></p>
+
+			<h3><a class="anchor" id="데이터시리즈와차트유형"></a>데이터 시리즈와 차트 유형</h3>
+			<p>다음은 알메이트 차트에서 사용 가능한 데이터 시리즈에 대한 리스트입니다.
+				데이터 시리즈가 적용되는 차트 유형과 데이터셋의 필드명을 지정해야 하는 속성도 함께 표시되었습니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">데이터 시리즈</th>
+					<th align="center">차트 유형</th>
+					<th align="center">데이터 필드 설정 속성</th>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Area2DSeries.html" target="_blank">&lt;Area2DSeries&gt;</a></p>
+						<p>(<a href="../api/Area2DSet.html" target="_blank">&lt;Area2DSet&gt;</a>)</p>
+					</td>
+					<td align="center"><p><a href="../api/Area2DChart.html" target="_blank">&lt;Area2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Bar2DSeries.html" target="_blank">&lt;Bar2DSeries&gt;</a></p>
+						<p>(<a href="../api/Bar2DSet.html" target="_blank">&lt;Bar2DSet&gt;</a>)</p>
+					</td>
+					<td align="center"><p><a href="../api/Bar2DChart.html" target="_blank">&lt;Bar2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Bar2DWingSeries.html" target="_blank">&lt;Bar2DWingSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Bar2DWingChart.html" target="_blank">&lt;Bar2DWingChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField, xFieldOpp</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Bar3DSeries.html" target="_blank">&lt;Bar3DSeries&gt;</a></p>
+						<p>(<a href="../api/Bar3DSet.html" target="_blank">&lt;Bar3DSet&gt;</a>)</p>
+					</td>
+					<td align="center"><p><a href="../api/Bar3DChart.html" target="_blank">&lt;Bar3DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/BoxPlotSeries.html" target="_blank">&lt;BoxPlotSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/BoxPlotChart.html" target="_blank">&lt;BoxPlotChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Bubble2DSeries.html" target="_blank">&lt;Bubble2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Bubble2DChart.html" target="_blank">&lt;Bubble2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField, yField, radiusField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Bubble3DSeries.html" target="_blank">&lt;Bubble3DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Bubble3DChart.html" target="_blank">&lt;Bubble3DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField, yField, radiusField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/CandleArea2DSeries.html" target="_blank">&lt;CandleArea2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/CandleArea2DChart.html" target="_blank">&lt;CandleArea2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/CandleLine2DSeries.html" target="_blank">&lt;CandleLine2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/CandleLine2DChart.html" target="_blank">&lt;CandleLine2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Candlestick2DSeries.html" target="_blank">&lt;Candlestick2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Candlestick2DChart.html" target="_blank">&lt;Candlestick2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>openField,  closeField,  highField,  lowField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Column2DSeries.html" target="_blank">&lt;Column2DSeries&gt;</a></p>
+						<p>(<a href="../api/Column2DSet.html" target="_blank">&lt;Column2DSet&gt;</a>)</p>
+					</td>
+					<td align="center"><p><a href="../api/Column2DChart.html" target="_blank">&lt;Column2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Column2DWingSeries.html" target="_blank">&lt;Column2DWingSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Column2DWingChart.html" target="_blank">&lt;Column2DWingChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField, yFieldOpp</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Column3DSeries.html" target="_blank">&lt;Column3DSeries&gt;</a></p>
+						<p>(<a href="../api/Column3DSet.html" target="_blank">&lt;Column3DSet&gt;</a>)</p>
+					</td>
+					<td align="center"><p><a href="../api/Column3DChart.html" target="_blank">&lt;Column3DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Equalizer2DSeries.html" target="_blank">&lt;Equalizer2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Equalizer2DChart.html" target="_blank">&lt;Equalizer2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Histogram2DSeries.html" target="_blank">&lt;Histogram2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Histogram2DChart.html" target="_blank">&lt;Histogram2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Histogram3DSeries.html" target="_blank">&lt;Histogram3DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Histogram3DChart.html" target="_blank">&lt;Histogram3DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/HTarget2DGoalSeries.html" target="_blank">&lt;HTarget2DGoalSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Combination2DChart.html" target="_blank">&lt;Combination2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/HTarget2DResultSeries.html" target="_blank">&lt;HTarget2DResultSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Combination2DChart.html" target="_blank">&lt;Combination2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/HTarget3DGoalSeries.html" target="_blank">&lt;HTarget3DGoalSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Combination3DChart.html" target="_blank">&lt;Combination3DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/HTarget3DResultSeries.html" target="_blank">&lt;HTarget3DResultSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Combination3DChart.html" target="_blank">&lt;Combination3DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/ImageMatrixSeries.html" target="_blank">&lt;ImageMatrixSeries&gt;</a></p>
+						<p>(<a href="../api/ImageMatrixSet.html" target="_blank">&lt;ImageMatrixSet&gt;</a>)</p>
+					</td>
+					<td align="center"><p><a href="../api/ImageMatrixChart.html" target="_blank">&lt;ImageMatrixChart&gt;</a></p>
+					</td>
+					<td align="center"><p>field</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/ImageSeries.html" target="_blank">&lt;ImageSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/ImageChart.html" target="_blank">&lt;ImageChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Line2DChart.html" target="_blank">&lt;Line2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Matrix2DSeries.html" target="_blank">&lt;Matrix2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Matrix2DChart.html" target="_blank">&lt;Matrix2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField, yField, zField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/MotionBubbleSeries.html" target="_blank">&lt;MotionBubbleSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/MotionChart.html" target="_blank">&lt;MotionChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField, radiusField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/MotionColumnSeries.html" target="_blank">&lt;MotionColumnSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/MotionChart.html" target="_blank">&lt;MotionChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/MotionLineSeries.html" target="_blank">&lt;MotionLineSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/MotionChart.html" target="_blank">&lt;MotionChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/OverlayBubbleSeries.html" target="_blank">&lt;OverlayBubbleSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/OverlayBubbleChart.html" target="_blank">&lt;OverlayBubbleChart&gt;</a></p>
+					</td>
+					<td align="center"><p>field, nameField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Pie2DSeries.html" target="_blank">&lt;Pie2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Pie2DChart.html" target="_blank">&lt;Pie2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>field, nameField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Pie3DSeries.html" target="_blank">&lt;Pie3DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Pie3DChart.html" target="_blank">&lt;Pie3DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>field, nameField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Pyramid2DSeries.html" target="_blank">&lt;Pyramid2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Pyramid2DChart.html" target="_blank">&lt;Pyramid2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>nameField, weightField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/RadarSeries.html" target="_blank">&lt;RadarSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/RadarChart.html" target="_blank">&lt;RadarChart&gt;</a></p>
+					</td>
+					<td align="center"><p>field</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/TreeMapSeries.html" target="_blank">&lt;TreeMapSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/TreeMapChart.html" target="_blank">&lt;TreeMapChart&gt;</a></p>
+					</td>
+					<td align="center"><p>nameField, groupField, groupNameField, weightField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/Vector2DSeries.html" target="_blank">&lt;Vector2DSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Vector2DChart.html" target="_blank">&lt;Vector2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>xField , degreeField, meterField, velocityField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/VTarget2DGoalSeries.html" target="_blank">&lt;VTarget2DGoalSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Combination2DChart.html" target="_blank">&lt;Combination2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/VTarget2DResultSeries.html" target="_blank">&lt;VTarget2DResultSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Combination2DChart.html" target="_blank">&lt;Combination2DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/VTarget3DGoalSeries.html" target="_blank">&lt;VTarget3DGoalSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Combination3DChart.html" target="_blank">&lt;Combination3DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/VTarget3DResultSeries.html" target="_blank">&lt;VTarget3DResultSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/Combination3DChart.html" target="_blank">&lt;Combination3DChart&gt;</a></p>
+					</td>
+					<td align="center"><p>yField</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/WindRoseSeries.html" target="_blank">&lt;WindRoseSeries&gt;</a></p>
+						<p>(<a href="../api/WindRoseSet.html" target="_blank">&lt;WindRoseSet&gt;</a>)</p>
+					</td>
+					<td align="center"><p><a href="../api/WindRoseChart.html" target="_blank">&lt;WindRoseChart&gt;</a></p>
+					</td>
+					<td align="center"><p>field</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p><a href="../api/WordCloudSeries.html" target="_blank">&lt;WordCloudSeries&gt;</a></p>
+					</td>
+					<td align="center"><p><a href="../api/WordCloudChart.html" target="_blank">&lt;WordCloudChart&gt;</a></p>
+					</td>
+					<td align="center"><p>textField, weightField</p>
+					</td>
+				</tr>
+			</table>
+
+		</div><!-- textbox -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>
