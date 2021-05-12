@@ -1,2 +1,6 @@
 # target folder
 RpaPortal/target/m2e-wtp/
+
+# target file
+.classpath
+.project
