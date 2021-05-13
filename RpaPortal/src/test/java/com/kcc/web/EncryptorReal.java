@@ -17,8 +17,8 @@ private static final Logger logger = LoggerFactory.getLogger(EncryptorReal.class
 		
 		// 암호화
         String driverDB1 = encryptor.encrypt("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String urlDB1 = encryptor.encrypt("jdbc:sqlserver://70.60.41.32:1433;DatabaseName=RPADB;loginTimeout=90;queryTimeout=-1");
-        String usernameDB1 = encryptor.encrypt("sa");
+        String urlDB1 = encryptor.encrypt("jdbc:sqlserver://70.71.14.122:1433;DatabaseName=RPADB;loginTimeout=90;queryTimeout=-1");
+        String usernameDB1 = encryptor.encrypt("kccenc");
         String passwordDB1 = encryptor.encrypt("const!2pri");
         
         // 복호화
