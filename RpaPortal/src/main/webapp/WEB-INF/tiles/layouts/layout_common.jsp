@@ -8,18 +8,18 @@
     <meta http-equiv="Contents-Type" content="text/html" charset="utf-8" />
     <link rel="shortcut icon" type="text/css" href="/resources/imgs/favicon/kccenc.ico" />
     <link rel="stylesheet" type="text/css" href="/resources/css/font/nanumsquare.css" />
-    <link rel="stylesheet" type="text/css" href="/resources/css/common.css?ver=0.0" />
-    <link rel="stylesheet" type="text/css" href="/resources/js/library/seeddialog/seeddialog.css" />
-    <link rel="stylesheet" type="text/css" href="/resources/js/library/seedmodal/seedmodal.css" />
-    <link rel="stylesheet" type="text/css" href="/resources/js/library/seedprogress/seedprogress.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/common.css?ver=0.1" />
+    <link rel="stylesheet" type="text/css" href="/resources/js/library/seeddialog/seeddialog.min.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/js/library/seedmodal/seedmodal.min.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/js/library/seedprogress/seedprogress.min.css" />
     <link rel="stylesheet" type="text/css" href="/resources/js/jquery/jquery-ui-1.12.1/jquery-ui.min.css" />
 	<link rel="stylesheet" type="text/css" href="/resources/js/library/rMateChartH5Web_v6.0/rMateChartH5/Assets/Css/rMateChartH5.css"/>
 
 	<script type="text/javascript" src="/resources/js/jquery/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="/resources/js/jquery/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/resources/js/library/seeddialog/seeddialog.js"></script>
-	<script type="text/javascript" src="/resources/js/library/seedmodal/seedmodal.js"></script>
-	<script type="text/javascript" src="/resources/js/library/seedprogress/seedprogress.js"></script>
+	<script type="text/javascript" src="/resources/js/library/seeddialog/seeddialog.min.js"></script>
+	<script type="text/javascript" src="/resources/js/library/seedmodal/seedmodal.min.js"></script>
+	<script type="text/javascript" src="/resources/js/library/seedprogress/seedprogress.min.js"></script>
 	<script type="text/javascript" src="/resources/js/custom-func.js"></script>
 	<script type="text/javascript" src="/resources/js/library-func.js"></script>
 	<script type="text/javascript" src="/resources/js/common-func.js"></script>
