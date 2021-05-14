@@ -33,7 +33,7 @@
 	<!-- 프로퍼티 정의 파일 등록 -->
 	<bean id="placeholderConfigurer" class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
 		<constructor-arg ref="stringEncryptor" />
-		<property name="locations" value="classpath:spring/properties/*.properties" />
+		<property name="locations" value="classpath:spring/properties/jdbc-#{systemProperties['spring.profiles.active']}.properties" />
 	</bean>
 	
 	<!-- 코드정보 xml 파일 등록 -->
