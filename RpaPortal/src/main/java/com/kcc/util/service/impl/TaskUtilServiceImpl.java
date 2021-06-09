@@ -44,6 +44,7 @@ import com.kcc.biz.model.CrawlRequestVO;
 import com.kcc.biz.model.CrawlRunVO;
 import com.kcc.biz.model.CrawlScheduleVO;
 import com.kcc.biz.model.MenuVO;
+import com.kcc.biz.service.IBotScheduleService;
 import com.kcc.biz.service.ICrawlRequestService;
 import com.kcc.biz.service.ICrawlScheduleService;
 import com.kcc.util.service.ICommonUtilService;
@@ -57,13 +58,16 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 	 
 	@Resource(name="crawlScheduleService")
 	private ICrawlScheduleService crawlScheduleService; 
-	 
-	@Resource(name="crawlUtilService")
-	private ICrawlUtilService crawlUtilService;
-	 
+	
 	@Resource(name="crawlRequestService")
 	private ICrawlRequestService crawlRequestService;
 	
+	@Resource(name="crawlUtilService")
+	private ICrawlUtilService crawlUtilService;
+	 
+	@Resource(name="botScheduleService")
+	private IBotScheduleService botScheduleService;
+		
 	SimpleDateFormat yyyyMMddHHmm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	 
 	@Scheduled(cron = "0 * * * * *")
@@ -138,10 +142,14 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 		String curDate = yyyyMMddHHmm.format(new Date()).toString();
 		BotScheduleVO inBotScheduleVO = new BotScheduleVO();
 		inBotScheduleVO.setCallDate(curDate);
+
+		List<BotScheduleVO> outListBotScheduleVO = new ArrayList<BotScheduleVO>();
 		
 		try {
-			
-			
+			outListBotScheduleVO = botScheduleService.listBotScheduleMenu(inBotScheduleVO);
+			for (BotScheduleVO botScheduleVO : outListBotScheduleVO) {
+				
+			}
 			
 			logger.info("callBotApi : " + curDate);
 		} 

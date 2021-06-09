@@ -25,6 +25,7 @@ public class MenuVO {
 	private String TimeTypeNm;
 	private String RunSeq;
 	private String RunTime;
+	// 추가컬럼 있음 ExecTypeCd	
 	private String Content;
 	private String RunUrl;
 	private String ManageUrl;
