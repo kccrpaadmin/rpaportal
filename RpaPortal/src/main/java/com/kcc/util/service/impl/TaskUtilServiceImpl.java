@@ -39,6 +39,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.kcc.auth.UseCustomUserDetails;
+import com.kcc.biz.model.BotScheduleVO;
 import com.kcc.biz.model.CrawlRequestVO;
 import com.kcc.biz.model.CrawlRunVO;
 import com.kcc.biz.model.CrawlScheduleVO;
@@ -83,7 +84,6 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 				CrawlRequestVO inCrawlRequestVO = new CrawlRequestVO();
 				inCrawlRequestVO.setMenuId(crawlScheduleVO.getMenuId());
 				inCrawlRequestVO.setEmpNo(ConstWord.RUN_CRAWL_ADMIN);
-				inCrawlRequestVO.setAttId("");
 				
 				try {
 					// 웹크롤링 요청 정보 생성
@@ -127,6 +127,23 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 			}
 			
 			logger.info("callCrawlApi : " + curDate);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Scheduled(cron = "0 * * * * *")
+	public void callBotApi() {
+		String curDate = yyyyMMddHHmm.format(new Date()).toString();
+		BotScheduleVO inBotScheduleVO = new BotScheduleVO();
+		inBotScheduleVO.setCallDate(curDate);
+		
+		try {
+			
+			
+			
+			logger.info("callBotApi : " + curDate);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();

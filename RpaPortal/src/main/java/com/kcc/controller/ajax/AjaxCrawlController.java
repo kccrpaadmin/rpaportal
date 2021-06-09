@@ -94,9 +94,6 @@ public class AjaxCrawlController extends BaseController {
 		logger.info("/AjaxCrawl/RunCrawl.do");
 		String status = "Progress";
 				
-		// RequestVO 입력
-		vo.setAttId("");
-		
 		// RequestVO 출력
 		CrawlRequestVO outCrawlRequestVO = new CrawlRequestVO();
 		

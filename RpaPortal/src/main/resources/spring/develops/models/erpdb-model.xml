@@ -48,6 +48,8 @@
 		<!-- Ocr 사업자등록증 추출 -->
 		<typeAlias alias="ocrBusinessLicenseVO" type="com.kcc.biz.model.OcrBusinessLicenseVO" />
 		
+		<!-- BOT 스케쥴 -->
+		<typeAlias alias="botScheduleVO" type="com.kcc.biz.model.BotScheduleVO" />
 		<!-- BOT 요청 -->
 		<typeAlias alias="botRequestVO" type="com.kcc.biz.model.BotRequestVO" />
 		
