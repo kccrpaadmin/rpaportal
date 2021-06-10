@@ -10,7 +10,7 @@ package com.kcc.biz.model;
 
 public class CrawlRequestVO {
 	private String RequestNo;
-	private String NewRequestNo;	
+	private String NewRequestNo;
 	private String MenuId;
 	private String MenuNm;
 	private String RequestNm;

@@ -10,6 +10,7 @@ package com.kcc.biz.model;
 
 public class BotRequestVO {
 	private String RequestNo;
+	private String NewRequestNo;
 	private String MenuId;
 	private String MenuNm;
 	private String RequestNm;
@@ -30,101 +31,107 @@ public class BotRequestVO {
 	public String getRequestNo() {
 		return RequestNo;
 	}
-	public String getMenuId() {
-		return MenuId;
-	}
-	public String getMenuNm() {
-		return MenuNm;
-	}
-	public String getRequestNm() {
-		return RequestNm;
-	}
-	public String getAttId() {
-		return AttId;
-	}
-	public String getApproveId() {
-		return ApproveId;
-	}
-	public String getErrorMsg() {
-		return ErrorMsg;
-	}
-	public String getStatusCd() {
-		return StatusCd;
-	}
-	public String getStatusNm() {
-		return StatusNm;
-	}
-	public String getRegUserId() {
-		return RegUserId;
-	}
-	public String getRegUserNm() {
-		return RegUserNm;
-	}
-	public String getRegDate() {
-		return RegDate;
-	}
-	public String getChgUserId() {
-		return ChgUserId;
-	}
-	public String getChgUserNm() {
-		return ChgUserNm;
-	}
-	public String getChgDate() {
-		return ChgDate;
-	}
-	public String getEmpNo() {
-		return EmpNo;
-	}
-	public String getRequestStatus() {
-		return RequestStatus;
-	}
 	public void setRequestNo(String requestNo) {
 		RequestNo = requestNo;
+	}
+	public String getNewRequestNo() {
+		return NewRequestNo;
+	}
+	public void setNewRequestNo(String newRequestNo) {
+		NewRequestNo = newRequestNo;
+	}
+	public String getMenuId() {
+		return MenuId;
 	}
 	public void setMenuId(String menuId) {
 		MenuId = menuId;
 	}
+	public String getMenuNm() {
+		return MenuNm;
+	}
 	public void setMenuNm(String menuNm) {
 		MenuNm = menuNm;
+	}
+	public String getRequestNm() {
+		return RequestNm;
 	}
 	public void setRequestNm(String requestNm) {
 		RequestNm = requestNm;
 	}
+	public String getAttId() {
+		return AttId;
+	}
 	public void setAttId(String attId) {
 		AttId = attId;
+	}
+	public String getApproveId() {
+		return ApproveId;
 	}
 	public void setApproveId(String approveId) {
 		ApproveId = approveId;
 	}
+	public String getErrorMsg() {
+		return ErrorMsg;
+	}
 	public void setErrorMsg(String errorMsg) {
 		ErrorMsg = errorMsg;
+	}
+	public String getStatusCd() {
+		return StatusCd;
 	}
 	public void setStatusCd(String statusCd) {
 		StatusCd = statusCd;
 	}
+	public String getStatusNm() {
+		return StatusNm;
+	}
 	public void setStatusNm(String statusNm) {
 		StatusNm = statusNm;
+	}
+	public String getRegUserId() {
+		return RegUserId;
 	}
 	public void setRegUserId(String regUserId) {
 		RegUserId = regUserId;
 	}
+	public String getRegUserNm() {
+		return RegUserNm;
+	}
 	public void setRegUserNm(String regUserNm) {
 		RegUserNm = regUserNm;
+	}
+	public String getRegDate() {
+		return RegDate;
 	}
 	public void setRegDate(String regDate) {
 		RegDate = regDate;
 	}
+	public String getChgUserId() {
+		return ChgUserId;
+	}
 	public void setChgUserId(String chgUserId) {
 		ChgUserId = chgUserId;
+	}
+	public String getChgUserNm() {
+		return ChgUserNm;
 	}
 	public void setChgUserNm(String chgUserNm) {
 		ChgUserNm = chgUserNm;
 	}
+	public String getChgDate() {
+		return ChgDate;
+	}
 	public void setChgDate(String chgDate) {
 		ChgDate = chgDate;
 	}
+	public String getEmpNo() {
+		return EmpNo;
+	}
 	public void setEmpNo(String empNo) {
 		EmpNo = empNo;
+	}
+	public String getRequestStatus() {
+		return RequestStatus;
 	}
 	public void setRequestStatus(String requestStatus) {
 		RequestStatus = requestStatus;

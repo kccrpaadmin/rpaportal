@@ -10,6 +10,7 @@
 					#{MenuId}
 	            	,#{AttId}
 	            	,#{EmpNo}
+	            	,#{NewRequestNo, mode=OUT, jdbcType=VARCHAR}
             	)
 			}
 		]]>

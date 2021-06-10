@@ -148,8 +148,8 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 		if ("Fail".equals(status) || "RequestError".equals(status)) {
 			// RequestVO 입력
 			vo.setRequestNo(vo.getNewRequestNo());
+			vo.setStatusCd("RA005003");
 			vo.setErrorMsg("웹크롤링 서버 요청시 오류가 발생 하였습니다.");
-			vo.setStatusCd("RA004003");
 			
 			try {
 				// 웹크롤링 요청 정보 변경

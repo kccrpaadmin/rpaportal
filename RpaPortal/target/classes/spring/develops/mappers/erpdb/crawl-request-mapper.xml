@@ -21,8 +21,8 @@
 			{ 
 	            call PRA_Crawl_updateCrawlRequest (
 					#{RequestNo}
-	            	,#{ErrorMsg}
 	            	,#{StatusCd}
+	            	,#{ErrorMsg}
 	            	,#{EmpNo}
             	)
 			}
