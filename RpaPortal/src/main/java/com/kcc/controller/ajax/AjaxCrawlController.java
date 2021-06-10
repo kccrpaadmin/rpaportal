@@ -92,63 +92,9 @@ public class AjaxCrawlController extends BaseController {
 	@PostMapping("/RunCrawl.do")
 	public @ResponseBody StatusVO RunCrawl(@RequestBody CrawlRequestVO vo) {
 		logger.info("/AjaxCrawl/RunCrawl.do");
-		String status = "Progress";
-				
-		// RequestVO 출력
-		CrawlRequestVO outCrawlRequestVO = new CrawlRequestVO();
 		
-		try {
-			// 웹크롤링 메뉴별 진행여부 조회
-			outCrawlRequestVO = crawlRequestService.getCrawlRequestStatus(vo);
-		} 
-		catch (Exception e) {
-			status = "ListSearchError";
-			e.printStackTrace();
-		}
-		
-		// 진행여부를 판단
-		if ("Stop".equals(outCrawlRequestVO.getRequestStatus())) {
-			try {
-				// 웹크롤링 요청 정보 생성
-				crawlRequestService.createCrawlRequest(vo);
-			} 
-			catch (Exception e) {
-				status = "CreateError";
-				e.printStackTrace();
-			}
-			
-			try {
-				// CrawlRunVO 입력
-				CrawlRunVO inCrawlRunVO = new CrawlRunVO();
-				inCrawlRunVO.setMenuId(vo.getMenuId());
-				inCrawlRunVO.setEmpNo(vo.getEmpNo());
-				inCrawlRunVO.setRequestNo(vo.getNewRequestNo());
-				
-				// 웹크롤링 서버에 과제 요청
-				status = crawlUtilService.requestCrawl(inCrawlRunVO);
-			} 
-			catch (Exception e) {
-				status = "RequestError";
-				e.printStackTrace();
-			}
-		}
-		
-		// 요청이 실패한 경우
-		if ("Fail".equals(status) || "RequestError".equals(status)) {
-			// RequestVO 입력
-			vo.setRequestNo(vo.getNewRequestNo());
-			vo.setErrorMsg("웹크롤링 서버 요청시 오류가 발생 하였습니다.");
-			vo.setStatusCd("RA004003");
-			
-			try {
-				// 웹크롤링 요청 정보 변경
-				crawlRequestService.updateCrawlRequest(vo);
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
+		// 웹크롤링 수행 (진행중인 경우 수행 안함)
+		String status = crawlUtilService.requestCrawl(vo);
 		StatusVO statusVO = new StatusVO();
 		statusVO.setStatus(status);
 		

@@ -25,7 +25,7 @@ public class MenuVO {
 	private String TimeTypeNm;
 	private String RunSeq;
 	private String RunTime;
-	// 추가컬럼 있음 ExecTypeCd	
+	private String ExecTypeCd;
 	private String Content;
 	private String RunUrl;
 	private String ManageUrl;
@@ -48,203 +48,209 @@ public class MenuVO {
 	public String getSearchTxt() {
 		return SearchTxt;
 	}
-	public String getUrlType() {
-		return UrlType;
-	}
-	public String getEmpNo() {
-		return EmpNo;
-	}
-	public String getMenuId() {
-		return MenuId;
-	}
-	public String getMenuNm() {
-		return MenuNm;
-	}
-	public String getUpMenuId() {
-		return UpMenuId;
-	}
-	public String getLvl() {
-		return Lvl;
-	}
-	public String getOrd() {
-		return Ord;
-	}
-	public String getDeptCd() {
-		return DeptCd;
-	}
-	public String getDeptNm() {
-		return DeptNm;
-	}
-	public String getWorkTypeCd() {
-		return WorkTypeCd;
-	}
-	public String getWorkTypeNm() {
-		return WorkTypeNm;
-	}
-	public String getTimeTypeCd() {
-		return TimeTypeCd;
-	}
-	public String getTimeTypeNm() {
-		return TimeTypeNm;
-	}
-	public String getRunSeq() {
-		return RunSeq;
-	}
-	public String getRunTime() {
-		return RunTime;
-	}
-	public String getContent() {
-		return Content;
-	}
-	public String getRunUrl() {
-		return RunUrl;
-	}
-	public String getManageUrl() {
-		return ManageUrl;
-	}
-	public String getUseYn() {
-		return UseYn;
-	}
-	public String getAuthTypeCd() {
-		return AuthTypeCd;
-	}
-	public String getAuthType() {
-		return AuthType;
-	}
-	public String getUserId() {
-		return UserId;
-	}
-	public String getTitleCd() {
-		return TitleCd;
-	}
-	public String getAuthYn() {
-		return AuthYn;
-	}
-	public String getRequestNo() {
-		return RequestNo;
-	}
-	public String getStatusCd() {
-		return StatusCd;
-	}
-	public String getStatusNm() {
-		return StatusNm;
-	}
-	public String getRegUserId() {
-		return RegUserId;
-	}
-	public String getRegUserNm() {
-		return RegUserNm;
-	}
-	public String getRegDate() {
-		return RegDate;
-	}
-	public String getChgDate() {
-		return ChgDate;
-	}
-	public String getMenuDetailNm() {
-		return MenuDetailNm;
-	}
-	public String getMenuDetailUrl() {
-		return MenuDetailUrl;
-	}
 	public void setSearchTxt(String searchTxt) {
 		SearchTxt = searchTxt;
+	}
+	public String getUrlType() {
+		return UrlType;
 	}
 	public void setUrlType(String urlType) {
 		UrlType = urlType;
 	}
+	public String getEmpNo() {
+		return EmpNo;
+	}
 	public void setEmpNo(String empNo) {
 		EmpNo = empNo;
+	}
+	public String getMenuId() {
+		return MenuId;
 	}
 	public void setMenuId(String menuId) {
 		MenuId = menuId;
 	}
+	public String getMenuNm() {
+		return MenuNm;
+	}
 	public void setMenuNm(String menuNm) {
 		MenuNm = menuNm;
+	}
+	public String getUpMenuId() {
+		return UpMenuId;
 	}
 	public void setUpMenuId(String upMenuId) {
 		UpMenuId = upMenuId;
 	}
+	public String getLvl() {
+		return Lvl;
+	}
 	public void setLvl(String lvl) {
 		Lvl = lvl;
+	}
+	public String getOrd() {
+		return Ord;
 	}
 	public void setOrd(String ord) {
 		Ord = ord;
 	}
+	public String getDeptCd() {
+		return DeptCd;
+	}
 	public void setDeptCd(String deptCd) {
 		DeptCd = deptCd;
+	}
+	public String getDeptNm() {
+		return DeptNm;
 	}
 	public void setDeptNm(String deptNm) {
 		DeptNm = deptNm;
 	}
+	public String getWorkTypeCd() {
+		return WorkTypeCd;
+	}
 	public void setWorkTypeCd(String workTypeCd) {
 		WorkTypeCd = workTypeCd;
+	}
+	public String getWorkTypeNm() {
+		return WorkTypeNm;
 	}
 	public void setWorkTypeNm(String workTypeNm) {
 		WorkTypeNm = workTypeNm;
 	}
+	public String getTimeTypeCd() {
+		return TimeTypeCd;
+	}
 	public void setTimeTypeCd(String timeTypeCd) {
 		TimeTypeCd = timeTypeCd;
+	}
+	public String getTimeTypeNm() {
+		return TimeTypeNm;
 	}
 	public void setTimeTypeNm(String timeTypeNm) {
 		TimeTypeNm = timeTypeNm;
 	}
+	public String getRunSeq() {
+		return RunSeq;
+	}
 	public void setRunSeq(String runSeq) {
 		RunSeq = runSeq;
+	}
+	public String getRunTime() {
+		return RunTime;
 	}
 	public void setRunTime(String runTime) {
 		RunTime = runTime;
 	}
+	public String getExecTypeCd() {
+		return ExecTypeCd;
+	}
+	public void setExecTypeCd(String execTypeCd) {
+		ExecTypeCd = execTypeCd;
+	}
+	public String getContent() {
+		return Content;
+	}
 	public void setContent(String content) {
 		Content = content;
+	}
+	public String getRunUrl() {
+		return RunUrl;
 	}
 	public void setRunUrl(String runUrl) {
 		RunUrl = runUrl;
 	}
+	public String getManageUrl() {
+		return ManageUrl;
+	}
 	public void setManageUrl(String manageUrl) {
 		ManageUrl = manageUrl;
+	}
+	public String getUseYn() {
+		return UseYn;
 	}
 	public void setUseYn(String useYn) {
 		UseYn = useYn;
 	}
+	public String getAuthTypeCd() {
+		return AuthTypeCd;
+	}
 	public void setAuthTypeCd(String authTypeCd) {
 		AuthTypeCd = authTypeCd;
+	}
+	public String getAuthType() {
+		return AuthType;
 	}
 	public void setAuthType(String authType) {
 		AuthType = authType;
 	}
+	public String getUserId() {
+		return UserId;
+	}
 	public void setUserId(String userId) {
 		UserId = userId;
+	}
+	public String getTitleCd() {
+		return TitleCd;
 	}
 	public void setTitleCd(String titleCd) {
 		TitleCd = titleCd;
 	}
+	public String getAuthYn() {
+		return AuthYn;
+	}
 	public void setAuthYn(String authYn) {
 		AuthYn = authYn;
+	}
+	public String getRequestNo() {
+		return RequestNo;
 	}
 	public void setRequestNo(String requestNo) {
 		RequestNo = requestNo;
 	}
+	public String getStatusCd() {
+		return StatusCd;
+	}
 	public void setStatusCd(String statusCd) {
 		StatusCd = statusCd;
+	}
+	public String getStatusNm() {
+		return StatusNm;
 	}
 	public void setStatusNm(String statusNm) {
 		StatusNm = statusNm;
 	}
+	public String getRegUserId() {
+		return RegUserId;
+	}
 	public void setRegUserId(String regUserId) {
 		RegUserId = regUserId;
+	}
+	public String getRegUserNm() {
+		return RegUserNm;
 	}
 	public void setRegUserNm(String regUserNm) {
 		RegUserNm = regUserNm;
 	}
+	public String getRegDate() {
+		return RegDate;
+	}
 	public void setRegDate(String regDate) {
 		RegDate = regDate;
+	}
+	public String getChgDate() {
+		return ChgDate;
 	}
 	public void setChgDate(String chgDate) {
 		ChgDate = chgDate;
 	}
+	public String getMenuDetailNm() {
+		return MenuDetailNm;
+	}
 	public void setMenuDetailNm(String menuDetailNm) {
 		MenuDetailNm = menuDetailNm;
+	}
+	public String getMenuDetailUrl() {
+		return MenuDetailUrl;
 	}
 	public void setMenuDetailUrl(String menuDetailUrl) {
 		MenuDetailUrl = menuDetailUrl;

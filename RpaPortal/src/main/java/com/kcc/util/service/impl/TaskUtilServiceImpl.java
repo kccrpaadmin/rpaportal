@@ -82,52 +82,14 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 			outListCrawlScheduleVO = crawlScheduleService.listCrawlScheduleMenu(inCrawlScheduleVO);
 			for (CrawlScheduleVO crawlScheduleVO : outListCrawlScheduleVO) {
 				logger.info("callMenuId : " + crawlScheduleVO.getMenuId());
-				String status = "Progress";
 				
 				// RequestVO 입력
 				CrawlRequestVO inCrawlRequestVO = new CrawlRequestVO();
 				inCrawlRequestVO.setMenuId(crawlScheduleVO.getMenuId());
 				inCrawlRequestVO.setEmpNo(ConstWord.RUN_CRAWL_ADMIN);
 				
-				try {
-					// 웹크롤링 요청 정보 생성
-					crawlRequestService.createCrawlRequest(inCrawlRequestVO);
-				} 
-				catch (Exception e) {
-					status = "CreateError";
-					e.printStackTrace();
-				}
-								
-				try {
-					// CrawlRunVO 입력
-					CrawlRunVO inCrawlRunVO = new CrawlRunVO();
-					inCrawlRunVO.setMenuId(crawlScheduleVO.getMenuId());
-					inCrawlRunVO.setEmpNo(ConstWord.RUN_CRAWL_ADMIN);
-					inCrawlRunVO.setRequestNo(inCrawlRequestVO.getNewRequestNo());
-					
-					// 웹크롤링 서버에 과제 요청
-					status = crawlUtilService.requestCrawl(inCrawlRunVO);
-				} 
-				catch (Exception e) {
-					status = "RequestError";
-					e.printStackTrace();
-				}
-				
-				// 요청이 실패한 경우
-				if ("Fail".equals(status) || "RequestError".equals(status)) {
-					// RequestVO 입력
-					inCrawlRequestVO.setRequestNo(inCrawlRequestVO.getNewRequestNo());
-					inCrawlRequestVO.setErrorMsg("웹크롤링 서버 요청시 오류가 발생 하였습니다.");
-					inCrawlRequestVO.setStatusCd("RA004003");
-					
-					try {
-						// 웹크롤링 요청 정보 변경
-						crawlRequestService.updateCrawlRequest(inCrawlRequestVO);
-					} 
-					catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
+				// 웹크롤링 수행 (진행중인 경우 수행 안함)
+				String status = crawlUtilService.requestCrawl(inCrawlRequestVO);
 			}
 			
 			logger.info("callCrawlApi : " + curDate);

@@ -4,8 +4,9 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.kcc.biz.model.CrawlRunVO;
+import com.kcc.biz.model.CrawlRequestVO;
+
 
 public interface ICrawlUtilService {
-	String requestCrawl(CrawlRunVO vo);
+	String requestCrawl(CrawlRequestVO vo);
 }
