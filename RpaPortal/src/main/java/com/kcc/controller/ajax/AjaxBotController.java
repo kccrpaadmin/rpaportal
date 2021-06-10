@@ -37,7 +37,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.kcc.biz.model.BotRequestVO;
+import com.kcc.biz.model.BotScheduleVO;
+import com.kcc.biz.model.CrawlScheduleVO;
+import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.service.IBotRequestService;
+import com.kcc.biz.service.IBotScheduleService;
+import com.kcc.biz.service.ICrawlScheduleService;
 import com.kcc.controller.base.BaseController;
 
 @RequestMapping("/AjaxBot")
@@ -45,9 +50,68 @@ import com.kcc.controller.base.BaseController;
 public class AjaxBotController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(AjaxBotController.class);
 
+	@Resource(name="botScheduleService")
+	private IBotScheduleService botScheduleService;
+	
 	@Resource(name="botRequestService")
 	private IBotRequestService botRequestService;
+	
+	@PostMapping("/CreateSchedule.do")
+	public @ResponseBody StatusVO CreateSchedule(@RequestBody BotScheduleVO vo) {
+		logger.info("/AjaxBot/CreateSchedule.do");
+		String status = "Success";
 		
+		try {
+			botScheduleService.createBotSchedule(vo);
+		} 
+		catch (Exception e) {
+			status = "CreateError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
+	}
+	
+	@PostMapping("/DeleteSchedule.do")
+	public @ResponseBody StatusVO DeleteSchedule(@RequestBody BotScheduleVO vo) {
+		logger.info("/AjaxBot/DeleteSchedule.do");
+		String status = "Success";
+		
+		try {
+			botScheduleService.deleteBotSchedule(vo);
+		} 
+		catch (Exception e) {
+			status = "DeleteError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
+	}
+	
+	@PostMapping("/ListSchedule.do")
+	public @ResponseBody Map<String, Object> ListSchedule(@RequestBody BotScheduleVO vo) {
+		logger.info("/AjaxBot/ListSchedule.do");
+		
+		List<BotScheduleVO> outListBotScheduleVO = new ArrayList<BotScheduleVO>();
+		try {
+			outListBotScheduleVO = botScheduleService.listBotSchedule(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotScheduleVO);
+		
+		return map;
+	}
+	
 	@PostMapping("/ListRequest.do")
 	public @ResponseBody Map<String, Object> ListRequest(@RequestBody BotRequestVO vo) {
 		logger.info("/AjaxBot/ListRequest.do");

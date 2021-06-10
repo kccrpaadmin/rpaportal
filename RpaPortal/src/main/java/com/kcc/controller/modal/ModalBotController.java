@@ -66,5 +66,14 @@ public class ModalBotController extends BaseController {
 		model.addAttribute("outMenuVO", outMenuVO);
 		
 		return "ModalBot/WorkInfo";
-	}	
+	}
+	
+	@GetMapping("/Schedule.do")
+	public String Schedule(String pMenuId, Model model) {
+		logger.info("/ModalBot/Schedule.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		
+		return "ModalBot/Schedule";
+	}
 }

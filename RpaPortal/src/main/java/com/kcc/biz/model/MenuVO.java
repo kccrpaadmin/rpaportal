@@ -26,6 +26,7 @@ public class MenuVO {
 	private String RunSeq;
 	private String RunTime;
 	private String ExecTypeCd;
+	private String ExecTypeNm;
 	private String Content;
 	private String RunUrl;
 	private String ManageUrl;
@@ -146,6 +147,12 @@ public class MenuVO {
 	}
 	public void setExecTypeCd(String execTypeCd) {
 		ExecTypeCd = execTypeCd;
+	}
+	public String getExecTypeNm() {
+		return ExecTypeNm;
+	}
+	public void setExecTypeNm(String execTypeNm) {
+		ExecTypeNm = execTypeNm;
 	}
 	public String getContent() {
 		return Content;
