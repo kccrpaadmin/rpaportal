@@ -38,6 +38,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotScheduleVO;
+import com.kcc.biz.model.CrawlRequestVO;
 import com.kcc.biz.model.CrawlScheduleVO;
 import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.service.IBotRequestService;
@@ -55,6 +56,21 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botRequestService")
 	private IBotRequestService botRequestService;
+	
+	@PostMapping("/RunBot.do")
+	public @ResponseBody StatusVO RunBot(@RequestBody BotRequestVO vo) {
+		logger.info("/AjaxCrawl/RunCrawl.do");
+		
+		// BotRequestVO에 하나의 스트링이나 배열을 만들어서 데이터를 받는다.
+		// muniid로 구분하여 데이터는 저장한다. 
+		
+		// 봇 수행 (진행중인 경우 수행 안함)
+		String status = "";
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
+	}
 	
 	@PostMapping("/CreateSchedule.do")
 	public @ResponseBody StatusVO CreateSchedule(@RequestBody BotScheduleVO vo) {
