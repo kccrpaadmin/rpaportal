@@ -87,6 +87,25 @@ public class BotController extends BaseController {
 	public String MoneySendDocManage(String pMenuId, String pEmpNo, Model model) {
 		logger.info("/Bot/MoneySendDocManage.do");
 		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
 		return "Bot/MoneySendDocManage";
 	}
 	
@@ -119,6 +138,25 @@ public class BotController extends BaseController {
 	@GetMapping("/InvoiceSlipCheckManage.do")
 	public String InvoiceSlipCheckManage(String pMenuId, String pEmpNo, Model model) {
 		logger.info("/Bot/InvoiceSlipCheckManage.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
 		
 		return "Bot/InvoiceSlipCheckManage";
 	}
@@ -153,6 +191,25 @@ public class BotController extends BaseController {
 	public String CostDivideReviewManage(String pMenuId, String pEmpNo, Model model) {
 		logger.info("/Bot/CostDivideReviewManage.do");
 		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
 		return "Bot/CostDivideReviewManage";
 	}
 	
@@ -185,6 +242,25 @@ public class BotController extends BaseController {
 	@GetMapping("/EtcTaxCdSaveManage.do")
 	public String EtcTaxCdSaveManage(String pMenuId, String pEmpNo, Model model) {
 		logger.info("/Bot/EtcTaxCdSaveManage.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
 		
 		return "Bot/EtcTaxCdSaveManage";
 	}
@@ -219,6 +295,25 @@ public class BotController extends BaseController {
 	public String KisconConstManage(String pMenuId, String pEmpNo, Model model) {
 		logger.info("/Bot/KisconConstManage.do");
 		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
 		return "Bot/KisconConstManage";
 	}
 	
@@ -252,6 +347,25 @@ public class BotController extends BaseController {
 	public String PersonAppointManage(String pMenuId, String pEmpNo, Model model) {
 		logger.info("/Bot/PersonAppointManage.do");
 		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
 		return "Bot/PersonAppointManage";
 	}
 	
@@ -284,6 +398,25 @@ public class BotController extends BaseController {
 	@GetMapping("/EngineerManage.do")
 	public String EngineerManage(String pMenuId, String pEmpNo, Model model) {
 		logger.info("/Bot/EngineerManage.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
 		
 		return "Bot/EngineerManage";
 	}
