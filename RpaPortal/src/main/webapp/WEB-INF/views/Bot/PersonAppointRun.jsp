@@ -68,7 +68,6 @@
 	    </div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_immediate_call">즉시실행</a>
 	    	<a class="btn_common" id="btn_schedule_open">예약실행</a>
 	    </div>
 	    <!-- 그리드영역 -->
@@ -87,16 +86,16 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		listRequest(menuId);
+		listRequest(menuId, commonFunc.certInfo.empNo);
 	});
 	
 	// BOT 요청 목록 조회
-	function listRequest(pMenuId) {
+	function listRequest(pMenuId, pEmpNo) {
 		$.ajax({
 			url: "/AjaxBot/ListRequest.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "menuId": pMenuId }),
+			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo }),
 		    dataType : "json",
 	        async: true,
 			success: function(listDatas) {
@@ -108,26 +107,7 @@
 			}
 		});
 	}
-	
-	// 웹크롤링 실행
-	function runCrawl(pEmpNo, pMenuId) {
-		$.ajax({
-			url: "/AjaxCrawl/RunCrawl.do",
-			type: "POST",
-			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "empNo": pEmpNo, "menuId": pMenuId }),
-			dataType : "json",
-	        async: true,
-			success: function(data) {
-				openDialog(data.status);
-			},
-			error: function(xhr, status, err) {
-				commonFunc.handleErrorMsg(xhr, status, err);
-				return false;
-			}
-		});
-	}
-	
+		
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
     	commonFunc.initSheet("mySheet");
@@ -158,54 +138,10 @@
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
     }  
-    
-	// 그리드 클릭 함수
-	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
-		if (Row == 0) {
-			return false;
-		}
-		
-		if (mySheet.ColSaveName(Col) == "requestNm") {
-			var requestNo = mySheet.GetCellValue(Row, "requestNo");
-			var crawlMenuInfo = commonFunc.getCrawlMenuInfo(menuId);
-			var modalMenuNm = crawlMenuInfo.modalMenuNm;
-			var modalMenuUrl = crawlMenuInfo.modalMenuUrl;
-			libraryFunc.createModal(null, null, null, 1100, 550, modalMenuNm, modalMenuUrl + "?pRequestNo=" + requestNo);
-   		}
-	}
-	
-	// 즉시실행 전, 확인 함수
-	function runCrawlConfirm(pOption) {
-		if (pOption.sdBtnKey == "o") {
-			var empNo = commonFunc.certInfo.empNo;
-			runCrawl(empNo, menuId);
-        }
-	}
- 	
-	// 즉시실행 후, 대화상자 오픈 함수
-	function openDialog(pData) {
-		if (pData == "Progress") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "이미 실행중인 요청이 있습니다.<br/>잠시후에 다시시도 하세요.", null, commonFunc.refreshPage);
-			return false;
-		}
-		else if (pData == "Success") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청을 완료 하였습니다.", null, commonFunc.refreshPage);
-			return false;
-		}
-		else {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청중 오류가 발생 하였습니다.", null, commonFunc.refreshPage);
-			return false;
-		}
-	}
-	
-	// 즉시실행 버튼 클릭 이벤트
-	$(document).on("click", "#btn_immediate_call", function (e) {
-		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "요청을 진행 하시겠습니까?", null, runCrawlConfirm);
-	});
-	
+    	
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {
-		libraryFunc.createModal(null, null, null, 1100, 660, "예약등록", "/ModalCrawl/CrawlSchedule.do?pMenuId=" + menuId);
+		libraryFunc.createModal(null, null, null, 1100, 660, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
 	});
 	
 </script>

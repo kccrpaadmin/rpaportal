@@ -57,7 +57,7 @@
             { Header: "요청번호", Type: "Text", Width: 100, SaveName: "requestNo", Hidden:true },
             { Header: "시스템코드", Type: "Text", Width: 100, SaveName: "systemCd", Hidden:true },
             { Header: "시스템", Type: "Text", Width: 240, SaveName: "systemNm" },
-            { Header: "동작상태코드", Type: "Text", Width: 100, SaveName: "actionCd" },
+            { Header: "동작상태코드", Type: "Text", Width: 100, SaveName: "actionCd", Align: "Center" },
             { Header: "동작상태", Type: "Text", Width: 100, SaveName: "actionNm", Align: "Center" },
             { Header: "파일경로", Type: "Text", Width: 100, SaveName: "filePath", Hidden:true },
             { Header: "오류메세지", Type: "Text", Width: 700, SaveName: "errorMsg" }
