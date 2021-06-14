@@ -51,7 +51,7 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 	@Resource(name="crawlRequestService")
 	private ICrawlRequestService crawlRequestService;
 	
-	// 객체 비어 있는지 확인
+	// 웹크롤링 요청 공통 메소드
 	public String requestCrawl(CrawlRequestVO vo) {
 		String status = "Fail";
 
@@ -79,7 +79,7 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 			}
 			
 			try {
-				// 
+				// 웹크롤링 수행 모델
 				CrawlRunVO crawlRunVO = new CrawlRunVO();   
 				crawlRunVO.setMenuId(vo.getMenuId());
 				crawlRunVO.setEmpNo(vo.getEmpNo());
@@ -130,10 +130,10 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 						}
 					}
 				} 
-				catch (Exception e){
+				catch (Exception e) {
 					e.printStackTrace();
 				}				
-			} 
+			}
 			catch (Exception e) {
 				status = "RequestError";
 				e.printStackTrace();
@@ -161,5 +161,5 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 		}
 		
 		return status;
-	}	
+	}
 }

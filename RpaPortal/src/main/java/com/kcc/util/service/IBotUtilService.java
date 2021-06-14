@@ -4,8 +4,9 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotRunVO;
 
 public interface IBotUtilService {
-	String requestBot(BotRunVO vo);
+	String requestBot(BotRequestVO vo);
 }

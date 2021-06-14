@@ -34,7 +34,12 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.kcc.auth.UseCustomUserDetails;
+import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotRunVO;
+import com.kcc.biz.model.CrawlRequestVO;
+import com.kcc.biz.model.CrawlRunVO;
+import com.kcc.biz.service.IBotRequestService;
+import com.kcc.biz.service.ICrawlRequestService;
 import com.kcc.util.service.IBotUtilService;
 import com.kcc.util.service.ICommonUtilService;
 import com.kcc.words.ConstWord;
@@ -46,57 +51,122 @@ public class BotUtilServiceImpl implements IBotUtilService {
 	@Resource(name="commonUtilService")
 	ICommonUtilService commonUtilService;
 	
-	// 객체 비어 있는지 확인
-	public String requestBot(BotRunVO vo) {
+	@Resource(name="botRequestService")
+	private IBotRequestService botRequestService;
+	
+	// 봇 요청 공통 메소드
+	public String requestBot(BotRequestVO vo) {
 		String status = "Fail";
 		
-		// 로컬, 개발, 운영 분기
-		if ("Real".equals(commonUtilService.getServerEnv())) {
-			vo.setApiUrl(ConstWord.CRAWL_REAL_IP);
-			vo.setApiKey(ConstWord.CRAWL_API_KEY);
-		}
-		else if ("Dev".equals(commonUtilService.getServerEnv())) {
-			vo.setApiUrl(ConstWord.CRAWL_DEV_IP);
-			vo.setApiKey(ConstWord.CRAWL_API_KEY);
-		}
-		else if ("Local2".equals(commonUtilService.getServerEnv())) {
-			vo.setApiUrl(ConstWord.CRAWL_LOCAL2_IP);
-			vo.setApiKey(ConstWord.CRAWL_API_KEY);
-		}
-		else {
-			vo.setApiUrl(ConstWord.CRAWL_LOCAL1_IP);
-			vo.setApiKey(ConstWord.CRAWL_API_KEY);
-		}
+		// RequestVO 출력
+		BotRequestVO outBotRequestVO = new BotRequestVO();
 		
 		try {
-			URI uri = new URI(vo.getApiUrl());
-			uri = new URIBuilder(uri)
-					.addParameter("api", vo.getApiKey())
-					.addParameter("emp", vo.getEmpNo())
-					.addParameter("menu", vo.getMenuId())
-					.addParameter("request", vo.getRequestNo())
-					.build();
-			
-			logger.info(uri.toString());
-			
-			// HttpClient 생성
-			HttpClient client = HttpClientBuilder.create().build(); 
-			HttpGet getRequest = new HttpGet(uri);
-			
-			// HttpResponse 생성
-			HttpResponse response = client.execute(getRequest);
-			if (response.getStatusLine().getStatusCode() == 200) {
-				HttpEntity entity = response.getEntity();
-				String content = EntityUtils.toString(entity);
+			// 웹크롤링 메뉴별 진행여부 조회
+			outBotRequestVO = botRequestService.getBotRequestStatus(vo);
+		} 
+		catch (Exception e) {
+			status = "ListSearchError";
+			e.printStackTrace();
+		}
+		
+		// 진행여부를 판단
+		if ("Stop".equals(outBotRequestVO.getRequestStatus())) {
+			try {
+				// 봇 요청 정보 생성
+				botRequestService.createBotRequest(vo);
+			} 
+			catch (Exception e) {
+				status = "CreateError";
+				e.printStackTrace();
+			}
+		
+			try {
+				// 사용자에서 받은 정보를 바탕으로 저장
+				// AttId 및 현장코드 및 기준년월 정보
 				
-				// 요청이 성공한 경우
-				if ("Success".equals(content)) {
-					status = "Success";
+			} 
+			catch (Exception e) {
+				status = "InputSaveError";
+				e.printStackTrace();
+			}
+			
+			try {
+				// 봇 수행 모델
+				BotRunVO botRunVO = new BotRunVO();   
+				botRunVO.setMenuId(vo.getMenuId());
+				botRunVO.setEmpNo(vo.getEmpNo());
+				botRunVO.setRequestNo(vo.getNewRequestNo());
+				
+				// 로컬, 개발, 운영 분기
+				if ("Real".equals(commonUtilService.getServerEnv())) {
+					botRunVO.setApiUrl(ConstWord.UIPATH_REAL_IP);
+					botRunVO.setApiKey(ConstWord.UIPATH_REAL_API_KEY);
+				}
+				else if ("Dev".equals(commonUtilService.getServerEnv())) {
+					botRunVO.setApiUrl(ConstWord.UIPATH_DEV_IP);
+					botRunVO.setApiKey(ConstWord.UIPATH_DEV_API_KEY);
+				}
+				
+				// 토큰 키 발급
+				
+				
+				// API 호출
+				try {
+					URI uri = new URI(botRunVO.getApiUrl());
+					uri = new URIBuilder(uri)
+							.addParameter("api", botRunVO.getApiKey())
+							.addParameter("emp", botRunVO.getEmpNo())
+							.addParameter("menu", botRunVO.getMenuId())
+							.addParameter("request", botRunVO.getRequestNo())
+							.build();
+					
+					logger.info(uri.toString());
+					
+					// HttpClient 생성
+					HttpClient client = HttpClientBuilder.create().build(); 
+					HttpGet getRequest = new HttpGet(uri);
+					
+					// HttpResponse 생성
+					HttpResponse response = client.execute(getRequest);
+					if (response.getStatusLine().getStatusCode() == 200) {
+						HttpEntity entity = response.getEntity();
+						String content = EntityUtils.toString(entity);
+						
+						// 요청이 성공한 경우
+						if ("Success".equals(content)) {
+							status = "Success";
+						}
+					}
+				} 
+				catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
-		} 
-		catch (Exception e){
-			e.printStackTrace();
+			catch (Exception e) {
+				status = "RequestError";
+				e.printStackTrace();
+			}
+		}
+		else {
+			// Progress 상태로 변경
+			status = outBotRequestVO.getRequestStatus();
+		}
+		
+		// 요청이 실패한 경우
+		if ("Fail".equals(status) || "TokenError".equals(status) || "RequestError".equals(status)) {
+			// RequestVO 입력
+			vo.setRequestNo(vo.getNewRequestNo());
+			vo.setStatusCd("RA005003");
+			vo.setErrorMsg("봇 서버 요청시 오류가 발생 하였습니다.");
+			
+			try {
+				// 봇 요청 정보 변경
+				botRequestService.updateBotRequest(vo);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return status;

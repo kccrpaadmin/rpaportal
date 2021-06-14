@@ -3,7 +3,7 @@
 
 <mapper namespace="com.kcc.biz.dao.CrawlRequestRepository">
 	
-	<select id="createCrawlRequest" statementType="CALLABLE" parameterType="crawlRequestVO">
+	<insert id="createCrawlRequest" statementType="CALLABLE" parameterType="crawlRequestVO">
 		<![CDATA[
 			{ 
 	            call PRA_Crawl_createCrawlRequest (
@@ -14,7 +14,7 @@
             	)
 			}
 		]]>
-	</select>
+	</insert>
 	
 	<insert id="updateCrawlRequest" statementType="CALLABLE" parameterType="crawlRequestVO">
 		<![CDATA[

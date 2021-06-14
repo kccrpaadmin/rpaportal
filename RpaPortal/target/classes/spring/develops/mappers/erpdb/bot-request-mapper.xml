@@ -3,10 +3,48 @@
 
 <mapper namespace="com.kcc.biz.dao.BotRequestRepository">
 	
+	<insert id="createBotRequest" statementType="CALLABLE" parameterType="botRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_createBotRequest (
+					#{MenuId}
+	            	,#{AttId}
+	            	,#{EmpNo}
+	            	,#{NewRequestNo, mode=OUT, jdbcType=VARCHAR}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<insert id="updateBotRequest" statementType="CALLABLE" parameterType="botRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_updateBotRequest (
+					#{RequestNo}
+	            	,#{StatusCd}
+	            	,#{BotIp}
+	            	,#{ErrorMsg}
+	            	,#{EmpNo}
+            	)
+			}
+		]]>
+	</insert>
+	
 	<select id="listBotRequest" statementType="CALLABLE" parameterType="botRequestVO" resultType="botRequestVO">
 		<![CDATA[
 			{ 
 	            call PRA_Bot_listBotRequest (
+            		#{MenuId}
+            		,#{EmpNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="getBotRequestStatus" statementType="CALLABLE" parameterType="botRequestVO" resultType="botRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_getBotRequestStatus (
             		#{MenuId}
             		,#{EmpNo}
             	)

@@ -14,6 +14,7 @@ public class BotRequestVO {
 	private String MenuId;
 	private String MenuNm;
 	private String RequestNm;
+	private String BotIp;
 	private String AttId;
 	private String ApproveId;
 	private String ErrorMsg;	
@@ -57,6 +58,12 @@ public class BotRequestVO {
 	}
 	public void setRequestNm(String requestNm) {
 		RequestNm = requestNm;
+	}
+	public String getBotIp() {
+		return BotIp;
+	}
+	public void setBotIp(String botIp) {
+		BotIp = botIp;
 	}
 	public String getAttId() {
 		return AttId;

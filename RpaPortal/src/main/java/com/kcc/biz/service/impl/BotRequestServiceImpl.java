@@ -21,7 +21,19 @@ public class BotRequestServiceImpl implements IBotRequestService {
 	@Resource(name="botRequestRepository")
 	private BotRequestRepository botRequestRepository;
 	
+	public void createBotRequest(BotRequestVO vo) throws Exception {
+		botRequestRepository.createBotRequest(vo);
+	}
+	
+	public void updateBotRequest(BotRequestVO vo) throws Exception {
+		botRequestRepository.updateBotRequest(vo);
+	}
+	
 	public List<BotRequestVO> listBotRequest(BotRequestVO vo) throws Exception {
 		return botRequestRepository.listBotRequest(vo);
-	}	
+	}
+	
+	public BotRequestVO getBotRequestStatus(BotRequestVO vo) throws Exception {
+		return botRequestRepository.getBotRequestStatus(vo);
+	}
 }
