@@ -213,7 +213,7 @@ public class AjaxOcrController extends BaseController {
 				
 				if (statusVO.getStatus().equals("Success")) {
 					try {
-						inOcrTextVO.setActionCd("RA005001");
+						inOcrTextVO.setActionCd("RA006001");
 						ocrTextService.createOcrText(inOcrTextVO);
 					} 
 					catch (Exception e) {
@@ -222,7 +222,7 @@ public class AjaxOcrController extends BaseController {
 				}
 				else {
 					try {
-						inOcrTextVO.setActionCd("RA005002");
+						inOcrTextVO.setActionCd("RA006002");
 						ocrTextService.createOcrText(inOcrTextVO);
 					} 
 					catch (Exception e) {
