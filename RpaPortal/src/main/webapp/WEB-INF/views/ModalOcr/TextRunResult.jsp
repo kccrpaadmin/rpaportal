@@ -127,7 +127,7 @@
 		}
 		
 		if (mySheet.ColSaveName(Col) == "fileNm") {
-			if (mySheet.GetCellValue(Row, "actionCd") == "RA005001") {
+			if (mySheet.GetCellValue(Row, "actionCd") == "RA006001") {
 				var requestNo = mySheet.GetCellValue(Row, "requestNo");
 				var seq = mySheet.GetCellValue(Row, "seq");
 				getText(requestNo, seq);	
@@ -137,7 +137,7 @@
  	
 	// 오류가 발생한 행에 폰트 색상 변경 함수
 	function mySheet_OnRowSearchEnd(row) {
-    	if (mySheet.GetCellValue(row, "actionCd") == "RA005002"){
+    	if (mySheet.GetCellValue(row, "actionCd") == "RA006002"){
 			mySheet.SetRowFontColor(row , "#FF0000");
 		}
 	}

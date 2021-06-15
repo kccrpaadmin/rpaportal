@@ -63,18 +63,21 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 			outCrawlRequestVO = crawlRequestService.getCrawlRequestStatus(vo);
 		} 
 		catch (Exception e) {
-			status = "ListSearchError";
 			e.printStackTrace();
 		}
 		
-		// 진행여부를 판단
-		if ("Stop".equals(outCrawlRequestVO.getRequestStatus())) {
+		// 진행여부를 판단 (진행중인 건이 있는 경우) - 정지
+		if ("Progress".equals(outCrawlRequestVO.getRequestStatus())) {
+			// 진행중으로 변경 (Progress)
+			status = outCrawlRequestVO.getRequestStatus();
+		}
+		// 진행여부를 판단 (진행중인 건이 없는 경우) - 시작
+		else {
 			try {
 				// 웹크롤링 요청 정보 생성
 				crawlRequestService.createCrawlRequest(vo);
 			} 
 			catch (Exception e) {
-				status = "CreateError";
 				e.printStackTrace();
 			}
 			
@@ -103,49 +106,39 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 					crawlRunVO.setApiKey(ConstWord.CRAWL_API_KEY);
 				}
 				
-				try {
-					URI uri = new URI(crawlRunVO.getApiUrl());
-					uri = new URIBuilder(uri)
-							.addParameter("api", crawlRunVO.getApiKey())
-							.addParameter("emp", crawlRunVO.getEmpNo())
-							.addParameter("menu", crawlRunVO.getMenuId())
-							.addParameter("request", crawlRunVO.getRequestNo())
-							.build();
+				URI uri = new URI(crawlRunVO.getApiUrl());
+				uri = new URIBuilder(uri)
+						.addParameter("api", crawlRunVO.getApiKey())
+						.addParameter("emp", crawlRunVO.getEmpNo())
+						.addParameter("menu", crawlRunVO.getMenuId())
+						.addParameter("request", crawlRunVO.getRequestNo())
+						.build();
+				
+				logger.info(uri.toString());
+				
+				// HttpClient 생성
+				HttpClient client = HttpClientBuilder.create().build(); 
+				HttpGet getRequest = new HttpGet(uri);
+				
+				// HttpResponse 생성
+				HttpResponse response = client.execute(getRequest);
+				if (response.getStatusLine().getStatusCode() == 200) {
+					HttpEntity entity = response.getEntity();
+					String content = EntityUtils.toString(entity);
 					
-					logger.info(uri.toString());
-					
-					// HttpClient 생성
-					HttpClient client = HttpClientBuilder.create().build(); 
-					HttpGet getRequest = new HttpGet(uri);
-					
-					// HttpResponse 생성
-					HttpResponse response = client.execute(getRequest);
-					if (response.getStatusLine().getStatusCode() == 200) {
-						HttpEntity entity = response.getEntity();
-						String content = EntityUtils.toString(entity);
-						
-						// 요청이 성공한 경우
-						if ("Success".equals(content)) {
-							status = "Success";
-						}
+					// 요청이 성공한 경우
+					if ("Success".equals(content)) {
+						status = "Success";
 					}
-				} 
-				catch (Exception e) {
-					e.printStackTrace();
-				}				
+				}			
 			}
 			catch (Exception e) {
-				status = "RequestError";
 				e.printStackTrace();
 			}
 		}
-		else {
-			// Progress 상태로 변경
-			status = outCrawlRequestVO.getRequestStatus();
-		}
 		
 		// 요청이 실패한 경우
-		if ("Fail".equals(status) || "RequestError".equals(status)) {
+		if ("Fail".equals(status)) {
 			// RequestVO 입력
 			vo.setRequestNo(vo.getNewRequestNo());
 			vo.setStatusCd("RA005003");

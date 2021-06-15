@@ -97,13 +97,14 @@ public class AjaxOcrController extends BaseController {
 	@PostMapping("/UploadFiles.do")
 	public @ResponseBody StatusVO UploadFiles(FileUploadVO fvo, OcrRequestVO vo) {
 		logger.info("/AjaxOcr/UploadFiles.do");
-		String status = "Success";
+		String status = "Fail";
 		String errorMsg = "";
 		String attId = "";
 		
 		try {
 			// 첨부파일 저장
 			attId = fileUploadUtilService.createFiles(fvo.getFiles(), vo.getMenuId(), vo.getEmpNo());
+			status = "Success";
 		}
 		catch (Exception e1) {
 			status = "FileSaveError";

@@ -70,6 +70,9 @@ public class BotUtilServiceImpl implements IBotUtilService {
 			e.printStackTrace();
 		}
 		
+		logger.info(outBotRequestVO.getRequestStatus());
+		logger.info(status);
+		
 		// 진행여부를 판단
 		if ("Stop".equals(outBotRequestVO.getRequestStatus())) {
 			try {
@@ -80,16 +83,8 @@ public class BotUtilServiceImpl implements IBotUtilService {
 				status = "CreateError";
 				e.printStackTrace();
 			}
-		
-			try {
-				// 사용자에서 받은 정보를 바탕으로 저장
-				// AttId 및 현장코드 및 기준년월 정보
-				
-			} 
-			catch (Exception e) {
-				status = "InputSaveError";
-				e.printStackTrace();
-			}
+			
+			
 			
 			try {
 				// 봇 수행 모델
@@ -170,5 +165,25 @@ public class BotUtilServiceImpl implements IBotUtilService {
 		}
 		
 		return status;
-	}	
+	}
+	
+	// 
+	public String createByMenuData(BotRequestVO vo) {
+		String status = "";
+
+		try {
+			// 파라미터를 받는 메뉴ID를 선별적으로 처리
+			if (vo.getMenuId().equals("") ) {
+				// BotRequestVO에 스트링 하나를 선언해서 인풋 파라미터를 처리한다.	
+			}
+		
+		}
+		catch (Exception e) {
+			status = "InputSaveError";
+			e.printStackTrace();
+		}
+		
+		return status;
+	}
+	
 }

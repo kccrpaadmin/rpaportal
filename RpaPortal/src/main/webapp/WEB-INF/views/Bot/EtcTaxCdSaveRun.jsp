@@ -66,15 +66,30 @@
 	            </tbody>
 	        </table>
 	    </div>
+   		<!-- 첨부영역 -->
+		<div class="file_box">
+			<form method="post" enctype="multipart/form-data" id="frm">
+			  	<input type="file" name="files" class="input_file" multiple="multiple" id="input_file" />
+				<input type="text" class="input_file_txt" readonly="readonly" id="input_file_txt" />
+				<label for="input_file" class="label_file">찾아보기</label>
+				<input type="hidden" id="menuId" name="menuId" value="${outMenuVO.menuId}" />
+				<input type="hidden" id="empNo" name="empNo" />
+			</form>
+		</div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_schedule_open">예약실행</a>
+	    	<a class="btn_common" id="btn_file_upload">파일업로드</a>
+	    	<a class="btn_common" id="btn_immediate_call">즉시실행</a>
 	    </div>
 	    <!-- 그리드영역 -->
    	    <div id="sheet"></div>
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a href="/Bot/ListMenu.do"><img src="/resources/imgs/button/btn_box_go_back.png" /></a>
+	    </div>
+	    <!-- 숨김영역 -->
+	    <div class="hidden_box">
+	    	<input type="hidden" id="attId" name="attId" />
 	    </div>
 	</div>
 </div>
@@ -86,8 +101,30 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
+		$("#empNo").val(commonFunc.certInfo.empNo);
 		listRequest(menuId, commonFunc.certInfo.empNo);
 	});
+	
+	// 파일 업로드 실행
+	function uploadFilesEtcTaxCdSave() {
+		$.ajax({
+			url: "/AjaxBot/UploadFilesEtcTaxCdSave.do",
+			type: "POST",
+			processData: false,
+			enctype: "multipart/form-data",
+			contentType: false,
+			data : new FormData($("#frm")[0]),
+			dataType : "json",
+	        async: true,
+			success: function(datas) {
+				openDialog(datas);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
 	
 	// BOT 요청 목록 조회
 	function listRequest(pMenuId, pEmpNo) {
@@ -107,7 +144,26 @@
 			}
 		});
 	}
-		
+	
+	// 봇 실행
+	function runBot(pMenuId, pEmpNo, pAttId) {
+		$.ajax({
+			url: "/AjaxBot/RunBot.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo, "attId": pAttId }),
+			dataType : "json",
+	        async: true,
+			success: function(data) {
+				openDialog(data.status);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
     	commonFunc.initSheet("mySheet");
@@ -138,10 +194,99 @@
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
     }  
-    	
-	// 예약등록 버튼 클릭 이벤트
-	$(document).on("click", "#btn_schedule_open", function (e) {
-		libraryFunc.createModal(null, null, null, 1100, 660, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
+   	
+ 	// 파일 컨트롤 변경 이벤트 
+	$(document).on("change", "#input_file", function (e) {
+		var inputFile = document.getElementById('input_file');
+	 	var fileList = inputFile.files;
+	 	var fileListLen = fileList.length;
+	 	var returnVal = "";
+
+		// 1개 이상 체크 차단
+	 	if (fileListLen > 1) {
+	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일은 1개이하로 선택해 주세요.", null, null);
+	 		// input file 초기화
+	 		inputFile.value = null;
+	 		$("#input_file_txt").val("");
+	 		return false;
+	 	}
+	 	
+	 	// 첨부 확장자 체크 차단
+	 	for (var i = 0; i < fileListLen; i++) {
+	 		if (!checkAllowExtension(fileList[i].type)) {
+	 			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "파일(" + fileList[i].name + ")의 확장자는 지원되지 않습니다.", null, null);
+	 			// input file 초기화
+		 		inputFile.value = null;
+		 		$("#input_file_txt").val("");
+		 		return false;
+	 		}
+	 	}
+	 	
+	 	// 체크 로직이 이상이 없는 경우만 
+	 	for (var i = 0; i < fileListLen; i++) {
+	 		returnVal = returnVal + fileList[i].name + ";";	 		
+	 	}
+
+ 		$("#input_file_txt").val(returnVal);	
+	});
+	
+	// 허용되는 이미지 확장자 정의 함수
+	function checkAllowExtension(pInput) {
+		var reg = /(application\/vnd.ms-excel|application\/vnd.openxmlformats-officedocument.spreadsheetml.sheet)/;
+		var returnVal = reg.test(pInput);
+		return returnVal;
+	}
+	
+	// 파일 업로드 전, 확인 함수
+	function uploadFilesConfirm(pOption) {
+		if (pOption.sdBtnKey == "o") {
+			uploadFilesEtcTaxCdSave();
+        }
+	}
+	
+	// 파일 업로드 후, 대화상자 오픈 함수
+	function openDialog(pData) {
+		if (pData.status == "Success") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업로드를 완료 하였습니다.", null, null);
+			$("#attId").val(pData.attId);
+			return false;
+		}
+		else {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", pData.errorMsg, null, commonFunc.refreshPage);
+			return false;
+		}
+	}
+	
+	// 즉시실행 전, 확인 함수
+	function runBotConfirm(pOption) {
+		if (pOption.sdBtnKey == "o") {
+			runBot(menuId, commonFunc.certInfo.empNo, $("#attId").val());
+        }
+	}
+	
+	// 파일 업로드 버튼 클릭 이벤트
+	$(document).on("click", "#btn_file_upload", function (e) {
+		var fileList = document.getElementById('input_file').files;
+	 	var fileListLen = fileList.length;
+	 	
+	 	if (fileListLen == 0) {
+	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일이 선택되지 않았습니다.", null, null);
+	 		return false;
+	 	}
+		
+	 	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "업로드를 진행 하시겠습니까?", null, uploadFilesConfirm);
+	});
+	
+	// 즉시실행 버튼 클릭 이벤트
+	$(document).on("click", "#btn_immediate_call", function (e) {
+		var attIdYn = commonFunc.getCheckNullYn($("#attId").val());
+	 	
+	 	if (attIdYn == "Y") {
+	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일이 업로드되지 않았습니다.", null, null);
+	 		return false;
+	 	}
+		
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "요청을 진행 하시겠습니까?", null, runBotConfirm);
 	});
 	
 </script>

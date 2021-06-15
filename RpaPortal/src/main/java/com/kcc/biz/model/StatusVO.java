@@ -12,23 +12,30 @@ public class StatusVO {
 	private String Status;
 	private String ErrorMsg;
 	private String Data;
+	private String AttId;
 	
 	public String getStatus() {
 		return Status;
 	}
-	public String getErrorMsg() {
-		return ErrorMsg;
-	}
-	public String getData() {
-		return Data;
-	}
 	public void setStatus(String status) {
 		Status = status;
+	}
+	public String getErrorMsg() {
+		return ErrorMsg;
 	}
 	public void setErrorMsg(String errorMsg) {
 		ErrorMsg = errorMsg;
 	}
+	public String getData() {
+		return Data;
+	}
 	public void setData(String data) {
 		Data = data;
+	}
+	public String getAttId() {
+		return AttId;
+	}
+	public void setAttId(String attId) {
+		AttId = attId;
 	}		
 }

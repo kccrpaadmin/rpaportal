@@ -40,17 +40,28 @@ import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotScheduleVO;
 import com.kcc.biz.model.CrawlRequestVO;
 import com.kcc.biz.model.CrawlScheduleVO;
+import com.kcc.biz.model.FileUploadVO;
+import com.kcc.biz.model.OcrRequestVO;
 import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.service.IBotRequestService;
 import com.kcc.biz.service.IBotScheduleService;
 import com.kcc.biz.service.ICrawlScheduleService;
 import com.kcc.controller.base.BaseController;
+import com.kcc.util.service.IBotUtilService;
+import com.kcc.util.service.ICrawlUtilService;
+import com.kcc.util.service.IFileUploadUtilService;
 
 @RequestMapping("/AjaxBot")
 @Controller
 public class AjaxBotController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(AjaxBotController.class);
 
+	@Resource(name="fileUploadUtilService")
+	private IFileUploadUtilService fileUploadUtilService;
+	
+	@Resource(name="botUtilService")
+	private IBotUtilService botUtilService;
+	
 	@Resource(name="botScheduleService")
 	private IBotScheduleService botScheduleService;
 	
@@ -59,13 +70,10 @@ public class AjaxBotController extends BaseController {
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody StatusVO RunBot(@RequestBody BotRequestVO vo) {
-		logger.info("/AjaxCrawl/RunCrawl.do");
-		
-		// BotRequestVO에 하나의 스트링이나 배열을 만들어서 데이터를 받는다.
-		// muniid로 구분하여 데이터는 저장한다. 
-		
+		logger.info("/AjaxBot/RunBot.do");
+
 		// 봇 수행 (진행중인 경우 수행 안함)
-		String status = "";
+		String status = botUtilService.requestBot(vo);
 		StatusVO statusVO = new StatusVO();
 		statusVO.setStatus(status);
 		
@@ -144,5 +152,31 @@ public class AjaxBotController extends BaseController {
 		map.put("data", outListBotRequestVO);
 		
 		return map;
-	}	
+	}
+
+	@PostMapping("/UploadFilesEtcTaxCdSave.do")
+	public @ResponseBody StatusVO UploadFilesEtcTaxCdSave(FileUploadVO fvo, BotRequestVO vo) {
+		logger.info("/AjaxBot/UploadFilesEtcTaxCdSave.do");
+		String status = "Fail";
+		String errorMsg = "";
+		String attId = "";
+		
+		try {
+			// 첨부파일 저장
+			attId = fileUploadUtilService.createFiles(fvo.getFiles(), vo.getMenuId(), vo.getEmpNo());
+			status = "Success";
+		}
+		catch (Exception e1) {
+			status = "FileSaveError";
+			errorMsg = e1.getMessage();
+			e1.printStackTrace();
+		}		
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		statusVO.setErrorMsg(errorMsg);
+		statusVO.setAttId(attId);
+		
+    	return statusVO;
+	}
 }
