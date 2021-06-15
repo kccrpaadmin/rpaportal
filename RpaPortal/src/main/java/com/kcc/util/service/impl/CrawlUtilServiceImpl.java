@@ -114,8 +114,6 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 						.addParameter("request", crawlRunVO.getRequestNo())
 						.build();
 				
-				logger.info(uri.toString());
-				
 				// HttpClient 생성
 				HttpClient client = HttpClientBuilder.create().build(); 
 				HttpGet getRequest = new HttpGet(uri);
@@ -130,14 +128,14 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 					if ("Success".equals(content)) {
 						status = "Success";
 					}
-				}			
+				}
 			}
 			catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		
-		// 요청이 실패한 경우
+		// 작업이 실패한 경우
 		if ("Fail".equals(status)) {
 			// RequestVO 입력
 			vo.setRequestNo(vo.getNewRequestNo());

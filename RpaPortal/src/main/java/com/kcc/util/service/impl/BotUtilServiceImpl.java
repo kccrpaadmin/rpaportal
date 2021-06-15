@@ -66,25 +66,23 @@ public class BotUtilServiceImpl implements IBotUtilService {
 			outBotRequestVO = botRequestService.getBotRequestStatus(vo);
 		} 
 		catch (Exception e) {
-			status = "ListSearchError";
 			e.printStackTrace();
 		}
 		
-		logger.info(outBotRequestVO.getRequestStatus());
-		logger.info(status);
-		
-		// 진행여부를 판단
-		if ("Stop".equals(outBotRequestVO.getRequestStatus())) {
+		// 진행여부를 판단 (진행중인 건이 있는 경우) - 정지
+		if ("Progress".equals(outBotRequestVO.getRequestStatus())) {
+			// 진행중으로 변경 (Progress)
+			status = outBotRequestVO.getRequestStatus();
+		}
+		// 진행여부를 판단 (진행중인 건이 없는 경우) - 시작
+		else {
 			try {
 				// 봇 요청 정보 생성
 				botRequestService.createBotRequest(vo);
 			} 
 			catch (Exception e) {
-				status = "CreateError";
 				e.printStackTrace();
 			}
-			
-			
 			
 			try {
 				// 봇 수행 모델
@@ -105,51 +103,18 @@ public class BotUtilServiceImpl implements IBotUtilService {
 				
 				// 토큰 키 발급
 				
-				
 				// API 호출
-				try {
-					URI uri = new URI(botRunVO.getApiUrl());
-					uri = new URIBuilder(uri)
-							.addParameter("api", botRunVO.getApiKey())
-							.addParameter("emp", botRunVO.getEmpNo())
-							.addParameter("menu", botRunVO.getMenuId())
-							.addParameter("request", botRunVO.getRequestNo())
-							.build();
-					
-					logger.info(uri.toString());
-					
-					// HttpClient 생성
-					HttpClient client = HttpClientBuilder.create().build(); 
-					HttpGet getRequest = new HttpGet(uri);
-					
-					// HttpResponse 생성
-					HttpResponse response = client.execute(getRequest);
-					if (response.getStatusLine().getStatusCode() == 200) {
-						HttpEntity entity = response.getEntity();
-						String content = EntityUtils.toString(entity);
-						
-						// 요청이 성공한 경우
-						if ("Success".equals(content)) {
-							status = "Success";
-						}
-					}
-				} 
-				catch (Exception e) {
-					e.printStackTrace();
-				}
+				
+				
+				status = "Success";
 			}
 			catch (Exception e) {
-				status = "RequestError";
 				e.printStackTrace();
 			}
 		}
-		else {
-			// Progress 상태로 변경
-			status = outBotRequestVO.getRequestStatus();
-		}
 		
-		// 요청이 실패한 경우
-		if ("Fail".equals(status) || "TokenError".equals(status) || "RequestError".equals(status)) {
+		// 작업이 실패한 경우
+		if ("Fail".equals(status)) {
 			// RequestVO 입력
 			vo.setRequestNo(vo.getNewRequestNo());
 			vo.setStatusCd("RA005003");
