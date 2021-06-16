@@ -76,4 +76,13 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/Schedule";
 	}
+	
+	@GetMapping("/InvoiceSlipCheckTargetDate.do")
+	public String InvoiceSlipCheckTargetDate(String pMenuId, Model model) {
+		logger.info("/ModalBot/InvoiceSlipCheckTargetDate.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		
+		return "ModalBot/InvoiceSlipCheckTargetDate";
+	}
 }

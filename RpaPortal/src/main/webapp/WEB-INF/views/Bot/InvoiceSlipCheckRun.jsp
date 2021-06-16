@@ -68,6 +68,7 @@
 	    </div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
+	    	<a class="btn_common" id="btn_target_date_open">대상년월</a>
 	    	<a class="btn_common" id="btn_schedule_open">예약실행</a>
 	    </div>
 	    <!-- 그리드영역 -->
@@ -138,7 +139,12 @@
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
     }  
-    	
+    
+ 	// 대상기간 버튼 클릭 이벤트
+	$(document).on("click", "#btn_target_date_open", function (e) {
+		libraryFunc.createModal(null, null, null, 500, 340, "대상기간", "/ModalBot/InvoiceSlipCheckTargetDate.do?pMenuId=" + menuId);
+	});
+ 	
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {
 		libraryFunc.createModal(null, null, null, 1100, 660, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
