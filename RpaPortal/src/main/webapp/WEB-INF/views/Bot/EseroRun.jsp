@@ -142,7 +142,7 @@
     
  	// 대상기간 버튼 클릭 이벤트
 	$(document).on("click", "#btn_target_date_open", function (e) {
-		libraryFunc.createModal(null, null, null, 500, 340, "대상기간", "/ModalBot/InvoiceSlipCheckTargetDate.do?pMenuId=" + menuId);
+		libraryFunc.createModal(null, null, null, 500, 340, "대상기간", "/ModalBot/EseroTargetDate.do?pMenuId=" + menuId);
 	});
  	
 	// 예약등록 버튼 클릭 이벤트

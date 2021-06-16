@@ -301,7 +301,7 @@ public class AjaxOcrController extends BaseController {
 				
 				if (statusMapVO.getStatus().equals("Success")) {
 					try {
-						ocrBusinessLicenseVO.setActionCd("RA005001");
+						ocrBusinessLicenseVO.setActionCd("RA006001");
 						Map mapData = statusMapVO.getMapData();
 						Iterator<String> iter = mapData.keySet().iterator();
 						while (iter.hasNext()) {
@@ -319,7 +319,7 @@ public class AjaxOcrController extends BaseController {
 				}
 				else {
 					try {
-						ocrBusinessLicenseVO.setActionCd("RA005002");
+						ocrBusinessLicenseVO.setActionCd("RA006002");
 						ocrBusinessLicenseVO.setTemplateId("");
 						ocrBusinessLicenseVO.setTemplateNm("");
 						ocrBusinessLicenseVO.setBizNo("");
@@ -342,7 +342,5 @@ public class AjaxOcrController extends BaseController {
 		statusVO.setStatus(status);
 		
 		return statusVO;
-	}
-	
-	
+	}	
 }

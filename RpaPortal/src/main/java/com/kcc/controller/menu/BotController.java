@@ -262,7 +262,7 @@ public class BotController extends BaseController {
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
 		
-		return "Bot/EtcTaxCdSaveManage";
+		return "Bot/EtcTaxManage";
 	}
 	
 	@GetMapping("/KisconConstRun.do")
