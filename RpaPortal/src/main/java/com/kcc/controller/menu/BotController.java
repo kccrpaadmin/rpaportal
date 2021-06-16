@@ -57,9 +57,9 @@ public class BotController extends BaseController {
 		return "Bot/ListMenu";
 	}
 	
-	@GetMapping("/MoneySendDocRun.do")
-	public String MoneySendDocRun(String pMenuId, String pEmpNo, Model model) {
-		logger.info("/Bot/MoneySendDocRun.do");
+	@GetMapping("/MoneySendRun.do")
+	public String MoneySendRun(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Bot/MoneySendRun.do");
 		
 		// MenuVO 입력
 		MenuVO inMenuVO = new MenuVO();
@@ -80,12 +80,12 @@ public class BotController extends BaseController {
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
 		
-		return "Bot/MoneySendDocRun";
+		return "Bot/MoneySendRun";
 	}
 	
-	@GetMapping("/MoneySendDocManage.do")
-	public String MoneySendDocManage(String pMenuId, String pEmpNo, Model model) {
-		logger.info("/Bot/MoneySendDocManage.do");
+	@GetMapping("/MoneySendManage.do")
+	public String MoneySendManage(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Bot/MoneySendManage.do");
 		
 		// MenuVO 입력
 		MenuVO inMenuVO = new MenuVO();
@@ -106,12 +106,12 @@ public class BotController extends BaseController {
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
 		
-		return "Bot/MoneySendDocManage";
+		return "Bot/MoneySendManage";
 	}
 	
-	@GetMapping("/InvoiceSlipCheckRun.do")
-	public String InvoiceSlipCheckRun(String pMenuId, String pEmpNo, Model model) {
-		logger.info("/Bot/InvoiceSlipCheckRun.do");
+	@GetMapping("/EseroRun.do")
+	public String EseroRun(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Bot/EseroRun.do");
 		
 		// MenuVO 입력
 		MenuVO inMenuVO = new MenuVO();
@@ -132,12 +132,12 @@ public class BotController extends BaseController {
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
 		
-		return "Bot/InvoiceSlipCheckRun";
+		return "Bot/EseroRun";
 	}
 	
-	@GetMapping("/InvoiceSlipCheckManage.do")
-	public String InvoiceSlipCheckManage(String pMenuId, String pEmpNo, Model model) {
-		logger.info("/Bot/InvoiceSlipCheckManage.do");
+	@GetMapping("/EseroManage.do")
+	public String EseroManage(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Bot/EseroManage.do");
 		
 		// MenuVO 입력
 		MenuVO inMenuVO = new MenuVO();
@@ -158,12 +158,12 @@ public class BotController extends BaseController {
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
 		
-		return "Bot/InvoiceSlipCheckManage";
+		return "Bot/EseroManage";
 	}
 	
-	@GetMapping("/CostDivideReviewRun.do")
-	public String CostDivideReviewRun(String pMenuId, String pEmpNo, Model model) {
-		logger.info("/Bot/CostDivideReviewRun.do");
+	@GetMapping("/CostDivideRun.do")
+	public String CostDivideRun(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Bot/CostDivideRun.do");
 		
 		// MenuVO 입력
 		MenuVO inMenuVO = new MenuVO();
@@ -184,12 +184,12 @@ public class BotController extends BaseController {
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
 		
-		return "Bot/CostDivideReviewRun";
+		return "Bot/CostDivideRun";
 	}
 	
-	@GetMapping("/CostDivideReviewManage.do")
-	public String CostDivideReviewManage(String pMenuId, String pEmpNo, Model model) {
-		logger.info("/Bot/CostDivideReviewManage.do");
+	@GetMapping("/CostDivideManage.do")
+	public String CostDivideManage(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Bot/CostDivideManage.do");
 		
 		// MenuVO 입력
 		MenuVO inMenuVO = new MenuVO();
@@ -210,12 +210,12 @@ public class BotController extends BaseController {
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
 		
-		return "Bot/CostDivideReviewManage";
+		return "Bot/CostDivideManage";
 	}
 	
-	@GetMapping("/EtcTaxCdSaveRun.do")
-	public String EtcTaxCdSaveRun(String pMenuId, String pEmpNo, Model model) {
-		logger.info("/Bot/EtcTaxCdSaveRun.do");
+	@GetMapping("/EtcTaxRun.do")
+	public String EtcTaxRun(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Bot/EtcTaxRun.do");
 		
 		// MenuVO 입력
 		MenuVO inMenuVO = new MenuVO();
@@ -236,12 +236,12 @@ public class BotController extends BaseController {
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
 		
-		return "Bot/EtcTaxCdSaveRun";
+		return "Bot/EtcTaxRun";
 	}
 	
-	@GetMapping("/EtcTaxCdSaveManage.do")
-	public String EtcTaxCdSaveManage(String pMenuId, String pEmpNo, Model model) {
-		logger.info("/Bot/EtcTaxCdSaveManage.do");
+	@GetMapping("/EtcTaxManage.do")
+	public String EtcTaxManage(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Bot/EtcTaxManage.do");
 		
 		// MenuVO 입력
 		MenuVO inMenuVO = new MenuVO();
