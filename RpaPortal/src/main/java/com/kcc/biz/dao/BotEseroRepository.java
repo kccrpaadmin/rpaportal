@@ -8,5 +8,6 @@ import com.kcc.biz.model.BotEseroVO;
 
 @Repository("botEseroRepository")
 public interface BotEseroRepository {
+	void saveBotEseroTargetDate(BotEseroVO vo) throws Exception;
 	List<BotEseroVO> listBotEseroTargetDate(BotEseroVO vo) throws Exception;
 }

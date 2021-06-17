@@ -159,6 +159,25 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
+	@PostMapping("/SaveEseroTargetDate.do")
+	public @ResponseBody StatusVO SaveEseroTargetDate(@RequestBody BotEseroVO vo) {
+		logger.info("/AjaxBot/SaveEseroTargetDate.do");
+		String status = "Success";
+		
+		try {
+			botEseroService.saveBotEseroTargetDate(vo);
+		} 
+		catch (Exception e) {
+			status = "SaveError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
+	}
+	
 	@PostMapping("/ListEseroTargetDate.do")
 	public @ResponseBody Map<String, Object> ListEseroTargetDate(@RequestBody BotEseroVO vo) {
 		logger.info("/AjaxBot/ListEseroTargetDate.do");

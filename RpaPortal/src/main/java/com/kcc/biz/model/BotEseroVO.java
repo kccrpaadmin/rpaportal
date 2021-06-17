@@ -13,6 +13,7 @@ public class BotEseroVO {
 	private String RequestNo;
 	private String EmpNo;
 	private String YearMon;
+	private String EseroTargetDate;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -38,4 +39,10 @@ public class BotEseroVO {
 	public void setYearMon(String yearMon) {
 		YearMon = yearMon;
 	}
+	public String getEseroTargetDate() {
+		return EseroTargetDate;
+	}
+	public void setEseroTargetDate(String eseroTargetDate) {
+		EseroTargetDate = eseroTargetDate;
+	}	
 }
