@@ -22,13 +22,13 @@
 	
     // 페이지 로드
     $(document).ready(function (e) {
-        listSchedule(menuId);
+    	listEseroTargetDate(menuId);
     });
 	
- 	// 웹크롤링 스케쥴 목록 조회
-	function listSchedule(pMenuId) {
+ 	// (세금)계산서, 전표 데이터 대사업무 수집 대상년월 목록 조회
+	function listEseroTargetDate(pMenuId) {
 		$.ajax({
-			url: "/AjaxBot/ListSchedule.do",
+			url: "/AjaxBot/ListEseroTargetDate.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "menuId": pMenuId }),
@@ -105,7 +105,7 @@
         initdata.Cols = [
         	{ Header: "상태", Type: "Status", Width: 80, SaveName: "status", Align: "Center" },
         	{ Header: "삭제", Type: "DelCheck", Width: 80, SaveName: "delete", Align: "Center" },
-            { Header: "순번", Type: "Date", Width: 300, SaveName: "targetDate", Align: "Center", Format: "Ym" }
+            { Header: "순번", Type: "Date", Width: 300, SaveName: "yearMon", Align: "Center", Format: "Ym" }
         ];
 		
         IBS_InitSheet(mySheet, initdata);
@@ -152,20 +152,12 @@
  	
  	// 추가 버튼 클릭 이벤트
     $(document).on("click", "#btn_add", function (e) {
-    	mySheet.DataInsert(0);
-
+    	mySheet.DataInsert(-1);
     });
  	
- 	// 삭제 버튼 클릭 이벤트
-    $(document).on("click", "#btn_delete", function (e) {
-    	var saveStr = mySheet.GetSaveString();
-    	
-    	if (saveStr == "") {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "삭제 대상을 선택하지 않았습니다.", null, null);
-    		return false;
-    	}
-    	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteBotScheduleConfirm);    	
+ 	// 저장 버튼 클릭 이벤트
+    $(document).on("click", "#btn_save", function (e) {
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, deleteBotScheduleConfirm);    	
     });
  	
 </script>	

@@ -7,10 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.kcc.biz.dao.BotEseroRepository;
 import com.kcc.biz.dao.BotRequestRepository;
 import com.kcc.biz.dao.CrawlRequestRepository;
+import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.CrawlRequestVO;
+import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
 import com.kcc.biz.service.ICrawlRequestService;
 
@@ -35,5 +38,5 @@ public class BotRequestServiceImpl implements IBotRequestService {
 	
 	public BotRequestVO getBotRequestStatus(BotRequestVO vo) throws Exception {
 		return botRequestRepository.getBotRequestStatus(vo);
-	}
+	}		
 }

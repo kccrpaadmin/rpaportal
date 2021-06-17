@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotScheduleVO;
 import com.kcc.biz.model.CrawlRequestVO;
@@ -43,6 +44,7 @@ import com.kcc.biz.model.CrawlScheduleVO;
 import com.kcc.biz.model.FileUploadVO;
 import com.kcc.biz.model.OcrRequestVO;
 import com.kcc.biz.model.StatusVO;
+import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
 import com.kcc.biz.service.IBotScheduleService;
 import com.kcc.biz.service.ICrawlScheduleService;
@@ -67,6 +69,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botRequestService")
 	private IBotRequestService botRequestService;
+	
+	@Resource(name="botEseroService")
+	private IBotEseroService botEseroService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody StatusVO RunBot(@RequestBody BotRequestVO vo) {
@@ -153,7 +158,25 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}
-
+	
+	@PostMapping("/ListEseroTargetDate.do")
+	public @ResponseBody Map<String, Object> ListEseroTargetDate(@RequestBody BotEseroVO vo) {
+		logger.info("/AjaxBot/ListEseroTargetDate.do");
+		
+		List<BotEseroVO> outListBotEseroVO = new ArrayList<BotEseroVO>();
+		try {
+			outListBotEseroVO = botEseroService.listBotEseroTargetDate(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
 	@PostMapping("/UploadFilesEtcTaxCdSave.do")
 	public @ResponseBody StatusVO UploadFilesEtcTaxCdSave(FileUploadVO fvo, BotRequestVO vo) {
 		logger.info("/AjaxBot/UploadFilesEtcTaxCdSave.do");
