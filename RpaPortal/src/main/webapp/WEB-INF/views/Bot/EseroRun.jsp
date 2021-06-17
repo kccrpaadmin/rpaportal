@@ -68,7 +68,7 @@
 	    </div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_target_date_open">대상년월</a>
+	    	<a class="btn_common" id="btn_target_date_open">대상기간</a>
 	    	<a class="btn_common" id="btn_schedule_open">예약실행</a>
 	    </div>
 	    <!-- 그리드영역 -->

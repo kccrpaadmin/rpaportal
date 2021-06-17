@@ -106,9 +106,9 @@
 	});
 	
 	// 파일 업로드 실행
-	function uploadFilesEtcTaxCdSave() {
+	function uploadFilesEtcTax() {
 		$.ajax({
-			url: "/AjaxBot/UploadFilesEtcTaxCdSave.do",
+			url: "/AjaxBot/UploadFilesEtcTax.do",
 			type: "POST",
 			processData: false,
 			enctype: "multipart/form-data",
@@ -117,7 +117,7 @@
 			dataType : "json",
 	        async: true,
 			success: function(datas) {
-				openDialogUploadFilesEtcTaxCdSave(datas);
+				openDialogUploadFilesEtcTax(datas);
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
@@ -193,42 +193,7 @@
         mySheet.SetCountPosition(3); // 건수 정보 표시
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
-    }  
-   	
- 	// 파일 컨트롤 변경 이벤트 
-	$(document).on("change", "#input_file", function (e) {
-		var inputFile = document.getElementById('input_file');
-	 	var fileList = inputFile.files;
-	 	var fileListLen = fileList.length;
-	 	var returnVal = "";
-
-		// 1개 이상 체크 차단
-	 	if (fileListLen > 1) {
-	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일은 1개이하로 선택해 주세요.", null, null);
-	 		// input file 초기화
-	 		inputFile.value = null;
-	 		$("#input_file_txt").val("");
-	 		return false;
-	 	}
-	 	
-	 	// 첨부 확장자 체크 차단
-	 	for (var i = 0; i < fileListLen; i++) {
-	 		if (!checkAllowExtension(fileList[i].type)) {
-	 			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "파일(" + fileList[i].name + ")의 확장자는 지원되지 않습니다.", null, null);
-	 			// input file 초기화
-		 		inputFile.value = null;
-		 		$("#input_file_txt").val("");
-		 		return false;
-	 		}
-	 	}
-	 	
-	 	// 체크 로직이 이상이 없는 경우만 
-	 	for (var i = 0; i < fileListLen; i++) {
-	 		returnVal = returnVal + fileList[i].name + ";";	 		
-	 	}
-
- 		$("#input_file_txt").val(returnVal);	
-	});
+    } 	
 	
 	// 허용되는 이미지 확장자 정의 함수
 	function checkAllowExtension(pInput) {
@@ -238,14 +203,14 @@
 	}
 	
 	// 파일 업로드 전, 확인 함수
-	function uploadFilesConfirm(pOption) {
+	function uploadFilesEtcTaxConfirm(pOption) {
 		if (pOption.sdBtnKey == "o") {
-			uploadFilesEtcTaxCdSave();
+			uploadFilesEtcTax();
         }
 	}
 	
 	// 파일 업로드 후, 대화상자 오픈 함수
-	function openDialogUploadFilesEtcTaxCdSave(pData) {
+	function openDialogUploadFilesEtcTax(pData) {
 		if (pData.status == "Success") {
 			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업로드를 완료 하였습니다.", null, null);
 			$("#attId").val(pData.attId);
@@ -280,6 +245,41 @@
 		}
 	}
 	
+	// 파일 컨트롤 변경 이벤트 
+	$(document).on("change", "#input_file", function (e) {
+		var inputFile = document.getElementById('input_file');
+	 	var fileList = inputFile.files;
+	 	var fileListLen = fileList.length;
+	 	var returnVal = "";
+
+		// 1개 이상 체크 차단
+	 	if (fileListLen > 1) {
+	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일은 1개이하로 선택해 주세요.", null, null);
+	 		// input file 초기화
+	 		inputFile.value = null;
+	 		$("#input_file_txt").val("");
+	 		return false;
+	 	}
+	 	
+	 	// 첨부 확장자 체크 차단
+	 	for (var i = 0; i < fileListLen; i++) {
+	 		if (!checkAllowExtension(fileList[i].type)) {
+	 			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "파일(" + fileList[i].name + ")의 확장자는 지원되지 않습니다.", null, null);
+	 			// input file 초기화
+		 		inputFile.value = null;
+		 		$("#input_file_txt").val("");
+		 		return false;
+	 		}
+	 	}
+	 	
+	 	// 체크 로직이 이상이 없는 경우만 
+	 	for (var i = 0; i < fileListLen; i++) {
+	 		returnVal = returnVal + fileList[i].name + ";";	 		
+	 	}
+
+ 		$("#input_file_txt").val(returnVal);	
+	});
+	
 	// 파일 업로드 버튼 클릭 이벤트
 	$(document).on("click", "#btn_file_upload", function (e) {
 		var fileList = document.getElementById('input_file').files;
@@ -290,7 +290,7 @@
 	 		return false;
 	 	}
 		
-	 	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "업로드를 진행 하시겠습니까?", null, uploadFilesConfirm);
+	 	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "업로드를 진행 하시겠습니까?", null, uploadFilesEtcTaxConfirm);
 	});
 	
 	// 즉시실행 버튼 클릭 이벤트

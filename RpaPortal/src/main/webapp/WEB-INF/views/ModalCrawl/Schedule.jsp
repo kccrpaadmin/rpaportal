@@ -416,7 +416,7 @@
 	}
     
  	// 저장 전, 확인 함수
-	function createCrawlScheduleConfirm(pOption) {
+	function createScheduleConfirm(pOption) {
 		if (pOption.sdBtnKey == "o") {
 	    	var monthz = getCheckBoxCheckValueStr("#chk_months");
 	    	var dayz = getCheckBoxCheckValueStr("#chk_days");
@@ -430,7 +430,7 @@
 	}
  	
 	// 삭제 전, 확인 함수
-	function deleteCrawlScheduleConfirm(pOption) {
+	function deleteScheduleConfirm(pOption) {
 		if (pOption.sdBtnKey == "o") {
 			var saveJson = mySheet.GetSaveJson().data;
 			var saveJsonLen = saveJson.length;
@@ -565,7 +565,7 @@
     		return false;
     	}
     	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "생성 하시겠습니까?", null, createCrawlScheduleConfirm);
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "생성 하시겠습니까?", null, createScheduleConfirm);
     });
  	
  	// 삭제 버튼 클릭 이벤트
@@ -577,7 +577,7 @@
     		return false;
     	}
     	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteCrawlScheduleConfirm);    	
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteScheduleConfirm);    	
     });
  	
 </script>	

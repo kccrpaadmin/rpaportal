@@ -177,9 +177,9 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
-	@PostMapping("/UploadFilesEtcTaxCdSave.do")
-	public @ResponseBody StatusVO UploadFilesEtcTaxCdSave(FileUploadVO fvo, BotRequestVO vo) {
-		logger.info("/AjaxBot/UploadFilesEtcTaxCdSave.do");
+	@PostMapping("/UploadFilesEtcTax.do")
+	public @ResponseBody StatusVO UploadFilesEtcTax(FileUploadVO fvo, BotRequestVO vo) {
+		logger.info("/AjaxBot/UploadFilesEtcTax.do");
 		String status = "Fail";
 		String errorMsg = "";
 		String attId = "";
