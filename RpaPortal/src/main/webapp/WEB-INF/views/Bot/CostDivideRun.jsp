@@ -68,7 +68,7 @@
 	    </div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_schedule_open">예약실행</a>
+	    	<a class="btn_common" id="btn_immediate_call">즉시실행</a>
 	    </div>
 	    <!-- 그리드영역 -->
    	    <div id="sheet"></div>
@@ -139,9 +139,9 @@
         mySheet.LoadSearchData(pListDatas);
     }  
     	
-	// 예약등록 버튼 클릭 이벤트
-	$(document).on("click", "#btn_schedule_open", function (e) {
-		libraryFunc.createModal(null, null, null, 1100, 660, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
+	// 즉시실행 버튼 클릭 이벤트
+	$(document).on("click", "#btn_immediate_call", function (e) {
+		
 	});
 	
 </script>
