@@ -167,6 +167,8 @@
 		alert($("#target_site_cd").val());
 		alert($("#target_year").val());
 		alert($("#target_quarter").val());
+		
+		
 	});
 	
 </script>

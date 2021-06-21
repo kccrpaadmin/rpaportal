@@ -84,6 +84,9 @@ public class BotUtilServiceImpl implements IBotUtilService {
 				e.printStackTrace();
 			}
 			
+			// 메뉴별 요청시 저장 로직 추가
+			
+			
 			try {
 				// 봇 수행 모델
 				BotRunVO botRunVO = new BotRunVO();   
@@ -138,7 +141,7 @@ public class BotUtilServiceImpl implements IBotUtilService {
 
 		try {
 			// 파라미터를 받는 메뉴ID를 선별적으로 처리
-			if (vo.getMenuId().equals("") ) {
+			if (vo.getMenuId().equals("RA004003") ) {
 				// BotRequestVO에 스트링 하나를 선언해서 인풋 파라미터를 처리한다.	
 			}
 		
