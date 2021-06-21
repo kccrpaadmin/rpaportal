@@ -77,7 +77,7 @@
 			return false;
 		}
 		
-		window.location.href = pAccessUrl + "?pMenuId=" + pMenuId + "&pEmpNo=" + commonFunc.certInfo.empNo;
+		window.location.href = pAccessUrl + "?pMenuId=" + pMenuId + "&pEmpNo=" + commonFunc.certInfo.empNo + "&pUserId=" + commonFunc.certInfo.userId;
 	}
 	
 	// 검색 버튼 클릭 이벤트

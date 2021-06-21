@@ -151,7 +151,7 @@
 					saveDataStr = saveDataArr[i];
 				}
 				else {
-					saveDataStr = saveDataStr + "‡" + saveDataArr[i];
+					saveDataStr = saveDataStr + "≡" + saveDataArr[i];
 				}
 			}
 	    	

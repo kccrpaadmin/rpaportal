@@ -305,17 +305,21 @@ public class CommonUtilServiceImpl implements ICommonUtilService {
 		
 		DateFormat df = new SimpleDateFormat(formatType);
 		Calendar cal = Calendar.getInstance( );
-
-        if ("Month".equals(dateType)) {
+        
+        if ("Year".equals(dateType)) {
+        	cal.add(cal.YEAR, controlDate);
+        	dateFormat = df.format(cal.getTime());
+        }
+        else if ("Month".equals(dateType)) {
         	cal.add(cal.MONTH, controlDate);
         	dateFormat = df.format(cal.getTime());
-        } 
+        }
         
 		return dateFormat;
     }
 	
 	// 공통코드 목록 조회 (프로시져 지정)
-	public String getCodeProcedureSelectBox(String selectBoxNm, String procedureNm, String cd, String selectedCd) {
+	public String getCodeProcedureSelectBox(String selectBoxNm, String procedureNm, String cd, Boolean isAddFirstRow, String addFirstRowNm, String selectedCd) {
 		CodeVO vo = new CodeVO();
 		vo.setProcedureNm(procedureNm);
 		vo.setCd(cd);
@@ -332,8 +336,13 @@ public class CommonUtilServiceImpl implements ICommonUtilService {
 		StringBuilder sb =  new StringBuilder();
 		sb.append("<select id='" + selectBoxNm + "' name='" + selectBoxNm + "' class='combo_every'>");
 		
-		if (selectedCd.equals("전체") || selectedCd.equals("")) {
-			sb.append("<option value='' selected='selected'>" + selectedCd + "</option>");
+		if (isAddFirstRow) {
+			if (addFirstRowNm.equals(selectedCd)) {
+				sb.append("<option value='" + addFirstRowNm + "' selected='selected'>" + addFirstRowNm + "</option>");	
+			}
+			else {
+				sb.append("<option value='" + addFirstRowNm + "'>" + addFirstRowNm + "</option>");
+			}
 		}
 		
 		for (CodeVO codeVO : listCodeVO) {

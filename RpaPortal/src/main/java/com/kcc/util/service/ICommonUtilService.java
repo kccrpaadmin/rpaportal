@@ -20,5 +20,5 @@ public interface ICommonUtilService {
 	byte[] getEncodingBase64Bytes(byte[] targetBytes);
 	JSONObject getOcrNaverRequestJsonData(String menuId, String filePath);
 	String getDateUserFormat(String formatType, String dateType, int controlDate);
-	String getCodeProcedureSelectBox(String selectBoxNm, String procedureNm, String cd, String selectedCd);
+	String getCodeProcedureSelectBox(String selectBoxNm, String procedureNm, String cd, Boolean isAddFirstRow, String addFirstRowNm, String selectedCd);
 }

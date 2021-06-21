@@ -30,7 +30,7 @@
 	                <tr>
 	                	<th class="search_dtl_th">기준일자</th>
 	                    <td class="search_dtl_td">
-	                        <input type="text" class="datepicker_ym" readonly="readonly"  id="standard_date" value="${standardDate}" />
+	                        <input type="text" class="datepicker_ym" readonly="readonly"  id="basic_date" value="${basicDate}" />
 	                    </td>
 	                </tr>
 	            </tbody>
@@ -72,7 +72,7 @@
 	// 페이지 로드 
 	$(document).ready(function (e) {
 		commonFunc.createDatepicker(".datepicker_ym", "YearMonth");
-		listKomisManage(commonFunc.setReplaceData($("#standard_date").val(), "-", ""));
+		listKomisManage(commonFunc.setReplaceData($("#basic_date").val(), "-", ""));
 	});
 	
 	// 동관 및 환율정보 데이터 조회
@@ -290,7 +290,7 @@
 	
 	// 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_search", function (e) {
-		listKomisManage(commonFunc.setReplaceData($("#standard_date").val(), "-", ""));
+		listKomisManage(commonFunc.setReplaceData($("#basic_date").val(), "-", ""));
 	});
 	
 </script>

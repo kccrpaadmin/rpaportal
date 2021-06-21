@@ -66,6 +66,28 @@
 	            </tbody>
 	        </table>
 	    </div>
+	    <!-- 제목 -->
+		<div class="title">수행정보</div>
+		<!-- 상세영역 -->
+	    <div class="detail_box">
+        	<table class="detail_tbl">
+	            <caption>상세영역</caption>
+	            <colgroup>
+	                <col style="width:15%;" />
+	                <col />
+	            </colgroup>
+	            <tbody>
+	                <tr>
+	                    <th class="detail_th_l">수행정보</th>
+	                    <td class="detail_td_l">
+	                    	${targetSiteCdComboBox}
+	                    	<input type="text" class="datepicker_y" readonly="readonly"  id="target_year" value="${targetYear}" />
+	                    	${targetQuarterComboBox}
+                    	</td>
+	                </tr>
+	            </tbody>
+	        </table>
+	    </div>	    
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a class="btn_common" id="btn_immediate_call">즉시실행</a>
@@ -86,6 +108,7 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
+		commonFunc.createDatepicker(".datepicker_y", "Year");
 		listRequest(menuId, commonFunc.certInfo.empNo);
 	});
 	
@@ -137,11 +160,13 @@
         mySheet.SetCountPosition(3); // 건수 정보 표시
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
-    }  
-    	
+    }
+   	
 	// 즉시실행 버튼 클릭 이벤트
 	$(document).on("click", "#btn_immediate_call", function (e) {
-		
+		alert($("#target_site_cd").val());
+		alert($("#target_year").val());
+		alert($("#target_quarter").val());
 	});
 	
 </script>

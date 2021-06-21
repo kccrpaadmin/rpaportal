@@ -185,7 +185,7 @@ public class CrawlController extends BaseController {
 		
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
-		model.addAttribute("standardDate", commonUtilService.getDateUserFormat("yyyy-MM", "Month", -1));
+		model.addAttribute("basicDate", commonUtilService.getDateUserFormat("yyyy-MM", "Month", -1));
 		
 		return "Crawl/KomisManage";
 	}
@@ -238,7 +238,7 @@ public class CrawlController extends BaseController {
 		
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
-		model.addAttribute("orgComboBox", commonUtilService.getCodeProcedureSelectBox("combo_org_nm", "PRA_Crawl_listCrawlPersonInfoOrgNmCode", "", "전체"));
+		model.addAttribute("orgComboBox", commonUtilService.getCodeProcedureSelectBox("combo_org", "PRA_Crawl_listCrawlPersonInfoOrgCombo", "", true, "전체", "전체"));
 		
 		return "Crawl/PersonInfoManage";
 	}

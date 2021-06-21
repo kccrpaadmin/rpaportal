@@ -58,7 +58,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/MoneySendRun.do")
-	public String MoneySendRun(String pMenuId, String pEmpNo, Model model) {
+	public String MoneySendRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/MoneySendRun.do");
 		
 		// MenuVO 입력
@@ -84,7 +84,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/MoneySendManage.do")
-	public String MoneySendManage(String pMenuId, String pEmpNo, Model model) {
+	public String MoneySendManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/MoneySendManage.do");
 		
 		// MenuVO 입력
@@ -110,7 +110,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/EseroRun.do")
-	public String EseroRun(String pMenuId, String pEmpNo, Model model) {
+	public String EseroRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/EseroRun.do");
 		
 		// MenuVO 입력
@@ -136,7 +136,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/EseroManage.do")
-	public String EseroManage(String pMenuId, String pEmpNo, Model model) {
+	public String EseroManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/EseroManage.do");
 		
 		// MenuVO 입력
@@ -162,7 +162,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/CostDivideRun.do")
-	public String CostDivideRun(String pMenuId, String pEmpNo, Model model) {
+	public String CostDivideRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/CostDivideRun.do");
 		
 		// MenuVO 입력
@@ -183,12 +183,15 @@ public class BotController extends BaseController {
 		
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
+		model.addAttribute("targetSiteCdComboBox", commonUtilService.getCodeProcedureSelectBox("target_site_cd", "PRA_Bot_listBotCostDivideTargetSiteCdCombo", pUserId, true, "", ""));
+		model.addAttribute("targetYear", commonUtilService.getDateUserFormat("yyyy", "Year", 0));
+		model.addAttribute("targetQuarterComboBox", commonUtilService.getCodeProcedureSelectBox("target_quarter", "PRA_Bot_listBotCostDivideTargetQuarterCombo", "", true, "", ""));
 		
 		return "Bot/CostDivideRun";
 	}
 	
 	@GetMapping("/CostDivideManage.do")
-	public String CostDivideManage(String pMenuId, String pEmpNo, Model model) {
+	public String CostDivideManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/CostDivideManage.do");
 		
 		// MenuVO 입력
@@ -214,7 +217,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/EtcTaxRun.do")
-	public String EtcTaxRun(String pMenuId, String pEmpNo, Model model) {
+	public String EtcTaxRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/EtcTaxRun.do");
 		
 		// MenuVO 입력
@@ -240,7 +243,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/EtcTaxManage.do")
-	public String EtcTaxManage(String pMenuId, String pEmpNo, Model model) {
+	public String EtcTaxManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/EtcTaxManage.do");
 		
 		// MenuVO 입력
@@ -266,7 +269,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/KisconConstRun.do")
-	public String KisconConstRun(String pMenuId, String pEmpNo, Model model) {
+	public String KisconConstRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/KisconConstRun.do");
 		
 		// MenuVO 입력
@@ -292,7 +295,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/KisconConstManage.do")
-	public String KisconConstManage(String pMenuId, String pEmpNo, Model model) {
+	public String KisconConstManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/KisconConstManage.do");
 		
 		// MenuVO 입력
@@ -318,7 +321,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/PersonAppointRun.do")
-	public String PersonAppointRun(String pMenuId, String pEmpNo, Model model) {
+	public String PersonAppointRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/PersonAppointRun.do");
 		
 		// MenuVO 입력
@@ -344,7 +347,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/PersonAppointManage.do")
-	public String PersonAppointManage(String pMenuId, String pEmpNo, Model model) {
+	public String PersonAppointManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/PersonAppointManage.do");
 		
 		// MenuVO 입력
@@ -370,7 +373,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/EngineerRun.do")
-	public String EngineerRun(String pMenuId, String pEmpNo, Model model) {
+	public String EngineerRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/EngineerRun.do");
 		
 		// MenuVO 입력
@@ -396,7 +399,7 @@ public class BotController extends BaseController {
 	}
 	
 	@GetMapping("/EngineerManage.do")
-	public String EngineerManage(String pMenuId, String pEmpNo, Model model) {
+	public String EngineerManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/EngineerManage.do");
 		
 		// MenuVO 입력

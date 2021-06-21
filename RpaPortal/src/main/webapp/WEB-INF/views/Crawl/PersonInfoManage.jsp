@@ -80,7 +80,7 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		listPersonInfoManage(menuId, $("#combo_org_nm").val(), $("#dept_nm").val(), $("#user_nm").val(), $("#duty_nm").val(), $("#task").val());
+		listPersonInfoManage(menuId, $("#combo_org").val(), $("#dept_nm").val(), $("#user_nm").val(), $("#duty_nm").val(), $("#task").val());
 	});
 	
 	// 발주처 직원 정보 목록 조회 (업무관리)
@@ -131,7 +131,7 @@
    	
 	// 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_search", function (e) {
-		listPersonInfoManage(menuId, $("#combo_org_nm").val(), $("#dept_nm").val(), $("#user_nm").val(), $("#duty_nm").val(), $("#task").val());
+		listPersonInfoManage(menuId, $("#combo_org").val(), $("#dept_nm").val(), $("#user_nm").val(), $("#duty_nm").val(), $("#task").val());
 	});
 	
 </script>
