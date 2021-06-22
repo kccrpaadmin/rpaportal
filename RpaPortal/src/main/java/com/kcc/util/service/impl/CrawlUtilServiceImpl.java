@@ -55,6 +55,7 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 	public CrawlRequestVO requestCrawl(CrawlRequestVO vo) {
 		// RequestVO 출력
 		CrawlRequestVO outCrawlRequestVO = new CrawlRequestVO();
+		outCrawlRequestVO.setRequestStatus("Fail");
 		
 		try {
 			// 웹크롤링 메뉴별 진행여부 조회
