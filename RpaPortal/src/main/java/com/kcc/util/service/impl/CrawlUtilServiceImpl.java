@@ -52,9 +52,7 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 	private ICrawlRequestService crawlRequestService;
 	
 	// 웹크롤링 요청 공통 메소드
-	public String requestCrawl(CrawlRequestVO vo) {
-		String status = "Fail";
-
+	public CrawlRequestVO requestCrawl(CrawlRequestVO vo) {
 		// RequestVO 출력
 		CrawlRequestVO outCrawlRequestVO = new CrawlRequestVO();
 		
@@ -64,21 +62,27 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
+			outCrawlRequestVO.setRequestStatus("Fail");
+			return outCrawlRequestVO;
 		}
 		
 		// 진행여부를 판단 (진행중인 건이 있는 경우) - 정지
 		if ("Progress".equals(outCrawlRequestVO.getRequestStatus())) {
-			// 진행중으로 변경 (Progress)
-			status = outCrawlRequestVO.getRequestStatus();
+			return outCrawlRequestVO;
 		}
 		// 진행여부를 판단 (진행중인 건이 없는 경우) - 시작
 		else {
 			try {
 				// 웹크롤링 요청 정보 생성
 				crawlRequestService.createCrawlRequest(vo);
+				// NewRequestNo 삽입
+				vo.setRequestNo(vo.getNewRequestNo());
+				outCrawlRequestVO.setRequestNo(vo.getNewRequestNo());
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
+				outCrawlRequestVO.setRequestStatus("Fail");
+				return outCrawlRequestVO;
 			}
 			
 			try {
@@ -86,7 +90,7 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 				CrawlRunVO crawlRunVO = new CrawlRunVO();   
 				crawlRunVO.setMenuId(vo.getMenuId());
 				crawlRunVO.setEmpNo(vo.getEmpNo());
-				crawlRunVO.setRequestNo(vo.getNewRequestNo());
+				crawlRunVO.setRequestNo(vo.getRequestNo());
 				
 				// 로컬, 개발, 운영 분기
 				if ("Real".equals(commonUtilService.getServerEnv())) {
@@ -126,31 +130,17 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 					
 					// 요청이 성공한 경우
 					if ("Success".equals(content)) {
-						status = "Success";
+						outCrawlRequestVO.setRequestStatus("Success");
 					}
 				}
 			}
 			catch (Exception e) {
 				e.printStackTrace();
+				outCrawlRequestVO.setRequestStatus("Fail");
+				return outCrawlRequestVO;
 			}
-		}
+		}		
 		
-		// 작업이 실패한 경우
-		if ("Fail".equals(status)) {
-			// RequestVO 입력
-			vo.setRequestNo(vo.getNewRequestNo());
-			vo.setStatusCd("RA005003");
-			vo.setErrorMsg("웹크롤링 서버 요청시 오류가 발생 하였습니다.");
-			
-			try {
-				// 웹크롤링 요청 정보 변경
-				crawlRequestService.updateCrawlRequest(vo);
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return status;
+		return outCrawlRequestVO;
 	}
 }

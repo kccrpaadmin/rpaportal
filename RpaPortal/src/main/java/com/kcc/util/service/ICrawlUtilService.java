@@ -8,5 +8,5 @@ import com.kcc.biz.model.CrawlRequestVO;
 
 
 public interface ICrawlUtilService {
-	String requestCrawl(CrawlRequestVO vo);
+	CrawlRequestVO requestCrawl(CrawlRequestVO vo);
 }

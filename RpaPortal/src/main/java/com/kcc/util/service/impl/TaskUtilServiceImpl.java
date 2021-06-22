@@ -89,7 +89,22 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 				inCrawlRequestVO.setEmpNo(ConstWord.RUN_CRAWL_ADMIN);
 				
 				// 웹크롤링 수행 (진행중인 경우 수행 안함)
-				String status = crawlUtilService.requestCrawl(inCrawlRequestVO);
+				CrawlRequestVO outCrawlRequestVO = new CrawlRequestVO();
+				outCrawlRequestVO = crawlUtilService.requestCrawl(inCrawlRequestVO);
+				
+				// 오류 발생시
+				if ("Fail".equals(outCrawlRequestVO.getRequestStatus())) {
+					outCrawlRequestVO.setStatusCd("RA005003");
+					outCrawlRequestVO.setErrorMsg("웹크롤링 요청시 오류가 발생 하였습니다.");
+					
+					try {
+						// 웹크롤링 요청 정보 변경
+						crawlRequestService.updateCrawlRequest(outCrawlRequestVO);
+					} 
+					catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
 			}
 			
 			logger.info("callCrawlApi : " + curDate);

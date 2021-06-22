@@ -119,7 +119,7 @@
 			dataType : "json",
 	        async: true,
 			success: function(data) {
-				openDialog(data.status);
+				openDialogRunCrawl(data.requestStatus);
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
@@ -179,7 +179,7 @@
 	}
  	
 	// 즉시실행 후, 대화상자 오픈 함수
-	function openDialog(pData) {
+	function openDialogRunCrawl(pData) {
 		if (pData == "Progress") {
 			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "이미 실행중인 요청이 있습니다.<br/>잠시후에 다시시도 하세요.", null, commonFunc.refreshPage);
 			return false;

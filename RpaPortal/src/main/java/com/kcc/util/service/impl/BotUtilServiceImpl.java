@@ -116,6 +116,8 @@ public class BotUtilServiceImpl implements IBotUtilService {
 			}
 		}
 		
+		// 메소드를 중지하기 위해서 로직은 추가한다.
+		
 		// 작업이 실패한 경우
 		if ("Fail".equals(status)) {
 			// RequestVO 입력

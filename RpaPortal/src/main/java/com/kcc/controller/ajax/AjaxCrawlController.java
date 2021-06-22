@@ -90,15 +90,28 @@ public class AjaxCrawlController extends BaseController {
 	private ICrawlPersonInfoService crawlPersonInfoService;
 	
 	@PostMapping("/RunCrawl.do")
-	public @ResponseBody StatusVO RunCrawl(@RequestBody CrawlRequestVO vo) {
+	public @ResponseBody CrawlRequestVO RunCrawl(@RequestBody CrawlRequestVO vo) {
 		logger.info("/AjaxCrawl/RunCrawl.do");
 		
 		// 웹크롤링 수행 (진행중인 경우 수행 안함)
-		String status = crawlUtilService.requestCrawl(vo);
-		StatusVO statusVO = new StatusVO();
-		statusVO.setStatus(status);
+		CrawlRequestVO outCrawlRequestVO = new CrawlRequestVO();
+		outCrawlRequestVO = crawlUtilService.requestCrawl(vo);
 		
-		return statusVO;
+		// 오류 발생시
+		if ("Fail".equals(outCrawlRequestVO.getRequestStatus())) {
+			outCrawlRequestVO.setStatusCd("RA005003");
+			outCrawlRequestVO.setErrorMsg("웹크롤링 요청시 오류가 발생 하였습니다.");
+			
+			try {
+				// 웹크롤링 요청 정보 변경
+				crawlRequestService.updateCrawlRequest(outCrawlRequestVO);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return outCrawlRequestVO;
 	}
 	
 	@PostMapping("/CreateSchedule.do")
