@@ -8,5 +8,5 @@ import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotRunVO;
 
 public interface IBotUtilService {
-	String requestBot(BotRequestVO vo);
+	BotRequestVO requestBot(BotRequestVO vo);
 }

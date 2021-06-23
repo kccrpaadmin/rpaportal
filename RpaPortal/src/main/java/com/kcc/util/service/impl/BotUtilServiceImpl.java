@@ -55,11 +55,10 @@ public class BotUtilServiceImpl implements IBotUtilService {
 	private IBotRequestService botRequestService;
 	
 	// 봇 요청 공통 메소드
-	public String requestBot(BotRequestVO vo) {
-		String status = "Fail";
-		
+	public BotRequestVO requestBot(BotRequestVO vo) {
 		// RequestVO 출력
 		BotRequestVO outBotRequestVO = new BotRequestVO();
+		outBotRequestVO.setRequestStatus("Fail");
 		
 		try {
 			// 웹크롤링 메뉴별 진행여부 조회
@@ -67,32 +66,47 @@ public class BotUtilServiceImpl implements IBotUtilService {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
+			outBotRequestVO.setRequestStatus("Fail");
+			return outBotRequestVO;
 		}
 		
 		// 진행여부를 판단 (진행중인 건이 있는 경우) - 정지
 		if ("Progress".equals(outBotRequestVO.getRequestStatus())) {
 			// 진행중으로 변경 (Progress)
-			status = outBotRequestVO.getRequestStatus();
+			return outBotRequestVO;
 		}
 		// 진행여부를 판단 (진행중인 건이 없는 경우) - 시작
 		else {
 			try {
 				// 봇 요청 정보 생성
 				botRequestService.createBotRequest(vo);
+				
+				// NewRequestNo 삽입
+				vo.setRequestNo(vo.getNewRequestNo());
+				outBotRequestVO.setRequestNo(vo.getNewRequestNo());
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
+				outBotRequestVO.setRequestStatus("Fail");
+				return outBotRequestVO;
 			}
 			
-			// 메뉴별 요청시 저장 로직 추가
-			
+			try {
+				// 봇 요청시 메뉴별 저장
+				createByMenuData(vo);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+				outBotRequestVO.setRequestStatus("Fail");
+				return outBotRequestVO;
+			}
 			
 			try {
 				// 봇 수행 모델
 				BotRunVO botRunVO = new BotRunVO();   
 				botRunVO.setMenuId(vo.getMenuId());
 				botRunVO.setEmpNo(vo.getEmpNo());
-				botRunVO.setRequestNo(vo.getNewRequestNo());
+				botRunVO.setRequestNo(vo.getRequestNo());
 				
 				// 로컬, 개발, 운영 분기
 				if ("Real".equals(commonUtilService.getServerEnv())) {
@@ -108,52 +122,26 @@ public class BotUtilServiceImpl implements IBotUtilService {
 				
 				// API 호출
 				
-				
-				status = "Success";
 			}
 			catch (Exception e) {
 				e.printStackTrace();
+				outBotRequestVO.setRequestStatus("Fail");
+				return outBotRequestVO;
 			}
 		}
 		
-		// 메소드를 중지하기 위해서 로직은 추가한다.
-		
-		// 작업이 실패한 경우
-		if ("Fail".equals(status)) {
-			// RequestVO 입력
-			vo.setRequestNo(vo.getNewRequestNo());
-			vo.setStatusCd("RA005003");
-			vo.setErrorMsg("봇 서버 요청시 오류가 발생 하였습니다.");
-			
-			try {
-				// 봇 요청 정보 변경
-				botRequestService.updateBotRequest(vo);
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return status;
+		return outBotRequestVO;
 	}
 	
 	// 
-	public String createByMenuData(BotRequestVO vo) {
-		String status = "";
-
-		try {
-			// 파라미터를 받는 메뉴ID를 선별적으로 처리
-			if (vo.getMenuId().equals("RA004003") ) {
-				// BotRequestVO에 스트링 하나를 선언해서 인풋 파라미터를 처리한다.	
-			}
-		
-		}
-		catch (Exception e) {
-			status = "InputSaveError";
-			e.printStackTrace();
+	public void createByMenuData(BotRequestVO vo) throws Exception {
+		// 파라미터를 받는 메뉴ID를 선별적으로 처리
+		if (vo.getMenuId().equals("RA004003") ) {
+			// BotRequestVO에 스트링 하나를 선언해서 인풋 파라미터를 처리한다.
+			
+			
 		}
 		
-		return status;
 	}
 	
 }

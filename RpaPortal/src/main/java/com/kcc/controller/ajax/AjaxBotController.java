@@ -74,15 +74,31 @@ public class AjaxBotController extends BaseController {
 	private IBotEseroService botEseroService;
 	
 	@PostMapping("/RunBot.do")
-	public @ResponseBody StatusVO RunBot(@RequestBody BotRequestVO vo) {
+	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
 		logger.info("/AjaxBot/RunBot.do");
 
 		// 봇 수행 (진행중인 경우 수행 안함)
-		String status = botUtilService.requestBot(vo);
-		StatusVO statusVO = new StatusVO();
-		statusVO.setStatus(status);
+		BotRequestVO outBotRequestVO = new BotRequestVO();
+		outBotRequestVO = botUtilService.requestBot(vo);
 		
-		return statusVO;
+		logger.info(outBotRequestVO.getRequestStatus());
+		logger.info(outBotRequestVO.getRequestNo());
+		
+		// 오류 발생시
+		if ("Fail".equals(outBotRequestVO.getRequestStatus())) {
+			outBotRequestVO.setStatusCd("RA005003");
+			outBotRequestVO.setErrorMsg("봇 요청시 오류가 발생 하였습니다.");
+			
+			try {
+				// 봇 요청 정보 변경
+				botRequestService.updateBotRequest(outBotRequestVO);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return outBotRequestVO;
 	}
 	
 	@PostMapping("/CreateSchedule.do")
