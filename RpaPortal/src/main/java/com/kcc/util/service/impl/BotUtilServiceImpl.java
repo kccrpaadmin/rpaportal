@@ -272,7 +272,7 @@ public class BotUtilServiceImpl implements IBotUtilService {
 		
 	}
 	
-	private TrustManager[] createTrustManagers() { 
+	public TrustManager[] createTrustManagers() { 
 		TrustManager[] trustAllCerts = new TrustManager[] {
 				new X509TrustManager() { 
 					public void checkClientTrusted(java.security.cert.X509Certificate[] x509Certificates, String s) { } 
