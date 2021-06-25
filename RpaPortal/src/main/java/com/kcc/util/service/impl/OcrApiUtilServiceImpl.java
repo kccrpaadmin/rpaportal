@@ -92,7 +92,7 @@ public class OcrApiUtilServiceImpl implements IOcrApiUtilService {
 			Feature feat = Feature.newBuilder().setType(Type.TEXT_DETECTION).build();
 			AnnotateImageRequest request = AnnotateImageRequest.newBuilder().addFeatures(feat).setImage(img).build();
 			requests.add(request);
-
+			
 			try (ImageAnnotatorClient client = ImageAnnotatorClient.create()) {
 				BatchAnnotateImagesResponse response = client.batchAnnotateImages(requests);
 			    List<AnnotateImageResponse> responses = response.getResponsesList();
@@ -140,7 +140,7 @@ public class OcrApiUtilServiceImpl implements IOcrApiUtilService {
 			JSONObject inDataJsonObject = new JSONObject();
 			inDataJsonObject = commonUtilService.getOcrNaverRequestJsonData(menuId, imageFilePath);
 			
-			// HttpURLConnection 정의 
+			// HttpURLConnection 정의
 			HttpURLConnection conn = null;
 			
 	        // URL 설정
@@ -151,9 +151,9 @@ public class OcrApiUtilServiceImpl implements IOcrApiUtilService {
 	        conn.setRequestMethod("POST");
 	        conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
 	        conn.setRequestProperty("X-OCR-SECRET", ConstWord.OCR_NAVER_TEMP_API_KEY);
-	        
-	        // Request에 JSON data 준비
 	        conn.setDoOutput(true);
+	        
+	        // Stream 준비
 	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 	        
 	        // Request에 쓰기
@@ -161,7 +161,7 @@ public class OcrApiUtilServiceImpl implements IOcrApiUtilService {
 	        bw.flush();
 	        bw.close();
 	        
-	        // 보내고 결과값 받기
+	        // 결과값 요청
 	        int responseCode = conn.getResponseCode();
 	        
 	        // 성공인 경우
@@ -172,6 +172,8 @@ public class OcrApiUtilServiceImpl implements IOcrApiUtilService {
 	            while ((line = br.readLine()) != null) {
 	                sb.append(line);
 	            }
+	            
+	            br.close();
 	            
 	            JSONParser jsonParser = new JSONParser();
 	            JSONObject outDataJsonObject = (JSONObject) jsonParser.parse(sb.toString());
@@ -210,6 +212,8 @@ public class OcrApiUtilServiceImpl implements IOcrApiUtilService {
 		            
 		            status = "Success";
 	            }
+	            
+	            conn.disconnect();
 	        }
 	        else if (responseCode == 400) {
 	        	logger.info("400");

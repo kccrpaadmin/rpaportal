@@ -1,7 +1,8 @@
 package com.kcc.words;
 
 public class ConstWord {
-	public final static String RUN_CRAWL_ADMIN = "00001111";
+	public final static String RPA_ADMIN_EMP_NO = "00001111";
+	
 	public final static String PORTAL_LOCAL1_IP = "70.71.14.112";
 	public final static String PORTAL_LOCAL2_IP = "70.71.14.115";
 	public final static String PORTAL_DEV_IP = "70.71.14.119";
@@ -16,10 +17,11 @@ public class ConstWord {
 	public final static String OCR_NAVER_TEMP_API_URL = "https://8c4e1d2252484597b2955d676b38bd3b.apigw.ntruss.com/custom/v1/5237/62ef833a9b2f5073922cf9a0cbf0f6d9f3fb3b1923eab710a2c131536220595f/infer";
 	public final static String OCR_NAVER_TEMP_API_KEY = "cmdkRmVUaEVRR2hFenBhdlZqWVRaTktLeXh1VXRLclQ=";
 	
-	public final static String UIPATH_DEV_IP = "http://uipathdev.kccworld.net";
-	public final static String UIPATH_REAL_IP = "http://uipath.kccworld.net";
-	public final static String UIPATH_DEV_API_KEY = "";
-	public final static String UIPATH_REAL_API_KEY = "";
+	public final static String ORCHESTRATOR_DEV_IP = "https://ordev.kccworld.net";
+	public final static String ORCHESTRATOR_REAL_IP = "https://or.kccworld.net";
+	public final static String ORCHESTRATOR_TENANT_NM = "default";
+	public final static String ORCHESTRATOR_USER_ID = "admin";
+	public final static String ORCHESTRATOR_USER_PWD = "const!2pri";
 	
 	public final static String SAVE_SUCCESS = "저장 완료.";
 	public final static String SAVE_ERROR = "저장 오류.";

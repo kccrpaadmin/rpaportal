@@ -130,7 +130,25 @@
 			}
 		});
 	}
-		
+	
+	// 봇 실행
+	function runBot(pMenuId, pEmpNo, pUserId) {
+		$.ajax({
+			url: "/AjaxBot/RunBot.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo, "userId": pUserId }),
+			dataType : "json",
+	        async: true,
+			success: function(data) {
+				openDialogRunBot(data.requestStatus);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
     	commonFunc.initSheet("mySheet");
@@ -162,13 +180,21 @@
         mySheet.LoadSearchData(pListDatas);
     }
    	
+ 	// 즉시실행 전, 확인 함수
+	function runBotConfirm(pOption) {
+		if (pOption.sdBtnKey == "o") {
+			runBot(menuId, commonFunc.certInfo.empNo, commonFunc.certInfo.userId);
+        }
+	}
+ 
 	// 즉시실행 버튼 클릭 이벤트
 	$(document).on("click", "#btn_immediate_call", function (e) {
-		alert($("#target_site_cd").val());
-		alert($("#target_year").val());
-		alert($("#target_quarter").val());
+		//alert($("#target_site_cd").val());
+		//alert($("#target_year").val());
+		//alert($("#target_quarter").val());
 		
 		
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "요청을 진행 하시겠습니까?", null, runBotConfirm);
 	});
 	
 </script>

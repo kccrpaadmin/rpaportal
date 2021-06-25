@@ -27,6 +27,7 @@ public class BotRequestVO {
 	private String ChgUserNm;
 	private String ChgDate;
 	private String EmpNo;
+	private String UserId;
 	private String RequestStatus;
 	private String BotParam;
 	
@@ -137,6 +138,12 @@ public class BotRequestVO {
 	}
 	public void setEmpNo(String empNo) {
 		EmpNo = empNo;
+	}
+	public String getUserId() {
+		return UserId;
+	}
+	public void setUserId(String userId) {
+		UserId = userId;
 	}
 	public String getRequestStatus() {
 		return RequestStatus;

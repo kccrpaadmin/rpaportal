@@ -86,7 +86,7 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 				// RequestVO 입력
 				CrawlRequestVO inCrawlRequestVO = new CrawlRequestVO();
 				inCrawlRequestVO.setMenuId(crawlScheduleVO.getMenuId());
-				inCrawlRequestVO.setEmpNo(ConstWord.RUN_CRAWL_ADMIN);
+				inCrawlRequestVO.setEmpNo(ConstWord.RPA_ADMIN_EMP_NO);
 				
 				// 웹크롤링 수행 (진행중인 경우 수행 안함)
 				CrawlRequestVO outCrawlRequestVO = new CrawlRequestVO();

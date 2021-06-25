@@ -11,36 +11,43 @@ package com.kcc.biz.model;
 public class BotRunVO {
 	private String ApiUrl;
 	private String ApiKey;
-	private String EmpNo;
 	private String MenuId;
+	private String EmpNo;
+	private String UserId;
 	private String RequestNo;
 	
 	public String getApiUrl() {
 		return ApiUrl;
 	}
-	public String getApiKey() {
-		return ApiKey;
-	}
-	public String getEmpNo() {
-		return EmpNo;
-	}
-	public String getMenuId() {
-		return MenuId;
-	}
-	public String getRequestNo() {
-		return RequestNo;
-	}
 	public void setApiUrl(String apiUrl) {
 		ApiUrl = apiUrl;
+	}
+	public String getApiKey() {
+		return ApiKey;
 	}
 	public void setApiKey(String apiKey) {
 		ApiKey = apiKey;
 	}
-	public void setEmpNo(String empNo) {
-		EmpNo = empNo;
+	public String getMenuId() {
+		return MenuId;
 	}
 	public void setMenuId(String menuId) {
 		MenuId = menuId;
+	}
+	public String getEmpNo() {
+		return EmpNo;
+	}
+	public void setEmpNo(String empNo) {
+		EmpNo = empNo;
+	}
+	public String getUserId() {
+		return UserId;
+	}
+	public void setUserId(String userId) {
+		UserId = userId;
+	}
+	public String getRequestNo() {
+		return RequestNo;
 	}
 	public void setRequestNo(String requestNo) {
 		RequestNo = requestNo;
