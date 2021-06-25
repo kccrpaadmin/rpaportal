@@ -118,7 +118,7 @@ public class BotUtilServiceImpl implements IBotUtilService {
 				outBotRequestVO.setRequestStatus("Fail");
 				return outBotRequestVO;
 			}
-			
+
 			try {
 				// 봇 수행 모델
 				BotRunVO botRunVO = new BotRunVO();   
@@ -140,56 +140,7 @@ public class BotUtilServiceImpl implements IBotUtilService {
 				
 				logger.info(botRunVO.getApiUrl());
 				
-			    JSONObject inDataJsonObject = new JSONObject();
-		        inDataJsonObject.put("tenancyName", ConstWord.ORCHESTRATOR_TENANT_NM);
-		        inDataJsonObject.put("usernameOrEmailAddress", ConstWord.ORCHESTRATOR_USER_ID);
-		        inDataJsonObject.put("password", ConstWord.ORCHESTRATOR_USER_PWD);
-		        
-				SSLContext sc = SSLContext.getInstance("SSL");
-				sc.init(null, createTrustManagers(), new java.security.SecureRandom());
-				HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-				HostnameVerifier allHostsValid = (hostname, session) -> true; 
-				HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-				
-				// HttpURLConnection 정의
-				HttpURLConnection conn = null;
-				
-		        // URL 설정
-		        URL url = new URL(botRunVO.getApiUrl() + "/api/Account/Authenticate");
-		        conn = (HttpURLConnection) url.openConnection();
-		        
-		        // Request 형식 설정
-		        conn.setRequestMethod("POST");
-		        conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-		        conn.setDoOutput(true);
-		        
-		        // Stream 준비
-		        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-		        
-		        // Request에 쓰기
-		        bw.write(inDataJsonObject.toString());
-		        bw.flush();
-		        bw.close();
-		        
-		        // 결과값 요청
-		        int responseCode = conn.getResponseCode();
-		        
-		        // 성공인 경우
-		        if (responseCode == 200) {
-		            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
-		            StringBuilder sb = new StringBuilder();
-		            String line = "";
-		            while ((line = br.readLine()) != null) {
-		                sb.append(line);
-		            }
-		            
-	            	br.close();
-		            logger.info(sb.toString());
-		        }
-		        
-		        conn.disconnect();
-				
-				
+			    test(botRunVO);		
 				
 				
 				/*
@@ -272,20 +223,76 @@ public class BotUtilServiceImpl implements IBotUtilService {
 		
 	}
 	
-	public TrustManager[] createTrustManagers() { 
+	public TrustManager[] createTrustManagers() throws Exception { 
 		TrustManager[] trustAllCerts = new TrustManager[] {
-				new X509TrustManager() { 
-					public void checkClientTrusted(java.security.cert.X509Certificate[] x509Certificates, String s) { } 
-					public void checkServerTrusted(java.security.cert.X509Certificate[] x509Certificates, String s) { } 
-					public java.security.cert.X509Certificate[] getAcceptedIssuers() { 
-						return new java.security.cert.X509Certificate[]{}; 
-					} 
-				}
-			};
+			new X509TrustManager() { 
+				public void checkClientTrusted(java.security.cert.X509Certificate[] x509Certificates, String s) { } 
+				public void checkServerTrusted(java.security.cert.X509Certificate[] x509Certificates, String s) { } 
+				public java.security.cert.X509Certificate[] getAcceptedIssuers() { 
+					return new java.security.cert.X509Certificate[]{}; 
+				} 
+			}
+		};
 		
 		return trustAllCerts; 
 	}
 	
+	public String test(BotRunVO botRunVO) throws Exception {
+		String test = "";
+		
+		JSONObject inDataJsonObject = new JSONObject();
+        inDataJsonObject.put("tenancyName", ConstWord.ORCHESTRATOR_TENANT_NM);
+        inDataJsonObject.put("usernameOrEmailAddress", ConstWord.ORCHESTRATOR_USER_ID);
+        inDataJsonObject.put("password", ConstWord.ORCHESTRATOR_USER_PWD);
+        
+		SSLContext sc = SSLContext.getInstance("SSL");
+		sc.init(null, createTrustManagers(), new java.security.SecureRandom());
+		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		HostnameVerifier allHostsValid = (hostname, session) -> true; 
+		HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+		
+		// HttpURLConnection 정의
+		HttpURLConnection conn = null;
+		
+        // URL 설정
+        URL url = new URL(botRunVO.getApiUrl() + "/api/Account/Authenticate");
+        conn = (HttpURLConnection) url.openConnection();
+        
+        // Request 형식 설정
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+        conn.setDoOutput(true);
+        
+        // Stream 준비
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+        
+        // Request에 쓰기
+        bw.write(inDataJsonObject.toString());
+        bw.flush();
+        bw.close();
+        
+        // 결과값 요청
+        int responseCode = conn.getResponseCode();
+        
+        // 성공인 경우
+        if (responseCode == 200) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+            StringBuilder sb = new StringBuilder();
+            String line = "";
+            while ((line = br.readLine()) != null) {
+            	sb.append(line);
+            }
+            
+            test = sb.toString();
+            
+            br.close();
+            logger.info(test);
+        }
+        
+        conn.disconnect();
+	
+		return test;
+	}
 	
 	
 		
