@@ -15,6 +15,10 @@ public class BotRunVO {
 	private String EmpNo;
 	private String UserId;
 	private String RequestNo;
+	private String Token;
+	private String OrganizationUnitId;
+	private String ReleaseKey;
+	private String RequestStatus;
 	
 	public String getApiUrl() {
 		return ApiUrl;
@@ -51,5 +55,29 @@ public class BotRunVO {
 	}
 	public void setRequestNo(String requestNo) {
 		RequestNo = requestNo;
+	}
+	public String getToken() {
+		return Token;
+	}
+	public void setToken(String token) {
+		Token = token;
+	}
+	public String getOrganizationUnitId() {
+		return OrganizationUnitId;
+	}
+	public void setOrganizationUnitId(String organizationUnitId) {
+		OrganizationUnitId = organizationUnitId;
+	}
+	public String getReleaseKey() {
+		return ReleaseKey;
+	}
+	public void setReleaseKey(String releaseKey) {
+		ReleaseKey = releaseKey;
+	}
+	public String getRequestStatus() {
+		return RequestStatus;
+	}
+	public void setRequestStatus(String requestStatus) {
+		RequestStatus = requestStatus;
 	}	
 }

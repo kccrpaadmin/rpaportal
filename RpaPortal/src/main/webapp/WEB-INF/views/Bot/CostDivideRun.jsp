@@ -132,12 +132,12 @@
 	}
 	
 	// 봇 실행
-	function runBot(pMenuId, pEmpNo, pUserId) {
+	function runBot(pMenuId, pEmpNo, pUserId, pBotParam) {
 		$.ajax({
 			url: "/AjaxBot/RunBot.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo, "userId": pUserId }),
+			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo, "userId": pUserId, "botParam": pBotParam }),
 			dataType : "json",
 	        async: true,
 			success: function(data) {
@@ -183,17 +183,44 @@
  	// 즉시실행 전, 확인 함수
 	function runBotConfirm(pOption) {
 		if (pOption.sdBtnKey == "o") {
-			runBot(menuId, commonFunc.certInfo.empNo, commonFunc.certInfo.userId);
+			var botParam = $("#target_site_cd").val() + "‡" + $("#target_year").val() + "‡" + $("#target_quarter").val();
+			runBot(menuId, commonFunc.certInfo.empNo, commonFunc.certInfo.userId, botParam);
         }
 	}
- 
+ 	
+	// 즉시실행 후, 대화상자 오픈 함수
+	function openDialogRunBot(pData) {
+		if (pData == "Progress") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "이미 실행중인 요청이 있습니다.<br/>잠시후에 다시시도 하세요.", null, commonFunc.refreshPage);
+			return false;
+		}
+		else if (pData == "Success") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청을 완료 하였습니다.", null, commonFunc.refreshPage);
+			return false;
+		}
+		else {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청중 오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+			return false;
+		}
+	}
+	
 	// 즉시실행 버튼 클릭 이벤트
 	$(document).on("click", "#btn_immediate_call", function (e) {
-		//alert($("#target_site_cd").val());
-		//alert($("#target_year").val());
-		//alert($("#target_quarter").val());
+		if (commonFunc.getCheckNullYn($("#target_site_cd").val()) == "Y") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "대상현장을 선택하지 않았습니다.", null, null);
+			return false;
+		}
 		
+		if (commonFunc.getCheckNullYn($("#target_year").val()) == "Y") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "대상년도를 선택하지 않았습니다.", null, null);
+			return false;
+		}
 		
+		if (commonFunc.getCheckNullYn($("#target_quarter").val()) == "Y") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "대상분기를 선택하지 않았습니다.", null, null);
+			return false;
+		}
+				
 		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "요청을 진행 하시겠습니까?", null, runBotConfirm);
 	});
 	

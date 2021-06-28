@@ -81,9 +81,6 @@ public class AjaxBotController extends BaseController {
 		BotRequestVO outBotRequestVO = new BotRequestVO();
 		outBotRequestVO = botUtilService.requestBot(vo);
 		
-		logger.info(outBotRequestVO.getRequestStatus());
-		logger.info(outBotRequestVO.getRequestNo());
-		
 		// 오류 발생시
 		if ("Fail".equals(outBotRequestVO.getRequestStatus())) {
 			outBotRequestVO.setStatusCd("RA005003");

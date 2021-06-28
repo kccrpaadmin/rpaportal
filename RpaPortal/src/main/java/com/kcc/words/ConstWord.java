@@ -2,6 +2,7 @@ package com.kcc.words;
 
 public class ConstWord {
 	public final static String RPA_ADMIN_EMP_NO = "00001111";
+	public final static String RPA_ADMIN_USER_ID = "rpaadmin";
 	
 	public final static String PORTAL_LOCAL1_IP = "70.71.14.112";
 	public final static String PORTAL_LOCAL2_IP = "70.71.14.115";

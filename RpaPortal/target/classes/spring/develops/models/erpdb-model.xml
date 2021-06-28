@@ -54,6 +54,9 @@
 		<typeAlias alias="botRequestVO" type="com.kcc.biz.model.BotRequestVO" />
 		<!-- BOT (세금)계산서, 전표 데이터 대사업무 -->
 		<typeAlias alias="botEseroVO" type="com.kcc.biz.model.BotEseroVO" />
+		<!-- BOT 매입세안분 검토 요청업무 -->
+		<typeAlias alias="botCostDivideVO" type="com.kcc.biz.model.BotCostDivideVO" />
+		
 		
 	</typeAliases>
 	

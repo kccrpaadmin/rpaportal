@@ -15,6 +15,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.cert.X509Certificate;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,12 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.util.EntityUtils;
+import org.apache.velocity.runtime.directive.Foreach;
+import org.apache.velocity.runtime.directive.Parse;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.mvel2.optimizers.impl.refl.nodes.ArrayAccessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mobile.device.Device;
@@ -54,8 +60,10 @@ import com.google.gson.JsonObject;
 import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotRunVO;
+import com.kcc.biz.model.BotCostDivideVO;
 import com.kcc.biz.model.CrawlRequestVO;
 import com.kcc.biz.model.CrawlRunVO;
+import com.kcc.biz.service.IBotCostDivideService;
 import com.kcc.biz.service.IBotRequestService;
 import com.kcc.biz.service.ICrawlRequestService;
 import com.kcc.util.service.IBotUtilService;
@@ -71,6 +79,9 @@ public class BotUtilServiceImpl implements IBotUtilService {
 	
 	@Resource(name="botRequestService")
 	private IBotRequestService botRequestService;
+	
+	@Resource(name="botCostDivideService")
+	private IBotCostDivideService botCostDivideService;
 	
 	// 봇 요청 공통 메소드
 	public BotRequestVO requestBot(BotRequestVO vo) {
@@ -118,7 +129,7 @@ public class BotUtilServiceImpl implements IBotUtilService {
 				outBotRequestVO.setRequestStatus("Fail");
 				return outBotRequestVO;
 			}
-
+			
 			try {
 				// 봇 수행 모델
 				BotRunVO botRunVO = new BotRunVO();   
@@ -137,70 +148,27 @@ public class BotUtilServiceImpl implements IBotUtilService {
 				else {
 					botRunVO.setApiUrl(ConstWord.ORCHESTRATOR_DEV_IP);
 				}
+			
+				// Token 정보 조회 API 호출 
+				botRunVO = getToken(botRunVO);
 				
-				logger.info(botRunVO.getApiUrl());
+				if ("Fail".equals(botRunVO.getRequestStatus())) {
+					throw new Exception();
+				}
 				
-			    test(botRunVO);		
+				// Releases 정보 조회 API 호출
+				botRunVO = getReleases(botRunVO);
 				
+				if ("Fail".equals(botRunVO.getRequestStatus())) {
+					throw new Exception();
+				}
 				
-				/*
-				 * //json data String jsonlnputString =
-				 * "{'tenancyName': 'default','usernameOrEmailAddress': 'admin','password': 'const!2pri'}"
-				 * ; //JSON ELE Output stream try(OutputStream os = conn.getOutputStream()) {
-				 * byte[] input = jsonlnputString.getBytes("utf-8"); os.write(input, 0,
-				 * input.length); } //Response data YEYE try(BufferedReader br = new
-				 * BufferedReader( new InputStreamReader(conn.getInputStream(), "utf-8"))) {
-				 * StringBuilder response = new StringBuilder(); String responseLine = null;
-				 * while ((responseLine = br.readLine()) != null) {
-				 * response.append(responseLine.trim()); }
-				 * System.out.println(response.toString()); }
-				 * 
-				 * conn.disconnect();
-				 */
-								
+				// Job 시작 API 호출
+				botRunVO = startJob(botRunVO);
 				
-				/*
-				 * String urlStr = botRunVO.getApiUrl() + "/api/Account/Authenticate";
-				 * 
-				 * StringBuffer sb = new StringBuffer();
-				 * 
-				 * TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-				 * public java.security.cert.X509Certificate[] getAcceptedIssuers() { return
-				 * null; }
-				 * 
-				 * public void checkClientTrusted(X509Certificate[] certs, String authType) { }
-				 * 
-				 * public void checkServerTrusted(X509Certificate[] certs, String authType) { }
-				 * } };
-				 * 
-				 * SSLContext sc = SSLContext.getInstance("SSL"); sc.init(null, trustAllCerts,
-				 * new java.security.SecureRandom());
-				 * HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-				 * 
-				 * URL url = new URL(urlStr); HttpURLConnection conn = (HttpURLConnection)
-				 * url.openConnection(); conn.setRequestMethod("POST");
-				 * conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-				 * conn.setDoOutput(true);
-				 * 
-				 * //json data String jsonlnputString =
-				 * "{'tenancyName': 'default','usernameOrEmailAddress': 'admin','password': 'const!2pri'}"
-				 * ; //JSON ELE Output stream try(OutputStream os = conn.getOutputStream()) {
-				 * byte[] input = jsonlnputString.getBytes("utf-8"); os.write(input, 0,
-				 * input.length); } //Response data YEYE try(BufferedReader br = new
-				 * BufferedReader( new InputStreamReader(conn.getInputStream(), "utf-8"))) {
-				 * StringBuilder response = new StringBuilder(); String responseLine = null;
-				 * while ((responseLine = br.readLine()) != null) {
-				 * response.append(responseLine.trim()); }
-				 * System.out.println(response.toString()); }
-				 * 
-				 * conn.disconnect();
-				 */
-				
-				
-				// 토큰 키 발급
-				
-				// API 호출
-				
+				if ("Fail".equals(botRunVO.getRequestStatus())) {
+					throw new Exception();
+				}
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -216,11 +184,16 @@ public class BotUtilServiceImpl implements IBotUtilService {
 	public void createByMenuData(BotRequestVO vo) throws Exception {
 		// 파라미터를 받는 메뉴ID를 선별적으로 처리
 		if (vo.getMenuId().equals("RA004003") ) {
-			// BotRequestVO에 스트링 하나를 선언해서 인풋 파라미터를 처리한다.
+			String[] arr = vo.getBotParam().split("‡");
 			
-			
+			BotCostDivideVO inBotCostDivideVO = new BotCostDivideVO();
+			inBotCostDivideVO.setTargetSiteCd(arr[0]);
+			inBotCostDivideVO.setTargetYear(arr[1]);
+			inBotCostDivideVO.setTargetQuarter(arr[2]);
+			inBotCostDivideVO.setRequestNo(vo.getRequestNo());
+			inBotCostDivideVO.setEmpNo(vo.getEmpNo());
+			botCostDivideService.createBotCostDivideTargetDate(inBotCostDivideVO);
 		}
-		
 	}
 	
 	public TrustManager[] createTrustManagers() throws Exception { 
@@ -237,13 +210,13 @@ public class BotUtilServiceImpl implements IBotUtilService {
 		return trustAllCerts; 
 	}
 	
-	public String test(BotRunVO botRunVO) throws Exception {
-		String test = "";
+	public BotRunVO getToken(BotRunVO vo) throws Exception {
+		vo.setRequestStatus("Fail");
 		
-		JSONObject inDataJsonObject = new JSONObject();
-        inDataJsonObject.put("tenancyName", ConstWord.ORCHESTRATOR_TENANT_NM);
-        inDataJsonObject.put("usernameOrEmailAddress", ConstWord.ORCHESTRATOR_USER_ID);
-        inDataJsonObject.put("password", ConstWord.ORCHESTRATOR_USER_PWD);
+		JSONObject inJsonObject = new JSONObject();
+		inJsonObject.put("tenancyName", ConstWord.ORCHESTRATOR_TENANT_NM);
+		inJsonObject.put("usernameOrEmailAddress", ConstWord.ORCHESTRATOR_USER_ID);
+		inJsonObject.put("password", ConstWord.ORCHESTRATOR_USER_PWD);
         
 		SSLContext sc = SSLContext.getInstance("SSL");
 		sc.init(null, createTrustManagers(), new java.security.SecureRandom());
@@ -255,7 +228,7 @@ public class BotUtilServiceImpl implements IBotUtilService {
 		HttpURLConnection conn = null;
 		
         // URL 설정
-        URL url = new URL(botRunVO.getApiUrl() + "/api/Account/Authenticate");
+        URL url = new URL(vo.getApiUrl() + "/api/Account/Authenticate");
         conn = (HttpURLConnection) url.openConnection();
         
         // Request 형식 설정
@@ -267,7 +240,7 @@ public class BotUtilServiceImpl implements IBotUtilService {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
         
         // Request에 쓰기
-        bw.write(inDataJsonObject.toString());
+        bw.write(inJsonObject.toString());
         bw.flush();
         bw.close();
         
@@ -283,18 +256,141 @@ public class BotUtilServiceImpl implements IBotUtilService {
             	sb.append(line);
             }
             
-            test = sb.toString();
-            
+            JSONParser jsonParser = new JSONParser();
+            JSONObject outJsonObject = (JSONObject) jsonParser.parse(sb.toString());
+            vo.setToken(outJsonObject.get("result").toString());
+
             br.close();
-            logger.info(test);
+            vo.setRequestStatus("Success");
         }
         
         conn.disconnect();
-	
-		return test;
+        
+		return vo;
 	}
 	
-	
+	public BotRunVO getReleases(BotRunVO vo) throws Exception {
+		vo.setRequestStatus("Fail");
 		
-	
+		SSLContext sc = SSLContext.getInstance("SSL");
+		sc.init(null, createTrustManagers(), new java.security.SecureRandom());
+		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		HostnameVerifier allHostsValid = (hostname, session) -> true; 
+		HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+		
+		// HttpURLConnection 정의
+		HttpURLConnection conn = null;
+		
+        // URL 설정
+        URL url = new URL(vo.getApiUrl() + "/odata/Releases");
+        conn = (HttpURLConnection) url.openConnection();
+        
+        // Request 형식 설정
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+        conn.setRequestProperty("X-UIPATH-TenantName", ConstWord.ORCHESTRATOR_TENANT_NM);
+        conn.setRequestProperty("Authorization", "Bearer " + vo.getToken());
+        
+        // 결과값 요청
+        int responseCode = conn.getResponseCode();
+        
+        // 성공인 경우
+        if (responseCode == 200) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+            StringBuilder sb = new StringBuilder();
+            String line = "";
+            while ((line = br.readLine()) != null) {
+            	sb.append(line);
+            }
+            
+            JSONParser jsonParser = new JSONParser();
+            JSONObject outJsonObject = (JSONObject) jsonParser.parse(sb.toString());
+            JSONArray outJsonArray = (JSONArray) outJsonObject.get("value");
+            
+            for (int i = 0; i < outJsonArray.size(); i++) {
+            	JSONObject outValueJsonObject = (JSONObject) outJsonArray.get(i);
+            	
+            	// 메뉴ID와 Release Name이 동일한 경우
+            	if (vo.getMenuId().equals(outValueJsonObject.get("Name").toString())) {
+            		vo.setOrganizationUnitId(outValueJsonObject.get("OrganizationUnitId").toString());
+            		vo.setReleaseKey(outValueJsonObject.get("Key").toString());
+            	}
+			}
+            
+            br.close();
+            vo.setRequestStatus("Success");
+        }
+        
+        conn.disconnect();
+        
+		return vo;
+	}
+		
+	public BotRunVO startJob(BotRunVO vo) throws Exception {
+		vo.setRequestStatus("Fail");
+		
+		JSONObject inInputArgumentsJsonObject = new JSONObject();
+		inInputArgumentsJsonObject.put("in_str_munuId", vo.getMenuId());
+		inInputArgumentsJsonObject.put("in_str_empNo", vo.getEmpNo());
+		inInputArgumentsJsonObject.put("in_str_userId", vo.getUserId());
+		inInputArgumentsJsonObject.put("in_str_requestNo", vo.getRequestNo());
+		
+		JSONObject inStartInfoJsonObject = new JSONObject();
+		inStartInfoJsonObject.put("ReleaseKey", vo.getReleaseKey());
+		inStartInfoJsonObject.put("Strategy", "All");
+		inStartInfoJsonObject.put("InputArguments", inInputArgumentsJsonObject.toString());
+		
+		JSONObject inJsonObject = new JSONObject();
+		inJsonObject.put("startInfo", inStartInfoJsonObject);
+		
+		SSLContext sc = SSLContext.getInstance("SSL");
+		sc.init(null, createTrustManagers(), new java.security.SecureRandom());
+		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		HostnameVerifier allHostsValid = (hostname, session) -> true; 
+		HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+		
+		// HttpURLConnection 정의
+		HttpURLConnection conn = null;
+		
+        // URL 설정
+        URL url = new URL(vo.getApiUrl() + "/odata/Jobs/UiPath.Server.Configuration.OData.StartJobs");
+        conn = (HttpURLConnection) url.openConnection();
+        
+        // Request 형식 설정
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+        conn.setRequestProperty("X-UIPATH-TenantName", ConstWord.ORCHESTRATOR_TENANT_NM);
+        conn.setRequestProperty("Authorization", "Bearer " + vo.getToken());
+        conn.setRequestProperty("X-UIPATH-OrganizationUnitId", vo.getOrganizationUnitId());
+        
+        conn.setDoOutput(true);
+        
+        // Stream 준비
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+        
+        // Request에 쓰기
+        bw.write(inJsonObject.toString());
+        bw.flush();
+        bw.close();
+        
+        // 결과값 요청
+        int responseCode = conn.getResponseCode();
+        
+        // 성공인 경우
+        if (responseCode == 201) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+            StringBuilder sb = new StringBuilder();
+            String line = "";
+            while ((line = br.readLine()) != null) {
+            	sb.append(line);
+            }
+            
+            br.close();
+            vo.setRequestStatus("Success");
+        }
+        
+        conn.disconnect();
+        
+		return vo;
+	}
 }

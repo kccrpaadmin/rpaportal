@@ -39,14 +39,17 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.kcc.auth.UseCustomUserDetails;
+import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotScheduleVO;
 import com.kcc.biz.model.CrawlRequestVO;
 import com.kcc.biz.model.CrawlRunVO;
 import com.kcc.biz.model.CrawlScheduleVO;
 import com.kcc.biz.model.MenuVO;
+import com.kcc.biz.service.IBotRequestService;
 import com.kcc.biz.service.IBotScheduleService;
 import com.kcc.biz.service.ICrawlRequestService;
 import com.kcc.biz.service.ICrawlScheduleService;
+import com.kcc.util.service.IBotUtilService;
 import com.kcc.util.service.ICommonUtilService;
 import com.kcc.util.service.ICrawlUtilService;
 import com.kcc.util.service.ITaskUtilService;
@@ -67,7 +70,13 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 	 
 	@Resource(name="botScheduleService")
 	private IBotScheduleService botScheduleService;
-		
+	
+	@Resource(name="botRequestService")
+	private IBotRequestService botRequestService;
+	
+	@Resource(name="botUtilService")
+	private IBotUtilService botUtilService;
+	
 	SimpleDateFormat yyyyMMddHHmm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	 
 	@Scheduled(cron = "0 * * * * *")
@@ -125,7 +134,31 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 		try {
 			outListBotScheduleVO = botScheduleService.listBotScheduleMenu(inBotScheduleVO);
 			for (BotScheduleVO botScheduleVO : outListBotScheduleVO) {
+				logger.info("callMenuId : " + botScheduleVO.getMenuId());
 				
+				// RequestVO 입력
+				BotRequestVO inBotRequestVO = new BotRequestVO();
+				inBotRequestVO.setMenuId(botScheduleVO.getMenuId());
+				inBotRequestVO.setEmpNo(ConstWord.RPA_ADMIN_EMP_NO);
+				inBotRequestVO.setUserId(ConstWord.RPA_ADMIN_USER_ID);
+				
+				// 봇 수행 (진행중인 경우 수행 안함)
+				BotRequestVO outBotRequestVO = new BotRequestVO();
+				outBotRequestVO = botUtilService.requestBot(inBotRequestVO);
+				
+				// 오류 발생시
+				if ("Fail".equals(outBotRequestVO.getRequestStatus())) {
+					outBotRequestVO.setStatusCd("RA005003");
+					outBotRequestVO.setErrorMsg("봇 요청시 오류가 발생 하였습니다.");
+					
+					try {
+						// 봇 요청 정보 변경
+						botRequestService.updateBotRequest(outBotRequestVO);
+					} 
+					catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
 			}
 			
 			logger.info("callBotApi : " + curDate);
