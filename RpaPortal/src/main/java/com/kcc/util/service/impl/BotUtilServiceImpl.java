@@ -169,6 +169,8 @@ public class BotUtilServiceImpl implements IBotUtilService {
 				if ("Fail".equals(botRunVO.getRequestStatus())) {
 					throw new Exception();
 				}
+				
+				outBotRequestVO.setRequestStatus("Success");
 			}
 			catch (Exception e) {
 				e.printStackTrace();
