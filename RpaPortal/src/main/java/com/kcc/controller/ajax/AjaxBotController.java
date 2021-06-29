@@ -172,6 +172,12 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
+	// 송금확인증 발급업무
+	
+	
+	
+	// (세금)계산서, 전표 데이터 대사업무
+	
 	@PostMapping("/SaveEseroTargetDate.do")
 	public @ResponseBody StatusVO SaveEseroTargetDate(@RequestBody BotEseroVO vo) {
 		logger.info("/AjaxBot/SaveEseroTargetDate.do");
@@ -208,6 +214,8 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}
+	
+	// 기타영수증 전표 세금코드 오라클 입력업무
 	
 	@PostMapping("/UploadFilesEtcTax.do")
 	public @ResponseBody StatusVO UploadFilesEtcTax(FileUploadVO fvo, BotRequestVO vo) {

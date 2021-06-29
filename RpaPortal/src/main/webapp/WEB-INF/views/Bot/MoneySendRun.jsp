@@ -69,6 +69,7 @@
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a class="btn_common" id="btn_schedule_open">예약실행</a>
+	    	<a class="btn_common" id="btn_immediate_call">즉시실행</a>
 	    </div>
 	    <!-- 그리드영역 -->
    	    <div id="sheet"></div>
@@ -107,7 +108,27 @@
 			}
 		});
 	}
-		
+	
+	// 임시사용
+	// 봇 실행
+	function runBot(pMenuId, pEmpNo, pUserId) {
+		$.ajax({
+			url: "/AjaxBot/RunBot.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo, "userId": pUserId }),
+			dataType : "json",
+	        async: true,
+			success: function(data) {
+				openDialogRunBot(data.requestStatus);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
     	commonFunc.initSheet("mySheet");
@@ -138,10 +159,24 @@
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
     }  
-    	
+   	
+ 	// 임시사용
+ 	// 즉시실행 전, 확인 함수
+	function runBotConfirm(pOption) {
+		if (pOption.sdBtnKey == "o") {
+			runBot(menuId, commonFunc.certInfo.empNo, commonFunc.certInfo.userId);
+        }
+	}
+ 
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {
 		libraryFunc.createModal(null, null, null, 1100, 660, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
+	});
+	
+	// 임시사용
+	// 즉시실행 버튼 클릭 이벤트
+	$(document).on("click", "#btn_immediate_call", function (e) {
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "요청을 진행 하시겠습니까?", null, runBotConfirm);
 	});
 	
 </script>

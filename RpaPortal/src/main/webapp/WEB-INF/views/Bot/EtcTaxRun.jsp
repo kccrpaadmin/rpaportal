@@ -146,12 +146,12 @@
 	}
 	
 	// 봇 실행
-	function runBot(pMenuId, pEmpNo, pAttId) {
+	function runBot(pMenuId, pEmpNo, pUserId, pAttId) {
 		$.ajax({
 			url: "/AjaxBot/RunBot.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo, "attId": pAttId }),
+			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo, "userId": pUserId, "attId": pAttId }),
 			dataType : "json",
 	        async: true,
 			success: function(data) {
@@ -225,7 +225,7 @@
 	// 즉시실행 전, 확인 함수
 	function runBotConfirm(pOption) {
 		if (pOption.sdBtnKey == "o") {
-			runBot(menuId, commonFunc.certInfo.empNo, $("#attId").val());
+			runBot(menuId, commonFunc.certInfo.empNo, commonFunc.certInfo.userId, $("#attId").val());
         }
 	}
 	

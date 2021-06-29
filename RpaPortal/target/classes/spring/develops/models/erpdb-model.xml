@@ -52,10 +52,14 @@
 		<typeAlias alias="botScheduleVO" type="com.kcc.biz.model.BotScheduleVO" />
 		<!-- BOT 요청 -->
 		<typeAlias alias="botRequestVO" type="com.kcc.biz.model.BotRequestVO" />
+		<!-- BOT 송금확인증 발급업무 -->
+		
 		<!-- BOT (세금)계산서, 전표 데이터 대사업무 -->
 		<typeAlias alias="botEseroVO" type="com.kcc.biz.model.BotEseroVO" />
 		<!-- BOT 매입세안분 검토 요청업무 -->
 		<typeAlias alias="botCostDivideVO" type="com.kcc.biz.model.BotCostDivideVO" />
+		
+		<!-- BOT 키스콘 하도급변경계약 등록업무 -->
 		
 		
 	</typeAliases>

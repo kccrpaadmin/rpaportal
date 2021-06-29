@@ -149,6 +149,7 @@
 			}
 		});
 	}
+	
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
     	commonFunc.initSheet("mySheet");
