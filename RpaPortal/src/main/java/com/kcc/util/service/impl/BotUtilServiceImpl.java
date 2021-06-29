@@ -182,7 +182,7 @@ public class BotUtilServiceImpl implements IBotUtilService {
 		return outBotRequestVO;
 	}
 	
-	// 
+	// 메뉴별 파라미터 저장 메소드 -> 봇 실행시 수행정보로 사용
 	public void createByMenuData(BotRequestVO vo) throws Exception {
 		// 파라미터를 받는 메뉴ID를 선별적으로 처리
 		if (vo.getMenuId().equals("RA004003") ) {
@@ -198,6 +198,7 @@ public class BotUtilServiceImpl implements IBotUtilService {
 		}
 	}
 	
+	// 로직에서 http 요청시 ssl 오류무시 메소드 (ssl 인증서가 사설인 경우 ) 
 	public TrustManager[] createTrustManagers() throws Exception { 
 		TrustManager[] trustAllCerts = new TrustManager[] {
 			new X509TrustManager() { 
@@ -212,6 +213,7 @@ public class BotUtilServiceImpl implements IBotUtilService {
 		return trustAllCerts; 
 	}
 	
+	// 오케스트레이터 토큰 정보 조회 메소드
 	public BotRunVO getToken(BotRunVO vo) throws Exception {
 		vo.setRequestStatus("Fail");
 		
@@ -268,9 +270,13 @@ public class BotUtilServiceImpl implements IBotUtilService {
         
         conn.disconnect();
         
+        // API 수행 정상 여부 확인
+        logger.info(Integer.toString(responseCode));
+        
 		return vo;
 	}
 	
+	// 오케스트레이터 릴리즈 정보 조회 메소드
 	public BotRunVO getReleases(BotRunVO vo) throws Exception {
 		vo.setRequestStatus("Fail");
 		
@@ -325,9 +331,13 @@ public class BotUtilServiceImpl implements IBotUtilService {
         
         conn.disconnect();
         
+        // API 수행 정상 여부 확인
+        logger.info(Integer.toString(responseCode));
+        
 		return vo;
 	}
-		
+	
+	// 오케스트레이터 과제 시작 메소드
 	public BotRunVO startJob(BotRunVO vo) throws Exception {
 		vo.setRequestStatus("Fail");
 		
@@ -392,6 +402,9 @@ public class BotUtilServiceImpl implements IBotUtilService {
         }
         
         conn.disconnect();
+        
+        // API 수행 정상 여부 확인
+        logger.info(Integer.toString(responseCode));
         
 		return vo;
 	}

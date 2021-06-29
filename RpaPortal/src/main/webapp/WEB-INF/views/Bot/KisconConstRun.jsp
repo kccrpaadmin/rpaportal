@@ -167,7 +167,24 @@
 			runBot(menuId, commonFunc.certInfo.empNo, commonFunc.certInfo.userId);
         }
 	}
- 
+ 	
+	// 임시사용
+	// 즉시실행 후, 대화상자 오픈 함수
+	function openDialogRunBot(pData) {
+		if (pData == "Progress") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "이미 실행중인 요청이 있습니다.<br/>잠시후에 다시시도 하세요.", null, commonFunc.refreshPage);
+			return false;
+		}
+		else if (pData == "Success") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청을 완료 하였습니다.", null, commonFunc.refreshPage);
+			return false;
+		}
+		else {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청중 오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+			return false;
+		}
+	}
+	
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {
 		libraryFunc.createModal(null, null, null, 1100, 660, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
