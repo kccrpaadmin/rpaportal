@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 매트릭스 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('matrix-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#매트릭스차트">매트릭스 차트</a>
+							<li class="level3"><a href="#도형표시매트릭스차트">도형 표시 매트릭스 차트</a></li>
+							<li class="level3"><a href="#이미지표시매트릭스차트">이미지 표시 매트릭스 차트</a></li>
+							<li class="level3"><a href="#사각형박스표시매트릭스차트">사각형 박스 표시 매트릭스 차트</a></li>
+							<li class="level3"><a href="#플롯표시매트릭스차트">플롯(plot) 표시 매트릭스 차트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="매트릭스차트"></a>매트릭스 차트</h2>
+			<p>매트릭스 차트는 X, Y 좌표 상에 Z 값을 표현하는 차트입니다.
+				X, Y 축의 레이블에는 일반적으로 카테고리 명이 표시되며 X, Y 좌표상에 표시되는 Z 값은 매트릭스 차트의 유형에 따라서 도형, 이미지, 사각형 박스, 플롯(plot)이 될 수 있습니다.
+				매트릭스 차트는 <a href="../api/Matrix2DChart.html" target="_blank">&lt;Matrix2DChart&gt;</a> 노드의 series 속성값에 <a href="../api/Matrix2DSeries.html" target="_blank">&lt;Matrix2DSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				매트릭스 차트의 유형은 <a href="../api/Matrix2DChart.html" target="_blank">&lt;Matrix2DChart&gt;</a> 노드의 type 속성에 지정된 값에 따라서 결정되는데 이는 아래 표와 같습니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">type 속성값</th>
+					<th align="center">설명</th>
+					<th align="center">예제 모습</th>
+				</tr>
+				<tr>
+					<td align="center">renderer (default)</td>
+					<td align="left"><p>X, Y 좌표상에 도형을 표시합니다.</p>
+						<p>도형의 크기는 Z 값에 의해서 정해집니다.</p>
+					</td>
+					<td align="center">
+						<p><img src="./images/matrix-chart-renderer.jpg"></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">image</td>
+					<td align="left"><p>X, Y 좌표상에 이미지를 표시합니다.</p>
+						<p>이미지의 크기는 Z 값에 의해서 정해집니다.</p>
+					</td>
+					<td align="center">
+						<p><img src="./images/matrix-chart-image.jpg"></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">fill</td>
+					<td align="left"><p>X, Y 좌표상에 사각형 박스를 표시합니다.</p>
+						<p>Z 값은 무시됩니다.</p>
+					</td>
+					<td align="center">
+						<p><img src="./images/matrix-chart-fill.jpg"></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">plot</td>
+					<td align="left"><p>X, Y 좌표상에 플롯(plot)을 표시합니다.</p>
+						<p>Z 값은 무시됩니다.<p/>
+					</td>
+					<td align="center">
+						<p><img src="./images/matrix-chart-plot.jpg"></p>
+					</td>
+				</tr>
+			</table>
+
+			<p><a href="../api/Matrix2DChart.html" target="_blank">&lt;Matrix2DChart&gt;</a> 노드의 type 속성값이 <prop>“renderer”</prop> 혹은 <prop>“image”</prop> 일 경우, Z 값에 따라서 정해지는 도형 혹은 이미지의 크기는 <a href="../api/Matrix2DChart.html" target="_blank">&lt;Matrix2DChart&gt;</a> 노드의 drawType 속성에 지정된 값에 따라서 결정되는데 이는 아래 표와 같습니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">type</td>
+					<td align="center"><p>renderer(*), image, fill, plot</p>
+					</td>
+					<td align="left"><p>매트릭스 차트의 유형을 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">drawType</td>
+					<td align="center"><p>radius(*), area</p>
+					</td>
+					<td align="left"><p>매트릭스 차트의 유형이 <prop>“renderer”</prop> 혹은 <prop>“image”</prop> 일 경우, 도형 혹은 이미지의 크기를 설정하는 기준을 정합니다.</p>
+						<p>radius: 반지름 기준<br>
+							area: 면적 기준</p>
+					</td>
+				</tr>
+			</table>
+
+			<h3><a class="anchor" id="도형표시매트릭스차트"></a>도형 표시 매트릭스 차트</h3>
+			<p>다음은 X, Y 좌표 상에 도형을 표시하는 매트릭스 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				type 속성값이 <prop>“renderer”</prop> 로 지정되었고 도형의 크기는 도형의 반지름(drawType = <prop>“radius”</prop>) 기준으로 설정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Matrix2DChart showDataTips="true" type="<span class="vhdllogic">renderer</span>" drawType="<span class="vhdllogic">radius</span>" dataTipJsFunction="tipFunc"&gt;</div>
+	<div class="line">...</div>
+	<div class="line">&lt;series&gt;</div>
+	<div class="line">    &lt;Matrix2DSeries xField="Data1_x" yField="Data1_y" zField="Data1" renderer="rectangle" showDataEffect="{ss}" labelPosition="inside" insideLabelYOffset="-2" insideLabelXOffset="-1" displayName="City A" insideLabelJsFunction="labelJsFunc" styleName="seriesFont" alwayShowLabels="false" fillJsFunction="fillFunc"/&gt;</div>
+	<div class="line">    &lt;Matrix2DSeries xField="Data2_x" yField="Data2_y" zField="Data2" renderer="rectangle" showDataEffect="{ss}" labelPosition="inside" insideLabelYOffset="-2" insideLabelXOffset="-1" displayName="City B" insideLabelJsFunction="labelJsFunc" styleName="seriesFont" alwayShowLabels="false" fillJsFunction="fillFunc"/&gt;</div>
+	<div class="line">    &lt;Matrix2DSeries xField="Data3_x" yField="Data3_y" zField="Data3" renderer="rectangle" showDataEffect="{ss}" labelPosition="inside" insideLabelYOffset="-2" insideLabelXOffset="-1" displayName="City C" insideLabelJsFunction="labelJsFunc" styleName="seriesFont" alwayShowLabels="false" fillJsFunction="fillFunc"/&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Matrix2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="bKNWRR" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 도형 표시 매트릭스 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/bKNWRR/">알메이트 차트 - 도형 표시 매트릭스 차트</a></p>-->
+			<img class="capture" src="images/demo/도형-표시-매트릭스-차트.jpg" alt="도형 표시 매트릭스 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/bKNWRR/" target="_blank">알메이트 차트 - 도형 표시 매트릭스 차트</a></p>
+
+			<p>매트릭스 차트에 표시할 도형의 종류는 <a href="../api/Matrix2DSeries.html" target="_blank">&lt;Matrix2DSeries&gt;</a> 노드의 renderer 속성에 설정합니다.
+				다음은 renderer 속성에 지정가능한 값과 이 도형들을 모두 표현한 매트릭스 차트의 예제입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">renderer 속성값</th>
+					<th align="center">표시되는 도형</th>
+				</tr>
+				<tr>
+					<td align="center">rectangle</td>
+					<td align="center"><p><img src="./images/rectangle.png"></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">circle</td>
+					<td align="center"><p><img src="./images/circle.png"></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">diamond</td>
+					<td align="center"><p><img src="./images/diamond.png"></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">upTriangle</td>
+					<td align="center"><p><img src="./images/upTriangle.png"></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">downTriangle</td>
+					<td align="center"><p><img src="./images/downTriangle.png"></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">star</td>
+					<td align="center"><p><img src="./images/star.png"></p>
+					</td>
+				</tr>
+			</table>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="wXBdpe" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 매트릭스 차트에 표시 가능한 도형" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/wXBdpe/">알메이트 차트 - 매트릭스 차트에 표시 가능한 도형</a></p>-->
+			<img class="capture" src="images/demo/매트릭스-차트에-표시-가능한-도형.jpg" alt="매트릭스 차트에 표시 가능한 도형" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/wXBdpe/" target="_blank">알메이트 차트 - 매트릭스 차트에 표시 가능한 도형</a></p>
+
+			<h3><a class="anchor" id="이미지표시매트릭스차트"></a>이미지 표시 매트릭스 차트</h3>
+			<p>다음은 X, Y 좌표 상에 이미지를 표시하는 매트릭스 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				type 속성값이 <prop>“image”</prop> 로 지정되었고 이미지의 크기는 반지름(drawType = <prop>“radius”</prop>) 기준으로 설정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Matrix2DChart showDataTips="true" type="<span class="vhdllogic">image</span>" drawType="<span class="vhdllogic">radius</span>" dataTipJsFunction="tipFunc"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Matrix2DSeries xField="Data1_x" fontSize="11" yField="Data1_y" zField="Data1" imageSource="../rMateChartH5/Assets/Images/arrow_01.png" showDataEffect="{ss}" labelPosition="inside" displayName="Model A" insideLabelJsFunction="labelJsFunc"/&gt;</div>
+	<div class="line">    &lt;Matrix2DSeries xField="Data2_x" fontSize="11" yField="Data2_y" zField="Data2" imageSource="../rMateChartH5/Assets/Images/arrow_02.png" showDataEffect="{ss}" labelPosition="inside" displayName="Model B" insideLabelJsFunction="labelJsFunc"/&gt;</div>
+	<div class="line">    &lt;Matrix2DSeries xField="Data3_x" fontSize="11" yField="Data3_y" zField="Data3" imageSource="../rMateChartH5/Assets/Images/arrow_03.png" showDataEffect="{ss}" labelPosition="inside" displayName="Model C" insideLabelJsFunction="labelJsFunc"/&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Matrix2DChart&gt;</div>
+</div>
+
+			<p>이미지가 제대로 표시되지 않는다면 마우스 커서를 우측 하단에 위치시키고 "RERUN" 을 클릭하십시요.</p>
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="QxwvmQ" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 이미지 표시 매트릭스 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/QxwvmQ/">알메이트 차트 - 이미지 표시 매트릭스 차트</a></p>-->
+			<img class="capture" src="images/demo/이미지-표시-매트릭스-차트.jpg" alt="이미지 표시 매트릭스 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/QxwvmQ/" target="_blank">알메이트 차트 - 이미지 표시 매트릭스 차트</a></p>
+
+			<h3><a class="anchor" id="사각형박스표시매트릭스차트"></a>사각형 박스 표시 매트릭스 차트</h3>
+			<p>다음은 X, Y 좌표 상에 사각형 박스를 표시하는 매트릭스 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				type 속성값이 <prop>“fill”</prop> 로 지정되었고 사각형 박스의 색상은 사용자 정의 함수 (fillJsFunc())에 의해서 적용되는데, 함수명은 <a href="../api/Matrix2DSeries.html" target="_blank">&lt;Matrix2DSeries&gt;</a> 노드의 fillJsFunction 속성값에 지정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Matrix2DChart showDataTips="true" type="<span class="vhdllogic">fill</span>" dataTipJsFunction="tipFunc" &gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Matrix2DSeries xField="Data_x" yField="Data_y" zField="Data" showDataEffect="{ss}" labelPosition="inside" fillJsFunction="<span class="vhdllogic">fillJsFunc</span>" insideLabelJsFunction="labelJsFunc" styleName="seriesFont"/&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Matrix2DChart&gt;</div>
+	<div class="line">&lt;Style&gt;.font{fontFamily:"Malgun Gothic";fontSize:11;}.seriesFont{color:#777;fontFamily:"Malgun Gothic";fontSize:12;}&lt;/Style&gt;</div>
+	<div class="line">...</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">fillJsFunc</span> (seriesId, index, param, values) {</div>
+	<div class="line">  if (values[2] &lt; 10)</div>
+	<div class="line">    return "#a8c2d3";</div>
+	<div class="line">  else if (values[2] &gt;= 10 && values[2] &lt;20)</div>
+	<div class="line">    return "#bde3f6";</div>
+	<div class="line">  else (values[2] &gt;= 20)</div>
+	<div class="line">    return "#ecdcbb";</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="Wybjyd" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 사각형 박스 표시 매트릭스 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/Wybjyd/">알메이트 차트 - 사각형 박스 표시 매트릭스 차트</a></p>-->
+			<img class="capture" src="images/demo/사각형-박스-표시-매트릭스-차트.jpg" alt="사각형 박스 표시 매트릭스 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/Wybjyd/" target="_blank">알메이트 차트 - 사각형 박스 표시 매트릭스 차트</a></p>
+
+			<h3><a class="anchor" id="플롯표시매트릭스차트"></a>플롯(plot) 표시 매트릭스 차트</h3>
+			<p>다음은 X, Y 좌표 상에 플롯(plot)을 표시하는 매트릭스 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				type 속성값이 <prop>“plot”</prop> 로 지정되었고 플롯의 색상은 사용자 정의 함수 (fillJsFunc())에 의해서 적용되는데, 함수명은 <a href="../api/Matrix2DSeries.html" target="_blank">&lt;Matrix2DSeries&gt;</a> 노드의 fillJsFunction 속성값에 지정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Matrix2DChart showDataTips="true" type="<span class="vhdllogic">plot</span>" dataTipJsFunction="tipFunc"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Matrix2DSeries xField="Data_x" yField="Data_y" zField="Data" renderer="rectangle" showDataEffect="{ss}" labelPosition="inside" insideLabelJsFunction="labelJsFunc" fillJsFunction="<span class="vhdllogic">fillJsFunc</span>" gridRadius="5"&gt;</div>
+	<div class="line">      &lt;stroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#999999"/&gt;</div>
+	<div class="line">      &lt;/stroke&gt;</div>
+	<div class="line">    &lt;/Matrix2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Matrix2DChart&gt;</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">fillJsFunc</span> (seriesId, index, param, values) {</div>
+	<div class="line">  if (values[2] &lt; 7000)</div>
+	<div class="line">     return "#5587a2";</div>
+	<div class="line">   else if (values[2] &gt;= 7000 && values[2] &lt; 10000)</div>
+	<div class="line">       return "#20ccc0";</div>
+	<div class="line">   else (values[2] &gt;= 10000)</div>
+	<div class="line">      return "#f6a54c";</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="xzbdJv" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 플롯(plot) 표시 매트릭스 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/xzbdJv/">알메이트 차트 - 플롯(plot) 표시 매트릭스 차트</a></p>-->
+			<img class="capture" src="images/demo/플롯-표시-매트릭스-차트.jpg" alt="플롯(plot) 표시 매트릭스 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/xzbdJv/" target="_blank">알메이트 차트 - 플롯(plot) 표시 매트릭스 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

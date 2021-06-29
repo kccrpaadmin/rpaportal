@@ -1,0 +1,4720 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>알메이트 차트 6.0</title>
+    
+    <meta name="description" content="리아모어 소프트 자바스크립트 HTML5 차트 6.0" />
+    
+        <meta name="keywords" content="알메이트 차트 리아모어" />
+        <meta name="keyword" content="알메이트 차트 리아모어" />
+    
+    
+    
+    <meta property="og:title" content="알메이트 차트 6.0"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="리아모어 소프트"/>
+    <meta property="og:url" content="http://www.riamore.net"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"default":{"outputSourceFiles":false,"outputSourcePath":true,"includeDate":false},"applicationName":"알메이트 차트 6.0","disqus":"","googleAnalytics":"","openGraph":{"title":"알메이트 차트 6.0","type":"website","image":"","site_name":"리아모어 소프트","url":"http://www.riamore.net"},"meta":{"title":"알메이트 차트 6.0","description":"리아모어 소프트 자바스크립트 HTML5 차트 6.0","keyword":"알메이트 차트 리아모어"},"linenums":false};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<script src="navigation.js"></script>
+    <div class="main">
+        <h1 class="page-title" data-filename="ImageSeries.html">Class: ImageSeries</h1>
+        
+
+
+
+<section>
+    
+<header>
+    <h2>
+    ImageSeries
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="ImageSeries">
+            
+            new ImageSeries<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>ImageSeries 클래스는 ImageChart 클래스 인스턴스의 series 속성에 설정됩니다.<br><br> 차트에 설정된 데이터를 처리하고 세로 막대 형태로 이미지를 표현합니다.</p>
+<p> 레이아웃은 다음과 같은 형식으로 작성됩니다.</p>
+<pre class="prettyprint source"><code>&lt;ImageChart>
+  ...
+  &lt;series>
+    &lt;ImageSeries ... >
+      &lt;imgSource>
+        &lt;ImageSourceItem maintainAspectRatio=&quot;true&quot; url=&quot;../KoolChart/Assets/Images/man5.png&quot; />
+      &lt;/imgSource>
+    &lt;/ImageSeries>
+    &lt;ImageSeries ... >
+      &lt;imgSource>
+        &lt;ImageSourceItem maintainAspectRatio=&quot;true&quot; url=&quot;../KoolChart/Assets/Images/woman4.png&quot; />
+      &lt;/imgSource>
+    &lt;/ImageSeries>
+  &lt;/series>
+&lt;/ImageChart></code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title">Extends</h3>
+        
+        <ul>
+            <li><a href="Column2DSeries.html">Column2DSeries</a></li>
+        </ul>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="alwayShowLabels">alwayShowLabels<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>라벨의 표시 공간이 충분하지 않을 경우에도 라벨을 표시할 지 여부를 설정합니다.<br><br> 값이 true 이면 항상 라벨들을 표시하지만, false 인 경우에는 라벨의 표시 공간이 부족할 경우 표시하지 않습니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="alwayShowLines">alwayShowLines<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>lineToEachItems 속성값이 true 인 경우, 값이 0 인 데이터 포인트(데이터 아이템)에도 선을 연결할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="columnWidthRatio">columnWidthRatio<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>표시하는 컬럼(column)의 넓이값을 카테고리의 넓이값에 대한 비율(범위는 0 ~ 1)로 설정합니다.<br><br> 값이 1 이면 영역 전체가 사용되며, 값이 0.6 이면 컬럼(column)의 사용 가능 영역은 60% 가 됩니다.<br><br> 실제 컬럼(column)의 넓이는 columnWidthRatio 속성과 maxColumnWidth 속성을 계산하여 그중 작은 값이 적용됩니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0.5</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="displayName">displayName<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>시리즈의 이름을 설정합니다.<br><br> 설정된 값은 기본적으로 데이터 팁(툴팁)에서 보여지게 되고 범례의 항목으로 표시됩니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="errorBarDirection">errorBarDirection<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>오차 범위의 모양을 설정합니다.</p>
+<p> 유효값은 both, plus, minus 입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>both</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="errorBarFixedValue">errorBarFixedValue<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>오차 범위에 고정값을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>NaN</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="errorBarLength">errorBarLength<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>오차 범위 모양의 가로 크기를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>7</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="errorBarPercentValue">errorBarPercentValue<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>오차 범위에 퍼센트 값을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>NaN</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="errorBarStroke">errorBarStroke<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>오차 범위 선의 스타일을 설정합니다.</p>
+<p> 유효값은 Stroke 클래스 인스턴스입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>Stroke("#000000")</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="fill">fill<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>시리즈 아이템렌더러의 채우기 색을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="fills">fills<span class="type-signature type array">Array</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트에 표시되는 데이터가 여러개 일 때, 각 데이터에 서로 다른 색상을 설정합니다.<br><br> 만약 데이터 수만큼의 색상 객체(SolidColor)가 설정되지 않으면 설정된 색상이 반복 적용됩니다.<br><br> 예를 들어, 시리즈의 데이터 수가 10 이고 5 개의 색상 객체(SolidColor)가 설정되었다면, 5 개의 색상 객체가 처음 5 개의 데이터에 순서대로 적용되고 나머지 5 개의 데이터에는 5 개의 색상 객체가 다시 순차적으로 적용됩니다.</p>
+<p> 유효값은 SolidColor 클래스의 인스턴스 배열입니다.</p>
+<pre class="prettyprint source"><code>&lt;fills>
+  &lt;SolidColor color=&quot;0xCC66FF&quot; />
+  &lt;SolidColor color=&quot;0x9966CC&quot; />
+  &lt;SolidColor color=&quot;0x9999CC&quot; />
+&lt;/fills></code></pre>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="formatter">formatter<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>숫자값을 원하는 숫자(통화, 날짜) 형식으로 표현하기 위한 포맷터(NumberFormatter, CurrencyFormatter, DateFormatter)를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>NumberFormatter</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="halfWidthOffset">halfWidthOffset<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>다중 컬럼(Column) 시리즈가 존재할 경우, 이웃한 컬럼 사이의 간격을 픽셀 단위로 설정합니다.<br><br> 두 개의 Column2DSeries 가 존재하고, halfWidthOffset 속성값이 0.5 이면 두 컬럼(Column) 사이에는 1px 의 여백이 생깁니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>1</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="hideDataEffect">hideDataEffect<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트상에 데이터가 사라지는 모습을 보여줄 애니메이션 이펙트를 설정합니다.</p>
+<p> 유효값은 showDataEffect 속성과 동일합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="horizontalAxis">horizontalAxis<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>시리즈가 참조할 수평축을 설정합니다.<br><br> 설정하지 않으면 차트의 horizontalAxis 속성에 설정된 축을 참조합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="id">id<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>식별자(Identifier)를 설정합니다.<br><br> 식별자(Identifier)는 사용자에 의해 정의된 임의의 고유값입니다.<br><br> 설정된 식별자(Identifier)를 통해 해당 객체에 접근이 가능합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="imageDisplayType">imageDisplayType<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>이미지 차트에서 이미지의 표현 방식을 설정합니다.</p>
+<p> 유효값은 다음과 같습니다.<br> <ul><br> <li>single - 대표 이미지 한 개로 데이터 값을 표현합니다.</li/><br> <li>singleRepeat - 대표 이미지 한 개의 단위 값을 설정하여, 데이터 값에 이를 때까지 이미지를 쌓아올려 데이터 값을 표현합니다.</li><br> <li>multiple - 다수의 이미지에 각각의 단위 값을 설정하여, 데이터 값을 표현합니다.</li><br> </ul></p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>single</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="imgSource">imgSource<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>이미지 차트에 표현될 이미지를 설정합니다.<br><br> 여러 개의 이미지를 설정할 수 있습니다.</p>
+<p> 유효값은 ImageSourceItem 클래스 인스턴스입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="insideLabelField">insideLabelField<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>labelPosition 속성값이 inside 또는 both 인 경우 라벨로 표시될 데이터 필드명을 설정합니다.<br><br> insideLabelJsFunction 속성이 설정되어 자바스크립트에 의한 사용자 정의 라벨이 표시될 경우 이 속성은 무시됩니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="insideLabelXOffset">insideLabelXOffset<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>labelPosition 속성값이 inside 또는 both 인 경우 가로위치(X축 값)에 대한 오프셋(Offset) 값을 설정합니다. (픽셀 단위)</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="insideLabelYOffset">insideLabelYOffset<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>labelPosition 속성값이 inside 또는 both 인 경우 세로위치(Y축 값)에 대한 오프셋(Offset) 값을 설정합니다. (픽셀 단위)</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="interactive">interactive<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>시리즈에 마우스 오버시 데이터 팁을 보여줄 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="interpolateValueLines">interpolateValueLines<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>연결선 중간에 Null 데이터가 존재할 경우 Null 데이터를 0 으로 처리할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="itemRenderer">itemRenderer<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트상의 데이터 포인트(데이터 아이템)에 표현될 막대의 모양을 렌더링하는 클래스를 설정합니다.</p>
+<p> 유효값은 BoxItemRenderer, GradientColumnItemRenderer, SemiCircleColumnItemRenderer 입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>GradientColumnItemRenderer</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="itemRollOverColor">itemRollOverColor<span class="type-signature type hexadecimal">Hexadecimal</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>데이터 아이템에 마우스 오버했을 때의 색상을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="itemSelectionColor">itemSelectionColor<span class="type-signature type hexadecimal">Hexadecimal</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>데이터 아이템을 선택했을 떄의 색상을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="labelAlign">labelAlign<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>컬럼(Column)의 내부에 라벨이 표시될 경우, 라벨의 위치를 설정합니다.<br><br> labelPostion 속성값이 inside 인 경우에만 적용됩니다.</p>
+<p> 유효값은 top, middle, bottom 입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>middle</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="labelPosition">labelPosition<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>데이터 아이템의 값(수치 라벨)이 표시될 위치를 설정합니다.</p>
+<p> 유효값은 inside, outside, both, none 입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>none</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="lineToEachItems">lineToEachItems<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>데이터 포인트들에 대한 연결선을 표시할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="linkLabelColor">linkLabelColor<span class="type-signature type hexadecimal">Hexadecimal</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>연결선 라벨에 대한 색상(RGB)을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>#000000</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="linkLabelFontFamily">linkLabelFontFamily<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>연결선 라벨에 대한 폰트명을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>arial</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="linkLabelFontSize">linkLabelFontSize<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>연결선 라벨에 대한 폰트 크기를 픽셀 단위로 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>11</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="linkLabelFontWeight">linkLabelFontWeight<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>볼드체로 연결선 라벨을 표시할 지 여부를 설정합니다.</p>
+<p> 유효값은 normal, bold 입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>normal</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="linkLabelNegativeColor">linkLabelNegativeColor<span class="type-signature type hexadecimal">Hexadecimal</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>연결선 라벨이 음수일 경우 선의 색상을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>#0054ff</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="linkLabelPositiveColor">linkLabelPositiveColor<span class="type-signature type hexadecimal">Hexadecimal</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>연결선 라벨이 양수일 경우 선의 색상을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>#ff3636</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="linkLabelXOffset">linkLabelXOffset<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>연결선 라벨에 가로위치(X축 값)에 대한 오프셋(Offset) 값을 설정합니다. (픽셀 단위)</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="linkLabelYOffset">linkLabelYOffset<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>연결선 라벨에 세로위치(Y축 값)에 대한 오프셋(Offset) 값을 설정합니다. (픽셀 단위)</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="linkLineStroke">linkLineStroke<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>데이터 포인트들에 대한 연결선을 설정합니다.</p>
+<p> 유효값은 Stroke 클래스 인스턴스입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="maxColumnWidth">maxColumnWidth<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>컬럼(column)의 최대 넚이값을 픽셀 단위로 설정합니다.<br><br> 실제 컬럼(column)의 넓이는 columnWidthRatio 속성과 maxColumnWidth 속성을 계산하여 작은 값이 적용됩니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>NaN</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="minField">minField<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>X, Y 좌표값 외에 추가적인 정보를 제공하는 데이터 필드명을 설정합니다.<br><br> 예를 들어, 최소값(minimum)에 해당되는 데이터 필드명을 추가로 설정하여 From-To 차트를 생성할 수 있습니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="movingAveragePeriod">movingAveragePeriod<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>trendLineType 속성값이 movingAverage 인 경우 이동 평균선의 구간을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>2</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="outsideLabelField">outsideLabelField<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>labelPosition 속성값이 outside 또는 both 인 경우 라벨로 표시될 데이터 필드명을 설정합니다.<br><br> outsideLabelJsFunction 속성이 설정되어 자바스크립트에 의한 사용자 정의 라벨이 표시될 경우 이 속성은 무시됩니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="outsideLabelXOffset">outsideLabelXOffset<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>labelPosition 속성값이 outside 또는 both 인 경우 가로위치(X축 값)에 대한 오프셋(Offset) 값을 설정합니다. (픽셀 단위)</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="outsideLabelYOffset">outsideLabelYOffset<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>속성값이 outside 또는 both 인 경우 세로위치(Y축 값)에 대한 오프셋(Offset) 값을 설정합니다. (픽셀 단위)</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>-4</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="polynomialOrder">polynomialOrder<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>trendLineType 속성값이 polynomial 인 경우 다항식에 대한 차수를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>2</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="selectable">selectable<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>마우스로 데이터를 선택 가능하도록 할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showDataEffect">showDataEffect<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트상에 데이터가 표현되는 모습을 보여줄 애니메이션 이펙트를 설정합니다.</p>
+<p> 유효값은 다음과 같습니다.<br> <ul><br> <li>SeriesInterpolate - 축상의 최소값 지점에서 데이터 값에 해당되는 지점까지의 출력에 대한 애니메이션 이펙트를 표현합니다.</li><br> <li>SeriesSlide - 슬라이딩 효과를 재생하는 이펙트입니다. 슬라이딩 방향은 좌우, 우좌, 상하, 하상과 같이 원하는 형태로 설정할 수 있습니다.</li><br> <li>SeriesZoom - 설정된 기준점에서 시작하여 데이터 아이템들이 점점 확대되어 표시되는 형태의 애니메이션 이펙트를 표현합니다.</li><br> </ul></p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showErrorBar">showErrorBar<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>에러 범위에 대한 표시 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showLabelVertically">showLabelVertically<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>컬럼(Column)의 내부에 라벨이 표시될 경우, 라벨의 출력을 세로 방향으로 할 지 여부를 설정합니다.<br><br> labelPostion 속성값이 inside 인 경우만 유효합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showLinkLabels">showLinkLabels<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>lineToElineToEachItems 속성값이 true 일 경우, 이전 데이터와 현재 데이터의 비교값 라벨을 출력할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showTrendLine">showTrendLine<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>추세선을 표시할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showTrendLineEquation">showTrendLineEquation<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트상의 데이터로부터 얻어진 추세선의 표현 공식을 표시할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showTrendLineRSquared">showTrendLineRSquared<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트상의 데이터로부터 얻어진 추세선의 R-squared 값을 표시할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showValueLabels">showValueLabels<span class="type-signature type array">Array</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>labelPosition 속성에 의해서 라벨이 표시되는 경우 설정된 데이터 아이템만 표시하도록 설정합니다.<br><br> 데이터 아이템들의 인덱스 배열을 설정합니다.<br><br> 예를 들어, 1, 5, 10 인덱스의 데이터 아이템들만 표시할 필요가 있으면, showValueLabels = &quot;[1,5,10]&quot; 와 같이 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="sortOnXField">sortOnXField<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트에서 사용될 데이터에 대해서 X축 데이터를 기준으로 자동으로 정렬할 지 여부를 설정합니다.<br><br> 값이 false 이면 데이터가 입력된 순서로 차트에 표현됩니다.</p>
+<p> 정렬은 다음과 같은 방법으로 수행됩니다.</p>
+<ol>
+<li>X축은 숫자 축(LinearAxis)이어야 합니다.</li>
+<li>시리즈의 xField 속성(X축 데이터)에 데이터 필드명을 설정합니다.</li>
+<li>sortOnXField 설정에 따라서 차트에 표현되는 데이터의 순서가 달라집니다.</li>
+<li>{&quot;data&quot;:4},{&quot;data&quot;:1},{&quot;data&quot;:2},{&quot;data&quot;:3} 순으로 데이터가 입력되었을 경우<ul><br><li>true - 1, 2, 3, 4 의 순서로 데이터가 표현됩니다.</li><br><li>false - 4, 1, 2, 3 의 순서로 데이터가 표현됩니다.</li><br></ul></li>
+</ol>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="sortOnYField">sortOnYField<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트에서 사용될 데이터에 대해서 Y축 데이터를 기준으로 자동으로 정렬할 지 여부를 설정합니다.<br><br> 값이 false 이면 데이터가 입력된 순서로 차트에 표현됩니다.</p>
+<p> 정렬은 다음과 같은 방법으로 수행됩니다.</p>
+<ol>
+<li>Y축은 숫자 축(LinearAxis)이어야 합니다.</li>
+<li>시리즈의 yField 속성(Y축 데이터)에 데이터 필드명을 설정합니다.</li>
+<li>sortOnYField 설정에 따라서 차트에 표현되는 데이터의 순서가 달라집니다.</li>
+<li>{&quot;data&quot;:4},{&quot;data&quot;:1},{&quot;data&quot;:2},{&quot;data&quot;:3} 순으로 데이터가 입력되었을 경우<ul><br><li>true - 1, 2, 3, 4 의 순서로 데이터가 표현됩니다.</li><br><li>false - 4, 1, 2, 3 의 순서로 데이터가 표현됩니다.</li><br></ul></li>
+</ol>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="stroke">stroke<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>데이터 아이템 렌더러(itemRenderer)에 의해서 표현되는 선을 설정합니다.</p>
+<p> 유효값은 Stroke 클래스 인스턴스입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="styleName">styleName<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>스타일을 &lt;Style&gt; 노드에 설정할 경우, &lt;Style&gt; 노드에 정의된 이름을 설정합니다.<br><br> &lt;Style&gt; 노드에 스타일을 정의할 때는 반드시 스타일명 앞에 마침표가 위치해야 합니다.</p>
+<p> 레이아웃은 다음과 같은 형식으로 작성됩니다.</p>
+<pre class="prettyprint source"><code>&lt;Bar3DChart>
+  &lt;Bar3DSeries xField=&quot;Profit&quot; styleName=&quot;seriesStyle&quot;>
+  ...
+&lt;/Bar3DChart>
+&lt;Style>
+  .seriesStyle {fontFamily:&quot;Malgun Gothic&quot;;labelPosition:inside;fontSize:11;paddingTop:4;color:0x000099;}
+&lt;/Style></code></pre>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="trendLineColor">trendLineColor<span class="type-signature type hexadecimal">Hexadecimal</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>추세선 공식과 R-squared 값의 텍스트 색상을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>#777777</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="trendLineForm">trendLineForm<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>추세선에 대한 선의 유형을 설정합니다.</p>
+<p> 유효값은 다음과 같습니다.<br> <ul><br>    <li>segment</li><br>    <li>curve</li><br>    <li>step</li><br>    <li>reverseStep</li><br> </ul></p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>curve</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="trendLineLabelHorizontalAlign">trendLineLabelHorizontalAlign<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>추세선 공식과 R-squared 값 표시를 위한 수평 정렬을 설정합니다.</p>
+<p> 유효값은 none, left, center, right 입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>none</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="trendLineLabelOrder">trendLineLabelOrder<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>추세선 공식과 R-squared 값의 출력 순서를 설정합니다.</p>
+<p> 유효값은 none, reverse 입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>none</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="trendLineLabelVerticalAlign">trendLineLabelVerticalAlign<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>추세선 공식과 R-squared 값 표시를 위한 수직 정렬을 설정합니다.</p>
+<p> 유효값은 none, top, middle, bottom 입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>none</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="trendLineStroke">trendLineStroke<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>추세선에 대한 선의 스타일을 설정합니다.</p>
+<p> 유효값은 Stroke 클래스 인스턴스입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>Stroke("#777777")</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="trendLineType">trendLineType<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>추세선의 유형을 설정합니다.</p>
+<p> 유효값은 다음과 같습니다.<br> <ul><br>    <li>linear - 선형</li><br>    <li>logarithmic - 로그</li><br>    <li>exponential - 지수</li><br>    <li>polynomial - 다항식</li><br>    <li>power - 거듭제곱</li><br>    <li>movingAverage - 이동 평균선</li><br> </ul></p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>linear</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="verticalAxis">verticalAxis<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>시리즈가 참조할 수직축을 설정합니다.<br><br> 설정하지 않으면 차트의 verticalAxis 속성에 설정된 축을 참조합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="visible">visible<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>시리즈를 차트에 출력할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="xField">xField<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>데이터 아이템의 X 좌표값(수평축에서의 위치)을 결정하는 데이터 필드명을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="yField">yField<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>데이터 아이템의 Y 좌표값(수직축에서의 위치)을 결정하는 데이터 필드명을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="fillJsFunction">
+            
+                <span class="inherited"><a href="Series.html#fillJsFunction">inherited</a></span>
+            
+            fillJsFunction<span class="signature">(seriesId, index, data, values)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>사용자 정의 색상을 설정하는 자바스크립트 함수명을 설정합니다.<br><br> 차트 레이아웃 설정시 Series 클래스 인스턴스의 fillJsFunction 속성값에 자바스크립트 함수명을 설정합니다.</p>
+<pre class="prettyprint source"><code>&lt;Column2DSeries yField=&quot;Profit&quot; fillJsFunction=&quot;fillJsFunc&quot;>
+...
+fillJsFunc(seriesId, index, data, values) {
+  ...
+}
+
+values 값은 배열로 전달되며 차트의 종류에 따라 다음과 같습니다.
+1.  바 시리즈(Bar2DSeries, Bar3DSeries) - 0 : x축 값, 1 : y축 값
+2.  컬럼 시리즈(Column2DSeries, Column3DSeries) - 0 : x축 값, 1 : y축 값
+3.  영역 시리즈(Area2DSeries, CandleArea2DSeries) - 0 : x축 값, 1 : y축 값
+4.  버블 시리즈(Bubble2DSeries, Bubble3DSeries) - 0 : x축 값, 1 : y축 값, 2 : radius 값
+5.  라인 시리즈(Line2DSeries, CandleLine2DSeries) - 0 : x축 값, 1 : y축 값
+6.  파이 시리즈(Pie2DSeries, Pie3DSeries) - 0 : 값, 1 : 퍼센티지, 2 : nameField 값
+7.  캔들 시리즈(Candlestick2DSeries) - 0 : x축 값, 1 : openField 값, 2 : closeField 값, 3 : highField 값, 4 : lowField 값
+8.  윙 시리즈(Column2DWingSeries, Bar2DWingSeries) - 0 : x축 값, 1 : y축 값, 2 : xOpp 값, 3 : yOpp 값
+9.  히스토그램 시리즈(Histogram2D, Histogram3DSeries) - 0 : x축 값, 1 : y축 값
+10. 트리맵 시리즈(TreeMapSeries) - 0 : weight 값, 1 : text 값
+11. 박스플롯 시리즈(BoxPlotSeries) - 0 : upper 값, 1 : median 값, 2 : lower 값, 3 : min 값, 4 : hidden 값
+12. 벡터 시리즈(Vector2DSeries) - 0 : degree 값, 1 : velocity 값, 2 : meter 값
+13. 워드클라우드 시리즈(WordCloudSeries) - 0 : text 값, 1 : weight 값
+14. 피라미드, 퓨넬 시리즈(Pyramid2DSeries) - 0 : weight 값, 1 : nameField 값
+15. 오버레이버블 시리즈(OverlayBubbleSeries) - 0 : field 값, 1 : nameField 값
+16. 이미지매트릭스 시리즈(ImageMatrixSeries) - 0 : value 값
+17. 윈드로즈 시리즈(WindRoseSeries) - 0 : field 값
+</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>seriesId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>시리즈 식별자(Identifier)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 인덱스</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 객체</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>values</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 배열</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="htmlJsFunction">
+            
+                <span class="inherited"><a href="Series.html#htmlJsFunction">inherited</a></span>
+            
+            htmlJsFunction<span class="signature">(seriesId, index, data, values)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트의 데이터 아이템들 중에서 설정된 조건을 만족하는 데이터 아이템에 대해서 실핼될 자바스크립트 함수명을 설정합니다.<br><br> 차트 레이아웃 설정시 Series 클래스 인스턴스의 htmlJsFunction 속성값에 자바스크립트 함수명을 설정합니다.</p>
+<pre class="prettyprint source"><code>&lt;Column2DSeries yField=&quot;Profit&quot; htmlJsFunction=&quot;userElementFunc&quot;>
+...
+userElementFunc(seriesId, index, data, values) {
+  ...
+}
+
+values 값은 배열로 전달되며 차트의 종류에 따라 다음과 같습니다.
+1.  바 시리즈(Bar2DSeries, Bar3DSeries) - 0 : x축 값, 1 : y축 값
+2.  컬럼 시리즈(Column2DSeries, Column3DSeries) - 0 : x축 값, 1 : y축 값
+3.  영역 시리즈(Area2DSeries, CandleArea2DSeries) - 0 : x축 값, 1 : y축 값
+4.  버블 시리즈(Bubble2DSeries, Bubble3DSeries) - 0 : x축 값, 1 : y축 값, 2 : radius 값
+5.  라인 시리즈(Line2DSeries, CandleLine2DSeries) - 0 : x축 값, 1 : y축 값
+6.  파이 시리즈(Pie2DSeries, Pie3DSeries) - 0 : 값, 1 : 퍼센티지, 2 : nameField 값
+7.  캔들 시리즈(Candlestick2DSeries) - 0 : x축 값, 1 : openField 값, 2 : closeField 값, 3 : highField 값, 4 : lowField 값
+8.  윙 시리즈(Column2DWingSeries, Bar2DWingSeries) - 0 : x축 값, 1 : y축 값, 2 : xOpp 값, 3 : yOpp 값
+9.  히스토그램 시리즈(Histogram2D, Histogram3DSeries) - 0 : x축 값, 1 : y축 값
+10. 트리맵 시리즈(TreeMapSeries) - 0 : weight 값, 1 : text 값
+11. 박스플롯 시리즈(BoxPlotSeries) - 0 : upper 값, 1 : median 값, 2 : lower 값, 3 : min 값, 4 : hidden 값
+12. 벡터 시리즈(Vector2DSeries) - 0 : degree 값, 1 : velocity 값, 2 : meter 값
+13. 워드클라우드 시리즈(WordCloudSeries) - 0 : text 값, 1 : weight 값
+14. 피라미드, 퓨넬 시리즈(Pyramid2DSeries) - 0 : weight 값, 1 : nameField 값
+15. 오버레이버블 시리즈(OverlayBubbleSeries) - 0 : field 값, 1 : nameField 값
+16. 이미지매트릭스 시리즈(ImageMatrixSeries) - 0 : value 값
+17. 윈드로즈 시리즈(WindRoseSeries) - 0 : field 값
+</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>seriesId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>시리즈 식별자(Identifier)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 인덱스</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 객체</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>values</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 배열</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="insideLabelJsFunction">
+            
+                <span class="inherited"><a href="Column2DSeries.html#insideLabelJsFunction">inherited</a></span>
+            
+            insideLabelJsFunction<span class="signature">(seriesId, index, data, values)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>labelPosition 속성값이 inside 또는 both 인 경우 사용자 정의 라벨을 출력할 자바스크립트 함수명을 설정합니다.</p>
+<pre class="prettyprint source"><code>&lt;Column2DSeries yField=&quot;Profit&quot; insideLabelJsFunction=&quot;insideLabelFunc&quot;>
+...
+insideLabelFunc(seriesId, index, data, values) {
+  ...
+}</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>seriesId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>시리즈 식별자(Identifier)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 인덱스</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 객체</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>values</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 배열<br>0 : x축 값, 1 : y축 값</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="outsideLabelJsFunction">
+            
+                <span class="inherited"><a href="Column2DSeries.html#outsideLabelJsFunction">inherited</a></span>
+            
+            outsideLabelJsFunction<span class="signature">(seriesId, index, data, values)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>labelPosition 속성값이 outside 또는 both 인 경우 사용자 정의 라벨을 출력할 자바스크립트 함수명을 설정합니다.</p>
+<pre class="prettyprint source"><code>&lt;Column2DSeries yField=&quot;Profit&quot; outsideLabelJsFunction=&quot;outsideLabelFunc&quot;>
+...
+outsideLabelFunc(seriesId, index, data, values) {
+  ...
+}</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>seriesId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>시리즈 식별자(Identifier)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 인덱스</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 객체</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>values</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 배열<br>0 : x축 값, 1 : y축 값</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="patternJsFunction">
+            
+                <span class="inherited"><a href="Column2DSeries.html#patternJsFunction">inherited</a></span>
+            
+            patternJsFunction<span class="signature">(seriesId, values, patternIndex)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>데이터 아이템에 표현될 패턴을 설정하는 사용자 정의 자바스크립트 함수명을 설정합니다.</p>
+<pre class="prettyprint source"><code>&lt;Column2DSeries patternJsFunction=&quot;patternJsFunc&quot; ...>
+...
+patternJsFunc(seriesId, values, patternIndex) {
+  ...
+}</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>seriesId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>시리즈 식별자(Identifier)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>values</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 배열<br>0 : x축 값, 1 : y축 값</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>patternIndex</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>차트에서 제공하는 패턴의 개수</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer inherited">
+        <h4 class="name" id="strokeJsFunction">
+            
+                <span class="inherited"><a href="Series.html#strokeJsFunction">inherited</a></span>
+            
+            strokeJsFunction<span class="signature">(seriesId, index, data, values)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>아이템 렌더러에 의해 표현되는 아이템 테두리에 대한 사용자 정의 함수를 설정합니다.<br><br> 차트 레이아웃 설정시 Series 클래스 인스턴스의 strokeJsFunction 속성값에 자바스크립트 함수명을 설정합니다.</p>
+<pre class="prettyprint source"><code>&lt;Column2DSeries yField=&quot;Profit&quot; strokeJsFunction=&quot;strokeJsFunc&quot;>
+...
+strokeJsFunc(seriesId, index, data, values) {
+  ...
+}
+
+values 값은 배열로 전달되며 차트의 종류에 따라 다음과 같습니다.
+1.  바 시리즈(Bar2DSeries, Bar3DSeries) - 0 : x축 값, 1 : y축 값
+2.  컬럼 시리즈(Column2DSeries, Column3DSeries) - 0 : x축 값, 1 : y축 값
+3.  영역 시리즈(Area2DSeries, CandleArea2DSeries) - 0 : x축 값, 1 : y축 값
+4.  버블 시리즈(Bubble2DSeries, Bubble3DSeries) - 0 : x축 값, 1 : y축 값, 2 : radius 값
+5.  라인 시리즈(Line2DSeries, CandleLine2DSeries) - 0 : x축 값, 1 : y축 값
+6.  파이 시리즈(Pie2DSeries, Pie3DSeries) - 0 : 값, 1 : 퍼센티지, 2 : nameField 값
+7.  캔들 시리즈(Candlestick2DSeries) - 0 : x축 값, 1 : openField 값, 2 : closeField 값, 3 : highField 값, 4 : lowField 값
+8.  윙 시리즈(Column2DWingSeries, Bar2DWingSeries) - 0 : x축 값, 1 : y축 값, 2 : xOpp 값, 3 : yOpp 값
+9.  히스토그램 시리즈(Histogram2D, Histogram3DSeries) - 0 : x축 값, 1 : y축 값
+10. 트리맵 시리즈(TreeMapSeries) - 0 : weight 값, 1 : text 값
+11. 박스플롯 시리즈(BoxPlotSeries) - 0 : upper 값, 1 : median 값, 2 : lower 값, 3 : min 값, 4 : hidden 값
+12. 벡터 시리즈(Vector2DSeries) - 0 : degree 값, 1 : velocity 값, 2 : meter 값
+13. 워드클라우드 시리즈(WordCloudSeries) - 0 : text 값, 1 : weight 값
+14. 피라미드, 퓨넬 시리즈(Pyramid2DSeries) - 0 : weight 값, 1 : nameField 값
+15. 오버레이버블 시리즈(OverlayBubbleSeries) - 0 : field 값, 1 : nameField 값
+16. 이미지매트릭스 시리즈(ImageMatrixSeries) - 0 : value 값
+17. 윈드로즈 시리즈(WindRoseSeries) - 0 : field 값
+</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>seriesId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>시리즈 식별자(Identifier)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 인덱스</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 객체</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>values</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터 아이템의 데이터 배열</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+
+        
+
+        <footer>
+	        Copyright(c) 2018 <a target="_blank" href="http://www.riamore.net" target="_blank">RiaMore Soft, Inc</a>. All Right Reserved
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

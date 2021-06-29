@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 처음 차트 만들기</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('your-first-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="처음시작하기">처음 시작하기</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#처음시작하기">처음 시작하기</a>
+						<li class="level2"><a href="#처음차트만들기">처음 차트 만들기</a></li>
+					</li>
+				</ul>
+			</div>
+
+	 		<h2><a class="anchor" id="처음차트만들기"></a>처음 차트 만들기</h2>
+			<p>먼저 알메이트 차트를 이용해 주셔서 감사드립니다.
+				이제부터 여러분은 다양한 종류와 풍부한 데이터 분석 기능을 제공하는 HTML5 차트 제품을 경험하게 되실 것입니다.
+				다음은 알메이트 차트를 처음 접하시는 분들을 위해서 불과 몇 분이면 적용이 가능한 차트 생성 방법을 단계적으로 설명한 내용입니다.</p>
+
+			<p>1. HTML 파일의 &lt;head&gt; 섹션 내에 알메이트 라이센스 파일, 라이브러리 파일, CSS 파일을 include 합니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;!DOCTYPE html&gt;</div>
+	<div class="line">&lt;html&gt;</div>
+	<div class="line">&lt;head&gt;</div>
+	<div class="line">  &lt;script src="https://www.riamore.net/HTML5demo/chart/LicenseKey/rMateChartH5License.js"&gt;&lt;/script&gt;</div>
+	<div class="line">  &lt;script src="https://www.riamore.net/HTML5demo/chart/rMateChartH5/JS/rMateChartH5.js"&gt;&lt;/script&gt;</div>
+	<div class="line">  &lt;link rel="stylesheet" href="https://www.riamore.net/HTML5demo/chart/rMateChartH5/Assets/Css/rMateChartH5.css"/&gt;</div>
+	<div class="line">&lt;/head&gt;</div>
+	<div class="line">&lt;/html&gt;</div>
+</div>
+
+			<p>2. 차트의 레이아웃(Layout)과 데이터셋(Dataset)을 설정하고 차트 생성을 실행하는 자바스크립트 코드를 구현합니다.
+				레이아웃은 차트의 종류, 모양, 기능 등을 설정하고 데이터셋은 차트에 표현될 데이터를 설정합니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;!DOCTYPE html&gt;</div>
+	<div class="line">&lt;html&gt;</div>
+	<div class="line">&lt;head&gt;</div>
+	<div class="line">  &lt;script src="https://www.riamore.net/HTML5demo/chart/LicenseKey/rMateChartH5License.js"&gt;&lt;/script&gt;</div>
+	<div class="line">  &lt;script src="https://www.riamore.net/HTML5demo/chart/rMateChartH5/JS/rMateChartH5.js"&gt;&lt;/script&gt;</div>
+	<div class="line">  &lt;link rel="stylesheet" href="https://www.riamore.net/HTML5demo/chart/rMateChartH5/Assets/Css/rMateChartH5.css"/&gt;</div>
+	<div class="line">  <span class="vhdllogic">&lt;script type="text/javascript"&gt;</span></div>
+	<div class="line">    <span class="vhdllogic">rMateChartH5.create("chart1", "chartHolder", "", "100%", "100%");</span></div>
+	<div class="line"></div>
+	<div class="line">    <span class="vhdllogic">var layoutStr  =  </span></div>
+	<div class="line">      <span class="vhdllogic">'&lt;rMateChart backgroundColor="#FFFFFF" borderStyle="none"&gt;'</span></div>
+	<div class="line">        <span class="vhdllogic">+'&lt;Options&gt;'</span></div>
+	<div class="line">          <span class="vhdllogic">+'&lt;Caption text="My First Chart" fontSize="20"/&gt;'</span></div>
+	<div class="line">          <span class="vhdllogic">+'&lt;Legend/&gt;'</span></div>
+	<div class="line">        <span class="vhdllogic">+'&lt;/Options&gt;'</span></div>
+	<div class="line">        <span class="vhdllogic">+'&lt;Column2DChart showDataTips="true"&gt;'</span></div>
+	<div class="line">          <span class="vhdllogic">+'&lt;horizontalAxis&gt;'</span></div>
+	<div class="line">            <span class="vhdllogic">+'&lt;CategoryAxis categoryField="Month"/&gt;'</span></div>
+	<div class="line">          <span class="vhdllogic">+'&lt;/horizontalAxis&gt;'</span></div>
+	<div class="line">          <span class="vhdllogic">+'&lt;verticalAxis&gt;'</span></div>
+	<div class="line">            <span class="vhdllogic">+'&lt;LinearAxis maximum="10"/&gt;'</span></div>
+	<div class="line">          <span class="vhdllogic">+'&lt;/verticalAxis&gt;'</span></div>
+	<div class="line">          <span class="vhdllogic">+'&lt;series&gt;'</span></div>
+	<div class="line">            <span class="vhdllogic">+'&lt;Column2DSeries labelPosition="outside" yField="2011" displayName="2011"/&gt;'</span></div>
+	<div class="line">          <span class="vhdllogic">+'&lt;/series&gt;'</span></div>
+	<div class="line">        <span class="vhdllogic">+'&lt;/Column2DChart&gt;'</span></div>
+	<div class="line">      <span class="vhdllogic">+'&lt;/rMateChart&gt;';</span></div>
+	<div class="line"></div>
+	<div class="line">    <span class="vhdllogic">var chartData  =  </span></div>
+	<div class="line">      <span class="vhdllogic">[{"Month":"Jan", "2011":2.4},</span></div>
+	<div class="line">      <span class="vhdllogic">{"Month":"Feb", "2011":3.8},</span></div>
+	<div class="line">      <span class="vhdllogic">{"Month":"Mar", "2011":8.1},</span></div>
+	<div class="line">      <span class="vhdllogic">{"Month":"Apr", "2011":5.1},</span></div>
+	<div class="line">      <span class="vhdllogic">{"Month":"May", "2011":2.1},</span></div>
+	<div class="line">      <span class="vhdllogic">{"Month":"Jun", "2011":5.2},</span></div>
+	<div class="line">      <span class="vhdllogic">{"Month":"Jul", "2011":4.2}];</span></div>
+	<div class="line"></div>
+	<div class="line">    <span class="vhdllogic">rMateChartH5.calls("chart1", {</span></div>
+	<div class="line">      <span class="vhdllogic">"setLayout" : layoutStr,</span></div>
+	<div class="line">      <span class="vhdllogic">"setData" : chartData</span></div>
+	<div class="line">    <span class="vhdllogic">});</span></div>
+	<div class="line">  <span class="vhdllogic">&lt;/script&gt;</span></div>
+	<div class="line">&lt;/head&gt;</div>
+	<div class="line">&lt;/html&gt;</div>
+</div>
+
+				<p>3. 차트가 생성될 &lt;div&gt; 를 HTML 파일의 &lt;body&gt; 섹션 내에 지정합니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;!DOCTYPE html&gt;</div>
+	<div class="line">&lt;html&gt;</div>
+	<div class="line">&lt;head&gt;</div>
+	<div class="line">  &lt;script src="https://www.riamore.net/HTML5demo/chart/LicenseKey/rMateChartH5License.js"&gt;&lt;/script&gt;</div>
+	<div class="line">  &lt;script src="https://www.riamore.net/HTML5demo/chart/rMateChartH5/JS/rMateChartH5.js"&gt;&lt;/script&gt;</div>
+	<div class="line">  &lt;link rel="stylesheet" href="https://www.riamore.net/HTML5demo/chart/rMateChartH5/Assets/Css/rMateChartH5.css"/&gt;</div>
+	<div class="line">  &lt;script type="text/javascript"&gt;</div>
+	<div class="line">    rMateChartH5.create("chart1", "chartHolder", "", "100%", "100%");</div>
+	<div class="line"></div>
+	<div class="line">    var layoutStr =</div>
+	<div class="line">      '&lt;rMateChart backgroundColor="#FFFFFF" borderStyle="none"&gt;'</div>
+	<div class="line">        +'&lt;Options&gt;'</div>
+	<div class="line">          +'&lt;Caption text="My First Chart" fontSize="20"/&gt;'</div>
+	<div class="line">          +'&lt;Legend/&gt;'</div>
+	<div class="line">        +'&lt;/Options&gt;'</div>
+	<div class="line">        +'&lt;Column2DChart showDataTips="true"&gt;'</div>
+	<div class="line">          +'&lt;horizontalAxis&gt;'</div>
+	<div class="line">            +'&lt;CategoryAxis categoryField="Month"/&gt;'</div>
+	<div class="line">          +'&lt;/horizontalAxis&gt;'</div>
+	<div class="line">          +'&lt;verticalAxis&gt;'</div>
+	<div class="line">            +'&lt;LinearAxis maximum="10"/&gt;'</div>
+	<div class="line">          +'&lt;/verticalAxis&gt;'</div>
+	<div class="line">          +'&lt;series&gt;'</div>
+	<div class="line">            +'&lt;Column2DSeries labelPosition="outside" yField="2011" displayName="2011"/&gt;'</div>
+	<div class="line">          +'&lt;/series&gt;'</div>
+	<div class="line">        +'&lt;/Column2DChart&gt;'</div>
+	<div class="line">      +'&lt;/rMateChart&gt;';</div>
+	<div class="line"></div>
+	<div class="line">    var chartData =</div>
+	<div class="line">      [{"Month":"Jan", "2011":2.4},</div>
+	<div class="line">      {"Month":"Feb", "2011":3.8},</div>
+	<div class="line">      {"Month":"Mar", "2011":8.1},</div>
+	<div class="line">      {"Month":"Apr", "2011":5.1},</div>
+	<div class="line">      {"Month":"May", "2011":2.1},</div>
+	<div class="line">      {"Month":"Jun", "2011":5.2},</div>
+	<div class="line">      {"Month":"Jul", "2011":4.2}];</div>
+	<div class="line"></div>
+	<div class="line">    rMateChartH5.calls("chart1", {</div>
+	<div class="line">      "setLayout" : layoutStr,</div>
+	<div class="line">      "setData" : chartData</div>
+	<div class="line">    });</div>
+	<div class="line">  &lt;/script&gt;</div>
+	<div class="line">&lt;/head&gt;</div>
+	<div class="line"><span class="vhdllogic">&lt;body&gt;</span></div>
+	<div class="line">  <span class="vhdllogic">&lt;div id="chartHolder" style="width:600px; height:400px;"&gt;</span></div>
+	<div class="line"><span class="vhdllogic">&lt;/body&gt;</span></div>
+	<div class="line">&lt;/html&gt;</div>
+</div>
+
+			<p>다음은 위에서 설명된 내용 중, 마지막 단계의 코드를 그대로 적용하여 만들어진 차트의 결과입니다:<p>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="YvKxOP" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - My First Chart" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/YvKxOP/">알메이트 차트 - My First Chart</a></p>-->
+			<img class="capture" src="images/demo/my-first-chart.jpg" alt="My First Chart" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/YvKxOP/" target="_blank">알메이트 차트 - My First Chart</a></p>
+
+		</div><!-- textbox -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 슬라이드 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('slide-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#슬라이드차트">슬라이드 차트</a></li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="슬라이드차트"></a>슬라이드 차트</h2>
+			<p>슬라이드 차트는 <a href="event-chart.html">이벤트 차트</a>와 마찬가지로 하나의 독립적인 차트 유형은 아닙니다.
+				여러 개의 차트를 하나의 차트로 표현하며, 슬라이드 효과을 위해서 앞으로 가기와 뒤로 가기 버튼이 표시됩니다.
+				슬라이드 차트의 생성은 다음과 같은 과정을 통해서 이루어집니다.</p>
+
+			<ul style="list-style: none;">
+				<li>1. 슬라이드로 표현할 차트들을 정하고 각각의 레이아웃과 데이터 셋을 설정합니다. 슬라이드 차트에는 모든 차트 유형이 지원됩니다.</li>
+				<li>2. 설정된 레이아웃들과 데이터 셋들을 각각 배열로 정의합니다.</li>
+				<li>3. 레이아웃 배열과 데이터 셋 배열을setSlideLayoutSet(), setSlideDataSet() 함수로 호출합니다.</li>
+			</ul>
+
+			<dl class="section attention">
+				<dt>주의</dt>
+				<dd><div class="fragment">슬라이드 차트를 생성할 때는 일반적으로 하나의 차트를 생성할 때 호출하는 setLayout(), setData() 함수를 호출하지 않고, setSlideLayoutSet(), setSlideDataSet() 함수를 호출합니다.</div></dd>
+			</dl>
+
+			<p>다음은 <a href="column-chart.html">컬럼 차트</a>, <a href="line-chart.html">라인 차트</a>, <a href="column-chart.html#3d컬럼차트">3D 컬럼 차트</a>, <a href="radar-chart.html">방사형 차트</a>를 하나의 슬라이드 차트로 생성하는 코드와 이를 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">function chartReadyHandler(id) {</div>
+	<div class="line">  var layout1 = getCartesianLayout("Column2D","Column Chart",["Profit"]);</div>
+	<div class="line">  var layout2 = getCartesianLayout("Line2D","Line Chart",["Profit"]);</div>
+	<div class="line">  var layout3 = getCartesianLayout("Column3D","Column 3D Chart - Multiseries",["Profit","Cost"]);</div>
+	<div class="line"></div>
+	<div class="line">  layoutSet = [layout1, layout2, layout3, radarLayout];</div>
+	<div class="line">  dataSet = [chartData, chartData2, chartData2, chartData3];</div>
+	<div class="line"></div>
+	<div class="line">  document.getElementById(id).setSlideLayoutSet(layoutSet);</div>
+	<div class="line"></div>
+	<div class="line">  document.getElementById(id).setSlideDataSet(dataSet);</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">var chartData = [</div>
+	<div class="line">  {"Month":"Jan","Profit":1100},</div>
+	<div class="line">  {"Month":"Feb","Profit":1400},</div>
+	<div class="line">  ...</div>
+	<div class="line">];</div>
+	<div class="line"></div>
+	<div class="line">var chartData2 = [</div>
+	<div class="line">  {"Month":"Jan", "Profit":5000, "Cost":13700},</div>
+	<div class="line">  {"Month":"Feb", "Profit":8000, "Cost":6600},</div>
+	<div class="line">  ...</div>
+	<div class="line">];</div>
+	<div class="line"></div>
+	<div class="line">var chartData3 = </div>
+	<div class="line">  "&lt;items&gt;"</div>
+	<div class="line">    +"&lt;item&gt;"</div>
+	<div class="line">      +"&lt;Month&gt;2008&lt;/Month&gt;"</div>
+	<div class="line">      +"&lt;Profit&gt;320&lt;/Profit&gt;"</div>
+	<div class="line">      +"&lt;Cost&gt;250&lt;/Cost&gt;"</div>
+	<div class="line">    +"&lt;/item&gt;"</div>
+	<div class="line">  ...;</div>
+	<div class="line"></div>
+	<div class="line">function getCartesianLayout(type, title, dataField) {</div>
+	<div class="line">  var layout="&lt;rMateChart borderStyle='none'&gt;"</div>
+	<div class="line">    +"&lt;Options&gt;&lt;Caption text='" + title +"' /&gt;&lt;/Options&gt;"</div>
+	<div class="line">    +"&lt;NumberFormatter id='numfmt' useThousandsSeparator='true'/&gt;"</div>
+	<div class="line">    +"&lt;" + type + "Chart showDataTips='true'&gt;"</div>
+	<div class="line">    +"&lt;series&gt;";</div>
+	<div class="line">  var interval = type == "Column3D" ? 1000 : 500;</div>
+	<div class="line"></div>
+	<div class="line">  for (var i=0; i&lt;dataField.length; ++i) {</div>
+	<div class="line">    layout += "&lt;" + type +"Series yField='" + dataField[i] + "' halfWidthOffset='2' displayName='" + dataField[i] + "'/&gt;"</div>
+	<div class="line">  }</div>
+	<div class="line"></div>
+	<div class="line">  layout +="&lt;/series&gt;"</div>
+	<div class="line">      +"&lt;horizontalAxis&gt;"</div>
+	<div class="line">        +"&lt;CategoryAxis categoryField='Month'/&gt;"</div>
+	<div class="line">      +"&lt;/horizontalAxis&gt;"</div>
+	<div class="line">      +"&lt;verticalAxis&gt;"</div>
+	<div class="line">        +"&lt;LinearAxis interval='" + interval + "' formatter='{numfmt}' /&gt;"</div>
+	<div class="line">      +"&lt;/verticalAxis&gt;"</div>
+	<div class="line">      +"&lt;/" + type + "Chart&gt;"</div>
+	<div class="line">    +"&lt;/rMateChart&gt;";</div>
+	<div class="line">    </div>
+	<div class="line">  return layout;</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">var radarLayout = </div>
+	<div class="line">  "&lt;rMateChart borderStyle='none'&gt;"</div>
+	<div class="line">    +"&lt;Options&gt;"</div>
+	<div class="line">	    +"&lt;Caption text='Radar Chart' fontFamily='Malgun Gothic'/&gt;"</div>
+	<div class="line">    +"&lt;/Options&gt;"</div>
+	<div class="line">    +"&lt;RadarChart type='polygon' paddingTop='20' paddingBottom='20' showDataTips='true'&gt;"</div>
+	<div class="line">    ...</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="VdYrjP" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 슬라이드 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/VdYrjP/">알메이트 차트 - 슬라이드 차트</a></p>-->
+			<img class="capture" src="images/demo/슬라이드-차트.jpg" alt="슬라이드 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/VdYrjP/" target="_blank">알메이트 차트 - 슬라이드 차트</a></p>
+
+			<p>위 예제에서는 getCartesianLayout() 함수를 이용하여 <a href="column-chart.html">컬럼 차트</a>, <a href="line-chart.html">라인 차트</a>, <a href="column-chart.html#3d컬럼차트">3D 컬럼 차트</a> 생성을 위한 레이아웃을 작성하고, <a href="radar-chart.html">방사형 차트</a> 생성을 위한 레이아웃은 radarLayout 변수에 정의합니다.
+				이렇게 작성된 레이아웃들은 chartReadyHandler() 함수에서 layoutSet 변수에 배열로 정의됩니다.
+				3 개의 데이터셋이 각각 chartData, chartData2, chartData3 변수에 정의되었고, chartData2 변수는 2 개의 차트(<a href="line-chart.html">라인 차트</a>, <a href="column-chart.html#3d컬럼차트">3D 컬럼 차트</a>)에서 사용됩니다.
+				데이터셋 변수들은 chartReadyHandler() 함수에서 dataset 변수에 배열로 정의됩니다.</p>
+
+			<p>다음은 각 차트가 표시될 때 애니메이션 효과를 보여주는 슬라이드 차트의 예제입니다.</p>
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="pKvdEY" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 애니메이션 효과가 적용된 슬라이드 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/pKvdEY/">알메이트 차트 - 애니메이션 효과가 적용된 슬라이드 차트</a></p>-->
+			<img class="capture" src="images/demo/애니메이션-효과가-적용된-슬라이드-차트.jpg" alt="애니메이션 효과가 적용된 슬라이드 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/pKvdEY/" target="_blank">알메이트 차트 - 애니메이션 효과가 적용된 슬라이드 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 효과 적용하기</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('animation-effects.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트디자인과스타일링">차트 디자인과 스타일링</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트디자인과스타일링">차트 디자인과 스타일링</a>
+						<li class="level2"><a href="#효과적용하기">효과 적용하기</a>
+							<li class="level3"><a href="#seriesinterpolate효과적용하기">SeriesInterpolate 효과 적용하기</a></li>
+							<li class="level3"><a href="#seriesslide효과적용하기">SeriesSlide 효과 적용하기</a></li>
+							<li class="level3"><a href="#serieszoom효과적용하기">SeriesZoom 효과 적용하기</a></li>
+							<li class="level3"><a href="#seriesclip효과적용하기">SeriesClip 효과 적용하기</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="효과적용하기"></a>효과 적용하기</h2>
+			<p>차트가 화면에 표현될 때 애니메이션 효과를 줄 수 있습니다.
+				차트 생성시 효과를 적용하기 위해서는 해당 차트의 시리즈 노드에 showDataEffect 속성을 설정해야 합니다.
+				showDataEffect 속성에 설정 가능한 객체는 다음과 같습니다.</p>
+			<ul>
+				<li>SeriesInterpolate: 축의 최소값에서 데이터 포인트까지의 데이터 변화를 애니메이션 효과로 나타냅니다.</li>
+				<li>SeriesSlide: 한 방향에서 반대 방향으로 미끄러지는 애니메이션 효과를 표현합니다.</li>
+				<li>SeriesZoom: 차트의 한 기준점으로부터 확대되어지는 애니메이션 효과를 표현합니다.</li>
+				<li>SeriesClip: 차트의 기준점(상, 하, 좌, 우)에서 반대 방향으로 연결되어 나가는 애니메이션 효과를 표현합니다.</li>
+				<dl class="section attention">
+					<dt>주의</dt>
+					<dd><div class="fragment"><a href="../api/SeriesClip.html" target="_blank">&lt;SeriesClip&gt;</a> 은 <a href="line-chart.html">라인 차트</a>와 <a href="area-chart.html">영역 차트</a>에서만 지원됩니다.</div></dd>
+				</dl>
+			</ul>
+
+			<h3><a class="anchor" id="seriesinterpolate효과적용하기"></a>SeriesInterpolate 효과 적용하기</h3>
+			<p>다음은 <a href="column-chart.html">컬럼 차트</a> 시리즈의 showDataEffect 속성에 <a href="../api/SeriesInterpolate.html" target="_blank">SeriesInterpolate</a> 노드를 설정하여 효과를 주기위한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+<div class="fragment"><div class="line">&lt;Column2DSeries yField="GDP" displayName="GDP Growth (In %)" &gt;</div>
+<div class="line">  &lt;showDataEffect&gt;</div>
+<div class="line">    &lt;SeriesInterpolate duration="1200" elementOffset="60"/&gt;</div>
+<div class="line">  &lt;/showDataEffect&gt;</div>
+<div class="line">&lt;/Column2DSeries&gt;</div>
+</div>
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="VdYxrE" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - SeriesInterpolate 효과 적용하기" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/VdYxrE/">알메이트 차트 - SeriesInterpolate 효과 적용하기</a></p>-->
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/VdYxrE/" target="_blank">알메이트 차트 - SeriesInterpolate 효과 적용하기</a></p>
+
+			<p>다음은 <a href="../api/SeriesInterpolate.html" target="_blank">&lt;SeriesInterpolate&gt;</a> 노드에서 설정 가능한 속성을 정리한 표입니다.</p>
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">duration</td>
+					<td align="center">
+						<p>밀리세컨드</p>
+						<p>기본값: 500</p>
+					</td>
+					<td align="left">
+						<p>전체 효과가 완료되는데 필요한 시간을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">elementOffset</td>
+					<td align="center">
+						<p>밀리세컨드</p>
+						<p>기본값: 20</p>
+					</td>
+					<td align="left">
+						<p>한 데이터 요소에 대한 효과가 시작된 이후 다음 데이터 요소에 대한 효과가 시작되기까지의 지연 시간을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">minimumElementDuration</td>
+					<td align="center">
+						<p>밀리세컨드</p>
+						<p>기본값: 0</p>
+					</td>
+					<td align="left">
+						<p>한 데이터 요소의 효과가 완료되는데 필요한 시간을 지정합니다.</p>
+						<p>duration 속성값이 minimumElementDuration 속성값보다 작을 경우, minimumElementDuration 속성은 무시됩니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">offset>
+					<td align="center">
+						<p>밀리세컨드</p>
+						<p>기본값: 0</p>
+					</td>
+					<td align="left">
+						<p>시리즈 사이의 지연 시간을 지정합니다.</p>
+						<p>다중 시리즈에서 시리즈와 시리즈 간에 지연 시간을 두고 싶으면 이 속성을 사용합니다.</p></p>
+					</td>
+				</tr>
+			</table>
+
+			<p><a href="../api/SeriesInterpolate.html" target="_blank">SeriesInterpolate</a> 효과를 적용할 때 elementOffset 속성값에 음수를 설정하면 효과가 역순으로 표현됩니다.
+				다음은 이에 대한 코드입니다.</p>
+
+<div class="fragment"><div class="line">&lt;SeriesInterpolate duration="1200" elementOffset="<span class="vhdllogic">-60</span>"/&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="NzPMyq" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - SeriesInterpolate 효과 (elementOffset 속성값에 음수 설정)" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/NzPMyq/">알메이트 차트 - SeriesInterpolate 효과 (elementOffset 속성값에 음수 설정)</a></p>-->
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/NzPMyq/" target="_blank">알메이트 차트 - SeriesInterpolate 효과 (elementOffset 속성값에 음수 설정)</a></p>
+
+			<p><a href="../api/SeriesInterpolate.html" target="_blank">SeriesInterpolate</a> 효과를 적용할 때 easingFunction 속성을 설정하여 바운스 효과를 줄 수 있습니다.
+				다음은 이에 대한 코드입니다.</p>
+<div class="fragment"><div class="line">&lt;SeriesInterpolate duration="2000" elementOffset="60" easingFunction="<span class="vhdllogic">EaseOutElastic</span>"/&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="OENeEX" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - SeriesInterpolate 효과 (바운스 효과)" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/OENeEX/">알메이트 차트 - SeriesInterpolate 효과 (바운스 효과)</a></p>-->
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/OENeEX/" target="_blank">알메이트 차트 - SeriesInterpolate 효과 (바운스 효과)</a></p>
+
+			<h3><a class="anchor" id="seriesslide효과적용하기"></a>SeriesSlide 효과 적용하기</h3>
+			<p>다음은 <a href="column-chart.html">컬럼 차트</a> 시리즈의 showDataEffect 속성에 <a href="../api/SeriesSlide.html" target="_blank">SeriesSlide</a> 노드를 설정하여 효과를 주기위한 코드입니다.</p>
+
+<div class="fragment"><div class="line">&lt;Column2DSeries yField="GDP" displayName="GDP Growth (In %)" &gt;</div>
+<div class="line">  &lt;showDataEffect&gt;</div>
+<div class="line">    &lt;SeriesSlide direction="left" duration="1200" elementOffset="60"/&gt;</div>
+<div class="line">  &lt;/showDataEffect&gt;</div>
+<div class="line">&lt;/Column2DSeries&gt;</div>
+</div>
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="dKPemg" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - SeriesSlide 효과 적용하기" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/dKPemg/">알메이트 차트 - SeriesSlide 효과 적용하기</a></p>-->
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/dKPemg/" target="_blank">알메이트 차트 - SeriesSlide 효과 적용하기</a></p>
+
+			<p><a href="../api/SeriesSlide.html" target="_blank">&lt;SeriesSlide&gt;</a> 노드에서 설정 가능한 속성은 <a href="../api/SeriesInterpolate.html" target="_blank">&lt;SeriesInterpolate&gt;</a> 노드에서 사용 가능한 모든 속성과 다음 direction 속성입니다.</p>
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">direction</td>
+					<td align="center">
+						<p>left(*), right, up, down</p>
+					</td>
+					<td align="left">
+						<p>슬라이딩되는 방향을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>hideDataEffect 속성에 <a href="../api/SeriesSlide.html" target="_blank">&lt;SeriesSlide&gt;</a> 노드를 정의하면 차트의 데이터가 재 설정(setData 함수 호출)될 때 숨기기 효과를 줄 수 있습니다.
+				다음은 <a href="column-chart.html">컬럼 차트</a> 시리즈의 hideDataEffect 속성과 showDataEffect 속성에 <a href="../api/SeriesSlide.html" target="_blank">&lt;SeriesSlide&gt;</a> 노드를 설정하여 효과를 주기위한 코드입니다.</p>
+
+<div class="fragment"><div class="line">&lt;Column2DSeries yField="GDP" displayName="GDP Growth (In %)" &gt;</div>
+<div class="line">  &lt;showDataEffect&gt;</div>
+<div class="line">    &lt;SeriesSlde direction="left" duration="1200" elementOffset="60"/&gt;</div>
+<div class="line">  &lt;/showDataEffect&gt;'</div>
+<div class="line">  &lt;hideDataEffect&gt;</div>
+<div class="line">    &lt;SeriesSlide direction="down" duration="1200" elementOffset="60"/&gt;</div>
+<div class="line">  &lt;/hideDataEffect&gt;</div>
+<div class="line">&lt;/Column2DSeries&gt;</div>
+</div>
+			<!--<p data-height="500" data-theme-id="dark" data-slug-hash="mKyLLg" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - SeriesSlide 효과 (숨기기 효과 적용하기)" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/mKyLLg/">알메이트 차트 - SeriesSlide 효과 (숨기기 효과 적용하기)</a></p>-->
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/mKyLLg/" target="_blank">알메이트 차트 - SeriesSlide 효과 (숨기기 효과 적용하기)</a></p>
+
+			<h3><a class="anchor" id="serieszoom효과적용하기"></a>SeriesZoom 효과 적용하기</h3>
+			<p>다음은 <a href="컬럼차트.html">컬럼 차트</a> 시리즈의 showDataEffect 속성에 <a href="../api/SeriesZoom.html" target="_blank">SeriesZoom</a> 노드를 설정하여 효과를 주기위한 코드입니다.</p>
+
+<div class="fragment"><div class="line">&lt;Column2DSeries yField="GDP" displayName="GDP Growth (In %)" &gt;</div>
+<div class="line">  &lt;showDataEffect&gt;</div>
+<div class="line">    &lt;SeriesZoom relativeTo="<span class="vhdlkeyword">chart</span>" horizontalFocus="center" verticalFocus="center" duration="1200" elementOffset="60"/&gt;</div>
+<div class="line">  &lt;/showDataEffect&gt;</div>
+<div class="line">&lt;/Column2DSeries&gt;</div>
+</div>
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="dKPegw" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - SeriesZoom 효과 적용하기" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/dKPegw/">알메이트 차트 - SeriesZoom 효과 적용하기</a></p>-->
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/dKPegw/" target="_blank">알메이트 차트 - SeriesZoom 효과 적용하기</a></p>
+
+			<p><a href="../api/SeriesZoom.html" target="_blank">&lt;SeriesZoom&gt;</a> 노드에서 설정 가능한 속성은 <a href="../api/SeriesInterpolate.html" target="_blank">&lt;SeriesInterpolate&gt;</a> 노드에서 사용 가능한 모든 속성과 다음 표에 정리된 속성입니다.</p>
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">horizontalFocus</td>
+					<td align="center">
+						<p>center(*), left, right</p>
+					</td>
+					<td align="left">
+						<p>줌이 시작되는 수평 초점을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">verticalFocus</td>
+					<td align="center">
+						<p>center(*), top, bottom</p>
+					</td>
+					<td align="left">
+						<p>줌이 시작되는 수직 초점을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">relativeTo</td>
+					<td align="center">
+						<p>chart(*), series</p>
+					</td>
+					<td align="left">
+						<p>줌 효과가 시작되는 경계(chart 혹은 series)를 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 relativeTo 속성값에 <prop>“series”</prop> 를 지정하는 코드입니다.</p>
+<div class="fragment"><div class="line">&lt;Column2DSeries yField="GDP" displayName="GDP Growth (In %)" &gt;</div>
+<div class="line">  &lt;showDataEffect&gt;</div>
+<div class="line">    &lt;SeriesZoom relativeTo="<span class="vhdlkeyword">series</span>" horizontalFocus="center" verticalFocus="center" duration="1200" elementOffset="60"/&gt;</div>
+<div class="line">  &lt;/showDataEffect&gt;</div>
+<div class="line">&lt;/Column2DSeries&gt;</div>
+</div>
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="VdYxqg" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - SeriesZoom 효과 적용하기 (relativeTo 속성값에 series를 지정)" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/VdYxqg/">알메이트 차트 - SeriesZoom 효과 적용하기 (relativeTo 속성값에 series를 지정)</a></p>-->
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/VdYxqg/" target="_blank">알메이트 차트 - SeriesZoom 효과 적용하기 (relativeTo 속성값에 series를 지정)</a></p>
+
+			<h3><a class="anchor" id="seriesclip효과적용하기"></a>SeriesClip 효과 적용하기</h3>
+			<p>다음은 <a href="line-chart.html">라인 차트</a> 시리즈의 showDataEffect 속성에 <a href="../api/SeriesClip.html" target="_blank">SeriesClip</a> 노드를 설정하여 효과를 주기위한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+<div class="fragment"><div class="line">&lt;Line2DSeries yField="Vancouver" displayName="Vancouver"&gt;</div>
+<div class="line">  &lt;showDataEffect&gt;</div>
+<div class="line">    &lt;SeriesClip duration="1000"/&gt;</div>
+<div class="line">  &lt;/showDataEffect&gt;</div>
+<div class="line">&lt;/Line2DSeries&gt;</div>
+</div>
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="NzPMJr" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - SeriesClip 효과 적용하기" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/NzPMJr/">알메이트 차트 - SeriesClip 효과 적용하기</a></p>-->
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/NzPMJr/" target="_blank">알메이트 차트 - SeriesClip 효과 적용하기</a></p>
+
+			<p><a href="../api/SeriesClip.html" target="_blank">SeriesClip</a> 노드에서 설정 가능한 속성은 <a href="../api/SeriesInterpolate.html" target="_blank">&lt;SeriesInterpolate&gt;</a> 노드에서 사용 가능한 모든 속성과 다음 direction 속성입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">direction</td>
+					<td align="center">
+						<p>left, right(*), up, down</p>
+					</td>
+					<td align="left">
+						<p>효과가 진행되는 방향을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+	</div><!-- contents -->
+</div>
+</body>
+</html>

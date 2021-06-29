@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 윈드로즈 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('wind-rose-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#윈드로즈차트">윈드로즈 차트</a>
+							<li class="level3"><a href="#스택윈드로즈차트">스택 윈드로즈 차트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="윈드로즈차트"></a>윈드로즈 차트</h2>
+			<p>윈드로즈 차트는 특정 위치에서 바람의 방향과 속도의 크기를 시간별로 간결하게 표현하는 용도로 개발된 차트입니다.
+				최근에는 다양한 용도로 활용되는 폴라 차트(Polar Chart)의 한 유형이며, 일반적으로 8 ~ 16 개의 방사형 바퀴살을 한 차트에 표현하는 것이 적절합니다.
+				여러 개의 데이터 시리즈가 레이아웃에 정의되면 스택 형태의 방사형 바퀴살로 표현됩니다.
+				다음은 월별 강수량을 윈드로즈 차트로 표현하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;WindRoseChart showDataTips="true" dataTipDisplayMode="mouse" roseRatio="0.9"&gt;</div>
+	<div class="line">  &lt;angularAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis id="aAxis" categoryField="Month"/&gt;</div>
+	<div class="line">  &lt;/angularAxis&gt;</div>
+	<div class="line">  &lt;radialAxis&gt;</div>
+	<div class="line">    &lt;LinearAxis id="rAxis"/&gt;</div>
+	<div class="line">  &lt;/radialAxis&gt;</div>
+	<div class="line">  &lt;radialAxisRenderers&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{aAxis}"/&gt;</div>
+	<div class="line">  &lt;/radialAxisRenderers&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;WindRoseSeries field="Vancouver" displayName="Vancouver"&gt;</div>
+	<div class="line">      &lt;showDataEffect&gt;</div>
+	<div class="line">        &lt;SeriesZoom duration="1000"/&gt;</div>
+	<div class="line">      &lt;/showDataEffect&gt;</div>
+	<div class="line">    &lt;/WindRoseSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/WindRoseChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="rKaWdo" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 윈드로즈 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/rKaWdo/">알메이트 차트 - 윈드로즈 차트</a></p>-->
+			<img class="capture" src="images/demo/윈드-로즈-차트.jpg" alt="윈드로즈 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/rKaWdo/" target="_blank">알메이트 차트 - 윈드로즈 차트</a></p>
+
+			<h3><a class="anchor" id="스택윈드로즈차트"></a>스택 윈드로즈 차트</h3>
+			<p>윈드로즈 차트 생성을 위한 레이아웃에 하나 이상의 데이터 시리즈를 정의할 경우, 스택 형태로 표현됩니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				이 예제에서는 3 개의 데이터 시리즈가 정의되었고, 각 데이터 시리즈에 대한 색(color)과 투명도(alpha = <prop>“0.8”</prop>)가 <a href="../api/SolidColor.html" target="_blank">&lt;SolidColor&gt;</a> 노드에 설정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;WindRoseChart showDataTips="true" dataTipDisplayMode="mouse" paddingBottom="30"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;WindRoseSeries field="Seoul" displayName="Seoul"&gt;</div>
+	<div class="line">      &lt;fill&gt;</div>
+	<div class="line">        &lt;SolidColor color="#49e1d2" alpha="<span class="vhdllogic">0.8</span>"/&gt;</div>
+	<div class="line">      &lt;/fill&gt;</div>
+	<div class="line">    &lt;/WindRoseSeries&gt;</div>
+	<div class="line">    &lt;WindRoseSeries field="NewYork" displayName="New York"&gt;</div>
+	<div class="line">      &lt;fill&gt;</div>
+	<div class="line">        &lt;SolidColor color="#54bbe8" alpha="<span class="vhdllogic">0.8</span>"/&gt;</div>
+	<div class="line">      &lt;/fill&gt;</div>
+	<div class="line">    &lt;/WindRoseSeries&gt;</div>
+	<div class="line">    &lt;WindRoseSeries field="Paris" displayName="Paris"&gt;</div>
+	<div class="line">      &lt;fill&gt;</div>
+	<div class="line">        &lt;SolidColor color="#5560af" alpha="<span class="vhdllogic">0.8</span>"/&gt;</div>
+	<div class="line">      &lt;/fill&gt;</div>
+	<div class="line">    &lt;/WindRoseSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/WindRoseChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="VdYmGe" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 스택 윈드로즈 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/VdYmGe/">알메이트 차트 - 스택 윈드로즈 차트</a></p>-->
+			<img class="capture" src="images/demo/스택-윈드-로즈-차트.jpg" alt="스택 윈드로즈 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/VdYmGe/" target="_blank">알메이트 차트 - 스택 윈드로즈 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 차트 내보내기</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('exports.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="고급사용자를위한기능">고급 사용자를 위한 기능</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#고급사용자를위한기능">고급 사용자를 위한 기능</a>
+						<li class="level2"><a href="#차트내보내기">차트 내보내기</a>
+							<li class="level3"><a href="#pc에내보내기">PC에 내보내기</a></li>
+							<li class="level3"><a href="#서버에내보내기">서버에 내보내기</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="차트내보내기"></a>차트 내보내기</h2>
+			<p>알메이트 차트는 화면에 표현된 차트의 모양 그대로 이미지 혹은 pdf 파일로 내보내기 하거나 차트의 데이터만 csv 포맷으로 내보내기 할 수 있습니다.
+				내보내기 결과에 의해 파일이 저장되는 장소는 사용자의 로컬 PC 혹은 서버 모두 가능합니다.</p>
+
+			<h3><a class="anchor" id="pc에내보내기"></a>PC에 내보내기</h3>
+			<p>화면에 표현된 차트를 사용자의 PC 에 내보내기 하는 것은 다음 두 가지 방법으로 가능합니다.</p>
+			<ul>
+				<li>컨텍스트 메뉴 : 마우스 오른쪽 버튼을 차트에 클릭하고 내보내기를 원하는 포맷의 파일을 선택합니다. 알메이트 차트에서는 png, jpg, pdf 포맷으로 차트의 모양을 그대로 내보내기할 수 있으며, csv 포맷으로 차트의 데이터를 내보내기할 수 있습니다.</li>
+				<li>자바스크립트 : 자바스크립트 함수를 이용해서 내보내기하는 API 함수(rMateChartH5.downloadToLocal)를 호출합니다. 아래 코드는 png 와 pdf 포맷으로 차트를 내보내기하는 예제입니다. rMateChartH5.downloadToLocal() 함수의 네 번째 인자는 이미지 파일 내보내기를 원할 경우 saveAsImage() 함수를 호출하고, pdf 파일 내보내기를 원할 경우에는 getSnapshot() 함수를 호출해야 합니다. 예제에서 사용된 서버 스크립트(downloadLocal.jsp) 파일은 제품의 Samples\SnapshotServerSamples 디렉토리에서 찾으실 수 있습니다.</li>
+			</ul>
+
+
+<div class="fragment">
+	<div class="line"><span class="vhdllogic">// png 포맷으로 내보내기</span></div>
+	<div class="line">rMateChartH5.downloadToLocal("rMateChartH5", "png",</div>
+	<div class="line">  "http://demo.riamore.net/chartTest/snapshotSample/downloadLocal.jsp",</div>
+	<div class="line">  function() {</div>
+	<div class="line">    return document.getElementById("chart1").saveAsImage();</div>
+	<div class="line">});</div>
+	<div class="line"></div>
+	<div class="line"><span class="vhdllogic">// pdf 포맷으로 내보내기</span></div>
+	<div class="line">rMateChartH5.downloadToLocal("rMateChartH5", "pdf",</div>
+	<div class="line">  "http://demo.riamore.net/chartTest/snapshotSample/downloadLocal.jsp",</div>
+	<div class="line">  function() {</div>
+	<div class="line">    return document.getElementById("chart1").getSnapshot("jpeg");</div>
+	<div class="line">  },</div>
+	<div class="line">  (function(){</div>
+	<div class="line">    var holder = document.getElementById("chartHolder"),</div>
+	<div class="line">    width = holder.offsetWidth, height = holder.offsetHeight;</div>
+	<div class="line">    return {portrait : width < height, size : {width : width, height : height}</div>
+	<div class="line">  };</div>
+	<div class="line">})());</div>
+</div>
+
+						<h3><a class="anchor" id="서버에내보내기"></a>서버에 내보내기</h3>
+						<p>화면에 표현된 차트를 서버에 내보내기 하는 방식은 차트의 getSnapshot() 함수를 호출하여 차트 이미지를 base64 형태로 인코딩한 데이터를 서버로 전송(submit)한 후,
+							서버 스크립트를 통해서 처리하는 방식입니다. 이러한 작업은 서버를 통한 배치(batch) 작업이 필요한 경우 유용하게 활용될 수 있습니다.
+							다음은 차트를 서버에 내보내기 하는 기능에 대한 예제입니다.
+							예제에서 사용된 서버 스크립트(getImageSnapshot.jsp) 파일은 제품의 Samples\SnapshotServerSamples 디렉토리에서 찾으실 수 있습니다.</p>
+
+<div class="fragment">
+	<div class="line">function GetSnapshot() {</div>
+	<div class="line">  var base64src = document.getElementById("chart1").<span class="vhdllogic">getSnapshot()</span>;</div>
+	<div class="line">  var data = document.getElementById("data");</div>
+	<div class="line">  var extension = document.getElementById("extension");</div>
+	<div class="line">  extension.value = "png";</div>
+	<div class="line">  data.value = base64src;</div>
+	<div class="line">  document.getElementById("sumForm").submit();</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">&lt;form id="sumForm" name="sumForm" action="http://demo.riamore.net/chartTest/snapshotSample/<span class="vhdllogic">getImageSnapshot.php</span>" method="post"&gt;</div>
+	<div class="line">  &lt;input type="hidden" id="data" name="data" type="text"/&gt;</div>
+	<div class="line">  &lt;input type="hidden" id="extension" name="extension" value="png"/&gt;</div>
+	<div class="line">&lt;/form&gt;</div>
+</div>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

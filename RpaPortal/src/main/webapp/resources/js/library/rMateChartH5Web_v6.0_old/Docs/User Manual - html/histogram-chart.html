@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 히스토그램 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('histogram-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#히스토그램차트">히스토그램 차트</a>
+							<li class="level3"><a href="#히스토그램차트에분포선표시">히스토그램 차트에 분포선 표시</a></li>
+							<li class="level3"><a href="#히스토그램차트에상대분포표시">히스토그램 차트에 상대분포 표시</a></li>
+							<li class="level3"><a href="#3d히스토그램차트">3D 히스토그램 차트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="히스토그램차트"></a>히스토그램 차트</h2>
+			<p>히스토그램 차트는 <a href="column-chart.html">컬럼 차트</a>와 아주 유사하지만 <a href="column-chart.html">컬럼 차트</a>와 다른 점은 수평축 상의 연속적인 구간(bin)들에 대한 측정값이 수직 막대로 표현된다는 것입니다.
+				이와는 다르게 <a href="column-chart.html">컬럼 차트</a>에서는 비연속적인 카테고리 데이터에 대한 측정값이 세로 막대로 표현됩니다.
+				그리고 일반적으로 <a href="column-chart.html">컬럼 차트</a>에서는 이웃한 수직 막대 사이에 간격을 두지만 히스토그램 차트는 수직 막대들 사이의  간격을 두지않고 연속적으로 표현합니다.
+				히스토그램 차트는 <a href="../api/Histogram2DChart.html" target="_blank">&lt;Histogram2DChart&gt;</a> 노드의 series 속성값에 <a href="../api/Histogram2DSeries.html" target="_blank">&lt;Histogram2DSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				그리고 수평축의 생성을 위해서 &lt;horizontalAxis&gt; 속성에 <a href="../api/HistogramCategoryAxis.html" target="_blank">&lt;HistogramCategoryAxis&gt;</a> 노드를 설정해야 하며,
+				축의 스타일링은 <a href="../api/HistogramAxis2DRenderer.html" target="_blank">&lt;HistogramAxis2DRenderer&gt;</a> 노드를 &lt;horizontalAxisRenderers&gt; 속성에 정의하여 할 수 있습니다.</p>
+
+			<p>다음은 특정 학급의 성적 분포를 히스토그램 차트로 표현하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;<span class="vhdllogic">Histogram2DChart</span> showDataTips="true" binRange="[270,280,290,300,310,320,330,340,350,360,370,380]"&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;HistogramCategoryAxis id="hAxis" categoryField="histogramXField"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;horizontalAxisRenderers&gt;</div>
+	<div class="line">    &lt;HistogramAxis2DRenderer axis="{hAxis}"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxisRenderers&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;<span class="vhdllogic">Histogram2DSeries</span> labelPosition="inside" yField="grade" displayName="Number of Persons" itemRenderer="BoxItemRenderer" labelAlign="bottom" insideLabelYOffset="-6" color="#ffffff"&gt;</div>
+	<div class="line">      &lt;fills&gt;</div>
+	<div class="line">        &lt;SolidColor color="#3d3c80"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#5587a2"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#1a9bae"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#3dbab4"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#8cd2d0"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#72a34a"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#93ce94"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#a09f20"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#cfb81d"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#f2c454"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#fca148"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#f36f40"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#d84f2b"/&gt;</div>
+	<div class="line">      &lt;/fills&gt;</div>
+	<div class="line">    &lt;/<span class="vhdllogic">Histogram2DSeries</span>&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/<span class="vhdllogic">Histogram2DChart</span>&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="QxwgEJ" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 히스토그램 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/QxwgEJ/">알메이트 차트 - 히스토그램 차트</a></p>-->
+			<img class="capture" src="images/demo/히스토그램-차트.jpg" alt="히스토그램 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/QxwgEJ/" target="_blank">알메이트 차트 - 히스토그램 차트</a></p>
+
+			<p>히스토그램 차트의 수평축에 표시되는 구간(bin)은 <a href="../api/Histogram2DChart.html" target="_blank">&lt;Histogram2DChart&gt;</a> 노드의 binRange 속성에 지정합니다.
+				차트에 적용되는 데이터들은 각 구간에 자동으로 합산되며, 구간을 초과하는 데이터는 additionalBinRange 속성(기본값: <prop>“more”</prop>)에 정의된 명칭의 구간에 합산됩니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">binRange</td>
+					<td align="center"><p>숫자 배열</p>
+						<p>기본값: [0,20,40,60,80,100]</p>
+					</td>
+					<td align="left">
+						<p>구간을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">additionalBinRange</td>
+					<td align="center"><p>텍스트</p>
+						<p>기본값: more</p>
+					</td>
+					<td align="left">
+						<p>binRange 속성에 설정된 값을 초과하는 구간에 대한 명칭을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<h3><a class="anchor" id="히스토그램차트에분포선표시"></a>히스토그램 차트에 분포선 표시</h3>
+			<p>히스토그램 차트에 분포선은 <a href="../api/Histogram2DChart.html" target="_blank">&lt;Histogram2DChart&gt;</a> 노드에 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드를 정의하여 표현합니다.
+				이 때 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드의 yField 속성에는 <a href="../api/Histogram2DSeries.html" target="_blank">&lt;Histogram2DSeries&gt;</a> 노드에 정의된 yField 속성값과 동일한 값을 지정합니다.
+				다음은 분포선을 표시하기 위해서 yField 속성을 점수 필드명(grade)으로 지정한 코드와 이를 적용적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Histogram2DChart showDataTips="true" binRange="[270,280,290,300,310,320,330,340,350,360,370]"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;<span class="vhdllogic">Histogram2DSeries</span> labelPosition="inside" yField="grade" displayName="Number of Persons" itemRenderer="BoxItemRenderer" labelAlign="bottom" insideLabelYOffset="-6" color="#ffffff"&gt;</div>
+	<div class="line">      &lt;fill&gt;</div>
+	<div class="line">        &lt;SolidColor color="#5587a2"/&gt;</div>
+	<div class="line">      &lt;/fill&gt;</div>
+	<div class="line">    &lt;/<span class="vhdllogic">Histogram2DSeries</span>&gt;</div>
+	<div class="line">    &lt;<span class="vhdllogic">Line2DSeries</span> yField="grade"&gt;</div>
+	<div class="line">      &lt;lineStroke&gt;</div>
+	<div class="line">        &lt;Stroke weight="3" color="#21cbc0"/&gt;</div>
+	<div class="line">      &lt;/lineStroke&gt;</div>
+	<div class="line">    &lt;/<span class="vhdllogic">Line2DSeries</span>&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Histogram2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="MXYobd" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 히스토그램 차트에 분포선 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/MXYobd/">알메이트 차트 - 히스토그램 차트에 분포선 표시</a></p>-->
+			<img class="capture" src="images/demo/히스토그램-차트에-분포선-표시.jpg" alt="히스토그램 차트에 분포선 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/MXYobd/" target="_blank">알메이트 차트 - 히스토그램 차트에 분포선 표시</a></p>
+
+			<h3><a class="anchor" id="히스토그램차트에상대분포표시"></a>히스토그램 차트에 상대분포 표시</h3>
+			<p>히스토그램 차트의 상대분포는 특정 구간(bin)에 합산된 데이터 개수를 전체 데이터 개수로 나눈 값입니다.
+				상대분포 선은 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드의 yField 속성에 <prop>“relativeFrequency”</prop> 를 지정하고 상대분포 값을 위한 세로 축은 차트의 오른쪽에 표시합니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				이 예제에서는 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드의 &lt;verticalAxis&gt; 속성에 <a href="../api/LinearAxis.html" target="_blank">&lt;LinearAxis&gt;</a> 노드를 정의하여 차트의 오른쪽에 상대분포 값을 위한 축을 표시하였습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Histogram2DChart showDataTips="true" binRange="[270,280,290,300,310,320,330,340,350,360,370]"&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;LinearAxis id="vAxis1" title="( Person )"/&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;HistogramCategoryAxis id="hAxis" categoryField="histogramXField"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;horizontalAxisRenderers&gt;</div>
+	<div class="line">    &lt;HistogramAxis2DRenderer axis="{hAxis}" showLine="false"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxisRenderers&gt;</div>
+	<div class="line">  &lt;<span class="vhdllogic">verticalAxisRenderers</span>&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{vAxis1}" placement="left" verticalAxisTitleAlignment="vertical" axisTitleStyleName="titleStyle"&gt;</div>
+	<div class="line">      &lt;axisStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#56a1bf" weight="4"/&gt;</div>
+	<div class="line">      &lt;/axisStroke&gt;</div>
+	<div class="line">    &lt;/Axis2DRenderer&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{vAxis2}" placement="right" axisTitleStyleName="titleStyle"&gt;</div>
+	<div class="line">      &lt;axisStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#2C78B6" weight="4"/&gt;</div>
+	<div class="line">      &lt;/axisStroke&gt;</div>
+	<div class="line">    &lt;/Axis2DRenderer&gt;</div>
+	<div class="line">  &lt;/<span class="vhdllogic">verticalAxisRenderers</span>&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Histogram2DSeries formatter="{nft}" labelPosition="inside" yField="grade" displayName="Number of Persons" itemRenderer="BoxItemRenderer" labelAlign="bottom" insideLabelYOffset="-10" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Histogram2DSeries&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="<span class="vhdllogic">relativeFrequency</span>"&gt;</div>
+	<div class="line">      &lt;lineStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#f4a44f" weight="3"/&gt;</div>
+	<div class="line">      &lt;/lineStroke&gt;</div>
+	<div class="line">      &lt;verticalAxis&gt;</div>
+	<div class="line">        &lt;LinearAxis id="vAxis2" title="Relative Frequency"/&gt;</div>
+	<div class="line">      &lt;/verticalAxis&gt;</div>
+	<div class="line">    &lt;/Line2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Histogram2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="RJNgpL" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 히스토그램 차트에 상대분포 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/RJNgpL/">알메이트 차트 - 히스토그램 차트에 상대분포 표시</a></p>-->
+			<img class="capture" src="images/demo/히스토그램-차트에-상대분포-표시.jpg" alt="히스토그램 차트에 상대분포 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/RJNgpL/" target="_blank">알메이트 차트 - 히스토그램 차트에 상대분포 표시</a></p>
+
+			<h3><a class="anchor" id="3d히스토그램차트"></a>3D 히스토그램 차트</h3>
+			<p>3D 히스토그램 차트는 <a href="../api/Histogram3DChart.html" target="_blank">&lt;Histogram3DChart&gt;</a> 노드의 series 속성값에 <a href="../api/Histogram3DSeries.html" target="_blank">&lt;Histogram3DSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Histogram<span class="vhdllogic">3D</span>Chart selectionMode="none" showDataTips="true" binRange="[64,66,68,70,72,74,76,78,80,82]"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Histogram3DSeries labelPosition="inside" yField="height" displayName="Inches" color="#ffffff"&gt;</div>
+	<div class="line">      &lt;fills&gt;</div>
+	<div class="line">        &lt;SolidColor color="#3d3c80"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#5587a2"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#1a9bae"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#3dbab4"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#8cd2d0"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#72a34a"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#93ce94"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#a09f20"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#cfb81d"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#f2c454"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#fca148"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#f36f40"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#d84f2b"/&gt;</div>
+	<div class="line">      &lt;/fills&gt;</div>
+	<div class="line">    &lt;/Histogram3DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Histogram<span class="vhdllogic">3D</span>Chart&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="mKywwp" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 3D 히스토그램 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/mKywwp/">알메이트 차트 - 3D 히스토그램 차트</a></p>-->
+			<img class="capture" src="images/demo/3D-히스토그램-차트.jpg" alt="3D 히스토그램 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/mKywwp/" target="_blank">알메이트 차트 - 3D 히스토그램 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

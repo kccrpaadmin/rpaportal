@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 포맷터 사용하기</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('using-formatter.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="고급사용자를위한기능">고급 사용자를 위한 기능</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#고급사용자를위한기능">고급 사용자를 위한 기능</a>
+						<li class="level2"><a href="#포맷터사용하기">포맷터 사용하기</a>
+							<li class="level3"><a href="#통화포맷터">통화 포맷터</a></li>
+							<li class="level3"><a href="#날짜포맷터">날짜 포맷터</a></li>
+							<li class="level3"><a href="#숫자포맷터">숫자 포맷터</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="포맷터사용하기"></a>포맷터 사용하기</h2>
+			<p>알메이트 차트는 통화(<a href="../api/CurrencyFormatter.html" target="_blank">&lt;CurrencyFormatter&gt;</a> 노드),
+				날짜(<a href="../api/DateFormatter.html" target="_blank">&lt;DateFormatter&gt;</a> 노드) 그리고 숫자(<a href="../api/NumberFormatter.html" target="_blank">&lt;NumberFormatter&gt;</a> 노드)에 대한 포맷을 사용자가 원하는 형태로 표시할 수 있도록 설정하는 기능을 제공합니다.
+				포맷터 노드를 <a href="../api/rMateChart.html" target="_blank">&lt;rMateChart&gt;</a> 노드의 자식 노드로 정의하고 포맷터 노드의 id 속성값을 지정한 후, 포맷터의 적용이 필요한 노드(예, 숫자 축의 레이블에 포맷터를 적용한다면 <a href="../api/LinearAxis.html" target="_blank">&lt;LinearAxis&gt;</a> 노드)의 formatter 속성에 포맷터 노드의 id 속성값을 지정하여 포맷터를 적용할 수 있습니다.</p>
+
+			<h3><a class="anchor" id="통화포맷터"></a>통화 포맷터</h3>
+			<p>통화 포맷터(<a href="../api/CurrencyFormatter.html" target="_blank">&lt;CurrencyFormatter&gt;</a> 노드)를 통해서 사용자가 원하는 형태의 통화 표시를 할 수 있습니다.
+				다음 표는 <a href="../api/CurrencyFormatter.html" target="_blank">&lt;CurrencyFormatter&gt;</a> 노드의 주요 속성에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">alignSymbol</td>
+					<td align="center"><p>left(*), right</p>
+					</td>
+					<td align="left"><p>currencySymbol 속성에 지정된 통화 기호를 숫자를 기준으로 어디에 표시할지를 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">currencySymbol</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left"><p>통화 기호를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">decimalSeparatorTo</td>
+					<td align="center"><p>텍스트</p>
+						<p>기본값: dot (.)</p>
+					</td>
+					<td align="left"><p>소수점 구분 기호를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">id</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left"><p><a href="../api/CurrencyFormatter.html" target="_blank">&lt;CurrencyFormatter&gt;</a> 노드의 식별자를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">precision</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: -1</p>
+					</td>
+					<td align="left"><p>소수점 구분 기호의 오른쪽에 표시될 숫자의 최대 자리수를 설정합니다.</p>
+						<p>-1: 표시 가능한 모든 소수점이하 숫자를 표시합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">rounding</td>
+					<td align="center"><p>down, up, nearest, none(*)</p>
+					</td>
+					<td align="left"><p>반올림 방법을 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">thousandsSeparatorTo</td>
+					<td align="center"><p>텍스트</p>
+						<p>기본값: comma (,)</p>
+					</td>
+					<td align="left"><p>천단위 구분자를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">useNegativeSign</td>
+					<td align="center"><p>true(*), false</p>
+					</td>
+					<td align="left"><p>음수 표시를 위해서 마이너스 기호(-)를 표시할지 여부를 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">useThousandsSeparator</td>
+					<td align="center"><p>true(*), false</p>
+					</td>
+					<td align="left"><p>천단위 구분자를 표시할지 여부를 설정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 세로 축(Y 축)의 레이블에 통화 포맷터를 적용한 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;CurrencyFormatter id="<span class="vhdllogic">fmt</span>" currencySymbol="￥" alignSymbol="left"/&gt;</div>
+	<div class="line">...</div>
+	<div class="line">&lt;verticalAxis&gt;</div>
+	<div class="line">  &lt;LinearAxis id="vAxis" interval="500" formatter="{<span class="vhdllogic">fmt</span>}"/&gt;</div>
+	<div class="line">&lt;/verticalAxis&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="qKdqzW" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 세로 축(Y 축)의 레이블에 통화 포맷터 적용" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/qKdqzW/">알메이트 차트 - 세로 축(Y 축)의 레이블에 통화 포맷터 적용</a></p>-->
+			<img class="capture" src="images/demo/세로축의-레이블에-통화-포맷터-적용.jpg" alt="세로 축(Y 축)의 레이블에 통화 포맷터 적용" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/qKdqzW/" target="_blank">알메이트 차트 - 세로 축(Y 축)의 레이블에 통화 포맷터 적용</a></p>
+
+			<h3><a class="anchor" id="날짜포맷터"></a>날짜 포맷터</h3>
+			<p>날짜 포맷터(<a href="../api/DateFormatter.html" target="_blank">&lt;DateFormatter&gt;</a> 노드)를 통해서 사용자가 원하는 형태의 날짜 표시를 할 수 있습니다.
+				다음 표는 <a href="../api/DateFormatter.html" target="_blank">&lt;DateFormatter&gt;</a> 노드의 주요 속성에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">formatString</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left"><p>표시할 날짜 형식을 설정합니다.</p>
+						<p>
+							<table>
+								<tr>
+									<td>Y</td>
+									<td>연(Year)</td>
+									<td>YY=05, YYYY=2005</td>
+								</tr>
+								<tr>
+									<td>M</td>
+									<td>월(Month)</td>
+									<td>M=7, MM=07, MMM=Jul</td>
+								</tr>
+								<tr>
+									<td>D</td>
+									<td>일(Day)</td>
+									<td>D=4, DD=05</td>
+								</tr>
+								<tr>
+									<td>H</td>
+									<td>시(Hour)</td>
+									<td>H=1, HH=01</td>
+								</tr>
+								<tr>
+									<td>N</td>
+									<td>분(Minute)</td>
+									<td>N=1, NN=01</td>
+								</tr>
+								<tr>
+									<td>S</td>
+									<td>초(Second)</td>
+									<td>SS=30</td>
+								</tr>
+							</table>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">id</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left"><p><a href="../api/DateFormatter.html" target="_blank">&lt;DateFormatter&gt;</a> 노드의 식별자를 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 가로 축(X 축)의 레이블에 날짜 포맷터를 적용한 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;DateFormatter id="<span class="vhdllogic">dateFmt</span>" formatString="YYYY-MM-DD"/&gt;</div>
+	<div class="line">...</div>
+	<div class="line">&lt;horizontalAxis&gt;</div>
+	<div class="line">  &lt;DateTimeAxis id="hAxis" formatter="{<span class="vhdllogic">dateFmt</span>}" dataUnits="days" labelUnits="days" interval="4" alignLabelsToUnits="false" displayLocalTime="true"/&gt;</div>
+	<div class="line">&lt;/horizontalAxis&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="xzGgKv" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 가로 축(X 축)의 레이블에 날짜 포맷터 적용" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/xzGgKv/">알메이트 차트 - 가로 축(X 축)의 레이블에 날짜 포맷터 적용</a></p>-->
+			<img class="capture" src="images/demo/가로축의-레이블에-날짜-포맷터-적용.jpg" alt="가로 축(X 축)의 레이블에 날짜 포맷터 적용" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/xzGgKv/" target="_blank">알메이트 차트 - 가로 축(X 축)의 레이블에 날짜 포맷터 적용</a></p>
+
+			<h3><a class="anchor" id="숫자포맷터"></a>숫자 포맷터</h3>
+			<p>숫자 포맷터(<a href="../api/NumberFormatter.html" target="_blank">&lt;NumberFormatter&gt;</a> 노드)를 통해서 사용자가 원하는 형태의 숫자 표시를 할 수 있습니다.
+				다음 표는 <a href="../api/NumberFormatter.html" target="_blank">&lt;NumberFormatter&gt;</a> 노드의 주요 속성에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">decimalSeparatorTo</td>
+					<td align="center"><p>텍스트</p>
+						<p>기본값: dot (.)</p>
+					</td>
+					<td align="left"><p>소수점 구분 기호를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">id</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left"><p><a href="../api/NumberFormatter.html" target="_blank">&lt;NumberFormatter&gt;</a> 노드의 식별자를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">precision</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: -1</p>
+					</td>
+					<td align="left"><p>소수점 구분 기호의 오른쪽에 표시될 숫자의 최대 자리수를 설정합니다.</p>
+						<p>-1: 표시 가능한 모든 소수점이하 숫자를 표시합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">rounding</td>
+					<td align="center"><p>down, up, nearest, none(*)</p>
+					</td>
+					<td align="left"><p>반올림 방법을 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">thousandsSeparatorTo</td>
+					<td align="center"><p>텍스트</p>
+						<p>기본값: comma (,)</p>
+					</td>
+					<td align="left"><p>천단위 구분자를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">useNegativeSign</td>
+					<td align="center"><p>true(*), false</p>
+					</td>
+					<td align="left"><p>음수 표시를 위해서 마이너스 기호(-)를 표시할지 여부를 설정합니다. </p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">useThousandsSeparator</td>
+					<td align="center"><p>true(*), false</p>
+					</td>
+					<td align="left"><p>천단위 구분자를 표시할지 여부를 설정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 세로 축(Y 축)의 레이블에 천단위 구분자를 표시하기 위해서 숫자 포맷터를 적용한 예제입니다.</p>
+
+			<div class="fragment">
+				<div class="line">&lt;NumberFormatter id="<span class="vhdllogic">numfmt</span>" useThousandsSeparator="true"/&gt;</div>
+				<div class="line">...</div>
+				<div class="line">&lt;verticalAxis&gt;</div>
+				<div class="line">  &lt;LinearAxis interval="500" formatter="{<span class="vhdllogic">numfmt</span>}"/&gt;</div>
+				<div class="line">&lt;/verticalAxis&gt;</div>
+			</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="gKpgbW" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 세로 축(Y 축)의 레이블에 천단위 구분자 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/gKpgbW/">알메이트 차트 - 세로 축(Y 축)의 레이블에 천단위 구분자 표시</a></p>-->
+			<img class="capture" src="images/demo/세로축의-레이블에-천단위-구분자-표시.jpg" alt="세로 축(Y 축)의 레이블에 천단위 구분자 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/gKpgbW/" target="_blank">알메이트 차트 - 세로 축(Y 축)의 레이블에 천단위 구분자 표시</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

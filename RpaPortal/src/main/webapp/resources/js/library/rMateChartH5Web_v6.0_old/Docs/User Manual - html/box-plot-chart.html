@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 박스 플롯 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('box-plot-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#박스플롯차트">박스 플롯 차트</a>
+							<li class="level3"><a href="#다중시리즈박스플롯차트">다중 시리즈 박스 플롯 차트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="박스플롯차트"></a>박스 플롯 차트</h2>
+			<p>박스 플롯 차트는 데이터의 분포를 표현하는 데 유용한 차트 유형이며, 백분위 수 (percentile)의 1사분위(하위 25% 이하, first quartile), 2사분위(하위 25% ~  50%, second quartile), 3사분위(50% ~ 상위 25%, third quartile), 4사분위(상위 25% 이내, fourth quartile)의 값을 박스와 선으로 표현합니다. 아래 그림은 박스 플롯을 가로 모양으로 표현한 것입니다.</p>
+
+			<img src="./images/box-plot.png" alt="Box Plot">
+
+			<p><a href="error-bar-chart.html">에러바 차트</a>와 마찬가지로 박스 플롯 차트의 값에 해당하는 필드의 형식은 배열이어야 합니다.</p>
+
+<div class="fragment">
+	<div class="line">var chartData = [{</div>
+	<div class="line">  "tier" : "Bronze",</div>
+	<div class="line">  "population" : [2500,4500,3000,3500,4000]</div>
+	<div class="line">},{</div>
+	<div class="line">  "tier" : "Silver",</div>
+	<div class="line">  "population" : [2600,4200,1300,3200,4200]</div>
+	<div class="line">},{</div>
+	<div class="line">  ...</div>
+	<div class="line">}];</div>
+</div>
+
+			<p>박스 플롯 차트는 <a href="../api/BoxPlotChart.html" target="_blank">&lt;BoxPlotChart&gt;</a> 노드의 series 속성값에 <a href="../api/BoxPlotSeries.html" target="_blank">&lt;BoxPlotSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				다음은 <a href="../api/BoxPlotSeries.html" target="_blank">&lt;BoxPlotSeries&gt;</a> 노드의 주요 속성에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">boxStroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>박스 선의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">halfWidthOffset</td>
+					<td align="center"><p>숫자</p>
+					</td>
+					<td align="left">
+						<p>다중 데이터 시리즈일 경우, 이웃하는 박스 사이의 공간을 픽셀값으로 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">maxColumnWidth</td>
+					<td align="center"><p>숫자</p>
+					</td>
+					<td align="left">
+						<p>박스의 최대 넓이를 픽셀값으로 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">medianStroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>미디언 값(50%)을 표현하는선의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">medianStroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>선의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">whiskerWidthRatio</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 0.5</p>
+					</td>
+					<td align="left">
+						<p>수염(whisker)의 가로 크기를 박스의 가로 크기에 대한 비율로 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 박스 플롯 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;BoxPlotChart showDataTips="true" dataTipFormatter="{nft}" columnWidthRatio="0.52"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;BoxPlotSeries yField="population" displayName="Number of Users"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/BoxPlotSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/BoxPlotChart&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="KewvPw" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 박스 플롯 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/KewvPw/">알메이트 차트 - 박스 플롯 차트</a></p>-->
+			<img class="capture" src="images/demo/박스-플롯-차트.jpg" alt="박스 플롯 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/KewvPw/" target="_blank">알메이트 차트 - 박스 플롯 차트</a></p>
+
+			<h3><a class="anchor" id="다중시리즈박스플롯차트"></a>다중 시리즈 박스 플롯 차트</h3>
+			<p>다음은 두 개의 박스 플롯 데이터 시리즈를 표현하는 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;BoxPlotChart showDataTips="true" dataTipFormatter="{nft}" columnWidthRatio="0.42"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;BoxPlotSeries yField="Drug1" displayName="Drug - 1"&gt;</div>
+	<div class="line">      &lt;medianStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#c7111e" weight="1"/&gt;</div>
+	<div class="line">      &lt;/medianStroke&gt;</div>
+	<div class="line">      &lt;stroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#555555"/&gt;</div>
+	<div class="line">      &lt;/stroke&gt;</div>
+	<div class="line">      &lt;boxStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#e14159" weight="1"/&gt;</div>
+	<div class="line">      &lt;/boxStroke&gt;</div>
+	<div class="line">    &lt;/BoxPlotSeries&gt;</div>
+	<div class="line">    &lt;BoxPlotSeries yField="Drug2" displayName="Drug - 2"&gt;</div>
+	<div class="line">      &lt;medianStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#aa7855" weight="1"/&gt;</div>
+	<div class="line">      &lt;/medianStroke&gt;</div>
+	<div class="line">      &lt;stroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#555555"/&gt;</div>
+	<div class="line">      &lt;/stroke&gt;</div>
+	<div class="line">      &lt;boxStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#d1af94" weight="1"/&gt;</div>
+	<div class="line">      &lt;/boxStroke&gt;</div>
+	<div class="line">    &lt;/BoxPlotSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/BoxPlotChart&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="zaxPqY" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다중 시리즈 박스 플롯 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/zaxPqY/">알메이트 차트 - 다중 시리즈 박스 플롯 차트</a></p>-->
+			<img class="capture" src="images/demo/다중-시리즈-박스-플롯-차트.jpg" alt="다중 시리즈 박스 플롯 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/zaxPqY/" target="_blank">알메이트 차트 - 다중 시리즈 박스 플롯 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

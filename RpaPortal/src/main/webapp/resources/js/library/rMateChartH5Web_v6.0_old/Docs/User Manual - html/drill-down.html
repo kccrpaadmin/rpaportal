@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 드릴 다운</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('drill-down.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="고급사용자를위한기능">고급 사용자를 위한 기능</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#고급사용자를위한기능">고급 사용자를 위한 기능</a>
+						<li class="level2"><a href="#드릴다운">드릴 다운</a></li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="드릴다운"></a>드릴 다운</h2>
+			<p>알메이트 차트는 차트에 표현된 데이터를 더 자세히 분석할 수 있는 드릴 다운 기능을 제공합니다.
+				예를 들어, 연도별 이익을 표현하는 차트에서 특정한 연도를 클릭하면 클릭된 연도의 월별 이익 현황을 볼 수 있고, 또한 특정 월을 클릭하면 해당 월의 요일별 이익 현황을 볼 수 있는 기능과 같은 것입니다.
+				드릴 다운 기능은 차트 레벨 노드(예, <a href="../api/Column2DChart.html" target="_blank">&lt;Column2DChart&gt;</a> 노드)의 itemClickJsFunction 속성에 드릴 다운 기능을 수행하는 자바스크립트 함수를 지정함으로써 가능합니다.
+				자바스크립트 함수에서는 드릴 다운시 보여줄 데이터셋을 설정하고 알메이트 차트가 제공하는 API 함수, setDataDrilldown() 를 호출하여야 합니다.</p>
+
+			<p>다음은 연도별 이익을 표현하는 <a href="column-chart.html">컬럼 차트</a>에 드릴 다운 기능을 구현한 예제입니다.
+				컬럼을 클릭하면 클릭된 컬럼의 월별, 요일별 자료로 드릴 다운이 실행됩니다.
+				드릴 다운이 실행된 상태에서 이전 데이터로 되돌아가기 위해서는 차트의 좌측 상단에 표시되는 Reset 버튼(초기 상태로 돌아 감) 혹은 Back 버튼(바로 전 상태로 돌아 감)을 클릭합니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DChart showDataTips="true" itemClickJsFunction="<span class="vhdllogic">itemClick</span>" maxColumnWidth="15" buttonMode="true"&gt;</div>
+	<div class="line">...</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">itemClick</span>(seriesId, displayText, index, data, values) {</div>
+	<div class="line">  var data, depth;</div>
+	<div class="line"></div>
+	<div class="line">  depth = document.getElementById("chart1").getDrillDownDepth();</div>
+	<div class="line"></div>
+	<div class="line">  if(depth == 2){</div>
+	<div class="line">    alert("No data has been found.");</div>
+	<div class="line">    return;</div>
+	<div class="line">  }</div>
+	<div class="line"></div>
+	<div class="line">  document.getElementById("chart1").setDataDrilldown(makeData(depth));</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">function makeData (depth) {</div>
+	<div class="line">  var i = 0, n, arr = [], obj,</div>
+	<div class="line">  categoryDatas = [</div>
+	<div class="line">    ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],</div>
+	<div class="line">    ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]</div>
+	<div class="line">  ];</div>
+	<div class="line"></div>
+	<div class="line">  n = categoryDatas[depth].length;</div>
+	<div class="line"></div>
+	<div class="line">  for(i ; i &lt; n ; i += 1){</div>
+	<div class="line">    obj = {};</div>
+	<div class="line">    obj.Month = categoryDatas[depth][i];</div>
+	<div class="line">    obj.Profit = Math.round(Math.random() * 1500);</div>
+	<div class="line">    arr.push(obj);</div>
+	<div class="line">  }</div>
+	<div class="line">  return arr;</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="JZdEYj" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 컬럼 차트에서 드릴 다운 기능" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/JZdEYj/">알메이트 차트 - 컬럼 차트에서 드릴 다운 기능</a></p>-->
+			<img class="capture" src="images/demo/컬럼-차트에서-드릴-다운-기능.jpg" alt="컬럼 차트에서 드릴 다운 기능" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/JZdEYj/" target="_blank">알메이트 차트 - 컬럼 차트에서 드릴 다운 기능</a></p>
+
+			<p>다음은 연도별 이익을 표현하는 <a href="pie-chart.html">파이 차트</a>에 드릴 다운 기능을 구현한 예제입니다.
+				파이 조각을 클릭하면 클릭된 조각의 월별, 요일별 자료로 드릴 다운이 실행됩니다.
+				드릴 다운이 실행된 상태에서 이전 데이터로 되돌아가기 위해서는 차트의 좌측 상단에 표시되는 Reset 버튼(초기 상태로 돌아 감) 혹은 Back 버튼(바로 전 상태로 돌아 감)을 클릭합니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Pie2DChart showDataTips="true" itemClickJsFunction="<span class="vhdllogic">itemClick</span>" buttonMode="true" explodable="false"&gt;</div>
+	<div class="line">...</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">itemClick</span>(seriesId, displayText, index, data, values) {</div>
+	<div class="line">  var data, depth;</div>
+	<div class="line"></div>
+	<div class="line">  depth = document.getElementById("chart1").getDrillDownDepth();</div>
+	<div class="line"></div>
+	<div class="line">  if(depth == 2){</div>
+	<div class="line">    alert("No data has been found.");</div>
+	<div class="line">    return;</div>
+	<div class="line">  }</div>
+	<div class="line"></div>
+	<div class="line">  document.getElementById("chart1").setDataDrilldown(makeData(depth));</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">function makeData (depth) {</div>
+	<div class="line">  var i = 0, n, arr = [], obj,</div>
+	<div class="line">  categoryDatas = [</div>
+	<div class="line">    ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],</div>
+	<div class="line">    ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]</div>
+	<div class="line">  ];</div>
+	<div class="line"></div>
+	<div class="line">  n = categoryDatas[depth].length;</div>
+	<div class="line"></div>
+	<div class="line">  for(i ; i &lt; n ; i += 1){</div>
+	<div class="line">    obj = {};</div>
+	<div class="line">    obj.Month = categoryDatas[depth][i];</div>
+	<div class="line">    obj.Profit = Math.round(Math.random() * 1500);</div>
+	<div class="line">    arr.push(obj);</div>
+	<div class="line">  }</div>
+	<div class="line">  return arr;</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="ERjZPq" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 파이 차트에서 드릴 다운 기능" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/ERjZPq/">알메이트 차트 - 파이 차트에서 드릴 다운 기능</a></p>-->
+			<img class="capture" src="images/demo/파이-차트에서-드릴-다운-기능.jpg" alt="파이 차트에서 드릴 다운 기능<" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/ERjZPq/" target="_blank">알메이트 차트 - 파이 차트에서 드릴 다운 기능</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

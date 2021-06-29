@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 범위 지정하기</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('range.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트구성요소">차트 구성 요소</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트구성요소">차트 구성 요소</a>
+						<li class="level2"><a href="#범위지정하기">범위 지정하기</a></li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="범위지정하기"></a>범위 지정하기</h2>
+			<p>차트의 배경에 범위(영역)를 표시할 수 있습니다.
+				이러한 작업은 &lt;backgroundElements&gt; 속성에 <a href="../api/AxisMarker.html" target="_blank">&lt;AxisMarker&gt;</a> 노드를 정의하고,
+				<a href="../api/AxisMarker.html" target="_blank">&lt;AxisMarker&gt;</a> 노드의 &lt;ranges&gt; 속성에 <a href="../api/AxisRange.html" target="_blank">&lt;AxisRange&gt;</a> 노드를 설정함으로써 가능합니다.
+				다음은 <a href="../api/AxisRange.html" target="_blank">&lt;AxisRange&gt;</a> 노드의 주요 속성들을 설명한 표입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">endValue</td>
+					<td align="center"><p>숫자</p>
+					</td>
+					<td align="left">
+						<p>범위(영역)가 끝나는 지점의 값을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">fill</td>
+					<td align="center"><p><a href="../api/LinearGradient.html" target="_blank">&lt;LinearGradient&gt;</a>, <a href="../api/RadialGradient.html" target="_blank">&lt;RadialGradient&gt;</a>, <a href="../api/SolidColor.html" target="_blank">&lt;SolidColor&gt;</a> </p>
+					</td>
+					<td align="left">
+						<p>범위(영역)의 공간에 칠할 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">fill</td>
+					<td align="center"><p>true(*), false</p>
+					</td>
+					<td align="left">
+						<p>표시되는범위(영역)가 수평 범위(영역)인지 여부를 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">label</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left">
+						<p>범위(영역)에 표시될 레이블을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">labelHorizontalAlign</td>
+					<td align="center"><p>center(*), left, right</p>
+					</td>
+					<td align="left">
+						<p>레이블의 수평 정렬을 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">labelVerticalAlign</td>
+					<td align="center"><p>bottom, middle(*), top</p>
+					</td>
+					<td align="left">
+						<p>레이블의 수직 정렬을 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">startValue</td>
+					<td align="center"><p>숫자</p>
+					</td>
+					<td align="left">
+						<p>범위(영역)가 시작되는 지점의 값을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 차트에 범위를 지정하고 지정된 범위의 좌측에 레이블을 표시하는 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;backgroundElements&gt;</div>
+	<div class="line">  &lt;GridLines/&gt;</div>
+	<div class="line">  &lt;AxisMarker&gt;</div>
+	<div class="line">    &lt;ranges&gt;</div>
+	<div class="line">      &lt;AxisRange startValue="1600" endValue="2800" label="Area" labelHorizontalAlign="left" color="#EA594E"&gt;</div>
+	<div class="line">        &lt;fill&gt;</div>
+	<div class="line">          &lt;SolidColor color="#e5f6fe" alpha="0.6"/&gt;</div>
+	<div class="line">        &lt;/fill&gt;</div>
+	<div class="line">      &lt;/AxisRange&gt;</div>
+	<div class="line">    &lt;/ranges&gt;</div>
+	<div class="line">  &lt;/AxisMarker&gt;</div>
+	<div class="line">&lt;/backgroundElements&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="yEBqrV" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 차트에 범위 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/yEBqrV/">알메이트 차트 - 차트에 범위 표시</a></p>-->
+			<img class="capture" src="images/demo/차트에-범위-표시.jpg" alt="차트에 범위 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/yEBqrV/" target="_blank">알메이트 차트 - 차트에 범위 표시</a></p>
+
+
+			<p>다음은 수직 범위와 수평 범위를 함께 표시하는 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;backgroundElements&gt;</div>
+	<div class="line">  &lt;GridLines/&gt;</div>
+	<div class="line">  &lt;AxisMarker&gt;</div>
+	<div class="line">    &lt;ranges&gt;</div>
+	<div class="line">      &lt;AxisRange startValue="400" endValue="800" label="Range 1" fontSize="11" labelHorizontalAlign="left" fontFamily="Malgun Gothic"&gt;</div>
+	<div class="line">        &lt;fill&gt;</div>
+	<div class="line">          &lt;SolidColor color="#00FF99" alpha="0.2"/&gt;</div>
+	<div class="line">        &lt;/fill&gt;</div>
+	<div class="line">      &lt;/AxisRange&gt;</div>
+	<div class="line">      &lt;AxisRange startValue="Mar" endValue="May" label="Range 2" labelYOffset="-10" fontSize="11" labelVerticalAlign="bottom" horizontal="false" fontFamily="Malgun Gothic"&gt;</div>
+	<div class="line">        &lt;fill&gt;</div>
+	<div class="line">          &lt;SolidColor color="#0099FF" alpha="0.2"/&gt;</div>
+	<div class="line">        &lt;/fill&gt;</div>
+	<div class="line">      &lt;/AxisRange&gt;</div>
+	<div class="line">      &lt;AxisRange startValue="Jul" endValue="Nov" label="Range 3" labelYOffset="-10" fontSize="11" labelVerticalAlign="bottom" horizontal="false" fontFamily="Malgun Gothic"&gt;</div>
+	<div class="line">        &lt;fill&gt;</div>
+	<div class="line">          &lt;SolidColor color="#dd99FF" alpha="0.2"/&gt;</div>
+	<div class="line">        &lt;/fill&gt;</div>
+	<div class="line">      &lt;/AxisRange&gt;</div>
+	<div class="line">    &lt;/ranges&gt;</div>
+	<div class="line">  &lt;/AxisMarker&gt;</div>
+	<div class="line">&lt;/backgroundElements&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="VdZBOV" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 차트에 수직 범위와 수평 범위를 함께 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/VdZBOV/">알메이트 차트 - 차트에 수직 범위와 수평 범위를 함께 표시</a></p>-->
+			<img class="capture" src="images/demo/차트에-수직-범위와-수평-범위를-함께-표시.jpg" alt="차트에 수직 범위와 수평 범위를 함께 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/VdZBOV/" target="_blank">알메이트 차트 - 차트에 수직 범위와 수평 범위를 함께 표시</a></p>
+
+
+		</div>
+	</div><!-- contents -->
+</div>
+</body>
+</html>

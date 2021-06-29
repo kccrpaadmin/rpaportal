@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 시스템 특징 및 요구사항</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('system-features-and-requirements.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="처음시작하기">처음 시작하기</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#처음시작하기">처음 시작하기</a>
+						<li class="level2"><a href="#시스템특징및요구사항">시스템 특징 및 요구사항</a></li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="시스템특징및요구사항"></a>시스템 특징 및 요구사항</h2>
+			<p>알메이트 차트는 HTML5 Canvas 기술을 기반으로 개발된 순수 자바스크립트 라이브러리입니다.
+				알메이트 차트의 강력한 분석 기능과 세련된 비주얼 효과(그라데이션, 애니메이션, 이벤트 등)를 이용하면
+				누구라도 깊이 있는 데이터 분석을 가능하게 하는 다양한 종류의 2D, 3D 차트를 웹페이지에 쉽게 표현할 수 있습니다.</p>
+			<p>알메이트 차트는 모든 서버 환경에서 동작하며, 서버 스크립트 언어에 의존적이지 않습니다.
+				한 가지 요구되는 것은 클라이언트 환경이 HTML5 Canvas를 지원하는 브러우저여야 한다는 것입니다.
+				다음은 HTML5 Canvas를 지원하는 브라우저와 해당 브라우저의 버전이 표시된 표입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">IE</th>
+					<th align="center">Firefox</th>
+					<th align="center">Safari</th>
+					<th align="center">Chrome</th>
+					<th align="center">iPhone</th>
+					<th align="center">Android</th>
+				</tr>
+				<tr>
+					<td align="center">9.0+</td>
+					<td align="center">3.0+</td>
+					<td align="center">3.0+</td>
+					<td align="center">3.0+</td>
+					<td align="center">1.0+</td>
+					<td align="center">1.0+</td>
+				</tr>
+			</table>
+		</div><!-- textbox -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>
