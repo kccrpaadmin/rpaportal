@@ -184,7 +184,7 @@ public class BotController extends BaseController {
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
 		model.addAttribute("targetSiteCdComboBox", commonUtilService.getCodeProcedureSelectBox("target_site_cd", "PRA_Bot_listBotCostDivideTargetSiteCdCombo", pUserId, true, "", ""));
-		model.addAttribute("targetYear", commonUtilService.getDateUserFormat("yyyy", "Year", 0));
+		model.addAttribute("targetYearComboBox", commonUtilService.getCodeProcedureSelectBox("target_year", "PRA_Bot_listBotCostDivideTargetYearCombo", "", true, "", ""));
 		model.addAttribute("targetQuarterComboBox", commonUtilService.getCodeProcedureSelectBox("target_quarter", "PRA_Bot_listBotCostDivideTargetQuarterCombo", "", true, "", ""));
 		
 		return "Bot/CostDivideRun";

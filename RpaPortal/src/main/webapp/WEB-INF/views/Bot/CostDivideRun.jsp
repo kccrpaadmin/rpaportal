@@ -81,7 +81,7 @@
 	                    <th class="detail_th_l">수행정보</th>
 	                    <td class="detail_td_l">
 	                    	${targetSiteCdComboBox}
-	                    	<input type="text" class="datepicker_y" readonly="readonly"  id="target_year" value="${targetYear}" />
+	                    	${targetYearComboBox}
 	                    	${targetQuarterComboBox}
                     	</td>
 	                </tr>
