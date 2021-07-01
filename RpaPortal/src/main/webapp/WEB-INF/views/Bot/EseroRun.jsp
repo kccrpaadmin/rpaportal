@@ -201,7 +201,7 @@
 	
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {
-		libraryFunc.createModal(null, null, null, 1100, 660, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
+		libraryFunc.createModal(null, null, null, 1100, 560, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
 	});	
 	
 </script>
