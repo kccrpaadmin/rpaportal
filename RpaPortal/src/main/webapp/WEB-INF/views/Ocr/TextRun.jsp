@@ -161,10 +161,10 @@
 		
 		if (mySheet.ColSaveName(Col) == "requestNm") {
 			var requestNo = mySheet.GetCellValue(Row, "requestNo");
-			libraryFunc.createModal(null, null, null, 1100, 685, "결과보기", "/ModalOcr/TextRunResult.do" + "?pMenuId=" + menuId + "&pRequestNo=" + requestNo);
+			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalOcr/TextRunResult.do" + "?pMenuId=" + menuId + "&pRequestNo=" + requestNo);
    		}
 	}
- 
+ 	
 	// 파일 컨트롤 변경 이벤트 
 	$(document).on("change", "#input_file", function (e) {
 		var inputFile = document.getElementById('input_file');

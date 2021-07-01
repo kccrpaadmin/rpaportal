@@ -12,7 +12,7 @@
 	    	<a class="btn_common" id="btn_text_extract">텍스트 추출</a>
 	    </div>
 	    <!-- 데이터영역 -->
-	    <textarea id="ocr_data" style="width:1054px;height:240px"></textarea>
+	    <textarea id="ocr_data" style="width:1054px;height:250px"></textarea>
 	</div>
 </div>
 
@@ -95,7 +95,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "322px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "189px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
@@ -116,7 +116,6 @@
         mySheet.SetDataLinkMouse("fileNm", true);
         mySheet.SetColFontUnderline("fileNm", true);
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
-        mySheet.SetCountPosition(3); // 건수 정보 표시
         mySheet.LoadSearchData(pListDatas);
     }
 	
