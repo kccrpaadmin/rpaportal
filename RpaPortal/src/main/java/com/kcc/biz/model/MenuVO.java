@@ -25,6 +25,8 @@ public class MenuVO {
 	private String TimeTypeNm;
 	private String RunSeq;
 	private String RunTime;
+	private String TaskTypeCd;
+	private String TaskTypeNm;
 	private String ExecTypeCd;
 	private String ExecTypeNm;
 	private String Content;
@@ -141,6 +143,18 @@ public class MenuVO {
 	}
 	public void setRunTime(String runTime) {
 		RunTime = runTime;
+	}
+	public String getTaskTypeCd() {
+		return TaskTypeCd;
+	}
+	public void setTaskTypeCd(String taskTypeCd) {
+		TaskTypeCd = taskTypeCd;
+	}
+	public String getTaskTypeNm() {
+		return TaskTypeNm;
+	}
+	public void setTaskTypeNm(String taskTypeNm) {
+		TaskTypeNm = taskTypeNm;
 	}
 	public String getExecTypeCd() {
 		return ExecTypeCd;

@@ -48,6 +48,12 @@
 	                    <td class="detail_td_l">${outMenuVO.statusNm}</td>
 	                </tr>
 	                <tr>
+	                    <th class="detail_th_l">과제분류</th>
+	                    <td class="detail_td_l">${outMenuVO.taskTypeNm}</td>
+	                    <th class="detail_th_l">수행분류</th>
+	                    <td class="detail_td_l">${outMenuVO.execTypeNm}</td>
+	                </tr>
+	                <tr>
 	                    <th class="detail_th_l">최근요청번호</th>
 	                    <td class="detail_td_l">${outMenuVO.requestNo}</td>
 	                    <th class="detail_th_l">최근요청자</th>
