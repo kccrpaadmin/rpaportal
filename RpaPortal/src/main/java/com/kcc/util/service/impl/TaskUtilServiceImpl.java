@@ -59,6 +59,9 @@ import com.kcc.words.ConstWord;
 public class TaskUtilServiceImpl implements ITaskUtilService {
 	private static final Logger logger = LoggerFactory.getLogger(TaskUtilServiceImpl.class);
 	 
+	@Resource(name="commonUtilService")
+	ICommonUtilService commonUtilService;
+	
 	@Resource(name="crawlScheduleService")
 	private ICrawlScheduleService crawlScheduleService; 
 	
@@ -81,90 +84,94 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 	 
 	@Scheduled(cron = "0 * * * * *")
 	public void callCrawlApi() {
-		String curDate = yyyyMMddHHmm.format(new Date()).toString();
-		CrawlScheduleVO inCrawlScheduleVO = new CrawlScheduleVO();
-		inCrawlScheduleVO.setCallDate(curDate);
-		
-		List<CrawlScheduleVO> outListCrawlScheduleVO = new ArrayList<CrawlScheduleVO>();
-		
-		try {
-			outListCrawlScheduleVO = crawlScheduleService.listCrawlScheduleMenu(inCrawlScheduleVO);
-			for (CrawlScheduleVO crawlScheduleVO : outListCrawlScheduleVO) {
-				logger.info("callMenuId : " + crawlScheduleVO.getMenuId());
-				
-				// RequestVO 입력
-				CrawlRequestVO inCrawlRequestVO = new CrawlRequestVO();
-				inCrawlRequestVO.setMenuId(crawlScheduleVO.getMenuId());
-				inCrawlRequestVO.setEmpNo(ConstWord.RPA_ADMIN_EMP_NO);
-				
-				// 웹크롤링 수행 (진행중인 경우 수행 안함)
-				CrawlRequestVO outCrawlRequestVO = new CrawlRequestVO();
-				outCrawlRequestVO = crawlUtilService.requestCrawl(inCrawlRequestVO);
-				
-				// 오류 발생시
-				if ("Fail".equals(outCrawlRequestVO.getRequestStatus())) {
-					outCrawlRequestVO.setStatusCd("RA005003");
-					outCrawlRequestVO.setErrorMsg("웹크롤링 요청시 오류가 발생 하였습니다.");
+		if (!"Local2".equals(commonUtilService.getServerEnv())) {
+			String curDate = yyyyMMddHHmm.format(new Date()).toString();
+			CrawlScheduleVO inCrawlScheduleVO = new CrawlScheduleVO();
+			inCrawlScheduleVO.setCallDate(curDate);
+			
+			List<CrawlScheduleVO> outListCrawlScheduleVO = new ArrayList<CrawlScheduleVO>();
+			
+			try {
+				outListCrawlScheduleVO = crawlScheduleService.listCrawlScheduleMenu(inCrawlScheduleVO);
+				for (CrawlScheduleVO crawlScheduleVO : outListCrawlScheduleVO) {
+					logger.info("callMenuId : " + crawlScheduleVO.getMenuId());
 					
-					try {
-						// 웹크롤링 요청 정보 변경
-						crawlRequestService.updateCrawlRequest(outCrawlRequestVO);
-					} 
-					catch (Exception e) {
-						e.printStackTrace();
+					// RequestVO 입력
+					CrawlRequestVO inCrawlRequestVO = new CrawlRequestVO();
+					inCrawlRequestVO.setMenuId(crawlScheduleVO.getMenuId());
+					inCrawlRequestVO.setEmpNo(ConstWord.RPA_ADMIN_EMP_NO);
+					
+					// 웹크롤링 수행 (진행중인 경우 수행 안함)
+					CrawlRequestVO outCrawlRequestVO = new CrawlRequestVO();
+					outCrawlRequestVO = crawlUtilService.requestCrawl(inCrawlRequestVO);
+					
+					// 오류 발생시
+					if ("Fail".equals(outCrawlRequestVO.getRequestStatus())) {
+						outCrawlRequestVO.setStatusCd("RA005003");
+						outCrawlRequestVO.setErrorMsg("웹크롤링 요청시 오류가 발생 하였습니다.");
+						
+						try {
+							// 웹크롤링 요청 정보 변경
+							crawlRequestService.updateCrawlRequest(outCrawlRequestVO);
+						} 
+						catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
 				}
+				
+				logger.info("callCrawlApi : " + curDate);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
 			}
-			
-			logger.info("callCrawlApi : " + curDate);
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		}		
 	}
 	
 	@Scheduled(cron = "0 * * * * *")
 	public void callBotApi() {
-		String curDate = yyyyMMddHHmm.format(new Date()).toString();
-		BotScheduleVO inBotScheduleVO = new BotScheduleVO();
-		inBotScheduleVO.setCallDate(curDate);
+		if (!"Local2".equals(commonUtilService.getServerEnv())) {
+			String curDate = yyyyMMddHHmm.format(new Date()).toString();
+			BotScheduleVO inBotScheduleVO = new BotScheduleVO();
+			inBotScheduleVO.setCallDate(curDate);
 
-		List<BotScheduleVO> outListBotScheduleVO = new ArrayList<BotScheduleVO>();
-		
-		try {
-			outListBotScheduleVO = botScheduleService.listBotScheduleMenu(inBotScheduleVO);
-			for (BotScheduleVO botScheduleVO : outListBotScheduleVO) {
-				logger.info("callMenuId : " + botScheduleVO.getMenuId());
-				
-				// RequestVO 입력
-				BotRequestVO inBotRequestVO = new BotRequestVO();
-				inBotRequestVO.setMenuId(botScheduleVO.getMenuId());
-				inBotRequestVO.setEmpNo(ConstWord.RPA_ADMIN_EMP_NO);
-				inBotRequestVO.setUserId(ConstWord.RPA_ADMIN_USER_ID);
-				
-				// 봇 수행 (진행중인 경우 수행 안함)
-				BotRequestVO outBotRequestVO = new BotRequestVO();
-				outBotRequestVO = botUtilService.requestBot(inBotRequestVO);
-				
-				// 오류 발생시
-				if ("Fail".equals(outBotRequestVO.getRequestStatus())) {
-					outBotRequestVO.setStatusCd("RA005003");
-					outBotRequestVO.setErrorMsg("봇 요청시 오류가 발생 하였습니다.");
+			List<BotScheduleVO> outListBotScheduleVO = new ArrayList<BotScheduleVO>();
+			
+			try {
+				outListBotScheduleVO = botScheduleService.listBotScheduleMenu(inBotScheduleVO);
+				for (BotScheduleVO botScheduleVO : outListBotScheduleVO) {
+					logger.info("callMenuId : " + botScheduleVO.getMenuId());
 					
-					try {
-						// 봇 요청 정보 변경
-						botRequestService.updateBotRequest(outBotRequestVO);
-					} 
-					catch (Exception e) {
-						e.printStackTrace();
+					// RequestVO 입력
+					BotRequestVO inBotRequestVO = new BotRequestVO();
+					inBotRequestVO.setMenuId(botScheduleVO.getMenuId());
+					inBotRequestVO.setEmpNo(ConstWord.RPA_ADMIN_EMP_NO);
+					inBotRequestVO.setUserId(ConstWord.RPA_ADMIN_USER_ID);
+					
+					// 봇 수행 (진행중인 경우 수행 안함)
+					BotRequestVO outBotRequestVO = new BotRequestVO();
+					outBotRequestVO = botUtilService.requestBot(inBotRequestVO);
+					
+					// 오류 발생시
+					if ("Fail".equals(outBotRequestVO.getRequestStatus())) {
+						outBotRequestVO.setStatusCd("RA005003");
+						outBotRequestVO.setErrorMsg("봇 요청시 오류가 발생 하였습니다.");
+						
+						try {
+							// 봇 요청 정보 변경
+							botRequestService.updateBotRequest(outBotRequestVO);
+						} 
+						catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
 				}
+				
+				logger.info("callBotApi : " + curDate);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
 			}
-			
-			logger.info("callBotApi : " + curDate);
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		}		
 	}
 }

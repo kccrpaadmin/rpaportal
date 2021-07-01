@@ -124,7 +124,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1120px", "340px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1120px", "510px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
@@ -151,12 +151,9 @@
         ];
 		
         IBS_InitSheet(mySheet, initdata);
-        //mySheet.SetEditable(0);
+        mySheet.SetEditable(0);
         mySheet.SetEditableColorDiff(0);
-        mySheet.SetDataLinkMouse("requestNm", true);
-        mySheet.SetColFontUnderline("requestNm", true);
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
-        mySheet.SetCountPosition(3); // 건수 정보 표시
         mySheet.LoadSearchData(pListDatas);
     }  
     
