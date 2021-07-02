@@ -151,29 +151,10 @@
         ];
 		
         IBS_InitSheet(mySheet, initdata);
-        //mySheet.SetEditable(0);
         mySheet.SetEditableColorDiff(0);
-        mySheet.SetDataLinkMouse("requestNm", true);
-        mySheet.SetColFontUnderline("requestNm", true);
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
-        mySheet.SetCountPosition(3); // 건수 정보 표시
         mySheet.LoadSearchData(pListDatas);
     }  
-    
-	// 그리드 클릭 함수
-	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
-		if (Row == 0) {
-			return false;
-		}
-		
-		if (mySheet.ColSaveName(Col) == "requestNm") {
-			var requestNo = mySheet.GetCellValue(Row, "requestNo");
-			var crawlMenuInfo = commonFunc.getCrawlMenuInfo(menuId);
-			var modalMenuNm = crawlMenuInfo.modalMenuNm;
-			var modalMenuUrl = crawlMenuInfo.modalMenuUrl;
-			libraryFunc.createModal(null, null, null, 1100, 550, modalMenuNm, modalMenuUrl + "?pRequestNo=" + requestNo);
-   		}
-	}
 	
 	// 체크 박스 체크 여부 조회
 	function getCheckYn(pChkBoxId) {
