@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 테마 적용하기</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('themes.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트디자인과스타일링">차트 디자인과 스타일링</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트디자인과스타일링">차트 디자인과 스타일링</a>
+						<li class="level2"><a href="#테마적용하기">테마 적용하기</a>
+							<li class="level3"><a href="#테마적용방법">테마 적용 방법</a></li>
+							<li class="level3"><a href="#사용자정의테마">사용자 정의 테마</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+	 		<h2><a class="anchor" id="테마적용하기"></a>테마 적용하기</h2>
+			<p>한 프로젝트에서 많고 다양한 종류의 차트를 개발할 경우 각 차트의 일관된 디자인 스타일을 유지하면서 개발자들이 디자인적인 요소에 시간을 빼앗기지 않도록 해주는 것이 테마(Theme)입니다.
+				알메이트 차트에서는 기본적으로 6 가지 테마(simple, cyber, modern, lovely, pastel, old)를 제품과 함께 제공하고 사용자가 원하는 테마를 직접 만들어서 사용할 수도 있습니다.
+				제공되는 테마 중에서 old 테마는 알메이트 차트 버전 2.5 이하에서 기본적으로 적용되는 디자인 테마입니다.</p>
+
+			<h3><a class="anchor" id="테마적용방법"></a>테마 적용 방법</h3>
+			<p>알메이트 차트에서 기본으로 제공하는 6 가지 테마를 사용하려면 다음과 같이 theme.js 파일을 포함(include)시킵니다.
+				이 때 반드시 theme.js 파일은 차트 라이브러리(rMateChartH5.js) 보다 나중에 선언되어야 합니다.</p>
+
+			<div class="fragment"><div class="line">&lt;head&gt;</div>
+<div class="line">  &lt;link rel="stylesheet" type="text/css" href="../rMateChartH5/Assets/Css/rMateChartH5.css"/&gt;</div>
+<div class="line">  &lt;script type="text/javascript" src="../LicenseKey/rMateChartH5License.js"&gt;&lt;/script&gt;</div>
+<div class="line">  &lt;script type="text/javascript" src="../rMateChartH5/JS/rMateChartH5.js"&gt;&lt;/script&gt;</div>
+<div class="line">  &lt;script type="text/javascript" src="../rMateChartH5/Assets/Theme/theme.js"&gt;&lt;/script&gt;</div>
+<div class="line">  ...</div>
+<div class="line">&lt;/head&gt;</div></div>
+
+			<p>다음은 theme.js 파일을 포함(include)한 이 후 simple 테마를 적용하는 자바스크립트 문장을 실행한 것입니다.</p>
+			<div class="fragment"><div class="line">&lt;script&gt;</div>
+<div class="line">  …</div>
+<div class="line">  document.getElementById("chart1").setTheme("simple");</div>
+<div class="line">  …</div>
+<div class="line">&lt;/script&gt;</div></div>
+
+  			<p>테마가 한번 적용된 후, 기본(default) 테마를 다시 적용하기를 원하면 다음 자바스크립트 문장을 실행합니다.</p>
+  			<div class="fragment"><div class="line">&lt;script&gt;</div>
+<div class="line">  …</div>
+<div class="line">  document.getElementById("chart1").setTheme("default");</div>
+<div class="line">  …</div>
+<div class="line">&lt;/script&gt;</div></div>
+
+			<p>기본으로 제공되는 6 가지 테마 중에서 특정 테마를 삭제할 수 있습니다.
+				예를 들어 simple 테마를 삭제할 경우, simple 테마가 적용된 모든 차트는 기본(default) 테마로 돌아옵니다.
+				이 때 만약 simple 테마가 적용된 차트가 없다면 기본으로 적용되는 6 가지 테마 중에서 simple 테마는 삭제되게 됩니다.
+				다음은 simple 테마를 삭제하는 자바스크립트 문장을 실행한 것입니다.</p>
+			<div class="fragment"><div class="line">&lt;script&gt;</div>
+<div class="line">  …</div>
+<div class="line">  rMateChartH5.removeTheme("simple");</div>
+<div class="line">  …</div>
+<div class="line">&lt;/script&gt;</div></div>
+
+			<h3><a class="anchor" id="사용자정의테마"></a>사용자 정의 테마</h3>
+			<p>사용자가 원하는 테마를 직접 등록하고 이를 적용할 수 있습니다.
+				다음은 MyTheme.js 파일에 myTheme 이라는 테마를 생성하고 이를 적용하는 예제입니다.</p>
+			<div class="fragment"><div class="line">(<span class="keyword">function</span>() {</div>
+<div class="line"></div>
+<div class="line">  <span class="keyword">var</span> myTheme</div>
+<div class="line"></div>
+<div class="line">  <span class="keyword">function</span> themeExtend(target, obj) {</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keyword">var</span> o in obj) {</div>
+<div class="line">      <span class="keywordflow">if</span>(!target[o])</div>
+<div class="line">        target[o] = obj[o];</div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">  <span class="keyword">function</span> intoProp(prop, theme, colors, alpha, weight, gradient) {</div>
+<div class="line">    <span class="keyword">var</span> i, n, o, color;</div>
+<div class="line"></div>
+<div class="line">    <span class="keywordflow">if</span> (alpha == null || alpha == undefined)</div>
+<div class="line">      alpha = 1;</div>
+<div class="line">    <span class="keywordflow">if</span> (weight == null || weight == undefined)</div>
+<div class="line">      weight = 1;</div>
+<div class="line">    <span class="keywordflow">if</span> (gradient == null || gradient == undefined)</div>
+<div class="line">      gradient = false;</div>
+<div class="line"></div>
+<div class="line">    <span class="keywordflow">for</span> (i = 0, n = colors.length ; i < n ; i += 1) {</div>
+<div class="line">      color = colors[i % colors.length];</div>
+<div class="line">      <span class="keywordflow">if</span> (!gradient) {</div>
+<div class="line">        o = { color : color, weight : weight, alpha : alpha};</div>
+<div class="line">      } else {</div>
+<div class="line">        o = {};</div>
+<div class="line">        o.angle = 90;</div>
+<div class="line">        o.entries = [];</div>
+<div class="line">        o.entries.push({ color : color, ratio : 1, alpha : alpha});</div>
+<div class="line">      }</div>
+<div class="line"></div>
+<div class="line">      <span class="keywordflow">if</span> (!theme.series[i])</div>
+<div class="line">        theme.series[i] = {};</div>
+<div class="line"></div>
+<div class="line">      theme.series[i][prop] = o;</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line"></div>
+<div class="line">  rMateChartH5.themes = {};</div>
+<div class="line"></div>
+<div class="line">  rMateChartH5.setupTheme = {};</div>
+<div class="line"></div>
+<div class="line">  rMateChartH5.setupTheme.myTheme = {</div>
+<div class="line">    defaultColors : [</div>
+<div class="line">      "#3BA0CC","#775F47","#A8C545","#DDCFAC","#777777","#9FB5CD","#2AA2A0","#37C07C","#3F596E","#7E92A5","#A48D70","#77B6D0","#CEE4ED","#555555",</div>
+<div class="line">      "#B195A6","#D4C4CE","#67425A","#B9DCDA","#3798B9","#89D5AF","#869726","#C1CC89","#836E2C","#C5BA8E","#816D5B","#DEE3E7","#84929F","#3B4B5B"</div>
+<div class="line">    ],</div>
+<div class="line"></div>
+<div class="line">    chartCommon : {</div>
+<div class="line">      dataTipBackgroundColorOnSeries : false,</div>
+<div class="line">      dataTipBorderColor : "#323232"</div>
+<div class="line">    },</div>
+<div class="line"></div>
+<div class="line">    barChart : {</div>
+<div class="line">      backgroundElements : [{</div>
+<div class="line">        direction : "vertical",</div>
+<div class="line">        verticalStroke : {"color":"#ececec"}</div>
+<div class="line">      }],</div>
+<div class="line">    }</div>
+<div class="line">  };</div>
+<div class="line"></div>
+<div class="line">  myTheme = rMateChartH5.setupTheme.myTheme;</div>
+<div class="line"></div>
+<div class="line">  themeExtend(myTheme.barChart, myTheme.chartCommon);</div>
+<div class="line"></div>
+<div class="line">  rMateChartH5.setupTheme.myTheme = {</div>
+<div class="line">    defaultColors : myTheme.defaultColors,</div>
+<div class="line"></div>
+<div class="line">    Column2DChart : myTheme.chartCommon,</div>
+<div class="line">    Pie2DChart : myTheme.chartCommon,</div>
+<div class="line">    Plot2DChart : myTheme.chartCommon,</div>
+<div class="line"></div>
+<div class="line">    Bar2DChart : myTheme.barChart</div>
+<div class="line">  };</div>
+<div class="line"></div>
+<div class="line">})();</div>
+</div>
+				<p>위와 같이 MyTheme.js 파일을 작성한 다음, 아래와 같이 이를 포함(include)하여 myTheme 테마를 적용할 수 있습니다.</p>
+				<div class="fragment"><div class="line">&lt;head&gt;</div>
+<div class="line">  &lt;link rel="stylesheet" type="text/css" href="../rMateChartH5/Assets/Css/rMateChartH5.css"/&gt;</div>
+<div class="line">  &lt;script type="text/javascript" src="../LicenseKey/rMateChartH5License.js"&gt;&lt;/script&gt;</div>
+<div class="line">  &lt;script type="text/javascript" src="../rMateChartH5/JS/rMateChartH5.js"&gt;&lt;/script&gt;</div>
+<div class="line">  &lt;script type="text/javascript" src="./MyTheme.js"&gt;&lt;/script&gt;</div>
+<div class="line">  ...</div>
+<div class="line">  &lt;script&gt;</div>
+<div class="line">    ...</div>
+<div class="line">    document.getElementById("chart1").setTheme("myTheme");</div>
+<div class="line">    ...</div>
+<div class="line">  &lt;/script&gt;</div>
+<div class="line">&lt;/head&gt;</div></div>
+
+		</div>
+	</div><!-- contents -->
+</div>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: Pyramid Chart</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('pyramid-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#피라미드차트">피라미드 차트</a>
+							<li class="level3"><a href="#퓨널피라미드차트">퓨널(Funnel) 피라미드 차트</a></li>
+							<li class="level3"><a href="#다이아몬드피라미드차트">다이아몬드 피라미드 차트</a></li>
+							<li class="level3"><a href="#오버레이버블차트">오버레이 버블 차트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="피라미드차트"></a>피라미드 차트</h2>
+			<p>피라미드 차트는 삼각형을 선으로 나눈 각 영역에 관련된 주제의 데이터를 표현하는 차트입니다.
+				전체적으로 삼각형이기 때문에 각 영역의 넓이는 서로 다릅니다.
+				각 영역의 넓이가 다르기 때문에 어떤 주제와 관련된 각 영역의 데이터의 계층관계를 표현하는데 유용합니다.
+				예를 들면, 넓은 영역일 수록 일반적인 내용을 좁은 영역일 수록 구체적인 내용을 표현할 수 있습니다.
+				하지만 넓이의 크기가 데이터 값의 크기를 의미하지는 않습니다.
+				데이터 값의 크기는 영역의 길이의 크기와 비례합니다. 각 영역이 삼각형에 표시되는 순서는 데이터에 정의되는 순서와 같습니다.
+				제일 먼저 정의되는 데이터가 삼각형의 제일 상단 영역에 표시됩니다.
+				파라미드 차트는 <a href="../api/Pyramid2DChart.html" target="_blank">&lt;Pyramid2DChart&gt;</a> 노드의 series 속성값에 <a href="../api/Pyramid2DSeries.html" target="_blank">&lt;Pyramid2DSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				각 영역에 표시되는 레이블과 영역의 길이는 <a href="../api/Pyramid2DSeries.html" target="_blank">&lt;Pyramid2DSeries&gt;</a> 노드의 다음 속성에 설정합니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">nameField</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left"><p>영역의 레이블이 저장된 필드명을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">weightField</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left"><p>영역의 값이 저장된 필드명을 지정합니다.</p></td>
+				</tr>
+			</table>
+
+			<p>다음은 일반적인 피라미드 차트를 생성하는 코드와 데이터, 그리고 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">var chartData = [{</div>
+	<div class="line">  "label" : "1 year paid membership",</div>
+	<div class="line">  "data" : 420</div>
+	<div class="line">},{</div>
+	<div class="line">  "label" : "3 months paid membership",</div>
+	<div class="line">  "data" : 230</div>
+	<div class="line">},{</div>
+	<div class="line">  "label" : "Paid membership",</div>
+	<div class="line">  "data" : 200</div>
+	<div class="line">},{</div>
+	<div class="line">  "label" : "Total membership",</div>
+	<div class="line">  "data" : 200</div>
+	<div class="line">},{</div>
+	<div class="line">  "label" : "WebSite visitors",</div>
+	<div class="line">  "data" : 200</div>
+	<div class="line">}];</div>
+	<div class="line"></div>
+	<div class="line">&lt;Pyramid2DChart showDataTips="true"&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Pyramid2DSeries weightField="data" nameField="label" labelPosition="callout" leftBottomRatio="0.7" rightBottomRatio="0.7" color="#666" fontSize="11" labelYOffset="-2"&gt;</div>
+	<div class="line">      &lt;showDataEffect&gt;</div>
+	<div class="line">        &lt;SeriesInterpolate duration="1000"/&gt;</div>
+	<div class="line">      &lt;/showDataEffect&gt;</div>
+	<div class="line">      &lt;fills&gt;</div>
+	<div class="line">        &lt;SolidColor color="#FBB44F"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#89D1CF"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#00B2B3"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#0095D8"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#3C3C7F"/&gt;</div>
+	<div class="line">      &lt;/fills&gt;</div>
+	<div class="line">    &lt;/Pyramid2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Pyramid2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="XYJRxQ" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 피라미드 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/XYJRxQ/">알메이트 차트 - 피라미드 차트</a></p>-->
+			<img class="capture" src="images/demo/피라미드-차트.jpg" alt="피라미드 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/XYJRxQ/" target="_blank">알메이트 차트 - 피라미드 차트</a></p>
+
+			<p>피라미드 차트에서 표현되는 삼각형의 모양은 <a href="../api/Pyramid2DSeries.html" target="_blank">&lt;Pyramid2DSeries&gt;</a> 노드의 다음 속성들을 이용하여 조정할 수 있습니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">leftBottomRatio</td>
+					<td align="center"><p>0 과 1(*) 사이의 숫자</p>
+					</td>
+					<td align="left"><p>삼각형의 좌측 하단 모서리의 각도 비율을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">rightBottomRatio</td>
+					<td align="center"><p>0 과 1(*) 사이의 숫자</p>
+					</td>
+					<td align="left"><p>삼각형의 우측 하단 모서리의 각도 비율을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">leftTopRatio</td>
+					<td align="center"><p>0(*) 과 1 사이의 숫자</p>
+					</td>
+					<td align="left"><p>삼각형의 좌측 상단 모서리의 각도 비율을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">rightTopRatio</td>
+					<td align="center"><p>0(*) 과 1 사이의 숫자</p>
+					</td>
+					<td align="left"><p>삼각형의 우측 상단 모서리의 각도 비율을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">bottomRatio</td>
+					<td align="center"><p>-1(*): 이 속성을 사용하지 않음</p>
+						<p>0 과 1 사이의 숫자</p>
+					</td>
+					<td align="left"><p>삼각형의 좌우측 하단 모서리의 각도 비율을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">topRatio</td>
+					<td align="center"><p>-1(*): 이 속성을 사용하지 않음</p>
+						<p>0 과 1 사이의 숫자</p>
+					</td>
+					<td align="left"><p>삼각형의 좌우측 상단 모서리의 각도 비율을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">horizontalRatio</td>
+					<td align="center"><p>-1(*): 이 속성을 사용하지 않음</p>
+						<p>0 과 1 사이의 숫자</p>
+					</td>
+					<td align="left"><p>좌우측 수평 비율을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">verticalRatio</td>
+					<td align="center"><p>-1(*): 이 속성을 사용하지 않음</p>
+						<p>0 과 1 사이의 숫자</p>
+					</td>
+					<td align="left"><p>좌우측 수직 비율을 지정합니다.</p></td>
+				</tr>
+			</table>
+
+
+			<h3><a class="anchor" id="퓨널피라미드차트"></a>퓨널(Funnel) 피라미드 차트</h3>
+			<p>위에서 설명한 피라미드 차트의 삼각형 모양을 조정하는 속성들 중 topRatio, bottomRatio, horizontalRatio 속성을 이용해서 깔대기(퓨널, Funnel) 모양의 피라미드 차트를 생성할 수 있습니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Pyramid2DChart showDataTips="true"&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Pyramid2DSeries weightField="data" nameField="label" topRatio="0.6" horizontalRatio="0.2" bottomRatio="0.2" color="#fff" fontSize="11"&gt;</div>
+	<div class="line">      &lt;fills&gt;</div>
+	<div class="line">        &lt;SolidColor color="#D3C668"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#7D975A"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#907C75"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#7E493B"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#F9BE58"/&gt;</div>
+	<div class="line">      &lt;/fills&gt;</div>
+	<div class="line">      &lt;showDataEffect&gt;</div>
+	<div class="line">        &lt;SeriesInterpolate duration="1000"/&gt;</div>
+	<div class="line">      &lt;/showDataEffect&gt;</div>
+	<div class="line">    &lt;/Pyramid2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Pyramid2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="bKNRNM" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 퓨널(Funnel) 피라미드 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/bKNRNM/">알메이트 차트 - 퓨널(Funnel) 피라미드 차트</a></p>-->
+			<img class="capture" src="images/demo/퓨널-피라미드-차트.jpg" alt="퓨널(Funnel) 피라미드 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/bKNRNM/" target="_blank">알메이트 차트 - 퓨널(Funnel) 피라미드 차트</a></p>
+
+			<h3><a class="anchor" id="다이아몬드피라미드차트"></a>다이아몬드 피라미드 차트</h3>
+			<p>위에서 설명한 피라미드 차트의 삼각형 모양을 조정하는 속성들 중 topRatio, bottomRatio, horizontalRatio 속성을 이용해서 다이아몬드 모양의 피라미드 차트를 생성할 수 있습니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt; Pyramid2DChart showDataTips="true" selectionMode="single"&gt; </div>
+	<div class="line">  &lt; series&gt; </div>
+	<div class="line">    &lt; Pyramid2DSeries labelPosition="callout" weightField="data" nameField="label" topRatio="0" bottomRatio="0" horizontalRatio="0.5" fontSize="11" color="#666666" labelYOffset="-2"&gt; </div>
+	<div class="line">      &lt; fills&gt; </div>
+	<div class="line">        &lt; SolidColor color="#276284"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#40b2e6"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#71d1ea"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#20cbc2"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#6aaa87"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#4f7560"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#88b14b"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#f6a54c"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#ffc943"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#ceb78b"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#b79c7e"/&gt; </div>
+	<div class="line">        &lt; SolidColor color="#886746"/&gt; </div>
+	<div class="line">      &lt; /fills&gt; </div>
+	<div class="line">      &lt; showDataEffect&gt; </div>
+	<div class="line">        &lt; SeriesInterpolate duration="1000"/&gt; </div>
+	<div class="line">      &lt; /showDataEffect&gt; </div>
+	<div class="line">    &lt; /Pyramid2DSeries&gt; </div>
+	<div class="line">  &lt; /series&gt; </div>
+	<div class="line">&lt; /Pyramid2DChart&gt; </div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="QxwgjZ" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다이아몬드 피라미드 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/QxwgjZ/">알메이트 차트 - 다이아몬드 피라미드 차트</a></p>-->
+			<img class="capture" src="images/demo/다이아몬드-피라미드-차트.jpg" alt="다이아몬드 피라미드 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/QxwgjZ/" target="_blank">알메이트 차트 - 다이아몬드 피라미드 차트</a></p>
+
+			<h3><a class="anchor" id="오버레이버블차트"></a>오버레이 버블 차트</h3>
+			<p>오버레이 버블 차트는 원으로 데이터의 계층 관계를 표현하는 차트입니다.
+				큰 원부터 시작해서 원의 크기에 따라 순차적으로 상위 원에 포함되는 모양으로 표현됩니다.
+				따라서 피라미드 차트와 마찬가지로 어떤 주제와 관련된 각 영역의 데이터의 계층관계를 표현하는데 유용한 차트 유형입니다.
+				오버레이 버블 차트는 <a href="../api/OverlayBubbleChart.html" target="_blank">&lt;OverlayBubbleChart&gt;</a> 노드의 series 속성값에
+				<a href="../api/OverlayBubbleSeries.html" target="_blank">&lt;OverlayBubbleSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.<p>
+
+			<p>다음은 오버레이 버블 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;OverlayBubbleChart showDataTips="true" paddingTop="10" paddingBottom="10"&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;OverlayBubbleSeries field="data" nameField="label" labelPosition="inside"&gt;</div>
+	<div class="line">      &lt;fills&gt;</div>
+	<div class="line">        &lt;SolidColor color="#3A3A84"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#54BAEA"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#93D6F0"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#88B14B"/&gt;</div>
+	<div class="line">        &lt;SolidColor color="#E2CE2F"/&gt;</div>
+	<div class="line">      &lt;/fills&gt;</div>
+	<div class="line">      &lt;showDataEffect&gt;</div>
+	<div class="line">        &lt;SeriesInterpolate/&gt;</div>
+	<div class="line">      &lt;/showDataEffect&gt;</div>
+	<div class="line">    &lt;/OverlayBubbleSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/OverlayBubbleChart&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="aKzwNO" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 오버레이 버블 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/aKzwNO/">알메이트 차트 - 오버레이 버블 차트</a></p>-->
+			<img class="capture" src="images/demo/오버레이-버블-차트.jpg" alt="오버레이 버블 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/aKzwNO/" target="_blank">알메이트 차트 - 오버레이 버블 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

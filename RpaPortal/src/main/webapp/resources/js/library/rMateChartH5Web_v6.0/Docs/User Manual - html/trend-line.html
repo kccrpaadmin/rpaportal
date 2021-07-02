@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 추세선</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('trend-line.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트구성요소">차트 구성 요소</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트구성요소">차트 구성 요소</a>
+						<li class="level2"><a href="#추세선">추세선</a></li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="추세선"></a>추세선</h2>
+			<p>카테시안 계열의 차트 (예, <a href="bar-chart.html">바 차트</a>, <a href="column-chart.html">컬럼 차트</a>, <a href="line-chart.html">라인 차트</a>, etc) 유형에서는 추세선을 표시할 수 있습니다.
+				이러한 작업은 데이터 시리즈 (예, <a href="../api/Column2DSeries.html" target="_blank">&lt;Column2DSeries&gt;</a> 노드)의 showTrendLine 속성을 <prop>“true”</prop>로 설정함으로써 가능합니다.
+				다음은 추세선의 표시와 관련된 속성들을 설명한 표입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">movingAveragePeriod</td>
+					<td align="center"><p>숫자</p>
+					</td>
+					<td align="left">
+						<p>trendLineType 속성값이 <prop>“movingAverage”</prop> 인 경우, 이동 평균선의 범위값을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">polynomialOrder</td>
+					<td align="center"><p>숫자</p>
+					</td>
+					<td align="left">
+						<p>trendLineType 속성값이 <prop>“polynomial”</prop> 인 경우, 다항식에 대한 차수를 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">showTrendLine</td>
+					<td align="center"><p>true, false(*)</p>
+					</td>
+					<td align="left">
+						<p>차트에 추세선을 표시할지 여부를 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">showTrendLineEquation</td>
+					<td align="center"><p>true, false(*)</p>
+					</td>
+					<td align="left">
+						<p>차트에 표현되는 추세선의 공식을 표시할지 여부를 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">showTrendLineRSquared</td>
+					<td align="center"><p>true, false(*)</p>
+					</td>
+					<td align="left">
+						<p>차트에 표현되는 추세선의R-squared 값을 표시할지 여부를 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">trendLineForm</td>
+					<td align="center"><p>curve(*), segment, step, reverseStep</p>
+					</td>
+					<td align="left">
+						<p>추세선의 유형을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">trendLineType</td>
+					<td align="center"><p>linear(*), logarithmic, exponential, polynomial, power, movingAverage</p>
+					</td>
+					<td align="left">
+						<p>추세선의 계산 유형을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 <a href="plot-chart.html">플롯 차트</a>에서 선형(linear) 추세선을 표시하는 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;series&gt;</div>
+	<div class="line">  &lt;Plot2DSeries yField="population" displayName="Population" showTrendLine="true"/&gt;</div>
+	<div class="line">&lt;/series&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="dKbqyQ" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 플롯 차트에서 선형 추세선 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/dKbqyQ/">알메이트 차트 - 플롯 차트에서 선형 추세선 표시</a></p>-->
+			<img class="capture" src="images/demo/플롯-차트에서-선형-추세선-표시.jpg" alt="플롯 차트에서 선형 추세선 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/dKbqyQ/" target="_blank">알메이트 차트 - 플롯 차트에서 선형 추세선 표시</a></p>
+
+			<dl class="section attention">
+				<dt>주의</dt>
+				<dd><div class="fragment">trendLineType 속성의 기본값이 <prop>“linear”</prop> 이므로 위 예제에서는 trendLineType 속성이 설정되지 않았지만 자동으로 선형 추세선이 표시됩니다.</div></dd>
+			</dl>
+
+			<p>다음은 <a href="column-chart.html">컬럼 차트</a>에서 거듭제곱(power) 추세선을 표시하는 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;series&gt;</div>
+	<div class="line">  &lt;Column2DSeries yField="Vancouver" displayName="Vancouver" showTrendLine="true" trendLineType="<span class="vhdllogic">power</span>"/&gt;</div>
+	<div class="line">&lt;/series&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="yEBxMo" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 컬럼 차트에서 거듭제곱 추세선 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/yEBxMo/">알메이트 차트 - 컬럼 차트에서 거듭제곱 추세선 표시</a></p>-->
+			<img class="capture" src="images/demo/컬럼-차트에서-거듭제곱-추세선-표시.jpg" alt="컬럼 차트에서 거듭제곱 추세선 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/yEBxMo/" target="_blank">알메이트 차트 - 컬럼 차트에서 거듭제곱 추세선 표시</a></p>
+
+			<p>다음은 <a href="column-chart.html">컬럼 차트</a>에서 지수(exponential) 추세선을 표시하는 예제입니다.</p>
+
+			<div class="fragment">
+				<div class="line">&lt;series&gt;</div>
+				<div class="line">  &lt;Column2DSeries yField="Vancouver" displayName="Vancouver" showTrendLine="true" trendLineType="<span class="vhdllogic">exponential</span>"/&gt;</div>
+				<div class="line">&lt;/series&gt;</div>
+			</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="pKzOPw" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 컬럼 차트에서 지수 추세선 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/pKzOPw/">알메이트 차트 - 컬럼 차트에서 지수 추세선 표시</a></p>-->
+			<img class="capture" src="images/demo/컬럼-차트에서-지수-추세선-표시.jpg" alt="컬럼 차트에서 지수 추세선 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/pKzOPw/" target="_blank">알메이트 차트 - 컬럼 차트에서 지수 추세선 표시</a></p>
+
+			<p>다음은 <a href="bar-chart.html">바 차트</a>에서 로그(logarithmic) 추세선을 표시하는 예제입니다.</p>
+
+			<div class="fragment">
+				<div class="line">&lt;series&gt;</div>
+				<div class="line">  &lt;Bar2DSeries xField="Vancouver" displayName="Vancouver" showTrendLine="true" trendLineType="<span class="vhdllogic">logarithmic</span>"/&gt;</div>
+				<div class="line">&lt;/series&gt;</div>
+			</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="pKzOwr" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 바 차트에서 로그 추세선 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/pKzOwr/">알메이트 차트 - 바 차트에서 로그 추세선 표시</a></p>-->
+			<img class="capture" src="images/demo/바-차트에서-로그-추세선-표시.jpg" alt="바 차트에서 로그 추세선 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/pKzOwr/" target="_blank">알메이트 차트 - 바 차트에서 로그 추세선 표시</a></p>
+
+		</div>
+	</div><!-- contents -->
+</div>
+</body>
+</html>

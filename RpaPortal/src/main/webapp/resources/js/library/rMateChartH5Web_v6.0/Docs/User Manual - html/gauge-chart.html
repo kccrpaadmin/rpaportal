@@ -1,0 +1,622 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 게이지 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('gauge-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#게이지차트">게이지 차트</a>
+							<li class="level3"><a href="#원형스코어카드">원형 스코어카드</a></li>
+							<li class="level3"><a href="#반원형스코어카드">반원형 스코어카드</a></li>
+							<li class="level3"><a href="#다중값스코어카드">다중값 스코어카드</a></li>
+							<li class="level3"><a href="#원형게이지">원형 게이지</a></li>
+							<li class="level3"><a href="#반원형게이지">반원형 게이지</a></li>
+							<li class="level3"><a href="#수평게이지">수평 게이지</a></li>
+							<li class="level3"><a href="#수직게이지">수직 게이지</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="게이지차트"></a>게이지 차트</h2>
+			<p>게이지 차트는 대시보드를 작성하는데 유용하게 사용되는 차트 유형입니다.
+				원형, 반원형, 직선형 모양이 지원되며 데이터 값은 눈금을 가르키는 바늘 혹은 지시자를 통해서 표현합니다.
+				(반)원형 게이지 차트에는 (반)원형 게이지 내부 공간에 텍스트를 표현할 수 있는 스코어카드형(<a href="../api/Gauge.html" target="_blank">&lt;Gauge&gt;</a> 노드로 설정)과 스피드미터형(원형: <a href="../api/CircularGauge.html" target="_blank">&lt;CircularGauge&gt;</a> 노드로 설정, 반원형: <a href="../api/HalfCircularGauge.html" target="_blank">&lt;HalfCircularGauge&gt;</a> 노드로 설정)이 지원됩니다.
+				직선형 게이지 차트에는 사각형(수평: <a href="../api/HLinearGauge.html" target="_blank">&lt;HLinearGauge&gt;</a>, 수직: <a href="../api/VLinearGauge.html" target="_blank">&lt;VLinearGauge&gt;</a>) 게이지와 실린더형(수평: <a href="../api/HCylinderGauge.html" target="_blank">&lt;HCylinderGauge&gt;</a>, 수직: <a href="../api/VCylinderGauge.html" target="_blank">&lt;VCylinderGauge&gt;</a>) 게이지가 지원됩니다.</p>
+
+			<p>원형, 반원형 게이지에서 공통적으로 적용되는 속성은 다음과 같습니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">minimum</td>
+					<td align="center"></p>숫자</p>
+						<p>기본값: 0</p>
+					</td>
+					<td align="left">
+						<p>게이지의 최소값을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">minimumAngle</td>
+					<td align="center"><p>0(*) 과 360 사이의 숫자</p>
+					</td>
+					<td align="left">
+						<p>게이지의 최소값에 해당하는 각도를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">maximum</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 100</p>
+					</td>
+					<td align="left">
+						<p>게이지의 최대값을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">maximumAngle</td>
+					<td align="center"><p>0 과 360(*) 사이의 숫자</p>
+					</td>
+					<td align="left">
+						<p>게이지의 최대값에 해당하는 각도를 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<dl class="section attention">
+				<dt>주의</dt>
+				<dd><div class="fragment">스코어카드형 게이지와 스피트미터형 게이지(원형, 반원형)의 각도값 <prop>“0”</prop> 이 적용되는 위치가 다른 점에 유의하십시요.
+					스코어카드형 게이지에서 각도값 <prop>“0”</prop> 의 위치는 12 시 방향이고, 스피트미터형 게이지(원형, 반원형)에서 각도값 <prop>“0”</prop> 의 위치는 3 시 방향입니다.</div></dd>
+			</dl>
+
+			<h3><a class="anchor" id="원형스코어카드"></a>원형 스코어카드</h3>
+			<p>스코어카드형 게이지에서는 차트의 내부 공간에 텍스트를 표시하여 차트에 관한 유용한 정보를 사용자에게 제공할 수 있습니다.
+				게이지의 내부 공간의 크기는 innerRatio 속성을 설정하여 조절할 수 있습니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">innerRatio</td>
+					<td align="center"><p>0(*) 과 1 사이의 숫자</p>
+					</td>
+					<td align="left">
+						<p>전체 게이지에서 차지하는 내부 공간의 비율을 지정합니다.</p>
+						<p>게이지의 중심에서 원의 둘레까지(반지름)가 <prop>“1”</prop> 에 해당합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 스코어카드형 게이지 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				이 예제에서는 게이지의 내부 공간에 텍스트를 표시하기 위해서 &lt;backgroundElements&gt; 속성을 설정하였습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;<span class="vhdllogic">Gauge</span> minimum="0" maximum="100" minimumAngle="0" maximumAngle="360" innerRatio="0.85" fontSize="53" labelJsFunction="valueFunc" dataTipJsFunction="dataTipFunc" labelYOffset="-20" foregroundColors="[#5587a2]" backgroundColors="[#97d5e0]" color="#333333"&gt;</div>
+	<div class="line">  &lt;backgroundElements&gt;</div>
+	<div class="line">    &lt;CanvasElement&gt;</div>
+	<div class="line">      &lt;Label fontWeight="bold" height="23" fontSize="13" horizontalCenter="0" verticalCenter="20" text="Simple Gauge" color="#888888"/&gt;</div>
+	<div class="line">    &lt;/CanvasElement&gt;</div>
+	<div class="line">  &lt;/backgroundElements&gt;</div>
+	<div class="line">&lt;/<span class="vhdllogic">Gauge</span>&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="YvPYKL" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 원형 스코어카드" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/YvPYKL/">알메이트 차트 - 원형 스코어카드</a></p>-->
+			<img class="capture" src="images/demo/원형-스코어카드.jpg" alt="원형 스코어카드" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/YvPYKL/" target="_blank">알메이트 차트 - 원형 스코어카드</a></p>
+
+			<h3><a class="anchor" id="반원형스코어카드"></a>반원형 스코어카드</h3>
+			<p><a href="../api/Gauge.html" target="_blank">&lt;Gauge&gt;</a> 노드의 maximumAngle 속성을 조절하여 스코어카드형 게이지의 크기를 조절할 수 있습니다.
+				다음은 maximumAngle 속성값을 <prop>“180”</prop> 으로 설정하여 반원 모양의 스코어카드형 게이지를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				이 예제에서는 데이터 값을 표시하는 게이지의 영역(노란색)이 시작되는 위치를 9 시 방향(startAngle = <prop>“-90”</prop> 혹은 startAngle = <prop>“270”</prop>)으로 설정하였습니다.
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">startAngle</td>
+					<td align="center"><p>0(*) 과 360 사이의 값</p>
+					</td>
+					<td align="left">
+						<p>게이지에서 데이터 값의 영역이 시작되는 각도를 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<dl class="section attention">
+				<dt>주의</dt>
+				<dd><div class="fragment">스코어카드형 게이지와 스피트미터형 게이지(원형, 반원형)의 각도값 <prop>“0”</prop> 이 적용되는 위치가 다른 점에 유의하십시요.
+					스코어카드형 게이지에서 각도값 <prop>“0”</prop> 의 위치는 12 시 방향이고, 스피트미터형 게이지(원형, 반원형)에서 각도값 <prop>“0”</prop> 의 위치는 3 시 방향입니다.</div></dd>
+			</dl>
+
+<div class="fragment">
+	<div class="line">&lt;<span class="vhdllogic">Gauge</span> minimum="0" maximum="200" minimumAngle="<span class="vhdllogic">0</span>" maximumAngle="<span class="vhdllogic">180</span>" startAngle="<span class="vhdllogic">-90</span>" height="380" formatter="{cft}" innerRatio="0.85" labelJsFunction="valueLabelFunc" foregroundColors="[#f6a44c]" backgroundColors="[#e8d7c9]" color="#333333" fontSize="53" verticalOriginRatio="0.7" labelYOffset="-50"&gt;</div>
+	<div class="line">  &lt;backgroundElements&gt;</div>
+	<div class="line">    &lt;CanvasElement&gt;</div>
+	<div class="line">      &lt;Label fontSize="13" height="17" color="#888888" horizontalCenter="0" verticalCenter="65" text="HALF SIMPLE GAUGE"/&gt;</div>
+	<div class="line">    &lt;/CanvasElement&gt;</div>
+	<div class="line">  &lt;/backgroundElements&gt;</div>
+	<div class="line">&lt;/<span class="vhdllogic">Gauge</span>&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="XYJVbp" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 반원형 스코어카드" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/XYJVbp/">알메이트 차트 - 반원형 스코어카드</a></p>-->
+			<img class="capture" src="images/demo/반원형-스코어카드.jpg" alt="반원형 스코어카드" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/XYJVbp/" target="_blank">알메이트 차트 - 반원형 스코어카드</a></p>
+
+			<h3><a class="anchor" id="다중값스코어카드"></a>다중값 스코어카드</h3>
+			<p>스코어카드형 게이지에서는 다중값을 표현할 수 있습니다.
+				이 때 적용되는 데이터의 형식은 레이블과 값이 저장된 객체의 배열이어야 합니다.</p>
+
+			<p>다음은 <a href="../api/Gauge.html" target="_blank">&lt;Gauge&gt;</a> 노드에서 데이터의 레이블과 값이 저장된 필드명을 지정하는 속성에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">nameField</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left">
+						<p>데이터의 레이블이 저장된 필드명을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">valueField</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left">
+						<p>데이터 값이 저장된 필드명을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 다중값을 표현하는 스코어카드형 게이지를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;<span class="vhdllogic">Gauge</span> minimum="0" maximum="100" minimumAngle="0" maximumAngle="270" startAngle="-90" nameField="<span class="vhdllogic">name</span>" valueField="<span class="vhdllogic">value</span>" innerRatio="0.5" backgroundColors="[#f0f0f0]" foregroundColors="[#5587a2,#20cbc2,#f6a54c]" color="#ffffff" fontSize="20" fontWeight="bold" labelYOffset="-4"&gt;</div>
+	<div class="line">  &lt;backgroundElements&gt;</div>
+	<div class="line">    &lt;Box width="100%" height="100%" horizontalAlign="center" verticalAlign="middle"&gt;</div>
+	<div class="line">      &lt;SubLegend direction="vertical" fontSize="13" color="#666666" borderStyle="none"&gt;</div>
+	<div class="line">        &lt;LegendItem label="English"&gt;</div>
+	<div class="line">          &lt;fill&gt;</div>
+	<div class="line">            &lt;SolidColor color="#5587a2"/&gt;</div>
+	<div class="line">          &lt;/fill&gt;</div>
+	<div class="line">        &lt;/LegendItem&gt;</div>
+	<div class="line">        &lt;LegendItem label="Math"&gt;</div>
+	<div class="line">          &lt;fill&gt;</div>
+	<div class="line">            &lt;SolidColor color="#20cbc2"/&gt;</div>
+	<div class="line">          &lt;/fill&gt;</div>
+	<div class="line">        &lt;/LegendItem&gt;</div>
+	<div class="line">        &lt;LegendItem label="History"&gt;</div>
+	<div class="line">          &lt;fill&gt;</div>
+	<div class="line">            &lt;SolidColor color="#f6a54c"/&gt;</div>
+	<div class="line">          &lt;/fill&gt;</div>
+	<div class="line">        &lt;/LegendItem&gt;</div>
+	<div class="line">      &lt;/SubLegend&gt;</div>
+	<div class="line">    &lt;/Box&gt;</div>
+	<div class="line">  &lt;/backgroundElements&gt;</div>
+	<div class="line">&lt;/<span class="vhdllogic">Gauge</span>&gt;</div>
+	<div class="line"></div>
+	<div class="line">var chartData =</div>
+	<div class="line">  [{"<span class="vhdllogic">name</span>" : "English", "<span class="vhdllogic">value</span>" : 100},</div>
+	<div class="line">  {"<span class="vhdllogic">name</span>" : "Math", "<span class="vhdllogic">value</span>" : 74},</div>
+	<div class="line">  {"<span class="vhdllogic">name</span>" : "History", "<span class="vhdllogic">value</span>" : 82}</div>
+	<div class="line">];</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="ZRYvbO" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다중값 스코어카드" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/ZRYvbO/">알메이트 차트 - 다중값 스코어카드</a></p>-->
+			<img class="capture" src="images/demo/다중값-스코어카드.jpg" alt="다중값 스코어카드" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/ZRYvbO/" target="_blank">알메이트 차트 - 다중값 스코어카드</a></p>
+
+			<h3><a class="anchor" id="원형게이지"></a>원형 게이지</h3>
+			<p>스피드미터형 게이지는 데이터 값을 바늘이 가르키는 방향으로 표현합니다. 바늘의 모양은 다음 속성들을 이용하여 다양한 형태로 표시가 가능합니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">needleBackLengthRatio</td>
+					<td align="center"><p>0(*) 과 1 사이의 숫자</p>
+					</td>
+					<td align="left">
+						<p>바늘 커버의 중심을 기준으로 바늘 뒷부분의 길이를 지정합니다.<p/>
+						<p>게이지의 중심에서 원의 둘레까지(반지름)가 <prop>“1”</prop> 에 해당합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">needleCoverFill</td>
+					<td align="center"><p><a href="../api/SolidColor.html" target="_blank">&lt;SolidColor&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>바늘 커버의 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">needleCoverRadius</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 15</p>
+					</td>
+					<td align="left">
+						<p>바늘 커버의 반지름 크기를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">needleCoverStroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>바늘 커버 선의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">needleFill</td>
+					<td align="center"><p><a href="../api/SolidColor.html" target="_blank">&lt;SolidColor&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>바늘 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">needleLengthRatio</td>
+					<td align="center"><p>0 과 1 사이의 숫자</p>
+						<p>기본값: 0.85</p>
+					</td>
+					<td align="left">
+						<p>바늘의 길이를 지정합니다.</p>
+						<p>게이지의 중심에서 원의 둘레까지(반지름)가 <prop>“1”</prop> 에 해당합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">needlePointStyle</td>
+					<td align="center"><p>steeple(*), rounding</p>
+					</td>
+					<td align="left">
+						<p>바늘 포인트의 모양을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">needleStroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>바늘 선의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">needleThickness</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 10</p>
+					</td>
+					<td align="left">
+						<p>바늘 선의 두께를 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>원형 게이지의 모양은 다음 속성들을 이용하여 다양한 형태로 표현이 가능합니다</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">frameFill</td>
+					<td align="center"><p><a href="../api/SolidColor.html" target="_blank">&lt;SolidColor&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>게이지 프레임 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">frameStroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>게이지 프레임 선의 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">tickFill</td>
+					<td align="center"><p><a href="../api/SolidColor.html" target="_blank">&lt;SolidColor&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>게이지 눈금(tick) 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">tickStroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>게이지 눈금(tick) 선의 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">minorTickFill</td>
+					<td align="center"><p><a href="../api/SolidColor.html" target="_blank">&lt;SolidColor&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>게이지 보조 눈금(minor tick) 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">minorTickStroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>게이지 보조 눈금(minor tick) 선의 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">outFrameFill</td>
+					<td align="center"><p><a href="../api/SolidColor.html" target="_blank">&lt;SolidColor&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>showOutFrame 속성값이 <prop>“true”</prop> 일 때 게이지 프레임 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">outFrameStroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>showOutFrame 속성값이 <prop>“true”</prop> 일 때 게이지 프레임 선의 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 스피드미터형 게이지 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;<span class="vhdllogic">CircularGauge</span> minimumAngle="30" maximumAngle="330" startAngle="90" labelJsFunction="labelFunc" value="50" interval="10" minorInterval="2" needleLengthRatio="0.7" needleBackLengthRatio="0" valueXOffset="0" valueYOffset="80" tickLabelStyleName="tickText" valueLabelStyleName="valueText" editMode="true" liveDragging="true" bounceAnimating="true" labelGap="10" tickGap="-4" showDataTip="true" needleCoverRadius="6" pointThickness="2" needleThickness="4" majorTickType="triangle"&gt;</div>
+	<div class="line">  &lt;frameStroke&gt;</div>
+	<div class="line">    &lt;Stroke color="#f15f5f" weight="10"/&gt;</div>
+	<div class="line">  &lt;/frameStroke&gt;</div>
+	<div class="line">  &lt;tickStroke&gt;</div>
+	<div class="line">    &lt;Stroke color="#f15f5f"/&gt;</div>
+	<div class="line">  &lt;/tickStroke&gt;</div>
+	<div class="line">  &lt;tickFill&gt;</div>
+	<div class="line">    &lt;SolidColor color="#f15f5f"/&gt;</div>
+	<div class="line">  &lt;/tickFill&gt;</div>
+	<div class="line">&lt;/<span class="vhdllogic">CircularGauge</span>&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="rKapxj" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 원형 게이지" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/rKapxj/">알메이트 차트 - 원형 게이지</a></p>-->
+			<img class="capture" src="images/demo/원형-게이지.jpg" alt="원형 게이지" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/rKapxj/" target="_blank">알메이트 차트 - 원형 게이지</a></p>
+
+			<p>다음은 전체 트랙을 눈금에 따라서 3 가지 범위로 나누고 다른 스타일을 적용한 스피드미터형 게이지 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+<div class="fragment">
+	<div class="line">&lt;<span class="vhdllogic">CircularGauge</span> startAngle="90" minimumAngle="30" maximumAngle="330" minimum="0" maximum="200"  labelJsFunction="labelFunc" needleCoverRadius="6" interval="20" minorInterval="5" padding="0" labelGap="14" tickGap="-1" formatter="{numFmt}" tickLabelStyleName="tickText" valueLabelStyleName="valueText" needlePointStyle="steeple" pointThickness="2" needleThickness="4" needleLengthRatio="0.75" editMode="true" showDataTip="true" valueYOffset="80" animationDuration="1000" majorTickType="line" minorTickType="line" minorTickRadius="4" tickRadius="7" showTrackColor="true" trackValues="[0, 120, 160, 200]" trackColors="[#21cbc0,#f8a44c,#8a7860]" trackAlphas="[1,1,1]" trackInnerRadius="0.92" trackOuterRadius="1"&gt;</div>
+	<div class="line">  &lt;frameStroke&gt;</div>
+	<div class="line">    &lt;Stroke color="#ffffff" weight="0" alpha="0"/&gt;</div>
+	<div class="line">  &lt;/frameStroke&gt;</div>
+	<div class="line">  &lt;tickStroke&gt;</div>
+	<div class="line">    &lt;Stroke color="#ffffff" weight="2"/&gt;</div>
+	<div class="line">  &lt;/tickStroke&gt;</div>
+	<div class="line">  &lt;minorTickStroke&gt;</div>
+	<div class="line">    &lt;Stroke color="#ffffff" alpha="0.5"/&gt;</div>
+	<div class="line">  &lt;/minorTickStroke&gt;</div>
+	<div class="line">  &lt;needleFill&gt;</div>
+	<div class="line">    &lt;SolidColor color="#000000"/&gt;</div>
+	<div class="line">  &lt;/needleFill&gt;</div>
+	<div class="line">  &lt;needleStroke&gt;</div>
+	<div class="line">    &lt;Stroke color="#000000"/&gt;</div>
+	<div class="line">  &lt;/needleStroke&gt;</div>
+	<div class="line">  &lt;needleCoverFill&gt;</div>
+	<div class="line">    &lt;SolidColor color="#000000"/&gt;</div>
+	<div class="line">  &lt;/needleCoverFill&gt;</div>
+	<div class="line">  &lt;needleCoverStroke&gt;</div>
+	<div class="line">    &lt;Stroke color="#000000"/&gt;</div>
+	<div class="line">  &lt;/needleCoverStroke&gt;</div>
+	<div class="line">&lt;/<span class="vhdllogic">CircularGauge</span>&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="dKPJMe" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 스피드미터형 원형 게이지" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/dKPJMe/">알메이트 차트 - 스피드미터형 원형 게이지</a></p>-->
+			<img class="capture" src="images/demo/스피드미터형-원형-게이지.jpg" alt="스피드미터형 원형 게이지" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/dKPJMe/" target="_blank">알메이트 차트 - 스피드미터형 원형 게이지</a></p>
+
+			<p>위에서 설명한 예제에서는 트랙을 3 가지로 나누고 다른 스타일을 설정하기 위해서 다음 속성들을 이용합니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">trackValues</td>
+					<td align="center">숫자 배열
+					</td>
+					<td align="left">
+						<p>minimum 속성값과 maximum 속성값 사이의 값으로 트랙의 범위들을 지정합니다.</p>
+						<p>예를 들어 trackValues = <prop>“[0,50,80,100]”</prop>, minimum = <prop>“0”</prop>, maximum = <prop>“100”</prop> 이면, 0 ~ 50, 50 ~ 80, 80 ~ 100 세가지 범위가 설정됩니다.</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td align="center">trackColors</td>
+					<td align="center"><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a>
+					</td>
+					<td align="left">
+						<p>trackValues 속성에 설정된 각 범위에 순서대로 색을 지정합니다.</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td align="center">trackAlphas</td>
+					<td align="center"><a href="../api/SolidColor.html" target="_blank">&lt;SolidColor&gt;</a>
+					</td>
+					<td align="left">
+						<p>trackValues 속성에 설정된 각 범위에 순서대로 색의 투명도를 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>게이지 프레임의 스타일에 그라디언트 효과를 설정할 수 있습니다. 다음은 이를 위한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;<span class="vhdllogic">CircularGauge</span> padding="8" startAngle="90" minimumAngle="40" maximumAngle="320" minimum="0" maximum="500" value="200" interval="50" minorInterval="10" formatter="{numFmt}" tickLabelStyleName="tickText" valueLabelStyleName="valueText" editMode="true" majorTickType="circle" liveDragging="false" tickGap="-3" labelGap="-5" showDataTip="false" tickLabelPlacement="outside" tickColor="#1B699A" needleCoverRadius="100" needleThickness="100" pointThickness="0" tickRadius="2" needleLengthRatio="0.9" minorTickType="line" minorTickRadius="5" needlePointStyle="rounding" isValueTop="true" animationDuration="1000" bounceAnimating="true" rotateTickLabel="true" showOutFrame="true" outFrameLabelXOffset="0" outFrameLabelYOffset="0.2"&gt;</div>
+	<div class="line">  &lt;frameFill&gt;</div>
+	<div class="line">    &lt;<span class="vhdllogic">LinearGradient</span> angle="0"&gt;</div>
+	<div class="line">      &lt;entries&gt;</div>
+	<div class="line">        &lt;GradientEntry color="#f6af43" ratio="0"/&gt;</div>
+	<div class="line">        &lt;GradientEntry color="#f55a58" ratio="1"/&gt;</div>
+	<div class="line">      &lt;/entries&gt;</div>
+	<div class="line">    &lt;/<span class="vhdllogic">LinearGradient</span>&gt;</div>
+	<div class="line">  &lt;/frameFill&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">&lt;/<span class="vhdllogic">CircularGauge</span>&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="ERaogv" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 스피드미터형 원형 게이지 - 그라디언트 효과" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/ERaogv/">알메이트 차트 - 스피드미터형 원형 게이지 - 그라디언트 효과</a></p>-->
+			<img class="capture" src="images/demo/스피드미터형-원형-게이지-그라디언트-효과.jpg" alt="스피드미터형 원형 게이지 그라디언트 효과" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/ERaogv/" target="_blank">알메이트 차트 - 스피드미터형 원형 게이지 - 그라디언트 효과</a></p>
+
+			<p>속성명 앞에 second 를 붙여서 보조 트랙을 표시할 수 있습니다.
+				다음은 이를 이용하여 킬로미터(km)와 마일(mi)을 동시에 게이지에 표시하는 코드와 이를 적용해서출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;<span class="vhdllogic">CircularGauge</span> startAngle="90" minimumAngle="30" maximumAngle="330" editMode="true" liveDragging="true" coverRadiusRatio="0.1" needleThickness="4" needleCoverRadius="5" needleLengthRatio="0.7" needleBackLengthRatio="0" needlePointStyle="steeple" pointThickness="2" labelGap="14" valueYOffset="60" tickLabelStyleName="tickText" valueLabelStyleName="valueText" labelJsFunction="labelFunc" minimum="0" maximum="125" interval="25" minorInterval="5" tickGap="-14" tickRadius="4" minorTickRadius="4" minorTickType="line" majorTickType="line" tickLabelPlacement="outside" showTrackColor="true" trackValues="[0,125]" trackColors="[#f6a44c]" trackAlphas="[1]" trackInnerRadius="1.03" trackOuterRadius="1.05" <span class="vhdllogic">secondTickLabelStyleName</span>="tickText2" <span class="vhdllogic">secondLabelJsFunction</span>="labelFunc2" <span class="vhdllogic">secondMinimum</span>="0" <span class="vhdllogic">secondMaximum</span>="200" <span class="vhdllogic">showSecondTick</span>="true" <span class="vhdllogic">secondInterval</span>="50" <span class="vhdllogic">secondTickGap</span>="8" <span class="vhdllogic">secondTickRadius</span>="4" <span class="vhdllogic">secondMinorInterval</span>="10" <span class="vhdllogic">showSecondMinorTick</span>="true" <span class="vhdllogic">secondMinorTickGap</span>="8" <span class="vhdllogic">secondMinorTickRadius</span>="4" <span class="vhdllogic">secondMinorTickType</span>="line" <span class="vhdllogic">showSecondValueLabel</span>="true" <span class="vhdllogic">showSecondTickLabels</span>="true" <span class="vhdllogic">showSecondTrackColor</span>="true" <span class="vhdllogic">secondTrackValues</span>="[0,125]" <span class="vhdllogic">secondTrackColors</span>="[#5587a2]" <span class="vhdllogic">secondTrackAlphas</span>="[1]" <span class="vhdllogic">secondTrackInnerRadius</span>="0.94" <span class="vhdllogic">secondTrackOuterRadius</span>="0.96"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;secondMinorTickStroke&gt;</div>
+	<div class="line">    &lt;Stroke color="#5587a2"/&gt;</div>
+	<div class="line">  &lt;/secondMinorTickStroke&gt;</div>
+	<div class="line">  &lt;secondTickStroke&gt;</div>
+	<div class="line">    &lt;Stroke color="#5587a2" weight="3"/&gt;</div>
+	<div class="line">  &lt;/secondTickStroke&gt;</div>
+	<div class="line">&lt;/<span class="vhdllogic">CircularGauge</span>&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="aKzEpL" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 스피드미터형 원형 게이지 - 보조 트랙" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/aKzEpL/">알메이트 차트 - 스피드미터형 원형 게이지 - 보조 트랙</a></p>-->
+			<img class="capture" src="images/demo/스피드미터형-원형-게이지-보조-트랙.jpg" alt="스피드미터형 원형 게이지 - 보조 트랙" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/aKzEpL/" target="_blank">알메이트 차트 - 스피드미터형 원형 게이지 - 보조 트랙</a></p>
+
+			<h3><a class="anchor" id="반원형게이지"></a>반원형 게이지</h3>
+			<p>스피드미터형 반원 게이지는 <a href="../api/HalfCircularGauge.html" target="_blank">&lt;HalfCircularGauge&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				반원형 게이지에서 사용되는 속성들의 적용 방식은 원형 게이지에서 속성들을 적용하는 방식과 동일합니다.
+				다음은 반원형 게이지를 생성하는 코드와 이를 적용해서출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;<span class="vhdllogic">HalfCircularGauge</span> startAngle="165" minimumAngle="0" maximumAngle="210" minimum="0" maximum="500" interval="100" minorInterval="25" formatter="{numFmt}" editMode="false" liveDragging="true" showDataTip="true" valueXOffset="0" valueYOffset="0" isValueTop="true" tickLabelStyleName="tickText" valueLabelStyleName="valueLabelStyle" needleCoverRadius="20" needleThickness="20" pointThickness="0" needleLengthRatio="0.7" needlePointStyle="steeple" needleBackLengthRatio="0" tickGap="0" labelGap="15" tickLabelPlacement="outside" majorTickType="line" tickRadius="12" minorTickType="line" minorTickRadius="10" showTrackColor="true" trackValues="[0,100,200,300,400,500]" trackColors="[#f35f5f,#f6a54c,#b7e2ac,#5ece9e,#5587a2]" trackAlphas="[1,1,1,1,1]" trackInnerRadius="0.87" trackOuterRadius="1"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">&lt;/<span class="vhdllogic">HalfCircularGauge</span>&gt;</div>
+</div>
+
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="jKEYmW" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 반원형 게이지" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/jKEYmW/">알메이트 차트 - 반원형 게이지</a></p>-->
+			<img class="capture" src="images/demo/반원형-게이지.jpg" alt="반원형 게이지" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/jKEYmW/" target="_blank">알메이트 차트 - 반원형 게이지</a></p>
+
+			<p>다음은 트랙의 레이블에 텍스트를 표시하는 반원형 게이지의 예제입니다.</p>
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="ERaoXw" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 반원형 게이지 - 트랙의 레이블에 텍스트 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/ERaoXw/">알메이트 차트 - 반원형 게이지 - 트랙의 레이블에 텍스트 표시</a></p>-->
+			<img class="capture" src="images/demo/반원형-게이지-트랙의-레이블에-텍스트-표시.jpg" alt="반원형 게이지 - 트랙의 레이블에 텍스트 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/ERaoXw/" target="_blank">알메이트 차트 - 반원형 게이지 - 트랙의 레이블에 텍스트 표시</a></p>
+
+			<p>다음은 트랙에 눈금과 텍스트를 표시하는 반원형 게이지의 예제입니다.</p>
+			<!--<p data-height="432" data-theme-id="dark" data-slug-hash="jKEYGq" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 반원형 게이지 - 트랙에 눈금과 텍스트 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/jKEYGq/">알메이트 차트 - 반원형 게이지 - 트랙에 눈금과 텍스트 표시</a></p>-->
+			<img class="capture" src="images/demo/트랙에-눈금과-텍스트-표시.jpg" alt="트랙에 눈금과 텍스트 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/jKEYGq/" target="_blank">알메이트 차트 - 반원형 게이지 - 트랙에 눈금과 텍스트 표시</a></p>
+
+			<h3><a class="anchor" id="수평게이지"></a>수평 게이지</h3>
+			<p>수평 게이지는 가로 직사각형 형태로 표현되며, 실린더형과 직선형이 지원됩니다.
+				실린더형 수평 게이지는 <a href="../api/HCylinderGauge.html" target="_blank">&lt;HCylinderGauge&gt;</a> 노드를 설정하여 생성하고, 직선형 수평 게이지는 <a href="../api/HLinearGauge.html" target="_blank">&lt;HLinearGauge&gt;</a> 노드를 설정하여 생성합니다.</p>
+
+			<p>다음은 수평 게이지를 표현한 예제입니다.</p>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="vrEpWv" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 수평 게이지" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/vrEpWv/">알메이트 차트 - 수평 게이지</a></p>-->
+			<img class="capture" src="images/demo/수평-게이지.jpg" alt="수평 게이지" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/vrEpWv/" target="_blank">알메이트 차트 - 수평 게이지</a></p>
+
+			<h3><a class="anchor" id="수직게이지"></a>수직 게이지</h3>
+			<p>수직 게이지는 세로 직사각형 형태로 표현되며, 실린더형과 직선형이 지원됩니다.
+				실린더형 수직 게이지는 <a href="../api/VCylinderGauge.html" target="_blank">&lt;VCylinderGauge&gt;</a> 노드를 설정하여 생성하고, 직선형 수직 게이지는 <a href="../api/VLinearGauge.html" target="_blank">&lt;VLinearGauge&gt;</a> 노드를 설정하여 생성합니다.
+				수평/수직 게이지는 보통 목표값에 대비한 실적값의 달성 정도를 표현합니다.
+				실린더형에서는 실적값을 안쪽 실린더의 길이로 표현하고, 직선형에서는 안쪽 막대의 길이로 표현합니다.</p>
+
+			<p>다음은 수직 게이지를 표현한 예제입니다.</p>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="yEypvg" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 수직 게이지" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/yEypvg/">알메이트 차트 - 수직 게이지</a></p>-->
+			<img class="capture" src="images/demo/수직-게이지.jpg" alt="수직 게이지" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/yEypvg/" target="_blank">알메이트 차트 - 수직 게이지</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

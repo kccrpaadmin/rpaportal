@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>알메이트 차트 6.0</title>
+    
+    <meta name="description" content="리아모어 소프트 자바스크립트 HTML5 차트 6.0" />
+    
+        <meta name="keywords" content="알메이트 차트 리아모어" />
+        <meta name="keyword" content="알메이트 차트 리아모어" />
+    
+    
+    
+    <meta property="og:title" content="알메이트 차트 6.0"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="리아모어 소프트"/>
+    <meta property="og:url" content="http://www.riamore.net"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"default":{"outputSourceFiles":false,"outputSourcePath":true,"includeDate":false},"applicationName":"알메이트 차트 6.0","disqus":"","googleAnalytics":"","openGraph":{"title":"알메이트 차트 6.0","type":"website","image":"","site_name":"리아모어 소프트","url":"http://www.riamore.net"},"meta":{"title":"알메이트 차트 6.0","description":"리아모어 소프트 자바스크립트 HTML5 차트 6.0","keyword":"알메이트 차트 리아모어"},"linenums":false};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<script src="navigation.js"></script>
+    <div class="main">
+        <h1 class="page-title" data-filename="AngularAxisRenderer.html">Class: AngularAxisRenderer</h1>
+        
+
+
+
+<section>
+    
+<header>
+    <h2>
+    AngularAxisRenderer
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="AngularAxisRenderer">
+            
+            new AngularAxisRenderer<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>AngularAxisRenderer 클래스는 레이더 차트에서 카테고리에 해당되는 축을 렌더링합니다.<br><br> 축의 굵기, 축의 색, 눈금의 위치, 눈금의 색 등을 조절할 수 있습니다.<br><br> 반드시 axis 속성에 해당 축을 설정해야 합니다.</p>
+<p> 레이아웃은 다음과 같은 형식으로 작성됩니다.</p>
+<pre class="prettyprint source"><code>&lt;RadarChart>
+  &lt;angularAxis>
+    &lt;CategoryAxis id=&quot;aAxis&quot; categoryField=&quot;catName&quot; displayName=&quot;Category&quot;>
+  &lt;/angularAxis>
+  &lt;angularAxisRenderers>
+    &lt;AngularAxisRenderer axis=&quot;{aAxis}&quot; styleName=&quot;hangingCategoryAxis&quot;>
+  &lt;/angularAxisRenderers>
+  ...
+&lt;/RadarChart></code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="axis">axis<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>화면에 표시할 축의 객체 값(식별자)을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="axisStroke">axisStroke<span class="type-signature type object">Object</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>축을 표시하는 선의 속성을 설정합니다.</p>
+<p> 유효값은 Stroke 클래스의 인스턴스입니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="axisTitleStyleName">axisTitleStyleName<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>축 타이틀의 스타일을 &lt;Style&gt; 노드에 설정할 경우, &lt;Style&gt; 노드에 정의된 이름을 설정합니다.<br><br> &lt;Style&gt; 노드에 스타일을 정의할 때는 반드시 스타일명 앞에 마침표가 위치해야 합니다.</p>
+<p> 레이아웃은 다음과 같은 형식으로 작성됩니다.</p>
+<pre class="prettyprint source"><code>&lt;angularAxisRenderers>
+  &lt;AngularAxisRenderer axis=&quot;{aAxis}&quot; axisTitleStyleName=&quot;aStyle&quot; ... />'
+&lt;/angularAxisRenderers>'
+...
+&lt;Style>
+  .aStyle{color:#ffffff;fontSize:12;}
+&lt;/Style></code></pre>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="id">id<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>식별자(Identifier)를 설정합니다.<br><br> 식별자(Identifier)는 사용자에 의해 정의된 임의의 고유값입니다.<br><br> 설정된 식별자(Identifier)를 통해 해당 객체에 접근이 가능합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="labelGap">labelGap<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>라벨과 축 간의 간격을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>6</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showLabels">showLabels<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>라벨의 표시 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>true</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showLine">showLine<span class="type-signature type boolean">Boolean</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>실제 축의 표시 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+
+        
+
+        <footer>
+	        Copyright(c) 2018 <a target="_blank" href="http://www.riamore.net" target="_blank">RiaMore Soft, Inc</a>. All Right Reserved
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

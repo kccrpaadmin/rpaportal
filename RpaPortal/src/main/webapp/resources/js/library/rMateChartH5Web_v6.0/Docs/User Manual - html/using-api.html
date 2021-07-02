@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: API 함수 활용</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('using-api.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="고급사용자를위한기능">고급 사용자를 위한 기능</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#고급사용자를위한기능">고급 사용자를 위한 기능</a>
+						<li class="level2"><a href="#api함수활용">API 함수 활용</a>
+							<li class="level3"><a href="#차트의크기재설정">차트의 크기 재설정</a></li>
+							<li class="level3"><a href="#동적레이아웃과데이터셋적용">동적 레이아웃과 데이터셋 적용</a></li>
+							<li class="level3"><a href="#한페이지에여러개의차트생성">한 페이지에 여러 개의 차트 생성</a></li>
+							<li class="level3"><a href="#jquery탭연동">jQuery 탭 연동 </a></li>
+							<li class="level3"><a href="#프리로더">프리로더</a></li>
+							<li class="level3"><a href="#null데이터">Null 데이터</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="api함수활용"></a>API 함수 활용</h2>
+			<p>알메이트 차트에서 제공하는 API 함수는 차트 개발시 여러 가지 목적으로 유용하게 활용될 수 있습니다.
+				API 함수를 호출하는 방식은 자바스크립트의 차트 엘리먼트를 통해서 해당 API 함수를 직접 호출하는 방식입니다.</p>
+
+<div class="fragment">
+	<div class="line">document.getElementById("Chart Identifier").API Function Name();</div>
+</div>
+
+			<h3><a class="anchor" id="차트의크기재설정"></a>차트의 크기 재설정</h3>
+			<p>차트의 크기는 resize() 함수를 호출하여 조정할 수 있습니다.
+				다음은 차트가 위치한 &lt;div&gt; 의 크기를 변경한 후, resize() 함수를 호출하는 예제 코드입니다.
+				예제 코드에서 <prop>“chartHolder”</prop> 는 차트가 생성되는 부모 &lt;div&gt; 의 식별자이고, <prop>“chart1”</prop> 은 차트의 식별자입니다.</p>
+
+<div class="fragment">
+	<div class="line">function changeChart(w, h) {</div>
+	<div class="line">  var ch = document.getElementById("chartHolder")</div>
+	<div class="line">  ch.style.width = w+"px";</div>
+	<div class="line">  ch.style.height = h+"px";</div>
+	<div class="line">  document.getElementById("chart1").<span class="vhdllogic">resize()</span>;</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="525" data-theme-id="dark" data-slug-hash="GGJrmv" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 차트의 크기 재설정" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/GGJrmv/">알메이트 차트 - 차트의 크기 재설정</a></p>-->
+			<img class="capture" src="images/demo/차트의-크기-재설정.jpg" alt="차트의 크기 재설정" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/GGJrmv/" target="_blank">알메이트 차트 - 차트의 크기 재설정</a></p>
+
+			<p>알메이트 차트에서 제공하는 API 함수 리스트는 <a href="api-functions.html">API 함수</a>를 참조하십시요.</p>
+
+			<h3><a class="anchor" id="동적레이아웃과데이터셋적용"></a>동적 레이아웃과 데이터셋 적용</h3>
+			<p>차트가 처음 생성된 이후에 데이터셋의 변경이 발생하여 변경된 데이터셋을 적용하여 차트를 다시 생성하고자 한다면 setData() 혹은 setDataURL() 함수를 호출합니다.
+				그리고 레이아웃의 변경이 발생하여 변경된 레이아웃을 적용하여 차트를 다시 생성하고자 한다면 setLayout() 혹은 setLayoutURL() 함수를 호출합니다.</p>
+
+			<p>다음은 좌측 상단의 버튼을 클릭하면 해당 유형의 차트를 생성하는 레이아웃을 적용하여 동적으로 차트를 생성하는 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">function changeColumn() {</div>
+	<div class="line">  document.getElementById("chart1").<span class="vhdllogic">setLayoutURL</span>(layoutURL);</div>
+	<div class="line">}</div>
+	<div class="line"> </div>
+	<div class="line">function changeLine() {</div>
+	<div class="line">  document.getElementById("chart1").<span class="vhdllogic">setLayout</span>(layoutStr);</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">&lt;div class="button button_top" onclick="changeColumn()"&gt;Column Chart&lt;/div&gt;</div>
+	<div class="line">&lt;div class="button button_top" onclick="changeLine()"&gt;Line Chart&lt;/div&gt;</div>
+</div>
+
+			<!--<p data-height="525" data-theme-id="dark" data-slug-hash="bKdgoK" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 동적 레이아웃과 데이터셋 적용" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/bKdgoK/">알메이트 차트 - 동적 레이아웃과 데이터셋 적용</a></p>-->
+			<img class="capture" src="images/demo/동적-레이아웃과-데이터셋-적용.jpg" alt="동적 레이아웃과 데이터셋 적용" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/bKdgoK/" target="_blank">알메이트 차트 - 동적 레이아웃과 데이터셋 적용</a></p>
+
+			<h3><a class="anchor" id="한페이지에여러개의차트생성"></a>한 페이지에 여러 개의 차트 생성</h3>
+			<p>여러 개의 차트를 하나의 페이지에 생성하기 위해서는 rMateChartH5.create() 함수를 원하는 횟수 만큼 호출하면 됩니다.
+				이 때 함수의 파라미터 값으로 지정되는 차트의 식별자와 차트가 생성될 &lt;div&gt; 의 식별자는 반드시 구분이 되어야 하고,
+				차트가 생성될 &lt;div&gt; 는 HTML 문서에 구성이 되어 있어야 합니다.
+				chartVars 변수에 설정되는 차트 생성 작업을 위한 준비가 완료되면 호출되는 함수는 차트 개발자의 편의에 따라서 각 차트별로 별도로 만들 수도 있고, 하나로 구현할 수도 있습니다.</p>
+
+			<p>다음은 하나의 chartVars 변수를 이용(차트 생성 작업을 위한 준비가 완료되면 호출되는 함수도 하나를 이용)하여 두 개의 차트를 한 화면에 구현하는 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">var chartVars = "rMateOnLoadCallFunction=chartReadyHandler";</div>
+	<div class="line"> </div>
+	<div class="line">rMateChartH5.create("chart1", "chartHolder1", chartVars, "100%", "100%"); </div>
+	<div class="line">rMateChartH5.create("chart2", "chartHolder2", chartVars, "100%", "100%"); </div>
+	<div class="line"> </div>
+	<div class="line">function chartReadyHandler(id) {</div>
+	<div class="line"> document.getElementById(id).setLayout(id == "chart1" ? layoutStr : layoutStr2);</div>
+	<div class="line"> document.getElementById(id).setData(chartData);</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">&lt;div id="chartHolder1" style="height:200px;"/&gt;</div>
+	<div class="line">&lt;div id="chartHolder2" style="width:100%;height:200px;float:left;"/&gt;</div>
+</div>
+
+			<!--<p data-height="525" data-theme-id="dark" data-slug-hash="GGJWmw" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 한 페이지에 여러 개의 차트 생성" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/GGJWmw/">알메이트 차트 - 한 페이지에 여러 개의 차트 생성</a></p>-->
+			<img class="capture" src="images/demo/한-페이지에-여러-개의-차트-생성.jpg" alt="한 페이지에 여러 개의 차트 생성" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/GGJWmw/" target="_blank">알메이트 차트 - 한 페이지에 여러 개의 차트 생성</a></p>
+
+			<h3><a class="anchor" id="jquery탭연동"></a>jQuery 탭 연동</h3>
+			<p>한 페이지에 여러 개의 차트를 생성한 후 jQuery 탭과 연동하여 사용자가 탭을 클릭하면 해당 차트를 화면에 표시하는 기능을 구현할 수 있습니다.
+				다음은 이에 대한 예제 코드입니다.</p>
+
+<div class="fragment">
+	<div class="line">var chartVars = "rMateOnLoadCallFunction=chartReadyHandler";</div>
+	<div class="line"></div>
+	<div class="line">rMateChartH5.create("chart1", "chartHolder1", chartVars, "100%", "100%");</div>
+	<div class="line"></div>
+	<div class="line">function chartReadyHandler(id) {</div>
+	<div class="line">  document.getElementById(id).setLayout(window["layoutStr" + id.replace(/\D/g, "")]);</div>
+	<div class="line">  document.getElementById(id).setData(chartData);</div>
+	<div class="line">  </div>
+	<div class="line">  document.getElementById(id).resize();</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">$(document).ready(function() {</div>
+	<div class="line">  $("#jqueryTabs").tabs();</div>
+	<div class="line">  $("#jqueryTabs &gt; ul").click(function(event) {</div>
+	<div class="line">    var i, a, as, content,</div>
+	<div class="line">    tagName = event.target.tagName.toLowerCase();</div>
+	<div class="line">    if (tagName == "a" || tagName == "li") {</div>
+	<div class="line">      as = $("#jqueryTabs a");</div>
+	<div class="line">      for (i = 0 ; i &lt; as.length ; i += 1) {</div>
+	<div class="line">        a = as[i];</div>
+	<div class="line">        $(a.parentNode).removeClass("li_select");</div>
+	<div class="line">        content = a.innerHTML;</div>
+	<div class="line"></div>
+	<div class="line">        if(content == event.target.innerHTML) {</div>
+	<div class="line">          $(a.parentNode).addClass("li_select");</div>
+	<div class="line"></div>
+	<div class="line">          if(!document.getElementById(content))</div>
+	<div class="line">            rMateChartH5.create(content, "chartHolder" + content.replace(/\D/g, ""), chartVars, "100%", "100%");</div>
+	<div class="line">        }</div>
+	<div class="line">      }</div>
+	<div class="line">    }</div>
+	<div class="line">  });</div>
+	<div class="line">});</div>
+	<div class="line"></div>
+	<div class="line"></div>
+	<div class="line">&lt;div id="jqueryTabs"&gt;</div>
+	<div class="line">  &lt;ul&gt;</div>
+	<div class="line">    &lt;li class="li_select"&gt;&lt;a href="#chartHolder1"&gt;chart1&lt;/a&gt;&lt;/li&gt;</div>
+	<div class="line">    &lt;li&gt;&lt;a href="#chartHolder2"&gt;chart2&lt;/a&gt;&lt;/li&gt;</div>
+	<div class="line">    &lt;li&gt;&lt;a href="#chartHolder3"&gt;chart3&lt;/a&gt;&lt;/li&gt;</div>
+	<div class="line">  &lt;/ul&gt;</div>
+	<div class="line"></div>
+	<div class="line">  &lt;div id="chartHolder1" style="width:850px;height:400px;"&gt;&lt;/div&gt;</div>
+	<div class="line">  &lt;div id="chartHolder2" style="width:850px;height:400px;"&gt;&lt;/div&gt;</div>
+	<div class="line">  &lt;div id="chartHolder3" style="width:850px;height:400px;"&gt;&lt;/div&gt;</div>
+	<div class="line">&lt;/div&gt;</div>
+</div>
+
+			<!--<p data-height="530" data-theme-id="dark" data-slug-hash="ERjWvX" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - jQuery 탭 연동" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/ERjWvX/">알메이트 차트 - jQuery 탭 연동</a></p>-->
+			<img class="capture" src="images/demo/jquery-탭-연동.jpg" alt="jQuery 탭 연동" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/ERjWvX/" target="_blank">알메이트 차트 - jQuery 탭 연동</a></p>
+
+			<p>위 예제 코드를 살펴보면, rMateChartH5.create("chart1", "chartHolder1", chartVars, "100%", "100%"); 함수의 실행에 의해서 “chart1” 이 생성되고, “chart2” 와 “chart3” 는
+				$(document).ready(function() 함수 내에서 rMateChartH5.create(content, "chartHolder" + content.replace(/\D/g, ""), chartVars, "100%", "100%"); 함수의 호출에 의해서 생성되도록 구현되어 있습니다.
+				탭 클릭시에 활성화될 차트는 $("#jqueryTabs > ul").click(function(event) 함수에서 설정됩니다.</p>
+
+			<h3><a class="anchor" id="프리로더"></a>프리로더</h3>
+			<p>showAdditionalPreloader() 와 removeAdditionalPreloader() 함수를 이용하여 프리로더 기능을 차트에 구현할 수 있습니다.</p>
+			<p>다음은 이에 대한 예제입니다. 아래 예제에서는 차트가 생성되는 순간에 프리로더 이미지가 보여지고, 좌측 상단의 버튼을 클릭하여 프리로더 이미지의 보이기와 감추기를 시뮬레이션할 수 있습니다.</p>
+
+<div class="fragment">
+	<div class="line">function chartReadyHandler(id) {</div>
+	<div class="line">  document.getElementById("chart1").<span class="vhdllogic">showAdditionalPreloader()</span>;</div>
+	<div class="line">  document.getElementById(id).setLayout(layoutStr);</div>
+	<div class="line">  document.getElementById(id).setData(chartData);</div>
+	<div class="line">	</div>
+	<div class="line">  setTimeout(function(){</div>
+	<div class="line">    document.getElementById("chart1").<span class="vhdllogic">removeAdditionalPreloader()</span>;</div>
+	<div class="line">  }, 1000);</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">function showPreloader() {</div>
+	<div class="line">  document.getElementById("chart1").<span class="vhdllogic">showAdditionalPreloader()</span>;</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">function hidePreloader() {</div>
+	<div class="line">  document.getElementById("chart1").<span class="vhdllogic">removeAdditionalPreloader()</span>;</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">&lt;div class="button button_top" onclick="showPreloader()" &gt;Show Preloader&lt;/div&gt;</div>
+	<div class="line">&lt;div class="button button_top" onclick="hidePreloader()" &gt;Hide Preloader&lt;/div&gt;</div>
+</div>
+
+			<!--<p data-height="525" data-theme-id="dark" data-slug-hash="aKOJVy" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 프리로더 설정" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/aKOJVy/">알메이트 차트 - 프리로더 설정</a></p>-->
+			<img class="capture" src="images/demo/프리로더-설정.jpg" alt="프리로더 설정" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/aKOJVy/" target="_blank">알메이트 차트 - 프리로더 설정</a></p>
+
+			<h3><a class="anchor" id="null데이터"></a>Null 데이터</h3>
+			<p>차트에 표현할 데이터가 하나도 존재하지 않는 경우(null)에 이를 사용자에게 알려주는 함수는 hasNoData() 입니다.
+				hasNoData() 함수의 파라미터는 <prop>“true”</prop> 혹은 <prop>“false”</prop> 입니다.</p>
+
+			<ul>
+				<li>true: 데이터가 없는 차트를 표시하고 데이터가 없다는 팝업 메시지를 보여줍니다.</li>
+				<li>false: 화면에 차트와 메시지를 표시하지 않습니다.</li>
+			</ul>
+
+			<p>다음은 hasNoData() 함수를 이용하여 팝업 메시지를 보여주는 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">function chartReadyHandler(id) {</div>
+	<div class="line">  document.getElementById(id).setLayout(layoutStr);</div>
+	<div class="line">  document.getElementById(id).setData(chartData);</div>
+	<div class="line">  checkData(chartData);</div>
+	<div class="line">}	</div>
+	<div class="line"></div>
+	<div class="line">var chartData = [];	</div>
+	<div class="line"></div>
+	<div class="line">function checkData(data){</div>
+	<div class="line">  if(data.length <= 0)</div>
+	<div class="line">    document.getElementById("chart1").<span class="vhdllogic">hasNoData</span>(true);</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="YvXQVN" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 차트에 표시할 데이터가 없을 경우" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/YvXQVN/">알메이트 차트 - 차트에 표시할 데이터가 없을 경우</a></p>-->
+			<img class="capture" src="images/demo/차트에-표시할-데이터가-없을-경우.jpg" alt="차트에 표시할 데이터가 없을 경우" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/YvXQVN/" target="_blank">알메이트 차트 - 차트에 표시할 데이터가 없을 경우</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

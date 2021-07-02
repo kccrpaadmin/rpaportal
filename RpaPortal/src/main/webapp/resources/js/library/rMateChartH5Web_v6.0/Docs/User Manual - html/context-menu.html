@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 컨텍스트 메뉴</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('context-menu.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="고급사용자를위한기능">고급 사용자를 위한 기능</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#고급사용자를위한기능">고급 사용자를 위한 기능</a>
+						<li class="level2"><a href="#컨텍스트메뉴">컨텍스트 메뉴</a>
+							<li class="level3"><a href="#컨텍스트메뉴표시하지않기">컨텍스트 메뉴 표시하지 않기</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="컨텍스트메뉴"></a>컨텍스트 메뉴</h2>
+			<p>컨텍스트 메뉴 기능은 이전 버전에서 제공되던 사용자 정의 메뉴와 동일한 기능입니다. 이전 버전에서는 사용자 메뉴 항목을 자바스크립트로 작성해야 했지만, 버전 6.0에서는 사용자가 마우스 오른쪽 버튼을 차트에 클릭하기만 하면 메뉴가 자동으로 표시됩니다. 다음은 마우스 오른쪽 버튼을 차트에 클릭하여 컨텍스트 메뉴를 표시한 화면입니다.</p>
+
+			<img class="capture" src="images/context-menu.jpg" alt="컨텍스트 메뉴" />
+
+			<h3><a class="anchor" id="컨텍스트메뉴표시하지않기"></a>컨텍스트 메뉴 표시하지 않기</h3>
+			<p>컨텍스트 메뉴 기능을 사용하지 않기 위해서는 rMateChartH5.create 함수의 세번째 인자(chartVars)의 useContextMenu 값을 <prop>“false”</prop> 로 설정합니다.</p>
+
+<div class="fragment">
+	<div class="line">rMateChartH5.create("chart1", "chartHolder", <span class="vhdllogic">"useContextMenu=false"</span>, 100%", "100%");</div>
+</div>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

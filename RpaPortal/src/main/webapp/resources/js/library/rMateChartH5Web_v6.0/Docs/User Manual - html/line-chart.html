@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 라인 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top">
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('line-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#라인차트">라인 차트</a>
+							<li class="level3"><a href="#직선라인차트">직선 라인 차트</a></li>
+							<li class="level3"><a href="#데이터포인트에도형표시">데이터 포인트에 도형 표시</a></li>
+							<li class="level3"><a href="#동일라인에다른도형표시">동일 라인에 다른 도형 표시</a></li>
+							<li class="level3"><a href="#곡선라인차트">곡선 라인 차트</a></li>
+							<li class="level3"><a href="#계단라인차트">계단 라인 차트</a></li>
+							<li class="level3"><a href="#점선라인차트">점선 라인 차트</a></li>
+							<li class="level3"><a href="#점선과직선을한라인에표현">점선과 직선을 한 라인에 표현</a></li>
+							<li class="level3"><a href="#라인끝에주석표시">라인 끝에 주석 표시</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="라인차트"></a>라인 차트</h2>
+			<p>라인 차트는 여러 분야에서 일반적으로 많이 활용되는 차트 종류 중의 하나로써 일련의 데이터 포인트들을 선으로 연결하여 표현하는 차트입니다.
+				라인 차트는 <a href="../api/Line2DChart.html" target="_blank">&lt;Line2DChart&gt;</a> 노드의 series 속성값에 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				라인 차트에서 그려지는 선의 형태는 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드의 form 속성을 통해서 설정할 수 있습니다.
+				다음에는 form 속성에 설정 가능한 값과 이에 따른 표현 방식이 설명되어 있습니다.</p>
+
+			<ul>
+				<li>segment: 각 데이터 포인트를 직선으로 연결합니다. (기본값)</li>
+				<li>curve: 각 데이터 포인트를 곡선으로 연결합니다.</li>
+				<li>step: 수평 직선으로 시작해서 각 데이터 포인트를 계단선으로 연결합니다.</li>
+				<li>reverseStep: 수직 직선으로 시작해서 각 데이터 포인트를 계단선으로 연결합니다.</li>
+			</ul>
+
+			<h3><a class="anchor" id="직선라인차트"></a>직선 라인 차트</h3>
+			<p>다음은 선의 모양을 직선으로 표현하는 직선 라인 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Line2DChart showDataTips="true" dataTipDisplayMode="axis"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Line2DSeries form="segment" yField="Vancouver" displayName="Vancouver"&gt;</div>
+	<div class="line">      &lt;showDataEffect&gt;</div>
+	<div class="line">        &lt;SeriesClip duration="1000"/&gt;</div>
+	<div class="line">      &lt;/showDataEffect&gt;</div>
+	<div class="line">    &lt;/Line2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">  &lt;annotationElements&gt;</div>
+	<div class="line">    &lt;CrossRangeZoomer enableZooming="false" horizontalLabelFormatter="{numFmt}" horizontalStrokeEnable="false"/&gt;</div>
+	<div class="line">  &lt;/annotationElements&gt;</div>
+	<div class="line">&lt;/Line2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="rKBqNo" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 직선 라인 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/rKBqNo/">알메이트 차트 - 직선 라인 차트</a></p>-->
+			<img class="capture" src="images/demo/직선-라인-차트.jpg" alt="직선 라인 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/rKBqNo/" target="_blank">알메이트 차트 - 직선 라인 차트</a></p>
+
+
+			<dl class="section attention">
+				<dt>주의</dt>
+				<dd><div class="fragment">form 속성의 기본값이 <prop>“segment”</prop> 이므로 form 속성을 설정하지 않으면 자동으로 segment(직선) 형의 라인 차트가 생성됩니다.</div></dd>
+			</dl>
+
+			<h3><a class="anchor" id="데이터포인트에도형표시"></a>데이터 포인트에 도형 표시</h3>
+			<p>라인 차트에서 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드의 itemRenderer 속성(기본값: <prop>“none”</prop>)을 설정하여 데이터 포인트에 특정한 모양의 도형을 표시할 수 있습니다.
+				itemRenderer 속성에 설정 가능한  값과 표시되는 도형의 모양은 다음과 같습니다.</p>
+
+			<ul>
+				<li>CircleItemRenderer:  데이터 포인트에 원을 표시합니다.</li>
+				<li>TriangleItemRenderer: 데이터 포인트에 삼각형을 표시합니다.</li>
+				<li>RectangleItemRenderer: 데이터 포인트에 사각형을 표시합니다.</li>
+				<li>DiamondItemRenderer: 데이터 포인트에 다이아몬드를 표시합니다.</li>
+				<li>CrossItemRenderer: 데이터 포인트에 십자형을 표시합니다.</li>
+				<li>XShapeItemRenderer: 데이터 포인트에 X자 모양을 표시합니다.</li>
+				<li>IShapeItemRenderer: 데이터 포인트에 I자 모양을 표시합니다.</li>
+			</ul>
+
+			<p>다음은 7 가지 데이터 렌더러를 통해서 라인 차트의 데이터 포인트에 도형을 표시하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				도형의 크기는 radius 속성을 통해서 조절이 가능하고 도형의 내부에 칠해지는 색은 fill 속성(이 예제에서는 #ffffff)을 통해서 설정이 가능합니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Line2DChart showDataTips="true"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Data1" radius="6" displayName="Data1" itemRenderer="DiamondItemRenderer" fill="#ffffff" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Data2" radius="6" displayName="Data2" itemRenderer="CircleItemRenderer" fill="#ffffff" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Data3" radius="6" displayName="Data3" itemRenderer="TriangleItemRenderer" fill="#ffffff" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Data4" radius="6" displayName="Data4" itemRenderer="CrossItemRenderer" fill="#ffffff" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Data5" radius="6" displayName="Data5" itemRenderer="XShapeItemRenderer" fill="#ffffff" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Data6" radius="6" displayName="Data6" itemRenderer="IShapeItemRenderer" fill="#ffffff" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Data7" radius="6" displayName="Data7" itemRenderer="RectangleItemRenderer" fill="#ffffff" /&gt;</div>
+	<div class="line">&lt;/series&gt;</div>
+	<div class="line">&lt;/Line2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="pKzxJK" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 데이터 포인트에 도형 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/pKzxJK/">알메이트 차트 - 데이터 포인트에 도형 표시</a></p>-->
+			<img class="capture" src="images/demo/데이터-포인트에-도형-표시.jpg" alt="데이터 포인트에 도형 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/pKzxJK/" target="_blank">알메이트 차트 - 데이터 포인트에 도형 표시</a></p>
+
+			<h3><a class="anchor" id="동일라인에다른도형표시"></a>동일 라인에 다른 도형 표시</h3>
+			<p>라인에 표시되는 도형은 시리즈 노드의 itemRenderer 속성에 설정되기 때문에 한 라인(데이터 시리즈)의 데이터 포인트들에는 모두 동일한 도형이 표시됩니다.
+				만약 데이터의 값에 따라서 도형의 종류를 다르게 표시하고자 할 경우에는 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드의 itemRendererJsFunction 속성에 자바스크립트 함수명을 지정하여 구현할 수 있습니다.
+				다음은 세 개의 라인에 각 데이터 포인트들의 값에 따라서 다른 도형을 표시하는 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;series&gt;</div>
+	<div class="line">  &lt;Line2DSeries yField="Sheep" fill="#ffffff" radius="8" displayName="Sheep" itemRenderer="DiamondItemRenderer" itemRendererJsFunction="itemRendererFunc" /&gt;</div>
+	<div class="line">  &lt;Line2DSeries labelPosition="up" yField="Beef" fill="#ffffff" radius="8" displayName="Beef" showValueLabels="[5]" itemRenderer="DiamondItemRenderer" itemRendererJsFunction="itemRendererFunc" /&gt;</div>
+	<div class="line">  &lt;Line2DSeries yField="Chicken" fill="#ffffff" radius="8" displayName="Chicken" itemRenderer="DiamondItemRenderer" itemRendererJsFunction="itemRendererFunc" /&gt;</div>
+	<div class="line">&lt;/series&gt;</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">itemRendererFunc</span>(id, index, data, values) {</div>
+	<div class="line">  if(values[1] < 40)</div>
+	<div class="line">    return "CircleItemRenderer";</div>
+	<div class="line">  else if(values[1] < 70)</div>
+	<div class="line">    return "RectangleItemRenderer";</div>
+	<div class="line">  else</div>
+	<div class="line">    return "TriangleItemRenderer";</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="EMJzNW" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 동일 라인에 다른 도형 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/EMJzNW/">알메이트 차트 - 동일 라인에 다른 도형 표시</a></p>-->
+			<img class="capture" src="images/demo/동일-라인에-다른-도형-표시.jpg" alt="동일 라인에 다른 도형 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/EMJzNW/" target="_blank">알메이트 차트 - 동일 라인에 다른 도형 표시</a></p>
+
+			<h3><a class="anchor" id="곡선라인차트"></a>곡선 라인 차트</h3>
+			<p>다음은 선의 모양을 곡선으로 표현하는 곡선 라인 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				이 예제에서는 데이터 포인트에 원(CircleItemRenderer)이 표시되며, 처음과 다섯 번째 데이터 포인트(showValueLabels = <prop>“[0, 4]”</prop>)의 위(labelPosition = <prop>“up”</prop>)에 데이터 값(레이블)이 표시되도록 설정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Line2DChart showDataTips="true" &gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Line2DSeries form="<span class="vhdllogic">curve</span>" itemRenderer="CircleItemRenderer" labelPosition="up" yField="goods" displayName="goods" showValueLabels="[0,4]"&gt;</div>
+	<div class="line">      &lt;showDataEffect&gt;</div>
+	<div class="line">        &lt;SeriesInterpolate duration="1000"/&gt;</div>
+	<div class="line">      &lt;/showDataEffect&gt;</div>
+	<div class="line">    &lt;/Line2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Line2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="MXgPaP" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 곡선 라인 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/MXgPaP/">알메이트 차트 - 곡선 라인 차트</a></p>-->
+			<img class="capture" src="images/demo/곡선-라인-차트.jpg" alt="곡선 라인 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/MXgPaP/" target="_blank">알메이트 차트 - 곡선 라인 차트</a></p>
+
+			<h3><a class="anchor" id="계단라인차트"></a>계단 라인 차트</h3>
+			<p>다음은 계단 선 모양을 표현하는 계단 라인 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				이 예제에서는 데이터 포인트에 원(CircleItemRenderer)이 표시되며, 처음과 여섯 번째 데이터 포인트(showValueLabels = <prop>“[0, 5]”</prop>)의 아래(labelPosition = <prop>“down”</prop>)에 데이터 값(레이블)이 표시되도록 설정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Line2DChart showDataTips="true" &gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Line2DSeries labelPosition="down" showValueLabels="[0,5]" yField="Price" form="<span class="vhdllogic">step</span>" radius="5" itemRenderer="CircleItemRenderer" displayName="$ Per Barrel"&gt;</div>
+	<div class="line">      &lt;showDataEffect&gt;</div>
+	<div class="line">        &lt;SeriesInterpolate/&gt;</div>
+	<div class="line">      &lt;/showDataEffect&gt;</div>
+	<div class="line">    &lt;/Line2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Line2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="BVBqjd" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 계단 라인 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/BVBqjd/">알메이트 차트 - 계단 라인 차트</a></p>-->
+			<img class="capture" src="images/demo/계단-라인-차트.jpg" alt="계단 라인 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/BVBqjd/" target="_blank">알메이트 차트 - 계단 라인 차트</a></p>
+
+			<h3><a class="anchor" id="점선라인차트"></a>점선 라인 차트</h3>
+			<p>라인 차트에 표시되는 선을 직선이 아닌 점선으로 표현이 가능합니다.
+				<a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드의 lineStyle 속성을 <prop>“dashLine”</prop> 으로 설정하면 점선이 표현됩니다.
+				점선의 길이에 관한 설정은 다음에서 설명하는 속성을 참조하십시요.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">dashLinePattern</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 10</p>
+					</td>
+					<td align="left"><p>점선의 길이를 픽셀 단위로 지정합니다.</p>
+						<p>예를 들어 값이 <prop>“5”</prop> 이면 5px 길이의 선과 5px 길이의 공백이 반복해서 표현됩니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 dashLinePattern 속성값을 <prop>“3”</prop> 으로 설정하여 점선을 표시하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+<div class="fragment">
+	<div class="line">&lt;Line2DSeries yField="goods" lineStyle="<span class="vhdllogic">dashLine</span>" dashLinePattern="3" itemRenderer="CircleItemRenderer" radius="5" displayName="goods" /&gt;</div>
+	<div class="line">&lt;Line2DSeries yField="income" lineStyle="<span class="vhdllogic">dashLine</span>" dashLinePattern="3" itemRenderer="CircleItemRenderer" radius="5" displayName="income" /&gt;</div>
+	<div class="line">&lt;Line2DSeries yField="service" lineStyle="<span class="vhdllogic">dashLine</span>" dashLinePattern="3" itemRenderer="CircleItemRenderer" radius="5" displayName="service" /&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="VdZEae" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 점선 라인 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/VdZEae/">알메이트 차트 - 점선 라인 차트</a></p>-->
+			<img class="capture" src="images/demo/점선-라인-차트.jpg" alt="점선 라인 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/VdZEae/" target="_blank">알메이트 차트 - 점선 라인 차트</a></p>
+
+			<p>곡선 라인 차트나 계단 라인 차트에도 점선을 표현할 수 있습니다.
+				다음은 form 속성값을 <prop>“curve”</prop>, lineStyle 속성값을 <prop>“dashLine”</prop> 으로 설정하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Line2DChart showDataTips="true"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="goods" fill="#ffffff" radius="5" form="<span class="vhdllogic">curve</span>" lineStyle="<span class="vhdllogic">dashLine</span>" dashLinePattern="3" itemRenderer="CircleItemRenderer" displayName="goods" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="income" fill="#ffffff" radius="5"  form="<span class="vhdllogic">curve</span>" lineStyle="<span class="vhdllogic">dashLine</span>" dashLinePattern="3" itemRenderer="CircleItemRenderer" displayName="income" /&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Line2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="bKbmea" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 곡선 점선 라인 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/bKbmea/">알메이트 차트 - 곡선 점선 라인 차트</a></p>-->
+			<img class="capture" src="images/demo/곡선-점선-라인-차트.jpg" alt="곡선 점선 라인 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/bKbmea/" target="_blank">알메이트 차트 - 곡선 점선 라인 차트</a></p>
+
+			<p>다음은 form 속성값을 <prop>“step”</prop>, lineStyle 속성값을 <prop>“dashLine”</prop> 으로 설정하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+
+<div class="fragment">
+	<div class="line">&lt;Line2DChart showDataTips="true"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Line2DSeries fill="#ffffff" yField="goods" radius="5" form="<span class="vhdllogic">step</span>" lineStyle="<span class="vhdllogic">dashLine</span>" dashLinePattern="3" itemRenderer="CircleItemRenderer" displayName="goods" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries fill="#ffffff" yField="income" radius="5"  form="<span class="vhdllogic">step</span>" lineStyle="<span class="vhdllogic">dashLine</span>" dashLinePattern="3" itemRenderer="CircleItemRenderer" displayName="income" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries fill="#ffffff" yField="service" radius="5"  form="<span class="vhdllogic">step</span>" lineStyle="<span class="vhdllogic">dashLine</span>" dashLinePattern="3" itemRenderer="CircleItemRenderer" displayName="service" /&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Line2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="YvKJpW" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 계단 점선 라인 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/YvKJpW/">알메이트 차트 - 계단 점선 라인 차트</a></p>-->
+			<img class="capture" src="images/demo/계단-점선-라인-차트.jpg" alt="계단 점선 라인 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/YvKJpW/" target="_blank">알메이트 차트 - 계단 점선 라인 차트</a></p>
+
+			<h3><a class="anchor" id="점선과직선을한라인에표현"></a>점선과 직선을 한 라인에 표현</h3>
+			<p>라인 차트에서 한 라인에 점선과 직선을 함께 표현할 수 있습니다.
+				이 때 점선이 시작되는 위치는 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드에 설정되는 다음 속성들에 의해서 결정됩니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">dashLinePlacement</td>
+					<td align="center"><p>before(*), after</p>
+					</td>
+					<td align="left"><p>dashLineSeperatePos 속성에 설정된 데이터 아이템 이전 혹은 이후에 점선을 표시할지 여부를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">dashLineSeperatePos</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 0</p>
+					</td>
+					<td align="left"><p>점선이 표시되기 시작(혹은 종료)하는 기준이 되는 데이터 아이템을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 9 번째 데이터 포인트(dashLineSeperatePos = <prop>“8”</prop>) 이후(dashLinePlacement = <prop>“after”</prop>)에 점선을 표시하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Line2DChart showDataTips="true" &gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Line2DSeries lineStyle="dashLine" dashLinePattern="3" dashLineSeperatePos="<span class="vhdllogic">8</span>" dashLinePlacement="<span class="vhdllogic">after</span>" labelPosition="up" showMaxValueLabel="true" yField="Price" radius="5" itemRenderer="RectangleItemRenderer" displayName="($ Per Ounce)" /&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Line2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="XYrxNw" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 점선과 직선을 한 라인에 표현" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/XYrxNw/">알메이트 차트 - 점선과 직선을 한 라인에 표현</a></p>-->
+			<img class="capture" src="images/demo/점선과-직선을-한-라인에-표현.jpg" alt="점선과 직선을 한 라인에 표현" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/XYrxNw/" target="_blank">알메이트 차트 - 점선과 직선을 한 라인에 표현</a></p>
+
+			<h3><a class="anchor" id="라인끝에주석표시"></a>라인 끝에 주석 표시</h3>
+			<p>여러 개의 데이터 시리즈 값들을 표현하는 라인들이 함께 표시되어 있는 경우, 차트에 범례가 있더라도 범례 항목과 해당 데이터 시리즈를 표현하는 라인을 직관적으로 알아보기 어려울 수 있습니다.
+				이 경우 라인 차트의 라인 끝에 해당 데이터 시리즈의 설명을 표시하면 차트를 직관적으로 이해하기에 도움이 됩니다.
+				라인의 끝에 설명을 표시하기 위해서는 <a href="../api/Line2DChart.html" target="_blank">&lt;Line2DChart&gt;</a> 노드의 endPointDisplayName 속성을 <prop>“true”</prop> 로 지정합니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Line2DChart showDataTips="true" gutterTop="6" endPointDisplayName="<span class="vhdllogic">true</span>" dataTipDisplayMode="axis"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Data1" displayName="Series Display Name 1" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Data2" displayName="Series Display Name 2" /&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Data3" displayName="Series Display Name 3" /&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Line2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="QxLZdx" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 라인 끝에 주석 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/QxLZdx/">알메이트 차트 - 라인 끝에 주석 표시</a></p>-->
+			<img class="capture" src="images/demo/라인-끝에-주석-표시.jpg" alt="라인 끝에 주석 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/QxLZdx/" target="_blank">알메이트 차트 - 라인 끝에 주석 표시</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

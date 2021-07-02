@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 범프 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('bump-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#범프차트">범프 차트</a>
+							<li class="level3"><a href="#혹에도형표시">혹(범프, Bump)에 도형 표시</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="범프차트"></a>범프 차트</h2>
+			<p>범프 차트는 차트에 표현되는 요소(카테고리)들의 값의 크기 보다는 시간에 따른 성과순위의 변화를 파악하는데 도움을 주는 차트입니다.
+				순위를 나타내는 축은 차트의 좌측에 세로 축(Y 축)으로 표시되고, 시간은 차트의 하단에 가로 축(X 축)으로 표시됩니다.</p>
+			<p>범프 차트는 <a href="../api/Bump2DChart.html" target="_blank">&lt;Bump2DChart&gt;</a> 노드의 series 속성값에 <a href="../api/Bump2DSeries.html" target="_blank">&lt;Bump2DSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.</p>
+
+			<p>다음은 범프 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다. 이 예제에서는 월별로 변동되는 매출 건수를 직선으로 연결하여 표현합니다.</p>
+<div class="fragment">
+	<div class="line">&lt;Bump2DChart showDataTips="true" dataTipDisplayMode="axis"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bump2DSeries id="bump1" yField="김민준" displayName="김민준" labelPosition="inside" form="segment"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bump2DSeries&gt;</div>
+	<div class="line">    &lt;Bump2DSeries id="bump2" yField="이지민" displayName="이지민" labelPosition="inside" form="segment"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bump2DSeries&gt;</div>
+	<div class="line">    &lt;Bump2DSeries id="bump3" yField="박현우" displayName="박현우" labelPosition="inside" form="segment"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bump2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Bump2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="XGQLEP" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 범프 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/XGQLEP/">알메이트 차트 - 범프 차트</a></p>-->
+			<img class="capture" src="images/demo/범프-차트.jpg" alt="범프 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/XGQLEP/" target="_blank">알메이트 차트 - 범프 차트</a></p>
+
+			<p>혹(범프, Bump)을 연결하는 선을 곡선으로 표현할 수 있습니다. 다음 예제에서는 월별로 변동되는 매출 건수를 곡선으로 연결하여 표현합니다.</p>
+<div class="fragment">
+	<div class="line">&lt;Bump2DChart showDataTips="true" dataTipDisplayMode="axis"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bump2DSeries id="bump1" yField="김민준" displayName="김민준" labelPosition="inside" form="<span class="vhdllogic">curve</span>"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bump2DSeries&gt;</div>
+	<div class="line">    &lt;Bump2DSeries id="bump2" yField="이지민" displayName="이지민" labelPosition="inside" form="<span class="vhdllogic">curve</span>"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bump2DSeries&gt;</div>
+	<div class="line">    &lt;Bump2DSeries id="bump3" yField="박현우" displayName="박현우" labelPosition="inside" form="<span class="vhdllogic">curve</span>"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bump2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Bump2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="rRbEqq" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 범프 차트 (곡선)" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/rRbEqq/">알메이트 차트 - 범프 차트 (곡선)</a></p>-->
+			<img class="capture" src="images/demo/범프-차트-곡선.jpg" alt="범프 차트 (곡선)" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/rRbEqq/" target="_blank">알메이트 차트 - 범프 차트 (곡선)</a></p>
+
+			<h3><a class="anchor" id="혹에도형표시"></a>혹(범프, Bump)에 도형 표시</h3>
+			<p>범프 차트에서 <a href="../api/Bump2DSeries.html" target="_blank">&lt;Bump2DSeries&gt;</a> 노드의 itemRenderer 속성(기본값: <prop>“none”</prop>)을 설정하여 데이터 포인트에 특정한 모양의 도형을 표시할 수 있습니다.
+				itemRenderer 속성에 설정 가능한 값과 표시되는 도형의 모양은 다음과 같습니다.</p>
+
+			<ul>
+				<li>CircleItemRenderer:  데이터 포인트에 원을 표시합니다.</li>
+				<li>TriangleItemRenderer: 데이터 포인트에 삼각형을 표시합니다.</li>
+				<li>RectangleItemRenderer: 데이터 포인트에 사각형을 표시합니다.</li>
+				<li>DiamondItemRenderer: 데이터 포인트에 다이아몬드를 표시합니다.</li>
+				<li>CrossItemRenderer: 데이터 포인트에 십자형을 표시합니다.</li>
+				<li>XShapeItemRenderer: 데이터 포인트에 X자 모양을 표시합니다.</li>
+				<li>IShapeItemRenderer: 데이터 포인트에 I자 모양을 표시합니다.</li>
+			</ul>
+
+			<p>다음 예제 차트에서는 혹(범프, Bump)에 원을 표시하는 데이터 렌더러가 적용되었습니다.</p>
+<div class="fragment">
+	<div class="line">&lt;Bump2DChart showDataTips="true" dataTipDisplayMode="axis"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bump2DSeries id="bump1" yField="김민준" displayName="김민준" labelPosition="inside" itemRenderer="<span class="vhdllogic">CircleItemRenderer</span>" form="curve"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bump2DSeries&gt;</div>
+	<div class="line">    &lt;Bump2DSeries id="bump2" yField="이지민" displayName="이지민" labelPosition="inside" itemRenderer="<span class="vhdllogic">CircleItemRenderer</span>" form="curve"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bump2DSeries&gt;</div>
+	<div class="line">    &lt;Bump2DSeries id="bump3" yField="박현우" displayName="박현우" labelPosition="inside" itemRenderer="<span class="vhdllogic">CircleItemRenderer</span>" form="curve"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bump2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Bump2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="xBeoBN" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 범프 차트 (범프에 원 표시)" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/xBeoBN/">알메이트 차트 - 범프 차트 (범프에 원 표시)</a></p>-->
+			<img class="capture" src="images/demo/범프-차트-범프에-원-표시.jpg" alt="범프 차트 (범프에 원 표시)" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/xBeoBN/" target="_blank">알메이트 차트 - 범프 차트 (범프에 원 표시)</a></p>
+
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

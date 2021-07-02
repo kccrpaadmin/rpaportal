@@ -1,0 +1,4896 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>알메이트 차트 6.0</title>
+    
+    <meta name="description" content="리아모어 소프트 자바스크립트 HTML5 차트 6.0" />
+    
+        <meta name="keywords" content="알메이트 차트 리아모어" />
+        <meta name="keyword" content="알메이트 차트 리아모어" />
+    
+    
+    
+    <meta property="og:title" content="알메이트 차트 6.0"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="리아모어 소프트"/>
+    <meta property="og:url" content="http://www.riamore.net"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"default":{"outputSourceFiles":false,"outputSourcePath":true,"includeDate":false},"applicationName":"알메이트 차트 6.0","disqus":"","googleAnalytics":"","openGraph":{"title":"알메이트 차트 6.0","type":"website","image":"","site_name":"리아모어 소프트","url":"http://www.riamore.net"},"meta":{"title":"알메이트 차트 6.0","description":"리아모어 소프트 자바스크립트 HTML5 차트 6.0","keyword":"알메이트 차트 리아모어"},"linenums":false};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<script src="navigation.js"></script>
+    <div class="main">
+        <h1 class="page-title" data-filename="rMateChartH5.html">Class: rMateChartH5</h1>
+        
+
+
+
+<section>
+    
+<header>
+    <h2>
+    rMateChartH5
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="rMateChartH5">
+            
+            new rMateChartH5<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>rMateChartH5 클래스는 사용자 자바스크립트 함수를 통해서 알메이트 차트에 접근 가능하도록 하는 클래스입니다.<br><br> 사용자는 알메이트 차트(rMateChartH5) 객체가 제공하는 변수에 접근이 가능하고, 함수를 호출할 수 있습니다.</p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="dataEditorUrl">dataEditorUrl<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>데이터 에디터 생성을 위해 필요한 자바스크립트 파일의 경로를 설정합니다.<br></p>
+<p> 사용 예는 다음과 같습니다.</p>
+<pre class="prettyprint source"><code>chartVars = &quot;useDataEditor=true&quot;;
+rMateChartH5.dataEditorUrl = &quot;../rMateChartH5/JS/editablegrid-2.0.1.js&quot;;
+rMateChartH5.create(...);</code></pre>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>/rMateChartH5/JS/</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="patternImageBaseUrl">patternImageBaseUrl<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>패턴 이미지 파일이 존재하는 경로를 설정합니다.<br></p>
+<p> 사용 예는 다음과 같습니다.</p>
+<pre class="prettyprint source"><code>chartVars = &quot;usePattern=true&quot;;
+rMateChartH5.patternImagesBaseUrl = &quot;../rMateChartH5/Assets/Patterns/&quot;
+rMateChartH5.create(...);</code></pre>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>/rMateChartH5/Assets/Patterns/</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="patternImagesUrl">patternImagesUrl<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>각 패턴 이미지 파일을 patternImagesUrl 속성에 설정합니다.</p>
+<p> 사용 예는 다음과 같습니다.</p>
+<pre class="prettyprint source"><code>chartVars = &quot;usePattern=true&quot;;
+rMateChartH5.patternImagesBaseUrl = &quot;../rMateChartH5/Assets/Patterns/&quot;
+rMateChartH5.patternImagesUrl = [
+  &quot;diagonal_ltr.png&quot;,
+  &quot;diagonal_rtl.png&quot;,
+  &quot;diagonal.png&quot;,
+  ....
+];
+rMateChartH5.create(...);</code></pre>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="useDataEditor">useDataEditor<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트와 함께 데이터 에디터에 대한 사용이 필요한 경우 설정합니다.<br><br> rMateChartH5.create() 함수의 세번째 인자인 chartVars 변수에 설정됩니다.<br><br> useDataEditor 속성이 설정되면 데이터 에디터 생성을 위해 필요한 자바스크립트가 실행됩니다.</p>
+<p> 사용 예는 다음과 같습니다.</p>
+<pre class="prettyprint source"><code>chartVars = &quot;useDataEditor=true&quot;;
+...
+rMateChartH5.create(chartId, chartHolderId, chartVars);</code></pre>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="usePattern">usePattern<span class="type-signature type string">String</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>시각 장애인을 위한 패턴 이미지를 차트에 적용할 지 여부를 설정합니다.<br><br> rMateChartH5.create() 함수의 세번째 인자인 chartVars 변수에 설정됩니다.<br><br> usePattern 속성이 설정되면 해당 패턴 이미지가 적용됩니다.</p>
+<p> 사용 예는 다음과 같습니다.</p>
+<pre class="prettyprint source"><code>chartVars = &quot;usePatter=true&quot;;
+rMateChartH5.create(chartId, chartHolderId, chartVars);</code></pre>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="accessibilityPattern">
+            
+            accessibilityPattern<span class="signature">(value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트에 패턴 이미지 적용을 설정/해제 합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).accessibilityPattern(value);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>유효값은  true, false 입니다.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="changeScrollBarSize">
+            
+            changeScrollBarSize<span class="signature">(size)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>스크롤 차트에서 스크롤바의 크기를 설정합니다.</p>
+<pre class="prettyprint source"><code>var size = {
+  arrowSize : 10,     // 상, 하, 좌, 우 버튼의 크기
+  scrollHeight : 10,  // 스크롤 높이
+  thumbHeight : 10,   // 썸(thumb)의 높이
+  thumbMinSize : 10   // 썸(thumb)의 최소 크기
+};
+
+document.getElementById(chartId).changeScrollBarSize(size);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>스크롤바의 크기</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="clear">
+            
+            clear<span class="signature">(chartId)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>rMateChartH5.create() 로 생성하였던 차트의 Root를 제외한 나머지를 모두 삭제합니다</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).clear();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>chartId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>차트 식별자 (Identifier)</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="clearSelection">
+            
+            clearSelection<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>selectionMode로 강조된 아이템들을 해제합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).clearSelection();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="create">
+            
+            create<span class="signature">(chartId, chartHolderId, chartVars, hSize, vSize, onLoadCallFunction)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트를 생성합니다.<br><br>    rMateChartH5.create() 함수가 호출되면 차트가 즉시 생성되는 것은 아닙니다.<br><br>    차트 생성을 위해서 필요한 모든 DOM 요소가 존재하는 지 먼저 검사를 한 후, DOM 요소가 완전히 만들어졌다고 판단되었을 때 차트 생성을 진행하게 됩니다.<br></p>
+<pre class="prettyprint source"><code>1. rMateChartH5.create() 실행
+2. HTML DOM 요소가 존재하는 지 확인
+3. chartVars, layotURL, dataURL 이 존재할 경우 차트의 레이아웃과 데이터를 설정
+4. 차트 출력
+
+만약 2번 단계에서 DOM 요소가 만들어지지 않았다면, DOM 요소의 생성이 완료되기를 기다린 후 생성이 완료되면 3번 단계로 진행하게 됩니다.</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>chartId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>차트 식별자 (Identifier)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>chartHolderId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>차트의 부모 &lt;div&gt; 식별자 (Identifier)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>chartVars</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>차트 설정값</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>hSize</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>차트 가로 크기 (기본값 : 100%)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>vSize</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>차트 세로 크기 (기본값 : 100%)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>onLoadCallFunction</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>DOM 요소 검사 후 실행될 함수명</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="destroy">
+            
+            destroy<span class="signature">(chartId)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>rMateChartH5.create() 로 생성하였던 차트의 Root 까지 모두 삭제합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).destory();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>chartId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>차트 식별자 (Identifier)</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="getChartData">
+            
+            getChartData<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트가 출력하고 있는 데이터를 반환합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).getChartData();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="getCSVData">
+            
+            getCSVData<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트가 출력하고 있는 데이터를 CSV 형태로 반환합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).getCSVData();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="getDrillDownDepth">
+            
+            getDrillDownDepth<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>현재 차트가 출력하고 있는 드릴다운 데이터의 depth 를 반환합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).getDrillDownDepth();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="getSelectedChartItem">
+            
+            getSelectedChartItem<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>selectionMode 속성값이 single 혹은 multiple 일 경우 선택되어져 있는 item 을 반환합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).getSelectedChartItem();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="getSnapshot">
+            
+            getSnapshot<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>출력된 차트의 스냅샷 이미지에 대한 base64 인코딩 값을 생성합니다.<br><br> 차트 이미지 데이터를 서버로 전송할 수 있습니다.</p>
+<pre class="prettyprint source"><code>var base64 = document.getElementById(chartId).getSnapshot();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="hasNoData">
+            
+            hasNoData<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트에 데이터가 존재하지 않음을 표시하는 창을 실행합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).hasNoData();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="hideDataEditor">
+            
+            hideDataEditor<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>데이터 에디터를 숨기도록 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).showDataEditor();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="legendAllCheck">
+            
+            legendAllCheck<span class="signature">(value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>범례의 전체 항목에 대한 visible 속성을 제어합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).legendAllCheck(value);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>유효값은 true, false 입니다.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="legendCheck">
+            
+            legendCheck<span class="signature">(index, value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>범례의 특정 항목에 대한 visible 속성을 제어합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).legendCheck(index, value);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>변경하려는 범례 항목의 인덱스</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>유효값은 true, false 입니다.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="registerTheme">
+            
+            registerTheme<span class="signature">(theme)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트에 설정하려는 테마(theme) 데이터를 알메이트 차트(rMateChartH5)에 등록합니다.<br><br> HTML 문서에 테마(theme)을 설정하는 자바스크립트 파일(theme.js)이 include 되어있어야 합니다.</p>
+<pre class="prettyprint source"><code>rMateChartH5.registerTheme(theme);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>theme</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>설정할 테마(theme) 데이터 객체</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="removeAdditionalPreloader">
+            
+            removeAdditionalPreloader<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>프리로더를 제거합니다.<br><br> 사용자가 차트 내에 프리로더를 실행/제거 할 수 있습니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).removeAdditionalPreloader();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="removeTheme">
+            
+            removeTheme<span class="signature">(theme)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트(rMateChartH5)에 설정(등록)되어 있는 테마(theme)을 삭제합니다.<br><br> 테마(theme) 삭제 시 해당 테마(theme)가 적용된 차트들에는 차트의 기본(default) 테마(theme)가 재적용됩니다.</p>
+<pre class="prettyprint source"><code>rMateChartH5.removeTheme(theme);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>theme</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>삭제할 테마(theme) 데이터 객체</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="resize">
+            
+            resize<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트의 크기를 변경합니다.<br><br> 최초에 설정된 차트의 부모 &lt;div&gt; 의 크기를 변경한 후, 함수를 실행하여 차트의 크기를 변경합니다.</p>
+<pre class="prettyprint source"><code>chartHolder.style.width = &quot;500px&quot;;
+chartHolder.style.height = &quot;500px&quot;;
+document.getElementById(chartId).resize();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="rMateOnLoadCallFunction">
+            
+            rMateOnLoadCallFunction<span class="signature">(id)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>DOM 요소 검사 후 준비가 완료되면 실행될 함수명을 설정합니다.<br><br> rMateChartH5.create() 함수의 세번째 인자인 chartVars 변수에 설정됩니다.</p>
+<pre class="prettyprint source"><code>chartVars = &quot;rMateOnLoadCallFunction=function_name&quot;;
+rMateChartH5.create(chartId, chartHolderId, chartVars);
+...
+function function_name(id) {
+  ...
+}</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>rMateChartH5.create() 함수의 첫번째 인자인 차트 식별자 (Identifier)</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="saveAsImage">
+            
+            saveAsImage<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>출력된 차트에 대한 스냅샷 이미지를 생성합니다.</p>
+<pre class="prettyprint source"><code>var snapshot = document.getElementById(chartId).saveAsImage();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setChartMenu">
+            
+            setChartMenu<span class="signature">(menus)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트 메뉴를 chartVars 의 파라메터가 아닌 함수를 통하여 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementbById(chartId).setChartMenu(menus);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>menus</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>메뉴를 설정하는 함수명</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setData">
+            
+            setData<span class="signature">(value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트 생성시 적용될 데이터를 설정합니다.<br><br> 데이터의 형태는 setDataType 에 의해서 설정된 형태와 같아야 합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).setData(value);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터셋이 저장된 변수명</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setDataDrillDown">
+            
+            setDataDrillDown<span class="signature">(dataSet)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트에 드릴다운 데이터를 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).setDataDrillDown(dataSet);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>dataSet</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>드릴다운할 데이터의 객체 배열</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setDataType">
+            
+            setDataType<span class="signature">(value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트 생성시 적용될 데이터의 형태를 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).setDataType(value);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>유효값은  json, csv, xml 입니다.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setDataURL">
+            
+            setDataURL<span class="signature">(value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트 생성시 적용될 데이터에 대한 경로(URL)를 설정합니다.<br><br> 해당 경로에 의해서 읽혀지는 데이터의 형태는 setDataType 에 의해서 설정된 형태와 같아야 합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).setDataURL(value);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터셋이 존재하는 경로 (URL)</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setDefaultColors">
+            
+            setDefaultColors<span class="signature">(colors)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트의 기본(default) 색상들을 설정합니다.<br><br>     알메이트 차트 제품에 설정된 기본 색상들을 변경하여 레이아웃 작성시 항상 변경된 기본 색상들을 적용할 수 있습니다.<br><br>     rMateChartH5.setDefaultColors() 함수를 호출하여 차트의 기본 색상들을 변경할 수 있습니다.</p>
+<pre class="prettyprint source"><code>colors = [&quot;#ff0000&quot;, &quot;#ff00ff&quot;, &quot;#eeff00&quot;, ... ];
+rMateChartH5.setDefaultColors(colors);
+...
+rMateChartH5.create(...);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>colors</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>색상 코드 배열</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setLayout">
+            
+            setLayout<span class="signature">(value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트 생성시 적용될 레이아웃을 설정합니다.<br><br> XML 형태의 스트링(String) 값을 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).setLayout(value);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>레이아웃이 저장된 변수명</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setLayoutURL">
+            
+            setLayoutURL<span class="signature">(value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트 생성시 적용될 레이아웃에 대한 경로(URL)를 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).setLayoutURL(value);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>레이아웃이 존재하는 경로 (URL)</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setOnLoadCallFunction">
+            
+            setOnLoadCallFunction<span class="signature">(chartId, onLoadCallFunction)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>rMateOnLoadCallFunction() 함수를 설정합니다.</p>
+<pre class="prettyprint source"><code>rMateChartH5.setOnLoadCallFunction(chartId, onLoadCallFunction);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>chartId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>차트 식별자 (Identifier)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>onLoadCallFunction</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>설정할 함수명</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setSelectedIndex">
+            
+            setSelectedIndex<span class="signature">(seriesIndex, itemIndex)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>selectionMode 속성값이 single 혹은 multiple 일 경우 출력되어져 있는 아이템 중 index 에 맞는 아이템을 강조합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).setSelectedIndex(seriesIndex, itemIndex);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>seriesIndex</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>선택할 시리즈의 인덱스 값</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>itemIndex</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>선택할 데이터 아이템의 인덱스 값</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setSelectedIndices">
+            
+            setSelectedIndices<span class="signature">(indexInfo)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>selectionMode 속성값이 single 혹은 multiple 일 경우 출력되어져 있는 아이템 중 indices 에 맞는 아이템을 강조합니다.</p>
+<p> 유효값은 아래 형태로 설정합니다.</p>
+<pre class="prettyprint source"><code>1. Array 일 경우
+[
+  {index : 0, items : [0, 1, 2]},
+  {index : 2, items : [2, 3, 4]}
+]
+index - 선택할 시리즈의 인덱스 값
+items - 선택할 데이터 아이템의 인덱스 값
+
+document.getElementById(chartId).setSelectedIndices([{index : 0, items : [0, 1, 2]}, ..]);
+
+2. Object 일 경우
+{index : 0, length : 3, items : [0, 1, 2]}
+index - 몇 번째 시리즈부터 선택할 지 index 값
+length - index 부터 몇 번째 시리즈까지 선택할 지 개수
+items - 해당 시리즈안에서 선택할 item 들의 배열 값
+
+document.getElementById(chartId).setSelectedIndices({index : 0, length : 2, items : [0, 1, 2]});</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>indexInfo</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Array/Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>강조할 아이템의 인덱스 정보</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setSlideDataSet">
+            
+            setSlideDataSet<span class="signature">(value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>슬라이드 차트에 적용될 데이터 세트를 배열로 설정합니다.</p>
+<pre class="prettyprint source"><code>var slideData = [data1, data2, data3];
+document.getElementById(chartId).setSlideDataSet(slideData);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>데이터셋들이 저장된 배열 변수명</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setSlideLayoutSet">
+            
+            setSlideLayoutSet<span class="signature">(value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>슬라이드 차트에 적용될 레이아웃 세트를 배열로 설정합니다.</p>
+<pre class="prettyprint source"><code>var slideLayout = [layout1, layout2, layout3];
+document.getElementById(chartId).setSlideDataSet(slideLayout);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>레이아웃들이 저장된 배열 변수명</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="setTheme">
+            
+            setTheme<span class="signature">(theme)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>차트(rMateChartH5)에 등록되어 있는 테마(theme)들 중에서 특정 테마(theme)를 차트에 적용합니다.<br><br> rMateChartH5.registerTheme() 에 의해서 등록된 테마(theme)들 중에서 하나를 적용할 수 있습니다.</p>
+<pre class="prettyprint source"><code>rMateChartH5.setTheme(theme);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>theme</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>적용할 테마(theme) 데이터 객체</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showAdditionalPreloader">
+            
+            showAdditionalPreloader<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>프리로더를 실행합니다.<br><br> 사용자가 차트 내에 프리로더를 실행/제거 할 수 있습니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).showAdditionalPreloader();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="showDataEditor">
+            
+            showDataEditor<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>데이터 에디터를 보이도록 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).showDataEditor();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="sliderPause">
+            
+            sliderPause<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>모션 차트에서 슬라이드를 중단하도록 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).sliderPause();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="sliderPlay">
+            
+            sliderPlay<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>모션 차트에서 슬라이드를 실행하도록 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).sliderPlay();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="sliderReset">
+            
+            sliderReset<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>모션 차트에서 슬라이드를 초기화하도록 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).sliderReset();</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="tableToArray">
+            
+            tableToArray<span class="signature">(tableId, categoryField, direction)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>HTML 의 &lt;table&gt; 데이터를 배열 데이터로 변환합니다.</p>
+<pre class="prettyprint source"><code>var chartData = rMateChartH5.tableToArray(tableId, categoryField, direction);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>tableId</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>배열로 변환하려는 &lt;table&gt; 식별자 (Identifier)</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>categoryField</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>차트 레이아웃에서 CategoryAxis 클래스 인스턴스가 참조하는 데이터 필드명</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>direction</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>categoryField 에 적용될 데이터의 방향(테이블의 가로/세로)을 설정 - horizontal, vertical</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="updateCrossRange">
+            
+            updateCrossRange<span class="signature">(type, x, y)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>다른 차트들과 십자선(CrossRangeZoomer)의 위치를 동기화하기 위한 함수입니다.<br><br> CrossRangeZoomer 클래스 인스턴스의 rangeUpdateJsFunction 속성값에 사용자 정의 자바스크립트 함수가 설정되어 있을 경우, 해당 함수의 인자들을 다른 차트의 십자선(CrossRangeZoomer) 위치값으로 전달합니다.<br><br> 만약 이 기능을 사용할 경우, rangeUpdateJsFunction 속성에 설정된 자바스크립트 함수의 인자가 그대로 updateCrossRange 함수의 인자로 전달됩니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).updateCrossRange(type, x, y);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Event</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>마우스 이벤트의 타입명</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>십자선의 X 위치 비율값</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>십자선의 Y 위치 비율값</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="visibleItemSize">
+            
+            visibleItemSize<span class="signature">(value)</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>스크롤 차트에서 화면에 보여지는 아이템의 개수를 설정합니다.</p>
+<pre class="prettyprint source"><code>document.getElementById(chartId).visibleItemSize(value);</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>화면에 표시할 데이터의 개수</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+
+        
+
+        <footer>
+	        Copyright(c) 2018 <a target="_blank" href="http://www.riamore.net" target="_blank">RiaMore Soft, Inc</a>. All Right Reserved
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

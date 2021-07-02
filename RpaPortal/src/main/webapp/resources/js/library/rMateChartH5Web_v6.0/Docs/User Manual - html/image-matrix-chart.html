@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 이미지 매트릭스 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('image-matrix-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#이미지매트릭스차트">이미지 매트릭스 차트</a>
+							<li class="level3"><a href="#다중이미지매트릭스차트">다중 이미지 매트릭스 차트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="이미지매트릭스차트"></a>이미지 매트릭스 차트</h2>
+			<p>이미지 매트릭스 차트는 데이터 값에 해당하는 개수만큼의 이미지를 차트에 표시합니다.
+				이 때 표시해야 하는 이미지 개수와 정해진 차트 공간의 크기에 따라서 이미지 크기를 자동으로 계산합니다.
+				차트에는 여러 이미지 파일을 표시할 수도 있고, 하나의 이미지 파일만 표시할 수도 있습니다.
+				이미지 매트릭스 차트는 <a href="../api/ImageMatrixChart.html" target="_blank">&lt;ImageMatrixChart&gt;</a> 노드의 series 속성값에 <a href="../api/ImageMatrixSeries.html" target="_blank">&lt;ImageMatrixSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.</p>
+
+			<p>다음은 하나의 이미지 파일을 이용하여 데이터 값(22)에 해당하는 개수의 이미지를 차트에 표현하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;ImageMatrixChart showDataTips="true" paddingLeft="20" paddingRight="20"&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;ImageMatrixSeries field="coffeValue" imageURL="../rMateChartH5/Assets/Images/coffee.png" displayName="Coffee" horizontalGap="10" verticalGap="10"&gt;</div>
+	<div class="line">      &lt;showDataEffect&gt;</div>
+	<div class="line">        &lt;SeriesInterpolate/&gt;</div>
+	<div class="line">      &lt;/showDataEffect&gt;</div>
+	<div class="line">    &lt;/ImageMatrixSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/ImageMatrixChart&gt;</div>
+</div>
+
+			<!--<p>이미지가 제대로 표시되지 않는다면 마우스 커서를 우측 하단에 위치시키고 "RERUN" 을 클릭하십시요.</p>-->
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="qKEaPK" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 이미지 매트릭스 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/qKEaPK/">알메이트 차트 - 이미지 매트릭스 차트</a></p>-->
+			<img class="capture" src="images/demo/이미지-매트릭스-차트.jpg" alt="이미지 매트릭스 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/qKEaPK/" target="_blank">알메이트 차트 - 이미지 매트릭스 차트</a></p>
+
+			<p>이미지와 이미지 사이의 공간의 크기는 <a href="../api/ImageMatrixSeries.html" target="_blank">&lt;ImageMatrixSeries&gt;</a> 노드의 verticalGap 과 horizontalGap 속성값에 의해서 결정됩니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">horizontalGap</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 2</p>
+					</td>
+					<td align="left">
+						<p>이미지와 이미지 사이의 수평 공간의 크기를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">verticalGap</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 2</p>
+					</td>
+					<td align="left">
+						<p>이미지와 이미지 사이의 수직 공간의 크기를 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<h3><a class="anchor" id="다중이미지매트릭스차트"></a>다중 이미지 매트릭스 차트</h3>
+			<p>다음은 두 개의 이미지를 이용하여 실적값(11)과 목표값(3)의 개수만큼 이미지를 표시하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;ImageMatrixChart showDataTips="true" padding="20" borderStyle="solid" borderWidth="1" borderColor="#f1f1f1"&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;ImageMatrixSeries field="sales" imageURL="../rMateChartH5/Assets/Images/icon4.png" displayName="Actual"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/ImageMatrixSeries&gt;</div>
+	<div class="line">    &lt;ImageMatrixSeries field="goal" imageURL="../rMateChartH5/Assets/Images/icon5.png" displayName="Target"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/ImageMatrixSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/ImageMatrixChart&gt;</div>
+</div>
+
+			<!--<p>이미지가 제대로 표시되지 않는다면 마우스 커서를 우측 하단에 위치시키고 "RERUN" 을 클릭하십시요.</p>-->
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="yEyapg" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다중 이미지 매트릭스 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/yEyapg/">알메이트 차트 - 다중 이미지 매트릭스 차트</a></p>-->
+			<img class="capture" src="images/demo/다중-이미지-매트릭스-차트.jpg" alt="다중 이미지 매트릭스 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/yEyapg/" target="_blank">알메이트 차트 - 다중 이미지 매트릭스 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

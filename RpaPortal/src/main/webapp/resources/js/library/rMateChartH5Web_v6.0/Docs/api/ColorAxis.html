@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>알메이트 차트 6.0</title>
+    
+    <meta name="description" content="리아모어 소프트 자바스크립트 HTML5 차트 6.0" />
+    
+        <meta name="keywords" content="알메이트 차트 리아모어" />
+        <meta name="keyword" content="알메이트 차트 리아모어" />
+    
+    
+    
+    <meta property="og:title" content="알메이트 차트 6.0"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="리아모어 소프트"/>
+    <meta property="og:url" content="http://www.riamore.net"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"default":{"outputSourceFiles":false,"outputSourcePath":true,"includeDate":false},"applicationName":"알메이트 차트 6.0","disqus":"","googleAnalytics":"","openGraph":{"title":"알메이트 차트 6.0","type":"website","image":"","site_name":"리아모어 소프트","url":"http://www.riamore.net"},"meta":{"title":"알메이트 차트 6.0","description":"리아모어 소프트 자바스크립트 HTML5 차트 6.0","keyword":"알메이트 차트 리아모어"},"linenums":false};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<script src="navigation.js"></script>
+    <div class="main">
+        <h1 class="page-title" data-filename="ColorAxis.html">Class: ColorAxis</h1>
+        
+
+
+
+<section>
+    
+<header>
+    <h2>
+    ColorAxis
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="ColorAxis">
+            
+            new ColorAxis<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>ColorAxis 클래스는 색상에 대한 범례를 표시할 필요가 있을 경우 사용됩니다.<br></p>
+<p> 레이아웃은 다음과 같은 형식으로 작성됩니다.</p>
+<pre class="prettyprint source"><code>...
+&lt;Options>
+  &lt;ColorRangeLegend axis=&quot;{cAxis}/>
+&lt;/Options>
+&lt;TreeMapChart>
+  &lt;colorAxis>
+    &lt;ColorAxis id=&quot;cAxis&quot; minimum=&quot;0&quot; maximum=&quot;100&quot; colors=&quot;[#ffffff, #ff0000]&quot; interval=&quot;20&quot;/>
+  &lt;/colorAxis>
+&lt;/TreeMapChart>
+...</code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="colors">colors<span class="type-signature type array">Array</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>축에 색상값(Hexadecimal)들을 Array 로 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>["#ffffff", "#ff0000"]</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="interval">interval<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>최소값과 최대값을 기준으로 interval 값의 간격을 두고 눈금을 생성합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>10</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="maximum">maximum<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>축의 최대값을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>100</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="minimum">minimum<span class="type-signature type number">Number</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>축의 최소값을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>0</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+
+        
+
+        <footer>
+	        Copyright(c) 2018 <a target="_blank" href="http://www.riamore.net" target="_blank">RiaMore Soft, Inc</a>. All Right Reserved
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

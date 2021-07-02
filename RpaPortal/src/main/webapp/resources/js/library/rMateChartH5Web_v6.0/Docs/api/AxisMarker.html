@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>알메이트 차트 6.0</title>
+    
+    <meta name="description" content="리아모어 소프트 자바스크립트 HTML5 차트 6.0" />
+    
+        <meta name="keywords" content="알메이트 차트 리아모어" />
+        <meta name="keyword" content="알메이트 차트 리아모어" />
+    
+    
+    
+    <meta property="og:title" content="알메이트 차트 6.0"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="리아모어 소프트"/>
+    <meta property="og:url" content="http://www.riamore.net"/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+
+    
+    <script>
+    var config = {"monospaceLinks":true,"cleverLinks":true,"default":{"outputSourceFiles":false,"outputSourcePath":true,"includeDate":false},"applicationName":"알메이트 차트 6.0","disqus":"","googleAnalytics":"","openGraph":{"title":"알메이트 차트 6.0","type":"website","image":"","site_name":"리아모어 소프트","url":"http://www.riamore.net"},"meta":{"title":"알메이트 차트 6.0","description":"리아모어 소프트 자바스크립트 HTML5 차트 6.0","keyword":"알메이트 차트 리아모어"},"linenums":false};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<script src="navigation.js"></script>
+    <div class="main">
+        <h1 class="page-title" data-filename="AxisMarker.html">Class: AxisMarker</h1>
+        
+
+
+
+<section>
+    
+<header>
+    <h2>
+    AxisMarker
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="AxisMarker">
+            
+            new AxisMarker<span class="signature">()</span>
+        </h4>
+    
+		
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>AxisMarker 클래스는 차트의 좌표상에 선과 범위(range)에 대한 표시를 지원합니다.</p>
+<p> 레이아웃은 다음과 같은 형식으로 작성됩니다.</p>
+<pre class="prettyprint source"><code>&lt;rMateChart backgroundColor=&quot;0xFFFFFF&quot; borderStyle=&quot;solid&quot; borderRadius=&quot;12&quot;>
+  ...
+  &lt;Line2DChart showDataTips=&quot;true&quot; fontFamily=&quot;Myriad&quot; selectionMode=&quot;single&quot;>
+    ...
+    &lt;backgroundElements>
+      &lt;GridLines/>
+      &lt;AxisMarker>
+        &lt;lines>
+          &lt;AxisLine value=&quot;1000&quot; label=&quot;Label 01&quot; stroke=&quot;{stroke1}&quot; labelUpDown=&quot;up&quot; color=&quot;0xFF0000&quot; />
+          &lt;AxisLine value=&quot;1500&quot; label=&quot;Label 02&quot; stroke=&quot;{stroke1}&quot; labelAlign=&quot;left&quot; labelUpDown=&quot;down&quot; color=&quot;0xFF0000&quot; />
+          &lt;AxisLine startValue=&quot;1000&quot; endValue=&quot;2000&quot; label=&quot;From-To Line&quot; color=&quot;0x0000FF&quot; labelAlign=&quot;right&quot; labelUpDown=&quot;up&quot;>
+            &lt;stroke>
+              &lt;Stroke color=&quot;0x0099FF&quot; weight=&quot;1&quot;/>
+            &lt;/stroke>
+          &lt;/AxisLine>
+        &lt;/lines>
+      &lt;/AxisMarker>
+    &lt;/backgroundElements>
+  &lt;/Line2DChart>
+&lt;/rMateChart></code></pre>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="horizontalAxisOppEnable">horizontalAxisOppEnable<span class="type-signature type booelan">Booelan</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Bar2DWingChart 클래스에서 수평(horizontal)축의 수치 라벨을 반대로 계산하여 적용할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="lines">lines<span class="type-signature type array">Array</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트의 좌표상에 표시되는 선들의 정보를 가지는 AxisLine 클래스 인스턴스의 배열을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="ranges">ranges<span class="type-signature type array">Array</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>차트의 좌표상에 표시되는 범위(range)들의 정보를 가지는 AxisRange 클래스 인스턴스의 배열을 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>null</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="verticalAxisOppEnable">verticalAxisOppEnable<span class="type-signature type booelan">Booelan</span> </h4>
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>Column2DWingChart 클래스에서 수직(vertical)축의 수치 라벨을 반대로 계산하여 적용할 지 여부를 설정합니다.</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy"><li>false</li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+
+        
+
+        <footer>
+	        Copyright(c) 2018 <a target="_blank" href="http://www.riamore.net" target="_blank">RiaMore Soft, Inc</a>. All Right Reserved
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 이벤트 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('event-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#이벤트차트">이벤트 차트</a>
+							<li class="level3"><a href="#데이터포인트에차트표시">데이터 포인트에 차트 표시</a></li>
+							<li class="level3"><a href="#데이터포인트에경고표시">데이터 포인트에 경고 표시</a></li>
+							<li class="level3"><a href="#데이터포인트에롤링텍스트표시">데이터 포인트에 롤링 텍스트 표시</a></li>
+							<li class="level3"><a href="#데이터포인트에애니메이션gif표시">데이터 포인트에 애니메이션 GIF 표시</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="이벤트차트"></a>이벤트 차트</h2>
+			<p>이벤트 차트는 독립적인 차트 유형이 아니라 차트의 데이터가 미리 정의된 특정 조건을 만족하는 경우, 해당 데이터 포인트에 이미지 표현 혹은 애니메이션 효과를 통해서 사용자에게 높은 시각적 정보를 제공하는 기능이라고 할 수 있습니다.
+				이벤트 차트 기능을 구현하려면 데이터 시리즈 노드(<a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a>, <a href="../api/Equalizer2DSeries.html" target="_blank">&lt;Equalizer2DSeries&gt;</a>, 등)의 htmlJsFunction 속성에 이벤트 처리를 실행하는 자바스트립트 함수명을 지정해야 합니다.
+
+			<h3><a class="anchor" id="데이터포인트에차트표시"></a>데이터 포인트에 차트 표시</h3>
+			<p>다음은 <a href="line-chart.html">라인 차트</a>에서 금년도 값이 전년도 값보다 같거나 커지는 지점(데이터 포인트)에 애니메이션 효과를 표현하고, 사용자가 해당 지점(데이터 포인트)에 마우스 오버를 하면 <a href="pie-chart.html">파이 차트</a>를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Line2DSeries xField="Date" yField="Data2" htmlJsFunction="<span class="vhdllogic">userFunction</span>" displayName="Last Year"&gt;</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">userFunction</span>(id, index, data, values) {</div>
+	<div class="line">  var past = data.Data1,</div>
+	<div class="line">  current = data.Data2;</div>
+	<div class="line"></div>
+	<div class="line">  if(past &lt;= current) {</div>
+	<div class="line"></div>
+	<div class="line">  if (document.getElementsByClassName("chart_animate_element").length &gt; 0)</div>
+	<div class="line">    return;</div>
+	<div class="line"></div>
+	<div class="line">    return {</div>
+	<div class="line">      content : "",</div>
+	<div class="line">      className : "<span class="vhdllogic">chart_animate_element</span>",</div>
+	<div class="line">      events : {</div>
+	<div class="line">        "mouseover" : function(event){</div>
+	<div class="line">          if(currentPointChartId.length &gt; 0)</div>
+	<div class="line">            return;</div>
+	<div class="line"></div>
+	<div class="line">          currentPointElem = event.target;</div>
+	<div class="line"></div>
+	<div class="line">          var target = event.currentTarget;</div>
+	<div class="line">          var div = document.createElement("div");</div>
+	<div class="line">          var chartId;</div>
+	<div class="line"></div>
+	<div class="line">          div.id = "tooltip_chartHolder_" + Math.floor(Math.random() * 1000);</div>
+	<div class="line">          div.className = "tooltip_chart";</div>
+	<div class="line"></div>
+	<div class="line">          target.appendChild(div);</div>
+	<div class="line"></div>
+	<div class="line">          chartId = div.id.replace("Holder", "");</div>
+	<div class="line">          currentPointChartId = chartId;</div>
+	<div class="line"></div>
+	<div class="line">          <span class="vhdllogic">rMateChartH5.create</span>(chartId, div.id, "", "100%", "100%", function(id){</div>
+	<div class="line">            document.getElementById(id).setLayout(layoutStr2);</div>
+	<div class="line">            document.getElementById(id).setData(chartData2);</div>
+	<div class="line">          });</div>
+	<div class="line">        },</div>
+	<div class="line">        "mouseout" : function(event){</div>
+	<div class="line">          var target = event.relatedTarget;</div>
+	<div class="line"></div>
+	<div class="line">          while(target) {</div>
+	<div class="line">            if(target === currentPointElem)</div>
+	<div class="line">            return;</div>
+	<div class="line">            target = target.parentNode;</div>
+	<div class="line">          }</div>
+	<div class="line"></div>
+	<div class="line">          document.getElementById(currentPointChartId).destroy();</div>
+	<div class="line">          currentPointElem.removeChild(document.getElementById(currentPointChartId.replace("chart", "chartHolder")));</div>
+	<div class="line">          currentPointChartId = "";</div>
+	<div class="line">        }</div>
+	<div class="line">      }</div>
+	<div class="line">    };</div>
+	<div class="line">  }</div>
+	<div class="line"></div>
+	<div class="line">  return;</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="RJwyPE" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 데이터 포인트에 차트 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/RJwyPE/">알메이트 차트 - 데이터 포인트에 차트 표시</a></p>-->
+			<img class="capture" src="images/demo/데이터-포인트에-차트-표시.jpg" alt="데이터 포인트에 차트 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/RJwyPE/" target="_blank">알메이트 차트 - 데이터 포인트에 차트 표시</a></p>
+
+			<p>위 예제에서는 애니메이션 효과를 표현하기 위해서 해당 데이터 포인트에 CSS 스타일 (chart_animate_element)을 적용하였습니다.
+				다음은 적용된 CSS 스타일의 소스 코드입니다.</p>
+
+<div class="fragment">
+	<div class="line">.chart_animate_element{</div>
+	<div class="line">  width:12px;</div>
+	<div class="line">  height:12px;</div>
+	<div class="line">  border-radius:100%;</div>
+	<div class="line">  box-sizing:border-box;</div>
+	<div class="line">  border-color:#20ccc1;</div>
+	<div class="line">  background-color:#20ccc1;</div>
+	<div class="line">  animation:animate 2s 0s ease-out infinite</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">@keyframes animate{</div>
+	<div class="line">  0%{box-shadow:0 0 4px 3px rgba(32, 204, 193, 0), 0 0 0px 0px rgba(255, 255, 255, 0.5), 0 0 0px 0px rgba(32, 204, 193, 0);}</div>
+	<div class="line">  10%{box-shadow:0 0 4px 3px rgba(32, 204, 193, 0.5), 0 0 6px 5px rgba(255, 255, 255, 0.5), 0 0 6px 7px rgba(32, 204, 193, 0.5);}</div>
+	<div class="line">  100%{box-shadow:0 0 4px 3px rgba(32, 204, 193, 0), 0 0 0px 20px rgba(255, 255, 255, 0.5), 0 0 0px 20px rgba(32, 204, 193, 0);}</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">@-webkit-keyframes animate{</div>
+	<div class="line">  0%{box-shadow:0 0 4px 3px rgba(32, 204, 193, 0), 0 0 0px 0px rgba(255, 255, 255, 0.5), 0 0 0px 0px rgba(32, 204, 193, 0);}</div>
+	<div class="line">  10%{box-shadow:0 0 4px 3px rgba(32, 204, 193, 0.5), 0 0 6px 5px rgba(255, 255, 255, 0.5), 0 0 6px 7px rgba(32, 204, 193, 0.5);}</div>
+	<div class="line">  100%{box-shadow:0 0 4px 3px rgba(32, 204, 193, 0), 0 0 0px 20px rgba(255, 255, 255, 0.5), 0 0 0px 20px rgba(32, 204, 193, 0);}</div>
+	<div class="line">}</div>
+</div>
+
+			<h3><a class="anchor" id="데이터포인트에경고표시"></a>데이터 포인트에 경고 표시</h3>
+			<p>다음은 혈압을 체크하는 <a href="real-time-chart.html">실시간 차트</a>에서 미리 정해진 범위의 혈압 수치를 벗어날 경우(고혈압, 저혈압), 해당 데이터 포인트에 경고 표시를 하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Line2DSeries xField="Time" yField="Data" displayName="Process 1" htmlJsFunction="<span class="vhdllogic">userFunction</span>" itemRenderer="CircleItemRenderer"&gt;</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">userFunction</span>(id, index, data, values){</div>
+	<div class="line">  var className = "high",</div>
+	<div class="line">  value = values[1];</div>
+	<div class="line"></div>
+	<div class="line">  if(value &lt; minValue || value &gt; maxValue){</div>
+	<div class="line">    if(value &lt; minValue)</div>
+	<div class="line">      className = "low";</div>
+	<div class="line"></div>
+	<div class="line">    return {</div>
+	<div class="line">      content : "",</div>
+	<div class="line">      className : "odd_pressure " + className + "_blood_pressure",</div>
+	<div class="line">      events : {</div>
+	<div class="line">        "click" : (function(a){</div>
+	<div class="line">          return function(event){</div>
+	<div class="line">            event.target.parentNode.removeChild(event.target);</div>
+	<div class="line">            <span class="vhdllogic">alert</span>("Time: " + a.Time + "\nBlood Pressure: " + a.Data);</div>
+	<div class="line">          };</div>
+	<div class="line">        })(data)</div>
+	<div class="line">      }</div>
+	<div class="line">    };</div>
+	<div class="line">  }</div>
+	<div class="line">  return;</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="ZREopK" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 데이터 포인트에 경고 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/ZREopK/">알메이트 차트 - 데이터 포인트에 경고 표시</a></p>-->
+			<img class="capture" src="images/demo/데이터-포인트에-경고-표시.jpg" alt="데이터 포인트에 경고 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/ZREopK/" target="_blank">알메이트 차트 - 데이터 포인트에 경고 표시</a></p>
+
+			<p>위 예제에서는 경고 표시를 하기 위해서 해당 데이터 포인트에 CSS 스타일 ("odd_pressure " + className + "_blood_pressure")을 적용하였고, 경고가 표시된 데이터 포인트에 마우스를 클릭할 경우 혈압 수치를 메시지로 표시합니다.</p>
+
+			<p>다음은 데이터 사용량을 표시하는 <a href="equalizer-chart.html">이퀄라이저 차트</a>에서 사용량이 미리 정의한 값 (<prop>“70”</prop>) 보다 클 경우 해당 데이터 포인트에 오버플로우 경고 표시를 하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Equalizer2DSeries yField="value" showDataEffect="{ss}" htmlJsFunction="<span class="vhdllogic">userFunction</span>"&gt;</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">userFunction</span>(id, index, data, values){</div>
+	<div class="line">  var value = values[1];</div>
+	<div class="line"></div>
+	<div class="line">  if (value &gt; 70) {</div>
+	<div class="line">    return {</div>
+	<div class="line">      content : "<span class="vhdllogic">OVERFLOW</span>",</div>
+	<div class="line">      className : "data_overflow"</div>
+	<div class="line">    };</div>
+	<div class="line">  }</div>
+	<div class="line">  return;</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="ERxLZQ" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 이퀄라이저 차트에서 경고 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/ERxLZQ/">알메이트 차트 - 이퀄라이저 차트에서 경고 표시</a></p>-->
+			<img class="capture" src="images/demo/이퀄라이저-차트에서-경고-표시.jpg" alt="이퀄라이저 차트에서 경고 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/ERxLZQ/" target="_blank">알메이트 차트 - 이퀄라이저 차트에서 경고 표시</a></p>
+
+			<h3><a class="anchor" id="데이터포인트에롤링텍스트표시"></a>데이터 포인트에 롤링 텍스트 표시</h3>
+			<p>다음은 <a href="candlestick-chart.html#캔들라인차트">캔들라인 차트</a>에서 특정 일(X 축 값)의 데이터 포인트에 롤링 텍스트를 표시하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;CandleLine2DSeries yField="open" htmlJsFunction="<span class="vhdllogic">userFunction</span>"&gt;</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">userFunction</span>(id, index, data, values){</div>
+	<div class="line">  var rollDiv,</div>
+	<div class="line">      yValue = values[1], // Y-axis value</div>
+	<div class="line">      xValue = values[0]; //"2013/0705";</div>
+	<div class="line"></div>
+	<div class="line">  if (xValue == "2013/06/19")</div>
+	<div class="line">    rollDiv = <span class="vhdllogic">getRollDiv</span>(xValue, "Interest rate hikes", "Stock collapse");</div>
+	<div class="line">  else if(xValue == "2013/07/09")</div>
+	<div class="line">    rollDiv = <span class="vhdllogic">getRollDiv</span>(xValue, "STOCK STIMULUS", "10% Rise");</div>
+	<div class="line">  else if(xValue == "2013/08/05")</div>
+	<div class="line">    rollDiv = <span class="vhdllogic">getRollDiv</span>(xValue, "Continuous interest rate hikes", "Stock collapse");</div>
+	<div class="line"></div>
+	<div class="line">  if (rollDiv)</div>
+	<div class="line">    return {</div>
+	<div class="line">      content : rollDiv,</div>
+	<div class="line">      className : "roll_wrapper"</div>
+	<div class="line">    };</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">getRollDiv</span>(date, str1, str2){</div>
+	<div class="line">  var wrapDiv = document.createElement("div"),</div>
+	<div class="line">      dateDiv = document.createElement("div"),</div>
+	<div class="line">      contentDiv1 = document.createElement("div"),</div>
+	<div class="line">      contentDiv2 = document.createElement("div");</div>
+	<div class="line"></div>
+	<div class="line">  wrapDiv.className = "wrapDiv";</div>
+	<div class="line"></div>
+	<div class="line">  dateDiv.innerHTML = date;</div>
+	<div class="line">  dateDiv.className = "dateDiv";</div>
+	<div class="line"></div>
+	<div class="line">  contentDiv1.innerHTML = str1;</div>
+	<div class="line">  contentDiv1.className = "contentDiv1";</div>
+	<div class="line"></div>
+	<div class="line">  contentDiv2.innerHTML = str2;</div>
+	<div class="line">  contentDiv2.className = "contentDiv2";</div>
+	<div class="line"></div>
+	<div class="line">  wrapDiv.appendChild(dateDiv);</div>
+	<div class="line">  wrapDiv.appendChild(contentDiv1);</div>
+	<div class="line">  wrapDiv.appendChild(contentDiv2);</div>
+	<div class="line"></div>
+	<div class="line">  return wrapDiv;</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="OEJZmJ" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 데이터 포인트에 롤링 텍스트 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/OEJZmJ/">알메이트 차트 - 데이터 포인트에 롤링 텍스트 표시</a></p>-->
+			<img class="capture" src="images/demo/데이터-포인트에-롤링-텍스트-표시.jpg" alt="데이터 포인트에 롤링 텍스트 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/OEJZmJ/" target="_blank">알메이트 차트 - 데이터 포인트에 롤링 텍스트 표시</a></p>
+
+			<p>위 예제에서는 특정 일의 데이터 포인트에 div 를 생성하고 해당 div 에 CSS 스타일(wrapDiv, dateDiv, contentDiv1, contentDiv2)을 적용하여 롤링 텍스트를 표시합니다.</p>
+
+			<h3><a class="anchor" id="데이터포인트에애니메이션gif표시"></a>데이터 포인트에 애니메이션 GIF 표시</h3>
+			<p>특정 조건을 만족하는 데이터 포인트에 애니메이션 GIF를 표시할 수도 있습니다.
+				다음은 애니메이션 GIF 가 표시될 div 를 생성하고 CSS 스타일을 적용하여 특정 데이터 포인트에 애니메이션 GIF 를 표시하는 두 가지 예제입니다.</p>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="vrYjZM" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 컬럼 차트에서 애니메이션 GIF 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/vrYjZM/">알메이트 차트 - 컬럼 차트에서 애니메이션 GIF 표시</a></p>-->
+			<img class="capture" src="images/demo/컬럼-차트에서-애니메이션-gif-표시.jpg" alt="컬럼 차트에서 애니메이션 GIF 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/vrYjZM/" target="_blank">알메이트 차트 - 컬럼 차트에서 애니메이션 GIF 표시</a></p>
+
+			<br>
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="oyNdKr" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 데이터 포인트에 애니메이션 GIF 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/oyNdKr/">알메이트 차트 - 데이터 포인트에 애니메이션 GIF 표시</a></p>-->
+			<img class="capture" src="images/demo/데이터-포인트에-애니메이션-gif-표시.jpg" alt="데이터 포인트에 애니메이션 GIF 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/oyNdKr/" target="_blank">알메이트 차트 - 데이터 포인트에 애니메이션 GIF 표시</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>
