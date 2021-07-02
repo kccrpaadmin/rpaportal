@@ -143,8 +143,10 @@
         mySheet.SetCountPosition(3); // 건수 정보 표시
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
-    }  
-    	
+		
+		alert(mySheet.Version());
+    }
+   	
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {
 		libraryFunc.createModal(null, null, null, 1100, 560, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
