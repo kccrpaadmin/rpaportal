@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: Wing Chart</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('wing-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#윙차트">윙 차트</a>
+							<li class="level3"><a href="#바윙차트">바 윙 차트</a></li>
+							<li class="level3"><a href="#다중시리즈바윙차트">다중 시리즈 바 윙 차트</a></li>
+							<li class="level3"><a href="#스택바윙차트">스택 바 윙 차트</a></li>
+							<li class="level3"><a href="#100%바윙차트">100% 바 윙 차트</a></li>
+							<li class="level3"><a href="#바윙차트에연결선표시">바 윙 차트에 연결선 표시</a></li>
+							<li class="level3"><a href="#컬럼윙차트">컬럼 윙 차트</a></li>
+							<li class="level3"><a href="#다중시리즈컬럼윙차트">다중 시리즈 컬럼 윙 차트</a></li>
+							<li class="level3"><a href="#스택컬럼윙차트">스택 컬럼 윙 차트</a></li>
+							<li class="level3"><a href="#100%컬럼윙차트">100% 컬럼 윙 차트</a></li>
+							<li class="level3"><a href="#컬럼윙차트에연결선표시">컬럼 윙 차트에 연결선 표시</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="윙차트"></a>윙 차트</h2>
+			<p>윙 차트는 데이터의 크기를 차트의 중앙에 표시되는 카테고리에서 시작하여 좌, 우로 증가하는 가로 막대 모양으로 표시(바 윙 차트)하거나 상, 하로 증가하는 세로 막대 모양으로 표시(컬럼 윙 차트)합니다.
+				바 윙 차트는 <a href="../api/Bar2DWingChart.html" target="_blank">&lt;Bar2DWingChart&gt;</a> 노드의 series 속성값에 <a href="../api/Bar2DWingSeries.html" target="_blank">&lt;Bar2DWingSeries&gt;</a> 노드를 설정하여 생성할 수 있고,
+				컬럼 윙 차트는 <a href="../api/Column2DWingChart.html" target="_blank">&lt;Column2DWingChart&gt;</a> 노드의 series 속성값에 <a href="../api/Column2DWingSeries.html" target="_blank">&lt;Column2DWingSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.</p>
+
+			<p>바 윙 차트는 <a href="bar-chart.html">바 차트</a>의 속성을, 컬럼 윙 차트는 <a href="column-chart.html">컬럼 차트</a>의 속성을 그대로 사용할 수 있습니다.
+				추가적으로 바 윙 차트에서는 xFieldOpp 속성에 좌측 방향으로 표시되는 가로 막대를 위한 필드명을 지정하고, 컬럼 윙 차트에서는 yFieldOpp 속성에 아래 방향으로 표시되는 세로 막대를 위한 필드명을 지정합니다.</p>
+
+			<h3><a class="anchor" id="바윙차트"></a>바 윙 차트</h3>
+			<p>바 윙 차트는 <a href="../api/Bar2DWingChart.html" target="_blank">&lt;Bar2DWingChart&gt;</a> 노드의 series 속성값에 <a href="../api/Bar2DWingSeries.html" target="_blank">&lt;Bar2DWingSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				우측 방향으로 표시되는 가로 막대 값이 있는 데이터 필드는 <a href="../api/Bar2DWingSeries.html" target="_blank">&lt;Bar2DWingSeries&gt;</a> 노드의 xField 속성에,
+				좌측 방향으로 표시되는 가로 막대 값이 있는 데이터 필드는 xFieldOpp 속성에 지정합니다.
+				다음은 바 윙 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Bar2DWingChart showDataTips="true" paddingTop="10" barWidthRatio="0.56"&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis categoryField="Month"/&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bar2DWingSeries xField="Profit" <span class="vhdllogic">xFieldOpp</span>="Cost" labelPosition="outside" showValueLabels="[5,6,7]" showValueLabelsOpp="[5,6,7]" displayName="This Year" displayNameOpp="Last Year"&gt;</div>
+	<div class="line">      &lt;fill&gt;</div>
+	<div class="line">        &lt;SolidColor color="#5587a2"/&gt;</div>
+	<div class="line">      &lt;/fill&gt;</div>
+	<div class="line">      &lt;showDataEffect&gt;</div>
+	<div class="line">        &lt;WingSeriesInterpolate duration="1000"/&gt;</div>
+	<div class="line">      &lt;/showDataEffect&gt;</div>
+	<div class="line">    &lt;/Bar2DWingSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Bar2DWingChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="WybGYG" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 바 윙 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/WybGYG/">알메이트 차트 - 바 윙 차트</a></p>-->
+			<img class="capture" src="images/demo/바-윙-차트.jpg" alt="바 윙 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/WybGYG/" target="_blank">알메이트 차트 - 바 윙 차트</a></p>
+
+			<h3><a class="anchor" id="다중시리즈바윙차트"></a>다중 시리즈 바 윙 차트</h3>
+			<p>일반적인 바 차트와 마찬가지로 다중 데이터 시리즈를 바 윙 차트에 표현할 수 있습니다.
+				표현하려는 개수만큼 <a href="../api/Bar2DWingSeries.html" target="_blank">&lt;Bar2DWingSeries&gt;</a> 노드를 정의하여 다중 시리즈 바 윙 차트를 생성합니다.
+				다음은 두 개의 데이터 시리즈를 가진 바 윙 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Bar2DWingChart showDataTips="true" paddingTop="10"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bar2DWingSeries xField="Profit" <span class="vhdllogic">xFieldOpp</span>="Profit2" labelPosition="outside" displayName="Female" displayNameOpp="Male" showValueLabels="[2]" showValueLabelsOpp="[2]" halfWidthOffset="1"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bar2DWingSeries&gt;</div>
+	<div class="line">    &lt;Bar2DWingSeries xField="Cost" <span class="vhdllogic">xFieldOpp</span>="Cost2" labelPosition="outside" displayName="Female" displayNameOpp="Male" showValueLabels="[2]" showValueLabelsOpp="[2]" halfWidthOffset="1"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bar2DWingSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Bar2DWingChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="eKmBZK" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다중 시리즈 바 윙 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/eKmBZK/">알메이트 차트 - 다중 시리즈 바 윙 차트</a></p>-->
+			<img class="capture" src="images/demo/다중-시리즈-바-윙-차트.jpg" alt="다중 시리즈 바 윙 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/eKmBZK/" target="_blank">알메이트 차트 - 다중 시리즈 바 윙 차트</a></p>
+
+			<h3><a class="anchor" id="스택바윙차트"></a>스택 바 윙 차트</h3>
+			<p>일반적인 <a href="bar-chart.html">바 차트</a>와 마찬가지로 스택 타입의 바 윙 차트를 표현할 수 있습니다.
+				바의 스택으로 표현하려는 개수만큼 <a href="../api/Bar2DWingSeries.html" target="_blank">&lt;Bar2DWingSeries&gt;</a> 노드를 정의하고, <a href="../api/Bar2DWingChart.html" target="_blank">&lt;Bar2DWingChart&gt;</a> 노드의 type 속성을 <prop>“stacked”</prop> 으로 지정하여 스택 바 윙 차트를 생성합니다.
+				다음은 두 개의 데이터 시리즈를 가진 스택 바 윙 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Bar2DWingChart type="<span class="vhdllogic">stacked</span>" showDataTips="true" paddingTop="10"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bar2DWingSeries xField="Profit" <span class="vhdllogic">xFieldOpp</span>="Profit2" labelPosition="inside" displayName="Coffee" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bar2DWingSeries&gt;</div>
+	<div class="line">    &lt;Bar2DWingSeries xField="Cost" <span class="vhdllogic">xFieldOpp</span>="Cost2" labelPosition="inside" displayName="Donuts" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bar2DWingSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Bar2DWingChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="pKvNbp" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 스택 바 윙 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/pKvNbp/">알메이트 차트 - 스택 바 윙 차트</a></p>-->
+			<img class="capture" src="images/demo/스택-바-윙-차트.jpg" alt="스택 바 윙 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/pKvNbp/" target="_blank">알메이트 차트 - 스택 바 윙 차트</a></p>
+
+			<h3><a class="anchor" id="100%바윙차트"></a>100% 바 윙 차트</h3>
+			<p>일반적인 <a href="bar-chart.html">바 차트</a>와 마찬가지로 100% 타입의 바 윙 차트를 표현할 수 있습니다.
+				바의 100% 스택으로 표현하려는 개수만큼 <a href="../api/Bar2DWingSeries.html" target="_blank">&lt;Bar2DWingSeries&gt;</a> 노드를 정의하고, <a href="../api/Bar2DWingChart.html" target="_blank">&lt;Bar2DWingChart&gt;</a> 노드의 type 속성을 <prop>“100%”</prop> 으로 지정하여 100% 타입의 바 윙 차트를 생성합니다.
+				다음은 두 개의 데이터 시리즈를 가진 100% 타입의 바 윙 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Bar2DWingChart type="<span class="vhdllogic">100%</span>" showDataTips="true" dataTipFormatter="{nft}" paddingTop="10"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bar2DWingSeries xField="Profit" <span class="vhdllogic">xFieldOpp</span>="Profit2" labelPosition="inside" displayName="Coffee" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" formatter="{nft}" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bar2DWingSeries&gt;</div>
+	<div class="line">    &lt;Bar2DWingSeries xField="Cost" <span class="vhdllogic">xFieldOpp</span>="Cost2" labelPosition="inside" displayName="Donuts" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" formatter="{nft}" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bar2DWingSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Bar2DWingChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="pKvNEp" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 100% 바 윙 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/pKvNEp/">알메이트 차트 - 100% 바 윙 차트</a></p>-->
+			<img class="capture" src="images/demo/100-바-윙-차트.jpg" alt="100% 바 윙 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/pKvNEp/" target="_blank">알메이트 차트 - 100% 바 윙 차트</a></p>
+
+			<h3><a class="anchor" id="바윙차트에연결선표시"></a>바 윙 차트에 연결선 표시</h3>
+			<p>바 윙 차트에 표시되는 가로 막대의 값들을 연결하는 선을 표시할 수 있습니다. 바 윙 차트에 연결선을 표시하기 위해서는 <a href="../api/Bar2DWingSeries.html" target="_blank">&lt;Bar2DWingSeries&gt;</a> 노드의 lineToEachItems 속성을 <prop>“true”</prop> 로 지정합니다. 다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Bar2DWingChart type="stacked" showDataTips="true" paddingTop="10"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bar2DWingSeries xField="Profit" xFieldOpp="Profit2" lineToEachItems="<span class="vhdllogic">true</span>" labelPosition="inside" displayName="Group" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bar2DWingSeries&gt;</div>
+	<div class="line">    &lt;Bar2DWingSeries xField="Cost" xFieldOpp="Cost2" lineToEachItems="<span class="vhdllogic">true</span>" labelPosition="inside" displayName="Individual" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bar2DWingSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Bar2DWingChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="aKzBBX" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 바 윙 차트에 연결선 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/aKzBBX/">알메이트 차트 - 바 윙 차트에 연결선 표시</a></p>-->
+			<img class="capture" src="images/demo/바-윙-차트에-연결선-표시.jpg" alt="바 윙 차트에 연결선 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/aKzBBX/" target="_blank">알메이트 차트 - 바 윙 차트에 연결선 표시</a></p>
+
+			<h3><a class="anchor" id="컬럼윙차트"></a>컬럼 윙 차트</h3>
+			<p>컬럼 윙 차트는 <a href="../api/Column2DWingChart.html" target="_blank">&lt;Column2DWingChart&gt;</a> 노드의 series 속성값에 <a href="../api/Column2DWingSeries.html" target="_blank">&lt;Column2DWingSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				윗 방향으로 표시되는 세로 막대 값이 있는 데이터 필드는 <a href="../api/Column2DWingSeries.html" target="_blank">&lt;Column2DWingSeries&gt;</a> 노드의 yField 속성에, 아래 방향으로 표시되는 세로 막대 값이 있는 데이터 필드는 yFieldOpp 속성에 지정합니다.
+				다음은 컬럼 윙 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DWingChart showDataTips="true" columnWidthRatio="0.52"&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis id="hAxis1" categoryField="Month" padding="1"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column2DWingSeries yField="Profit" <span class="vhdllogic">yFieldOpp</span>="Cost" labelPosition="outside" showValueLabels="[5,6,7]" showValueLabelsOpp="[5,6,7]"&gt;</div>
+	<div class="line">      &lt;fill&gt;</div>
+	<div class="line">        &lt;SolidColor color="#6687a2"/&gt;</div>
+	<div class="line">      &lt;/fill&gt;</div>
+	<div class="line">      &lt;showDataEffect&gt;</div>
+	<div class="line">        &lt;WingSeriesInterpolate duration="1000"/&gt;</div>
+	<div class="line">      &lt;/showDataEffect&gt;</div>
+	<div class="line">    &lt;/Column2DWingSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Column2DWingChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="pKvNea" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 컬럼 윙 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/pKvNea/">알메이트 차트 - 컬럼 윙 차트</a></p>-->
+			<img class="capture" src="images/demo/컬럼-윙-차트.jpg" alt="컬럼 윙 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/pKvNea/" target="_blank">알메이트 차트 - 컬럼 윙 차트</a></p>
+
+			<h3><a class="anchor" id="다중시리즈컬럼윙차트"></a>다중 시리즈 컬럼 윙 차트</h3>
+			<p>일반적인 <a href="column-chart.html">컬럼 차트</a>와 마찬가지로 다중 데이터 시리즈를 컬럼 윙 차트에 표현할 수 있습니다.
+				표현하려는 개수만큼 <a href="../api/Column2DWingSeries.html" target="_blank">&lt;Column2DWingSeries&gt;</a> 노드를 정의하여 다중 시리즈 컬럼 윙 차트를 생성합니다.
+				다음은 두 개의 데이터 시리즈를 가진 컬럼 윙 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DWingChart showDataTips="true" columnWidthRatio="0.58"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column2DWingSeries yField="Profit" <span class="vhdllogic">yFieldOpp</span>="Profit2" showLabelVertically="true" labelPosition="outside" displayName="Single" displayNameOpp="Single" styleName="seriesLabel" showValueLabels="[2]" showValueLabelsOpp="[2]" halfWidthOffset="1"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DWingSeries&gt;</div>
+	<div class="line">    &lt;Column2DWingSeries yField="Cost" <span class="vhdllogic">yFieldOpp</span>="Cost2" showLabelVertically="true" labelPosition="outside" displayName="Married" displayNameOpp="Married" styleName="seriesLabel" showValueLabels="[2]" showValueLabelsOpp="[2]" halfWidthOffset="1"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DWingSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Column2DWingChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="mKyOwP" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다중 시리즈 컬럼 윙 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/mKyOwP/">알메이트 차트 - 다중 시리즈 컬럼 윙 차트</a></p>-->
+			<img class="capture" src="images/demo/다중-시리즈-컬럼-윙-차트.jpg" alt="다중 시리즈 컬럼 윙 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/mKyOwP/" target="_blank">알메이트 차트 - 다중 시리즈 컬럼 윙 차트</a></p>
+
+			<h3><a class="anchor" id="스택컬럼윙차트"></a>스택 컬럼 윙 차트</h3>
+			<p>일반적인 <a href="column-chart.html">컬럼 차트</a>와 마찬가지로 스택 타입의 컬럼 윙 차트를 표현할 수 있습니다.
+				컬럼의 스택으로 표현하려는 개수만큼 <a href="../api/Column2DWingSeries.html" target="_blank">&lt;Column2DWingSeries&gt;</a> 노드를 정의하고, <a href="../api/Column2DWingChart.html" target="_blank">&lt;Column2DWingChart&gt;</a> 노드의 type 속성을 <prop>“stacked”</prop> 으로 지정하여 스택 컬럼 윙 차트를 생성합니다.
+				다음은 두 개의 데이터 시리즈를 가진 스택 컬럼 윙 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DWingChart type="<span class="vhdllogic">stacked</span>" showDataTips="true" columnWidthRatio="0.58"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column2DWingSeries yField="Profit" <span class="vhdllogic">yFieldOpp</span>="Profit2" showLabelVertically="true" labelPosition="outside" displayName="Single" displayNameOpp="Single" styleName="seriesLabel" showValueLabels="[2]" showValueLabelsOpp="[2]" halfWidthOffset="1"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DWingSeries&gt;</div>
+	<div class="line">    &lt;Column2DWingSeries yField="Cost" <span class="vhdllogic">yFieldOpp</span>="Cost2" showLabelVertically="true" labelPosition="outside" displayName="Married" displayNameOpp="Married" styleName="seriesLabel" showValueLabels="[2]" showValueLabelsOpp="[2]" halfWidthOffset="1"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DWingSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Column2DWingChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="RJNoZr" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 스택 컬럼 윙 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/RJNoZr/">알메이트 차트 - 스택 컬럼 윙 차트</a></p>-->
+			<img class="capture" src="images/demo/스택-컬럼-윙-차트.jpg" alt="스택 컬럼 윙 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/RJNoZr/" target="_blank">알메이트 차트 - 스택 컬럼 윙 차트</a></p>
+
+			<h3><a class="anchor" id="100%컬럼윙차트"></a>100% 컬럼 윙 차트</h3>
+			<p>일반적인 <a href="column-chart.html">컬럼 차트</a>와 마찬가지로 100% 타입의 컬럼 윙 차트를 표현할 수 있습니다.
+				컬럼의 100% 스택으로 표현하려는 개수만큼 <a href="../api/Column2DWingSeries.html" target="_blank">&lt;Column2DWingSeries&gt;</a> 노드를 정의하고, <a href="../api/Column2DWingChart.html" target="_blank">&lt;Column2DWingChart&gt;</a> 노드의 type 속성을 <prop>“100%”</prop> 으로 지정하여 100% 타입의 컬럼 윙 차트를 생성합니다.
+				다음은 두 개의 데이터 시리즈를 가진 100% 타입의 컬럼 윙 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DWingChart type="<span class="vhdllogic">100%</span>" showDataTips="true" dataTipFormatter="{nft}" columnWidthRatio="0.54"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column2DWingSeries yField="Profit" <span class="vhdllogic">yFieldOpp</span>="Profit2" labelPosition="inside" displayName="Male" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" formatter="{nft}" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DWingSeries&gt;</div>
+	<div class="line">    &lt;Column2DWingSeries yField="Cost" <span class="vhdllogic">yFieldOpp</span>="Cost2" labelPosition="inside" displayName="Female" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" formatter="{nft}" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DWingSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Column2DWingChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="KewNXo" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 100% 컬럼 윙 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/KewNXo/">알메이트 차트 - 100% 컬럼 윙 차트</a></p>-->
+			<img class="capture" src="images/demo/100-컬럼-윙-차트.jpg" alt="100% 컬럼 윙 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/KewNXo/" target="_blank">알메이트 차트 - 100% 컬럼 윙 차트</a></p>
+
+			<h3><a class="anchor" id="컬럼윙차트에연결선표시"></a>컬럼 윙 차트에 연결선 표시</h3>
+			<p>컬럼 윙 차트에 표시되는 세로 막대의 값들을 연결하는 선을 표시할 수 있습니다.
+				컬럼 윙 차트에 연결선을 표시하기 위해서는 <a href="../api/Column2DWingSeries.html" target="_blank">&lt;Column2DWingSeries&gt;</a> 노드의 lineToEachItems 속성을 <prop>“true”</prop> 로 지정합니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DWingChart type="stacked" showDataTips="true" columnWidthRatio="0.54"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column2DWingSeries yField="Profit" yFieldOpp="Profit2" lineToEachItems="<span class="vhdllogic">true</span>" labelPosition="inside" displayName="Household" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DWingSeries&gt;</div>
+	<div class="line">    &lt;Column2DWingSeries yField="Cost" yFieldOpp="Cost2" lineToEachItems="<span class="vhdllogic">true</span>" labelPosition="inside" displayName="Factory" showValueLabels="[4,5]" showValueLabelsOpp="[4,5]" color="#ffffff"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DWingSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Column2DWingChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="YvPpYy" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 컬럼 윙 차트에 연결선 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/YvPpYy/">알메이트 차트 - 컬럼 윙 차트에 연결선 표시</a></p>-->
+			<img class="capture" src="images/demo/컬럼-윙-차트에-연결선-표시.jpg" alt="컬럼 윙 차트에 연결선 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/YvPpYy/" target="_blank">알메이트 차트 - 컬럼 윙 차트에 연결선 표시</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

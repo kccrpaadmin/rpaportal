@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 이벤트 처리</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('event-handling.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="고급사용자를위한기능">고급 사용자를 위한 기능</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#고급사용자를위한기능">고급 사용자를 위한 기능</a>
+						<li class="level2"><a href="#이벤트처리">이벤트 처리</a>
+							<li class="level3"><a href="#클릭이벤트처리하기">클릭 이벤트 처리하기</a></li>
+							<li class="level3"><a href="#호버링이벤트처리하기">호버링이벤트처리하기</a></li>
+							<li class="level3"><a href="#스크롤바이벤트를이용한동적자료로드">스크롤바 이벤트를 이용한 동적 자료 로드</a></li>
+							<li class="level3"><a href="#차트로드완료이벤트처리하기">차트 로드 완료 이벤트 처리하기</a></li>
+							<li class="level3"><a href="#차트의데이터값에따라서필요한정보표현하기">차트의 데이터 값(이벤트)에 따라서 필요한 정보 표현하기</a></li>
+							<li class="level3"><a href="#알메이트차트에서사용가능한이벤트">알메이트 차트에서 사용 가능한 이벤트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="이벤트처리"></a>이벤트 처리</h2>
+			<p>알메이트 차트는 사용자가 차트와 인터렉션하기 위한 방법으로 이벤트 처리 기능을 제공합니다.
+				이벤트 처리를 통해서 차트의 특정 데이터 포인트의 값이 미리 정의한 어떤 조건과 부합할 경우 특별한 처리를 할 수 있습니다.
+				또한 사용자가 차트 내의 구성 요소 (배경, 제목, 레이블, 데이터 포인트 등)에 마우스를 클릭하거나 호버링(hovering)할 경우 혹은 차트의 값이 변경되거나 확대(Zooming)가 일어날 경우 필요한 정보를 보여주기 위한 사용자 정의 자바스크립트 함수를 작성할 수 있습니다.</p>
+
+			<p>다른 차팅 제품들에 비해서 알메이트 차트의 이벤트 처리 방식의 장점은 개발자에게 쉬운 코딩 인터페이스를 제공한다는 것입니다.
+				알메이트 차트에서는 다른 모든 차트 제품들이 사용하는 방식인 이벤트 리스너를 등록하는 자바스크립트 코딩을 할 필요가 없습니다.
+				레이아웃을 작성할 때 이벤트 처리가 필요한 차트 요소를 정의하는 XML 노드 상에 특정 이벤트 속성값을 자바스크립트 함수명으로 설정하는 간단한 방식을 사용합니다.</p>
+
+			<h3><a class="anchor" id="클릭이벤트처리하기"></a>클릭 이벤트 처리하기</h3>
+			<p>다음은 캔들스틱 차트에서 사용자가 심볼을 클릭하면 공시자료를 보여주는 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Candlestick2DSeries openField="open" closeField="close" highField="high" lowField="low" symbolClickJsFunction="<span class="vhdllogic">gongsiDataFunc</span>" symbolColor="#000"&gt;</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">gongsiDataFunc</span>(seriesId, index, data, values) {</div>
+	<div class="line">    var gongsi = "Click the symbol";</div>
+	<div class="line">    if(data.gongsi)</div>
+	<div class="line">        gongsi = data;</div>
+	<div class="line">	</div>
+	<div class="line">    setGongsiData(gongsi);</div>
+	<div class="line">}</div>
+</div>
+
+			<p>위 예제 코드에서는 캔들스틱 차트의 시리즈를 정의하는 <a href="../api/Candlestick2DSeries.html" target="_blank">&lt;Candlestick2DSeries&gt;</a> 노드의 심볼 클릭 이벤트 속성값(symbolClickJsFunction)에 자바스크립트 함수명(gongsiDataFunc)이 설정되었습니다.
+				자바스크립트 함수에서는 사용 가능한 차트 데이터들이 입력 파라메터 값으로 넘어오는데 이를 이용해서 원하는 정보를 차트상에 표시하는 것이 다음과 같이 가능합니다.
+				다음 차트에서 9 월 20 일과 9 월 23 일 사이의 데이터 포인트 상의 사각형 심볼(H, I, J, K)을 클릭하면 차트 하단의 박스에 자세한 가격 정보가 표시되는 것을 볼 수 있습니다.</p>
+
+			<!--<p data-height="500" data-theme-id="dark" data-slug-hash="ZRYLVb" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 캔들스틱 차트 - 공시문자 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/ZRYLVb/">알메이트 차트 - 캔들스틱 차트 - 공시문자 표시</a></p>-->
+			<img class="capture" src="images/demo/클릭-이벤트-처리.jpg" alt="클릭 이벤트 처리" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/ZRYLVb/" target="_blank">알메이트 차트 - 캔들스틱 차트 - 클릭 이벤트 처리</a></p>
+
+			<h3><a class="anchor" id="호버링이벤트처리하기"></a>호버링(hovering) 이벤트 처리하기</h3>
+			<p>알메이트 차트에서는 사용자가 차트의 데이터 포인트에 마우스를 호버링(hovering)하면 기본적으로 툴팁(Tooltips)이 표시됩니다.
+				알메이트 차트에서 기본으로 제공하는 툴팁의 형태와 다른 형태의 툴팁을 차트 사용자에게 보여주기를 원할 경우에는 마우스 호버링 이벤트에 원하는 포맷의 툴팁을 만드는 자바스크립트 함수를 설정할 수 있습니다.
+				다음은 <a href="column-chart.html">컬럼 차트</a>의 컬럼에 사용자가 마우스를 호버링할 경우 HTML 포맷의 툴팁을 화면에 표시하는 자바스크립트 함수를 레이아웃에 설정한 코드 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column3DChart showDataTips="true" dataTipJsFunction="<span class="vhdllogic">dataTipFunc</span>"&gt;</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">dataTipFunc</span>(seriesId, seriesName, index, xName, yName, data, values) {</div>
+	<div class="line">  return "&lt;table cellpadding='0' cellspacing='1'&gt;"</div>
+	<div class="line">    +"&lt;tr&gt;"</div>
+	<div class="line">    +"&lt;td align='center' colspan='2' style='border-bottom:solid 1px #8b8b8b;'&gt;&lt;img src='../rMateChartH5/Assets/Images/monitor.png'&gt;&lt;/td&gt;"</div>
+	<div class="line">    +"&lt;/tr&gt;&lt;tr&gt;"</div>
+	<div class="line">    +"&lt;td &gt;series ID&lt;/td&gt;&lt;td align='center'&gt;" + seriesId + "&lt;/td&gt;"</div>
+	<div class="line">    +"&lt;/tr&gt;&lt;tr&gt;"</div>
+	<div class="line">    +"&lt;td&gt;displayName&lt;/td&gt;&lt;td align='center'&gt;" + seriesName + "&lt;/td&gt;"</div>
+	<div class="line">    +"&lt;/tr&gt;&lt;tr&gt;"</div>
+	<div class="line">    +"&lt;td&gt;item Index&lt;/td&gt;&lt;td align='center'&gt;" + index + "&lt;/td&gt;"</div>
+	<div class="line">    +"&lt;/tr&gt;&lt;tr&gt;"</div>
+	<div class="line">    +"&lt;td&gt;X-Axis Name&lt;/td&gt;&lt;td align='center'&gt;" + xName + "&lt;/td&gt;"</div>
+	<div class="line">    +"&lt;/tr&gt;&lt;tr&gt;"</div>
+	<div class="line">    +"&lt;td&gt;X-Axis Name&lt;/td&gt;&lt;td align='center'&gt;" + yName + "&lt;/td&gt;"</div>
+	<div class="line">    +"&lt;/tr&gt;&lt;tr&gt;"</div>
+	<div class="line">    +"&lt;td&gt;X-Axis Value&lt;/td&gt;&lt;td align='center'&gt;" + values[0] + "&lt;/td&gt;"</div>
+	<div class="line">    +"&lt;/tr&gt;&lt;tr&gt;"</div>
+	<div class="line">    +"&lt;td&gt;Y-Axis Value&lt;/td&gt;&lt;td align='center'&gt;" + values[1] + "&lt;/td&gt;"</div>
+	<div class="line">    +"&lt;/tr&gt;&lt;tr&gt;"</div>
+	<div class="line">    +"&lt;td style='background-color:#e5e5e5;'&gt;Total&lt;/td&gt;&lt;td align='center' style='background-color:#e5e5e5;'&gt;" + getSum(data) + "&lt;/td&gt;"</div>
+	<div class="line">    +"&lt;/tr&gt;&lt;/table&gt;";</div>
+	<div class="line">}</div>
+	<div class="line"></div>
+	<div class="line">function getSum(values) {</div>
+	<div class="line">  var sum = 0;</div>
+	<div class="line">  for(var v in values) {</div>
+	<div class="line">    sum += Number(values[v]) || 0;</div>
+	<div class="line">  }</div>
+	<div class="line">  return sum;</div>
+	<div class="line">}</div>
+</div>
+
+			<p>다음 차트의 칼럼에 마우스를 옮기면 이미지와 값이 HTML 로 포맷된 형태의 툴팁이 표시됩니다.</p>
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="bKdpog" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 사용자 정의 함수를 사용하여 툴팁 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/bKdpog/">알메이트 차트 - 사용자 정의 함수를 사용하여 툴팁 표시</a></p>-->
+			<img class="capture" src="images/demo/호버링-이벤트-처리.jpg" alt="호버링 이벤트 처리" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/bKdpog/" target="_blank">알메이트 차트 - 사용자 정의 툴팁 표시 - 호버링 이벤트 처리</a></p>
+
+			<h3><a class="anchor" id="스크롤바이벤트를이용한동적자료로드"></a>스크롤바 이벤트를 이용한 동적 자료 로드</h3>
+			<p><a href="column-chart.html">컬럼 차트</a> 혹은 <a href="라인차트.html">라인 차트</a>에서 표현해야 할 데이터의 수가 한 화면에 보여줄 수 있는 데이터  수보다 많을 경우, 스크롤바를 이용해서 차트를 표현하게 됩니다.
+				이 때 전체 데이터를 차트가 생성되는 시점에 한번에 로드한다면, 데이터를 처리하는 시간이 많이 소요될 것이고 결과적으로 차트가 화면에 표현되기까지 사용자가 오랜 시간을 기다려야하는 문제가 생길 수 있습니다.
+				어짜피 한 화면에서 사용자가 식별할 수 있는 데이터의 수는 한정되어 있기 때문에, 한 화면에 표현하기 적당한 데이터의 수 단위로 처리를 하는 것이 효율적일 것입니다.
+				그러기 위해서는 스크롤바의 위치가 끝 부분에 도달하면 자동으로 새로운 자료를 로드하는 것이 필요한데, 이렇게 데이터를 처리하는 방식을 레이지 로딩(Lazy Loading)이라고 합니다.
+				알메이트 차트에서는 스크롤바의 이벤트를 받아서 레이지 로딩을 처리할 수 있도록하는 lazyJsFunction 속성을 제공합니다.
+				다음은 <a href="column-chart.html">컬럼 차트</a>의 한 화면에 19 개의 데이터를 표현한다고 가정할 때 레이지 로딩을 처리하기 위한 레이아웃과 코드입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DChart lazyJsFunction="<span class="vhdllogic">lazyDataFunc</span>"&gt;</div>
+	<div class="line"></div>
+	<div class="line">var xhr,		// Ajax object</div>
+	<div class="line">index = 19;	// Represents 19 data points on the screen</div>
+	<div class="line">function <span class="vhdllogic">lazyDataFunc</span>(id) {</div>
+	<div class="line">  var param = {};</div>
+	<div class="line">  param.url = dataURL + (index + 1);</div>
+	<div class="line">  param.success = function() {</div>
+	<div class="line">    var data;</div>
+	<div class="line">    if (xhr.readyState == 4 && xhr.status &gt;= 200 && xhr.status &lt; 300) {</div>
+	<div class="line">      if (xhr.responseXML.xml)</div>
+	<div class="line">        data = xhr.responseXML.xml;</div>
+	<div class="line">      else</div>
+	<div class="line">        data = xhr.responseXML;</div>
+	<div class="line">      document.getElementById(id).addData(data);</div>
+	<div class="line">      index += 20;</div>
+	<div class="line">    }</div>
+	<div class="line">  }</div>
+	<div class="line">  ajax(param);</div>
+	<div class="line">}</div>
+</div>
+
+			<p>다음 <a href="column-chart.html">컬럼 차트</a>에서 최초에 차트가 생성된 후 스크롤바를 이동하면, 19 번째 데이터(스크롤바의 끝)가 표시되는 지점에서 자동으로 데이터가 로드되는 것을 확인할 수 있습니다.</p>
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="OEJvXw" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 스크롤 가능한 컬럼 차트에서 레이지 로드" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/OEJvXw/">알메이트 차트 - 스크롤 가능한 컬럼 차트에서 레이지 로드</a></p>-->
+			<img class="capture" src="images/demo/레이지-로드.jpg" alt="레이지 로드" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/OEJvXw/" target="_blank">알메이트 차트 - 레이지 로드</a></p>
+
+			<h3><a class="anchor" id="차트로드완료이벤트처리하기"></a>차트 로드 완료 이벤트 처리하기</h3>
+			<p>경우에 따라서는 차트의 생성이 완료되자 마자 웹 페이지 내에서 원하는 처리를 해야할 경우가 있습니다.
+				알메이트 차트는 차트 렌더링이 완료되면 이벤트를 처리하는 기능을 제공합니다.
+				레이아웃 XML의 차트 레벨 노드(예, <a href="../api/Column2DChart.html" target="_blank">&lt;Column2DChart&gt;</a>, <a href="../api/Line2DChart.html" target="_blank">&lt;Line2DChart&gt;</a> 등)에서 displayCompleteCallFunction 속성에 자바스크립트 함수를 지정하면 차트의 렌더링이 완료되자 마자 해당 자바스크립트 함수를 실행할 수 있습니다.
+			 	다음은 <a href="column-chart.html">컬럼 차트</a>의 렌더링이 완료되자 마자 완료 메시지를 자바스크립트 alert 함수를 이용해서 보여주는 코드 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DChart displayCompleteCallFunction="<span class="vhdllogic">displayCallFunction</span>"&gt;</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">displayCallFunction</span>() {</div>
+	<div class="line">  alert("The rendering of the chart is complete !!");</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="OEVRjG" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 차트 로드 완료 이벤트 처리하기" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/OEVRjG/">알메이트 차트 - 차트 로드 완료 이벤트 처리하기</a></p>-->
+			<img class="capture" src="images/demo/차트-로드-완료-이벤트-처리하기.jpg" alt="차트 로드 완료 이벤트 처리하기" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/OEVRjG/" target="_blank">알메이트 차트 - 차트 로드 완료 이벤트 처리하기</a></p>
+
+			<h3><a class="anchor" id="차트의데이터값에따라서필요한정보표현하기"></a>차트의 데이터 값(이벤트)에 따라서 필요한 정보 표현하기</h3>
+			<p>차트에 표현되는 데이터 값에도 이벤트를 적용할 수 있는데 이는 알메이트 차트만의 강력한 이벤트 처리 기능입니다.
+				예를 들어 목표 대비 실적 차트에서 목표를 100% 이상 달성한 월에는 스마일 이미지를 표현하고, 실적값이 목표값의 80% 에 이르지 않으면 크라이 이미지를 표현할 수 있습니다.
+				그 이외에도 사용자의 요구사항과 개발자의 다양한 아이디어를 적용하여 인터렉티브한(Interactive) 차트를 생성할 수 있습니다.
+				다음은 <a href="target-vs-actual-chart.html">목표 대비 실적 차트</a>에서 데이터 이벤트를 적용하는 레이아웃과 코드입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;VTarget2DResultSeries id="result" yField="Result" htmlJsFunction="<span class="vhdllogic">userElementFunc</span>"&gt;</div>
+	<div class="line">...</div>
+	<div class="line">&lt;VTarget2DGoalSeries id="goal" yField="Goal" htmlJsFunction="<span class="vhdllogic">userElementFunc</span>"&gt;</div>
+	<div class="line"></div>
+	<div class="line">function <span class="vhdllogic">userElementFunc</span>(id, index, data, values) {</div>
+	<div class="line">  var src,</div>
+	<div class="line">  goalValue = data.Goal,</div>
+	<div class="line">  resultValue = data.Result;</div>
+	<div class="line">	</div>
+	<div class="line">  if (id == "result" && resultValue &gt; goalValue) {</div>
+	<div class="line">    src = "../rMateChartH5/Assets/Images/smile.gif";</div>
+	<div class="line">  } else if (id == "goal" && goalValue - resultValue &gt; 20) {</div>
+	<div class="line">    src = "../rMateChartH5/Assets/Images/cry.gif";</div>
+	<div class="line">  }</div>
+	<div class="line"></div>
+	<div class="line">  if(src){</div>
+	<div class="line">    var div = document.createElement("div");</div>
+	<div class="line">    div.className = "imageDiv";</div>
+	<div class="line">    div.style.background = "url(" + src + ") center/100% 100% no-repeat";</div>
+	<div class="line"></div>
+	<div class="line">    return {</div>
+	<div class="line">      content : div,</div>
+	<div class="line">      width : 43,</div>
+	<div class="line">      height : 43,</div>
+	<div class="line">      leftOffset : -1,</div>
+	<div class="line">      topOffset : -38</div>
+	<div class="line">    };</div>
+	<div class="line">  }</div>
+	<div class="line">}</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="oyNdKr" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 데이터 포인트에 애니메이션 GIF 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/oyNdKr/">알메이트 차트 - 데이터 포인트에 애니메이션 GIF 표시</a></p>-->
+			<img class="capture" src="images/demo/데이터-값에-따라서-필요한-정보-표현하기.jpg" alt="데이터 값(이벤트)에 따라서 필요한 정보 표현하기" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/oyNdKr/" target="_blank">알메이트 차트 - 데이터 값(이벤트)에 따라서 필요한 정보 표현하기</a></p>
+
+			<h3><a class="anchor" id="알메이트차트에서사용가능한이벤트"></a>알메이트 차트에서 사용 가능한 이벤트</h3>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">이벤트 타입</th>
+					<th align="center">차트 요소</th>
+					<th align="center">속성</th>
+					<th align="center">XML 노드</th>
+				</tr>
+				<tr>
+					<td align="center" rowspan="5">클릭</td>
+					<td align="center">축</td>
+					<td align="center"><p>axisClickJsFunction</p>
+						<p>(카테시안 차트)</p>
+					</td>
+					<td align="center">
+						<p><a href="../api/Area2DChart.html" target="_blank">&lt;Area2DChart&gt;</a>, <a href="../api/Bar2DChart.html" target="_blank">&lt;Bar2DChart&gt;</a>,<br>
+							<a href="../api/Bar2DWingChart.html" target="_blank">&lt;Bar2DWingChart&gt;</a>, <a href="../api/Bar3DChart.html" target="_blank">&lt;Bar3DChart&gt;</a>,<br>
+							<a href="../api/Bubble2DChart.html" target="_blank">&lt;Bubble2DChart&gt;</a>, <a href="../api/Candlestick2DChart.html" target="_blank">&lt;Candlestick2DChart&gt;</a>,<br>
+							<a href="../api/Column2DChart.html" target="_blank">&lt;Column2DChart&gt;</a>, <a href="../api/Column2DWingChart.html" target="_blank">&lt;Column2DWingChart&gt;</a>,<br>
+							<a href="../api/Combination2DChart.html" target="_blank">&lt;Combination2DChart&gt;</a>, <a href="../api/Combination3DChart.html" target="_blank">&lt;Combination3DChart&gt;</a>,<br>
+							<a href="../api/Displayer.html" target="_blank">&lt;Displayer&gt;</a>, <a href="../api/Displayer3D.html" target="_blank">&lt;Displayer3D&gt;</a>,<br>
+							<a href="../api/ImageChart.html" target="_blank">&lt;ImageChart&gt;</a>, <a href="../api/ImageMatrixChart.html" target="_blank">&lt;ImageMatrixChart&gt;</a>,<br>
+							<a href="../api/Line2DChart.html" target="_blank">&lt;Line2DChart&gt;</a>, <a href="../api/Matrix2DChart.html" target="_blank">&lt;Matrix2DChart&gt;</a>,<br>
+							<a href="../api/MotionChart.html" target="_blank">&lt;MotionChart&gt;</a>, <a href="../api/Plot2DChart.html" target="_blank">&lt;Plot2DChart&gt;</a>,<br>
+							<a href="../api/Pyramid2DChart.html" target="_blank">&lt;Pyramid2DChart&gt;</a>, <a href="../api/RealTimeChart.html" target="_blank">&lt;RealTimeChart&gt;</a>,<br>
+							<a href="../api/TreeMapChart.html" target="_blank">&lt;TreeMapChart&gt;</a>, <a href="../api/Vector2DChart.html" target="_blank">&lt;Vector2DChart&gt;</a>,<br>
+							<a href="../api/WordCloudChart.html" target="_blank">&lt;WordCloudChart&gt;</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">차트</td>
+					<td align="center"><p>chartClickJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">데이터 포인트</td>
+					<td align="center"><p>itemClickJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">텍스트</td>
+					<td align="center"><p>itemClickJsFunction</p>
+					</td>
+					<td align="center">
+						<p><a href="../api/Caption.html" target="_blank">&lt;Caption&gt;</a>, <a href="../api/Label.html" target="_blank">&lt;Label&gt;</a>, <a href="../api/Legend.html" target="_blank">&lt;Legend&gt;</a>, <a href="../api/SubCaption.html" target="_blank">&lt;SubCaption&gt;</a>,<br>
+							<a href="../api/SubLegend.html" target="_blank">&lt;SubLegend&gt;</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">심볼</td>
+					<td align="center"><p>symbolClickJsFunction</p>
+					</td>
+					<td align="center">
+						<p><a href="../api/CandleArea2DSeries.html" target="_blank">&lt;CandleArea2DSeries&gt;</a>, <a href="../api/CandleLine2DSeries.html" target="_blank">&lt;CandleLine2DSeries&gt;</a>,<br>
+							<a href="../api/Candlestick2DSeries.html" target="_blank">&lt;Candlestick2DSeries&gt;</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" rowspan="2">더블 클릭</td>
+					<td align="center">차트</td>
+					<td align="center"><p>chartDoubleClickJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">데이터 포인트</td>
+					<td align="center"><p>itemDoubleClickJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">마우스 다운</td>
+					<td align="center">데이터 포인트</td>
+					<td align="center"><p>itemDownJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">마우스 업</td>
+					<td align="center">데이터 포인트</td>
+					<td align="center"><p>itemUpJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">마우스 무브</td>
+					<td align="center">데이터 포인트</td>
+					<td align="center"><p>itemMoveJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" rowspan="7">호버링 (마우스 오버)</td>
+					<td align="center">축</td>
+					<td align="center"><p>axisDataTipJsFunction</p>
+					</td>
+					<td align="center">
+						<p>카테시안 차트</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">차트</td>
+					<td align="center"><p>chartOverJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" rowspan="4">데이터 포인트</td>
+					<td align="center"><p>dataTipJsFunction</p>
+					</td>
+					<td align="center">
+						<p>카테시안 차트,<br>
+							<a href="../api/CircularGauge.html" target="_blank">&lt;CircularGauge&gt;</a>, <a href="../api/HalfCircularGauge.html" target="_blank">&lt;HalfCircularGauge&gt;</a>,<br>
+							<a href="../api/HistoryRangeSelector.html" target="_blank">&lt;HistoryRangeSelector&gt;</a>, <a href="../api/Navigator.html" target="_blank">&lt;Navigator&gt;</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p>itemOverJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p>innerTipJsFunction</p>
+					</td>
+					<td align="center">
+						<p><a href="../api/HCylinderGauge.html" target="_blank">&lt;HCylinderGauge&gt;</a>, <a href="../api/HLinearGauge.html" target="_blank">&lt;HLinearGauge&gt;</a>,<br>
+							<a href="../api/VCylinderGauge.html" target="_blank">&lt;VCylinderGauge&gt;</a>, <a href="../api/VLinearGauge.html" target="_blank">&lt;VLinearGauge&gt;</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><p>targetTipJsFunction</p>
+					</td>
+					<td align="center">
+						<p><a href="../api/HCylinderGauge.html" target="_blank">&lt;HCylinderGauge&gt;</a>, <a href="../api/HLinearGauge.html" target="_blank">&lt;HLinearGauge&gt;</a>,<br>
+							<a href="../api/VCylinderGauge.html" target="_blank">&lt;VCylinderGauge&gt;</a>, <a href="../api/VLinearGauge.html" target="_blank">&lt;VLinearGauge&gt;</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">범례 아이템</td>
+					<td align="center"><p>titleJsFunction</p>
+					</td>
+					<td align="center">
+						<p><a href="../api/Legend.html" target="_blank">&lt;Legend&gt;</a>, <a href="../api/SubLegend.html" target="_blank">&lt;SubLegend&gt;</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" rowspan="2">마우스 아웃</td>
+					<td align="center">차트</td>
+					<td align="center"><p>chartOutJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">데이터 포인트</td>
+					<td align="center"><p>itemOutJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" rowspan="3">변경</td>
+					<td align="center">값</td>
+					<td align="center"><p>valueChangeFunction</p>
+					</td>
+					<td align="center">
+						<p><a href="../api/CircularGauge.html" target="_blank">&lt;CircularGauge&gt;</a>, <a href="../api/Gauge.html" target="_blank">&lt;Gauge&gt;</a>,<br>
+							<a href="../api/HalfCircularGauge.html" target="_blank">&lt;HalfCircularGauge&gt;</a>, <a href="../api/LinearGauge.html" target="_blank">&lt;LinearGauge&gt;</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">스크롤바</td>
+					<td align="center"><p>lazyJsFunction</p>
+					</td>
+					<td align="center">
+						<p>카테시안 차트</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">십자선</td>
+					<td align="center"><p>rangeUpdateJsFunction</p>
+					</td>
+					<td align="center">
+						<p><a href="../api/CrossRangeZoomer.html" target="_blank">&lt;CrossRangeZoomer&gt;</a></p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">데이터 이벤트</td>
+					<td align="center">값</td>
+					<td align="center"><p>htmlJsFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 시리즈 레벨 노드</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">렌더링</td>
+					<td align="center">차트</td>
+					<td align="center"><p>displayCompleteCallFunction</p>
+					</td>
+					<td align="center">
+						<p>모든 차트 레벨 노드</p>
+					</td>
+				</tr>
+			</table>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

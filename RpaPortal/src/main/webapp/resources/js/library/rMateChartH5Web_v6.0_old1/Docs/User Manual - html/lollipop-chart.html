@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 롤리팝 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('lollipop-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#롤리팝차트">롤리팝 (막대사탕) 차트</a>
+							<li class="level3"><a href="#다중시리즈롤리팝차트">다중 시리즈 롤리팝 차트</a></li>
+							<li class="level3"><a href="#오버레이롤리팝차트">오버레이 롤리팝 차트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="롤리팝차트"></a>롤리팝 차트</h2>
+			<p>롤리팝 차트는 막대의 끝에 원(circle)이 표시된다는 점을 제외하면 컬럼 차트와 동일한 유형의 차트입니다.
+				롤리팝 차트가 컬럼 차트에 비해서 유용하게 활용되는 경우는 차트에 표시되는 대부분의 값들이 80-90% 정도로 높은 값들일 때입니다.
+				이런 경우에 긴 막대들이 차트에서 나열되면 시각적으로 보기에 어렵고 값의 차이를 알기 쉽지 않기 때문입니다.</p>
+
+			<p>롤리팝 차트는 <a href="../api/LollipopChart.html" target="_blank">&lt;LollipopChart&gt;</a> 노드의 series 속성값에 <a href="../api/LollipopSeries.html" target="_blank">&lt;LollipopSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.</p>
+
+			<p>다음은 롤리팝 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+<div class="fragment">
+	<div class="line">&lt;LollipopChart showDataTips="true" dataTipFormatter="{numFmt}"&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;LollipopSeries yField="Men" displayName="Effective Age (Men)" showDataEffect="{ss}" itemRenderer="CircleLollipopItemRenderer" maxPopSize="8"&gt;</div>
+	<div class="line">      &lt;stroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#ff4273" weight="1"/&gt;</div>
+	<div class="line">      &lt;/stroke&gt;</div>
+	<div class="line">      &lt;fills&gt;</div>
+	<div class="line">        &lt;SolidColor color="#ff4273"/&gt;</div>
+	<div class="line">      &lt;/fills&gt;</div>
+	<div class="line">    &lt;/LollipopSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/LollipopChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="OqYLqL" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 롤리팝 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/OqYLqL/">알메이트 차트 - 롤리팝 차트</a></p>-->
+			<img class="capture" src="images/demo/롤리팝-차트.jpg" alt="롤리팝 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/OqYLqL/" target="_blank">알메이트 차트 - 롤리팝 차트</a></p>
+
+			<p><a href="../api/LollipopSeries.html" target="_blank">&lt;LollipopSeries&gt;</a> 노드의 주요 속성은 다음과 같습니다.</p>
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">itemRenderer</td>
+					<td align="center"><p>CircleLollipopItemRenderer(*)<br>
+						TriangleLollipopItemRenderer<br>
+						RectangleLollipopItemRenderer<br>
+						InvertedTriangleLollipopItemRenderer<br>
+						DiamondLollipopItemRenderer</p>
+					</td>
+					<td align="left">
+						<p>차트상의 데이터 포인트(데이터 아이템)에 표현될 도형을 렌더링하는 클래스를 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">maxPopSize</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: NaN</p>
+					</td>
+					<td align="left">
+						<p>데이터 포인트에 표시되는 도형(사탕)의 최대 크기를 설정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<h3><a class="anchor" id="다중시리즈롤리팝차트"></a>다중 시리즈 롤리팝 차트</h3>
+			<p>series 속성값에 여러 개의 <a href="../api/LollipopSeries.html" target="_blank">&lt;LollipopSeries&gt;</a> 노드를 설정하여 다중 시리즈 롤리팝 차트를 생성할 수 있습니다.</p>
+
+			<p>다음은 여러 개의 <a href="../api/LollipopSeries.html" target="_blank">&lt;LollipopSeries&gt;</a> 노드를 설정하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+<div class="fragment">
+	<div class="line">&lt;series&gt;</div>
+	<div class="line">  &lt;LollipopSeries yField="Men" displayName="Effective Age (Men)" showDataEffect="{ss}" itemRenderer="CircleLollipopItemRenderer" maxPopSize="5"&gt;</div>
+	<div class="line">    &lt;stroke&gt;</div>
+	<div class="line">      &lt;Stroke color="#ff4273" weight="1"/&gt;</div>
+	<div class="line">    &lt;/stroke&gt;</div>
+	<div class="line">    &lt;fills&gt;</div>
+	<div class="line">      &lt;SolidColor color="#ff4273"/&gt;</div>
+	<div class="line">    &lt;/fills&gt;</div>
+	<div class="line">  &lt;/LollipopSeries&gt;</div>
+	<div class="line">  &lt;LollipopSeries yField="Women" displayName="Effective Age (Women)" showDataEffect="{ss}" itemRenderer="CircleLollipopItemRenderer" maxPopSize="5"&gt;</div>
+	<div class="line">    &lt;stroke&gt;</div>
+	<div class="line">      &lt;Stroke color="#b9f9ff" weight="1"/&gt;</div>
+	<div class="line">    &lt;/stroke&gt;</div>
+	<div class="line">    &lt;fills&gt;</div>
+	<div class="line">      &lt;SolidColor color="#b9f9ff"/&gt;</div>
+	<div class="line">    &lt;/fills&gt;</div>
+	<div class="line">  &lt;/LollipopSeries&gt;</div>
+	<div class="line">&lt;/series&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="zbQOgp" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다중 시리즈 롤리팝 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/zbQOgp/">알메이트 차트 - 다중 시리즈 롤리팝 차트</a></p>-->
+			<img class="capture" src="images/demo/다중-시리즈-롤리팝-차트.jpg" alt="다중 시리즈 롤리팝 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/zbQOgp/" target="_blank">알메이트 차트 - 다중 시리즈 롤리팝 차트</a></p>
+
+			<h3><a class="anchor" id="오버레이롤리팝차트"></a>오버레이 롤리팝 차트</h3>
+			<p>다중 시리즈 롤리팝 차트에서 <a href="../api/LollipopChart.html" target="_blank">&lt;LollipopChart&gt;</a> 노드의 type 속성을 <prop>“overlaid”</prop> 으로 설정하면 원(막대 사탕)이 오버레이 형태로 표시됩니다.
+				이 때 막대 선(lineStroke 속성)을 설정하는 <a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a> 노드의 weight 와 alpha 속성값을 조절하여 막대 선을 표시하지 않고 원(막대 사탕)만 오버레이 형태로 표현할 수 있습니다.
+
+			<p>다음은 오버레이 롤리팝 차트를 표현하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;LollipopChart showDataTips="true" dataTipFormatter="{numFmt}" type="<span class="vhdllogic">overlaid</span>"&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;LollipopSeries yField="Normal" displayName="Normal Age (Men)" showDataEffect="{ss}" itemRenderer="CircleLollipopItemRenderer" maxPopSize="5"&gt;</div>
+	<div class="line">      &lt;stroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#b9f9ff" weight="1"/&gt;</div>
+	<div class="line">      &lt;/stroke&gt;</div>
+	<div class="line">      &lt;lineStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#ffffff" weight="0"/&gt;</div>
+	<div class="line">      &lt;/lineStroke&gt;</div>
+	<div class="line">      &lt;fills&gt;</div>
+	<div class="line">        &lt;SolidColor color="#b9f9ff"/&gt;</div>
+	<div class="line">      &lt;/fills&gt;</div>
+	<div class="line">    &lt;/LollipopSeries&gt;</div>
+	<div class="line">    &lt;LollipopSeries yField="Effective" displayName="Effective Age (Men)" showDataEffect="{ss}" itemRenderer="CircleLollipopItemRenderer" maxPopSize="5"&gt;</div>
+	<div class="line">      &lt;stroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#ff4273" weight="1"/&gt;</div>
+	<div class="line">      &lt;/stroke&gt;</div>
+	<div class="line">      &lt;lineStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#ffffff" weight="0" alpha="0"/&gt;</div>
+	<div class="line">      &lt;/lineStroke&gt;</div>
+	<div class="line">      &lt;fills&gt;</div>
+	<div class="line">        &lt;SolidColor color="#ff4273"/&gt;</div>
+	<div class="line">      &lt;/fills&gt;</div>
+	<div class="line">    &lt;/LollipopSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/LollipopChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="pYmogP" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 오버레이 롤리팝 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/pYmogP/">알메이트 차트 - 오버레이 롤리팝 차트</a></p>-->
+			<img class="capture" src="images/demo/오버레이-롤리팝-차트.jpg" alt="오버레이 롤리팝 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/pYmogP/" target="_blank">알메이트 차트 - 오버레이 롤리팝 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

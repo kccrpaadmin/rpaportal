@@ -1,0 +1,13 @@
+샘플 루트에서
+
+/rMateChartH5/JS/
+/LicenseKey/
+/rMateChartH5/Assets/
+
+내용들을 아래 폴더에 
+
+/extjs/angular/src/app/rMateChartH5/JS/
+/extjs/angular/src/app/rMateChartH5/LicenseKey/
+/extjs/angular/src/assets/rMateChartH5/Assets/
+
+넣은 후 샘플을 실행하십시오.

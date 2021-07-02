@@ -1,0 +1,12 @@
+.sample-button{
+	width:160px;
+	padding:4px 4px 4px 6px;
+	cursor:pointer;
+	color:#bdbdbd;
+	transition:color 0.2s;
+}
+
+.sample-button:hover, .active .sample-button{
+	color:#fff;
+	text-decoration:underline;
+}

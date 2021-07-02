@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>rMate Chart for HTML5 - RealTime chart</title>
+<!-- rMateChartH5 에서 사용하는 스타일 -->
+<link rel="stylesheet" type="text/css" href="../rMateChartH5/Assets/Css/rMateChartH5.css"/>
+
+<!-- rMateChartH5 라이센스 -->
+<script language="javascript" type="text/javascript" src="../LicenseKey/rMateChartH5License.js"></script>
+
+<!-- 실제적인 rMateChartH5 라이브러리 -->
+<script type="text/javascript" src="../rMateChartH5/JS/rMateChartH5.js"></script>
+
+<!-- rMateChartH5 테마 js -->
+<script type="text/javascript" src="../rMateChartH5/Assets/Theme/theme.js"></script>
+
+<script type="text/javascript">
+
+// -----------------------차트 설정 시작-----------------------
+
+// rMateChart 를 생성합니다.
+// 파라메터 (순서대로)
+//  1. 차트의 id ( 임의로 지정하십시오. )
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+rMateChartH5.create("chart1", "chartHolder", "", "100%", "100%");
+
+var layoutStr =
+				'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+					+'<Options>'
+						+'<Caption text="확대 / 축소"/>'
+						+'<SubCaption text="마우스 왼쪽 클릭 후 드래그 하십시오." textAlign="right" fontSize="11"/>'
+					+'</Options>'
+					+'<NumberFormatter id="numfmt" useThousandsSeparator="true"/>'
+					+'<NumberFormatter id="numFmt" precision="0"/>'
+					+'<DateFormatter id="dateFmt" formatString="HH시 NN분 SS초"/>'
+					+'<RealTimeChart id="chart" dataDiplayType="time" fontSize="11" timePeriod="60" interval="3" showDataTips="true">'
+						+'<horizontalAxis>'
+							+'<DateTimeAxis id="hAxis" dataUnits="seconds" labelUnits="seconds" dataInterval="3" interval="2" formatter="{dateFmt}" displayLocalTime="true"/>'
+						+'</horizontalAxis>'
+						+'<verticalAxis>'
+							+'<LinearAxis formatter="{numFmt}"/>'
+						+'</verticalAxis>'
+						+'<series>'
+							+'<Line2DSeries labelPosition="up" yField="Volume" xField="Time" displayName="Profit"/>'
+						+'</series>'
+						+'<annotationElements>'
+							+'<CrossRangeZoomer backgroundColor="#eb494a" borderColor="#eb494a" zoomType="horizontal" horizontalLabelFormatter="{numFmt}" verticalLabelFormatter="{dateFmt}" enableZooming="true">'
+								+'<verticalStroke>'
+									+'<Stroke color="#eb494a" />'
+								+'</verticalStroke>'
+								+'<horizontalStroke>'
+									+'<Stroke color="#eb494a" />'
+								+'</horizontalStroke>'
+							+'</CrossRangeZoomer>'
+							/* CrossRangeZoomer 속성 설명
+					* zoomType : 줌 실행 기준을 정합니다. 유효값 : horizontal, vertical, both
+					* horizontalLabelFormatter : 십자가의 수평 라인에 붙는 라벨 formatter 입니다.
+					* verticalLabelFormatter : 십자가의 수직 라인에 붙는 라벨 formatter 입니다.
+					* enableZooming : zoom 기능 사용 여부를 나타냅니다.
+					* enableCrossHair : 십자가 표시 여부를 나타냅니다.
+					* useDualCrossXLabel : 십자가의 수평 라인에 두개의 라벨을 표시합니다.(듀얼축인 경우 유효)
+					* useDualCrossYLabel : 십자가의 수직 라인에 두개의 라벨을 표시합니다.(듀얼축인 경우 유효)
+					* verticalLabelPlacement : 수직 라인의 라벨 위치를 지정합니다.(유효값: top, bottom)
+					* horizontalLabelPlacement : 수평 라인의 라벨 위치를 지정합니다.(유효값 : left, right)
+					*/
+						+'</annotationElements>'
+					+'</RealTimeChart>'
+					+'<HttpServiceRepeater url="http://demo.riamore.net/demo/chart/data4.jsp" target="{chart}" interval="3" method="get"/>'
+				+'</rMateChart>';
+
+// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+//
+// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+// 
+// 아래 내용은 
+// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+rMateChartH5.calls("chart1", {
+	"setLayout" : layoutStr,
+	"setData" : chartData
+});
+
+// -----------------------차트 설정 끝 -----------------------
+
+</script>
+<!-- 샘플 작동을 위한 css와 js -->
+<script type="text/javascript" src="./Web/JS/common.js"></script>
+<script type="text/javascript" src="./Web/JS/sample_util.js"></script>
+<link rel="stylesheet" type="text/css" href="./Web/sample.css"/>
+
+<!-- SyntaxHighlighter -->
+<script type="text/javascript" src="./Web/syntax/shCore.js"></script>
+<script type="text/javascript" src="./Web/syntax/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="./Web/syntax/shCoreDefault.css"/>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<div class="themeButtons">
+			</div>
+		</div>
+	<div id="content">
+		<!-- 차트가 삽입될 DIV -->
+		<div id="chartHolder">
+			</div>
+		</div>
+	<div class="header">
+		<font size="3"><b>Real-Time 차트의 확대/축소</b></font>
+<pre>
+<font color="#01BAC5"><b>CrossRangeZoomer</b>
+zoomType : 줌 실행 기준을 정합니다. 유효값 : horizontal, vertical, both
+horizontalLabelFormatter : 십자가의 수평 라인에 붙는 라벨 formatter 입니다.
+verticalLabelFormatter : 십자가의 수직 라인에 붙는 라벨 formatter 입니다.
+enableZooming : zoom 기능 사용 여부를 나타냅니다.
+enableCrossHair : 십자가 표시 여부를 나타냅니다.
+useDualCrossXLabel : 십자가의 수평 라인에 두개의 라벨을 표시합니다.(듀얼축인 경우 유효)
+useDualCrossYLabel : 십자가의 수직 라인에 두개의 라벨을 표시합니다.(듀얼축인 경우 유효)
+verticalLabelPlacement : 수직 라인의 라벨 위치를 지정합니다.(유효값: top, bottom)
+horizontalLabelPlacement : 수평 라인의 라벨 위치를 지정합니다.(유효값 : left, right)</font>
+
+<b>●Layout</b>
+<span class="prop">annotationElements</span>
+	&#60;CrossRangeZoomer <font color="#ff0000">zoomType="horizontal"</font> horizontalLabelFormatter="{numFmt}"
+	verticalLabelFormatter="{dateFmt}" enableZooming="true"/&#62;
+/<span class="prop">annotationElements</span>
+</pre>
+		</div>
+	<div id="updater">
+			<div>Layout과 Data를 수정 후 적용 할 수 있습니다.</div>
+			<div id="updaterTab">
+				<ul id="updaterTabUl">
+					<li id="updaterTabUlSource" class="active_tab">Source</li>
+					<li id="updaterTabUlLayout" class="non_active_li">Layout</li>
+					<li id="updaterTabUlData" class="non_active_li">Data</li>
+					<li id="updaterTabUlBlank">
+						<span id="btn_update">수정적용</span>
+					</li>
+				</ul>
+			</div>
+			<div id="updaterTarea">
+				<pre id="updaterTareaSource" class="brush:js toolbar:false" name="updaterTareaSource"></pre>
+				<textarea id="updaterTareaLayout" class="updaterTextarea" spellcheck="false"></textarea>
+				<textarea id="updaterTareaData" class="updaterTextarea" spellcheck="false"></textarea>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

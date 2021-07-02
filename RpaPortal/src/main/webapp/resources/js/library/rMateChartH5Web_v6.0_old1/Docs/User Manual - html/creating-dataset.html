@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 데이터셋 생성</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('creating-dataset.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트만들기">차트 만들기</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트만들기">차트 만들기</a>
+						<li class="level2"><a href="#데이터셋생성">데이터셋 생성</a></li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="데이터셋생성"></a>데이터셋 생성</h2>
+			<p>알메이트 차트의 데이터셋의 형식은 XML, JSON(JavaScript Object Notification) 형식의 배열 그리고 CSV 형식이 지원됩니다.</p>
+			<p>다음은 <a href="your-first-chart.html">처음 차트 만들기</a>에서 예제에 적용된 데이터셋을 XML 형식으로 표현한 것입니다.
+				XML 형식의 데이터셋은 반드시 &lt;items&gt; 노드로 시작해야 하고, 차트에서 데이터 포인트로 표현되는 하나의 데이터는 &lt;item&gt; 노드의 자식 노드로 정의되어야 합니다.
+				아래 예제에서는 X 축 카테고리에 표시되는 데이터는 &lt;Month&gt; 노드에, 2011 년 데이터 값은 &lt;2011&gt; 노드에 정의되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;items&gt;</div>
+	<div class="line">  &lt;item&gt;</div>
+	<div class="line">    &lt;Month&gt;Jan&lt;/Month&gt;</div>
+	<div class="line">    &lt;2011&gt;2.4&lt;/2011&gt;</div>
+	<div class="line">  &lt;/item&gt;</div>
+	<div class="line">  &lt;item&gt;</div>
+	<div class="line">    &lt;Month&gt;Feb&lt;/Month&gt;</div>
+	<div class="line">    &lt;2011&gt;3.8&lt;/2011&gt;</div>
+	<div class="line">  &lt;/item&gt;</div>
+	<div class="line">  &lt;item&gt;</div>
+	<div class="line">    &lt;Month&gt;Mar&lt;/Month&gt;</div>
+	<div class="line">    &lt;2011&gt;8.1&lt;/2011&gt;</div>
+	<div class="line">  &lt;/item&gt;</div>
+	<div class="line">  &lt;item&gt;</div>
+	<div class="line">    &lt;Month&gt;Apr&lt;/Month&gt;</div>
+	<div class="line">    &lt;2011&gt;5.1&lt;/2011&gt;</div>
+	<div class="line">  &lt;/item&gt;</div>
+	<div class="line">  &lt;item&gt;</div>
+	<div class="line">    &lt;Month&gt;May&lt;/Month&gt;</div>
+	<div class="line">    &lt;2011&gt;2.1&lt;/2011&gt;</div>
+	<div class="line">  &lt;/item&gt;</div>
+	<div class="line">  &lt;item&gt;</div>
+	<div class="line">    &lt;Month&gt;Jun&lt;/Month&gt;</div>
+	<div class="line">    &lt;2011&gt;5.2&lt;/2011&gt;</div>
+	<div class="line">  &lt;/item&gt;</div>
+	<div class="line">  &lt;item&gt;</div>
+	<div class="line">    &lt;Month&gt;Jul&lt;/Month&gt;</div>
+	<div class="line">    &lt;2011&gt;4.2&lt;/2011&gt;</div>
+	<div class="line">  &lt;/item&gt;</div>
+	<div class="line">&lt;/items&gt;</div>
+</div>
+
+				<p>다음은 위에서 설명한 XML 데이터셋을 JSON 형식의 배열로 표시한 것입니다.
+					차트에서 데이터 포인트로 표현되는 하나의 데이터가 하나의 객체에 해당됩니다.
+					예제에서는 X 축 카테고리에 표시되는 데이터는 객체의 “Month” 필드에, 2011년 데이터 값은 객체의 “2011” 필드에 정의되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">[{"Month":"Jan", "2011":2.4},</div>
+	<div class="line">{"Month":"Feb", "2011":3.8},</div>
+	<div class="line">{"Month":"Mar", "2011":8.1},</div>
+	<div class="line">{"Month":"Apr", "2011":5.1},</div>
+	<div class="line">{"Month":"May", "2011":2.1},</div>
+	<div class="line">{"Month":"Jun", "2011":5.2},</div>
+	<div class="line">{"Month":"Jul", "2011":4.2}]</div>
+</div>
+
+			<p>다음은 위에서 설명한 데이터를 CSV 형식으로 표현한 것입니다.<p>
+<div class="fragment">
+	<div class="line">Jan,2.4</div>
+	<div class="line">Feb,3.8</div>
+	<div class="line">Mar,8.1</div>
+	<div class="line">Apr,5.1</div>
+	<div class="line">May,2.1</div>
+	<div class="line">Jun,5.2</div>
+	<div class="line">Jul,4.2</div>
+</div>
+
+			<p>CSV 형식의 데이터셋에는 XML 과 JSON 형식과는 다르게 필드명(“Month”, “2011”)이 지정되지 않습니다.
+				하지만 레이아웃에는 어떤 데이터가 X 축에 표현될 데이터이고, 어떤 데이터가 차트의 데이터 포인트에 표현될 데이터인지 지정을 해야하기 때문에 필드명 대신 필드 번호를 이용합니다.
+				필드 번호의 지정 규칙은 좌측 첫 번째 필드(Jan, Feb, …)가 <prop>“F0”</prop> 이고 우측 필드로 갈수록 1씩 증가됩니다.
+				(F0, F1, F2, …) 아래 레이아웃에서 <a href="../api/CategoryAxis.html" target="_blank">&lt;CategoryAxis&gt;</a> 와 <a href="../api/Column2DSeries.html" target="_blank">&lt;Column2DSeries&gt;</a> 노드를 참조하십시요.
+
+<div class="fragment">
+	<div class="line">&lt;rMateChart backgroundColor="#FFFFFF" borderStyle="none"&gt;</div>
+	<div class="line">  &lt;Options&gt;</div>
+	<div class="line">    &lt;Caption text="My First Chart" fontSize="20"/&gt;</div>
+	<div class="line">    &lt;Legend/&gt;</div>
+	<div class="line">  &lt;/Options&gt;</div>
+	<div class="line">  &lt;Column2DChart showDataTips="true"&gt;</div>
+	<div class="line">    &lt;horizontalAxis&gt;</div>
+	<div class="line">      &lt;CategoryAxis categoryField="<span class="vhdllogic">F0</span>"/&gt;</div>
+	<div class="line">    &lt;/horizontalAxis&gt;</div>
+	<div class="line">    &lt;verticalAxis&gt;</div>
+	<div class="line">      &lt;LinearAxis maximum="10"/&gt;</div>
+	<div class="line">    &lt;/verticalAxis&gt;</div>
+	<div class="line">    &lt;series&gt;</div>
+	<div class="line">      &lt;Column2DSeries labelPosition="outside" yField="<span class="vhdllogic">F1</span>" displayName="2011"/&gt;</div>
+	<div class="line">    &lt;/series&gt;</div>
+	<div class="line">  &lt;/Column2DChart&gt;</div>
+	<div class="line">&lt;/rMateChart&gt;</div>
+</div>
+
+
+		</div><!-- textbox -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

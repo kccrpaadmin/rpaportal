@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 방사형 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('radar-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#방사형차트">방사형 차트</a>
+							<li class="level3"><a href="#폴리곤형방사형차트">폴리곤형 방사형 차트</a></li>
+							<li class="level3"><a href="#원형방사형차트">원형 방사형 차트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="방사형차트"></a>방사형 차트</h2>
+			<p>방사형 차트는 <a href="pie-chart.html">파이 차트</a>와 같은 폴라(Polar) 차트 계열과 닯았지만 다르게 작동합니다.
+				방사형 차트는 다중 변수 값을 2 차원 차트 상에 표시하는데, 표시되는 데이터 포인트들은 서로 연결되어 도형과 같은 모양을 갖게 됩니다.
+				다음은 8 가지 변수 값을 가지는 방사형 차트의 예제입니다.</p>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="eKYyQM" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 방사형 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/eKYyQM/">알메이트 차트 - 방사형 차트</a></p>-->
+			<img class="capture" src="images/demo/방사형-차트.jpg" alt="방사형 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/eKYyQM/" target="_blank">알메이트 차트 - 방사형 차트</a></p>
+
+			<p>방사형 차트는 <a href="../api/RadarChart.html" target="_blank">&lt;RadarChart&gt;</a> 노드의 series 속성값에 <a href="../api/RadarSeries.html" target="_blank">&lt;RadarSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.
+				방사형 차트의 축은 두 가지가 있는데 하나는 데이터 값의 크기가 표시되는(데이터 포인트) 축으로써 &lt;radialAxis&gt; 속성에 정의하고,
+				다른 하나는 카테고리 명이 표시되는 축으로써 &lt;angularAxis&gt; 속성에 정의합니다.
+				&lt;radialAxis&gt; 속성에는 수치값을 표현하는 <a href="../api/LinearAxis.html" target="_blank">&lt;LinearAxis&gt;</a> 노드를 정의합니다.
+				위 방사형 차트 샘플에서는 다음과 같이 두 개의 <a href="../api/Axis2DRenderer.html" target="_blank">&lt;Axis2DRenderer&gt;</a> 노드를 정의하여 차트의 중앙에서 테두리까지 가로(horizontal = <prop>“true”</prop>)와 세로(horizontal = <prop>“false”</prop>),
+				두 개의 <a href="../api/LinearAxis.html" target="_blank">&lt;LinearAxis&gt;</a>를 표시하였습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;radialAxis&gt;</div>
+	<div class="line">  &lt;LinearAxis id="rAxis"/&gt;</div>
+	<div class="line">&lt;/radialAxis&gt;</div>
+	<div class="line">&lt;radialAxisRenderers&gt;</div>
+	<div class="line">  &lt;Axis2DRenderer axis="{rAxis}" horizontal="true" visible="true" tickPlacement="outside"/&gt;</div>
+	<div class="line">  &lt;Axis2DRenderer axis="{rAxis}" horizontal="false" visible="true" tickPlacement="outside"/&gt;</div>
+	<div class="line">&lt;/radialAxisRenderers&gt;</div>
+</div>
+			<p>&lt;angularAxis&gt; 속성에는 카테고리를 표현하는 <a href="../api/CategoryAxis.html" target="_blank">&lt;CategoryAxis&gt;</a> 노드를 정의합니다.
+				카테고리 명들은 방사형 차트의 바깥쪽 원호에 표시됩니다.
+				위 방사형 차트 샘플에서는 <a href="../api/AngularAxisRenderer.html" target="_blank">&lt;AngularAxisRenderer&gt;</a> 노드를 정의하여 <a href="../api/CategoryAxis.html" target="_blank">&lt;CategoryAxis&gt;</a>를 표시하였습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;angularAxis&gt;</div>
+	<div class="line">  &lt;CategoryAxis id="aAxis" categoryField="catName" displayName="Category"/&gt;</div>
+	<div class="line">&lt;/angularAxis&gt;</div>
+	<div class="line">&lt;angularAxisRenderers&gt;</div>
+	<div class="line">  &lt;AngularAxisRenderer axis="{aAxis}"/&gt;</div>
+	<div class="line">&lt;/angularAxisRenderers&gt;</div>
+</div>
+			<p>축에 관한 자세한 설명은 <a href="axes-and-scales.html">축과 스케일</a>을 참조하십시요.</p>
+
+			<p>방사형 차트에서 데이터는 적용되는 카테고리 수 만큼의 객체의 배열로 정의합니다.
+				위 방사형 차트 샘플에서는 다음과 같이 8 개의 카테고리에 해당하는 객체가 정의된 데이터가 적용되었습니다.
+				각 객체에는 2010 년 자료(year2010)와 2011 년 자료(year2011)가 정의되어 있습니다.</p>
+<div class="fragment">
+	<div class="line">var chartData = [</div>
+	<div class="line">  {"catName" : "Food", "year2010" : 80, "year2011" : 80},</div>
+	<div class="line">  {"catName" : "Health Care", "year2010" : 100, "year2011" : 130},</div>
+	<div class="line">  {"catName" : "Transportation", "year2010" : 80, "year2011" : 50},</div>
+	<div class="line">  {"catName" : "Clothing", "year2010" : 110, "year2011" : 50},</div>
+	<div class="line">  {"catName" : "Education", "year2010" : 160, "year2011" : 120},</div>
+	<div class="line">  {"catName" : "Shelter", "year2010" : 80, "year2011" : 70},</div>
+	<div class="line">  {"catName" : "Leisure", "year2010" : 140, "year2011" : 70},</div>
+	<div class="line">  {"catName" : "Others", "year2010" : 90, "year2011" : 170}</div>
+	<div class="line">];</div>
+</div>
+
+			<h3><a class="anchor" id="폴리곤형방사형차트"></a>폴리곤형 방사형 차트</h3>
+			<p>폴리곤형 방사형 차트는 <a href="../api/RadarChart.html" target="_blank">&lt;RadarChart&gt;</a> 노드의 type 속성을 <prop>“polygon”</prop> 으로 지정하여 생성합니다.
+				방사형 차트의 데이터 포인트에 표시되는 마커의 크기는 <a href="../api/RadarSeries.html" target="_blank">&lt;RadarSeries&gt;</a> 노드의 radius 속성에 마커의 반지름 크기로 설정할 수 있으며 마커의 테두리 선은 &lt;lineStroke&gt; 속성에, 마커에 채워지는  색은 &lt;fill&gt; 속성에 정의합니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;RadarChart type="<span class="vhdllogic">polygon</span>" paddingTop="25" paddingBottom="25" showDataTips="true"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;RadarSeries field="year2010" radius="4" displayName="2010" fillLineArea="false"&gt;</div>
+	<div class="line">      &lt;fill&gt;</div>
+	<div class="line">        &lt;SolidColor color="#40b1e6"/&gt;</div>
+	<div class="line">      &lt;/fill&gt;</div>
+	<div class="line">      &lt;lineStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#40b1e6" weight="2"/&gt;</div>
+	<div class="line">      &lt;/lineStroke&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/RadarSeries&gt;</div>
+	<div class="line">    &lt;RadarSeries field="year2011" radius="4" displayName="2011" fillLineArea="false"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/RadarSeries&gt;</div>
+	<div class="line">    &lt;RadarSeries field="year2012" radius="4" displayName="2012" fillLineArea="false"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/RadarSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+<div class="line">&lt;/RadarChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="gKOoEP" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 폴리곤형 방사형 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/gKOoEP/">알메이트 차트 - 폴리곤형 방사형 차트</a></p>-->
+			<img class="capture" src="images/demo/폴리곤형-방사형-차트.jpg" alt="폴리곤형 방사형 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/gKOoEP/" target="_blank">알메이트 차트 - 폴리곤형 방사형 차트</a></p>
+
+			<h3><a class="anchor" id="원형방사형차트"></a>원형 방사형 차트</h3>
+			<p>원형 방사형 차트는 <a href="../api/RadarChart.html" target="_blank">&lt;RadarChart&gt;</a> 노드의 type 속성을 circle 으로 지정하여 생성합니다.
+				방사형 차트의 각 데이터 시리즈가 표현하는 도형(데이터 포인트들을 연결하면 생기는 도형)의 내부에 색을 칠할 수 있습니다.
+				도형 내부의 색은 &lt;areaFill&gt; 속성을 이용하여 설정할 수 있습니다. 다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;RadarChart type="<span class="vhdllogic">circle</span>" paddingTop="25" paddingBottom="25" showDataTips="true"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;RadarSeries field="year2010" displayName="2010"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">      &lt;areaFill&gt;</div>
+	<div class="line">        &lt;SolidColor color="#4352a5" alpha="0.3"/&gt;</div>
+	<div class="line">      &lt;/areaFill&gt;</div>
+	<div class="line">    &lt;/RadarSeries&gt;</div>
+	<div class="line">    &lt;RadarSeries field="year2012" displayName="2012"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/RadarSeries&gt;</div>
+	<div class="line">    &lt;RadarSeries field="year2013" displayName="2013"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/RadarSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/RadarChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="qKBpwv" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 원형 방사형 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/qKBpwv/">알메이트 차트 - 원형 방사형 차트</a></p>-->
+			<img class="capture" src="images/demo/원형-방사형-차트.jpg" alt="원형 방사형 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/qKBpwv/" target="_blank">알메이트 차트 - 원형 방사형 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

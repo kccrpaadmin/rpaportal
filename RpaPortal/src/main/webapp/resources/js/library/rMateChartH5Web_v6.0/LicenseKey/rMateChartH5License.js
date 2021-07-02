@@ -2,10 +2,11 @@
 // rMate Chart H5 License Key 
 //
 // Product Name : rMate Chart for HTML5 v6.0
-// License Type : Enterprise Trial License
-// Product No : A2C3-74A8-5001-345D
-// Authenticated server Info : undefined
-// Expiration date : 2021/09/30
+// License Type : Enterprise License
+// Product No : F63E-FD34-97F7-E7E5
+// Customer : KCC건설(RPA 시스템 구축 )
+// Authenticated server Info : the number of server= 2, server's IP= 70.71.14.123(OP),70.71.14.119(DEV), Access Domain= rpa.kccworld.net, rpadev.kccworld.net
+// Expiration date : unlimited
 //
-var rMateChartH5License = "902d0f5b0b336f3d8ab99549f78f81086993b0866457784f3cf1ec0a1f9fafa7:3400610b3848443a4f4220504c2056443a3532342e33302d2031503056303a35432d35382d4145344e372d2d36332e4330322d41453a564c41204c302033452f4c393a30742f203143323a303232303a32453120302a363a324839";
+var rMateChartH5License = "782933115053969441a3a29e8658fa366dd9d7ffd5f7514a91bcd58e48f8be01:6400330b343a2a4520204c743a65466e362e3364456c2d72466f4477336334632d6b392e3776466537642d6145703772452c35742065506e422e3a64486c44724f6f20774c6356633a6b322e2e6130702072502c56393a314331352e2d3445314e2e2d3136372e2e30302037452c4c333a326631202e43343a31322e30313237312e30303737303a3148";
 // -----------------------------------------------------------------------------

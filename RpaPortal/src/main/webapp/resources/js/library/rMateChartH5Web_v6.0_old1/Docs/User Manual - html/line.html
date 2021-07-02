@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 선긋기</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('line.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트구성요소">차트 구성 요소</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트구성요소">차트 구성 요소</a>
+						<li class="level2"><a href="#선긋기">선긋기</a></li>
+						<li class="level2"><a href="#화살표선긋기">화살표 선 긋기</a></li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="선긋기"></a>선긋기</h2>
+			<p>차트의 배경에 직선을 표시할 수 있습니다.
+				이러한 작업은 &lt;backgroundElements&gt; 속성에 <a href="../api/AxisMarker.html" target="_blank">&lt;AxisMarker&gt;</a> 노드를 정의하고 <a href="../api/AxisMarker.html" target="_blank">&lt;AxisMarker&gt;</a> 노드의 &lt;lines&gt; 속성에
+				<a href="../api/AxisLine.html" target="_blank">&lt;AxisLine&gt;</a> 노드를 설정함으로써 가능합니다.
+				다음은 <a href="../api/AxisLine.html" target="_blank">&lt;AxisLine&gt;</a> 노드의 주요 속성들을 설명한 표입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">dashLinePattern</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 5</p>
+					</td>
+					<td align="left">
+						<p>lineStyle 속성값이 <prop>“dashLine”</prop> 일 경우, 점선의 길이를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">endValue</td>
+					<td align="center"><p>숫자</p>
+					</td>
+					<td align="left">
+						<p>선이 끝나는 지점의 값을 지정합니다.</p>
+						<p>value 속성값이 지정되어 있으면 이 값은 무시됩니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">horizontal</td>
+					<td align="center"><p>true(*), false</p>
+					</td>
+					<td align="left">
+						<p>표시되는 선이 수평선인지 여부를 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">label</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left">
+						<p>선에 표시될 레이블을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">lineStyle</td>
+					<td align="center"><p>dashLine, normal(*)</p>
+					</td>
+					<td align="left">
+						<p>선의 유형을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">startValue</td>
+					<td align="center"><p>숫자</p>
+					</td>
+					<td align="left">
+						<p>선이 시작되는 지점의 값을 지정합니다.</p>
+						<p>value 속성값이 지정되어 있으면 이 값은 무시됩니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">stroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>선의 색의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">value</td>
+					<td align="center"><p>숫자</p>
+					</td>
+					<td align="left">
+						<p>선이 표시되는 지점의 값을 지정합니다.</p>
+						<p>value 속성값이 지정되면 startValue, endValue 속성은 무시됩니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 차트에 하한선과 상한선을 점선으로 표시하는 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;backgroundElements&gt;</div>
+	<div class="line">  &lt;GridLines/&gt;</div>
+	<div class="line">  &lt;AxisMarker&gt;</div>
+	<div class="line">    &lt;lines&gt;</div>
+	<div class="line">      &lt;AxisLine value="2500" lineStyle="dashLine" label="High"&gt;</div>
+	<div class="line">        &lt;stroke&gt;</div>
+	<div class="line">          &lt;Stroke color="#FF7171" weight="2"/&gt;</div>
+	<div class="line">        &lt;/stroke&gt;</div>
+	<div class="line">      &lt;/AxisLine&gt;</div>
+	<div class="line">      &lt;AxisLine value="500" lineStyle="dashLine" label="Low" labelUpDown="down"&gt;</div>
+	<div class="line">        &lt;stroke&gt;</div>
+	<div class="line">          &lt;Stroke color="#6799FF" weight="2"/&gt;</div>
+	<div class="line">        &lt;/stroke&gt;</div>
+	<div class="line">      &lt;/AxisLine&gt;</div>
+	<div class="line">    &lt;/lines&gt;</div>
+	<div class="line">    &lt;ranges&gt;</div>
+	<div class="line">      &lt;AxisRange startValue="500" endValue="2500"&gt;</div>
+	<div class="line">        &lt;fill&gt;</div>
+	<div class="line">          &lt;SolidColor color="#eeeeee" alpha="0.4"/&gt;</div>
+	<div class="line">        &lt;/fill&gt;</div>
+	<div class="line">      &lt;/AxisRange&gt;</div>
+	<div class="line">    &lt;/ranges&gt;</div>
+	<div class="line">  &lt;/AxisMarker&gt;</div>
+	<div class="line">&lt;/backgroundElements&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="NzKBeP" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 차트에 선긋기" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/NzKBeP/">알메이트 차트 - 차트에 선긋기</a></p>-->
+			<img class="capture" src="images/demo/차트에-선긋기.jpg" alt="차트에 선긋기" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/NzKBeP/" target="_blank">알메이트 차트 - 차트에 선긋기</a></p>
+
+
+			<p>다음은 차트에 수직선, 수평선 그리고 대각선을 함께 표시한 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;backgroundElements&gt;</div>
+	<div class="line">  &lt;GridLines/&gt;</div>
+	<div class="line">  &lt;AxisMarker&gt;</div>
+	<div class="line">    &lt;lines&gt;</div>
+	<div class="line">      &lt;AxisLine value="1000" label="Label 01" stroke="{stroke1}" labelUpDown="up" color="#969596"/&gt;</div>
+	<div class="line">      &lt;AxisLine value="1500" label="Label 02" stroke="{stroke1}" labelAlign="left" labelUpDown="down" color="#969596"/&gt;</div>
+	<div class="line">      &lt;AxisLine value="2000" label="Label 03" stroke="{stroke1}" labelUpDown="up" labelAlign="left" labelRotation="90" color="#969596"/&gt;</div>
+	<div class="line">      &lt;AxisLine value="Jan" label="January" stroke="{stroke1}" color="#969596" labelUpDown="down" labelAlign="right" linePosition="left" horizontal="false"/&gt;</div>
+	<div class="line">      &lt;AxisLine value="Mar" label="March" stroke="{stroke1}" color="#969596" labelUpDown="down" labelRotation="90" labelAlign="left" linePosition="left" horizontal="false"/&gt;</div>
+	<div class="line">      &lt;AxisLine value="May" label="May" stroke="{stroke1}" color="#969596" labelUpDown="down" labelAlign="left" linePosition="left" horizontal="false"/&gt;</div>
+	<div class="line">      &lt;AxisLine value="Oct" label="October" stroke="{stroke1}" color="#969596" labelUpDown="up" labelRotation="90" linePosition="right" horizontal="false"/&gt;</div>
+	<div class="line">      &lt;AxisLine startValue="1000" endValue="2000" label="From-To Line" color="#0099FF" labelAlign="right" labelUpDown="up"&gt;</div>
+	<div class="line">        &lt;stroke&gt;</div>
+	<div class="line">          &lt;Stroke color="#0099FF" weight="1"/&gt;</div>
+	<div class="line">        &lt;/stroke&gt;</div>
+	<div class="line">      &lt;/AxisLine&gt;</div>
+	<div class="line">    &lt;/lines&gt;</div>
+	<div class="line">  &lt;/AxisMarker&gt;</div>
+	<div class="line">&lt;/backgroundElements&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="QxLBoy" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 차트에 수직선, 수평선, 대각선 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/QxLBoy/">알메이트 차트 - 차트에 수직선, 수평선, 대각선 표시</a></p>-->
+			<img class="capture" src="images/demo/차트에-수직선-수평선-대각선-표시.jpg" alt="차트에 수직선, 수평선, 대각선 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/QxLBoy/" target="_blank">알메이트 차트 - 차트에 수직선, 수평선, 대각선 표시</a></p>
+
+			<h2><a class="anchor" id="화살표선긋기"></a>화살표 선 긋기</h2>
+			<p><a href="../api/AxisLine.html" target="_blank">&lt;AxisLine&gt;</a> 노드의 enableArrowHead 값을 <prop>“true”</prop> 로 설정하면 화살표 선을 표시할 수 있습니다.
+				다음 표는 <a href="../api/AxisLine.html" target="_blank">&lt;AxisLine&gt;</a> 노드에서 화살표를 표시하는데 필요한 속성들에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">arrowHeadLocation</td>
+					<td align="center"><p>start, end(*)</p>
+					</td>
+					<td align="left">
+						<p>선의 시작과 끝 중에서 화살표를 표시할 위치를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">arrowHeadType</td>
+					<td align="center"><p>open(*), close</p>
+					</td>
+					<td align="left">
+						<p>화살표 머리의 유형을 설정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">arrowLength</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 10</p>
+					</td>
+					<td align="left">
+						<p>화살표 머리의 길이를 지정합니다</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">enableArrowHead</td>
+					<td align="center"><p>true, false(*)</p>
+					</td>
+					<td align="left">
+						<p>선에 화살표를 표시할지 여부를 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 차트에 화살표 선을 표시한 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;backgroundElements&gt;</div>
+	<div class="line">  &lt;GridLines/&gt;</div>
+	<div class="line">  &lt;AxisMarker&gt;</div>
+	<div class="line">    &lt;lines&gt;</div>
+	<div class="line">      &lt;AxisLine horizontal="false" startValue="Sep" endValue="Nov" verticalStartValue="2000" verticalEndValue="2300" label="연중 최고 매출, 기록 경신" stroke="{stroke1}" labelUpDown="up" labelAlign="right" labelYOffset="10" color="#969596" enableArrowHead="true" arrowHeadType="close"/&gt;</div>
+	<div class="line">      &lt;AxisLine horizontal="false" startValue="Aug" endValue="Oct" verticalStartValue="600" verticalEndValue="1000" label="연중 최저 매출" stroke="{stroke1}" labelUpDown="up" labelAlign="right" labelYOffset="10" color="#969596" enableArrowHead="true" arrowHeadType="close"/&gt;</div>
+	<div class="line">    &lt;/lines&gt;</div>
+	<div class="line">  &lt;/AxisMarker&gt;</div>
+	<div class="line">&lt;/backgroundElements&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="zbXXgB" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 차트에 화살표 선 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/zbXXgB/">알메이트 차트 - 차트에 화살표 선 표시</a></p>-->
+			<img class="capture" src="images/demo/차트에-화살표-선-표시.jpg" alt="차트에 화살표 선 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/zbXXgB/" target="_blank">알메이트 차트 - 차트에 화살표 선 표시</a></p>
+
+		</div>
+	</div><!-- contents -->
+</div>
+</body>
+</html>

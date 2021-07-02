@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 플롯 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('plot-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#플롯차트">플롯 차트</a>
+							<li class="level3"><a href="#플롯차트중앙에십자선표현">플롯 차트 중앙에 십자선 표현</a></li>
+							<li class="level3"><a href="#사분면차트">사분면 차트(쿼드런트 차트)</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="플롯차트"></a>플롯 차트</h2>
+			<p>플롯 차트는 스캐터 차트라고도 하며 데이터 포인트가 카테시안 축 상에서 X, Y 좌표(2 개의 변수 값)에 일반적으로 작은 도형으로 표현됩니다.
+				도형에 색을 칠할 경우 3 개의 변수 값을 데이터 포인트에 적용할 수 있습니다.
+				플롯 차트에 표시가 가능한 도형은 <a href="line-chart.html">라인 차트</a>의 데이터 포인트에 표시 가능한 도형과 동일합니다.
+				<a href="line-chart.html#데이터포인트에도형표시">데이터 포인트에 도형 표시</a>를 참조하십시요.
+				플롯 차트는 <a href="../api/Plot2DChart.html" target="_blank">&lt;Plot2DChart&gt;</a> 노드의 series 속성값에 <a href="../api/Plot2DSeries.html" target="_blank">&lt;Plot2DSeries&gt;</a> 노드를 설정하여 생성할 수 있습니다.</p>
+
+			<p>다음은 플롯 차트를 생성하는 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Plot2DChart showDataTips="true" &gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Plot2DSeries yField="Profit" radius="6.5" displayName="Profit"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Plot2DSeries&gt;</div>
+	<div class="line">    &lt;Plot2DSeries yField="Cost" radius="6.5" displayName="Cost"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Plot2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Plot2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="QxWMdE" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 플롯 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/QxWMdE/">알메이트 차트 - 플롯 차트</a></p>-->
+			<img class="capture" src="images/demo/플롯-차트.jpg" alt="플롯 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/QxWMdE/" target="_blank">알메이트 차트 - 플롯 차트</a></p>
+
+			<h3><a class="anchor" id="플롯차트중앙에십자선표현"></a>플롯 차트 중앙에 십자선 표현</h3>
+			<p>플롯 차트의 원하는 위치에 십자선을 표시할 수 있습니다. 다음은 차트의 중앙에 가로선과 세로선을 출력한 차트의 예제입니다.
+				이 예제에서는 가로선과 세로선을 표시하기 위해서 <a href="../api/GridLines.html" target="_blank">&lt;GridLines&gt;</a> 노드의 &lt;horizontalCenterStroke&gt; 속성과 &lt;verticalCenterStroke&gt; 속성을 이용하였습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Plot2DChart showDataTips="true"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Plot2DSeries xField="Cost" yField="Profit" radius="7" displayName="Cost/Profit"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Plot2DSeries&gt;</div>
+	<div class="line">    &lt;Plot2DSeries xField="Revenue" yField="Profit" radius="6.5" displayName="Revenue/Profit"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Plot2DSeries&gt;</div>
+	<div class="line">    &lt;Plot2DSeries xField="Cost" yField="Revenue" radius="6" displayName="Cost/Revenue"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Plot2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">  &lt;backgroundElements&gt;</div>
+	<div class="line">    &lt;GridLines horizontalShowCenterLine="true" verticalShowCenterLine="true"&gt;</div>
+	<div class="line">      &lt;horizontalCenterStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#c5c5c5"/&gt;</div>
+	<div class="line">      &lt;/horizontalCenterStroke&gt;</div>
+	<div class="line">      &lt;verticalCenterStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#c5c5c5"/&gt;</div>
+	<div class="line">      &lt;/verticalCenterStroke&gt;</div>
+	<div class="line">    &lt;/GridLines&gt;</div>
+	<div class="line">  &lt;/backgroundElements&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">&lt;/Plot2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="dKyzvw" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 플롯 차트 중앙에 십자선 표현" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/dKyzvw/">알메이트 차트 - 플롯 차트 중앙에 십자선 표현</a></p>-->
+			<img class="capture" src="images/demo/플롯-차트-중앙에-십자선-표현.jpg" alt="플롯 차트 중앙에 십자선 표현" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/dKyzvw/" target="_blank">알메이트 차트 - 플롯 차트에 십자선 표현</a></p>
+
+			<h3><a class="anchor" id="사분면차트"></a>사분면 차트 (쿼드런트 차트)</h3>
+			<p>플롯 차트에서 축의 minimum 속성값을 음수로 지정하고 <a href="../api/GridLines.html" target="_blank">&lt;GridLines&gt;</a> 노드의 horizontalShowOrigin 속성값과 verticalShowOrigin 속성값을 <prop>“true”</prop> 로 설정하면 사분면 차트를 생성할 수 있습니다.
+				다음은 가트너 매직 쿼드런트를 표현한 예제입니다. 레이블(회사명)을 표시하기 위해서 labelPosition 속성과 upLabelField 속성이 설정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Plot2DChart showDataTips="true" dataTipJsFunction="dataTipFunc"&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;LinearAxis id="vAxis" minimum="-30" maximum="30" title="ABILITY TO EXECUTE ➡"/&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;LinearAxis id="hAxis" minimum="-30" maximum="30" title="COMPLETENESS OF VISION ➡"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Plot2DSeries labelPosition="up" upLabelField="company" upLabelYOffset="3" xField="x" yField="y" radius="6.5" itemRenderer="CircleItemRenderer"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Plot2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">  &lt;backgroundElements&gt;</div>
+	<div class="line">    &lt;GridLines direction="none" verticalShowOrigin="true" horizontalShowOrigin="true" /&gt;</div>
+	<div class="line">  &lt;/backgroundElements&gt;</div>
+	<div class="line">  &lt;verticalAxisRenderers&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{vAxis}" verticalAxisTitleAlignment="vertical" showLabels="false" /&gt;</div>
+	<div class="line">  &lt;/verticalAxisRenderers&gt;</div>
+	<div class="line">  &lt;horizontalAxisRenderers&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{hAxis}" showLabels="false" /&gt;</div>
+	<div class="line">  &lt;/horizontalAxisRenderers&gt;</div>
+	<div class="line">&lt;/Plot2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="vMObaB" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 사분면 차트 (쿼드런트 차트)" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/vMObaB/">알메이트 차트 - 사분면 차트 (쿼드런트 차트)</a></p>-->
+			<img class="capture" src="images/demo/쿼드런트-차트.jpg" alt="사분면 차트 (쿼드런트 차트)" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/vMObaB/" target="_blank">알메이트 차트 - 사분면 차트 (쿼드런트 차트)</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 브로큰 축 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('broken-axis-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#브로큰축차트">브로큰 축 차트</a>
+							<li class="level3"><a href="#브로큰축컬럼차트">브로큰 축 컬럼 차트</a></li>
+							<li class="level3"><a href="#브로큰축3d컬럼차트">브로큰 축 3D 컬럼 차트</a></li>
+							<li class="level3"><a href="#브로큰축바차트">브로큰 축 바 차트</a></li>
+							<li class="level3"><a href="#브로큰축3d바차트">브로큰 축 3D 바 차트</a></li>
+							<li class="level3"><a href="#브로큰축라인차트">브로큰 축 라인 차트</a></li>
+							<li class="level3"><a href="#물결무늬설정">물결무늬 설정</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="브로큰축차트"></a>브로큰 축 차트</h2>
+			<p>브로큰 축 차트는 데이터 시리즈를 구성하는 일부 데이터 값이 대부분의 데이터 값들과 편차가 심할 경우 활용됩니다.
+				데이터 값의 편차가 심한 경우에 일반적인 차트(<a href="column-chart.html">컬럼 차트</a>, <a href="line-chart.html">라인 차트</a> 등)를 적용하면 편차가 심한 특정 데이터 때문에 나머지 대부분의 데이터들을 비교하기 어렵게 됩니다.</p>
+			<p>다음 예를 보십시요. 6월(Jun)을 제외한 나머지 데이터는 3,000 부근의 값이지만 6월(Jun)의 데이터 값은 110,000 을 넘습니다. 결과적으로 생성된 <a href="column-chart.html">컬럼 차트</a>에서는 6월을 제외한 나머지 달들의 데이터 값을 한눈에 비교할 수 없습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DChart showDataTips="true" columnWidthRatio="0.5"&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis categoryField="Month"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;LinearAxis id="vAxis" formatter="{numfmt}" /&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column2DSeries yField="Profit" labelPosition="outside" displayName="Profit" showValueLabels="[8]"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Column2DChart&gt;</div>
+	<div class="line"></div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="pKoZgm" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 컬럼 차트 - 데이터 값의 편차가 심한 경우" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/pKoZgm/">알메이트 차트 - 컬럼 차트 - 데이터 값의 편차가 심한 경우</a></p>-->
+			<img class="capture" src="images/demo/컬럼-차트-데이터-값의-편차가-심한-경우.jpg" alt="컬럼 차트 - 데이터 값의 편차가 심한 경우" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/pKoZgm/" target="_blank">알메이트 차트 - 컬럼 차트 - 데이터 값의 편차가 심한 경우</a></p>
+
+			<h3><a class="anchor" id="브로큰축컬럼차트"></a>브로큰 축 컬럼 차트</h3>
+			<p>브로큰 축 컬럼 차트를 생성하기 위해서는 <a href="컬럼차트.html">컬럼 차트</a> 생성을 위한 레이아웃의 &lt;verticalAxis&gt; 속성에 <a href="../api/BrokenAxis.html" target="_blank">&lt;BrokenAxis&gt;</a> 노드를 정의합니다. 위 예에서 사용된 데이터 시리즈를 그대로 적용한 브로큰 축 컬럼 차트는 아래와 같습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column2DChart showDataTips="true" columnWidthRatio="0.5"&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis categoryField="Month"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;<span class="vhdllogic">BrokenAxis</span> id="vAxis" brokenMinimum="3000" brokenMaximum="100000" maximum="116000" brokenRatio="0.8" formatter="{numfmt}" /&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;verticalAxisRenderers&gt;</div>
+	<div class="line">    &lt;<span class="vhdllogic">BrokenAxis2DRenderer</span> axis="{vAxis}"/&gt;</div>
+	<div class="line">  &lt;/verticalAxisRenderers&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column2DSeries yField="Profit" labelPosition="outside" displayName="Profit" showValueLabels="[8]"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Column2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="MXWBjg" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 브로큰 축 컬럼 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/MXWBjg/">알메이트 차트 - 브로큰 축 컬럼 차트</a></p>-->
+			<img class="capture" src="images/demo/브로큰-축-컬럼-차트.jpg" alt="브로큰-축-컬럼-차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/MXWBjg/" target="_blank">알메이트 차트 - 브로큰 축 컬럼 차트</a></p>
+
+			<dl class="section attention">
+				<dt>주의</dt>
+				<dd><div class="fragment">브로큰 축 차트는 <a href="column-chart.html">컬럼 차트</a>, <a href="bar-chart.html">바 차트</a>, <a href="line-chart.html">라인 차트</a>, <a href="area-chart.html">영역 차트</a>에서만 사용할 수 있습니다.</div></dd>
+			</dl>
+
+			<dl class="section attention">
+				<dt>주의</dt>
+				<dd><div class="fragment"> 브로큰 축  차트에서는 <a href="../api/HistoryChart.html" target="_blank">&lt;HistoryChart&gt;</a> 노드(<a href="history-chart.html">히스토리 차트</a>)가 지원되지 않습니다.</div></dd>
+			</dl>
+
+			<p><a href="../api/BrokenAxis.html" target="_blank">&lt;BrokenAxis&gt;</a> 사용되는 주요 속성에 대한 설명은 다음과 같습니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">brokenMaximum</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: NaN</p>
+					</td>
+					<td align="left">
+						<p>브로큰 축의 최대값(두 번째 물결무늬가 표시되는 축 상의 지점)을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenMaximumInterval</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: NaN</p>
+					</td>
+					<td align="left">
+						<p>브로큰 축의 최대값(brokenMaximum)보다 큰 값들이 축에 표시되는 간격을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenMinimum</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: NaN</p>
+					</td>
+					<td align="left">
+						<p>브로큰 축의 최소값(첫 번째 물결무늬가 표시되는 축 상의 지점)을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenMinimumInterval</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: NaN</p>
+					</td>
+					<td align="left">
+						<p>브로큰 축의 최소값(brokenMinimum)보다 작은 값들이 축에 표시되는 간격을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenOffset</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 14</p>
+					</td>
+					<td align="left">
+						<p>두 물결무늬 사이의 간격을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenRatio</td>
+					<td align="center"><p>0 과 1 사이의 숫자</p>
+						<p>기본값: 0.5</p>
+					</td>
+					<td align="left">
+						<p>축의 시작 지점에서 브로큰 축의 최소값까지의 크기와 브로큰 축의 최대값에서 축의 끝 지점까지의 크기의 비율을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<h3><a class="anchor" id="브로큰축3d컬럼차트"></a>브로큰 축 3D 컬럼 차트</h3>
+			<p><a href="column-chart.html#3d컬럼차트">3D 컬럼 차트</a>에 브로큰 축 차트를 적용할 수 있습니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Column3DChart showDataTips="true" columnWidthRatio="0.5"&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis categoryField="Month"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;BrokenAxis id="vAxis" brokenMinimum="3000" brokenMaximum="100000" brokenRatio="0.8" formatter="{numfmt}"/&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;verticalAxisRenderers&gt;</div>
+	<div class="line">    &lt;BrokenAxis3DRenderer axis="{vAxis}"/&gt;</div>
+	<div class="line">  &lt;/verticalAxisRenderers&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column3DSeries yField="Cost" displayName="Cost" /&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Column3DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="XYWBNm" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 브로큰 축 3D 컬럼 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/XYWBNm/">알메이트 차트 - 브로큰 축 3D 컬럼 차트</a></p>-->
+			<img class="capture" src="images/demo/브로큰-축-3D-컬럼-차트.jpg" alt="브로큰 축 3D 컬럼 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/XYWBNm/" target="_blank">알메이트 차트 - 브로큰 축 3D 컬럼 차트</a></p>
+
+			<h3><a class="anchor" id="브로큰축바차트"></a>브로큰 축 바 차트</h3>
+			<p>브로큰 축 <a href="bar-chart.html">바 차트</a>를 생성하기 위해서는 <a href="../api/BrokenAxis.html" target="_blank">&lt;BrokenAxis&gt;</a> 노드를 &lt;horizontalAxis&gt; 속성에 정의합니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.  </p>
+
+<div class="fragment">
+	<div class="line">&lt;Bar2DChart showDataTips="true" barWidthRatio="0.45"&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis categoryField="Month"/&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;BrokenAxis id="hAxis" brokenMinimum="3000" brokenMaximum="100000" brokenRatio="0.8" formatter="{numfmt}"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;horizontalAxisRenderers&gt;</div>
+	<div class="line">    &lt;BrokenAxis2DRenderer axis="{hAxis}"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxisRenderers&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bar2DSeries xField="Revenue" labelPosition="outside" displayName="Revenue" showValueLabels="[4]" outsideLabelYOffset="-2"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bar2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Bar2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="RJwBKx" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 브로큰 축 바 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/RJwBKx/">알메이트 차트 - 브로큰 축 바 차트</a></p>-->
+			<img class="capture" src="images/demo/브로큰-축-바-차트.jpg" alt="브로큰 축 바 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/RJwBKx/" target="_blank">알메이트 차트 - 브로큰 축 바 차트</a></p>
+
+			<h3><a class="anchor" id="브로큰축3d바차트"></a>브로큰 축 3D 바 차트</h3>
+			<p><a href="bar-chart.html#3d바차트">3D 바 차트</a>에 브로큰 축 차트를 적용할 수 있습니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Bar3DChart showDataTips="true"&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis categoryField="Month"/&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;BrokenAxis id="hAxis" brokenMinimum="3000" brokenMaximum="100000" brokenRatio="0.8" formatter="{numfmt}"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;horizontalAxisRenderers&gt;</div>
+	<div class="line">    &lt;BrokenAxis3DRenderer axis="{hAxis}"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxisRenderers&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Bar3DSeries xField="Profit" displayName="Profit"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Bar3DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">&lt;/Bar3DChart&gt;</div>
+	<div class="line"></div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="LrYBWy" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 브로큰 축 3D 바 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/LrYBWy/">알메이트 차트 - 브로큰 축 3D 바 차트</a></p>-->
+			<img class="capture" src="images/demo/브로큰-축-3D-바-차트.jpg" alt="브로큰 축 3D 바 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/LrYBWy/" target="_blank">알메이트 차트 - 브로큰 축 3D 바 차트</a></p>
+
+			<h3><a class="anchor" id="브로큰축라인차트"></a>브로큰 축 라인 차트</h3>
+			<p><a href="line-chart.html">라인 차트</a>에 브로큰 축 차트를 적용할 수 있습니다.
+				다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Line2DChart showDataTips="true"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;BrokenAxis id="vAxis" brokenMinimum="3000" brokenMaximum="100000" brokenRatio="0.8" formatter="{numfmt}"/&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;Line2DSeries yField="Revenue" displayName="Revenue" form="curve"&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;annotationElements&gt;</div>
+	<div class="line">    &lt;<span class="vhdllogic">BrokenAxisLine</span> flatRatio="1" brokenAxisAreaColor="#ffffff"&gt;</div>
+	<div class="line">      &lt;brokenAxisLineStroke&gt;</div>
+	<div class="line">        &lt;Stroke color="#f7921e" weight="2"/&gt;</div>
+	<div class="line">      &lt;/brokenAxisLineStroke&gt;</div>
+	<div class="line">    &lt;/<span class="vhdllogic">BrokenAxisLine</span>&gt;</div>
+	<div class="line">  &lt;/annotationElements&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">&lt;/Line2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="vrYamp" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 브로큰 축 라인 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/vrYamp/">알메이트 차트 - 브로큰 축 라인 차트</a></p>-->
+			<img class="capture" src="images/demo/브로큰-축-라인-차트.jpg" alt="브로큰 축 라인 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/vrYamp/" target="_blank">알메이트 차트 - 브로큰 축 라인 차트</a></p>
+
+			<h3><a class="anchor" id="물결무늬설정"></a>물결무늬 설정</h3>
+			<p>차트에 표시되는 물결무늬에서 물결 곡선의 정도와 선, 물결 사이의 공간에 칠해지는 색을 조절할 수 있습니다.
+				위에서 설명된 브로큰 축 라인 차트에서는 flatRatio 속성을 <prop>“1”</prop> 로 지정하여 물결무늬 부분이 직선으로 표현되었습니다.
+				이 작업은 &lt;annotationElements&gt; 속성에 <a href="../api/BrokenAxisLine.html" target="_blank">&lt;BrokenAxisLine&gt;</a> 노드를 정의함으로써 가능합니다.</p>
+
+			<p><a href="../api/BrokenAxisLine.html" target="_blank">&lt;BrokenAxisLine&gt;</a> 노드에서 사용되는 주요 속성에 대한 설명은 다음과 같습니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">brokenAxisAreaColor</td>
+					<td align="center"><p>#16진수 컬러 코드 표기</p>
+						<p>기본값: #ffffff></p>
+					</td>
+					<td align="left">
+						<p>두 물결무늬 사이의 공간에 칠할 색을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenAxisLineStroke</td>
+					<td align="center"><p><a href="../api/Stroke.html" target="_blank">&lt;Stroke&gt;</a></p>
+					</td>
+					<td align="left">
+						<p>물결무늬 선의 스타일을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">direction</td>
+					<td align="center"><p>horizontal(*), vertical</p>
+					</td>
+					<td align="left">
+						<p>물결무늬 선이 그려질 방향을 지정합니다.</p>
+						<p>기본값은 <prop>“horizontal”</prop> 이고, <a href="bar-chart.html">바 차트</a>에서의 기본값은 <prop>“vertical”</prop> 입니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">flatRatio</td>
+					<td align="center"><p>0 과 1 사이의 숫자</p>
+						<p>기본값: 0.2</p>
+					</td>
+					<td align="left">
+						<p>물결무늬 곡선의 정도를 비율로 지정합니다.</p>
+						<p>값이 0 에 가까울 수록 곡선의 정도가 강해집니다.</p>
+					</td>
+				</tr>
+			</table>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

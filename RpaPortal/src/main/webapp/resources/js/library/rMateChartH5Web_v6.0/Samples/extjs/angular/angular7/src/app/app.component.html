@@ -1,0 +1,5 @@
+<div id="sampleButtons">
+	<SampleButton [sample]="{path : 'default', name : 'ColumnChart'}"></SampleButton>
+	<SampleButton *ngFor="let sample of samples" [sample]="sample"></SampleButton>
+</div>
+<router-outlet></router-outlet>

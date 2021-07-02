@@ -1,0 +1,637 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 축과 스케일</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('axes-and-scales.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트구성요소">차트 구성 요소</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트구성요소">차트 구성 요소</a>
+						<li class="level2"><a href="#축과스케일">축과 스케일</a>
+							<li class="level3"><a href="#숫자축">숫자 축</a></li>
+							<li class="level3"><a href="#카테고리축">카테고리 축</a></li>
+							<li class="level3"><a href="#컬러축">컬러 축</a></li>
+							<li class="level3"><a href="#축의위치속성">축의 위치 속성</a></li>
+							<li class="level3"><a href="#축렌더러">축 렌더러</a></li>
+							<li class="level3"><a href="#다중축표시">다중 축 표시</a></li>
+							<li class="level3"><a href="#역Y축">역 Y 축</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+	 		<h2><a class="anchor" id="축과스케일"></a>축과 스케일</h2>
+			<p>알메이트 차트에서 제공되는 축의 종류는 다음과 같습니다.</p>
+			<ul>
+				<li>숫자 축(Numeric Axis) : 숫자를 표현하는 축입니다. <a href="../api/LinearAxis.html" target="_blank">&lt;LinearAxis&gt;</a>, <a href="../api/LogAxis.html" target="_blank">&lt;LogAxis&gt;</a>, <a href="../api/DateTimeAxis.html" target="_blank">&lt;DateTimeAxis&gt;</a>,
+					<a href="../api/BrokenAxis.html" target="_blank">&lt;BrokenAxis&gt;</a> 유형이 지원됩니다.</li>
+				<li>카테고리 축(Category Axis) : 수치화되지 않은 카테고리를 표현하는 축입니다. <a href="../api/CategoryAxis.html" target="_blank">&lt;CategoryAxis&gt;</a>, <a href="../api/CategoryLinearAxis.html" target="_blank">&lt;CategoryLinearAxis&gt;</a>, <a href="../api/HistogramCategoryAxis.html" target="_blank">&lt;HistogramCategoryAxis&gt;</a> 유형이 지원됩니다.</li>
+				<li>컬러 축(Color Axis) : <a href="treemap-chart.html">트리맵 차트</a>에서 색과 데이터 값을 연관시켜 표현하는 축의 유형입니다. <a href="../api/ColorAxis.html" target="_blank">&lt;ColorAxis&gt;</a> 유형이 지원됩니다.</li>
+			</ul>
+
+			<h3><a class="anchor" id="숫자축"></a>숫자 축</h3>
+			<p>1. <a href="../api/LinearAxis.html" target="_blank">&lt;LinearAxis&gt;</a> - 숫자 축에서 가장 활용도가 높은 축의 유형입니다.
+				숫자 레이블의 간격, 최대값, 최소값은 적용되는 데이터의 값에 따라서 자동으로 설정되고, 제공되는 속성을 이용하여 사용자가 원하는 숫자 레이블의 간격, 최대값, 최소값 등을 설정할 수 있습니다.
+				다음 표는 <a href="../api/LinearAxis.html" target="_blank">&lt;LinearAxis&gt;</a> 노드의 주요 속성에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">interval</td>
+					<td align="center">숫자</td>
+					<td align="left"><p>축에 표시되는 레이블의 간격을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">labelJsFunction</td>
+					<td align="center">자바스크립트 함수명</td>
+					<td align="left"><p>사용자 정의 함수를 이용하여 축의 레이블을 표시할 경우, 해당 자바스크립트 함수명을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">maximum</td>
+					<td align="center">숫자</td>
+					<td align="left"><p>축의 최대값을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">minimum</td>
+					<td align="center">숫자</td>
+					<td align="left"><p>축의 최소값을 지정합니다.</p></td>
+				</tr>
+				<tr>
+					<td align="center">title</td>
+					<td align="center">텍스트</td>
+					<td align="left"><p>축의 제목을 지정합니다.</p></td>
+				</tr>
+
+			</table>
+
+			<p>다음은 세로 축(&lt;verticalAxis&gt; 노드)에  <a href="../api/LinearAxis.html" target="_blank">&lt;LinearAxis&gt;</a> 노드를 설정하여 <a href="column-chart.html">컬럼 차트</a>를 생성하는 예제입니다.
+				이 예제에서는 가로 축(&lt;horizontalAxis&gt; 노드)에 <a href="../api/HistogramCategoryAxis.html" target="_blank">&lt;CategoryAxis&gt;</a> 노드가 설정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;verticalAxis&gt;</div>
+	<div class="line">  &lt;LinearAxis minimum="0" maximum="100" interval="10" title="Linear Axis"/&gt;</div>
+	<div class="line">&lt;/verticalAxis&gt;</div>
+	<div class="line">&lt;horizontalAxis&gt;</div>
+	<div class="line">  &lt;CategoryAxis categoryField="Month" title="Category Axis"/&gt;</div>
+	<div class="line">&lt;/horizontalAxis&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="qKWPpZ" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - Y 축에 LinearAxis, X 축에 CategoryAxis 설정" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/qKWPpZ/">알메이트 차트 - Y 축에 LinearAxis, X 축에 CategoryAxis 설정</a></p>-->
+			<img class="capture" src="images/demo/Y-축에-LinearAxis-X-축에-CategoryAxis-설정.jpg" alt="Y 축에 LinearAxis, X 축에 CategoryAxis 설정" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/qKWPpZ/" target="_blank">알메이트 차트 - Y 축에 LinearAxis, X 축에 CategoryAxis 설정</a></p>
+
+			<p>2. <a href="../api/LogAxis.html" target="_blank">&lt;LogAxis&gt;</a> - 로그 축은 축 레이블의 간격이 설정된 값의 10 의 지수로 계산된 숫자 축으로써 큰 숫자의 데이터를 차트에 표현할 때 유용하게 활용됩니다.
+				다음 표는 <a href="../api/LogAxis.html" target="_blank">&lt;LogAxis&gt;</a> 노드의 주요 속성에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">interval</td>
+					<td align="center">숫자</td>
+					<td align="left"><p>축에 표시되는 레이블의 간격을 지정합니다.</p>
+						<p>지정된 값의 로그값(상용 로그)을 10 의 지수로 계산한 값이 레이블 간격이 됩니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">labelJsFunction</td>
+					<td align="center">자바스크립트 함수명</td>
+					<td align="left"><p>사용자 정의 함수를 이용하여 축의 레이블을 표시할 경우, 해당 자바스크립트 함수명을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">maximum</td>
+					<td align="center">숫자</td>
+					<td align="left"><p>축의 최대값을 지정합니다.</p>
+						<p>지정된 값의 로그값(상용 로그)을 10 의 지수로 계산한 값이 레이블 간격이 됩니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">minimum</td>
+					<td align="center">숫자</td>
+					<td align="left"><p>축의 최소값을 지정합니다.</p>
+						<p>지정된 값의 로그값(상용 로그)을 10 의 지수로 계산한 값이 레이블 간격이 됩니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">title</td>
+					<td align="center">텍스트</td>
+					<td align="left"><p>축의 제목을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<dl class="section attention">
+				<dt>주의</dt>
+				<dd><div class="fragment">로그 축에 설정된 간격, 최대값, 최소값이 축에 표현될 때는 해당값의 로그값(상용 로그)을 10의 지수로 계산한 값이 실제 표시되는 값이 됩니다.
+						예를 들면, minimum=<prop>“5”</prop> 와 같이 설정이 되었다면, 5 에 대한 로그값은  0.7 이고, 이 값의 반올림인 1 을 10 의 지수로 계산한 10 이 축에 표현됩니다.
+						interval=<prop>”100”</prop>으로 설정되었다면, 100 의 로그값인 2 를 10 의 지수로 계산한 값의 단위에 의해서 간격이 표시됩니다. (10, 1,000, 100,000, …)</div></dd>
+			</dl>
+			<br>
+			<p>3. <a href="../api/DateTimeAxis.html" target="_blank">&lt;DateTimeAxis&gt;</a> - 날짜와 시간을 표현하는 축의 유형입니다. 다음 표는 <a href="../api/DateTimeAxis.html" target="_blank">&lt;DateTimeAxis&gt;</a> 노드의 주요 속성에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">dataInterval</td>
+					<td align="center">숫자</td>
+					<td align="left"><p>dataUnits 속성에 지정된 단위로 차트에 표시할 데이터의 간격을 지정합니다.</p>
+						<p>예를 들어, dataUnits=<prop>”seconds”</prop> 이고, 3 초의 데이터 단위로 차트를 표현하고자 한다면 dataInterval=<prop>”4”</prop> 로 지정합니다. (차트의 종류에 따라서 이 속성은 무시됩니다.)</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">dataUnits</td>
+					<td align="center">milliseconds, seconds, minutes, hours, days, weeks, months, years</td>
+					<td align="left"><p>데이터의 표시 단위를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">displayLocalTime</td>
+					<td align="center">true, false(*)</td>
+					<td align="left"><p>true: 클라이언트 PC 의 타임 존을 적용합니다.</p>
+						<p>false: 세계 표준시 (그리니지 표준시)를 적용합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">interval</td>
+					<td align="center">숫자</td>
+					<td align="left"><p>축에 표시되는 레이블의 간격을 지정합니다.</p>
+						<p>(레이블이 표시될 공간이 충분하지 않으면 이 값은 무시됩니다.)</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">labelJsFunction</td>
+					<td align="center">자바스크립트 함수명</td>
+					<td align="left"><p>사용자 정의 함수를 이용하여 축의 레이블을 표시할 경우, 해당 자바스크립트 함수명을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">labelUnits</td>
+					<td align="center">milliseconds, seconds, minutes, hours, days, weeks, months, years</td>
+					<td align="left"><p>축 레이블의 표시 단위를 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">title</td>
+					<td align="center">텍스트</td>
+					<td align="left"><p>축의 제목을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<dl class="section attention">
+				<dt>주의</dt>
+				<dd><div class="fragment"><a href="../api/DateTimeAxis.html" target="_blank">&lt;DateTimeAxis&gt;</a>를 적용하기 위해서는 해당 데이터 시리즈의 field 속성
+					(예, <a href="line-chart.html">라인 차트</a>의 수평축에 <a href="../api/DateTimeAxis.html" target="_blank">&lt;DateTimeAxis&gt;</a> 를 적용할 경우, <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드의 xField 속성)에 반드시 축의 값으로 적용할 데이터 필드명을 지정해야 합니다.
+					이 때 데이터 필드의 값은 자바스크립트 Date 함수로 변환 가능한 포맷을 가지고 있어야 합니다. (예, YYYY-MM-DD, YYYY/MM/DD, MM-DD-YYYY, etc)</div></dd>
+			</dl>
+
+			<p>다음은 수평축에 <a href="../api/DateTimeAxis.html" target="_blank">&lt;DateTimeAxis&gt;</a> 를 수직축에 <a href="../api/LogAxis.html" target="_blank">&lt;LogAxis&gt;</a> 를 적용한 예제입니다.
+				 아래 예제에서는 데이터 시리즈 (<a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드)의 xField 속성에 날짜/시간 축에 표시될 데이터 필드(Date)가 지정되었습니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;horizontalAxis&gt;</div>
+	<div class="line">  &lt;DateTimeAxis title="DateTime Axis" formatter="{dateFmt}" dataUnits="days" labelUnits="days" interval="3" alignLabelsToUnits="false" displayLocalTime="true" padding="1"/&gt;</div>
+	<div class="line">&lt;/horizontalAxis&gt;</div>
+	<div class="line">&lt;verticalAxis&gt;</div>
+	<div class="line">  &lt;LogAxis title="Log Axis" formatter="{numFmt}" interval="10" minimum="100"/&gt;</div>
+	<div class="line">&lt;/verticalAxis&gt;</div>
+	<div class="line">…</div>
+	<div class="line">  &lt;Line2DSeries <span class="vhdllogic">xField</span>="<span class="vhdllogic">Date</span>" yField="Profit" displayName="Profit" formatter="{numFmt}"&gt;</div>
+	<div class="line">…</div>
+	<div class="line"></div>
+	<div class="line">var chartData = [</div>
+	<div class="line">{</div>
+	<div class="line">  "<span class="vhdllogic">Date</span>" : "2013/07/01",</div>
+	<div class="line">  "Profit" : 9000,</div>
+	<div class="line">  "Cost" : 15000,</div>
+	<div class="line">  "Revenue" : 23000</div>
+	<div class="line">},{</div>
+	<div class="line">  "<span class="vhdllogic">Date</span>" : "2013/07/02",</div>
+	<div class="line">  "Profit" : 14000,</div>
+	<div class="line">  "Cost" : 14000,</div>
+	<div class="line">  "Revenue" : 12000</div>
+	<div class="line">},{</div>
+	<div class="line">  "<span class="vhdllogic">Date</span>" : "2013/07/03",</div>
+	<div class="line">  "Profit" : 14000,</div>
+	<div class="line">  "Cost" : 12000,</div>
+	<div class="line">  "Revenue" : 16000</div>
+	<div class="line">…</div>
+	<div class="line">}];</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="BVBwVx" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - X 축에 DateTimeAxis 설정" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/BVBwVx/">알메이트 차트 - X 축에 DateTimeAxis 설정</a></p>-->
+			<img class="capture" src="images/demo/X-축에-DateTimeAxis-설정.jpg" alt="X 축에 DateTimeAxis 설정.jpg" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/BVBwVx/" target="_blank">알메이트 차트 - X 축에 DateTimeAxis 설정</a></p>
+
+
+			<p id="brokenaxis">4. <a href="../api/BrokenAxis.html" target="_blank">&lt;BrokenAxis&gt;</a> - 브로큰 축 차트에서 브로큰 축을 표현하는 축의 유형입니다.
+				다음 표는 <a href="../api/BrokenAxis.html" target="_blank">&lt;BrokenAxis&gt;</a> 노드의 주요 속성에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">brokenMaximum</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: NaN</p>
+					</td>
+					<td align="left"><p>브로큰 축의 최대값(두 번째 물결무늬가 표시되는 축 상의 지점)을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenMaximumInterval</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: NaN</p>
+					</td>
+					<td align="left"><p>브로큰 축의 최대값(brokenMaximum)보다 큰 값들이 축에 표시되는 간격을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenMinimum</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: NaN</p>
+					</td>
+					<td align="left"><p>브로큰 축의 최소값(첫 번째 물결무늬가 표시되는 축 상의 지점)을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenMinimumInterval</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: NaN</p>
+					</td>
+					<td align="left"><p>브로큰 축의 최소값(brokenMinimum)보다 작은 값들이 축에 표시되는 간격을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenOffset</td>
+					<td align="center"><p>숫자</p>
+						<p>기본값: 14</p>
+					</td>
+					<td align="left"><p>두 물결무늬 사이의 간격을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">brokenRatio</td>
+					<td align="center"><p>0 과 1 사이의 숫자</p>
+						<p>기본값: 0.5</p>
+					</td>
+					<td align="left"><p>축의 시작 지점에서 브로큰 축의 최소값까지의 크기와 브로큰 축의 최대값에서 축의 끝 지점까지의 크기의 비율을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>다음은 수평축에 <a href="../api/CategoryAxis.html" target="_blank">&lt;CategoryAxis&gt;</a> 를 수직축에 <a href="../api/BrokenAxis.html" target="_blank">&lt;BrokenAxis&gt;</a> 를 적용한 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;horizontalAxis&gt;</div>
+	<div class="line">  &lt;CategoryAxis categoryField="Month"/&gt;</div>
+	<div class="line">&lt;/horizontalAxis&gt;</div>
+	<div class="line">&lt;verticalAxis&gt;</div>
+	<div class="line">  &lt;BrokenAxis id="vAxis" brokenMinimum="3000" brokenMaximum="100000" maximum="116000" brokenRatio="0.8" formatter="{numfmt}" /&gt;</div>
+	<div class="line">&lt;/verticalAxis&gt;</div>
+	<div class="line">&lt;verticalAxisRenderers&gt;</div>
+	<div class="line">  &lt;BrokenAxis2DRenderer axis="{vAxis}"/&gt;</div>
+	<div class="line">&lt;/verticalAxisRenderers&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="LrPQgb" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - Y 축에 BrokenAxis 설정" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/LrPQgb/">알메이트 차트 - Y 축에 BrokenAxis 설정</a></p>-->
+			<img class="capture" src="images/demo/Y-축에-BrokenAxis-설정.jpg" alt="Y 축에 BrokenAxis 설정" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/LrPQgb/" target="_blank">알메이트 차트 - Y 축에 BrokenAxis 설정</a></p>
+
+
+			<h3><a class="anchor" id="카테고리축"></a>카테고리 축</h3>
+			<p>1. <a href="../api/HistogramCategoryAxis.html" target="_blank">&lt;CategoryAxis&gt;</a> - 숫자가 아닌 카테고리를 표현하는 축의 유형입니다.
+				예를 들면, 연도별, 월별, 부서별, 국가별 등과 같이 수치로 표현되지 않고 카테고리의 항목들이 열거되는 형태입니다.
+				<a href="../api/HistogramCategoryAxis.html" target="_blank">&lt;CategoryAxis&gt;</a> 노드의 주요 속성에 대한 설명입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">유효값 (*: 기본값)</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">categoryField</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left"><p>카테고리 값이 저장된 데이터 필드명을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">labelJsFunction</td>
+					<td align="center"><p>자바스크립트 함수명</p>
+					</td>
+					<td align="left"><p>사용자 정의 함수를 이용하여 축의 레이블을 표시할 경우, 해당 자바스크립트 함수명을 지정합니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">title</td>
+					<td align="center"><p>텍스트</p>
+					</td>
+					<td align="left"><p>축의 제목을 지정합니다.</p>
+					</td>
+				</tr>
+			</table>
+
+			<p>카테고리 축에 대한 예제는 <a href="#brokenaxis">위에서 설명된</a> <a href="../api/BrokenAxis.html" target="_blank">&lt;BrokenAxis&gt;</a> 예제를 참조하십시요.
+				이 예제에서는 수직축에 카테고리 축이 적용되었고, categoryField 속성값으로 <prop>“Month”</prop> 필드가 지정되었습니다.</p>
+
+			<p>2. <a href="../api/CategoryLinearAxis.html" target="_blank">&lt;CategoryLinearAxis&gt;</a> - 카테고리 축을 <a href="scroll-chart.html">스크롤 차트</a>에 표현해야 할 경우 <a href="../api/CategoryAxis.html" target="_blank">&lt;CategoryAxis&gt;</a> 노드를 사용하지 않고 <a href="../api/CategoryLinearAxis.html" target="_blank">&lt;CategoryLinearAxis&gt;</a> 노드를 사용해야 합니다. 다음은 스크롤 차트의 수평축에 <a href="../api/CategoryLinearAxis.html" target="_blank">&lt;CategoryLinearAxis&gt;</a> 노드가 적용된 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;verticalAxis&gt;</div>
+	<div class="line">  &lt;LinearAxis interval="300" formatter="{numfmt}"/&gt;</div>
+	<div class="line">&lt;/verticalAxis&gt;</div>
+	<div class="line">&lt;horizontalAxis&gt;</div>
+	<div class="line">  &lt;CategoryLinearAxis id="hAxis" categoryField="City"/&gt;</div>
+	<div class="line">&lt;/horizontalAxis&gt;</div>
+	<div class="line">&lt;horizontalAxisRenderers&gt;</div>
+	<div class="line">  &lt;ScrollableAxisRenderer axis="{hAxis}" visibleItemSize="10" /&gt;</div>
+	<div class="line">&lt;/horizontalAxisRenderers&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="RJbQqL" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - X 축에 CategoryLinearAxis 설정" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/RJbQqL/">알메이트 차트 - X 축에 CategoryLinearAxis 설정</a></p>-->
+			<img class="capture" src="images/demo/X-축에-CategoryLinearAxis-설정.jpg" alt="X 축에 CategoryLinearAxis 설정" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/RJbQqL/" target="_blank">알메이트 차트 - X 축에 CategoryLinearAxis 설정</a></p>
+
+			<p>3. <a href="../api/HistogramCategoryAxis.html" target="_blank">&lt;HistogramCategoryAxis&gt;</a> - <a href="histogram-chart.html">히스토그램 차트</a>의 X 축을 표현하는 축의 유형입니다.
+				다음은 히스토그램 차트에 <a href="../api/HistogramCategoryAxis.html" target="_blank">&lt;HistogramCategoryAxis&gt;</a> 노드가 적용된 예제입니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;horizontalAxis&gt;</div>
+	<div class="line">  &lt;HistogramCategoryAxis id="hAxis" categoryField="histogramXField"/&gt;</div>
+	<div class="line">&lt;/horizontalAxis&gt;</div>
+	<div class="line">&lt;horizontalAxisRenderers&gt;</div>
+	<div class="line">  &lt;HistogramAxis2DRenderer axis="{hAxis}"/&gt;</div>
+	<div class="line">&lt;/horizontalAxisRenderers&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="QxLQzY" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - X 축에 HistogramCategoryAxis 설정" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/QxLQzY/">알메이트 차트 - X 축에 HistogramCategoryAxis 설정</a></p>-->
+			<img class="capture" src="images/demo/X-축에-HistogramCategoryAxis-설정.jpg" alt="X 축에 HistogramCategoryAxis 설정" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/QxLQzY/" target="_blank">알메이트 차트 - X 축에 HistogramCategoryAxis 설정</a></p>
+
+
+			<h3><a class="anchor" id="컬러축"></a>컬러 축</h3>
+			<p>컬러 축은 <a href="treemap-chart.html">트리맵 차트</a>에서 색과 데이터 값을 연관시켜 표현하는 축의 유형입니다.
+				다음은 <a href="treemap-chart.html">트리맵 차트</a>에서 컬러 축이 표현된 예제입니다.
+				이 예제에서는 색의 범위를 colors 속성에 “[#fcd26b,#cc3635]” 으로 지정하였습니다.
+				최소값(minimum=<prop>“0”</prop>)의 색은 #fcd26b 이고, 최대값(maximum=<prop>“400”</prop>)의 색은 <prop>“#cc3635”</prop> 이며, 컬러축에는 100 (interval=<prop>“100”</prop>) 단위로 레이블이 표시됩니다.
+				사각형에 표시되는 색은 컬러축과 데이터 값이 연동되어 자동으로 표시됩니다.</p>
+
+<div class="fragment">
+	<div class="line">&lt;colorAxis&gt;</div>
+	<div class="line">  &lt;ColorAxis id="colorAxis" maximum="400" minimum="0" interval="100" colors="[#fcd26b,#cc3635]"/&gt;</div>
+	<div class="line">&lt;/colorAxis&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="KePQJY" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 컬러 축" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/KePQJY/">알메이트 차트 - 컬러 축</a></p>-->
+			<img class="capture" src="images/demo/컬러-축.jpg" alt="컬러 축" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/KePQJY/" target="_blank">알메이트 차트 - 컬러 축</a></p>
+
+
+			<h3><a class="anchor" id="축의위치속성"></a>축의 위치 속성</h3>
+			<p>위에서 설명한 축의 유형들은 차트 노드의 축의 위치 속성의 자식 노드에 정의되어야 합니다. 다음은 축의 위치 속성들을 열거한 표입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">속성명</th>
+					<th align="center">적용되는 차트 유형</th>
+					<th align="center">설명</th>
+				</tr>
+				<tr>
+					<td align="center">&lt;horizontalAxis&gt;</td>
+					<td align="center"><p>카테시안 계열의 차트</p>
+					</td>
+					<td align="left"><p>카테시안 계열의 차트에서 수평축 (X 축)</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">&lt;verticalAxis&gt;</td>
+					<td align="center"><p>카테시안 계열의 차트</p>
+					</td>
+					<td align="left"><p>카테시안 계열의 차트에서 수직축 (Y 축)</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">&lt;angularAxis&gt;</td>
+					<td align="center"><p><a href="radar-chart.html">방사형 차트</a>, <a href="wind-rose-chart.html">윈드로즈 차트</a></p>
+					</td>
+					<td align="left"><p><a href="radar-chart.html">방사형 차트</a>, <a href="wind-rose-chart.html">윈드로즈 차트</a>에서 바깥쪽 원호에 표시되는 카테고리 축</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">&lt;radialAxis&gt;</td>
+					<td align="center"><p><a href="radar-chart.html">방사형 차트</a>, <a href="wind-rose-chart.html">윈드로즈 차트</a></p>
+					</td>
+					<td align="left"><p><a href="radar-chart.html">방사형 차트</a>, <a href="wind-rose-chart.html">윈드로즈 차트</a>에서 중심에서 원호까지 직선으로 표시되는 숫자 축</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">&lt;colorAxis&gt;</td>
+					<td align="center"><p><a href="treemap-chart.html">트리맵 차트</a></p>
+					</td>
+					<td align="left"><p>a href="treemap-chart.html">트리맵 차트</a>에 표시되는 컬러 축</p>
+					</td>
+				</tr>
+			</table>
+
+			<h3><a class="anchor" id="축렌더러"></a>축 렌더러</h3>
+			<p>알메이트 차트에서 축의 스타일은 사용자의 기호에 따라서 다양하게 표현이 가능합니다.
+				축의 색상, 틱, 보조틱, 축의 레이블, 축 제목의 폰트 등 모든 축의 표현 방식은 축 렌더리 노드에 설정됩니다.
+				다음은 알메이트 차트에서 제공하는 축 렌더러의 종류들을 열거한 표입니다.</p>
+
+			<table class="doxtable">
+				<tr>
+					<th align="center">축 렌더러</td>
+					<th align="center">설명</td>
+				</tr>
+				<tr>
+					<td align="center"><a href="../api/AngularAxisRenderer.html" target="_blank">&lt;AngularAxisRenderer&gt;</a></td>
+					</td>
+					<td align="left"><p><a href="radar-chart.html">방사형 차트</a>, <a href="wind-rose-chart.html">윈드로즈 차트</a>에서 &lt;angularAxis&gt;를 표현하는 렌더러입니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><a href="../api/Axis2DRenderer.html" target="_blank">&lt;Axis2DRenderer&gt;</a></td>
+					</td>
+					<td align="left"><p>2 차원 축을 표현하는 렌더러입니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><a href="../api/Axis3DRenderer.html" target="_blank">&lt;Axis3DRenderer&gt;</a></td>
+					</td>
+					<td align="left"><p>3 차원 축을 표현하는 렌더러입니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><a href="../api/Axis2DWingRenderer.html" target="_blank">&lt;Axis2DWingRenderer&gt;</a></td>
+					</td>
+					<td align="left"><p><a href="wing-chart.html">윙 차트</a>에서 2차원 축을 표현하는 렌더러입니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><a href="../api/BrokenAxis2DRenderer.html" target="_blank">&lt;BrokenAxis2DRenderer&gt;</a></td>
+					</td>
+					<td align="left"><p><a href="broken-axis-chart.html">브로큰 축 차트</a>에서 2 차원 축을 표현하는 렌더러입니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><a href="../api/BrokenAxis3DRenderer.html" target="_blank">&lt;BrokenAxis3DRenderer&gt;</a></td>
+					</td>
+					<td align="left"><p><a href="broken-axis-chart.html">브로큰 축 차트</a>에서 3 차원 축을 표현하는 렌더러입니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><a href="../api/HistogramAxis2DRenderer.html" target="_blank">&lt;HistogramAxis2DRenderer&gt;</a></td>
+					</td>
+					<td align="left"><p><a href="histogram-chart.html">히스토그램 차트</a>에서 2 차원 축을 표현하는 렌더러입니다.</p>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><a href="../api/ScrollableAxisRenderer.html" target="_blank">&lt;ScrollableAxisRenderer&gt;</a></td>
+					</td>
+					<td align="left"><p><a href="scroll-chart.html">스크롤 차트</a>에서 스크롤이 가능한 축을 표현하는 렌더러입니다.</p>
+					</td>
+				</tr>
+			</table>
+			<p>축 렌더러의 활용 방식과 예제에 대한 자세한 설명은 <a href="axis-styling-and-axis-label.html">축 스타일링과 축 레이블</a>을 참조하십시요.</p>
+
+			<h3><a class="anchor" id="다중축표시"></a>다중 축 표시</h3>
+			<p>한 차트에서 두 개 이상의 축을 표시해서 데이터 시리즈별로 서로 다른 특정한 축을 기준으로 데이터를 표현하도록 지정할 수 있습니다.
+				<a href="combination-chart.html">콤비네이션 차트</a>와 같이 서로 다른 유형의 데이터 시리즈가 적용되거나, 동일한 차트에서 데이터 시리즈별로 다른 스케일의 축을 적용하고 싶은 경우에 활용이 가능합니다.
+				&lt;series&gt; 노드의 형제 노드에 정의된 축이 기본적으로 모든 데이터 시리즈에 적용되고, 특정 데이터 시리즈는 기본 축이 아닌 다른 축을 적용하고자 할 경우에는 해당 데이터 시리즈의 자식 노드에 원하는 축을 정의하면 됩니다.
+				이 때 축 렌더러 노드에서 어떤 축을 표현할지에 대한 구별은 축 정의시에 설정하는 id 속성을 이용합니다.
+				축의 id 속성값을 중괄호(브레이스, {})로 묶은 값을 렌더러의 axis 속성값으로 설정합니다.
+				다음은 컬럼 시리즈는 기본축(vAxis1)을 적용하고 라인 시리즈는 레이블 간격이 400 인 별도의 축을 해당 데이터 시리즈의 자식 노드로 정의하여 적용한 예제입니다.
+
+<div class="fragment">
+	<div class="line">&lt;horizontalAxis&gt;</div>
+	<div class="line">  &lt;CategoryAxis categoryField="Month" padding="0.7"/&gt;</div>
+	<div class="line">&lt;/horizontalAxis&gt;</div>
+	<div class="line">&lt;verticalAxis&gt;</div>
+	<div class="line">  &lt;LinearAxis id="<span class="keyword">vAxis1</span>" formatter="{numFmt}" maximum="2200"/&gt;</div>
+	<div class="line">&lt;/verticalAxis&gt;</div>
+	<div class="line">&lt;series&gt;</div>
+	<div class="line">  ...</div>
+	<div class="line">  &lt;Line2DSeries selectable="true" yField="Revenue" radius="4" form="curve" displayName="Revenue" itemRenderer="CircleItemRenderer"&gt;</div>
+	<div class="line">    ...</div>
+	<div class="line">    &lt;verticalAxis&gt;</div>
+	<div class="line">      &lt;LinearAxis id="<span class="vhdllogic">vAxis2</span>" interval="400" formatter="{numFmt}" maximum="1800"/&gt;</div>
+	<div class="line">    &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;/Line2DSeries&gt;</div>
+	<div class="line">&lt;/series&gt;</div>
+	<div class="line">&lt;verticalAxisRenderers&gt;</div>
+	<div class="line">  &lt;Axis2DRenderer axis="{<span class="keyword">vAxis1</span>}" showLine="false"/&gt;</div>
+	<div class="line">  &lt;Axis2DRenderer axis="{<span class="vhdllogic">vAxis2</span>}" showLine="true"&gt;</div>
+	<div class="line">    &lt;axisStroke&gt;</div>
+	<div class="line">      &lt;Stroke color="#f9bd03"/&gt;</div>
+	<div class="line">    &lt;/axisStroke&gt;</div>
+	<div class="line">  &lt;/Axis2DRenderer&gt;</div>
+	<div class="line">&lt;/verticalAxisRenderers&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="rKBJgV" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다중 축 표시" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/rKBJgV/">알메이트 차트 - 다중 축 표시</a></p>-->
+			<img class="capture" src="images/demo/다중-축-표시.jpg" alt="다중 축 표시" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/rKBJgV/" target="_blank">알메이트 차트 - 다중 축 표시</a></p>
+
+
+			<h3><a class="anchor" id="역Y축"></a>역 Y 축</h3>
+			<p>수직 Y 축에서 최소값이 시작되는 위치를 차트의 하단이 아닌 차트의 상단에 둘 수 있습니다.
+				이를 역 Y 축이라고 합니다. 역 Y 축을 차트에 표시하기 위해서는 <a href="../api/LinearAxis.html" target="_blank">&lt;LinearAxis&gt;</a> 노드의 direction 속성값을 <prop>“inverted”</prop> 로 지정합니다.
+				이 때 수평 X 축도 차트의 상단에 위치시키는 것이 좋습니다. 이를 위해서는 축 렌더러 노드의 placement 속성값을 <prop>“top”</prop> 으로 지정해야 합니다.
+				다음은 <a href="../api/Axis2DRenderer.html" target="_blank">&lt;Axis2DRenderer&gt;</a> 노드의 placement 속성값을 <prop>“top”</prop> 으로 지정한 역 Y 축에 대한 예제입니다.
+			</p>
+
+<div class="fragment">
+	<div class="line">&lt;horizontalAxis&gt;</div>
+	<div class="line">  &lt;CategoryAxis id="hAxis" categoryField="Month" padding="0.5"/&gt;</div>
+	<div class="line">&lt;/horizontalAxis&gt;</div>
+	<div class="line">&lt;horizontalAxisRenderers&gt;</div>
+	<div class="line">  &lt;Axis2DRenderer axis="{hAxis}" placement="top" showLine="true"/&gt;</div>
+	<div class="line">&lt;/horizontalAxisRenderers&gt;</div>
+	<div class="line">&lt;verticalAxis&gt;</div>
+	<div class="line">  &lt;LinearAxis direction="inverted" interval="400" formatter="{numfmt}"/&gt;</div>
+	<div class="line">&lt;/verticalAxis&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="MXgQNg" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 역 Y 축" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/MXgQNg/">알메이트 차트 - 역 Y 축</a></p>-->
+			<img class="capture" src="images/demo/역-Y-축.jpg" alt="역 Y 축" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/MXgQNg/" target="_blank"s>알메이트 차트 - 역 Y 축</a></p>
+
+
+		</div><!-- textbox -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

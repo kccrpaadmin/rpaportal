@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
+	<title>알메이트-차트 사용 설명서: 콤비네이션 차트</title>
+	<link href="navtree.css" rel="stylesheet" type="text/css" />
+	<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/dynsections.js"></script>
+	<script type="text/javascript" src="./js/resize.js"></script>
+	<script type="text/javascript" src="./js/navtree.js"></script>
+	<script type="text/javascript" src="./js/ei.js"></script>
+	<script type="text/javascript">
+		resizeHeight = function() {
+			var headerHeight = header.height();
+			var footerHeight = footer.height();
+			var windowHeight = $(window).height() - headerHeight - footerHeight;
+			navtree.css({height:windowHeight + "px"});
+			sidenav.css({height:windowHeight + "px",top: headerHeight+"px"});
+		}
+		$(document).ready(initResizable);
+	</script>
+</head>
+
+<body>
+	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+		<div id="titlearea">
+			<table cellspacing="0" cellpadding="0">
+ 				<tbody>
+ 					<tr style="height: 56px;">
+  						<td style="padding-left: 0.5em;">
+   							<div id="projectname">알메이트-차트 6.0 사용 설명서</div>
+  						</td>
+ 					</tr>
+ 				</tbody>
+			</table>
+		</div>
+	</div><!-- top -->
+
+	<div id="side-nav" class="ui-resizable side-nav-resizable">
+		<div id="nav-tree">
+			<div id="nav-tree-contents">
+				<div id="nav-sync" class="sync" style="display: none"></div>
+			</div>
+		</div>
+		<div id="splitbar" style="-moz-user-select:none;" class="ui-resizable-handle">
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){initNavTree('combination-chart.html','');});
+</script>
+<div id="doc-content">
+	<div class="header">
+		<div class="headertitle">
+			<div class="title" id="차트종류">차트 종류</div>
+		</div>
+	</div> <!--header-->
+
+	<div class="contents">
+		<div class="textblock">
+			<div class="toc">
+				<h3>목차</h3>
+				<ul>
+					<li class="level1"><a href="#차트종류">차트 종류</a>
+						<li class="level2"><a href="#콤비네이션차트">콤비네이션 차트</a>
+							<li class="level3"><a href="#3d콤비네이션차트">3D 콤비네이션 차트</a></li>
+							<li class="level3"><a href="#다중컬럼시리즈를적용한콤비네이션차트">다중 컬럼 시리즈를 적용한 콤비네이션 차트</a></li>
+						</li>
+					</li>
+				</ul>
+			</div>
+
+			<h2><a class="anchor" id="콤비네이션차트"></a>콤비네이션 차트</h2>
+			<p>콤비네이션 차트는 <a href="column-chart.html">컬럼 차트</a>와 <a href="line-chart.html">라인 차트</a>(혹은 <a href="area-chart.html">영역 차트</a>)를 결합한 형태의 차트입니다.
+				이 때 차트에 표시되는 컬럼과 라인은 X 축의 동일한 카테고리(예, 1월, 2월, 3월, ..)에 대해서 다른 데이터 카테고리(예, 컬럼:수입, 라인:비용)를 표현합니다.
+				따라서 어떤 데이터 카테고리의 값이 높고 낮은지 한눈에 비교하기 좋은 차트 유형입니다.
+				콤비네이션 차트는 <a href="../api/Combination2DChart.html" target="_blank">&lt;Combination2DChart&gt;</a> 노드의 series 속성값에 <a href="../api/Column2DSeries.html" target="_blank">&lt;Column2DSeries&gt;</a> 노드와 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a>(혹은 <a href="../api/Area2DSeries.html" target="_blank">&lt;Area2DSeries&gt;</a> 노드) 노드를 함께 설정하여 생성할 수 있습니다.</p>
+
+			<p>다음은 <a href="../api/Column2DSeries.html" target="_blank">&lt;Column2DSeries&gt;</a> 노드와 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드를
+				<a href="../api/Combination2DChart.html" target="_blank">&lt;Combination2DChart&gt;</a> 노드에 함께 정의하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				이 예제에서는 컬럼 시리즈와 라인 시리즈에 서로 다른 Y 축을 적용하기 위하여 두 개의 &lt;verticalAxis&gt; 노드를 정의하였습니다.
+				축 생성에 관한 더 자세한 내용은 <a href="axes-and-scales.html">축과 스케일</a>을 참조하십시요.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Combination2DChart showDataTips="true"&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis categoryField="Month" padding="1"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;LinearAxis id="vAxis1" formatter="{numfmt}" maximum="100" interval="10"/&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column2DSeries labelPosition="outside" yField="Profit" displayName="Profit" showValueLabels="[5]" columnWidthRatio="0.54"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column2DSeries&gt;</div>
+	<div class="line">    &lt;Line2DSeries radius="6" yField="Cost" displayName="Cost" itemRenderer="CircleItemRenderer"&gt;</div>
+	<div class="line">      &lt;verticalAxis&gt;</div>
+	<div class="line">        &lt;LinearAxis id="vAxis2" interval="40" maximum="320"/&gt;</div>
+	<div class="line">      &lt;/verticalAxis&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Line2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">  &lt;verticalAxisRenderers&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{vAxis1}" showLine="false"/&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{vAxis2}" showLine="false"/&gt;</div>
+	<div class="line">  &lt;/verticalAxisRenderers&gt;</div>
+	<div class="line">&lt;/Combination2DChart&gt;</div>
+</div>
+
+						<!--<p data-height="480" data-theme-id="dark" data-slug-hash="zaYddW" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 콤비네이션 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/zaYddW/">알메이트 차트 - 콤비네이션 차트</a></p>-->
+						<img class="capture" src="images/demo/콤비네이션-차트.jpg" alt="콤비네이션 차트" />
+						<p>See the CodePen <a href="https://codepen.io/riamore/pen/zaYddW/" target="_blank">알메이트 차트 - 콤비네이션 차트</a></p>
+
+						<h3><a class="anchor" id="3d콤비네이션차트"></a>3D 콤비네이션 차트</h3>
+						<p>3D 콤비네이션 차트는 <a href="../api/Combination3DChart.html" target="_blank">&lt;Combination3DChart&gt;</a> 노드를 설정하여 생성할 수 있습니다.</p>
+						<p>다음은 <a href="../api/Column3DSeries.html" target="_blank">&lt;Column3DSeries&gt;</a> 노드와 <a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a> 노드를 <a href="../api/Combination3DChart.html" target="_blank">&lt;Combination3DChart&gt;</a> 노드에 정의하는 코드와 이를 적용해서 출력한 차트의 예제입니다.
+							이 예제에서는 컬럼 시리즈와 라인 시리즈에 서로 다른 Y 축을 적용하기 위하여 두 개의 &lt;verticalAxis&gt; 노드를 정의하였고, 3D 축 생성을 위해서 &lt;verticalAxisRenderers&gt; 속성에 <a href="../api/Axis3DRenderer.html" target="_blank">&lt;Axis3DRenderer&gt;</a> 노드를 정의하였습니다.
+							축 생성에 관한 더 자세한 내용은 <a href="axes-and-scales.html">축과 스케일</a>을 참조하십시요.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Combination3DChart showDataTips="true"&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis categoryField="Month" padding="0.5"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;LinearAxis id="vAxis1" formatter="{numfmt}" maximum="100" interval="10"/&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Column3DSeries columnWidthRatio="0.6" selectable="true" yField="Profit" displayName="Profit"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Column3DSeries&gt;</div>
+	<div class="line">    &lt;Line2DSeries radius="6" yField="Cost" displayName="Cost" itemRenderer="CircleItemRenderer"&gt;</div>
+	<div class="line">      &lt;verticalAxis&gt;</div>
+	<div class="line">        &lt;LinearAxis id="vAxis2" maximum="300"/&gt;</div>
+	<div class="line">      &lt;/verticalAxis&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Line2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">  &lt;verticalAxisRenderers&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{vAxis1}" showLine="true"/&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{vAxis2}" showLine="true"/&gt;</div>
+	<div class="line">  &lt;/verticalAxisRenderers&gt;</div>
+	<div class="line">&lt;/Combination3DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="JZjypm" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 3D 콤비네이션 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/JZjypm/">알메이트 차트 - 3D 콤비네이션 차트</a></p>-->
+			<img class="capture" src="images/demo/3D-콤비네이션-차트.jpg" alt="3D 콤비네이션 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/JZjypm/" target="_blank">알메이트 차트 - 3D 콤비네이션 차트</a></p>
+
+			<h3><a class="anchor" id="다중컬럼시리즈를적용한콤비네이션차트"></a>다중 컬럼 시리즈를 적용한 콤비네이션 차트</h3>
+			<p>콤비네이션 차트에 표현되는 특정 유형의 차트에 다중 데이터 시리즈가 적용될 수 있습니다.
+				이 때는 다중 데이터 시리즈가 적용되는 차트 시리즈에 Set 노드(<a href="../api/Area2DSet.html" target="_blank">&lt;Area2DSet&gt;</a>, <a href="../api/Column2DSet.html" target="_blank">&lt;Column2DSet&gt;</a>, <a href="../api/Column3DSet.html" target="_blank">&lt;Column3DSet&gt;</a>)를 정의해야 합니다.
+
+			<p>다음은 이에 대한 코드와 이를 적용해서 출력한 차트의 예제입니다.
+				이 예제에서는 두 개의 컬럼 시리즈를 <a href="../api/Column2DSet.html" target="_blank">&lt;Column2DSet&gt;</a> 노드에 정의하였고, 라인 시리즈(<a href="../api/Line2DSeries.html" target="_blank">&lt;Line2DSeries&gt;</a>)에는 우측에 표시된 Y 축이 적용되었습니다. 축 생성에 관한 더 자세한 내용은 <a href="axes-and-scales.html">축과 스케일</a>을 참조하십시요.</p>
+
+<div class="fragment">
+	<div class="line">&lt;Combination2DChart showDataTips="true"&gt;</div>
+	<div class="line">  &lt;horizontalAxis&gt;</div>
+	<div class="line">    &lt;CategoryAxis categoryField="Month" padding="0.7"/&gt;</div>
+	<div class="line">  &lt;/horizontalAxis&gt;</div>
+	<div class="line">  &lt;verticalAxis&gt;</div>
+	<div class="line">    &lt;LinearAxis id="vAxis1" interval="400" formatter="{numFmt}" maximum="3200"/&gt;</div>
+	<div class="line">  &lt;/verticalAxis&gt;</div>
+	<div class="line">  &lt;series&gt;</div>
+	<div class="line">    &lt;Area2DSeries yField="Profit" form="curve" displayName="Profit"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Area2DSeries&gt;</div>
+	<div class="line">    &lt;Column2DSet type="clustered"&gt;</div>
+	<div class="line">      &lt;series&gt;</div>
+	<div class="line">        &lt;Column2DSeries yField="Cost" displayName="Cost"&gt;</div>
+	<div class="line">          ...</div>
+	<div class="line">        &lt;/Column2DSeries&gt;</div>
+	<div class="line">        &lt;Column2DSeries yField="Revenue" displayName="Revenue"&gt;</div>
+	<div class="line">          ...</div>
+	<div class="line">        &lt;/Column2DSeries&gt;</div>
+	<div class="line">      &lt;/series&gt;</div>
+	<div class="line">    &lt;/Column2DSet&gt;</div>
+	<div class="line">    &lt;Line2DSeries yField="Revenue" radius="4.5" itemRenderer="CircleItemRenderer" displayName="Revenue"&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">      &lt;verticalAxis&gt;</div>
+	<div class="line">        &lt;LinearAxis id="vAxis2" interval="400" formatter="{numFmt}"/&gt;</div>
+	<div class="line">      &lt;/verticalAxis&gt;</div>
+	<div class="line">      ...</div>
+	<div class="line">    &lt;/Line2DSeries&gt;</div>
+	<div class="line">  &lt;/series&gt;</div>
+	<div class="line">  &lt;verticalAxisRenderers&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{vAxis1}" showLine="false"/&gt;</div>
+	<div class="line">    &lt;Axis2DRenderer axis="{vAxis2}" showLine="false"/&gt;</div>
+	<div class="line">  &lt;/verticalAxisRenderers&gt;</div>
+	<div class="line">&lt;/Combination2DChart&gt;</div>
+</div>
+
+			<!--<p data-height="480" data-theme-id="dark" data-slug-hash="Yvzxab" data-default-tab="result" data-user="riamore" data-embed-version="2" data-pen-title="알메이트 차트 - 다중 컬럼 시리즈를 적용한 콤비네이션 차트" class="codepen">See the Pen <a href="https://codepen.io/riamore/pen/Yvzxab/">알메이트 차트 - 다중 컬럼 시리즈를 적용한 콤비네이션 차트</a></p>-->
+			<img class="capture" src="images/demo/다중-컬럼-시리즈를-적용한-콤비네이션-차트.jpg" alt="다중 컬럼 시리즈를 적용한 콤비네이션 차트" />
+			<p>See the CodePen <a href="https://codepen.io/riamore/pen/Yvzxab/" target="_blank">알메이트 차트 - 다중 컬럼 시리즈를 적용한 콤비네이션 차트</a></p>
+
+		</div><!-- textblock -->
+	</div><!-- contents -->
+</div>
+</body>
+</html>

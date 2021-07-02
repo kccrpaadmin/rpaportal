@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+<meta http-equiv="Content-Style-Type" content="text/css"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>rMate Chart for HTML5</title>
+<!-- rMateChartH5 에서 사용하는 스타일 -->
+<link rel="stylesheet" type="text/css" href="../rMateChartH5/Assets/Css/rMateChartH5.css"/>
+
+<!-- rMateChartH5 라이센스 -->
+<script language="javascript" type="text/javascript" src="../LicenseKey/rMateChartH5License.js"></script>
+
+<!-- 실제적인 rMateChartH5 라이브러리 -->
+<script type="text/javascript" src="../rMateChartH5/JS/rMateChartH5.js"></script>
+
+<!-- rMateChartH5 테마 js -->
+<script type="text/javascript" src="../rMateChartH5/Assets/Theme/theme.js"></script>
+
+<script type="text/javascript">
+
+// -----------------------차트 설정 시작-----------------------
+
+// rMateChart 를 생성합니다.
+// 파라메터 (순서대로)
+//  1. 차트의 id ( 임의로 지정하십시오. )
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+rMateChartH5.create("chart1", "chartHolder", "", "100%", "100%");
+
+// 스트링 형식으로 레이아웃 정의.
+var layoutStr =
+	'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+		+'<Options>'
+			+'<Caption text="Long-term interest rates"/>'
+		+'</Options>'
+		+'<NumberFormatter id="numfmt" useThousandsSeparator="true"/>'
+		+'<NumberFormatter id="dataTipFmt" precision="4"/>'
+		+'<HistoryChart>'
+			+'<displayerChart>'
+				+'<Displayer id="chart1" showDataTips="true" dataTipFormatter="{dataTipFmt}" width="100%" height="100%" dataTipDisplayMode="axis">'
+					+'<horizontalAxis>'
+						+'<CategoryAxis id="mainHAxis" categoryField="Date" ticksBetweenLabels="false" padding="0.5"/>'
+					+'</horizontalAxis>'
+					+'<verticalAxis>'
+						+'<LinearAxis  formatter="{numfmt}"/>'
+					+'</verticalAxis>'
+					+'<series>'
+						+'<Line2DSeries id="lineSeris" yField="KOREA" radius="4" form="segment" displayName="KOREA" itemRenderer="CircleItemRenderer">'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate duration="1000"/>'
+							+'</showDataEffect>'
+						+'</Line2DSeries>'
+						+'<Line2DSeries id="lineSeris" yField="USA" radius="4" form="segment" displayName="USA" itemRenderer="CircleItemRenderer">'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate duration="1000"/>'
+							+'</showDataEffect>'
+						+'</Line2DSeries>'
+						+'<Line2DSeries id="lineSeris" yField="JAPAN" radius="4" form="segment" displayName="JAPAN" itemRenderer="CircleItemRenderer">'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate duration="1000"/>'
+							+'</showDataEffect>'
+						+'</Line2DSeries>'
+						+'<Line2DSeries id="lineSeris" yField="CANADA" radius="4" form="segment" displayName="CANADA" itemRenderer="CircleItemRenderer">'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate duration="1000"/>'
+							+'</showDataEffect>'
+						+'</Line2DSeries>'
+						+'<Line2DSeries id="lineSeris" yField="FRANCE" radius="4" form="segment" displayName="FRANCE" itemRenderer="CircleItemRenderer">'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate duration="1000"/>'
+							+'</showDataEffect>'
+						+'</Line2DSeries>'
+						+'<Line2DSeries id="lineSeris" yField="GERMANY" radius="4" form="segment" displayName="GERMANY" itemRenderer="CircleItemRenderer">'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate duration="1000"/>'
+							+'</showDataEffect>'
+						+'</Line2DSeries>'
+						+'<Line2DSeries id="lineSeris" yField="UK" radius="4" form="segment" displayName="UK" itemRenderer="CircleItemRenderer">'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate duration="1000"/>'
+							+'</showDataEffect>'
+						+'</Line2DSeries>'
+					+'</series>'
+				+'</Displayer>'
+			+'</displayerChart>'
+			+'<navigator>'
+				+'<Navigator id="navi" width="100%"  height="80" gutterLeft="0" paddingLeft="30" paddingRight="30">'
+					+'<horizontalAxis>'
+						+'<CategoryAxis categoryField="index" id="naviHAxis"  padding="0"/>'
+					+'</horizontalAxis>'
+					+'<horizontalAxisRenderers>'
+						+'<Axis2DRenderer axis="{naviHAxis}" visible="false"/>'
+					+'</horizontalAxisRenderers>'
+					+'<verticalAxis>'
+						+'<LinearAxis id="vAxis"/>'
+					+'</verticalAxis>'
+					+'<verticalAxisRenderers>'
+						+'<Axis2DRenderer axis="{vAxis}" visible="false"/>'
+					+'</verticalAxisRenderers>'
+					 +'<backgroundElements>'
+						+'<GridLines direction="horizontal"/>'
+					+'</backgroundElements>'
+					+'<series>'
+						+'<Column2DSeries yField="KOREA"/>'
+					+'</series>'
+				+'</Navigator>'
+			+'</navigator>'
+			+'<selector>'
+				+'<HistoryRangeSelector width="100%" startingRange="right" visibleItemSize="30" unSelectedRangeAreaStyleName="unSelectedRangeAreaStyle"/>'
+			+'</selector>'
+		+'</HistoryChart>'
+		+'<Style>'
+			+'.unSelectedRangeAreaStyle{backgroundColor:#50a800;backgroundAlpha:0.1;borderStyle:solid;borderWeight:1;borderColor:#50a800;}'
+		+'</Style>'
+	+'</rMateChart>';
+
+// 차트 데이터
+var chartData =
+[{"Date":"2001-01",	"KOREA":6.65,	"USA":5.16,	"JAPAN":1.508,	"CANADA":5.418636,	"FRANCE":4.940454,	"GERMANY":4.8,	"UK":4.8471},
+	{"Date":"2001-02",	"KOREA":6.41,	"USA":5.1,	"JAPAN":1.415,	"CANADA":5.43,	"FRANCE":4.931,	"GERMANY":4.78,	"UK":4.8248},
+	{"Date":"2001-03",	"KOREA":7,	"USA":4.89,	"JAPAN":1.169,	"CANADA":5.301363,	"FRANCE":4.837727,	"GERMANY":4.67,	"UK":4.703},
+	{"Date":"2001-04",	"KOREA":7.74,	"USA":5.14,	"JAPAN":1.315,	"CANADA":5.5915,	"FRANCE":5.000526,	"GERMANY":4.83,	"UK":4.9468},
+	{"Date":"2001-05",	"KOREA":7.58,	"USA":5.39,	"JAPAN":1.25,	"CANADA":5.851364,	"FRANCE":5.205909,	"GERMANY":5.05,	"UK":5.1153},
+	{"Date":"2001-06",	"KOREA":7.14,	"USA":5.28,	"JAPAN":1.152,	"CANADA":5.718095,	"FRANCE":5.150476,	"GERMANY":5,	"UK":5.1951},
+	{"Date":"2001-07",	"KOREA":6.83,	"USA":5.24,	"JAPAN":1.305,	"CANADA":5.800476,	"FRANCE":5.152273,	"GERMANY":5.02,	"UK":5.2037},
+	{"Date":"2001-08",	"KOREA":6.29,	"USA":4.97,	"JAPAN":1.343,	"CANADA":5.530909,	"FRANCE":4.953043,	"GERMANY":4.82,	"UK":4.9854},
+	{"Date":"2001-09",	"KOREA":6.19,	"USA":4.73,	"JAPAN":1.346,	"CANADA":5.302631,	"FRANCE":4.9415,	"GERMANY":4.81,	"UK":4.9876},
+	{"Date":"2001-10",	"KOREA":6.54,	"USA":4.57,	"JAPAN":1.363,	"CANADA":5.232727,	"FRANCE":4.719565,	"GERMANY":4.6,	"UK":4.8253},
+	{"Date":"2001-11",	"KOREA":6.88,	"USA":4.65,	"JAPAN":1.328,	"CANADA":5.177143,	"FRANCE":4.574545,	"GERMANY":4.45,	"UK":4.6271},
+	{"Date":"2001-12",	"KOREA":7.01,	"USA":5.09,	"JAPAN":1.334,	"CANADA":5.408421,	"FRANCE":4.8665,	"GERMANY":4.74,	"UK":4.8928},
+	{"Date":"2002-01",	"KOREA":7.1,	"USA":5.04,	"JAPAN":1.42,	"CANADA":5.343637,	"FRANCE":4.926818,	"GERMANY":4.86,	"UK":4.9171},
+	{"Date":"2002-02",	"KOREA":7,	"USA":4.91,	"JAPAN":1.501,	"CANADA":5.321,	"FRANCE":4.994,	"GERMANY":4.92,	"UK":4.9251},
+	{"Date":"2002-03",	"KOREA":7.17,	"USA":5.28,	"JAPAN":1.421,	"CANADA":5.667,	"FRANCE":5.243,	"GERMANY":5.16,	"UK":5.2202},
+	{"Date":"2002-04",	"KOREA":7.3,	"USA":5.21,	"JAPAN":1.394,	"CANADA":5.658637,	"FRANCE":5.242381,	"GERMANY":5.15,	"UK":5.2331},
+	{"Date":"2002-05",	"KOREA":7.09,	"USA":5.16,	"JAPAN":1.365,	"CANADA":5.595909,	"FRANCE":5.255238,	"GERMANY":5.17,	"UK":5.2689},
+	{"Date":"2002-06",	"KOREA":6.76,	"USA":4.93,	"JAPAN":1.328,	"CANADA":5.424,	"FRANCE":5.1125,	"GERMANY":5.02,	"UK":5.099},
+	{"Date":"2002-07",	"KOREA":6.54,	"USA":4.65,	"JAPAN":1.296,	"CANADA":5.290454,	"FRANCE":4.955217,	"GERMANY":4.87,	"UK":5.0027},
+	{"Date":"2002-08",	"KOREA":6.24,	"USA":4.26,	"JAPAN":1.255,	"CANADA":5.120476,	"FRANCE":4.673182,	"GERMANY":4.59,	"UK":4.746},
+	{"Date":"2002-09",	"KOREA":6.16,	"USA":3.87,	"JAPAN":1.129,	"CANADA":4.8855,	"FRANCE":4.462381,	"GERMANY":4.38,	"UK":4.5006},
+	{"Date":"2002-10",	"KOREA":6.11,	"USA":3.94,	"JAPAN":1.095,	"CANADA":5.127273,	"FRANCE":4.552608,	"GERMANY":4.46,	"UK":4.616},
+	{"Date":"2002-11",	"KOREA":5.8,	"USA":4.05,	"JAPAN":0.979,	"CANADA":5.0895,	"FRANCE":4.534,	"GERMANY":4.48,	"UK":4.6378},
+	{"Date":"2002-12",	"KOREA":5.77,	"USA":4.03,	"JAPAN":0.975,	"CANADA":4.9675,	"FRANCE":4.383333,	"GERMANY":4.33,	"UK":4.5644},
+	{"Date":"2003-01",	"KOREA":5.43,	"USA":4.05,	"JAPAN":0.836,	"CANADA":4.961818,	"FRANCE":4.224091,	"GERMANY":4.18,	"UK":4.3899},
+	{"Date":"2003-02",	"KOREA":5.15,	"USA":3.9,	"JAPAN":0.828,	"CANADA":5.012,	"FRANCE":4.012,	"GERMANY":3.95,	"UK":4.2131},
+	{"Date":"2003-03",	"KOREA":5.2,	"USA":3.81,	"JAPAN":0.724,	"CANADA":4.997143,	"FRANCE":4.098095,	"GERMANY":4,	"UK":4.3243},
+	{"Date":"2003-04",	"KOREA":5.03,	"USA":3.96,	"JAPAN":0.663,	"CANADA":5.051905,	"FRANCE":4.220953,	"GERMANY":4.15,	"UK":4.4663},
+	{"Date":"2003-05",	"KOREA":4.68,	"USA":3.57,	"JAPAN":0.577,	"CANADA":4.671905,	"FRANCE":3.89381,	"GERMANY":3.82,	"UK":4.2197},
+	{"Date":"2003-06",	"KOREA":4.46,	"USA":3.33,	"JAPAN":0.529,	"CANADA":4.288095,	"FRANCE":3.693333,	"GERMANY":3.62,	"UK":4.1127},
+	{"Date":"2003-07",	"KOREA":4.95,	"USA":3.98,	"JAPAN":0.956,	"CANADA":4.683182,	"FRANCE":4.008261,	"GERMANY":3.97,	"UK":4.4078},
+	{"Date":"2003-08",	"KOREA":5.26,	"USA":4.45,	"JAPAN":1.406,	"CANADA":4.902,	"FRANCE":4.162857,	"GERMANY":4.13,	"UK":4.604},
+	{"Date":"2003-09",	"KOREA":4.77,	"USA":4.27,	"JAPAN":1.42,	"CANADA":4.757143,	"FRANCE":4.23,	"GERMANY":4.17,	"UK":4.7132},
+	{"Date":"2003-10",	"KOREA":4.87,	"USA":4.29,	"JAPAN":1.437,	"CANADA":4.815454,	"FRANCE":4.283043,	"GERMANY":4.22,	"UK":4.9071},
+	{"Date":"2003-11",	"KOREA":5.35,	"USA":4.3,	"JAPAN":1.333,	"CANADA":4.856842,	"FRANCE":4.4085,	"GERMANY":4.35,	"UK":5.065},
+	{"Date":"2003-12",	"KOREA":5.43,	"USA":4.27,	"JAPAN":1.33,	"CANADA":4.729048,	"FRANCE":4.335714,	"GERMANY":4.29,	"UK":4.896},
+	{"Date":"2004-01",	"KOREA":5.42,	"USA":4.15,	"JAPAN":1.33,	"CANADA":4.586191,	"FRANCE":4.198095,	"GERMANY":4.17,	"UK":4.7875},
+	{"Date":"2004-02",	"KOREA":5.43,	"USA":4.08,	"JAPAN":1.211,	"CANADA":4.4515,	"FRANCE":4.1435,	"GERMANY":4.11,	"UK":4.8056},
+	{"Date":"2004-03",	"KOREA":5.26,	"USA":3.83,	"JAPAN":1.418,	"CANADA":4.260435,	"FRANCE":3.976087,	"GERMANY":3.91,	"UK":4.7088},
+	{"Date":"2004-04",	"KOREA":5.25,	"USA":4.35,	"JAPAN":1.52,	"CANADA":4.612857,	"FRANCE":4.182381,	"GERMANY":4.1,	"UK":4.957},
+	{"Date":"2004-05",	"KOREA":5.16,	"USA":4.72,	"JAPAN":1.505,	"CANADA":4.773,	"FRANCE":4.344285,	"GERMANY":4.25,	"UK":5.1118},
+	{"Date":"2004-06",	"KOREA":5.01,	"USA":4.73,	"JAPAN":1.807,	"CANADA":4.932727,	"FRANCE":4.393091,	"GERMANY":4.31,	"UK":5.2},
+	{"Date":"2004-07",	"KOREA":4.88,	"USA":4.5,	"JAPAN":1.808,	"CANADA":4.75,	"FRANCE":4.272318,	"GERMANY":4.24,	"UK":5.1083},
+	{"Date":"2004-08",	"KOREA":4.33,	"USA":4.28,	"JAPAN":1.588,	"CANADA":4.630952,	"FRANCE":4.112227,	"GERMANY":4.08,	"UK":5.0071},
+	{"Date":"2004-09",	"KOREA":4.14,	"USA":4.13,	"JAPAN":1.393,	"CANADA":4.602381,	"FRANCE":4.092182,	"GERMANY":4.02,	"UK":4.9109},
+	{"Date":"2004-10",	"KOREA":4.05,	"USA":4.1,	"JAPAN":1.483,	"CANADA":4.55,	"FRANCE":3.975857,	"GERMANY":3.89,	"UK":4.7683},
+	{"Date":"2004-11",	"KOREA":3.96,	"USA":4.19,	"JAPAN":1.452,	"CANADA":4.484762,	"FRANCE":3.857227,	"GERMANY":3.78,	"UK":4.6903},
+	{"Date":"2004-12",	"KOREA":3.85,	"USA":4.23,	"JAPAN":1.397,	"CANADA":4.320476,	"FRANCE":3.642739,	"GERMANY":3.58,	"UK":4.5316},
+	{"Date":"2005-01",	"KOREA":4.42,	"USA":4.22,	"JAPAN":1.31,	"CANADA":4.2605,	"FRANCE":3.575381,	"GERMANY":3.56,	"UK":4.5419},
+	{"Date":"2005-02",	"KOREA":4.88,	"USA":4.17,	"JAPAN":1.419,	"CANADA":4.205,	"FRANCE":3.599,	"GERMANY":3.54,	"UK":4.5884},
+	{"Date":"2005-03",	"KOREA":4.77,	"USA":4.5,	"JAPAN":1.325,	"CANADA":4.358182,	"FRANCE":3.751381,	"GERMANY":3.7,	"UK":4.796},
+	{"Date":"2005-04",	"KOREA":4.69,	"USA":4.34,	"JAPAN":1.257,	"CANADA":4.19381,	"FRANCE":3.542762,	"GERMANY":3.48,	"UK":4.6218},
+	{"Date":"2005-05",	"KOREA":4.42,	"USA":4.14,	"JAPAN":1.238,	"CANADA":4.07381,	"FRANCE":3.376773,	"GERMANY":3.3,	"UK":4.4173},
+	{"Date":"2005-06",	"KOREA":4.46,	"USA":4,	"JAPAN":1.143,	"CANADA":3.828182,	"FRANCE":3.201682,	"GERMANY":3.13,	"UK":4.2847},
+	{"Date":"2005-07",	"KOREA":4.89,	"USA":4.18,	"JAPAN":1.295,	"CANADA":3.8995,	"FRANCE":3.27,	"GERMANY":3.2,	"UK":4.3011},
+	{"Date":"2005-08",	"KOREA":5.08,	"USA":4.26,	"JAPAN":1.365,	"CANADA":3.920455,	"FRANCE":3.298478,	"GERMANY":3.23,	"UK":4.3249},
+	{"Date":"2005-09",	"KOREA":5.15,	"USA":4.2,	"JAPAN":1.45,	"CANADA":3.868572,	"FRANCE":3.132046,	"GERMANY":3.07,	"UK":4.2109},
+	{"Date":"2005-10",	"KOREA":5.36,	"USA":4.46,	"JAPAN":1.513,	"CANADA":4.047,	"FRANCE":3.29,	"GERMANY":3.24,	"UK":4.3482},
+	{"Date":"2005-11",	"KOREA":5.68,	"USA":4.54,	"JAPAN":1.454,	"CANADA":4.107143,	"FRANCE":3.497205,	"GERMANY":3.45,	"UK":4.3129},
+	{"Date":"2005-12",	"KOREA":5.6,	"USA":4.47,	"JAPAN":1.488,	"CANADA":4.041,	"FRANCE":3.378476,	"GERMANY":3.34,	"UK":4.2186},
+	{"Date":"2006-01",	"KOREA":5.58,	"USA":4.42,	"JAPAN":1.547,	"CANADA":4.029047,	"FRANCE":3.344091,	"GERMANY":3.32,	"UK":4.0752},
+	{"Date":"2006-02",	"KOREA":5.28,	"USA":4.57,	"JAPAN":1.598,	"CANADA":4.17,	"FRANCE":3.50805,	"GERMANY":3.47,	"UK":4.1543},
+	{"Date":"2006-03",	"KOREA":5.42,	"USA":4.72,	"JAPAN":1.759,	"CANADA":4.199565,	"FRANCE":3.685391,	"GERMANY":3.64,	"UK":4.3177},
+	{"Date":"2006-04",	"KOREA":5.45,	"USA":4.99,	"JAPAN":1.956,	"CANADA":4.41579,	"FRANCE":3.9535,	"GERMANY":3.89,	"UK":4.5177},
+	{"Date":"2006-05",	"KOREA":5.2,	"USA":5.11,	"JAPAN":1.849,	"CANADA":4.399546,	"FRANCE":4.001364,	"GERMANY":3.96,	"UK":4.6488},
+	{"Date":"2006-06",	"KOREA":5.25,	"USA":5.11,	"JAPAN":1.901,	"CANADA":4.441364,	"FRANCE":4.006168,	"GERMANY":3.96,	"UK":4.6645},
+	{"Date":"2006-07",	"KOREA":5.16,	"USA":5.09,	"JAPAN":1.927,	"CANADA":4.444,	"FRANCE":4.025238,	"GERMANY":4.01,	"UK":4.656},
+	{"Date":"2006-08",	"KOREA":4.94,	"USA":4.88,	"JAPAN":1.668,	"CANADA":4.252728,	"FRANCE":3.897478,	"GERMANY":3.88,	"UK":4.6535},
+	{"Date":"2006-09",	"KOREA":4.89,	"USA":4.72,	"JAPAN":1.628,	"CANADA":4.068572,	"FRANCE":3.769381,	"GERMANY":3.75,	"UK":4.5522},
+	{"Date":"2006-10",	"KOREA":4.79,	"USA":4.73,	"JAPAN":1.718,	"CANADA":4.106667,	"FRANCE":3.807455,	"GERMANY":3.79,	"UK":4.6155},
+	{"Date":"2006-11",	"KOREA":4.91,	"USA":4.6,	"JAPAN":1.69,	"CANADA":3.999524,	"FRANCE":3.740991,	"GERMANY":3.71,	"UK":4.5452},
+	{"Date":"2006-12",	"KOREA":4.95,	"USA":4.56,	"JAPAN":1.645,	"CANADA":3.978235,	"FRANCE":3.809684,	"GERMANY":3.77,	"UK":4.6195},
+	{"Date":"2007-01",	"KOREA":5.04,	"USA":4.76,	"JAPAN":1.705,	"CANADA":4.121818,	"FRANCE":4.069409,	"GERMANY":4.02,	"UK":4.8694},
+	{"Date":"2007-02",	"KOREA":5.01,	"USA":4.72,	"JAPAN":1.64,	"CANADA":4.1175,	"FRANCE":4.09597,	"GERMANY":4.05,	"UK":4.896},
+	{"Date":"2007-03",	"KOREA":4.94,	"USA":4.56,	"JAPAN":1.629,	"CANADA":4.045909,	"FRANCE":3.996773,	"GERMANY":3.94,	"UK":4.8194},
+	{"Date":"2007-04",	"KOREA":5.07,	"USA":4.69,	"JAPAN":1.653,	"CANADA":4.1715,	"FRANCE":4.207942,	"GERMANY":4.15,	"UK":5.0439},
+	{"Date":"2007-05",	"KOREA":5.22,	"USA":4.75,	"JAPAN":1.733,	"CANADA":4.292727,	"FRANCE":4.336845,	"GERMANY":4.28,	"UK":5.1458},
+	{"Date":"2007-06",	"KOREA":5.48,	"USA":5.1,	"JAPAN":1.903,	"CANADA":4.612857,	"FRANCE":4.618952,	"GERMANY":4.56,	"UK":5.4321},
+	{"Date":"2007-07",	"KOREA":5.52,	"USA":5,	"JAPAN":1.809,	"CANADA":4.59, "FRANCE":4.582909,	"GERMANY":4.5,	"UK":5.4084},
+	{"Date":"2007-08",	"KOREA":5.42,	"USA":4.67,	"JAPAN":1.577,	"CANADA":4.428637,	"FRANCE":4.388883,	"GERMANY":4.3,	"UK":5.1499},
+	{"Date":"2007-09",	"KOREA":5.52,	"USA":4.52,	"JAPAN":1.698,	"CANADA":4.356316,	"FRANCE":4.35666,	"GERMANY":4.22,	"UK":4.9928},
+	{"Date":"2007-10",	"KOREA":5.56,	"USA":4.53,	"JAPAN":1.616,	"CANADA":4.362727,	"FRANCE":4.402217,	"GERMANY":4.28,	"UK":4.9576},
+	{"Date":"2007-11",	"KOREA":5.61,	"USA":4.15,	"JAPAN":1.497,	"CANADA":4.121428,	"FRANCE":4.227727,	"GERMANY":4.09,	"UK":4.7263},
+	{"Date":"2007-12",	"KOREA":5.82,	"USA":4.1,	"JAPAN":1.526,	"CANADA":4.01579,	"FRANCE":4.354105,	"GERMANY":4.21,	"UK":4.6937},
+	{"Date":"2008-01",	"KOREA":5.56,	"USA":3.74,	"JAPAN":1.429,	"CANADA":3.848182,	"FRANCE":4.149954,	"GERMANY":4.03,	"UK":4.4925},
+	{"Date":"2008-02",	"KOREA":5.28,	"USA":3.74,	"JAPAN":1.429,	"CANADA":3.828,	"FRANCE":4.07919,	"GERMANY":3.95,	"UK":4.6234},
+	{"Date":"2008-03",	"KOREA":5.36,	"USA":3.51,	"JAPAN":1.245,	"CANADA":3.509,	"FRANCE":4.0194,	"GERMANY":3.8,	"UK":4.445},
+	{"Date":"2008-04",	"KOREA":5.17,	"USA":3.68,	"JAPAN":1.6,	"CANADA":3.628636,	"FRANCE":4.269909,	"GERMANY":4.04,	"UK":4.6432},
+	{"Date":"2008-05",	"KOREA":5.5,	"USA":3.88,	"JAPAN":1.778,	"CANADA":3.621428,	"FRANCE":4.405857,	"GERMANY":4.2,	"UK":4.8683},
+	{"Date":"2008-06",	"KOREA":5.89,	"USA":4.1,	"JAPAN":1.601,	"CANADA":3.76,	"FRANCE":4.733714,	"GERMANY":4.52,	"UK":5.2103},
+	{"Date":"2008-07",	"KOREA":6.03,	"USA":4.01,	"JAPAN":1.537,	"CANADA":3.750454,	"FRANCE":4.690291,	"GERMANY":4.49,	"UK":5.0494},
+	{"Date":"2008-08",	"KOREA":5.91,	"USA":3.89,	"JAPAN":1.431,	"CANADA":3.5915,	"FRANCE":4.40181,	"GERMANY":4.2,	"UK":4.7267},
+	{"Date":"2008-09",	"KOREA":5.99,	"USA":3.69,	"JAPAN":1.481,	"CANADA":3.540952,	"FRANCE":4.361864,	"GERMANY":4.09,	"UK":4.5701},
+	{"Date":"2008-10",	"KOREA":5.53,	"USA":3.81,	"JAPAN":1.486,	"CANADA":3.668182,	"FRANCE":4.183565,	"GERMANY":3.88,	"UK":4.5789},
+	{"Date":"2008-11",	"KOREA":5.73,	"USA":3.53,	"JAPAN":1.377,	"CANADA":3.571579,	"FRANCE":3.9767,	"GERMANY":3.56,	"UK":4.2571},
+	{"Date":"2008-12",	"KOREA":4.87,	"USA":2.42,	"JAPAN":1.214,	"CANADA":2.945714,	"FRANCE":3.5395,	"GERMANY":3.05,	"UK":3.6238},
+	{"Date":"2009-01",	"KOREA":4.42,	"USA":2.52,	"JAPAN":1.272,	"CANADA":2.812381,	"FRANCE":3.601609,	"GERMANY":3.07,	"UK":3.6699},
+	{"Date":"2009-02",	"KOREA":5.24,	"USA":2.87,	"JAPAN":1.277,	"CANADA":2.960526,	"FRANCE":3.678135,	"GERMANY":3.13,	"UK":3.6899},
+	{"Date":"2009-03",	"KOREA":4.97,	"USA":2.82,	"JAPAN":1.323,	"CANADA":2.885909,	"FRANCE":3.647409,	"GERMANY":3.02,	"UK":3.2497},
+	{"Date":"2009-04",	"KOREA":4.9,	"USA":2.93,	"JAPAN":1.402,	"CANADA":2.954286,	"FRANCE":3.659143,	"GERMANY":3.13,	"UK":3.4072},
+	{"Date":"2009-05",	"KOREA":5.05,	"USA":3.29,	"JAPAN":1.481,	"CANADA":3.202,	"FRANCE":3.80445,	"GERMANY":3.37,	"UK":3.6206},
+	{"Date":"2009-06",	"KOREA":5.26,	"USA":3.72,	"JAPAN":1.363,	"CANADA":3.459091,	"FRANCE":3.899664,	"GERMANY":3.47,	"UK":3.7221},
+	{"Date":"2009-07",	"KOREA":5.18,	"USA":3.56,	"JAPAN":1.386,	"CANADA":3.429091,	"FRANCE":3.732861,	"GERMANY":3.34,	"UK":3.8238},
+	{"Date":"2009-08",	"KOREA":5.44,	"USA":3.59,	"JAPAN":1.314,	"CANADA":3.4645,	"FRANCE":3.587429,	"GERMANY":3.31,	"UK":3.7142},
+	{"Date":"2009-09",	"KOREA":5.38,	"USA":3.4,	"JAPAN":1.258,	"CANADA":3.365714,	"FRANCE":3.586868,	"GERMANY":3.26,	"UK":3.6566},
+	{"Date":"2009-10",	"KOREA":5.45,	"USA":3.39,	"JAPAN":1.404,	"CANADA":3.425238,	"FRANCE":3.557895,	"GERMANY":3.21,	"UK":3.5699},
+	{"Date":"2009-11",	"KOREA":5.39,	"USA":3.4,	"JAPAN":1.253,	"CANADA":3.3925,	"FRANCE":3.555157,	"GERMANY":3.22,	"UK":3.7592},
+	{"Date":"2009-12",	"KOREA":5.31,	"USA":3.59,	"JAPAN":1.272,	"CANADA":3.41619,	"FRANCE":3.475064,	"GERMANY":3.14,	"UK":3.8871},
+	{"Date":"2010-01",	"KOREA":5.35,	"USA":3.73,	"JAPAN":1.308,	"CANADA":3.485,	"FRANCE":3.5157,	"GERMANY":3.26,	"UK":4.0025},
+	{"Date":"2010-02",	"KOREA":5.3,	"USA":3.69,	"JAPAN":1.295, "CANADA":3.423684,	"FRANCE":3.49805,	"GERMANY":3.17,	"UK":4.0624},
+	{"Date":"2010-03",	"KOREA":4.92,	"USA":3.73,	"JAPAN":1.361,	"CANADA":3.490435,	"FRANCE":3.437391,	"GERMANY":3.1,	"UK":4.0915},
+	{"Date":"2010-04",	"KOREA":4.91,	"USA":3.85,	"JAPAN":1.286,	"CANADA":3.67,	"FRANCE":3.401619,	"GERMANY":3.06,	"UK":4.1007},
+	{"Date":"2010-05",	"KOREA":4.95,	"USA":3.42,	"JAPAN":1.257,	"CANADA":3.4455,	"FRANCE":3.075667,	"GERMANY":2.73,	"UK":3.7772},
+	{"Date":"2010-06",	"KOREA":4.93,	"USA":3.2,	"JAPAN":1.08,	"CANADA":3.297727,	"FRANCE":3.073214,	"GERMANY":2.54,	"UK":3.6007},
+	{"Date":"2010-07",	"KOREA":4.91,	"USA":3.01,	"JAPAN":1.075,	"CANADA":3.185238,	"FRANCE":2.988027,	"GERMANY":2.62,	"UK":3.5087},
+	{"Date":"2010-08",	"KOREA":4.68,	"USA":2.7,	"JAPAN":1.023,	"CANADA":2.949524,	"FRANCE":2.678455,	"GERMANY":2.35,	"UK":3.233},
+	{"Date":"2010-09",	"KOREA":4.28,	"USA":2.65,	"JAPAN":0.898,	"CANADA":2.881428,	"FRANCE":2.678318,	"GERMANY":2.3,	"UK":3.1271},
+	{"Date":"2010-10",	"KOREA":4.11,	"USA":2.54,	"JAPAN":0.903,	"CANADA":2.766,	"FRANCE":2.718657,	"GERMANY":2.35,	"UK":3.0685},
+	{"Date":"2010-11",	"KOREA":4.48,	"USA":2.76,	"JAPAN":1.161,	"CANADA":3.022381,	"FRANCE":2.997418,	"GERMANY":2.53,	"UK":3.311},
+	{"Date":"2010-12",	"KOREA":4.46,	"USA":3.29,	"JAPAN":1.133,	"CANADA":3.204762,	"FRANCE":3.341565,	"GERMANY":2.91,	"UK":3.6098},
+	{"Date":"2011-01",	"KOREA":4.69,	"USA":3.39,	"JAPAN":1.213,	"CANADA":3.253,	"FRANCE":3.442857,	"GERMANY":3.02,	"UK":3.7273},
+	{"Date":"2011-02",	"KOREA":4.76,	"USA":3.58,	"JAPAN":1.241,	"CANADA":3.417368,	"FRANCE":3.60325,	"GERMANY":3.2,	"UK":3.8799},
+	{"Date":"2011-03",	"KOREA":4.51,	"USA":3.41,	"JAPAN":1.214,	"CANADA":3.266522,	"FRANCE":3.609609,	"GERMANY":3.21,	"UK":3.7386},
+	{"Date":"2011-04",	"KOREA":4.48,	"USA":3.46,	"JAPAN":1.215,	"CANADA":3.328,	"FRANCE":3.689995,	"GERMANY":3.34,	"UK":3.7619},
+	{"Date":"2011-05",	"KOREA":4.34,	"USA":3.17,	"JAPAN":1.118,	"CANADA":3.151905,	"FRANCE":3.489245,	"GERMANY":3.06,	"UK":3.5053},
+	{"Date":"2011-06",	"KOREA":4.24,	"USA":3,	"JAPAN":1.084,	"CANADA":2.987727,	"FRANCE":3.43055,	"GERMANY":2.89,	"UK":3.4144},
+	{"Date":"2011-07",	"KOREA":4.23,	"USA":3,	"JAPAN":1.075,	"CANADA":2.9385,	"FRANCE":3.399367,	"GERMANY":2.74,	"UK":3.3137},
+	{"Date":"2011-08",	"KOREA":3.96,	"USA":2.3,	"JAPAN":1.023,	"CANADA":2.446364,	"FRANCE":2.984461,	"GERMANY":2.21,	"UK":2.7833},
+	{"Date":"2011-09",	"KOREA":3.75,	"USA":1.98,	"JAPAN":0.975,	"CANADA":2.196667,	"FRANCE":2.644395,	"GERMANY":1.83,	"UK":2.504},
+	{"Date":"2011-10",	"KOREA":3.86,	"USA":2.15,	"JAPAN":1.038,	"CANADA":2.296,	"FRANCE":2.992524,	"GERMANY":2,	"UK":2.529},
+	{"Date":"2011-11",	"KOREA":3.8,	"USA":2.01,	"JAPAN":1.062,	"CANADA":2.122381,	"FRANCE":3.407546,	"GERMANY":1.87,	"UK":2.2917},
+	{"Date":"2011-12",	"KOREA":3.81,	"USA":1.98,	"JAPAN":0.971,	"CANADA":1.992,	"FRANCE":3.1589,	"GERMANY":1.93,	"UK":2.1828},
+	{"Date":"2012-01",	"KOREA":3.8,	"USA":1.97,	"JAPAN":0.959,	"CANADA":1.98,	"FRANCE":3.179682,	"GERMANY":1.82,	"UK":2.1104},
+	{"Date":"2012-02",	"KOREA":3.81,	"USA":1.97,	"JAPAN":0.962,	"CANADA":2.021,	"FRANCE":3.015762,	"GERMANY":1.85,	"UK":2.2191},
+	{"Date":"2012-03",	"KOREA":3.95,	"USA":2.17,	"JAPAN":0.966,	"CANADA":2.106818,	"FRANCE":2.954182,	"GERMANY":1.83,	"UK":2.323},
+	{"Date":"2012-04",	"KOREA":3.9,	"USA":2.05,	"JAPAN":0.914,	"CANADA":2.0645,	"FRANCE":2.9935,	"GERMANY":1.62,	"UK":2.2117},
+	{"Date":"2012-05",	"KOREA":3.75,	"USA":1.8,	"JAPAN":0.846,	"CANADA":1.922273,	"FRANCE":2.751823,	"GERMANY":1.34,	"UK":1.9416},
+	{"Date":"2012-06",	"KOREA":3.63,	"USA":1.62,	"JAPAN":0.789,	"CANADA":1.747619,	"FRANCE":2.569429,	"GERMANY":1.3,	"UK":1.7698},
+	{"Date":"2012-07",	"KOREA":3.3,	"USA":1.53,	"JAPAN":0.78,	"CANADA":1.656191,	"FRANCE":2.275191,	"GERMANY":1.24,	"UK":1.6523},
+	{"Date":"2012-08",	"KOREA":3.09,	"USA":1.68,	"JAPAN":0.8,	"CANADA":1.826818,	"FRANCE":2.119435,	"GERMANY":1.34,	"UK":1.6735},
+	{"Date":"2012-09",	"KOREA":3.05,	"USA":1.72,	"JAPAN":0.757,	"CANADA":1.837895,	"FRANCE":2.2372,	"GERMANY":1.49,	"UK":1.7222},
+	{"Date":"2012-10",	"KOREA":2.97,	"USA":1.75,	"JAPAN":0.76,	"CANADA":1.811818,	"FRANCE":2.1857,	"GERMANY":1.47,	"UK":1.7721},
+	{"Date":"2012-11",	"KOREA":2.99,	"USA":1.65,	"JAPAN":0.713,	"CANADA":1.738095,	"FRANCE":2.139682,	"GERMANY":1.34,	"UK":1.7741},
+	{"Date":"2012-12",	"KOREA":3.13,	"USA":1.72,	"JAPAN":0.781,	"CANADA":1.767895,	"FRANCE":2.010342,	"GERMANY":1.3,	"UK":1.8467},
+	{"Date":"2013-01",	"KOREA":3.05,	"USA":1.91,	"JAPAN":0.775,	"CANADA":1.931364,	"FRANCE":2.165195,	"GERMANY":1.51,	"UK":2.0795},
+	{"Date":"2013-02",	"KOREA":3.04,	"USA":1.98,	"JAPAN":0.669,	"CANADA":1.967895,	"FRANCE":2.244585,	"GERMANY":1.54,	"UK":2.1781},
+	{"Date":"2013-03",	"KOREA":2.91,	"USA":1.96,	"JAPAN":0.492,	"CANADA":1.8515,	"FRANCE":2.070985,	"GERMANY":1.35,	"UK":1.9768},
+	{"Date":"2013-04",	"KOREA":2.84,	"USA":1.76,	"JAPAN":0.589,	"CANADA":1.748636,	"FRANCE":1.802819,	"GERMANY":1.2,	"UK":1.7824},
+	{"Date":"2013-05",	"KOREA":2.9,	"USA":1.93,	"JAPAN":0.879,	"CANADA":1.901818,	"FRANCE":1.872818,	"GERMANY":1.29,	"UK":1.9462},
+	{"Date":"2013-06",	"KOREA":3.31,	"USA":2.3,	"JAPAN":0.822,	"CANADA":2.2445,	"FRANCE":2.21065,	"GERMANY":1.53,	"UK":2.3063},
+	{"Date":"2013-07",	"KOREA":3.47,	"USA":2.58,	"JAPAN":0.79,	"CANADA":2.438182,	"FRANCE":2.246761,	"GERMANY":1.56,	"UK":2.471},
+	{"Date":"2013-08",	"KOREA":3.61,	"USA":2.74,	"JAPAN":0.708,	"CANADA":2.611428,	"FRANCE":2.362364,	"GERMANY":1.73,	"UK":2.7088},
+	{"Date":"2013-09",	"KOREA":3.53,	"USA":2.81,	"JAPAN":0.669,	"CANADA":2.698,	"FRANCE":2.48581,	"GERMANY":1.89,	"UK":2.8443},
+	{"Date":"2013-10",	"KOREA":3.44,	"USA":2.62,	"JAPAN":0.59,	"CANADA":2.518182,	"FRANCE":2.394348,	"GERMANY":1.76,	"UK":2.6784},
+	{"Date":"2013-11",	"KOREA":3.584,	"USA":2.72,	"JAPAN":0.605,	"CANADA":2.5585,	"FRANCE":2.265,	"GERMANY":1.68,	"UK":2.7598},
+	{"Date":"2013-12",	"KOREA":3.653,	"USA":2.9,	"JAPAN":0.688,	"CANADA":2.6735,	"FRANCE":2.33075,	"GERMANY":1.8,	"UK":2.9458},
+	{"Date":"2014-01",	"KOREA":3.647,	"USA":2.86,	"JAPAN":0.614,	"CANADA":2.534091,	"FRANCE":2.384136,	"GERMANY":1.76,	"UK":2.91},
+	{"Date":"2014-02",	"KOREA":3.522,	"USA":2.71,	"JAPAN":0.586,	"CANADA":2.42,	"FRANCE":2.25275,	"GERMANY":1.56,	"UK":2.8147},
+	{"Date":"2014-03",	"KOREA":3.543,	"USA":2.72,	"JAPAN":0.605,	"CANADA":2.454286,	"FRANCE":2.151857,	"GERMANY":1.51,	"UK":2.7837},
+	{"Date":"2014-04",	"KOREA":3.54,	"USA":2.71,	"JAPAN":0.61,	"CANADA":2.444762,	"FRANCE":2.025714,	"GERMANY":1.46,	"UK":2.7417},
+	{"Date":"2014-05",	"KOREA":3.402,	"USA":2.56,	"JAPAN":0.566,	"CANADA":2.315238,	"FRANCE":1.8384,	"GERMANY":1.33,	"UK":2.6989},
+	{"Date":"2014-06",	"KOREA":3.286,	"USA":2.6,	"JAPAN":0.536,	"CANADA":2.298571,	"FRANCE":1.711857,	"GERMANY":1.26,	"UK":2.7842},
+	{"Date":"2014-07",	"KOREA":3.056,	"USA":2.54,	"JAPAN":0.527,	"CANADA":2.194546,	"FRANCE":1.559,	"GERMANY":1.11,	"UK":2.7343},
+	{"Date":"2014-08",	"KOREA":3.086,	"USA":2.42,	"JAPAN":0.488,	"CANADA":2.062,	"FRANCE":1.406381,	"GERMANY":0.95,	"UK":2.5347},
+	{"Date":"2014-09",	"KOREA":3.012,	"USA":2.53,	"JAPAN":0.497,	"CANADA":2.180952,	"FRANCE":1.350818,	"GERMANY":0.92,	"UK":2.4919},
+	{"Date":"2014-10",	"KOREA":2.769,	"USA":2.3,	"JAPAN":0.465,	"CANADA":2.010455,	"FRANCE":1.259783,	"GERMANY":0.79,	"UK":2.2469},
+	{"Date":"2014-11",	"KOREA":2.692,	"USA":2.33,	"JAPAN":0.415,	"CANADA":2.003158,	"FRANCE":1.1358,	"GERMANY":0.72,	"UK":2.1593},
+	{"Date":"2014-12",	"KOREA":2.681,	"USA":2.21,	"JAPAN":0.32,	"CANADA":1.851905,	"FRANCE":0.9207727,	"GERMANY":0.59,	"UK":1.9287},
+	{"Date":"2015-01",	"KOREA":2.415,	"USA":1.88,	"JAPAN":0.28,	"CANADA":1.525714,	"FRANCE":0.6740952,	"GERMANY":0.39,	"UK":1.589},
+	{"Date":"2015-02",	"KOREA":2.346,	"USA":1.98,	"JAPAN":0.335,	"CANADA":1.379474,	"FRANCE":0.59685,	"GERMANY":0.3,	"UK":1.7365},
+	{"Date":"2015-03",	"KOREA":2.276,	"USA":2.04,	"JAPAN":0.395,	"CANADA":1.421364,	"FRANCE":0.5092857,	"GERMANY":0.23,	"UK":1.7941},
+	{"Date":"2015-04",	"KOREA":2.177,	"US" :1.94,	"JAPAN":0.325,	"CANADA":1.410952,	"FRANCE":0.435,	"GERMANY":0.12,	"UK":1.755},
+	{"Date":"2015-05",	"KOREA":2.49,	"USA":2.2,	"JAPAN":0.39,	"CANADA":1.744,	"FRANCE":0.88885,	"GERMANY":0.56,	"UK":2.0243},
+	{"Date":"2015-06",	"KOREA":2.468,	"USA":2.36,	"JAPAN":0.45,	"CANADA":1.78,	"FRANCE":1.195524,	"GERMANY":0.79,	"UK":2.1696},
+	{"Date":"2015-07",	"KOREA":2.45,	"USA":2.32,	"JAPAN":0.405,	"CANADA":1.569546,	"FRANCE":1.113609,	"GERMANY":0.71,	"UK":2.1353},
+	{"Date":"2015-08",	"KOREA":2.308,	"USA":2.17,	"JAPAN":0.375,	"CANADA":1.3915,	"FRANCE":1.005053,	"GERMANY":0.61,	"UK":1.9799},
+	{"Date":"2015-09",	"KOREA":2.216,	"USA":2.17,	"JAPAN":0.345,	"CANADA":1.481429,	"FRANCE":1.004636,	"GERMANY":0.65,	"UK":1.8814},
+	{"Date":"2015-10",	"KOREA":2.088,	"USA":2.07,	"JAPAN":0.295,	"CANADA":1.463333,	"FRANCE":0.8652273,	"GERMANY":0.52,	"UK":1.846},
+	{"Date":"2015-11",	"KOREA":2.254,	"USA":2.26,	"JAPAN":0.3,	"CANADA":1.6335,	"FRANCE":0.8831428,	"GERMANY":0.52,	"UK":1.9779},
+	{"Date":"2015-12",	"KOREA":2.181,	"USA":2.24,	"JAPAN":0.265,	"CANADA":1.459524,	"FRANCE":0.9312,	"GERMANY":0.55,	"UK":1.9234},
+	{"Date":"2016-01",	"KOREA":2.025,	"USA":2.09,	"JAPAN":0.095,	"CANADA":1.258,	"FRANCE":0.84285,	"GERMANY":0.43,	"UK":1.7833},
+	{"Date":"2016-02",	"KOREA":1.826,	"USA":1.78,	"JAPAN":-0.065,	"CANADA":1.1245,	"FRANCE":0.5922857,	"GERMANY":0.17,	"UK":1.5032},
+	{"Date":"2016-03",	"KOREA":1.854,	"USA":1.89,	"JAPAN":-0.05,	"CANADA":1.268182,	"FRANCE":0.5093333,	"GERMANY":0.17,	"UK":1.5434},
+	{"Date":"2016-04",	"KOREA":1.81,	"USA":1.81,	"JAPAN":-0.085,	"CANADA":1.33619,	"FRANCE":0.5142381,	"GERMANY":0.13,	"UK":1.5688},
+	{"Date":"2016-05",	"KOREA":1.787,	"USA":1.81,	"JAPAN":-0.12,	"CANADA":1.35,	"FRANCE":0.5094545,	"GERMANY":0.13,	"UK":1.5366},
+	{"Date":"2016-06",	"KOREA":1.617,	"USA":1.64,	"JAPAN":-0.24,	"CANADA":1.168182,	"FRANCE":0.3899545,	"GERMANY":-0.02,	"UK":1.3105}];
+
+// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+//
+// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+// 
+// 아래 내용은 
+// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+rMateChartH5.calls("chart1", {
+	"setLayout" : layoutStr,
+	"setData" : chartData
+});
+
+/**
+ * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+ * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+ *
+ * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+ * - simple
+ * - cyber
+ * - modern
+ * - lovely
+ * - pastel
+ * -------------------------------------------------
+ *
+ * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+ */
+rMateChartH5.registerTheme(rMateChartH5.themes);
+
+/**
+ * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+ * 접근하는 차트 객체의 테마를 변경합니다.
+ * 파라메터로 넘어오는 값
+ * - simple
+ * - cyber
+ * - modern
+ * - lovely
+ * - pastel
+ * - default
+ *
+ * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+ */
+function rMateChartH5ChangeTheme(theme){
+	document.getElementById("chart1").setTheme(theme);
+}
+
+// -----------------------차트 설정 끝 -----------------------
+
+</script>
+<!-- 샘플 작동을 위한 css와 js -->
+<script type="text/javascript" src="./Web/JS/common.js"></script>
+<script type="text/javascript" src="./Web/JS/sample_util.js"></script>
+<link rel="stylesheet" type="text/css" href="./Web/sample.css"/>
+
+<!-- SyntaxHighlighter -->
+<script type="text/javascript" src="./Web/syntax/shCore.js"></script>
+<script type="text/javascript" src="./Web/syntax/shBrushJScript.js"></script>
+<link type="text/css" rel="stylesheet" href="./Web/syntax/shCoreDefault.css"/>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<div class="headerTitle">History Line</div>
+			<!--<div class="themeButtons">
+				<div class="button theme_default" onclick="rMateChartH5ChangeTheme('default')">Default</div>
+				<div class="button theme_pastel" onclick="rMateChartH5ChangeTheme('pastel')"></div>
+				<div class="button theme_simple" onclick="rMateChartH5ChangeTheme('simple')"></div>
+			</div>-->
+		</div>
+		<div id="content">
+			<!-- 차트가 삽입될 DIV -->
+			<div id="chartHolder"></div>
+		</div>
+		<div id="updater">
+			<div>Layout과 Data를 수정 후 적용 할 수 있습니다.</div>
+			<div id="updaterTab">
+				<ul id="updaterTabUl">
+					<li id="updaterTabUlSource" class="active_tab">Source</li>
+					<li id="updaterTabUlLayout" class="non_active_li">Layout</li>
+					<li id="updaterTabUlData" class="non_active_li">Data</li>
+					<li id="updaterTabUlBlank">
+						<span id="btn_update">수정적용</span>
+					</li>
+				</ul>
+			</div>
+			<div id="updaterTarea">
+				<pre id="updaterTareaSource" class="brush:js toolbar:false" name="updaterTareaSource"></pre>
+				<textarea id="updaterTareaLayout" class="updaterTextarea" spellcheck="false"></textarea>
+				<textarea id="updaterTareaData" class="updaterTextarea" spellcheck="false"></textarea>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
