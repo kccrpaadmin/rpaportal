@@ -164,7 +164,19 @@
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
     }  
-   	
+	
+  // 그리드 클릭 함수
+	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
+		if (Row == 0) {
+			return false;
+		}
+		
+		if (mySheet.ColSaveName(Col) == "requestNm") {
+			var requestNo = mySheet.GetCellValue(Row, "requestNo");
+			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalBot/MoneySendRunResult.do" + "?pMenuId=" + menuId + "&pRequestNo=" + requestNo);
+   		}
+	}
+	
  	// 즉시실행 전, 확인 함수
 	function runBotConfirm(pOption) {
 		if (pOption.sdBtnKey == "o") {

@@ -85,4 +85,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/EseroTargetDate";
 	}
+	
+	@GetMapping("/MoneySendRunResult.do")
+	public String MoneySendRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/MoneySendRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/MoneySendRunResult";
+	}
 }

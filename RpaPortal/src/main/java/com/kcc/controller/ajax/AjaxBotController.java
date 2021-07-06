@@ -44,10 +44,12 @@ import com.kcc.biz.model.CrawlScheduleVO;
 import com.kcc.biz.model.FileUploadVO;
 import com.kcc.biz.model.OcrRequestVO;
 import com.kcc.biz.model.StatusVO;
+import com.kcc.biz.model.BotMoneySendVO;
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
 import com.kcc.biz.service.IBotScheduleService;
 import com.kcc.biz.service.ICrawlScheduleService;
+import com.kcc.biz.service.IBotMoneySendService;
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
 import com.kcc.util.service.ICrawlUtilService;
@@ -72,6 +74,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botEseroService")
 	private IBotEseroService botEseroService;
+
+	@Resource(name="botMoneySendService")
+	private IBotMoneySendService botMoneySendService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -173,7 +178,23 @@ public class AjaxBotController extends BaseController {
 	}
 	
 	// 송금확인증 발급업무
-	
+	@PostMapping("/ListMoneySend.do")
+	public @ResponseBody Map<String, Object> ListMoneySend(@RequestBody BotMoneySendVO vo) {
+		logger.info("/AjaxBot/ListMoneySend.do");
+		
+		List<BotMoneySendVO> outListBotMoneySendVO = new ArrayList<BotMoneySendVO>();
+		try {
+			outListBotMoneySendVO = botMoneySendService.listBotMoneySend(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotMoneySendVO);
+		
+		return map;
+	}
 	
 	
 	// (세금)계산서, 전표 데이터 대사업무

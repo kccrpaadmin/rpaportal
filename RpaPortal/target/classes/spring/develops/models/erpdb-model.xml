@@ -53,7 +53,7 @@
 		<!-- BOT 요청 -->
 		<typeAlias alias="botRequestVO" type="com.kcc.biz.model.BotRequestVO" />
 		<!-- BOT 송금확인증 발급업무 -->
-		
+		<typeAlias alias="botMoneySendVO" type="com.kcc.biz.model.BotMoneySendVO" />
 		<!-- BOT (세금)계산서, 전표 데이터 대사업무 -->
 		<typeAlias alias="botEseroVO" type="com.kcc.biz.model.BotEseroVO" />
 		<!-- BOT 매입세안분 검토 요청업무 -->
