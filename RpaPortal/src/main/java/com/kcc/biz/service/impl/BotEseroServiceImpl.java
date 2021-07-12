@@ -25,4 +25,12 @@ public class BotEseroServiceImpl implements IBotEseroService {
 	public List<BotEseroVO> listBotEseroTargetDate(BotEseroVO vo) throws Exception {
 		return botEseroRepository.listBotEseroTargetDate(vo);
 	}
+	
+	public List<BotEseroVO> listBotEseroInvoiceList(BotEseroVO vo) throws Exception {
+		return botEseroRepository.listBotEseroInvoiceList(vo);
+	}
+	
+	public List<BotEseroVO> listBotEseroSlipList(BotEseroVO vo) throws Exception {
+		return botEseroRepository.listBotEseroSlipList(vo);
+	}
 }

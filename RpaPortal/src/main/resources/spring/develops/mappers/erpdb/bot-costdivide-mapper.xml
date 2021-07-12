@@ -17,4 +17,14 @@
 		]]>
 	</insert>
 	
+	<select id="listBotCostDivideTargetDate" statementType="CALLABLE" parameterType="botCostDivideVO" resultType="botCostDivideVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotCostDivideTargetDate (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
 </mapper>

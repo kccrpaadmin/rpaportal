@@ -45,11 +45,21 @@ import com.kcc.biz.model.FileUploadVO;
 import com.kcc.biz.model.OcrRequestVO;
 import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.BotMoneySendVO;
+import com.kcc.biz.model.BotCostDivideVO;
+import com.kcc.biz.model.BotKisconConstVO;
+import com.kcc.biz.model.BotEtcTaxVO;
+import com.kcc.biz.model.BotVendorVO;
+
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
 import com.kcc.biz.service.IBotScheduleService;
 import com.kcc.biz.service.ICrawlScheduleService;
 import com.kcc.biz.service.IBotMoneySendService;
+import com.kcc.biz.service.IBotCostDivideService;
+import com.kcc.biz.service.IBotKisconConstService;
+import com.kcc.biz.service.IBotEtcTaxService;
+import com.kcc.biz.service.IBotVendorService;
+
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
 import com.kcc.util.service.ICrawlUtilService;
@@ -77,6 +87,18 @@ public class AjaxBotController extends BaseController {
 
 	@Resource(name="botMoneySendService")
 	private IBotMoneySendService botMoneySendService;
+	
+	@Resource(name="botCostDivideService")
+	private IBotCostDivideService botCostDivideService;
+	
+	@Resource(name="botKisconConstService")
+	private IBotKisconConstService botKisconConstService;
+	
+	@Resource(name="botEtcTaxService")
+	private IBotEtcTaxService botEtcTaxService;
+	
+	@Resource(name="botVendorService")
+	private IBotVendorService botVendorService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -178,27 +200,26 @@ public class AjaxBotController extends BaseController {
 	}
 	
 	// 송금확인증 발급업무
-	@PostMapping("/ListMoneySend.do")
-	public @ResponseBody Map<String, Object> ListMoneySend(@RequestBody BotMoneySendVO vo) {
-		logger.info("/AjaxBot/ListMoneySend.do");
+	@PostMapping("/ListMoneySendList.do")
+	public @ResponseBody Map<String, Object> ListMoneySendList(@RequestBody BotMoneySendVO vo) {
+		logger.info("/AjaxBot/ListMoneySendList.do");
 		
-		List<BotMoneySendVO> outListBotMoneySendVO = new ArrayList<BotMoneySendVO>();
+		List<BotMoneySendVO> outListBotMoneySendListVO = new ArrayList<BotMoneySendVO>();
 		try {
-			outListBotMoneySendVO = botMoneySendService.listBotMoneySend(vo);
+			outListBotMoneySendListVO = botMoneySendService.listBotMoneySendList(vo);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		Map map = new HashMap<String, Object>();
-		map.put("data", outListBotMoneySendVO);
+		map.put("data", outListBotMoneySendListVO);
 		
 		return map;
 	}
 	
 	
-	// (세금)계산서, 전표 데이터 대사업무
-	
+	// (세금)계산서, 전표 데이터 대사업무	
 	@PostMapping("/SaveEseroTargetDate.do")
 	public @ResponseBody StatusVO SaveEseroTargetDate(@RequestBody BotEseroVO vo) {
 		logger.info("/AjaxBot/SaveEseroTargetDate.do");
@@ -236,8 +257,81 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
-	// 기타영수증 전표 세금코드 오라클 입력업무
+	@PostMapping("/ListEseroInvoiceList.do")
+	public @ResponseBody Map<String, Object> ListEseroInvoiceList(@RequestBody BotEseroVO vo) {
+		logger.info("/AjaxBot/ListEseroInvoiceList.do");
+		
+		List<BotEseroVO> outListBotEseroVO = new ArrayList<BotEseroVO>();
+		try {
+			outListBotEseroVO = botEseroService.listBotEseroInvoiceList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
 	
+	@PostMapping("/ListEseroSlipList.do")
+	public @ResponseBody Map<String, Object> ListEseroSlipList(@RequestBody BotEseroVO vo) {
+		logger.info("/AjaxBot/ListEseroSlipList.do");
+		
+		List<BotEseroVO> outListBotEseroVO = new ArrayList<BotEseroVO>();
+		try {
+			outListBotEseroVO = botEseroService.listBotEseroSlipList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
+	// 매입세 안분 검토 업무
+	@PostMapping("/listCostDivideTargetDate.do")
+	public @ResponseBody Map<String, Object> listCostDivideTargetDate(@RequestBody BotCostDivideVO vo) {
+		logger.info("/AjaxBot/listCostDivideTargetDate.do");
+		
+		List<BotCostDivideVO> outListBotCostDivideTargetDateVO = new ArrayList<BotCostDivideVO>();
+		try {
+			outListBotCostDivideTargetDateVO = botCostDivideService.listBotCostDivideTargetDate(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotCostDivideTargetDateVO);
+		
+		return map;
+	}
+		
+	// 하도급 변경계약 키스콘 등록 업무
+	@PostMapping("/listKisconConstSubcontract.do")
+	public @ResponseBody Map<String, Object> listKisconConstSubcontract(@RequestBody BotKisconConstVO vo) {
+		logger.info("/AjaxBot/listKisconConstSubcontract.do");
+		
+		List<BotKisconConstVO> outListBotKisconConstSubcontractVO = new ArrayList<BotKisconConstVO>();
+		try {
+			outListBotKisconConstSubcontractVO = botKisconConstService.listBotKisconConstSubcontract(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotKisconConstSubcontractVO);
+		
+		return map;
+	}
+						
+	// 기타영수증 전표 세금코드 오라클 입력업무	
 	@PostMapping("/UploadFilesEtcTax.do")
 	public @ResponseBody StatusVO UploadFilesEtcTax(FileUploadVO fvo, BotRequestVO vo) {
 		logger.info("/AjaxBot/UploadFilesEtcTax.do");
@@ -262,5 +356,42 @@ public class AjaxBotController extends BaseController {
 		statusVO.setAttId(attId);
 		
     	return statusVO;
+	}
+	
+	@PostMapping("/listEtcTaxList.do")
+	public @ResponseBody Map<String, Object> listEtcTaxList(@RequestBody BotEtcTaxVO vo) {
+		logger.info("/AjaxBot/listEtcTaxList.do");
+		
+		List<BotEtcTaxVO> outListBotEtcTaxListVO = new ArrayList<BotEtcTaxVO>();
+		try {
+			outListBotEtcTaxListVO = botEtcTaxService.listBotEtcTaxList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEtcTaxListVO);
+		
+		return map;
+	}
+	
+    // 업체 조회
+	@PostMapping("/listVendor.do")
+	public @ResponseBody Map<String, Object> listVendor(@RequestBody BotVendorVO vo) {
+		logger.info("/AjaxBot/listVendor.do");
+		
+		List<BotVendorVO> outListBotVendorVO = new ArrayList<BotVendorVO>();
+		try {
+			outListBotVendorVO = botVendorService.listBotVendor(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotVendorVO);
+		
+		return map;
 	}
 }

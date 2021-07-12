@@ -18,13 +18,13 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		listMoneySendList(requestNo);
+		listCostDivideTargetDate(requestNo);
 	});
 	
 	//  송금내역 수집 데이터 목록 조회
-	function listMoneySendList(pRequestNo) {
+	function listCostDivideTargetDate(pRequestNo) {
 		$.ajax({
-			url: "/AjaxBot/ListMoneySendList.do",
+			url: "/AjaxBot/listCostDivideTargetDate.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "requestNo": pRequestNo }),
@@ -52,15 +52,9 @@
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
             { Header: "요청번호", Type: "Text", Width: 100, SaveName: "requestNo", Hidden:true },
-            { Header: "이체일자", Type: "Text", Width: 100, SaveName: "sendDate", Align: "Center" },
-            { Header: "입금은행", Type: "Text", Width: 100, SaveName: "remitBankNm", Align: "Center" },
-            { Header: "입금계좌번호", Type: "Text", Width: 200, SaveName: "remitAccountNo", Align: "Center" },
-            { Header: "수취인", Type: "Text", Width: 250, SaveName: "remitteeNm", Align: "Center" },
-            { Header: "이체금액", Type: "Float", Width: 150, SaveName: "sendAmt"},
-            { Header: "수수료", Type: "Float", Width: 100, SaveName: "sendFee" },
-            { Header: "출금은행", Type: "Text", Width: 100, SaveName: "sendBankNm", Align: "Center" },
-            { Header: "출금계좌번호", Type: "Text", Width: 200, SaveName: "sendAccountNo", Align: "Center" },
-            { Header: "작성일련번호", Type: "Text", Width: 200, SaveName: "serialNo", Align: "Center",Hidden:true }            
+            { Header: "요청 현장", Type: "Text", Width: 100, SaveName: "targetSiteNm", Align: "Center" },
+            { Header: "요청 연도", Type: "Text", Width: 100, SaveName: "targetYear", Align: "Center" },
+            { Header: "요청 분기", Type: "Text", Width: 100, SaveName: "targetQuarter", Align: "Center" }        
         ];
 
         IBS_InitSheet(mySheet, initdata);

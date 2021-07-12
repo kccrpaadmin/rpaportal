@@ -86,6 +86,16 @@ public class ModalBotController extends BaseController {
 		return "ModalBot/EseroTargetDate";
 	}
 	
+	@GetMapping("/EseroRunResult.do")
+	public String EseroRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/EseroRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/EseroRunResult";
+	}
+	
 	@GetMapping("/MoneySendRunResult.do")
 	public String MoneySendRunResult(String pMenuId, String pRequestNo, Model model) {
 		logger.info("/ModalBot/MoneySendRunResult.do");
@@ -94,5 +104,44 @@ public class ModalBotController extends BaseController {
 		model.addAttribute("requestNo", pRequestNo);
 		
 		return "ModalBot/MoneySendRunResult";
+	}
+	
+	@GetMapping("/CostDivideRunResult.do")
+	public String CostDivideRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/CostDivideRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/CostDivideRunResult";
+	}
+	
+	@GetMapping("/KisconConstRunResult.do")
+	public String KisconConstRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/KisconConstRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/KisconConstRunResult";
+	}
+	
+	@GetMapping("/EtcTaxRunResult.do")
+	public String EtcTaxRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/EtcTaxRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/EtcTaxRunResult";
+	}
+	
+	@GetMapping("/MoneySendManageSearchVendor.do")
+	public String MoneySendManageSearchVendor(String pVendorNm, Model model) {
+		logger.info("/ModalBot/MoneySendManageSearchVendor.do");
+		
+		model.addAttribute("requestNo", pVendorNm);
+		
+		return "ModalBot/MoneySendManageSearchVendor";
 	}
 }

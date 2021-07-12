@@ -6,4 +6,5 @@ import com.kcc.biz.model.BotCostDivideVO;
 
 public interface IBotCostDivideService {
 	void createBotCostDivideTargetDate(BotCostDivideVO vo) throws Exception;
+	List<BotCostDivideVO> listBotCostDivideTargetDate(BotCostDivideVO vo) throws Exception;
 }

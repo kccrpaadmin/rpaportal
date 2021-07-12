@@ -8,11 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.kcc.biz.dao.BotCostDivideRepository;
-import com.kcc.biz.dao.BotEseroRepository;
 import com.kcc.biz.model.BotCostDivideVO;
-import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.service.IBotCostDivideService;
-import com.kcc.biz.service.IBotEseroService;
 
 @Service("botCostDivideService")
 public class BotCostDivideServiceImpl implements IBotCostDivideService {
@@ -23,5 +20,9 @@ public class BotCostDivideServiceImpl implements IBotCostDivideService {
 	
 	public void createBotCostDivideTargetDate(BotCostDivideVO vo) throws Exception {
 		botCostDivideRepository.createBotCostDivideTargetDate(vo);
+	}
+	
+	public List<BotCostDivideVO> listBotCostDivideTargetDate(BotCostDivideVO vo) throws Exception {
+		return botCostDivideRepository.listBotCostDivideTargetDate(vo);
 	}
 }

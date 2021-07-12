@@ -11,6 +11,7 @@ package com.kcc.biz.model;
 public class BotCostDivideVO {
 	private String RequestNo;
 	private String TargetSiteCd;
+	private String TargetSiteNm;
 	private String TargetYear;
 	private String TargetQuarter;
 	private String EmpNo;
@@ -27,7 +28,16 @@ public class BotCostDivideVO {
 	public void setTargetSiteCd(String targetSiteCd) {
 		TargetSiteCd = targetSiteCd;
 	}
+	public String getTargetSiteNm() {
+		return TargetSiteNm;
+	}
+	public void setTargetSiteNm(String targetSiteNm) {
+		TargetSiteNm = targetSiteNm;
+	}
 	public String getTargetYear() {
+		return TargetYear;
+	}	
+	public String setTargetYear() {
 		return TargetYear;
 	}
 	public void setTargetYear(String targetYear) {

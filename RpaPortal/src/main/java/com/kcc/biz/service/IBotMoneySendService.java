@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.kcc.biz.model.BotMoneySendVO;
 
-public interface IBotMoneySendService {
-	void saveBotMoneySend(BotMoneySendVO vo) throws Exception;
-	List<BotMoneySendVO> listBotMoneySend(BotMoneySendVO vo) throws Exception;
+public interface IBotMoneySendService {	
+	List<BotMoneySendVO> listBotMoneySendList(BotMoneySendVO vo) throws Exception;
 }

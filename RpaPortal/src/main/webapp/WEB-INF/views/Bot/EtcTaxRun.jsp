@@ -201,6 +201,18 @@
         mySheet.LoadSearchData(pListDatas);
     } 	
 	
+ // 그리드 클릭 함수
+	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
+		if (Row == 0) {
+			return false;
+		}
+		
+		if (mySheet.ColSaveName(Col) == "requestNm") {
+			var requestNo = mySheet.GetCellValue(Row, "requestNo");
+			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalBot/EtcTaxRunResult.do" + "?pMenuId=" + menuId + "&pRequestNo=" + requestNo);
+   		}
+	}
+	
 	// 허용되는 이미지 확장자 정의 함수
 	function checkAllowExtension(pInput) {
 		var reg = /(application\/vnd.ms-excel|application\/vnd.openxmlformats-officedocument.spreadsheetml.sheet)/;

@@ -57,9 +57,13 @@
 		<!-- BOT (세금)계산서, 전표 데이터 대사업무 -->
 		<typeAlias alias="botEseroVO" type="com.kcc.biz.model.BotEseroVO" />
 		<!-- BOT 매입세안분 검토 요청업무 -->
-		<typeAlias alias="botCostDivideVO" type="com.kcc.biz.model.BotCostDivideVO" />
-		
+		<typeAlias alias="botCostDivideVO" type="com.kcc.biz.model.BotCostDivideVO" />		
 		<!-- BOT 키스콘 하도급변경계약 등록업무 -->
+		<typeAlias alias="botKisconConstVO" type="com.kcc.biz.model.BotKisconConstVO" />
+		<!-- BOT 기타영수증 세금코드 변경업무 -->
+		<typeAlias alias="botEtcTaxVO" type="com.kcc.biz.model.BotEtcTaxVO" />
+		<!-- BOT 업체 검색 -->
+		<typeAlias alias="botVendorVO" type="com.kcc.biz.model.BotVendorVO" />
 		
 		
 	</typeAliases>

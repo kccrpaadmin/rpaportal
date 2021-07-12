@@ -3,10 +3,10 @@
 
 <mapper namespace="com.kcc.biz.dao.BotMoneySendRepository">
 		
-	<select id="listBotMoneySend" statementType="CALLABLE" parameterType="botMoneySendVO" resultType="botMoneySendVO">
+	<select id="listBotMoneySendList" statementType="CALLABLE" parameterType="botMoneySendVO" resultType="botMoneySendVO">
 		<![CDATA[
 			{ 
-	            call PRA_Bot_listBotMoneySend (
+	            call PRA_Bot_listBotMoneySendList (
             		#{RequestNo}
             	)
 			}

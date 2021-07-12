@@ -24,5 +24,25 @@
 			}
 		]]>
 	</select>
+	
+	<select id="listBotEseroInvoiceList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEseroInvoiceList (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotEseroSlipList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEseroSlipList (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
 
 </mapper>

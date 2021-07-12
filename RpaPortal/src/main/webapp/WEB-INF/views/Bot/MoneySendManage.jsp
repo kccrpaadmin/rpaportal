@@ -23,40 +23,30 @@
 	        <table class="search_dtl_tbl">
 	            <caption>검색영역</caption>
 	            <colgroup>
-	                <col style="width:8%;" />
+	                <col style="width:10%;" />
 	                <col style="width:20%;" />
-	                <col style="width:8%;" />
+	                <col style="width:10%;" />
 	                <col style="width:20%;" />
-	                <col style="width:8%;" />
+	                <col style="width:10%;" />
 	                <col />
 	            </colgroup>
 	            <tbody>
 	                <tr>
-	                	<th class="search_dtl_th">회사명</th>
+	                	<th class="search_dtl_th">업체명</th>
 	                    <td class="search_dtl_td">
-	                        ${orgComboBox}
+	                        <input type="text" class="txt_box_l" style="width:160px;" id="vendor_nm" readonly="readonly" />
+	                        <input type="hidden" class="txt_box_l" style="width:160px;" id="vendor_cd" />
+	                        <input type="button"  id="btn_searchVendor" value="검색">
 	                    </td>
-	                	<th class="search_dtl_th">부서명</th>
+	                	<th class="search_dtl_th">회계처리일자</th>
 	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="dept_nm" />
+	                        <input type="text" class="datepicker_ymd" readonly="readonly"  id="gl_date" value="${glDate}" />
 	                    </td>
-	                    <td class="search_dtl_td"></td>
-	                    <td class="search_dtl_td"></td>
-	                </tr>
-	                <tr>
-	                	<th class="search_dtl_th">이름</th>
+	                    <th class="search_dtl_th">송금액</th>
 	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="user_nm" />
+	                        <input type="text" class="txt_box_r" style="width:160px;" id="send_amt"  onkeyup="numberWithCommas(this.value)"/>
 	                    </td>
-	                	<th class="search_dtl_th">직위</th>
-	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="duty_nm" />
-	                    </td>
-	                	<th class="search_dtl_th">담당업무</th>
-	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="task" />
-	                    </td>
-	                </tr>
+	                </tr>	                
 	            </tbody>
 	        </table>
 	    </div>
@@ -80,6 +70,25 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
+		commonFunc.createDatepicker(".datepicker_ymd", "YearMonthDay");
+	});
+	
+	// 송금액 천단위 컴마 표시
+	function numberWithCommas(x) {
+		  x = x.replace(/[^0-9]/g,'');   // 입력값이 숫자가 아니면 공백
+		  x = x.replace(/,/g,'');          // ,값 공백처리
+		  $("#send_amt").val(x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")); // 정규식을 이용해서 3자리 마다 , 추가 
+	}
+	
+	// 업체 검색 팝업에서 전달받은 업체명, 업체코드 입력
+	function setVendorNm(vendorCd, vendorNm) {		
+		$("#vendor_nm").val(vendorNm);
+		$("#vendor_cd").val(vendorCd);
+	}
+	
+	// 업체 검색 버튼 클릭 이벤트
+	$(document).on("click", "#btn_searchVendor", function (e) {
+		libraryFunc.createModal(null, null, null, 1100, 560, "업체 검색", "/ModalBot/MoneySendManageSearchVendor.do");
 		
 	});
 		

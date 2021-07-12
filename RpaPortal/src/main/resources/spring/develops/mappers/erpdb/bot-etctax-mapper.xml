@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kcc.biz.dao.BotMoneySendRepository">
+<mapper namespace="com.kcc.biz.dao.BotEtcTaxRepository">
 		
-	<select id="listBotMoneySendList" statementType="CALLABLE" parameterType="botMoneySendVO" resultType="botMoneySendVO">
+	<select id="listBotEtcTaxList" statementType="CALLABLE" parameterType="botEtcTaxVO" resultType="botEtcTaxVO">
 		<![CDATA[
 			{ 
-	            call PRA_Bot_listBotMoneySendList (
+	            call PRA_Bot_listBotEtcTaxList (
             		#{RequestNo}
             	)
 			}
 		]]>
 	</select>
-
+	
 </mapper>

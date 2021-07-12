@@ -18,11 +18,7 @@ public class BotMoneySendServiceImpl implements IBotMoneySendService {
 	@Resource(name="botMoneySendRepository")
 	private BotMoneySendRepository botMoneySendRepository;
 	
-	public void saveBotMoneySend(BotMoneySendVO vo) throws Exception {
-		botMoneySendRepository.saveBotMoneySend(vo);
-	}
-	
-	public List<BotMoneySendVO> listBotMoneySend(BotMoneySendVO vo) throws Exception {
-		return botMoneySendRepository.listBotMoneySend(vo);
+	public List<BotMoneySendVO> listBotMoneySendList(BotMoneySendVO vo) throws Exception {
+		return botMoneySendRepository.listBotMoneySendList(vo);
 	}
 }
