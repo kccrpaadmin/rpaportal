@@ -44,7 +44,7 @@
 	                    </td>
 	                    <th class="search_dtl_th">송금액</th>
 	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_r" style="width:160px;" id="send_amt"  onkeyup="numberWithCommas(this.value)"/>
+	                        <input type="text" class="txt_box_r number_15_0" style="width:160px;" />
 	                    </td>
 	                </tr>	                
 	            </tbody>
@@ -71,15 +71,9 @@
 	// 페이지 로드 
 	$(document).ready(function (e) {
 		commonFunc.createDatepicker(".datepicker_ymd", "YearMonthDay");
+		libraryFunc.applyTypingNumber("number_15_0", 15, 0);
 	});
-	
-	// 송금액 천단위 컴마 표시
-	function numberWithCommas(x) {
-		  x = x.replace(/[^0-9]/g,'');   // 입력값이 숫자가 아니면 공백
-		  x = x.replace(/,/g,'');          // ,값 공백처리
-		  $("#send_amt").val(x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")); // 정규식을 이용해서 3자리 마다 , 추가 
-	}
-	
+		
 	// 업체 검색 팝업에서 전달받은 업체명, 업체코드 입력
 	function setVendorNm(vendorCd, vendorNm) {		
 		$("#vendor_nm").val(vendorNm);
@@ -89,7 +83,6 @@
 	// 업체 검색 버튼 클릭 이벤트
 	$(document).on("click", "#btn_searchVendor", function (e) {
 		libraryFunc.createModal(null, null, null, 1100, 560, "업체 검색", "/ModalBot/MoneySendManageSearchVendor.do");
-		
 	});
 		
 </script>

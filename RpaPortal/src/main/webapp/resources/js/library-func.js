@@ -18,6 +18,9 @@
     // 프로그레스 객체 생성
     var seedProgress = new SeedProgress();
     
+    // 숫자 타이핑 객체 생성
+    var seedNumber = new SeedNumber();
+    
     // 대화상자 생성 함수
     LibraryFunc.prototype.createDialog = function (pType, pTheme, pTop, pLeft, pWidth, pTitle, pMsg, pPromptList, callback) {
         lfSkillFunc.createDialog(pType, pTheme, pTop, pLeft, pWidth, pTitle, pMsg, pPromptList, callback);
@@ -46,6 +49,11 @@
     // 프로그레스 닫기 함수
     LibraryFunc.prototype.closeProgress = function () {
         lfSkillFunc.closeProgress();
+    }
+    
+    // 숫자 타이핑 생성 함수 
+    LibraryFunc.prototype.applyTypingNumber = function (pClassNm, pIntLen, pDecimalLen) {
+        lfSkillFunc.applyTypingNumber(pClassNm, pIntLen, pDecimalLen);
     }
     
     // 비공개 영역
@@ -140,6 +148,18 @@
         },
         closeProgress: function () {
         	seedProgress.close();
+        },
+        applyTypingNumber: function (pClassNm, pIntLen, pDecimalLen) {
+            var classNm = pClassNm;             // 클래스 이름
+            var intLen = pIntLen;               // 정수 데이터 길이
+            var decimalLen = pDecimalLen;       // 소수 데이터 길이
+
+            var config = {
+                snIntLen: intLen == undefined ? 15 : intLen,
+                snDecimalLen: decimalLen == undefined ? 0 : decimalLen
+            }
+
+            seedNumber.typingNumber(seedNumber, classNm, config);
         }
     }
     

@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="/resources/js/library/seeddialog/seeddialog.min.js"></script>
 	<script type="text/javascript" src="/resources/js/library/seedmodal/seedmodal.min.js"></script>
 	<script type="text/javascript" src="/resources/js/library/seedprogress/seedprogress.min.js"></script>
+	<script type="text/javascript" src="/resources/js/library/seednumber/seednumber.min.js"></script>
 	<script type="text/javascript" src="/resources/js/custom-func.js"></script>
 	<script type="text/javascript" src="/resources/js/library-func.js"></script>
 	<script type="text/javascript" src="/resources/js/common-func.js"></script>
