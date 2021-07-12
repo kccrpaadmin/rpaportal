@@ -22,12 +22,22 @@
     LibraryFunc.prototype.createDialog = function (pType, pTheme, pTop, pLeft, pWidth, pTitle, pMsg, pPromptList, callback) {
         lfSkillFunc.createDialog(pType, pTheme, pTop, pLeft, pWidth, pTitle, pMsg, pPromptList, callback);
     }
+	
+	// 대화상자 닫기 함수
+    LibraryFunc.prototype.closeDialog = function () {
+        lfSkillFunc.closeDialog();
+    }
 
     // 모달팝업 생성 함수
     LibraryFunc.prototype.createModal = function (pTheme, pTop, pLeft, pWidth, pHeight, pTitle, pUrl) {
     	lfSkillFunc.createModal(pTheme, pTop, pLeft, pWidth, pHeight, pTitle, pUrl);
     }
    
+   	// 모달팝업 닫기 함수
+    LibraryFunc.prototype.closeModal = function () {
+        lfSkillFunc.closeModal();
+    }
+    
     // 프로그레스 생성 함수
     LibraryFunc.prototype.createProgress = function () {
         lfSkillFunc.createProgress();
