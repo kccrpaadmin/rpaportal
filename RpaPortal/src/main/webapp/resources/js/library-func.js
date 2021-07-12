@@ -101,6 +101,9 @@
                 callback
             );
         },
+        closeDialog: function () {
+            seedDialog.close();
+        },
         createModal: function (pTheme, pTop, pLeft, pWidth, pHeight, pTitle, pUrl) {
             seedModal.setConfig({
                 smTheme: "sm_theme10",		// 테마 (sm_theme1 ~ 10)
@@ -128,6 +131,9 @@
                 seedModal,
                 userConfig
             );
+        },
+        closeModal: function () {
+            seedModal.close();
         },
         createProgress: function () {
         	seedProgress.progress(seedProgress);
