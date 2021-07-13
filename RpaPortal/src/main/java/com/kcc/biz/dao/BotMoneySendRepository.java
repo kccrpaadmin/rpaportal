@@ -9,4 +9,6 @@ import com.kcc.biz.model.BotMoneySendVO;
 @Repository("botMoneySendRepository")
 public interface BotMoneySendRepository {	
 	List<BotMoneySendVO> listBotMoneySendList(BotMoneySendVO vo) throws Exception;
+	List<BotMoneySendVO> listBotMoneySendManageSearchVendor(BotMoneySendVO vo) throws Exception;;
+	List<BotMoneySendVO> listBotMoneySendManage(BotMoneySendVO vo) throws Exception;;
 }

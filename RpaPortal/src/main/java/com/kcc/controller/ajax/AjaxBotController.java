@@ -48,7 +48,6 @@ import com.kcc.biz.model.BotMoneySendVO;
 import com.kcc.biz.model.BotCostDivideVO;
 import com.kcc.biz.model.BotKisconConstVO;
 import com.kcc.biz.model.BotEtcTaxVO;
-import com.kcc.biz.model.BotVendorVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -58,7 +57,6 @@ import com.kcc.biz.service.IBotMoneySendService;
 import com.kcc.biz.service.IBotCostDivideService;
 import com.kcc.biz.service.IBotKisconConstService;
 import com.kcc.biz.service.IBotEtcTaxService;
-import com.kcc.biz.service.IBotVendorService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -96,9 +94,6 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botEtcTaxService")
 	private IBotEtcTaxService botEtcTaxService;
-	
-	@Resource(name="botVendorService")
-	private IBotVendorService botVendorService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -199,7 +194,7 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
-	// 송금확인증 발급업무
+	// 송금확인증 발급 업무
 	@PostMapping("/ListMoneySendList.do")
 	public @ResponseBody Map<String, Object> ListMoneySendList(@RequestBody BotMoneySendVO vo) {
 		logger.info("/AjaxBot/ListMoneySendList.do");
@@ -217,6 +212,24 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}
+	
+		@PostMapping("/ListBotMoneySendManage.do")
+		public @ResponseBody Map<String, Object> ListBotMoneySendManage(@RequestBody BotMoneySendVO vo) {
+			logger.info("/AjaxBot/ListBotMoneySendManage.do");
+			
+			List<BotMoneySendVO> outListBotMoneySendManageVO = new ArrayList<BotMoneySendVO>();
+			try {
+				outListBotMoneySendManageVO = botMoneySendService.listBotMoneySendManage(vo);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			Map map = new HashMap<String, Object>();
+			map.put("data", outListBotMoneySendManageVO);
+			
+			return map;
+		}
 	
 	
 	// (세금)계산서, 전표 데이터 대사업무	
@@ -377,20 +390,20 @@ public class AjaxBotController extends BaseController {
 	}
 	
     // 업체 조회
-	@PostMapping("/listVendor.do")
-	public @ResponseBody Map<String, Object> listVendor(@RequestBody BotVendorVO vo) {
-		logger.info("/AjaxBot/listVendor.do");
+	@PostMapping("/listMoneySendManageSearchVendor.do")
+	public @ResponseBody Map<String, Object> listMoneySendManageSearchVendor(@RequestBody BotMoneySendVO vo) {
+		logger.info("/AjaxBot/listMoneySendManageSearchVendor.do");
 		
-		List<BotVendorVO> outListBotVendorVO = new ArrayList<BotVendorVO>();
+		List<BotMoneySendVO> outListBotMoneySendManageSearchVendorVO = new ArrayList<BotMoneySendVO>();
 		try {
-			outListBotVendorVO = botVendorService.listBotVendor(vo);
+			outListBotMoneySendManageSearchVendorVO = botMoneySendService.listBotMoneySendManageSearchVendor(vo);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		Map map = new HashMap<String, Object>();
-		map.put("data", outListBotVendorVO);
+		map.put("data", outListBotMoneySendManageSearchVendorVO);
 		
 		return map;
 	}

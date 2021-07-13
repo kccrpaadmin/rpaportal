@@ -12,5 +12,27 @@
 			}
 		]]>
 	</select>
+	
+	<select id="listBotMoneySendManageSearchVendor" statementType="CALLABLE" parameterType="botMoneySendVO" resultType="botMoneySendVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotMoneySendManageSearchVendor (
+            		#{VendorNm}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotMoneySendManage" statementType="CALLABLE" parameterType="botMoneySendVO" resultType="botMoneySendVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotMoneySendManage (
+            		#{VendorCd},
+            	    #{GlDate},
+            	    #{SendAmt}
+            	)
+			}
+		]]>
+	</select>
 
 </mapper>

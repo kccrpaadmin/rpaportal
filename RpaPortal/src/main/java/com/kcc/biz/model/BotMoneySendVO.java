@@ -21,6 +21,19 @@ public class BotMoneySendVO {
 	private String SendBankNm;
 	private String SendAccountNo;
 	private String SerialNo;
+	private String Ord;
+	private String VendorCd;
+	private String VendorNm;
+	private String BizNo;
+	private String InvoiceDate;
+	private String GlDate;
+	private String TransDate;
+	private String InvoiceDescription;
+	private String InvoiceAmount;
+	private String Amount;
+	private String AttId;
+	private String BtnPrint;
+	private String AttFilePath;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -67,7 +80,7 @@ public class BotMoneySendVO {
 	public String getSendAmt() {
 		return SendAmt;
 	}
-	public void seSendAmtt(String sendAmt) {
+	public void setSendAmt(String sendAmt) {
 		SendAmt = sendAmt;
 	}
 	public String getSendFee() {
@@ -94,5 +107,82 @@ public class BotMoneySendVO {
 	public void setSerialNo(String serialNo) {
 		SerialNo = serialNo;
 	}
-	
+	public String getOrd() {
+		return Ord;
+	}
+	public void setOrd (String ord) {
+		Ord = ord;
+	}
+	public String getVendorCd() {
+		return VendorCd;
+	}
+	public void setVendorCd (String vendorCd) {
+		VendorCd = vendorCd;
+	}
+	public String getVendorNm() {
+		return VendorNm;
+	}
+	public void setVendorNm (String vendorNm) {
+		VendorNm = vendorNm;
+	}	
+	public String getBizNo() {
+		return BizNo;
+	}
+	public void setBizNo (String bizNo) {
+		BizNo = bizNo;
+	}	
+	public String getGlDate() {
+		return GlDate;
+	}
+	public void setGlDate (String glDate) {
+		GlDate = glDate;
+	}
+	public String getInvoiceDate() {
+		return InvoiceDate;
+	}
+	public void setInvoiceDate (String invoiceDate) {
+		InvoiceDate = invoiceDate;
+	}
+	public String getTransDate() {
+		return TransDate;
+	}
+	public void setTransDate (String transDate) {
+		TransDate = transDate;
+	}
+	public String getInvoiceDescription() {
+		return InvoiceDescription;
+	}
+	public void setInvoiceDescription (String invoiceDescription) {
+		InvoiceDescription = invoiceDescription;
+	}
+	public String getInvoiceAmount() {
+		return InvoiceAmount;
+	}
+	public void setInvoiceAmount (String invoiceAmount) {
+		InvoiceAmount = invoiceAmount;
+	}
+	public String getAmount() {
+		return Amount;
+	}
+	public void setAmount (String amount) {
+		Amount = amount;
+	}
+	public String getAttId() {
+		return AttId;
+	}
+	public void setAttId (String attId) {
+		AttId = attId;
+	}
+	public String getBtnPrint() {
+		return BtnPrint;
+	}
+	public void setBtnPrint (String btnPrint) {
+		BtnPrint = btnPrint;
+	}
+	public String getAttFilePath() {
+		return AttFilePath;
+	}
+	public void setAttFilePath (String attFilePath) {
+		AttFilePath = attFilePath;
+	}
 }

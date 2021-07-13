@@ -17,7 +17,7 @@
 						<th class="search_dtl_th">업체명</th>
 						<td class="search_dtl_td">
 							<input type="text" class="txt_box_l" style="width:160px;" id="vendor_nm"  />	
-							<input type="button"  id="btn_vendorsearch" value="조회" />						
+							<input type="button"  id="btn_searchvendor" value="조회" />						
 						</td>				
 					</tr>				
 				</tbody>				
@@ -35,27 +35,27 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		listVendor("");
+		listMoneySendManageSearchVendor("");
 	});
 	
 	// 조회 버튼 클릭 이벤트
-	$(document).on("click", "#btn_vendorsearch", function (e) {
+	$(document).on("click", "#btn_searchvendor", function (e) {
 		var vendorNm = $("#vendor_nm").val()
 		
-		listVendor(vendorNm);
+		listMoneySendManageSearchVendor(vendorNm);
 	});
 	
 	// 업체명 엔터 이벤트
 	$(document).on("keydown", "#vendor_nm", function (e) {
 		if (e.keyCode == 13) {
-			$("#btn_vendorsearch").trigger("click");
+			$("#btn_searchvendor").trigger("click");
 		}
 	});
 	
 	// 업체 조회
-	function listVendor(pVendorNm) {
+	function listMoneySendManageSearchVendor(pVendorNm) {
 		$.ajax({
-			url: "/AjaxBot/listVendor.do",
+			url: "/AjaxBot/listMoneySendManageSearchVendor.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "vendorNm": pVendorNm }),
@@ -82,14 +82,15 @@
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [                        
-            { Header: "업체코드", Type: "Text", Width: 300, SaveName: "vendorCd", Align: "Center" },
-            { Header: "업체명", Type: "Text", Width: 300, SaveName: "vendorNm", Align: "Center" },
-            { Header: "사업자번호", Type: "Text", Width: 300, SaveName: "bizNo", Align: "Center"},
+            { Header: "업체코드", Type: "Text", Width: 320, SaveName: "vendorCd", Align: "Center" },
+            { Header: "업체명", Type: "Text", Width: 400, SaveName: "vendorNm", Align: "Center" },
+            { Header: "사업자번호", Type: "Text", Width: 330, SaveName: "bizNo", Align: "Center"},
         ];
 
         IBS_InitSheet(mySheet, initdata);
         mySheet.SetEditable(0);
         mySheet.SetEditableColorDiff(0);
+        mySheet.SetColFontUnderline("vendorNm", true);
         mySheet.SetDataLinkMouse("vendorNm", true);
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet.LoadSearchData(pListDatas);
