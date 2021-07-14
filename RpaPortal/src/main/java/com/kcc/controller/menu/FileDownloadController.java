@@ -63,59 +63,25 @@ public class FileDownloadController extends BaseController {
 	@GetMapping("/Download.do")
 	public void Download(AttFileVO vo, HttpServletResponse response) {
 		logger.info("/FileDownload/Download.do");
-				
+		
 		try {
-			/*
-			//AttFileVO attFileVO = attFileService.getAttFile(vo);
-			//String oriFileNm = attFileVO.getFileNm();
-			//String filePath = attFileVO.getFilePath();
-			
-			//byte fileByte[] = FileUtils.readFileToByteArray(new File(uploadPath + "\\" + filePath));
-			byte fileByte[] = FileUtils.readFileToByteArray(new File("X:\\AttFiles\\RA004001\\202107\\150126000001_202107051339131609610.pdf"));
-			
-			response.setContentType("application/octet-stream");
-			response.setContentLength(fileByte.length);
-			response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode("test.pdf","UTF-8")+"\";");
-			response.setHeader("Content-Transfer-Encoding", "binary");
-			response.getOutputStream().write(fileByte);
-			response.getOutputStream().flush();
-			response.getOutputStream().close();
-			*/
-			
-	        String saveFileName = "\"X:\\\\AttFiles\\\\RA004001\\\\202107\\\\150126000001_202107051339131609610.pdf\"".toString();
-	        // saveFileName을 만든다.
-	        
-	        String contentType = "application/octet-stream";
-	        // contentType 가져오고
-	 
-	        File file = new File(saveFileName);
-	        long fileLength = file.length();
-	 
-	        response.setHeader("Content-Disposition", "attachment; filename=\"" + "test.pdf" + "\";");
+			AttFileVO attFileVO = attFileService.getAttFile(vo);
+			String oriFileNm = attFileVO.getFileNm();
+			String filePath = attFileVO.getFilePath();
+	
+			byte fileByte[] = FileUtils.readFileToByteArray(new File(uploadPath + "\\" + filePath));
+	        response.setHeader("Content-Type", "application/octet-stream");
 	        response.setHeader("Content-Transfer-Encoding", "binary"); 
-	        response.setHeader("Content-Type", contentType);
-	        response.setHeader("Content-Length", "" + fileLength);
+	        response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(oriFileNm, "UTF-8")+"\";");
+	        response.setHeader("Content-Length", Long.toString(fileByte.length));
 	        response.setHeader("Pragma", "no-cache;");
 	        response.setHeader("Expires", "-1;");
-	        // 그 정보들을 가지고 reponse의 Header에 세팅한 후
-	        
-	        try (FileInputStream fis = new FileInputStream(saveFileName); OutputStream out = response.getOutputStream();) {
-	            // saveFileName을 파라미터로 넣어 inputStream 객체를 만들고 
-	            // response에서 파일을 내보낼 OutputStream을 가져와서  
-	            int readCount = 0;
-	            byte[] buffer = new byte[1024];
-	            // 파일 읽을 만큼 크기의 buffer를 생성한 후 
-	            while ((readCount = fis.read(buffer)) != -1) {
-	                out.write(buffer, 0, readCount);
-	                // outputStream에 씌워준다
-	            }
-	        } catch (Exception ex) {
-	            throw new RuntimeException("file Load Error");
-	        }
+	        response.getOutputStream().write(fileByte);
+	        response.getOutputStream().flush();
+			response.getOutputStream().close();
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}		
-	}
-	
+	}	
 }

@@ -59,7 +59,6 @@
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a href="/Bot/ListMenu.do"><img src="/resources/imgs/button/btn_box_go_back.png" /></a>
-	    	<a href="/FileDownload/Download.do">111111111111</a>
 	    </div>
 	</div>
 </div>
@@ -75,10 +74,9 @@
 	$(document).ready(function (e) {
 		commonFunc.createDatepicker(".datepicker_ymd", "YearMonthDay");
 		libraryFunc.applyTypingNumber("number_15_0", 15, 0);
-		
 		ListBotMoneySendManage("","","")
 	});
-		
+	
 	// 업체 검색 팝업에서 전달받은 업체명, 업체코드 입력
 	function setVendorNm(vendorCd, vendorNm) {		
 		$("#vendor_nm").val(vendorNm);
@@ -150,11 +148,9 @@
 			return false;
 		}		
 		
-		if (mySheet.ColSaveName(Col) == "btnPrint") {			
+		if (mySheet.ColSaveName(Col) == "btnPrint") {
 			var attId = mySheet.GetCellValue(Row, "attId");
-			var seq = 1;
-			
-			window.location.href = "/FileDownload/Download?attId=" + attId + "&seq=" + seq;
+			window.location.href = "/FileDownload/Download.do?attId=" + attId + "&seq=1";
    		}
 	}
 	
