@@ -41,4 +41,15 @@
 		]]>
 	</select>
 	
+	<select id="getAttFile" statementType="CALLABLE" parameterType="attFileVO" resultType="attFileVO">
+		<![CDATA[
+			{ 
+	            call PRA_AttFile_getAttFile (
+            		#{AttId}
+            		,#{Seq}
+            	)
+			}
+		]]>
+	</select>
+		
 </mapper>

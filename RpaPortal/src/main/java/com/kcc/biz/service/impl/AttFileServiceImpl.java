@@ -37,4 +37,8 @@ public class AttFileServiceImpl implements IAttFileService {
 	public List<AttFileVO> listAttFile(AttFileVO vo) throws Exception {
 		return attFileRepository.listAttFile(vo);
 	}
+	
+	public AttFileVO getAttFile(AttFileVO vo) throws Exception {
+		return attFileRepository.getAttFile(vo);
+	}
 }

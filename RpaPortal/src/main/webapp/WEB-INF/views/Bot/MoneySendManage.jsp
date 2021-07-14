@@ -59,9 +59,12 @@
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a href="/Bot/ListMenu.do"><img src="/resources/imgs/button/btn_box_go_back.png" /></a>
+	    	<a href="/FileDownload/Download.do">111111111111</a>
 	    </div>
 	</div>
 </div>
+
+
 
 <script type="text/javascript">
 	
@@ -148,7 +151,10 @@
 		}		
 		
 		if (mySheet.ColSaveName(Col) == "btnPrint") {			
-			var attId = mySheet.GetCellValue(Row, "attId");			
+			var attId = mySheet.GetCellValue(Row, "attId");
+			var seq = 1;
+			
+			window.location.href = "/FileDownload/Download?attId=" + attId + "&seq=" + seq;
    		}
 	}
 	

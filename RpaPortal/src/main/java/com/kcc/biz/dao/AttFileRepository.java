@@ -10,4 +10,5 @@ public interface AttFileRepository {
 	void createAtt(AttFileVO vo) throws Exception;
 	void createAttFile(AttFileVO vo) throws Exception;
 	List<AttFileVO> listAttFile(AttFileVO vo) throws Exception;
+	AttFileVO getAttFile(AttFileVO vo) throws Exception;
 }
