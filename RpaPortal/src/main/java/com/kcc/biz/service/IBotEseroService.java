@@ -9,4 +9,7 @@ public interface IBotEseroService {
 	List<BotEseroVO> listBotEseroTargetDate(BotEseroVO vo) throws Exception;
 	List<BotEseroVO> listBotEseroInvoiceList(BotEseroVO vo) throws Exception;
 	List<BotEseroVO> listBotEseroSlipList(BotEseroVO vo) throws Exception;
+	List<BotEseroVO> listBotEseroInvoiceSlipListManageTaxOn(BotEseroVO vo) throws Exception;
+	List<BotEseroVO> listBotEseroInvoiceSlipListManageTaxOff(BotEseroVO vo) throws Exception;
+	
 }

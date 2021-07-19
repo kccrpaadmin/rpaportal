@@ -35,14 +35,14 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		listMoneySendManageSearchVendor("");
+		ListMoneySendManageSearchVendor("");
 	});
 	
 	// 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_searchvendor", function (e) {
 		var vendorNm = $("#vendor_nm").val()
 		
-		listMoneySendManageSearchVendor(vendorNm);
+		ListMoneySendManageSearchVendor(vendorNm);
 	});
 	
 	// 업체명 엔터 이벤트
@@ -53,9 +53,9 @@
 	});
 	
 	// 업체 조회
-	function listMoneySendManageSearchVendor(pVendorNm) {
+	function ListMoneySendManageSearchVendor(pVendorNm) {
 		$.ajax({
-			url: "/AjaxBot/listMoneySendManageSearchVendor.do",
+			url: "/AjaxBot/ListMoneySendManageSearchVendor.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "vendorNm": pVendorNm }),

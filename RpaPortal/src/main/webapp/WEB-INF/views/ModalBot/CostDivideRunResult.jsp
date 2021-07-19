@@ -24,7 +24,7 @@
 	//  송금내역 수집 데이터 목록 조회
 	function listCostDivideTargetDate(pRequestNo) {
 		$.ajax({
-			url: "/AjaxBot/listCostDivideTargetDate.do",
+			url: "/AjaxBot/ListCostDivideTargetDate.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "requestNo": pRequestNo }),

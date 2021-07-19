@@ -34,5 +34,15 @@
 			}
 		]]>
 	</select>
+	
+	<select id="listBotMoneySendManageSendAmt" statementType="CALLABLE" parameterType="botMoneySendVO" resultType="botMoneySendVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotMoneySendManageSendAmt (
+            		#{CheckId}
+            	)
+			}
+		]]>
+	</select>
 
 </mapper>

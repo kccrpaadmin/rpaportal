@@ -42,7 +42,7 @@
 	                    <td class="search_dtl_td">
 	                        <input type="text" class="datepicker_ymd" readonly="readonly"  id="gl_date" value="${glDate}" />
 	                    </td>
-	                    <th class="search_dtl_th">송금액</th>
+	                    <th class="search_dtl_th">전표금액</th>
 	                    <td class="search_dtl_td">
 	                        <input type="text" class="txt_box_r number_15_0" style="width:160px;" id="send_amt" />
 	                    </td>
@@ -54,6 +54,10 @@
 	    <div class="btn_box">
 	    	<a class="btn_common" id="btn_search">조회</a>
 	    </div>
+	    <p>※ 다른 전표 건과 통합 지급된 경우, 전표 금액보다 실송금액이 클 수 있습니다.</p>
+	    <p>※ 실송금액이 10억 원 이상일 경우, 10억 원 단위로 분리 지급되므로 여러 행이 표시될 수 있습니다.</p>
+	    <p>※ 실송금액을 클릭하면, 통합 지급 내역을 확인하실 수 있습니다.</p>
+	    <br>
 	    <!-- 그리드영역 -->
    	    <div id="sheet"></div>
    	    <!-- 버튼영역 -->
@@ -74,7 +78,7 @@
 	$(document).ready(function (e) {
 		commonFunc.createDatepicker(".datepicker_ymd", "YearMonthDay");
 		libraryFunc.applyTypingNumber("number_15_0", 15, 0);
-		ListBotMoneySendManage("","","")
+		ListMoneySendManage("","","")
 	});
 	
 	// 업체 검색 팝업에서 전달받은 업체명, 업체코드 입력
@@ -84,14 +88,14 @@
 	}
 	
 	// 목록 조회 공통 함수
-	function searchListBotMoneySendManage(vendorCd, glDate, sendAmt) {
-		ListBotMoneySendManage(vendorCd, glDate, sendAmt);
+	function searchListMoneySendManage(vendorCd, glDate, sendAmt) {
+		ListMoneySendManage(vendorCd, glDate, sendAmt);
 	}
 	
 	// 송금확인증 목록 조회
-	function ListBotMoneySendManage(pVendorCd, pGlDate, pSendAmt) {
+	function ListMoneySendManage(pVendorCd, pGlDate, pSendAmt) {
 		$.ajax({
-			url: "/AjaxBot/ListBotMoneySendManage.do",
+			url: "/AjaxBot/ListMoneySendManage.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "vendorCd": pVendorCd, "glDate": pGlDate, "sendAmt": pSendAmt }),
@@ -128,14 +132,17 @@
             { Header: "입금계좌번호", Type: "Text", Width: 120, SaveName: "remitAccountNo", Align: "Center", Edit:0 },
             { Header: "수취인", Type: "Text", Width: 200, SaveName: "remitteeNm", Align: "Center", Edit:0 },
             { Header: "송금확인증", Type: "Button", Width: 80, SaveName: "btnPrint", Align: "Center"},        
-            { Header: "송금확인증파일ID", Type: "Text", Width: 150, SaveName: "attId", Align: "Center", Hidden: true },
-            { Header: "송금확인증파일경로", Type: "Text", Width: 150, SaveName: "attFilePath", Align: "Center", Hidden: true },
-            { Header: "적요", Type: "Text", Width: 200, SaveName: "invoiceDescription", Align: "Center", Edit:0 }
+            { Header: "송금확인증파일ID", Type: "Text", Width: 0, SaveName: "attId", Align: "Center", Hidden: true },
+            { Header: "송금확인증파일경로", Type: "Text", Width: 0, SaveName: "attFilePath", Align: "Center", Hidden: true },
+            { Header: "적요", Type: "Text", Width: 200, SaveName: "invoiceDescription", Align: "Center", Edit:0 },
+            { Header: "CheckID", Type: "Text", Width: 0, SaveName: "checkId", Align: "Center", Hidden: true }
         ];
 
         IBS_InitSheet(mySheet, initdata);
         //mySheet.SetEditable(0);
         mySheet.SetEditableColorDiff(0);
+        mySheet.SetDataLinkMouse("sendAmt", true);
+        mySheet.SetColFontUnderline("sendAmt", true);
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet.SetCountPosition(3); // 건수 정보 표시
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
@@ -147,6 +154,11 @@
 		if (Row == 0) {
 			return false;
 		}		
+		
+		if (mySheet.ColSaveName(Col) == "sendAmt") {			
+			var checkId = mySheet.GetCellValue(Row, "checkId");
+			libraryFunc.createModal(null, null, null, 1100, 560, "통합 지급 내역", "/ModalBot/MoneySendManageSendAmt.do" + "?pCheckId=" + checkId );
+   		}
 		
 		if (mySheet.ColSaveName(Col) == "btnPrint") {
 			var attId = mySheet.GetCellValue(Row, "attId");
@@ -180,7 +192,7 @@
     		return false;
     	}
 		
-		searchListBotMoneySendManage(vendorCd, glDate, sendAmt);
+		searchListMoneySendManage(vendorCd, glDate, sendAmt);
 	});
 		
 </script>

@@ -24,7 +24,7 @@
 	//  기타영수증  엑셀 업로드 데이터 목록 조회
 	function listEtcTaxList(pRequestNo) {
 		$.ajax({
-			url: "/AjaxBot/listEtcTaxList.do",
+			url: "/AjaxBot/ListEtcTaxList.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "requestNo": pRequestNo }),

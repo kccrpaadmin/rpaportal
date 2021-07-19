@@ -29,4 +29,8 @@ public class BotMoneySendServiceImpl implements IBotMoneySendService {
 	public List<BotMoneySendVO> listBotMoneySendManage(BotMoneySendVO vo) throws Exception {
 		return botMoneySendRepository.listBotMoneySendManage(vo);
 	}
+	
+	public List<BotMoneySendVO> listBotMoneySendManageSendAmt(BotMoneySendVO vo) throws Exception {
+		return botMoneySendRepository.listBotMoneySendManageSendAmt(vo);
+	}
 }

@@ -789,7 +789,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebebff', end
 .LPPLoaded { border:1px solid #000000 !important;}
 
 /*sum*/
-.LPPSumCell{background:#ebebff; color:#FF060C;}/*//text-align: right;font-weight:bold;*/
+.LPPSumCell{background:#ebebff; color:#6445BE; font-weight:bold;}/*//text-align: right;font-weight:bold;*/
 .LPPSubSumCell{background: #F2F9FA; border-top:1px solid #D1E7F4; border-bottom:1px solid #D1E7F4; color:#7A7AE2}
 .LPPCumulateCell{background: #F2F9FA; border-bottom:1px solid #D1E7F4; color:#6445BE}
 

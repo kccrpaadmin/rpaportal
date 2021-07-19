@@ -44,5 +44,27 @@
 			}
 		]]>
 	</select>
+	
+	<select id="listBotEseroInvoiceSlipListManageTaxOn" statementType="CALLABLE" parameterType="botEseroVO" resultType="botEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEseroInvoiceSlipListManageTaxOn (
+            		#{YearMon}
+            	   ,	#{ErrorYn}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotEseroInvoiceSlipListManageTaxOff" statementType="CALLABLE" parameterType="botEseroVO" resultType="botEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEseroInvoiceSlipListManageTaxOff (
+            		#{YearMon}
+            	   ,	#{ErrorYn}
+            	)
+			}
+		]]>
+	</select>
 
 </mapper>

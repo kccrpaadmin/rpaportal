@@ -34,6 +34,7 @@ public class BotMoneySendVO {
 	private String AttId;
 	private String BtnPrint;
 	private String AttFilePath;
+	private String CheckId;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -184,5 +185,11 @@ public class BotMoneySendVO {
 	}
 	public void setAttFilePath (String attFilePath) {
 		AttFilePath = attFilePath;
+	}
+	public String getCheckId() {
+		return CheckId;
+	}
+	public void setCheckId (String checkId) {
+		CheckId = checkId;
 	}
 }

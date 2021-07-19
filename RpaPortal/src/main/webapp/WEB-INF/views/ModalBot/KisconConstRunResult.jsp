@@ -24,7 +24,7 @@
 	//  하도급 변경계약 키스콘 등록 대상 계약 수집 데이터 목록 조회
 	function listKisconConstSubcontract(pRequestNo) {
 		$.ajax({
-			url: "/AjaxBot/listKisconConstSubcontract.do",
+			url: "/AjaxBot/ListKisconConstSubcontract.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "requestNo": pRequestNo }),

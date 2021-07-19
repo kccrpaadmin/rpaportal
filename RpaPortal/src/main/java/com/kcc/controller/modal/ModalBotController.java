@@ -137,11 +137,18 @@ public class ModalBotController extends BaseController {
 	}
 	
 	@GetMapping("/MoneySendManageSearchVendor.do")
-	public String MoneySendManageSearchVendor(String pVendorNm, Model model) {
+	public String MoneySendManageSearchVendor(Model model) {
 		logger.info("/ModalBot/MoneySendManageSearchVendor.do");
-		
-		model.addAttribute("requestNo", pVendorNm);
-		
+				
 		return "ModalBot/MoneySendManageSearchVendor";
+	}
+	
+	@GetMapping("/MoneySendManageSendAmt.do")
+	public String MoneySendManageSendAmt(String pCheckId, Model model) {
+		logger.info("/ModalBot/MoneySendManageSendAmt.do");
+		
+		model.addAttribute("checkId", pCheckId);
+		
+		return "ModalBot/MoneySendManageSendAmt";
 	}
 }

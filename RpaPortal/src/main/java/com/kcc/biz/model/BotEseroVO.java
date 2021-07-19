@@ -60,6 +60,19 @@ public class BotEseroVO {
 	private String ConfirmDate;
 	private String OriSlipNo;
 	private String OnOffType;
+	private String InvoiceYearMon;
+	private String InvoiceBizNo;
+	private String VendorCd;
+	private String InvoiceCnt;
+	private String InvoiceSupplyAmt;
+	private String InvoiceVatAmt;
+	private String InvoiceTotAmt;
+	private String SlipCnt;
+	private String SlipSupplyAmt;
+	private String SlipVatAmt;
+	private String SlipTotAmt;
+	private String ErrorYn;
+	
 		
 	public String getMenuId() {
 		return MenuId;
@@ -359,12 +372,84 @@ public class BotEseroVO {
 		return OriSlipNo;
 	}
 	public void setOriSlipNo (String oriSlipNo) {
-		OriSlipNo = OriSlipNo;
+		OriSlipNo = oriSlipNo;
 	}	
 	public String getOnOffType() {
 		return OnOffType;
 	}
 	public void setOnOffType (String onOffType) {
 		OnOffType = onOffType;
+	}	
+	public String getInvoiceYearMon() {
+		return InvoiceYearMon;
+	}
+	public void setInvoiceYearMon (String invoiceYearMon) {
+		InvoiceYearMon = invoiceYearMon;
+	}	
+	public String getInvoiceBizNo() {
+		return InvoiceBizNo;
+	}
+	public void setInvoiceBizNo (String invoiceBizNo) {
+		InvoiceBizNo = invoiceBizNo;
+	}	
+	public String getVendorCd() {
+		return VendorCd;
+	}
+	public void setVendorCd (String vendorCd) {
+		VendorCd = vendorCd;
+	}	
+	public String getInvoiceCnt() {
+		return InvoiceCnt;
+	}
+	public void setInvoiceCnt (String invoiceCnt) {
+		InvoiceCnt = invoiceCnt;
+	}	
+	public String getInvoiceSupplyAmt() {
+		return InvoiceSupplyAmt;
+	}
+	public void setInvoiceSupplyAmt (String invoiceSupplyAmt) {
+		InvoiceSupplyAmt = invoiceSupplyAmt;
+	}	
+	public String getInvoiceVatAmt() {
+		return InvoiceVatAmt;
+	}
+	public void setInvoiceVatAmt (String invoiceVatAmt) {
+		InvoiceVatAmt = invoiceVatAmt;
+	}	
+	public String getInvoiceTotAmt() {
+		return InvoiceTotAmt;
+	}
+	public void setInvoiceTotAmt (String invoiceTotAmt) {
+		InvoiceTotAmt = invoiceTotAmt;
+	}	
+	public String getSlipCnt() {
+		return SlipCnt;
+	}
+	public void setSlipCnt (String slipCnt) {
+		SlipCnt = slipCnt;
+	}	
+	public String getSlipSupplyAmt() {
+		return SlipSupplyAmt;
+	}
+	public void setSlipSupplyAmt (String slipSupplyAmt) {
+		SlipSupplyAmt = slipSupplyAmt;
+	}	
+	public String getSlipVatAmt() {
+		return SlipVatAmt;
+	}
+	public void setSlipVatAmt (String slipVatAmt) {
+		SlipVatAmt = slipVatAmt;
+	}	
+	public String getSlipTotAmt() {
+		return SlipTotAmt;
+	}
+	public void setSlipTotAmt (String slipTotAmt) {
+		SlipTotAmt = slipTotAmt;
+	}	
+	public String getErrorYn() {
+		return ErrorYn;
+	}
+	public void setErrorYn (String errorYn) {
+		ErrorYn = errorYn;
 	}	
 }

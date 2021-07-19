@@ -33,4 +33,12 @@ public class BotEseroServiceImpl implements IBotEseroService {
 	public List<BotEseroVO> listBotEseroSlipList(BotEseroVO vo) throws Exception {
 		return botEseroRepository.listBotEseroSlipList(vo);
 	}
+	
+	public List<BotEseroVO> listBotEseroInvoiceSlipListManageTaxOn(BotEseroVO vo) throws Exception {
+		return botEseroRepository.listBotEseroInvoiceSlipListManageTaxOn(vo);
+	}
+	
+	public List<BotEseroVO> listBotEseroInvoiceSlipListManageTaxOff(BotEseroVO vo) throws Exception {
+		return botEseroRepository.listBotEseroInvoiceSlipListManageTaxOff(vo);
+	}
 }
