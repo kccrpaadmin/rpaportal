@@ -161,7 +161,7 @@
 			dataType : "json",
 	        async: true,
 			success: function(data) {
-				openDialogRunBot(data.status);
+				openDialogRunBot(data.requestStatus);
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
