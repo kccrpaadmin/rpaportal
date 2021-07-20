@@ -126,7 +126,6 @@
         ];
 		
         IBS_InitSheet(mySheet, initdata);
-        mySheet.SetEditable(0);
         mySheet.SetEditableColorDiff(0);
         mySheet.SetDataLinkMouse("sendAmt", true);
         mySheet.SetColFontUnderline("sendAmt", true);
