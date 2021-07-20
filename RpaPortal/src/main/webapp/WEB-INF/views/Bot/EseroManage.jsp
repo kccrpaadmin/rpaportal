@@ -66,24 +66,8 @@
 	// 페이지 로드 
 	$(document).ready(function (e) {
 		commonFunc.createDatepicker(".datepicker_ym", "YearMonth");
-		
 		searchListEseroInvoiceSlipListManage("", "");
 	});
-	
-	// 체크 박스 체크 여부 조회
-	function getCheckYn(pChkBoxId) {
-		var returnVal = "";
-		if ($(pChkBoxId).is(":checked")) {
-			returnVal = "Y";
-		}
-		return returnVal;
-	}
-	
-	// 목록 조회 공통 함수
-	function searchListEseroInvoiceSlipListManage(pYearMon, pErrorYn) {
-		listEseroInvoiceSlipListManageTaxOn(pYearMon, pErrorYn);
-		listEseroInvoiceSlipListManageTaxOff(pYearMon, pErrorYn);
-	}	
 		
 	// 세금계산서 전표 대사 목록 조회
 	function listEseroInvoiceSlipListManageTaxOn(pYearMon, pErrorYn) {
@@ -95,7 +79,7 @@
 		    dataType : "json",
 	        async: true,
 			success: function(listDatas) {
-				makeGrid(listDatas);
+				makeGrid1(listDatas);
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
@@ -104,41 +88,7 @@
 		});
 	}
 	
-	// 그리드 생성 함수
-    function makeGrid(pListDatas) {
-    	commonFunc.initSheet("mySheet");
-		
-        var initdata = {};
-
-        createIBSheet2(document.getElementById("sheet1"), "mySheet", "1120px", "348px");
-
-        initdata.Cfg = { SearchMode: smClientPaging, Page: 10, MergeSheet: msHeaderOnly, MaxSort: 1 };
-        initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
-        initdata.Cols = [
-            { Header: "기준연월|기준연월", Type: "Text", Width: 70, SaveName: "invoiceYearMon", Align: "Center" },
-            { Header: "사업자번호|사업자번호", Type: "Text", Width: 90, SaveName: "invoiceBizNo", Align: "Center" },
-            { Header: "업체코드|업체코드", Type: "Text", Width: 70, SaveName: "vendorCd", Align: "Center" },            
-            { Header: "업체명|업체명", Type: "Text", Width: 170, SaveName: "vendorNm", Align: "Center" },
-            { Header: "세금계산서|개수", Type: "Float", Width: 60, SaveName: "invoiceCnt", Align: "Right" },
-            { Header: "세금계산서|공급가액", Type: "Float", Width: 100, SaveName: "invoiceSupplyAmt", Align: "Right" },            
-            { Header: "세금계산서|부가세액", Type: "Float", Width: 100, SaveName: "invoiceVatAmt", Align: "Right" },
-            { Header: "세금계산서|합계", Type: "Float", Width: 100, SaveName: "invoiceTotAmt", Align: "Right" },
-            { Header: "전표|개수", Type: "Float", Width: 60, SaveName: "slipCnt", Align: "Right" },
-            { Header: "전표|공급가액", Type: "Float", Width: 100, SaveName: "slipSupplyAmt", Align: "Right"},        
-            { Header: "전표|부가세액", Type: "Float", Width: 100, SaveName: "slipVatAmt", Align: "Right" },
-            { Header: "전표|합계", Type: "Float", Width: 100, SaveName: "slipTotAmt", Align: "Right" }
-        ];
-
-        IBS_InitSheet(mySheet, initdata);
-        mySheet.SetEditable(0);
-        mySheet.SetEditableColorDiff(0);
-        mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
-        mySheet.SetCountPosition(3); // 건수 정보 표시
-		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
-        mySheet.LoadSearchData(pListDatas);
-    }  
-	
- // 계산서 전표 대사 목록 조회
+	// 계산서 전표 대사 목록 조회
 	function listEseroInvoiceSlipListManageTaxOff(pYearMon, pErrorYn) {
 		$.ajax({
 			url: "/AjaxBot/ListEseroInvoiceSlipListManageTaxOff.do",
@@ -158,6 +108,40 @@
 	}
 	
 	// 그리드 생성 함수
+    function makeGrid1(pListDatas) {
+    	commonFunc.initSheet("mySheet1");
+		
+        var initdata = {};
+
+        createIBSheet2(document.getElementById("sheet1"), "mySheet1", "1120px", "348px");
+
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
+        initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
+        initdata.Cols = [
+            { Header: "기준연월|기준연월", Type: "Text", Width: 70, SaveName: "invoiceYearMon", Align: "Center" },
+            { Header: "사업자번호|사업자번호", Type: "Text", Width: 90, SaveName: "invoiceBizNo", Align: "Center" },
+            { Header: "업체코드|업체코드", Type: "Text", Width: 70, SaveName: "vendorCd", Align: "Center" },            
+            { Header: "업체명|업체명", Type: "Text", Width: 170, SaveName: "vendorNm", Align: "Center" },
+            { Header: "세금계산서|개수", Type: "Float", Width: 60, SaveName: "invoiceCnt", Align: "Right" },
+            { Header: "세금계산서|공급가액", Type: "Float", Width: 100, SaveName: "invoiceSupplyAmt", Align: "Right" },            
+            { Header: "세금계산서|부가세액", Type: "Float", Width: 100, SaveName: "invoiceVatAmt", Align: "Right" },
+            { Header: "세금계산서|합계", Type: "Float", Width: 100, SaveName: "invoiceTotAmt", Align: "Right" },
+            { Header: "전표|개수", Type: "Float", Width: 60, SaveName: "slipCnt", Align: "Right" },
+            { Header: "전표|공급가액", Type: "Float", Width: 100, SaveName: "slipSupplyAmt", Align: "Right"},        
+            { Header: "전표|부가세액", Type: "Float", Width: 100, SaveName: "slipVatAmt", Align: "Right" },
+            { Header: "전표|합계", Type: "Float", Width: 100, SaveName: "slipTotAmt", Align: "Right" }
+        ];
+
+        IBS_InitSheet(mySheet1, initdata);
+        mySheet1.SetEditable(0);
+        mySheet1.SetEditableColorDiff(0);
+        mySheet1.SetDataLinkMouse("sendAmt", true);
+        mySheet1.SetColFontUnderline("sendAmt", true);
+        mySheet1.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
+        mySheet1.LoadSearchData(pListDatas);
+    }  
+	
+	// 그리드 생성 함수
     function makeGrid2(pListDatas) {
     	commonFunc.initSheet("mySheet2");
 		
@@ -165,7 +149,7 @@
 
         createIBSheet2(document.getElementById("sheet2"), "mySheet2", "1120px", "348px");
 
-        initdata.Cfg = { SearchMode: smClientPaging, Page: 10, MergeSheet: msHeaderOnly, MaxSort: 1 };
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
             { Header: "기준연월|기준연월", Type: "Text", Width: 70, SaveName: "invoiceYearMon", Align: "Center" },
@@ -181,15 +165,30 @@
             { Header: "전표|부가세액", Type: "Float", Width: 100, SaveName: "slipVatAmt", Align: "Right" },
             { Header: "전표|합계", Type: "Float", Width: 100, SaveName: "slipTotAmt", Align: "Right" }
         ];
-
+		
         IBS_InitSheet(mySheet2, initdata);
         mySheet2.SetEditable(0);
         mySheet2.SetEditableColorDiff(0);
+        mySheet2.SetDataLinkMouse("sendAmt", true);
+        mySheet2.SetColFontUnderline("sendAmt", true);
         mySheet2.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
-        mySheet2.SetCountPosition(3); // 건수 정보 표시
-        mySheet2.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet2.LoadSearchData(pListDatas);
     }  
+	
+ 	// 체크 박스 체크 여부 조회
+	function getCheckYn(pChkBoxId) {
+		var returnVal = "";
+		if ($(pChkBoxId).is(":checked")) {
+			returnVal = "Y";
+		}
+		return returnVal;
+	}
+	
+	// 목록 조회 공통 함수
+	function searchListEseroInvoiceSlipListManage(pYearMon, pErrorYn) {
+		listEseroInvoiceSlipListManageTaxOn(pYearMon, pErrorYn);
+		listEseroInvoiceSlipListManageTaxOff(pYearMon, pErrorYn);
+	}	
 	
 	// 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_search", function (e) {		

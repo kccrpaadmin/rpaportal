@@ -67,8 +67,6 @@
 	</div>
 </div>
 
-
-
 <script type="text/javascript">
 	
 	// 전역 변수
@@ -80,17 +78,6 @@
 		libraryFunc.applyTypingNumber("number_15_0", 15, 0);
 		ListMoneySendManage("","","")
 	});
-	
-	// 업체 검색 팝업에서 전달받은 업체명, 업체코드 입력
-	function setVendorNm(vendorCd, vendorNm) {		
-		$("#vendor_nm").val(vendorNm);
-		$("#vendor_cd").val(vendorCd);
-	}
-	
-	// 목록 조회 공통 함수
-	function searchListMoneySendManage(vendorCd, glDate, sendAmt) {
-		ListMoneySendManage(vendorCd, glDate, sendAmt);
-	}
 	
 	// 송금확인증 목록 조회
 	function ListMoneySendManage(pVendorCd, pGlDate, pSendAmt) {
@@ -119,7 +106,7 @@
 
         createIBSheet2(document.getElementById("sheet"), "mySheet", "1120px", "510px");
 
-        initdata.Cfg = { SearchMode: smClientPaging, Page: 10, MergeSheet: msHeaderOnly, MaxSort: 1 };
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
             { Header: "증빙일자", Type: "Text", Width: 80, SaveName: "invoiceDate", Align: "Center", Edit:0},
@@ -137,17 +124,26 @@
             { Header: "적요", Type: "Text", Width: 200, SaveName: "invoiceDescription", Align: "Center", Edit:0 },
             { Header: "CheckID", Type: "Text", Width: 0, SaveName: "checkId", Align: "Center", Hidden: true }
         ];
-
+		
         IBS_InitSheet(mySheet, initdata);
-        //mySheet.SetEditable(0);
+        mySheet.SetEditable(0);
         mySheet.SetEditableColorDiff(0);
         mySheet.SetDataLinkMouse("sendAmt", true);
         mySheet.SetColFontUnderline("sendAmt", true);
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
-        mySheet.SetCountPosition(3); // 건수 정보 표시
-		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
     }  
+	
+	// 업체 검색 팝업에서 전달받은 업체명, 업체코드 입력
+	function setVendorNm(vendorCd, vendorNm) {		
+		$("#vendor_nm").val(vendorNm);
+		$("#vendor_cd").val(vendorCd);
+	}
+	
+	// 목록 조회 공통 함수
+	function searchListMoneySendManage(vendorCd, glDate, sendAmt) {
+		ListMoneySendManage(vendorCd, glDate, sendAmt);
+	}
 	
     // 그리드 클릭 함수
 	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
@@ -194,5 +190,5 @@
 		
 		searchListMoneySendManage(vendorCd, glDate, sendAmt);
 	});
-		
+
 </script>
