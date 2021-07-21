@@ -51,16 +51,16 @@
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "요청번호", Type: "Text", Width: 100, SaveName: "requestNo", Hidden:true },
+            { Header: "요청번호", Type: "Text", Width: 0, SaveName: "requestNo", Hidden:true },
             { Header: "이체일자", Type: "Text", Width: 100, SaveName: "sendDate", Align: "Center" },
             { Header: "입금은행", Type: "Text", Width: 100, SaveName: "remitBankNm", Align: "Center" },
             { Header: "입금계좌번호", Type: "Text", Width: 200, SaveName: "remitAccountNo", Align: "Center" },
-            { Header: "수취인", Type: "Text", Width: 250, SaveName: "remitteeNm", Align: "Center" },
-            { Header: "이체금액", Type: "Float", Width: 150, SaveName: "sendAmt"},
-            { Header: "수수료", Type: "Float", Width: 100, SaveName: "sendFee" },
+            { Header: "수취인", Type: "Text", Width: 200, SaveName: "remitteeNm", Align: "Center" },
+            { Header: "이체금액", Type: "Float", Width: 100, SaveName: "sendAmt"},
+            { Header: "수수료", Type: "Float", Width: 80, SaveName: "sendFee" },
             { Header: "출금은행", Type: "Text", Width: 100, SaveName: "sendBankNm", Align: "Center" },
-            { Header: "출금계좌번호", Type: "Text", Width: 200, SaveName: "sendAccountNo", Align: "Center" },
-            { Header: "작성일련번호", Type: "Text", Width: 200, SaveName: "serialNo", Align: "Center",Hidden:true }            
+            { Header: "출금계좌번호", Type: "Text", Width: 162, SaveName: "sendAccountNo", Align: "Center" },
+            { Header: "작성일련번호", Type: "Text", Width: 0, SaveName: "serialNo", Align: "Center",Hidden:true }            
         ];
 
         IBS_InitSheet(mySheet, initdata);
