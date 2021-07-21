@@ -96,19 +96,19 @@
 
         createIBSheet2(document.getElementById("sheet"), "mySheet", "1120px", "510px");
 
-        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
         	 { Header: "통보마감일자", Type: "Text", Width: 90, SaveName: "notificationCloseDate", Align: "Center" },    
              { Header: "현장명", Type: "Text", Width: 180, SaveName: "siteNm", Align: "Center" },        
              { Header: "계약번호", Type: "Text", Width: 110, SaveName: "contractNo", Align: "Center" },
-             { Header: "계약명", Type: "Text", Width: 160, SaveName: "contractNm", Align: "Center"},            
-             { Header: "업체명", Type: "Text", Width: 140, SaveName: "vendorNm", Align: "Center"},
+             { Header: "계약명", Type: "Text", Width: 172, SaveName: "contractNm", Align: "Center"},            
+             { Header: "업체명", Type: "Text", Width: 150, SaveName: "vendorNm", Align: "Center"},
              { Header: "계약일자", Type: "Text", Width: 80, SaveName: "contractDate", Align: "Center" },
              { Header: "계약시작일자", Type: "Text", Width: 80, SaveName: "contractStartDate", Align: "Center" },
              { Header: "계약종료일자", Type: "Text", Width: 80, SaveName: "contractFinishDate", Align: "Center" },
              { Header: "계약금액", Type: "Float", Width: 100, SaveName: "contractAmt", Align: "Right"},
-             { Header: "Bot 작성 여부", Type: "Text", Width: 80, SaveName: "successType", Align: "Center" }
+             { Header: "BOT작성", Type: "Text", Width: 60, SaveName: "successType", Align: "Center" }
         ];
 		
         IBS_InitSheet(mySheet, initdata);
