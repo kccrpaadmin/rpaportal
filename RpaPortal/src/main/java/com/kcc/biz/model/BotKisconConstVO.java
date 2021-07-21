@@ -25,6 +25,7 @@ public class BotKisconConstVO {
 	private String GuaranteeDepAmt;
 	private String SuccessType;
 	private String ErrorMsg;
+	private String NotificationCloseDate;	
 	
 	public String getRequestNo() {
 		return RequestNo;
@@ -115,5 +116,17 @@ public class BotKisconConstVO {
 	}
 	public void setSuccessType(String successType) {
 		SuccessType = successType;
+	}
+	public String getErrorMsg() {
+		return ErrorMsg;
+	}
+	public void setErrorMsg(String errorMsg) {
+		ErrorMsg = errorMsg;
+	}
+	public String getNotificationCloseDate() {
+		return NotificationCloseDate;
+	}
+	public void setNotificationCloseDate(String notificationCloseDate) {
+		NotificationCloseDate = notificationCloseDate;
 	}
 }

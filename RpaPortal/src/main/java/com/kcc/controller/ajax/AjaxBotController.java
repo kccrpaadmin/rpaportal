@@ -414,6 +414,24 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}
+	
+	@PostMapping("/ListKisconConstManage.do")
+	public @ResponseBody Map<String, Object> ListKisconConstManage(@RequestBody BotKisconConstVO vo) {
+		logger.info("/AjaxBot/ListKisconConstManage.do");
+		
+		List<BotKisconConstVO> outListBotKisconConstManageVO = new ArrayList<BotKisconConstVO>();
+		try {
+			outListBotKisconConstManageVO = botKisconConstService.listBotKisconConstManage(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotKisconConstManageVO);
+		
+		return map;
+	}
 						
 	// 기타영수증 전표 세금코드 오라클 입력업무	
 	@PostMapping("/UploadFilesEtcTax.do")

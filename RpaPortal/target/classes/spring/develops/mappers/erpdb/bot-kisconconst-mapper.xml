@@ -13,4 +13,15 @@
 		]]>
 	</select>
 	
+	<select id="listBotKisconConstManage" statementType="CALLABLE" parameterType="botKisconConstVO" resultType="botKisconConstVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotKisconConstManage (
+            		#{SiteNm},
+            		#{ContractNm}            		
+            	)
+			}
+		]]>
+	</select>
+	
 </mapper>
