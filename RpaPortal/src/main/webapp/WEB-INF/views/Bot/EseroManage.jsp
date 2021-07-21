@@ -118,15 +118,15 @@
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "기준연월|기준연월", Type: "Text", Width: 70, SaveName: "invoiceYearMon", Align: "Center" },
+            { Header: "기준연월|기준연월", Type: "Text", Width: 60, SaveName: "invoiceYearMon", Align: "Center" },
             { Header: "사업자번호|사업자번호", Type: "Text", Width: 90, SaveName: "invoiceBizNo", Align: "Center" },
             { Header: "업체코드|업체코드", Type: "Text", Width: 70, SaveName: "vendorCd", Align: "Center" },            
             { Header: "업체명|업체명", Type: "Text", Width: 170, SaveName: "vendorNm", Align: "Center" },
-            { Header: "세금계산서|개수", Type: "Float", Width: 60, SaveName: "invoiceCnt", Align: "Right" },
+            { Header: "세금계산서|개수", Type: "Float", Width: 56, SaveName: "invoiceCnt", Align: "Right" },
             { Header: "세금계산서|공급가액", Type: "Float", Width: 100, SaveName: "invoiceSupplyAmt", Align: "Right" },            
             { Header: "세금계산서|부가세액", Type: "Float", Width: 100, SaveName: "invoiceVatAmt", Align: "Right" },
             { Header: "세금계산서|합계", Type: "Float", Width: 100, SaveName: "invoiceTotAmt", Align: "Right" },
-            { Header: "전표|개수", Type: "Float", Width: 60, SaveName: "slipCnt", Align: "Right" },
+            { Header: "전표|개수", Type: "Float", Width: 56, SaveName: "slipCnt", Align: "Right" },
             { Header: "전표|공급가액", Type: "Float", Width: 100, SaveName: "slipSupplyAmt", Align: "Right"},        
             { Header: "전표|부가세액", Type: "Float", Width: 100, SaveName: "slipVatAmt", Align: "Right" },
             { Header: "전표|합계", Type: "Float", Width: 100, SaveName: "slipTotAmt", Align: "Right" }
