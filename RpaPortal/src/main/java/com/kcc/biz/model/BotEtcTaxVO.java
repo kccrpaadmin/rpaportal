@@ -13,9 +13,15 @@ public class BotEtcTaxVO {
 	private String SlipNo;
 	private String TaxCd;
 	private String ChgTaxCd;
+	private String OraTaxCd;
+	private String OraTaxNm;
 	private String SuccessTypeCd;
 	private String SuccessType;
 	private String ErrorMsg;
+	private String OraDescription;
+	private String OraCancelFlag;
+	private String OraSlipNo;
+	private String OraLineNo;
 	
 	public String getRequestNo() {
 		return RequestNo;
@@ -41,6 +47,18 @@ public class BotEtcTaxVO {
 	public void setChgTaxCd(String chgTaxCd) {
 		ChgTaxCd = chgTaxCd;
 	}
+	public String getOraTaxCd() {
+		return OraTaxCd;
+	}
+	public void setOraTaxCd(String oraTaxCd) {
+		OraTaxCd = oraTaxCd;
+	}
+	public String getOraTaxNm() {
+		return OraTaxNm;
+	}
+	public void setOraTaxNm(String oraTaxNm) {
+		OraTaxNm = oraTaxNm;
+	}
 	public String getSuccessTypeCd() {
 		return SuccessTypeCd;
 	}
@@ -58,5 +76,29 @@ public class BotEtcTaxVO {
 	}
 	public void setErrorMsg(String errorMsg) {
 		ErrorMsg = errorMsg;
+	}	
+	public String getOraDescription() {
+		return OraDescription;
+	}
+	public void setOraDescription(String oraDescription) {
+		OraDescription = oraDescription;
+	}	
+	public String getOraCancelFlag() {
+		return OraCancelFlag;
+	}
+	public void setOraCancelFlag(String oraCancelFlag) {
+		OraCancelFlag = oraCancelFlag;
+	}	
+	public String getOraSlipNo() {
+		return OraSlipNo;
+	}
+	public void setOraSlipNo(String oraSlipNo) {
+		OraSlipNo = oraSlipNo;
+	}	
+	public String getOraLineNo() {
+		return OraLineNo;
+	}
+	public void setOraLineNo(String oraLineNo) {
+		OraLineNo = oraLineNo;
 	}	
 }
