@@ -51,12 +51,18 @@
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "요청번호", Type: "Text", Width: 100, SaveName: "requestNo", Hidden:true },            
-            { Header: "전표번호", Type: "Text", Width: 120, SaveName: "slipNo", Align: "Center" },
-            { Header: "기존세금코드", Type: "Text", Width: 100, SaveName: "taxCd", Align: "Center" },
-            { Header: "변경세금코드", Type: "Text", Width: 100, SaveName: "chgTaxCd", Align: "Center"},            
-            { Header: "성공여부", Type: "Text", Width: 100, SaveName: "successType", Align: "Center"},
-            { Header: "오류내용", Type: "Text", Width: 150, SaveName: "errorMsg", Align: "Center" },
+            { Header: "요청번호", Type: "Text", Width: 0, SaveName: "requestNo", Hidden:true },            
+            { Header: "전표번호", Type: "Text", Width: 150, SaveName: "slipNo", Align: "Center" },
+            { Header: "적요", Type: "Text", Width: 230, SaveName: "oraDescription" },
+            { Header: "기존\n세금코드", Type: "Text", Width: 80, SaveName: "taxCd", Align: "Center" },
+            { Header: "변경\n세금코드", Type: "Text", Width: 80, SaveName: "chgTaxCd", Align: "Center"},
+            { Header: "현재 오라클\n세금코드", Type: "Text", Width: 80, SaveName: "oraTaxCd", Align: "Center"},
+            { Header: "세금코드명", Type: "Text", Width: 202, SaveName: "oraTaxNm"},
+            { Header: "삭제여부", Type: "Text", Width: 60, SaveName: "oraCancelFlag", Align: "Center"},
+            { Header: "성공여부", Type: "Text", Width: 60, SaveName: "successType", Align: "Center"},
+            { Header: "오류내용", Type: "Text", Width: 100, SaveName: "errorMsg", Align: "Center" },
+            { Header: "오라클전표번호", Type: "Text", Width: 0, SaveName: "oraSlipNo", Hidden:true },
+            { Header: "오라클라인번호", Type: "Text", Width: 0, SaveName: "oraLineNo", Hidden:true }
         ];
 
         IBS_InitSheet(mySheet, initdata);
@@ -65,5 +71,19 @@
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet.LoadSearchData(pListDatas);
     }
+	
+    // 실패된 행에 폰트 색상 변경 함수
+	function mySheet_OnRowSearchEnd(row) {
+		if(mySheet.GetCellValue(row, "chgTaxCd") == "증빙삭제"){
+			if (mySheet.GetCellValue(row, "oraCancelFlag") != "Y"){
+				mySheet.SetRowFontColor(row , "#FF0000");
+			}
+		}  
+		else {
+			if(mySheet.GetCellValue(row, "chgTaxCd") != mySheet.GetCellValue(row, "oraTaxCd")){
+				mySheet.SetRowFontColor(row , "#FF0000");
+			}
+		}
+	}
 	
 </script>

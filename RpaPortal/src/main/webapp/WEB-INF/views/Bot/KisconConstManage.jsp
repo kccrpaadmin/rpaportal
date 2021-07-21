@@ -32,31 +32,17 @@
 	            </colgroup>
 	            <tbody>
 	                <tr>
-	                	<th class="search_dtl_th">회사명</th>
+	                	<th class="search_dtl_th">현장명</th>
 	                    <td class="search_dtl_td">
-	                        ${orgComboBox}
+	                        <input type="text" class="txt_box_l" style="width:160px;" id="site_nm" />
 	                    </td>
-	                	<th class="search_dtl_th">부서명</th>
+	                	<th class="search_dtl_th">계약명</th>
 	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="dept_nm" />
+	                        <input type="text" class="txt_box_l" style="width:160px;" id="contract_nm" />
 	                    </td>
 	                    <td class="search_dtl_td"></td>
 	                    <td class="search_dtl_td"></td>
-	                </tr>
-	                <tr>
-	                	<th class="search_dtl_th">이름</th>
-	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="user_nm" />
-	                    </td>
-	                	<th class="search_dtl_th">직위</th>
-	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="duty_nm" />
-	                    </td>
-	                	<th class="search_dtl_th">담당업무</th>
-	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="task" />
-	                    </td>
-	                </tr>
+	                </tr>	                
 	            </tbody>
 	        </table>
 	    </div>
@@ -80,7 +66,68 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
+		searchListKisconConstManage("","");
+	});
+	
+	// 30일 이내 하도급 변경계약 목록 조회
+	function ListKisconConstManage(pSiteNm, pContractNm) {
+		$.ajax({
+			url: "/AjaxBot/ListKisconConstManage.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({"siteNm" : pSiteNm, "contractNm" : pContractNm}),
+		    dataType : "json",
+	        async: true,
+			success: function(listDatas) {
+				makeGrid(listDatas);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
+	// 그리드 생성 함수
+    function makeGrid(pListDatas) {
+    	commonFunc.initSheet("mySheet");
 		
+        var initdata = {};
+
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1120px", "510px");
+
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
+        initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
+        initdata.Cols = [
+        	 { Header: "통보마감일자", Type: "Text", Width: 90, SaveName: "notificationCloseDate", Align: "Center" },    
+             { Header: "현장명", Type: "Text", Width: 180, SaveName: "siteNm", Align: "Center" },        
+             { Header: "계약번호", Type: "Text", Width: 110, SaveName: "contractNo", Align: "Center" },
+             { Header: "계약명", Type: "Text", Width: 160, SaveName: "contractNm", Align: "Center"},            
+             { Header: "업체명", Type: "Text", Width: 140, SaveName: "vendorNm", Align: "Center"},
+             { Header: "계약일자", Type: "Text", Width: 80, SaveName: "contractDate", Align: "Center" },
+             { Header: "계약시작일자", Type: "Text", Width: 80, SaveName: "contractStartDate", Align: "Center" },
+             { Header: "계약종료일자", Type: "Text", Width: 80, SaveName: "contractFinishDate", Align: "Center" },
+             { Header: "계약금액", Type: "Float", Width: 100, SaveName: "contractAmt", Align: "Right"},
+             { Header: "Bot 작성 여부", Type: "Text", Width: 80, SaveName: "successType", Align: "Center" }
+        ];
+		
+        IBS_InitSheet(mySheet, initdata);
+        mySheet.SetEditableColorDiff(0);
+        mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
+        mySheet.LoadSearchData(pListDatas);
+    }  
+	
+    // 목록 조회 공통 함수
+	function searchListKisconConstManage(pSiteNm, pContractNm) {
+		ListKisconConstManage(pSiteNm, pContractNm);
+	}
+	
+    // 조회 버튼 클릭 이벤트
+	$(document).on("click", "#btn_search", function (e) {		
+		var siteNm = $("#site_nm").val();
+		var contractNm = $("#contract_nm").val();
+		
+		searchListKisconConstManage(siteNm, contractNm);
 	});
 		
 </script>

@@ -38,20 +38,6 @@
 		ListMoneySendManageSearchVendor("");
 	});
 	
-	// 조회 버튼 클릭 이벤트
-	$(document).on("click", "#btn_searchvendor", function (e) {
-		var vendorNm = $("#vendor_nm").val()
-		
-		ListMoneySendManageSearchVendor(vendorNm);
-	});
-	
-	// 업체명 엔터 이벤트
-	$(document).on("keydown", "#vendor_nm", function (e) {
-		if (e.keyCode == 13) {
-			$("#btn_searchvendor").trigger("click");
-		}
-	});
-	
 	// 업체 조회
 	function ListMoneySendManageSearchVendor(pVendorNm) {
 		$.ajax({
@@ -111,6 +97,19 @@
 			libraryFunc.closeModal();	
 		}		
 	}
+    
+	// 조회 버튼 클릭 이벤트
+	$(document).on("click", "#btn_searchvendor", function (e) {
+		var vendorNm = $("#vendor_nm").val()
+		
+		ListMoneySendManageSearchVendor(vendorNm);
+	});
 	
-	
+	// 업체명 엔터 이벤트
+	$(document).on("keydown", "#vendor_nm", function (e) {
+		if (e.keyCode == 13) {
+			$("#btn_searchvendor").trigger("click");
+		}
+	});
+		
 </script>

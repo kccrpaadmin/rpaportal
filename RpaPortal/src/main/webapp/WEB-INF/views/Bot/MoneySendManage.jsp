@@ -76,7 +76,7 @@
 	$(document).ready(function (e) {
 		commonFunc.createDatepicker(".datepicker_ymd", "YearMonthDay");
 		libraryFunc.applyTypingNumber("number_15_0", 15, 0);
-		ListMoneySendManage("","","")
+		searchListMoneySendManage("","","")
 	});
 	
 	// 송금확인증 목록 조회
