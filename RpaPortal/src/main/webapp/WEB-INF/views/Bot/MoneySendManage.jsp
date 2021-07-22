@@ -109,7 +109,8 @@
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "증빙일자", Type: "Text", Width: 80, SaveName: "invoiceDate", Align: "Center", Edit:0},
+        	{ Header: "전표번호", Type: "Text", Width: 140, SaveName: "invoiceNum", Align: "Center", Edit:0},
+        	{ Header: "증빙일자", Type: "Text", Width: 80, SaveName: "invoiceDate", Align: "Center", Edit:0},
             { Header: "회계처리일자", Type: "Text", Width: 80, SaveName: "glDate", Align: "Center", Edit:0 },
             { Header: "지급일자", Type: "Text", Width: 80, SaveName: "transDate", Align: "Center", Edit:0 },            
             { Header: "전표금액", Type: "Float", Width: 100, SaveName: "invoiceAmount", Align: "Right", Edit:0 },
@@ -121,7 +122,7 @@
             { Header: "송금확인증", Type: "Button", Width: 80, SaveName: "btnPrint", Align: "Center"},        
             { Header: "송금확인증파일ID", Type: "Text", Width: 0, SaveName: "attId", Align: "Center", Hidden: true },
             { Header: "송금확인증파일경로", Type: "Text", Width: 0, SaveName: "attFilePath", Align: "Center", Hidden: true },
-            { Header: "적요", Type: "Text", Width: 200, SaveName: "invoiceDescription", Align: "Center", Edit:0 },
+            { Header: "적요", Type: "Text", Width: 250, SaveName: "invoiceDescription", Align: "Center", Edit:0 },
             { Header: "CheckID", Type: "Text", Width: 0, SaveName: "checkId", Align: "Center", Hidden: true }
         ];
 		
@@ -182,10 +183,10 @@
     		return false;
     	}
 		
-		if (sendAmt == "") {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "송금액이 입력되지 않았습니다.", null, null);
-    		return false;
-    	}
+// 		if (sendAmt == "") {
+//     		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "송금액이 입력되지 않았습니다.", null, null);
+//     		return false;
+//     	}
 		
 		searchListMoneySendManage(vendorCd, glDate, sendAmt);
 	});

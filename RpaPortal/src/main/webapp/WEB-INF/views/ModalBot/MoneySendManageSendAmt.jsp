@@ -48,19 +48,20 @@
 
         createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "450px");
 
-        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [                        
-        	{ Header: "증빙일자", Type: "Text", Width: 80, SaveName: "invoiceDate", Align: "Center", Edit:0},
-            { Header: "회계처리일자", Type: "Text", Width: 80, SaveName: "glDate", Align: "Center", Edit:0 },
-            { Header: "지급일자", Type: "Text", Width: 80, SaveName: "transDate", Align: "Center", Edit:0 },            
-            { Header: "전표금액", Type: "AutoSum", Width: 110, SaveName: "invoiceAmount", Align: "Right", Edit:0 },
-            { Header: "상계후금액", Type: "AutoSum", Width: 110, SaveName: "amount", Align: "Right", Edit:0 },
-            //{ Header: "실송금액", Type: "Float", Width: 100, SaveName: "sendAmt", Align: "Right", Edit:0 },            
-            { Header: "입금은행", Type: "Text", Width: 70, SaveName: "remitBankNm", Align: "Center", Edit:0 },
-            { Header: "입금계좌번호", Type: "Text", Width: 130, SaveName: "remitAccountNo", Align: "Center", Edit:0 },
-            { Header: "수취인", Type: "Text", Width: 200, SaveName: "remitteeNm", Align: "Center", Edit:0 },
-            { Header: "적요", Type: "Text", Width: 200, SaveName: "invoiceDescription", Align: "Center", Edit:0 },
+        	{ Header: "전표번호", Type: "Text", Width: 140, SaveName: "invoiceNum", Align: "Center"},
+        	{ Header: "증빙일자", Type: "Text", Width: 80, SaveName: "invoiceDate", Align: "Center"},
+            { Header: "회계처리일자", Type: "Text", Width: 80, SaveName: "glDate", Align: "Center" },
+            { Header: "지급일자", Type: "Text", Width: 80, SaveName: "transDate", Align: "Center" },            
+            { Header: "전표금액", Type: "Float", Width: 110, SaveName: "invoiceAmount", Align: "Right" },
+            { Header: "상계후금액", Type: "Float", Width: 110, SaveName: "amount", Align: "Right" },
+            //{ Header: "실송금액", Type: "Float", Width: 100, SaveName: "sendAmt", Align: "Right" },            
+            { Header: "입금은행", Type: "Text", Width: 70, SaveName: "remitBankNm", Align: "Center" },
+            { Header: "입금계좌번호", Type: "Text", Width: 130, SaveName: "remitAccountNo", Align: "Center" },
+            { Header: "수취인", Type: "Text", Width: 200, SaveName: "remitteeNm", Align: "Center" },
+            { Header: "적요", Type: "Text", Width: 300, SaveName: "invoiceDescription" },
             { Header: "CheckID", Type: "Text", Width: 0, SaveName: "checkId", Align: "Center", Hidden: true }
         ];
 
