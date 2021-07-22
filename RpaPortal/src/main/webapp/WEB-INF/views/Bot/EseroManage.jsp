@@ -30,9 +30,9 @@
 	            </colgroup>
 	            <tbody>
 	                <tr>
-	                	<th class="search_dtl_th">기준 연월</th>
+	                	<th class="search_dtl_th">기준년월</th>
 	                    <td class="search_dtl_td">
-	                        <input type="text" class="datepicker_ym" readonly="readonly"  id="year_mon" value="${yearMon}" />
+	                        <input type="text" class="datepicker_ym" readonly="readonly"  id="year_mon" value="${basicDate}" />
 	                    </td>
 	                	<th class="search_dtl_th">조회구분</th>
 	                    <td class="search_dtl_td">

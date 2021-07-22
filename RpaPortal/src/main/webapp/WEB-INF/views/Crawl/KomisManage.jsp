@@ -28,7 +28,7 @@
 	            </colgroup>
 	            <tbody>
 	                <tr>
-	                	<th class="search_dtl_th">기준일자</th>
+	                	<th class="search_dtl_th">기준년월</th>
 	                    <td class="search_dtl_td">
 	                        <input type="text" class="datepicker_ym" readonly="readonly"  id="basic_date" value="${basicDate}" />
 	                    </td>
