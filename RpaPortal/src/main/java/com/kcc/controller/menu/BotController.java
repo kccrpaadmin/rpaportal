@@ -190,33 +190,7 @@ public class BotController extends BaseController {
 		
 		return "Bot/CostDivideRun";
 	}
-	
-	@GetMapping("/CostDivideManage.do")
-	public String CostDivideManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
-		logger.info("/Bot/CostDivideManage.do");
 		
-		// MenuVO 입력
-		MenuVO inMenuVO = new MenuVO();
-		inMenuVO.setMenuId(pMenuId);
-		inMenuVO.setEmpNo(pEmpNo);
-		
-		// MenuVO 출력
-		MenuVO outMenuVO = new MenuVO();
-		
-		try {
-			// 메뉴 정보 상세 조회
-			outMenuVO = menuService.getBotMenu(inMenuVO);
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		// 모델 정의
-		model.addAttribute("outMenuVO", outMenuVO);
-		
-		return "Bot/CostDivideManage";
-	}
-	
 	@GetMapping("/EtcTaxRun.do")
 	public String EtcTaxRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/EtcTaxRun.do");
@@ -242,33 +216,7 @@ public class BotController extends BaseController {
 		
 		return "Bot/EtcTaxRun";
 	}
-	
-	@GetMapping("/EtcTaxManage.do")
-	public String EtcTaxManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
-		logger.info("/Bot/EtcTaxManage.do");
 		
-		// MenuVO 입력
-		MenuVO inMenuVO = new MenuVO();
-		inMenuVO.setMenuId(pMenuId);
-		inMenuVO.setEmpNo(pEmpNo);
-		
-		// MenuVO 출력
-		MenuVO outMenuVO = new MenuVO();
-		
-		try {
-			// 메뉴 정보 상세 조회
-			outMenuVO = menuService.getBotMenu(inMenuVO);
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		// 모델 정의
-		model.addAttribute("outMenuVO", outMenuVO);
-		
-		return "Bot/EtcTaxManage";
-	}
-	
 	@GetMapping("/KisconConstRun.do")
 	public String KisconConstRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
 		logger.info("/Bot/KisconConstRun.do");
