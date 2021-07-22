@@ -61,8 +61,7 @@
             { Header: "삭제여부", Type: "Text", Width: 60, SaveName: "oraCancelFlag", Align: "Center"},
             { Header: "성공여부", Type: "Text", Width: 60, SaveName: "successType", Align: "Center"},
             { Header: "오류내용", Type: "Text", Width: 100, SaveName: "errorMsg", Align: "Center" },
-            { Header: "오라클전표번호", Type: "Text", Width: 0, SaveName: "oraSlipNo", Hidden:true },
-            { Header: "오라클라인번호", Type: "Text", Width: 0, SaveName: "oraLineNo", Hidden:true }
+            { Header: "오라클전표번호", Type: "Text", Width: 0, SaveName: "oraSlipNo", Hidden:true }
         ];
 
         IBS_InitSheet(mySheet, initdata);
