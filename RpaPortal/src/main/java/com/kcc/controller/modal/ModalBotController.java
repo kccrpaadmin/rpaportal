@@ -96,6 +96,16 @@ public class ModalBotController extends BaseController {
 		return "ModalBot/EseroRunResult";
 	}
 	
+	@GetMapping("/EseroManageOraCheckList.do")
+	public String EseroManageOraCheckList(String pMenuId, String pYearMon, Model model) {
+		logger.info("/ModalBot/EseroManageOraCheckList.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("yearMon", pYearMon);
+		
+		return "ModalBot/EseroManageOraCheckList";
+	}
+	
 	@GetMapping("/MoneySendRunResult.do")
 	public String MoneySendRunResult(String pMenuId, String pRequestNo, Model model) {
 		logger.info("/ModalBot/MoneySendRunResult.do");
