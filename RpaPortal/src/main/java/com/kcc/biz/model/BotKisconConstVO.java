@@ -26,6 +26,7 @@ public class BotKisconConstVO {
 	private String SuccessType;
 	private String ErrorMsg;
 	private String NotificationCloseDate;	
+	private String PricePaymentYn;	
 	
 	public String getRequestNo() {
 		return RequestNo;
@@ -128,5 +129,11 @@ public class BotKisconConstVO {
 	}
 	public void setNotificationCloseDate(String notificationCloseDate) {
 		NotificationCloseDate = notificationCloseDate;
+	}
+	public String getPricePaymentYn() {
+		return PricePaymentYn;
+	}
+	public void setPricePaymentYn(String pricePaymentYn) {
+		PricePaymentYn = pricePaymentYn;
 	}
 }
