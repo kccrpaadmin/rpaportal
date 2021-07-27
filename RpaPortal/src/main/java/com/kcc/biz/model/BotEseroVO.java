@@ -71,9 +71,21 @@ public class BotEseroVO {
 	private String SlipSupplyAmt;
 	private String SlipVatAmt;
 	private String SlipTotAmt;
-	private String ErrorYn;
+	private String ErrorYn;	
+	private String SlipPaymentDate;
+	private String SlipBizNo;
+	private String SlipDrawDate;
+	private String SlipIssueNo;
+	private String InvoiceIssueNo;
+	private String InvoiceMakeDate;
+	private String IssueNoYn;
+	private String BizNoYn;
+	private String DrawDateYn;
+	private String SupplyAmtYn;
+	private String VatAmtYn;
+	private String TotAmtYn;
+			
 	
-		
 	public String getMenuId() {
 		return MenuId;
 	}
@@ -452,4 +464,77 @@ public class BotEseroVO {
 	public void setErrorYn (String errorYn) {
 		ErrorYn = errorYn;
 	}	
+	public String getSlipPaymentDate() {
+		return SlipPaymentDate;
+	}
+	public void setSlipPaymentDate (String slipPaymentDate) {
+		SlipPaymentDate = slipPaymentDate;
+	}	
+	public String getSlipBizNo() {
+		return SlipBizNo;
+	}
+	public void setSlipBizNo (String slipBizNo) {
+		SlipBizNo = slipBizNo;
+	}	
+	public String getSlipDrawDate() {
+		return SlipDrawDate;
+	}
+	public void setSlipDrawDate (String slipDrawDate) {
+		SlipDrawDate = slipDrawDate;
+	}	
+	public String getSlipIssueNo() {
+		return SlipIssueNo;
+	}
+	public void setSlipIssueNo (String slipIssueNo) {
+		SlipIssueNo = slipIssueNo;
+	}	
+	public String getInvoiceIssueNo() {
+		return InvoiceIssueNo;
+	}
+	public void setInvoiceIssueNo (String invoiceIssueNo) {
+		InvoiceIssueNo = invoiceIssueNo;
+	}	
+	public String getInvoiceMakeDate() {
+		return InvoiceMakeDate;
+	}
+	public void setEInvoiceMakeDate (String invoiceMakeDate) {
+		InvoiceMakeDate = invoiceMakeDate;
+	}	
+	public String getIssueNoYn() {
+		return IssueNoYn;
+	}
+	public void setIssueNoYn (String issueNoYn) {
+		IssueNoYn = issueNoYn;
+	}	
+	public String getBizNoYn() {
+		return BizNoYn;
+	}
+	public void setBizNoYn (String bizNoYn) {
+		BizNoYn = bizNoYn;
+	}	
+	public String getDrawDateYn() {
+		return DrawDateYn;
+	}
+	public void setDrawDateYn (String drawDateYn) {
+		DrawDateYn = drawDateYn;
+	}	
+	public String getSupplyAmtYn() {
+		return SupplyAmtYn;
+	}
+	public void setSupplyAmtYn (String supplyAmtYn) {
+		SupplyAmtYn = supplyAmtYn;
+	}	
+	public String getVatAmtYn() {
+		return VatAmtYn;
+	}
+	public void setVatAmtYn (String vatAmtYn) {
+		VatAmtYn = vatAmtYn;
+	}	
+	public String getTotAmtYn() {
+		return TotAmtYn;
+	}
+	public void setTotAmtYn (String totAmtYn) {
+		TotAmtYn = totAmtYn;
+	}
+	
 }

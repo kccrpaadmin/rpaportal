@@ -66,5 +66,16 @@
 			}
 		]]>
 	</select>
+	
+	<select id="listBotEseroInvoiceSlipListManageOraCheckList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEseroInvoiceSlipListManageOraCheckList (
+            		#{YearMon}
+            	   ,#{ErrorYn}
+            	)
+			}
+		]]>
+	</select>
 
 </mapper>

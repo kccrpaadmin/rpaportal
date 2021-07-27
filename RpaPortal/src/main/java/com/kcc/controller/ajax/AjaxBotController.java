@@ -377,6 +377,24 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
+	@PostMapping("/ListEseroInvoiceSlipListManageOraCheckList.do")
+	public @ResponseBody Map<String, Object> ListEseroInvoiceSlipListManageOraCheckList(@RequestBody BotEseroVO vo) {
+		logger.info("/AjaxBot/ListEseroInvoiceSlipListManageOraCheckList.do");
+		
+		List<BotEseroVO> outListBotEseroVO = new ArrayList<BotEseroVO>();
+		try {
+			outListBotEseroVO = botEseroService.listBotEseroInvoiceSlipListManageOraCheckList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
 	// 매입세 안분 검토 업무
 	@PostMapping("/ListCostDivideTargetDate.do")
 	public @ResponseBody Map<String, Object> ListCostDivideTargetDate(@RequestBody BotCostDivideVO vo) {

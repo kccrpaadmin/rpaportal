@@ -11,5 +11,5 @@ public interface IBotEseroService {
 	List<BotEseroVO> listBotEseroSlipList(BotEseroVO vo) throws Exception;
 	List<BotEseroVO> listBotEseroInvoiceSlipListManageTaxOn(BotEseroVO vo) throws Exception;
 	List<BotEseroVO> listBotEseroInvoiceSlipListManageTaxOff(BotEseroVO vo) throws Exception;
-	
+	List<BotEseroVO> listBotEseroInvoiceSlipListManageOraCheckList(BotEseroVO vo) throws Exception;
 }

@@ -30,7 +30,7 @@
 	            </colgroup>
 	            <tbody>
 	                <tr>
-	                	<th class="search_dtl_th">기준년월</th>
+	                	<th class="search_dtl_th">기준연월</th>
 	                    <td class="search_dtl_td">
 	                        <input type="text" class="datepicker_ym" readonly="readonly"  id="year_mon" value="${basicDate}" />
 	                    </td>
@@ -45,6 +45,7 @@
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a class="btn_common" id="btn_search">조회</a>
+	    	<a class="btn_common" id="btn_orachecklist">오라클 체크리스트</a>
 	    </div>
 	    <!-- 그리드영역 -->
 	    <p>세금계산서</p>
@@ -66,7 +67,9 @@
 	// 페이지 로드 
 	$(document).ready(function (e) {
 		commonFunc.createDatepicker(".datepicker_ym", "YearMonth");
-		searchListEseroInvoiceSlipListManage("", "");
+			
+		searchListEseroInvoiceSlipListManage();
+		
 	});
 		
 	// 세금계산서 전표 대사 목록 조회
@@ -185,22 +188,36 @@
 	}
 	
 	// 목록 조회 공통 함수
-	function searchListEseroInvoiceSlipListManage(pYearMon, pErrorYn) {
-		listEseroInvoiceSlipListManageTaxOn(pYearMon, pErrorYn);
-		listEseroInvoiceSlipListManageTaxOff(pYearMon, pErrorYn);
+	function searchListEseroInvoiceSlipListManage() {
+		var yearMon = commonFunc.getReplaceAll($("#year_mon").val(),"-","");
+		var errorYn = getCheckYn("#error_yn");		
+		
+		listEseroInvoiceSlipListManageTaxOn(yearMon, errorYn);
+		listEseroInvoiceSlipListManageTaxOff(yearMon, errorYn);
 	}	
 	
 	// 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_search", function (e) {		
-		var yearMon = commonFunc.getReplaceAll($("#year_mon").val(),"-","");
-		var errorYn = getCheckYn("#error_yn");
+		var yearMon = commonFunc.getReplaceAll($("#year_mon").val(),"-","");		
 		
 		if (yearMon == "") {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "기준 연월이 선택되지 않았습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "기준연월이 선택되지 않았습니다.", null, null);
     		return false;
     	}		
 		
-		searchListEseroInvoiceSlipListManage(yearMon, errorYn);
+		searchListEseroInvoiceSlipListManage();
+	});
+	
+	// 오라클 체크리스트 버튼 클릭 이벤트
+	$(document).on("click", "#btn_orachecklist", function (e) {		
+		var yearMon = commonFunc.getReplaceAll($("#year_mon").val(),"-","");		
+		
+		if (yearMon == "") {
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "기준연월이 선택되지 않았습니다.", null, null);
+    		return false;
+    	}		
+				
+		libraryFunc.createModal(null, null, null, 1100, 560, "오라클 체크리스트", "/ModalBot/EseroManageOraCheckList.do?pMenuId=" + menuId + "&pYearMon=" + yearMon);
 	});
 		
 </script>
