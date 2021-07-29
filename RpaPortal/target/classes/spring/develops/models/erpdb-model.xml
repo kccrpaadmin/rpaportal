@@ -27,6 +27,8 @@
 		<typeAlias alias="codeVO" type="com.kcc.biz.model.CodeVO" />
 		<!-- 게시판 -->
 		<typeAlias alias="boardVO" type="com.kcc.biz.model.BoardVO" />
+		<!-- 과제건의함 -->
+		<typeAlias alias="proposalVO" type="com.kcc.biz.model.ProposalVO" />
 		
 		<!-- 웹크롤링 스케쥴 -->
 		<typeAlias alias="crawlScheduleVO" type="com.kcc.biz.model.CrawlScheduleVO" />
