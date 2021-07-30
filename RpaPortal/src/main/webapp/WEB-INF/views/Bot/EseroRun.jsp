@@ -76,7 +76,7 @@
 	    <div class="btn_box">
 	    	<a class="btn_common" id="btn_target_date_open">대상기간</a>
 	    	<a class="btn_common" id="btn_immediate_call">즉시실행</a>
-	    	<a class="btn_common" id="btn_schedule_open">예약실행</a>
+	    	<a class="btn_common" id="btn_schedule_open" style="display:none;">예약실행</a>
 	    </div>
 	    <!-- 그리드영역 -->
    	    <div id="sheet"></div>
@@ -95,6 +95,7 @@
 	// 페이지 로드 
 	$(document).ready(function (e) {
 		listRequest(menuId, commonFunc.certInfo.empNo);
+		enableButtonControl();
 	});
 	
 	// BOT 요청 목록 조회
@@ -135,6 +136,13 @@
 		});
 	}
 	
+	// 버튼 활성화, 비활성화 함수
+	function enableButtonControl() {
+		if (commonFunc.certInfo.roleType == "ROLE_ADMIN") {
+			$("#btn_schedule_open").css("display", "inline-block");   
+        }
+	}
+	
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
     	commonFunc.initSheet("mySheet");
@@ -166,7 +174,7 @@
         mySheet.LoadSearchData(pListDatas);
     } 
 	
- // 그리드 클릭 함수
+    // 그리드 클릭 함수
 	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
 		if (Row == 0) {
 			return false;
