@@ -45,7 +45,7 @@
 	                </tr>
 	                <tr>
 	                    <th class="detail_th_l" >내용</th>
-	                    <td class="detail_td_l"colspan="3"><textarea class="txt_box_proposalContent" id="proposal_content" rows="20" ></textarea></td>
+	                    <td class="detail_td_l"colspan="3"><textarea class="txt_box_proposalContent" id="proposal_content" rows="20"></textarea></td>
 	                </tr>	  	                            
 	            </tbody>
 	        </table>	        
@@ -78,24 +78,25 @@
 		var menuId = $("#menu_cd").val();
 		var proposalNm = $("#proposal_nm").val();
 		var proposalContent = $("#proposal_content").val();
+		var proposalDeptCd = commonFunc.certInfo.deptCd;
 		var regUserId = commonFunc.certInfo.empNo;
 		    
-		saveProposalWrite(menuId, proposalNm, proposalContent, regUserId);
+		saveProposalWrite(menuId, proposalNm, proposalContent, proposalDeptCd, regUserId);
         
 	}
 	
 	// 과제 건의 내용 저장
-    function saveProposalWrite(pMenuId, pProposalNm, pProposalContent, pRegUserId) {
+    function saveProposalWrite(pMenuId, pProposalNm, pProposalContent, pProposalDeptCd, pRegUserId) {
     	$.ajax({
-			url: "/AjaxProposal/saveProposalWrite.do",
+			url: "/AjaxProposal/SaveProposalWrite.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo, "eseroTargetDate": pEseroTargetDate }),
+			data : JSON.stringify({ "menuId": pMenuId, "proposalNm": pProposalNm, "proposalContent": pProposalContent, "proposalDeptCd": pProposalDeptCd, "regUserId": pRegUserId }),
 		    dataType : "json",
 	        async: true,
 			success: function(data) {
 				if (data.status == "Success") {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청이 성공 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장되었습니다.", null, callbackSaveProposalWrite);
 				}
 				else {
 					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
@@ -108,6 +109,10 @@
 		});
     }
 	
+	// 과제 건의 저장 후 목록 페이지로 이동
+	function callbackSaveProposalWrite(){
+		window.location.href = "/Proposal/ListProposal.do";
+	}	
 	
 	// 작성 버튼 클릭 이벤트
 	$(document).on("click", "#btn_write", function (e) {								
@@ -127,7 +132,7 @@
 			return false;
 		}
     	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveProposalWrite);    	
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveProposalWriteConfirm);    	
     });
 	
 </script>

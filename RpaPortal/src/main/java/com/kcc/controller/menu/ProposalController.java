@@ -89,7 +89,7 @@ public class ProposalController extends BaseController {
 	public String ProposalWrite(Model model) {
 		logger.info("/Proposal/ProposalWrite.do");
 
-		model.addAttribute("menuCdComboBox", commonUtilService.getCodeProcedureSelectBox("menu_cd", "PRA_Bot_listProposalMenuCombo", "", true, "", ""));
+		model.addAttribute("menuCdComboBox", commonUtilService.getCodeProcedureSelectBox("menu_cd", "PRA_Proposal_listProposalMenuCombo", "", true, "", ""));
 		
 		return "Proposal/ProposalWrite";
 	}

@@ -25,4 +25,8 @@ public class ProposalServiceImpl implements IProposalService {
 	public ProposalVO getProposalDetail(ProposalVO vo) throws Exception {
 		return proposalRepository.getProposalDetail(vo);
 	}
+	
+	public void saveProposalWrite(ProposalVO vo) throws Exception {
+		proposalRepository.saveProposalWrite(vo);
+	}
 }

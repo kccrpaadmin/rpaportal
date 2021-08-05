@@ -10,14 +10,19 @@ package com.kcc.biz.model;
 
 public class ProposalVO {
 	private String ProposalNo;
+	private String Seq;
+	private String MenuId;
 	private String MenuNm;
 	private String ProposalNm;
 	private String ProposalContent;
+	private String ProposalDeptCd;
 	private String ProposalDeptNm;
 	private String ReviewContent;
 	private String ReviewUserNm;
 	private String StatusCd;
+	private String StatusNm;
 	private String AttId;
+	private String RegUserId;
 	private String RegUserNm;
 	private String RegDate;
 	private String SearchTxt;
@@ -27,6 +32,18 @@ public class ProposalVO {
 	}
 	public void setProposalNo(String proposalNo) {
 		ProposalNo = proposalNo;
+	}
+	public String getSeq() {
+		return Seq;
+	}
+	public void setSeq(String seq) {
+		Seq = seq;
+	}
+	public String getMenuId() {
+		return MenuId;
+	}
+	public void setMenuId(String menuId) {
+		MenuId = menuId;
 	}
 	public String getMenuNm() {
 		return MenuNm;
@@ -45,6 +62,12 @@ public class ProposalVO {
 	}
 	public void setProposalContent(String proposalContent) {
 		ProposalContent = proposalContent;
+	}
+	public String getProposalDeptCd() {
+		return ProposalDeptCd;
+	}
+	public void setProposalDeptCd(String proposalDeptCd) {
+		ProposalDeptCd = proposalDeptCd;
 	}
 	public String getProposalDeptNm() {
 		return ProposalDeptNm;
@@ -70,11 +93,23 @@ public class ProposalVO {
 	public void setStatusCd(String statusCd) {
 		StatusCd = statusCd;
 	}
+	public String getStatusNm() {
+		return StatusNm;
+	}
+	public void setStatusNm(String statusNm) {
+		StatusNm = statusNm;
+	}
 	public String getAttId() {
 		return AttId;
 	}
 	public void setAttId(String attId) {
 		AttId = attId;
+	}
+	public String getRegUserId() {
+		return RegUserId;
+	}
+	public void setRegUserId(String regUserId) {
+		RegUserId = regUserId;
 	}
 	public String getRegUserNm() {
 		return RegUserNm;

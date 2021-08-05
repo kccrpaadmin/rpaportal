@@ -80,10 +80,11 @@
 	    initdata.Cfg = { SearchMode: smClientPaging, Page: 10, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
 	    initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
 	    initdata.Cols = [
-	    	{ Header: "요청번호", Type: "Text", Width: 100, SaveName: "proposalNo", Align: "Center" },
-	        { Header: "구분", Type: "Text", Width: 150, SaveName: "menuNm", Align: "Center" },	       
-	        { Header: "제목", Type: "Text", Width: 300, SaveName: "proposalNm" },
-	        { Header: "요청부서", Type: "Text", Width: 150, SaveName: "proposalDeptNm", Align: "Center" },
+	    	{ Header: "순번", Type: "Text", Width: 50, SaveName: "seq", Align: "Center" },
+	    	{ Header: "진행상태", Type: "Text", Width: 100, SaveName: "statusNm", Align: "Center" },
+	        { Header: "구분", Type: "Text", Width: 120, SaveName: "menuNm", Align: "Center" },	       
+	        { Header: "제목", Type: "Text", Width: 450, SaveName: "proposalNm" },
+	        { Header: "요청부서", Type: "Text", Width: 200, SaveName: "proposalDeptNm", Align: "Center" },
 	        { Header: "요청자", Type: "Text", Width: 100, SaveName: "regUserNm", Align: "Center" },
 	        { Header: "요청일자", Type: "Text", Width: 100, SaveName: "regDate", Align: "Center" }
 	    ];

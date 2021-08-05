@@ -26,7 +26,9 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.AccessVO;
+import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.ProposalVO;
+import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.service.IAccessService;
 import com.kcc.biz.service.IProposalService;
 import com.kcc.biz.service.ILoginService;
@@ -59,4 +61,24 @@ public class AjaxProposalController extends BaseController {
 		
 		return map;
 	}		
+	
+	//	과제 건의 저장
+	@PostMapping("/SaveProposalWrite.do")
+	public @ResponseBody StatusVO SaveProposalWrite(@RequestBody ProposalVO vo) {
+			logger.info("/AjaxProposal/SaveProposalWrite.do");
+			String status = "Success";
+			
+			try {
+				proposalService.saveProposalWrite(vo);
+			} 
+			catch (Exception e) {
+				status = "SaveError";
+				e.printStackTrace();
+			}
+			
+			StatusVO statusVO = new StatusVO();
+			statusVO.setStatus(status);
+			
+			return statusVO;
+		}
 }

@@ -22,5 +22,19 @@
 			}
 		]]>
 	</select>	
+	
+	<insert id="saveProposalWrite" statementType="CALLABLE" parameterType="proposalVO">
+		<![CDATA[
+			{ 
+	            call PRA_Proposal_createProposalWrite (
+					#{MenuId}
+	               ,#{ProposalNm}
+	               ,#{ProposalContent}
+	               ,#{ProposalDeptCd}
+	               ,#{RegUserId}
+            	)
+			}
+		]]>
+	</insert>
 		
 </mapper>

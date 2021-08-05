@@ -56,7 +56,7 @@
 	            </tbody>
 	        </table>
 	        <br><br>
-	        <div class="proposaltitle">
+	        <div class="proposaltitle" style="display:none">
 	        	 <div class="proposalnm">${outProposalVO.proposalNm}</div>
 	        	 <div class="proposaldetail">
 	        	 	<p>구분: ${outProposalVO.menuNm}</p>
@@ -64,7 +64,7 @@
 	        	 	<p>요청자: ${outProposalVO.regUserNm}</p>
 	        	 </div>
 	        </div>
-	        <div class="proposalcontent">${outProposalVO.proposalContent}</div>       
+	        <div class="proposalcontent" style="display:none">${outProposalVO.proposalContent}</div>       
 	    </div>
 	    <br>
 	    <!-- 버튼영역 -->
