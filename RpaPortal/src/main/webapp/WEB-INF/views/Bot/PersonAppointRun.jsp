@@ -72,8 +72,9 @@
 	            </tbody>
 	        </table>
 	    </div>
-	    <!-- 버튼영역 -->
+   	    <!-- 버튼영역 -->
 	    <div class="btn_box">
+	    	<a class="btn_common" id="btn_immediate_call">즉시실행</a>
 	    	<a class="btn_common" id="btn_schedule_open" style="display:none;">예약실행</a>
 	    </div>
 	    <!-- 그리드영역 -->
@@ -107,6 +108,25 @@
 	        async: true,
 			success: function(listDatas) {
 				makeGrid(listDatas);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
+	// 봇 실행
+	function runBot(pMenuId, pEmpNo, pUserId) {
+		$.ajax({
+			url: "/AjaxBot/RunBot.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo, "userId": pUserId }),
+			dataType : "json",
+	        async: true,
+			success: function(data) {
+				openDialogRunBot(data.requestStatus);
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
@@ -151,10 +171,36 @@
         mySheet.SetCountPosition(3); // 건수 정보 표시
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
-		
-		alert(mySheet.Version());
     }
    	
+ 	// 즉시실행 전, 확인 함수
+	function runBotConfirm(pOption) {
+		if (pOption.sdBtnKey == "o") {
+			runBot(menuId, commonFunc.certInfo.empNo, commonFunc.certInfo.userId);
+        }
+	}
+ 	
+	// 즉시실행 후, 대화상자 오픈 함수
+	function openDialogRunBot(pData) {
+		if (pData == "Progress") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "이미 실행중인 요청이 있습니다.<br/>잠시후에 다시시도 하세요.", null, commonFunc.refreshPage);
+			return false;
+		}
+		else if (pData == "Success") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청을 완료 하였습니다.", null, commonFunc.refreshPage);
+			return false;
+		}
+		else {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청중 오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+			return false;
+		}
+	}
+	
+	// 즉시실행 버튼 클릭 이벤트
+	$(document).on("click", "#btn_immediate_call", function (e) {
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "요청을 진행 하시겠습니까?", null, runBotConfirm);
+	});
+	
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {
 		libraryFunc.createModal(null, null, null, 1100, 560, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
