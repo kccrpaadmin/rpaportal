@@ -131,7 +131,7 @@
 				$("#btn_delete").css("display", "inline-block");   
 	        }	
 		}		
-		
+		  //TEST
 		if (commonFunc.certInfo.roleType == "ROLE_ADMIN") {
 			$("#btn_review").css("display", "inline-block");   
         }		
