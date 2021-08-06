@@ -8,7 +8,7 @@
 		<!-- 로케이션 -->
 		<div class="location_box">
 			<div class="location_left">
-				<div class="location_title">상세내용</div>	
+				<div class="location_title">과제건의 검토의견 작성</div>	
 			</div>
 			<div class="location_right">
 				<span class="location_home">홈</span>
@@ -31,7 +31,7 @@
 	            <tbody>
 	                <tr>
 	                    <th class="detail_th_l">진행상태</th>
-	                    <td class="detail_td_l">${outProposalVO.statusNm}</td>
+	                    <td class="detail_td_l">${statusCdComboBox}</td>
 	                    <th class="detail_th_l">요청일시</th>
 	                    <td class="detail_td_l">${outProposalVO.regDate}</td>
 	                </tr>
@@ -55,27 +55,15 @@
 	                </tr>	  
 	                <tr>
 	                    <th class="detail_th_l" >검토의견</th>
-	                    <td class="detail_td_l"colspan="3"><div style="min-height:150px;'">${outProposalVO.reviewContent}</div></td>
+	                    <td class="detail_td_l"colspan="3"><textarea class="txt_box_proposalContent" id="review_content" rows="12" >${outProposalVO.reviewContent}</textarea></td>
 	                </tr>	               
 	            </tbody>
-	        </table>
-	        <br><br>
-	        <div class="proposaltitle" style="display:none">
-	        	 <div class="proposalnm">${outProposalVO.proposalNm}</div>
-	        	 <div class="proposaldetail">
-	        	 	<p>구분: ${outProposalVO.menuNm}</p>
-	        	 	<p>요청부서: ${outProposalVO.proposalDeptNm}</p>
-	        	 	<p>요청자: ${outProposalVO.regUserNm}</p>
-	        	 </div>
-	        </div>
-	        <div class="proposalcontent" style="display:none">${outProposalVO.proposalContent}</div>       
+	        </table> 
 	    </div>
 	    <br>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_update" style="display:none">수정</a>
-	    	<a class="btn_common" id="btn_delete" style="display:none">삭제</a>
-	    	<a class="btn_common" id="btn_review" style="display:none">검토의견작성</a>
+	    	<a class="btn_common" id="btn_save">저장</a>
 	    </div>	    
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">
@@ -91,21 +79,21 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		enableButtonControl();
+		$("#status_cd").val("${outProposalVO.statusCd}");		
 	});
 	
-	// 과제 건의 삭제
-    function deleteProposal() {
+	// 과제 건의 내용 수정
+    function saveProposalReview(pProposalNo, pStatusCd, pReviewContent, pRegUserId) {
     	$.ajax({
-			url: "/AjaxProposal/DeleteProposal.do",
+			url: "/AjaxProposal/SaveProposalReview.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "proposalNo": proposalNo }),
+			data : JSON.stringify({ "proposalNo": pProposalNo, "statusCd":pStatusCd, "reviewContent": pReviewContent, "regUserId": pRegUserId}),
 		    dataType : "json",
 	        async: true,
 			success: function(data) {
 				if (data.status == "Success") {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "삭제되었습니다.", null, callbackDeleteProposal);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장되었습니다.", null, callbackSaveProposalReview);
 				}
 				else {
 					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
@@ -116,44 +104,37 @@
 				return false;
 			}
 		});
-    }
-	
-    // 과제 건의 삭제 후 목록 페이지로 이동
-	function callbackDeleteProposal(){
-		window.location.href = "/Proposal/ListProposal.do";
-	}	
-    
-	// 버튼 활성화, 비활성화 함수
-	function enableButtonControl() {		
-		if ("${outProposalVO.statusCd}" == "RA013001"){
-			if (commonFunc.certInfo.empNo == "${outProposalVO.regUserId}") {
-				$("#btn_update").css("display", "inline-block");   
-				$("#btn_delete").css("display", "inline-block");   
-	        }	
-		}		
-		
-		if (commonFunc.certInfo.roleType == "ROLE_ADMIN") {
-			$("#btn_review").css("display", "inline-block");   
-        }		
 	}
 	
-    // 수정 버튼 클릭 이벤트
-	$(document).on("click", "#btn_update", function (e) {			
-		var mode = "ProposalWrite"
-		
-		window.location.href = "/Proposal/ProposalWrite.do?pProposalNo="+ proposalNo + "&pMode=" + mode;
-	});
+	// 과제 건의 저장 후 목록 페이지로 이동
+	function callbackSaveProposalReview(){
+		window.location.href = "/Proposal/ListProposal.do";
+	}	
 	
-    // 삭제 버튼 클릭 이벤트
-	$(document).on("click", "#btn_delete", function (e) {			
-		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteProposal);    
-	});
-    
-	// 검토의견작성 버튼 클릭 이벤트
-	$(document).on("click", "#btn_review", function (e) {			
-		var mode = "ProposalReview"
+	// 저장 전, 확인 함수
+	function saveProposalReviewConfirm() {			
+		var proposalNo = "${outProposalVO.proposalNo}"
+		var statusCd = $("#status_cd").val();
+		var reviewContent = $("#review_content").val();
+		var regUserId = commonFunc.certInfo.empNo;
 		
-		window.location.href = "/Proposal/ProposalReview.do?pProposalNo="+ proposalNo + "&pMode=" + mode;
-	});
+		saveProposalReview(proposalNo, statusCd, reviewContent, regUserId);		
+	}
+		
+	// 저장 버튼 클릭 이벤트
+	$(document).on("click", "#btn_save", function (e) {								
+		// 내용이 입력되지 않은 경우 
+		if (commonFunc.getCheckNullYn($("#status_cd").val()) == "Y") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "진행상태를 입력하지 않았습니다.", null, null);
+			return false;
+		}
+		
+    	if (commonFunc.getCheckNullYn($("#review_content").val()) == "Y") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "검토의견을 입력하지 않았습니다.", null, null);
+			return false;
+		}
+    	
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveProposalReviewConfirm);    	
+    });	
 	
 </script>

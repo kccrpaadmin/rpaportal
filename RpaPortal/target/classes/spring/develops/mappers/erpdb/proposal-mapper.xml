@@ -18,12 +18,13 @@
 			{ 
 	            call PRA_Proposal_getProposalDetail (
 	            	#{ProposalNo}
+	               ,#{Mode}
             	)
 			}
 		]]>
 	</select>	
 	
-	<insert id="saveProposalWrite" statementType="CALLABLE" parameterType="proposalVO">
+	<insert id="createProposalWrite" statementType="CALLABLE" parameterType="proposalVO">
 		<![CDATA[
 			{ 
 	            call PRA_Proposal_createProposalWrite (
@@ -31,6 +32,42 @@
 	               ,#{ProposalNm}
 	               ,#{ProposalContent}
 	               ,#{ProposalDeptCd}
+	               ,#{RegUserId}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<insert id="updateProposalWrite" statementType="CALLABLE" parameterType="proposalVO">
+		<![CDATA[
+			{ 
+	            call PRA_Proposal_updateProposalWrite (
+				    #{ProposalNo}
+				   ,#{MenuId}
+	               ,#{ProposalNm}
+	               ,#{ProposalContent}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<insert id="deleteProposal" statementType="CALLABLE" parameterType="proposalVO">
+		<![CDATA[
+			{ 
+	            call PRA_Proposal_deleteProposal (
+	            	#{ProposalNo}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<insert id="saveProposalReview" statementType="CALLABLE" parameterType="proposalVO">
+		<![CDATA[
+			{ 
+	            call PRA_Proposal_saveProposalReview (
+				    #{ProposalNo}
+				   ,#{StatusCd}
+	               ,#{ReviewContent}
 	               ,#{RegUserId}
             	)
 			}

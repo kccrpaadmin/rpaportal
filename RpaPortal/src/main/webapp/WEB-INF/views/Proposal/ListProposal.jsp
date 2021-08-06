@@ -81,6 +81,7 @@
 	    initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
 	    initdata.Cols = [
 	    	{ Header: "순번", Type: "Text", Width: 50, SaveName: "seq", Align: "Center" },
+	    	{ Header: "요청번호", Type: "Text", Width: 50, SaveName: "proposalNo", Align: "Center", Hidden:"true"},
 	    	{ Header: "진행상태", Type: "Text", Width: 100, SaveName: "statusNm", Align: "Center" },
 	        { Header: "구분", Type: "Text", Width: 120, SaveName: "menuNm", Align: "Center" },	       
 	        { Header: "제목", Type: "Text", Width: 450, SaveName: "proposalNm" },
@@ -108,8 +109,9 @@
 		
 		if (mySheet.ColSaveName(Col) == "proposalNm") {
 			var proposalNo = mySheet.GetCellValue(Row, "proposalNo");
+			var mode = "ProposalDetail"
 			
-			window.location.href = "/Proposal/ProposalDetail.do?pProposalNo=" + proposalNo;
+			window.location.href = "/Proposal/ProposalDetail.do?pProposalNo=" + proposalNo + "&pMode=" + mode;
    		}
 	}
 	
@@ -126,8 +128,9 @@
 	});
 	
 	// 작성 버튼 클릭 이벤트
-	$(document).on("click", "#btn_edit", function (e) {								
-		window.location.href = "/Proposal/ProposalWrite.do";
+	$(document).on("click", "#btn_edit", function (e) {					
+		var mode = "ProposalWrite"
+		window.location.href = "/Proposal/ProposalWrite.do?pProposalNo=0&pMode=" + mode;
     });
 	
 		

@@ -194,9 +194,10 @@ html,body{width:100%;height:100%;}
 .proposaldetail_box .detail_tbl .detail_th_l{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px 3px 3px 8px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:left;vertical-align:middle;}
 .proposaldetail_box .detail_tbl .detail_th_c{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:center;vertical-align:middle;;}
 .proposaldetail_box .detail_tbl .detail_th_r{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px 8px 3px 3px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:right;vertical-align:middle;}
-.proposaldetail_box .detail_tbl .detail_td_l{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px 3px 3px 8px;font-size:12px;color:#4c4c4c;text-align:left;vertical-align:middle;}
+.proposaldetail_box .detail_tbl .detail_td_l{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px;font-size:12px;color:#4c4c4c;text-align:left;vertical-align:middle;}
 .proposaldetail_box .detail_tbl .detail_td_c{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px;font-size:12px;color:#4c4c4c;text-align:center;vertical-align:middle;;}
 .proposaldetail_box .detail_tbl .detail_td_r{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px 8px 3px 3px;font-size:12px;color:#4c4c4c;text-align:right;vertical-align:middle;}
+.proposaldetail_box .detail_tbl .detail_td_l .txt_box_proposalContent{width:99%;line-height:20px;border:0;padding-left:3px;}
 
 .proposaltitle{display:table;border-bottom:1px solid #555;border-top:3px solid #555;width:100%;}
 .proposaltitle .proposalnm{font-size:20px;color:#4c4c4c;text-align:left;vertical-align:middle;font-family:'NanumSquare';font-weight:700;padding:25px 10px;transform:skew(-0.01deg);}
@@ -217,5 +218,6 @@ html,body{width:100%;height:100%;}
 .proposalwrite_box .detail_tbl .detail_td_l .txt_box_proposalNm{width:99%;line-height:28px;border:0;padding-left:3px;}
 .proposalwrite_box .detail_tbl .detail_td_l .txt_box_proposalContent{width:99%;line-height:20px;border:0;padding-left:3px;}
 #menu_cd{width:100px;border-top:none;border-left:none;border-right:none;border-bottom:1px solid #d1d1d4;}
+#status_cd{width:100px;border-top:none;border-left:none;border-right:none;border-bottom:1px solid #d1d1d4;}
 
 

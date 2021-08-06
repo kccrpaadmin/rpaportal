@@ -26,6 +26,7 @@ public class ProposalVO {
 	private String RegUserNm;
 	private String RegDate;
 	private String SearchTxt;
+	private String Mode;
 	
 	public String getProposalNo() {
 		return ProposalNo;
@@ -128,5 +129,11 @@ public class ProposalVO {
 	}
 	public void setSearchTxt(String searchTxt) {
 		SearchTxt = searchTxt;
+	}	
+	public String getMode() {
+		return Mode;
+	}
+	public void setMode(String mode) {
+		Mode = mode;
 	}	
 }

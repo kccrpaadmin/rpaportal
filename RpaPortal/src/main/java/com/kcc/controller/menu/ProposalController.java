@@ -61,18 +61,19 @@ public class ProposalController extends BaseController {
 	}
 	
 	@GetMapping("ProposalDetail.do")
-	public String ProposalDetail(String pProposalNo, Model model) {
+	public String ProposalDetail(String pProposalNo, String pMode, Model model) {
 		logger.info("/Proposal/ProposalDetail.do");
 		
-		// MenuVO 입력
+		// ProposalVO 입력
 		ProposalVO inProposalVO = new ProposalVO();
 		inProposalVO.setProposalNo(pProposalNo);
+		inProposalVO.setMode(pMode);
 		
-		// MenuVO 출력
+		// ProposalVO 출력
 		ProposalVO outProposalVO = new ProposalVO();
 		
 		try {
-			// 메뉴 정보 상세 조회
+			// 과제 건의 정보 상세 조회
 			outProposalVO = proposalService.getProposalDetail(inProposalVO);
 		} 
 		catch (Exception e) {
@@ -86,12 +87,55 @@ public class ProposalController extends BaseController {
 	}
 	
 	@GetMapping("ProposalWrite.do")
-	public String ProposalWrite(Model model) {
+	public String ProposalWrite(String pProposalNo, String pMode, Model model) {
 		logger.info("/Proposal/ProposalWrite.do");
 
+		// ProposalVO 입력
+		ProposalVO inProposalVO = new ProposalVO();
+		inProposalVO.setProposalNo(pProposalNo);
+		inProposalVO.setMode(pMode);
+		
+		// ProposalVO 출력
+		ProposalVO outProposalVO = new ProposalVO();
+		
+		try {
+			// 과제 건의 정보 상세 조회
+			outProposalVO = proposalService.getProposalDetail(inProposalVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		model.addAttribute("menuCdComboBox", commonUtilService.getCodeProcedureSelectBox("menu_cd", "PRA_Proposal_listProposalMenuCombo", "", true, "", ""));
+		model.addAttribute("outProposalVO", outProposalVO);
 		
 		return "Proposal/ProposalWrite";
+	}
+		
+	@GetMapping("ProposalReview.do")
+	public String ProposalReview(String pProposalNo, String pMode, Model model) {
+		logger.info("/Proposal/ProposalReview.do");
+
+		// ProposalVO 입력
+		ProposalVO inProposalVO = new ProposalVO();
+		inProposalVO.setProposalNo(pProposalNo);
+		inProposalVO.setMode(pMode);
+		
+		// ProposalVO 출력
+		ProposalVO outProposalVO = new ProposalVO();
+		
+		try {
+			// 과제 건의 정보 상세 조회
+			outProposalVO = proposalService.getProposalDetail(inProposalVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		model.addAttribute("statusCdComboBox", commonUtilService.getCodeProcedureSelectBox("status_cd", "PRA_Proposal_listProposalStatusCombo", "", true, "", ""));
+		model.addAttribute("outProposalVO", outProposalVO);
+		
+		return "Proposal/ProposalReview";
 	}
 	
 }

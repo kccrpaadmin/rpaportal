@@ -62,14 +62,14 @@ public class AjaxProposalController extends BaseController {
 		return map;
 	}		
 	
-	//	과제 건의 저장
-	@PostMapping("/SaveProposalWrite.do")
-	public @ResponseBody StatusVO SaveProposalWrite(@RequestBody ProposalVO vo) {
-			logger.info("/AjaxProposal/SaveProposalWrite.do");
+	//	과제 건의 생성
+	@PostMapping("/CreateProposalWrite.do")
+	public @ResponseBody StatusVO CreateProposalWrite(@RequestBody ProposalVO vo) {
+			logger.info("/AjaxProposal/CreateProposalWrite.do");
 			String status = "Success";
 			
 			try {
-				proposalService.saveProposalWrite(vo);
+				proposalService.createProposalWrite(vo);
 			} 
 			catch (Exception e) {
 				status = "SaveError";
@@ -80,5 +80,65 @@ public class AjaxProposalController extends BaseController {
 			statusVO.setStatus(status);
 			
 			return statusVO;
-		}
+	}
+	
+    //	과제 건의 수정
+	@PostMapping("/UpdateProposalWrite.do")
+	public @ResponseBody StatusVO UpdateProposalWrite(@RequestBody ProposalVO vo) {
+			logger.info("/AjaxProposal/UpdateProposalWrite.do");
+			String status = "Success";
+			
+			try {
+				proposalService.updateProposalWrite(vo);
+			} 
+			catch (Exception e) {
+				status = "SaveError";
+				e.printStackTrace();
+			}
+			
+			StatusVO statusVO = new StatusVO();
+			statusVO.setStatus(status);
+			
+			return statusVO;
+	 }
+	
+    //	과제 건의 삭제
+	@PostMapping("/DeleteProposal.do")
+	public @ResponseBody StatusVO DeleteProposal(@RequestBody ProposalVO vo) {
+			logger.info("/AjaxProposal/DeleteProposal.do");
+			String status = "Success";
+			
+			try {
+				proposalService.deleteProposal(vo);
+			} 
+			catch (Exception e) {
+				status = "SaveError";
+				e.printStackTrace();
+			}
+			
+			StatusVO statusVO = new StatusVO();
+			statusVO.setStatus(status);
+			
+			return statusVO;
+	 }
+	
+     //	검토의견 작성
+	@PostMapping("/SaveProposalReview.do")
+	public @ResponseBody StatusVO SaveProposalReview(@RequestBody ProposalVO vo) {
+			logger.info("/AjaxProposal/SaveProposalReview.do");
+			String status = "Success";
+			
+			try {
+				proposalService.saveProposalReview(vo);
+			} 
+			catch (Exception e) {
+				status = "SaveError";
+				e.printStackTrace();
+			}
+			
+			StatusVO statusVO = new StatusVO();
+			statusVO.setStatus(status);
+			
+			return statusVO;
+	 }
 }

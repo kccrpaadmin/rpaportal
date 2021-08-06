@@ -10,5 +10,8 @@ import com.kcc.biz.model.ProposalVO;
 public interface ProposalRepository {
 	List<ProposalVO> listProposal(ProposalVO vo) throws Exception;
 	ProposalVO getProposalDetail(ProposalVO vo) throws Exception;
-	void saveProposalWrite(ProposalVO vo) throws Exception;
+	void createProposalWrite(ProposalVO vo) throws Exception;
+	void updateProposalWrite(ProposalVO vo) throws Exception;
+	void deleteProposal(ProposalVO vo) throws Exception;
+	void saveProposalReview(ProposalVO vo) throws Exception;
 }
