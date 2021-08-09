@@ -171,4 +171,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/PersonAppointRunResult";
 	}
+	
+	@GetMapping("/EngineerRunResult.do")
+	public String EngineerRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/EngineerRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/EngineerRunResult";
+	}
 }

@@ -66,6 +66,8 @@
 		<typeAlias alias="botEtcTaxVO" type="com.kcc.biz.model.BotEtcTaxVO" />
 		<!-- BOT 그룹사 인사발령 수집 업무 -->
 		<typeAlias alias="botPersonAppointVO" type="com.kcc.biz.model.BotPersonAppointVO" />
+		<!-- BOT 기술인협회 기술자정보 수집 업무 -->
+		<typeAlias alias="botEngineerVO" type="com.kcc.biz.model.BotEngineerVO" />
 		
 		
 	</typeAliases>

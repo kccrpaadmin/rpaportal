@@ -49,6 +49,7 @@ import com.kcc.biz.model.BotCostDivideVO;
 import com.kcc.biz.model.BotKisconConstVO;
 import com.kcc.biz.model.BotEtcTaxVO;
 import com.kcc.biz.model.BotPersonAppointVO;
+import com.kcc.biz.model.BotEngineerVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -59,6 +60,7 @@ import com.kcc.biz.service.IBotCostDivideService;
 import com.kcc.biz.service.IBotKisconConstService;
 import com.kcc.biz.service.IBotEtcTaxService;
 import com.kcc.biz.service.IBotPersonAppointService;
+import com.kcc.biz.service.IBotEngineerService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -99,6 +101,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botPersonAppointService")
 	private IBotPersonAppointService botPersonAppointService;
+	
+	@Resource(name="botEngineerService")
+	private IBotEngineerService botEngineerService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -516,6 +521,97 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListPersonAppointListVO);
+		
+		return map;
+	}
+	
+	// 기술인협회 기술자정보 수집 업무
+	@PostMapping("/ListEngineerBasic.do")
+	public @ResponseBody Map<String, Object> ListEngineerBasic(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/ListEngineerBasic.do");
+		
+		List<BotEngineerVO> outListEngineerBasicVO = new ArrayList<BotEngineerVO>();
+		try {
+			outListEngineerBasicVO = botEngineerService.listBotEngineerBasic(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListEngineerBasicVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListEngineerQualityRank.do")
+	public @ResponseBody Map<String, Object> ListEngineerQualityRank(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/ListEngineerQualityRank.do");
+		
+		List<BotEngineerVO> outListEngineerQualityRankVO = new ArrayList<BotEngineerVO>();
+		try {
+			outListEngineerQualityRankVO = botEngineerService.listBotEngineerQualityRank(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListEngineerQualityRankVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListEngineerQualityEduPass.do")
+	public @ResponseBody Map<String, Object> ListEngineerQualityEduPass(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/ListEngineerQualityEduPass.do");
+		
+		List<BotEngineerVO> outListEngineerQualityEduPassVO = new ArrayList<BotEngineerVO>();
+		try {
+			outListEngineerQualityEduPassVO = botEngineerService.listBotEngineerQualityEduPass(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListEngineerQualityEduPassVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListEngineerQualityEduFail.do")
+	public @ResponseBody Map<String, Object> ListEngineerQualityEduFail(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/ListEngineerQualityEduFail.do");
+		
+		List<BotEngineerVO> outListEngineerQualityEduFailVO = new ArrayList<BotEngineerVO>();
+		try {
+			outListEngineerQualityEduFailVO = botEngineerService.listBotEngineerQualityEduFail(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListEngineerQualityEduFailVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListEngineerCareerList.do")
+	public @ResponseBody Map<String, Object> ListEngineerCareerList(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/ListEngineerCareerList.do");
+		
+		List<BotEngineerVO> outListEngineerCareerListVO = new ArrayList<BotEngineerVO>();
+		try {
+			outListEngineerCareerListVO = botEngineerService.listBotEngineerCareerList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListEngineerCareerListVO);
 		
 		return map;
 	}
