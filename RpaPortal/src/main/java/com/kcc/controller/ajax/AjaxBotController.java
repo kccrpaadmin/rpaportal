@@ -48,6 +48,7 @@ import com.kcc.biz.model.BotMoneySendVO;
 import com.kcc.biz.model.BotCostDivideVO;
 import com.kcc.biz.model.BotKisconConstVO;
 import com.kcc.biz.model.BotEtcTaxVO;
+import com.kcc.biz.model.BotPersonAppointVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -57,6 +58,7 @@ import com.kcc.biz.service.IBotMoneySendService;
 import com.kcc.biz.service.IBotCostDivideService;
 import com.kcc.biz.service.IBotKisconConstService;
 import com.kcc.biz.service.IBotEtcTaxService;
+import com.kcc.biz.service.IBotPersonAppointService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -94,6 +96,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botEtcTaxService")
 	private IBotEtcTaxService botEtcTaxService;
+	
+	@Resource(name="botPersonAppointService")
+	private IBotPersonAppointService botPersonAppointService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -494,5 +499,24 @@ public class AjaxBotController extends BaseController {
 		map.put("data", outListBotEtcTaxListVO);
 		
 		return map;
-	}	    
+	}	  
+	
+	// 그룹사 인사발령 수집 업무
+	@PostMapping("/ListPersonAppointList.do")
+	public @ResponseBody Map<String, Object> ListPersonAppointList(@RequestBody BotPersonAppointVO vo) {
+		logger.info("/AjaxBot/ListPersonAppointList.do");
+		
+		List<BotPersonAppointVO> outListPersonAppointListVO = new ArrayList<BotPersonAppointVO>();
+		try {
+			outListPersonAppointListVO = botPersonAppointService.listBotPersonAppointList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListPersonAppointListVO);
+		
+		return map;
+	}
 }

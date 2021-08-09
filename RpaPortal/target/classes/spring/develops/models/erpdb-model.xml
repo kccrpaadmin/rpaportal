@@ -64,6 +64,8 @@
 		<typeAlias alias="botKisconConstVO" type="com.kcc.biz.model.BotKisconConstVO" />
 		<!-- BOT 기타영수증 세금코드 변경업무 -->
 		<typeAlias alias="botEtcTaxVO" type="com.kcc.biz.model.BotEtcTaxVO" />
+		<!-- BOT 그룹사 인사발령 수집 업무 -->
+		<typeAlias alias="botPersonAppointVO" type="com.kcc.biz.model.BotPersonAppointVO" />
 		
 		
 	</typeAliases>

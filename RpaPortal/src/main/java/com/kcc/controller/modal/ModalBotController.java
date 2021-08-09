@@ -161,4 +161,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/MoneySendManageSendAmt";
 	}
+	
+	@GetMapping("/PersonAppointRunResult.do")
+	public String PersonAppointRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/PersonAppointRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/PersonAppointRunResult";
+	}
 }
