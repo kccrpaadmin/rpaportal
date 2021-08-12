@@ -57,7 +57,8 @@
 		<![CDATA[
 			{ 
 	            call PRA_Bot_listBotEngineerManage (
-            		#{OrgTypeCd}
+            	    #{menuId}
+            	   ,#{OrgTypeCd}
             	   ,#{DutyNm}
             	   ,#{UserNm}
             	)

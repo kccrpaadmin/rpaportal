@@ -9,6 +9,7 @@ package com.kcc.biz.model;
 // @RequestBody VO vo 매핑시에도 첫 글자 소문자와 매핑 된다. (input name="userId") 
 
 public class BotEngineerVO {
+	private String MenuId;
 	private String RequestNo;
 	private String UserNm;
 	private String ResNo;
@@ -51,6 +52,12 @@ public class BotEngineerVO {
 	private String OrgTypeNm;
 	private String DeptNm;
 		
+	public String getMenuId() {
+		return MenuId;
+	}
+	public void setMenuId(String menuId) {
+		MenuId = menuId;
+	}
 	public String getRequestNo() {
 		return RequestNo;
 	}

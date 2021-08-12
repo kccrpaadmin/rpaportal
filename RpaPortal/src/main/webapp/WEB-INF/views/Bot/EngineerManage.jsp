@@ -73,12 +73,12 @@
 	});
 	
 	// 기술인협회 기술자정보 목록 조회
-	function ListEngineerManage(pOrgTypeCd, pDutyNm, pUserNm) {
+	function ListEngineerManage(pMenuId, pOrgTypeCd, pDutyNm, pUserNm) {
 		$.ajax({
 			url: "/AjaxBot/ListEngineerManage.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({"orgTypeCd": pOrgTypeCd, "dutyNm": pDutyNm, "userNm": pUserNm}),
+			data : JSON.stringify({"menuId": pMenuId, "orgTypeCd": pOrgTypeCd, "dutyNm": pDutyNm, "userNm": pUserNm}),
 		    dataType : "json",
 	        async: true,
 			success: function(listDatas) {
@@ -143,7 +143,7 @@
 		var dutyNm = $("#duty_nm").val();
 		var userNm = $("#user_nm").val();
 		
-		ListEngineerManage(orgTypeCd, dutyNm, userNm);
+		ListEngineerManage(menuId, orgTypeCd, dutyNm, userNm);
 	}
 	
 	// 조회 버튼 클릭 이벤트
