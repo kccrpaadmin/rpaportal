@@ -1,6 +1,12 @@
 # target folder
-RpaPortal/target/m2e-wtp/
+*/target/*
 
 # target file
 .classpath
 .project
+
+### Java ###
+# Compiled class file
+*.class
+
+
