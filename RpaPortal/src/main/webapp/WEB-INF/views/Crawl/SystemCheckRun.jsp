@@ -217,7 +217,7 @@
 	$(document).on("click", "#btn_schedule_open", function (e) {
 		//libraryFunc.createModal(null, null, null, 1100, 560, "예약등록", "/ModalCrawl/Schedule.do?pMenuId=" + menuId);
 		
-		var params = { FileName : "myFile.xls",  SheetName : "Sheet"} ;
+		var params = {Multipart:0, FileName: "myFile.xls",  SheetName: "Sheet"};
 		mySheet.Down2Excel(params);
 	});
 	
