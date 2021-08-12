@@ -138,8 +138,8 @@
         IBS_InitSheet(mySheet1, initdata);
         mySheet1.SetEditable(0);
         mySheet1.SetEditableColorDiff(0);
-        mySheet1.SetDataLinkMouse("sendAmt", true);
-        mySheet1.SetColFontUnderline("sendAmt", true);
+        mySheet1.SetDataLinkMouse("vendorNm", true);
+        mySheet1.SetColFontUnderline("vendorNm", true);
         mySheet1.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet1.LoadSearchData(pListDatas);
     }  
@@ -172,11 +172,23 @@
         IBS_InitSheet(mySheet2, initdata);
         mySheet2.SetEditable(0);
         mySheet2.SetEditableColorDiff(0);
-        mySheet2.SetDataLinkMouse("sendAmt", true);
-        mySheet2.SetColFontUnderline("sendAmt", true);
+        mySheet2.SetDataLinkMouse("vendorNm", true);
+        mySheet2.SetColFontUnderline("vendorNm", true);
         mySheet2.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet2.LoadSearchData(pListDatas);
-    }  
+    } 
+	
+    // 그리드 클릭 함수
+	function mySheet1_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
+		if (Row == 0) {
+			return false;
+		}
+		
+		if (mySheet1.ColSaveName(Col) == "vendorNm") {
+			var vendorCd = mySheet1.GetCellValue(Row, "vendorCd");
+			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalBot/EseroManageVendorSlipList.do" + "?pVendorCd=" + vendorCd);
+   		}
+	}
 	
  	// 체크 박스 체크 여부 조회
 	function getCheckYn(pChkBoxId) {

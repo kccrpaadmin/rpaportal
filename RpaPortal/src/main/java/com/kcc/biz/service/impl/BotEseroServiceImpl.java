@@ -45,4 +45,12 @@ public class BotEseroServiceImpl implements IBotEseroService {
 	public List<BotEseroVO> listBotEseroInvoiceSlipListManageOraCheckList(BotEseroVO vo) throws Exception {
 		return botEseroRepository.listBotEseroInvoiceSlipListManageOraCheckList(vo);
 	}
+	
+	public List<BotEseroVO> listBotEseroManageVendorSlipList(BotEseroVO vo) throws Exception {
+		return botEseroRepository.listBotEseroManageVendorSlipList(vo);
+	}
+	
+	public BotEseroVO getBotEseroManageVendorInfo(BotEseroVO vo) throws Exception {
+		return botEseroRepository.getBotEseroManageVendorInfo(vo);
+	}
 }

@@ -25,11 +25,13 @@ import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.AccessVO;
 import com.kcc.biz.model.MenuVO;
 import com.kcc.biz.model.CrawlSystemCheckVO;
+import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.UserVO;
 import com.kcc.biz.service.IAccessService;
 import com.kcc.biz.service.ILoginService;
 import com.kcc.biz.service.IMenuService;
 import com.kcc.biz.service.ICrawlSystemCheckService;
+import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IUserService;
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IRouteUtilService;
@@ -41,6 +43,9 @@ public class ModalBotController extends BaseController {
 	
 	@Resource(name="menuService")
 	private IMenuService menuService;
+	
+	@Resource(name="botEseroService")
+	private IBotEseroService botEseroService;
 	
 	@GetMapping("/WorkInfo.do")
 	public String WorkInfo(String pMenuId, String pEmpNo, Model model) {
@@ -104,6 +109,31 @@ public class ModalBotController extends BaseController {
 		model.addAttribute("yearMon", pYearMon);
 		
 		return "ModalBot/EseroManageOraCheckList";
+	}
+	
+	@GetMapping("/EseroManageVendorSlipList.do")
+	public String EseroManageVendorSlipList(String pVendorCd, Model model) {
+		logger.info("/ModalBot/EseroManageVendorSlipList.do");
+		
+		// EseroVO 입력
+		BotEseroVO inEseroVO = new BotEseroVO();
+		inEseroVO.setVendorCd(pVendorCd);
+		
+		// MenuVO 출력
+		BotEseroVO outEseroVO = new BotEseroVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outEseroVO = botEseroService.getBotEseroManageVendorInfo(inEseroVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("vendorCd", pVendorCd);
+		model.addAttribute("outEseroVO", outEseroVO);
+		
+		return "ModalBot/EseroManageVendorSlipList";
 	}
 	
 	@GetMapping("/MoneySendRunResult.do")

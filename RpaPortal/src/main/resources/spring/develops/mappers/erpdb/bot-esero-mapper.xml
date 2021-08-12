@@ -77,5 +77,25 @@
 			}
 		]]>
 	</select>
+	
+	<select id="listBotEseroManageVendorSlipList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEseroManageVendorSlipList (
+            		#{VendorCd}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="getBotEseroManageVendorInfo" statementType="CALLABLE" parameterType="botEseroVO" resultType="botEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_getBotEseroManageVendorInfo (
+            		#{VendorCd}
+            	)
+			}
+		]]>
+	</select>
 
 </mapper>

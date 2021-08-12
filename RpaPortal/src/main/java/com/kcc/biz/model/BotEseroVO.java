@@ -84,6 +84,11 @@ public class BotEseroVO {
 	private String SupplyAmtYn;
 	private String VatAmtYn;
 	private String TotAmtYn;
+	private String SlipId;
+	private String GlDate;
+	private String Addr;
+	private String TelNo;
+	
 			
 	
 	public String getMenuId() {
@@ -536,5 +541,28 @@ public class BotEseroVO {
 	public void setTotAmtYn (String totAmtYn) {
 		TotAmtYn = totAmtYn;
 	}
-	
+	public String getSlipId() {
+		return SlipId;
+	}
+	public void setSlipId (String slipId) {
+		SlipId = slipId;
+	}
+	public String getGlDate() {
+		return GlDate;
+	}
+	public void setGlDate (String glDate) {
+		GlDate = glDate;
+	}
+	public String getAddr() {
+		return Addr;
+	}
+	public void setAddr (String addr) {
+		Addr = addr;
+	}
+	public String getTelNo() {
+		return TelNo;
+	}
+	public void setTelNo (String telNo) {
+		TelNo = telNo;
+	}
 }
