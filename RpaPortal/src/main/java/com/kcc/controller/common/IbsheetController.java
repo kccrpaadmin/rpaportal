@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.Response;
@@ -47,6 +48,7 @@ public class IbsheetController {
 	    IBSheetDown down = null;
 	    
 	    try {
+	    	logger.info("t1");
 	        down = new IBSheetDown();
 
 	        //====================================================================================================
@@ -75,7 +77,7 @@ public class IbsheetController {
 			// 1 : 시트 구분자로 변형된 문자열을 사용합니다. (시트에 설정이 되어 있어야 합니다.)
 			//====================================================================================================
 			//down.setDelimMode(1);
-				
+	        logger.info("t1");
 			//====================================================================================================
 	        // [ 사용자 환경 설정 #3 ]
 	        //====================================================================================================
@@ -265,10 +267,10 @@ public class IbsheetController {
 			// down.setColWidthRatio();
 			
 	        // 다운로드 1. 생성된 문서를 브라우저를 통해 다운로드
-	        down.downToBrowser();
+	        // down.downToBrowser();
 
 	        // 다운로드 2. 생성된 엑셀 문서를 서버에 저장
-	        /*
+	        
 	        String fileName = down.getFileName();
 			
 			// Password를 사용하려면 이 부분에서 IBSheet에서 전달된 패스워드를 취득해야 합니다.
@@ -279,6 +281,7 @@ public class IbsheetController {
 	        // 생성된 엑셀 문서를 다운로드 처리(이 부분에서 엑셀문서를 DRM 처리함)
 	        File file = new File("d:/"  + fileName); 
 	        
+	        logger.info("t2");
 
 			// 패스워드 설정은 XLSX 형식의 파일이 대상이고 POI 라이브러리를 사용할 때만 가능합니다.
 			if (fileName.toLowerCase().endsWith(".xlsx") && !"".equals(passWord)) {
@@ -323,7 +326,7 @@ public class IbsheetController {
 			} finally {
 				file.delete();
 			}
-			*/
+			
 
 	    } catch (Exception e) {
 	        response.setContentType("text/html;charset=UTF-8");
