@@ -13,4 +13,6 @@ public interface BotEngineerRepository {
 	List<BotEngineerVO> listBotEngineerQualityEduPass(BotEngineerVO vo) throws Exception;	
 	List<BotEngineerVO> listBotEngineerQualityEduFail(BotEngineerVO vo) throws Exception;	
 	List<BotEngineerVO> listBotEngineerCareerList(BotEngineerVO vo) throws Exception;	
+	List<BotEngineerVO> listBotEngineerManage(BotEngineerVO vo) throws Exception;	
+	List<BotEngineerVO> listBotEngineerManageCareerList(BotEngineerVO vo) throws Exception;	
 }

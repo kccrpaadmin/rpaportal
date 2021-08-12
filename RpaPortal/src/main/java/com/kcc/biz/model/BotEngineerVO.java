@@ -29,7 +29,7 @@ public class BotEngineerVO {
 	private String JobKind;
 	private String SpecialKind;
 	private String AssignWork;
-	private String TitleNm;
+	private String DutyNm;
 	private String ReportType;
 	private String EngineerExistTypeCd;
 	private String Phase;
@@ -47,6 +47,9 @@ public class BotEngineerVO {
 	private String Ranking;
 	private String RankingRate;
 	private String AfterRanking;
+	private String OrgTypeCd;
+	private String OrgTypeNm;
+	private String DeptNm;
 		
 	public String getRequestNo() {
 		return RequestNo;
@@ -168,11 +171,11 @@ public class BotEngineerVO {
 	public void setAssignWork(String assignWork) {
 		AssignWork = assignWork;
 	}
-	public String getTitleNm() {
-		return TitleNm;
+	public String getDutyNm() {
+		return DutyNm;
 	}
-	public void setTitleNm(String titleNm) {
-		TitleNm = titleNm;
+	public void setDutyNm(String dutyNm) {
+		DutyNm = dutyNm;
 	}
 	public String getReportType() {
 		return ReportType;
@@ -276,5 +279,22 @@ public class BotEngineerVO {
 	public void setAfterRanking(String afterRanking) {
 		AfterRanking = afterRanking;
 	}
-	
+	public String getOrgTypeCd() {
+		return OrgTypeCd;
+	}
+	public void setOrgTypeCd(String orgTypeCd) {
+		OrgTypeCd = orgTypeCd;
+	}
+	public String getOrgTypeNm() {
+		return OrgTypeNm;
+	}
+	public void setOrgTypeNm(String orgTypeNm) {
+		OrgTypeNm = orgTypeNm;
+	}
+	public String getDeptNm() {
+		return DeptNm;
+	}
+	public void setDeptNm(String deptNm) {
+		DeptNm = deptNm;
+	}
 }

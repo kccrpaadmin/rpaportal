@@ -181,4 +181,13 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/EngineerRunResult";
 	}
+	
+	@GetMapping("/EngineerManageCareerList.do")
+	public String EngineerManageCareerList(String pUserId, Model model) {
+		logger.info("/ModalBot/EngineerManageCareerList.do");
+		
+		model.addAttribute("userId", pUserId);
+		
+		return "ModalBot/EngineerManageCareerList";
+	}
 }

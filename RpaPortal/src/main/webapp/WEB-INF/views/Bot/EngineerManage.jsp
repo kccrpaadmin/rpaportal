@@ -30,32 +30,21 @@
 	                <col style="width:8%;" />
 	                <col />
 	            </colgroup>
-	            <tbody>
+	            <tbody>	                
 	                <tr>
-	                	<th class="search_dtl_th">회사명</th>
+	                	<th class="search_dtl_th">부문</th>
 	                    <td class="search_dtl_td">
-	                        ${orgComboBox}
+	                         ${orgTypeComboBox}
 	                    </td>
-	                	<th class="search_dtl_th">부서명</th>
-	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="dept_nm" />
-	                    </td>
-	                    <td class="search_dtl_td"></td>
-	                    <td class="search_dtl_td"></td>
-	                </tr>
-	                <tr>
-	                	<th class="search_dtl_th">이름</th>
-	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="user_nm" />
-	                    </td>
-	                	<th class="search_dtl_th">직위</th>
+	                	<th class="search_dtl_th">직급</th>
 	                    <td class="search_dtl_td">
 	                        <input type="text" class="txt_box_l" style="width:160px;" id="duty_nm" />
 	                    </td>
-	                	<th class="search_dtl_th">담당업무</th>
+	                	<th class="search_dtl_th">성명</th>
 	                    <td class="search_dtl_td">
-	                        <input type="text" class="txt_box_l" style="width:160px;" id="task" />
+	                        <input type="text" class="txt_box_l" style="width:160px;" id="user_nm" />
 	                    </td>
+	                	
 	                </tr>
 	            </tbody>
 	        </table>
@@ -80,7 +69,86 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
+		searchListEngineerManage();
+	});
+	
+	// 기술인협회 기술자정보 목록 조회
+	function ListEngineerManage(pOrgTypeCd, pDutyNm, pUserNm) {
+		$.ajax({
+			url: "/AjaxBot/ListEngineerManage.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({"orgTypeCd": pOrgTypeCd, "dutyNm": pDutyNm, "userNm": pUserNm}),
+		    dataType : "json",
+	        async: true,
+			success: function(listDatas) {
+				makeGrid(listDatas);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
+	// 그리드 생성 함수
+    function makeGrid(pListDatas) {
+    	commonFunc.initSheet("mySheet");
 		
+        var initdata = {};
+
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1120px", "510px");
+
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
+        initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
+        initdata.Cols = [
+        	 { Header: "구분", Type: "Text", Width: 0, SaveName: "orgTypeNm", Align: "Center", Hidden:true },     
+        	 { Header: "직급", Type: "Text", Width: 50, SaveName: "dutyNm", Align: "Center" },    
+             { Header: "사번", Type: "Text", Width: 70, SaveName: "userId", Align: "Center" },        
+             { Header: "성명", Type: "Text", Width: 70, SaveName: "userNm", Align: "Center" },        
+             { Header: "생년월일", Type: "Text", Width: 80, SaveName: "resNo", Align: "Center" },
+             { Header: "현재등급", Type: "Text", Width: 70, SaveName: "ranking", Align: "Center"},            
+             { Header: "현 역량지수", Type: "Float", Width: 80, SaveName: "rankingRate", Align: "Center"},
+             { Header: "승급가능등급\n(승급교육 이수 후 등급)", Type: "Text", Width: 140, SaveName: "afterRanking", Align: "Center" },
+             { Header: "기본교육/최초교육\n이수여부", Type: "Text", Width: 230, SaveName: "etc", Align: "Center" },
+             { Header: "기본교육 현황", Type: "Text", Width: 100, SaveName: "basicEdu", Align: "Center" },
+             { Header: "최초교육 현황\n품질관리", Type: "Text", Width: 175, SaveName: "qualityEdu", Align: "Center"},
+             { Header: "근무 현장", Type: "Text", Width: 230, SaveName: "deptNm" }
+        ];
+		
+        IBS_InitSheet(mySheet, initdata);
+        mySheet.SetEditable(0);
+        mySheet.SetEditableColorDiff(0);
+        mySheet.SetColFontUnderline("userId", true);
+        mySheet.SetDataLinkMouse("userId", true);
+        mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
+        mySheet.LoadSearchData(pListDatas);
+    }  
+	
+ // 그리드 클릭 함수
+	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
+		if (Row == 0) {
+			return false;
+		}		
+		
+		if (mySheet.ColSaveName(Col) == "userId") {			
+			var userId = mySheet.GetCellValue(Row, "userId");
+			libraryFunc.createModal(null, null, null, 1100, 560, "기술경력", "/ModalBot/EngineerManageCareerList.do" + "?pUserId=" + userId );
+   		}		
+	}
+	
+	// 목록 조회 공통 함수
+	function searchListEngineerManage() {
+		var orgTypeCd = $("#org_type_cd").val();
+		var dutyNm = $("#duty_nm").val();
+		var userNm = $("#user_nm").val();
+		
+		ListEngineerManage(orgTypeCd, dutyNm, userNm);
+	}
+	
+	// 조회 버튼 클릭 이벤트
+	$(document).on("click", "#btn_search", function (e) {				
+		searchListEngineerManage();
 	});
 		
 </script>

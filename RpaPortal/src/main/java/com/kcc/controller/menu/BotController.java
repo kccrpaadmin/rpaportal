@@ -369,6 +369,7 @@ public class BotController extends BaseController {
 		
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
+		model.addAttribute("orgTypeComboBox", commonUtilService.getCodeProcedureSelectBox("org_type_cd", "PRA_Bot_listOrgTypeCombo", "", true, "전체", "전체"));
 		
 		return "Bot/EngineerManage";
 	}

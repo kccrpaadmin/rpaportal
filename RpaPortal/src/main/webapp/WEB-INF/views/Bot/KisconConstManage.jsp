@@ -113,6 +113,7 @@
         ];
 		
         IBS_InitSheet(mySheet, initdata);
+        mySheet.SetEditable(0);
         mySheet.SetEditableColorDiff(0);
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet.LoadSearchData(pListDatas);

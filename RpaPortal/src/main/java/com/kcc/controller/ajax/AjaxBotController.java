@@ -615,4 +615,40 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}
+	
+	@PostMapping("/ListEngineerManage.do")
+	public @ResponseBody Map<String, Object> ListEngineerManage(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/ListEngineerManage.do");
+		
+		List<BotEngineerVO> outListEngineerManageVO = new ArrayList<BotEngineerVO>();
+		try {
+			outListEngineerManageVO = botEngineerService.listBotEngineerManage(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListEngineerManageVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListEngineerManageCareerList.do")
+	public @ResponseBody Map<String, Object> ListEngineerManageCareerList(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/ListEngineerManageCareerList.do");
+		
+		List<BotEngineerVO> outListEngineerManageCareerListVO = new ArrayList<BotEngineerVO>();
+		try {
+			outListEngineerManageCareerListVO = botEngineerService.listBotEngineerManageCareerList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListEngineerManageCareerListVO);
+		
+		return map;
+	}
 }
