@@ -19,6 +19,7 @@
 	    <!-- Url 권한 설정 -->
 	    <security:intercept-url pattern="/Account/*.do" access="permitAll" />
 		<security:intercept-url pattern="/Common/*.do" access="permitAll" />
+		<security:intercept-url pattern="/Ibsheet/*.do" access="permitAll" />
 		<security:intercept-url pattern="/Admin/*.do" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/**/*.do" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 	    

@@ -215,7 +215,10 @@
 	
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {
-		libraryFunc.createModal(null, null, null, 1100, 560, "예약등록", "/ModalCrawl/Schedule.do?pMenuId=" + menuId);
+		//libraryFunc.createModal(null, null, null, 1100, 560, "예약등록", "/ModalCrawl/Schedule.do?pMenuId=" + menuId);
+		
+		var params = { FileName : "myFile.xls",  SheetName : "Sheet"} ;
+		mySheet.Down2Excel(params);
 	});
 	
 </script>
