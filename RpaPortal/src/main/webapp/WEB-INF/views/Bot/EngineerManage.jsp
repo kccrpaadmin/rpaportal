@@ -125,7 +125,7 @@
         mySheet.LoadSearchData(pListDatas);
     }  
 	
- // 그리드 클릭 함수
+ 	// 그리드 클릭 함수
 	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
 		if (Row == 0) {
 			return false;
