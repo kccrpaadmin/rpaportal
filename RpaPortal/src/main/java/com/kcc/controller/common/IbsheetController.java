@@ -33,12 +33,10 @@ public class IbsheetController {
 		
 		IBSheetDown down = null;
         try {
-        	System.out.println(com.ibleaders.ibsheet.util.Version.getVersion());
-        	down = new IBSheetDown();
+            down = new IBSheetDown();
 			//다운로드 로그 사용 여부!!
-			down.setLog(true);
-			
-			
+			//down.setLog(true);
+           
             //====================================================================================================
             // [ 사용자 환경 설정 #0 ]
             //====================================================================================================
@@ -106,7 +104,7 @@ public class IbsheetController {
             // #3366FF 형태의 웹 컬러로 설정해주세요.
             // 설정을 원하지 않는 경우 주석처리해주세요. 
             //====================================================================================================
-            //down.setHeaderBackColor("#FF2233");
+            down.setHeaderBackColor("#ddddff");
 
             //====================================================================================================
             // [ 사용자 환경 설정 #8 ]
@@ -240,7 +238,6 @@ public class IbsheetController {
             down.setPrintSetup(printSetup);
             **/
 
-
             // 다운로드 1. 생성된 문서를 브라우저를 통해 다운로드
             down.downToBrowser();
 
@@ -301,15 +298,12 @@ public class IbsheetController {
                 file.delete();
             }
             */
-        } catch (Exception e) {
-        	logger.info("오류1");
+        } 
+        catch (Exception e) {
         	e.printStackTrace();
-        	
-            response.setContentType("text/html;charset=UTF-8");
+        	response.setContentType("text/html;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
-            response.setHeader("Content-Disposition", "");         
-
-            /* out.print()/out.println() 방식으로 메시지가 정상적으로 출력되지 않는다면 다음과 같은 방식을 사용한다.*/
+            response.setHeader("Content-Disposition", "");
             try {
                 OutputStream out2 = response.getOutputStream();
                 out2.write("<script>alert('엑셀 다운로드중 에러가 발생하였습니다.');</script>".getBytes());
@@ -318,13 +312,10 @@ public class IbsheetController {
             catch(Exception ex) {}
         } 
         catch (Error e) {
-        	logger.info("오류2");
         	e.printStackTrace();
-        	
             response.setContentType("text/html;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Content-Disposition", "");
-            
             try {
                 OutputStream out2 = response.getOutputStream();
                 out2.write("<script>alert('엑셀 다운로드중 에러가 발생하였습니다.');</script>".getBytes());
@@ -336,11 +327,12 @@ public class IbsheetController {
             if (down != null) {
                 try {
                     down.close();
-                } 
-                catch (Exception ex) {}
+                } catch (Exception ex) {}
             }
             down = null;
         }
     }
+	
+	
 	
 }
