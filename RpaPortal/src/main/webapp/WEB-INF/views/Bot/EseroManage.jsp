@@ -46,6 +46,8 @@
 	    <div class="btn_box">
 	    	<a class="btn_common" id="btn_search">조회</a>
 	    	<a class="btn_common" id="btn_orachecklist">오라클 체크리스트</a>
+	    	<a class="btn_common" id="btn_tax_on_download">전자세금계산서 다운로드</a>
+	    	<a class="btn_common" id="btn_tax_off_download">전자계산서 다운로드</a>
 	    </div>
 	    <!-- 그리드영역 -->
 	    <p>세금계산서</p>
@@ -236,5 +238,17 @@
 				
 		libraryFunc.createModal(null, null, null, 1100, 560, "오라클 체크리스트", "/ModalBot/EseroManageOraCheckList.do?pMenuId=" + menuId + "&pYearMon=" + yearMon);
 	});
-		
+	
+	// 전자세금계산서 다운로드 버튼 클릭 이벤트
+	$(document).on("click", "#btn_tax_on_download", function (e) {		
+		var params = { Multipart: 0, FileName: "myFile.xls",  SheetName: "Sheet" }
+		mySheet1.Down2Excel(params);
+	});
+	
+	// 전자계산서 다운로드 버튼 클릭 이벤트
+	$(document).on("click", "#btn_tax_off_download", function (e) {		
+		var params = { Multipart: 0, FileName: "myFile.xls",  SheetName: "Sheet" }
+		mySheet1.Down2Excel(params);
+	});
+	
 </script>
