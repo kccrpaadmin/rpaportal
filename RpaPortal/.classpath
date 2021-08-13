@@ -35,8 +35,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/lib/batik-all-xml.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/lib/ibsheet7-2.0.85.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/lib/poi-3.13-all.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
