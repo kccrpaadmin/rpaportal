@@ -121,7 +121,8 @@
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "기준연월|기준연월", Type: "Text", Width: 60, SaveName: "invoiceYearMon", Align: "Center" },
+        	{ Header: "요청번호|요청번호", Type: "Text", Width: 0, SaveName: "requestNo", Align: "Center", Hidden: true },
+        	{ Header: "기준연월|기준연월", Type: "Text", Width: 60, SaveName: "invoiceYearMon", Align: "Center" },
             { Header: "사업자번호|사업자번호", Type: "Text", Width: 90, SaveName: "invoiceBizNo", Align: "Center" },
             { Header: "업체코드|업체코드", Type: "Text", Width: 70, SaveName: "vendorCd", Align: "Center" },            
             { Header: "업체명|업체명", Type: "Text", Width: 170, SaveName: "vendorNm", Align: "Center" },
@@ -155,7 +156,8 @@
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "기준연월|기준연월", Type: "Text", Width: 60, SaveName: "invoiceYearMon", Align: "Center" },
+        	{ Header: "요청번호|요청번호", Type: "Text", Width: 0, SaveName: "requestNo", Align: "Center", Hidden: true },
+        	{ Header: "기준연월|기준연월", Type: "Text", Width: 60, SaveName: "invoiceYearMon", Align: "Center" },
             { Header: "사업자번호|사업자번호", Type: "Text", Width: 90, SaveName: "invoiceBizNo", Align: "Center" },
             { Header: "업체코드|업체코드", Type: "Text", Width: 70, SaveName: "vendorCd", Align: "Center" },            
             { Header: "업체명|업체명", Type: "Text", Width: 170, SaveName: "vendorNm", Align: "Center" },
@@ -186,7 +188,10 @@
 		
 		if (mySheet1.ColSaveName(Col) == "vendorNm") {
 			var vendorCd = mySheet1.GetCellValue(Row, "vendorCd");
-			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalBot/EseroManageVendorSlipList.do" + "?pVendorCd=" + vendorCd);
+			var requestNo = mySheet1.GetCellValue(Row, "requestNo");
+			var yearMon = mySheet1.GetCellValue(Row, "invoiceYearMon");
+			
+			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalBot/EseroManageVendorSlipList.do" + "?pVendorCd=" + vendorCd + '&pRequestNo=' + requestNo + '&pYearMon=' + yearMon);
    		}
 	}
 	

@@ -112,12 +112,14 @@ public class ModalBotController extends BaseController {
 	}
 	
 	@GetMapping("/EseroManageVendorSlipList.do")
-	public String EseroManageVendorSlipList(String pVendorCd, Model model) {
+	public String EseroManageVendorSlipList(String pVendorCd, String pRequestNo, String pYearMon, Model model) {
 		logger.info("/ModalBot/EseroManageVendorSlipList.do");
 		
 		// EseroVO 입력
 		BotEseroVO inEseroVO = new BotEseroVO();
 		inEseroVO.setVendorCd(pVendorCd);
+		inEseroVO.setRequestNo(pRequestNo);
+		inEseroVO.setRequestNo(pYearMon);
 		
 		// MenuVO 출력
 		BotEseroVO outEseroVO = new BotEseroVO();
@@ -131,6 +133,8 @@ public class ModalBotController extends BaseController {
 		}
 		
 		model.addAttribute("vendorCd", pVendorCd);
+		model.addAttribute("requestNo", pRequestNo);
+		model.addAttribute("yearMon", pYearMon);
 		model.addAttribute("outEseroVO", outEseroVO);
 		
 		return "ModalBot/EseroManageVendorSlipList";

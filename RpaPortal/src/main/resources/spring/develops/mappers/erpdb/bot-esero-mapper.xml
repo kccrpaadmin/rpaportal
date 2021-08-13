@@ -78,6 +78,18 @@
 		]]>
 	</select>
 	
+	<select id="listBotEseroManageVendorInvoiceList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEseroManageVendorInvoiceList (
+            		#{VendorCd}
+            	   ,#{RequestNo}
+            	   ,#{YearMon}
+            	)
+			}
+		]]>
+	</select>
+	
 	<select id="listBotEseroManageVendorSlipList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botEseroVO">
 		<![CDATA[
 			{ 

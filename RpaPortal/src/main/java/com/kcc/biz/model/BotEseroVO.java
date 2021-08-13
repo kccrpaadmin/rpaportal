@@ -88,8 +88,10 @@ public class BotEseroVO {
 	private String GlDate;
 	private String Addr;
 	private String TelNo;
-	
-			
+	private String UserMobileNo;		
+	private String DutyNm;		
+	private String UserId;		
+	private String UserNm;		
 	
 	public String getMenuId() {
 		return MenuId;
@@ -565,4 +567,29 @@ public class BotEseroVO {
 	public void setTelNo (String telNo) {
 		TelNo = telNo;
 	}
+	public String getUserMobileNo() {
+		return UserMobileNo;
+	}
+	public void setUserMobileNo (String userMobileNo) {
+		UserMobileNo = userMobileNo;
+	}
+	public String getDutyNm() {
+		return DutyNm;
+	}
+	public void setDutyNm (String dutyNm) {
+		DutyNm = dutyNm;
+	}
+	public String getUserId() {
+		return UserId;
+	}
+	public void setUserId (String userId) {
+		UserId = userId;
+	}
+	public String getUserNm() {
+		return UserNm;
+	}
+	public void setUserNm (String userNm) {
+		UserNm = userNm;
+	}
+	
 }
