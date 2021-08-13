@@ -27,17 +27,18 @@ import com.ibleaders.ibsheetLoader.IBSheetLoad;
 public class IbsheetController {
 	private static final Logger logger = LoggerFactory.getLogger(IbsheetController.class);
 
-	//@PostMapping("/Down2Excel.do")
-	@RequestMapping(value="/Down2Excel.do",  method = RequestMethod.POST)
+	@PostMapping("/Down2Excel.do")
 	public void Down2Excel(HttpServletRequest  request,HttpServletResponse response) {
 		logger.info("/Ibsheet/Down2Excel.do");
 		
 		IBSheetDown down = null;
         try {
-            down = new IBSheetDown();
+        	System.out.println(com.ibleaders.ibsheet.util.Version.getVersion());
+        	down = new IBSheetDown();
 			//다운로드 로그 사용 여부!!
-			//down.setLog(true);
-           
+			down.setLog(true);
+			
+			
             //====================================================================================================
             // [ 사용자 환경 설정 #0 ]
             //====================================================================================================
@@ -300,7 +301,6 @@ public class IbsheetController {
                 file.delete();
             }
             */
-
         } catch (Exception e) {
         	logger.info("오류1");
         	e.printStackTrace();
@@ -324,6 +324,7 @@ public class IbsheetController {
             response.setContentType("text/html;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Content-Disposition", "");
+            
             try {
                 OutputStream out2 = response.getOutputStream();
                 out2.write("<script>alert('엑셀 다운로드중 에러가 발생하였습니다.');</script>".getBytes());
