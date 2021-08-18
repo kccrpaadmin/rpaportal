@@ -85,6 +85,7 @@
             		#{VendorCd}
             	   ,#{RequestNo}
             	   ,#{YearMon}
+            	   ,#{InvoiceTypeCd}
             	)
 			}
 		]]>

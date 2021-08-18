@@ -182,7 +182,7 @@
         mySheet2.LoadSearchData(pListDatas);
     } 
 	
-    // 그리드 클릭 함수
+    // 세금계산서 그리드 클릭 함수
 	function mySheet1_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
 		if (Row == 0) {
 			return false;
@@ -192,8 +192,25 @@
 			var vendorCd = mySheet1.GetCellValue(Row, "vendorCd");
 			var requestNo = mySheet1.GetCellValue(Row, "requestNo");
 			var yearMon = mySheet1.GetCellValue(Row, "invoiceYearMon");
+			var invoiceTypeCd = "RA010001";
 			
-			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalBot/EseroManageVendorSlipList.do" + "?pVendorCd=" + vendorCd + '&pRequestNo=' + requestNo + '&pYearMon=' + yearMon);
+			libraryFunc.createModal(null, null, null, 1100, 560, "상세내역", "/ModalBot/EseroManageVendorSlipList.do" + "?pVendorCd=" + vendorCd + '&pRequestNo=' + requestNo + '&pYearMon=' + yearMon + '&pInvoiceTypeCd=' + invoiceTypeCd);
+   		}
+	}
+    
+	// 계산서 그리드 클릭 함수
+	function mySheet2_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
+		if (Row == 0) {
+			return false;
+		}
+		
+		if (mySheet2.ColSaveName(Col) == "vendorNm") {
+			var vendorCd = mySheet2.GetCellValue(Row, "vendorCd");
+			var requestNo = mySheet2.GetCellValue(Row, "requestNo");
+			var yearMon = mySheet2.GetCellValue(Row, "invoiceYearMon");
+			var invoiceTypeCd = "RA010002";
+			
+			libraryFunc.createModal(null, null, null, 1100, 560, "상세내역", "/ModalBot/EseroManageVendorSlipList.do" + "?pVendorCd=" + vendorCd + '&pRequestNo=' + requestNo + '&pYearMon=' + yearMon + '&pInvoiceTypeCd=' + invoiceTypeCd);
    		}
 	}
 	

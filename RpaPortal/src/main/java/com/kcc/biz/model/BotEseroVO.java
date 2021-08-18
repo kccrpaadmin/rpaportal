@@ -16,6 +16,7 @@ public class BotEseroVO {
 	private String EseroTargetDate;
 	private String IssueNo;
 	private String InvoiceTaxType;
+	private String InvoiceTypeCd;
 	private String MakeDate;
 	private String DrawDate;
 	private String SendDate;
@@ -134,6 +135,12 @@ public class BotEseroVO {
 	}
 	public void setInvoiceTaxType (String invoiceTaxType) {
 		InvoiceTaxType = invoiceTaxType;
+	}
+	public String getInvoiceTypeCd()  {
+		return InvoiceTypeCd;
+	}
+	public void setInvoiceTypeCd (String invoiceTypeCd) {
+		InvoiceTypeCd = invoiceTypeCd;
 	}
 	public String getMakeDate()  {
 		return MakeDate;

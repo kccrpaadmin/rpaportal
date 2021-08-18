@@ -32,6 +32,7 @@
 		<!-- 그리드영역 -->	
 		<p>기준연월 세금계산서 상세 </p>	
 		<div id="sheet1"></div>
+		<br>
 		<p>최근 1년간 전표 데이터</p>	
 		<div id="sheet2"></div>
 	</div>
@@ -43,20 +44,21 @@
 	var vendorCd = "${vendorCd}";
 	var requestNo = "${requestNo}";
 	var yearMon = "${yearMon}";
+	var invoiceTypeCd = "${invoiceTypeCd}";
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		listEseroManageVendorInvoiceList(vendorCd, requestNo, yearMon);
+		listEseroManageVendorInvoiceList(vendorCd, requestNo, yearMon, invoiceTypeCd);
 		listEseroManageVendorSlipList(vendorCd);
 	});
 	
 	// 기준연월 세금계산서 상세 데이터
-	function listEseroManageVendorInvoiceList(pVendorCd, pRequestNo, pYearMon) {
+	function listEseroManageVendorInvoiceList(pVendorCd, pRequestNo, pYearMon, pInvoiceTypeCd) {
 		$.ajax({
 			url: "/AjaxBot/ListEseroManageVendorInvoiceList.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "vendorCd": pVendorCd, "requestNo": pRequestNo, "yearMon": pYearMon}),
+			data : JSON.stringify({ "vendorCd": pVendorCd, "requestNo": pRequestNo, "yearMon": pYearMon, "invoiceTypeCd": pInvoiceTypeCd}),
 		    dataType : "json",
 	        async: true,
 			success: function(listDatas) {
@@ -129,17 +131,17 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet2"), "mySheet2", "1060px", "200px");
+        createIBSheet2(document.getElementById("sheet2"), "mySheet2", "1060px", "192px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
           
-            { Header: "전표번호", Type: "Text", Width: 160, SaveName: "slipId", Align: "Center" },
-            { Header: "회계처리일자", Type: "Text", Width: 100, SaveName: "glDate", Align: "Center" },
+            { Header: "전표번호", Type: "Text", Width: 150, SaveName: "slipId", Align: "Center" },
+            { Header: "회계처리일자", Type: "Text", Width: 80, SaveName: "glDate", Align: "Center" },
             { Header: "발의부서", Type: "Text", Width: 200, SaveName: "deptNm", Align: "Center" },
-            { Header: "작성자", Type: "Text", Width: 80, SaveName: "userNm", Align: "Center" },
-            { Header: "적요", Type: "Text", Width: 520, SaveName: "summary" }
+            { Header: "작성자", Type: "Text", Width: 120, SaveName: "userNm", Align: "Center" },
+            { Header: "적요", Type: "Text", Width: 490, SaveName: "summary" }
         ];
 
         IBS_InitSheet(mySheet2, initdata);
