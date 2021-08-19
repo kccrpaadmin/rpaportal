@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URLEncoder;
+import java.nio.file.Files;
 import java.security.Principal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -68,8 +69,11 @@ public class FileDownloadController extends BaseController {
 			AttFileVO attFileVO = attFileService.getAttFile(vo);
 			String oriFileNm = attFileVO.getFileNm();
 			String filePath = attFileVO.getFilePath();
-	
-			byte fileByte[] = FileUtils.readFileToByteArray(new File(uploadPath + "\\" + filePath));
+			
+			// 2021.08.19 아이비시트 파일 다운로드 추가후, commons-io 충돌로 인한 수정
+			// byte fileByte[] = FileUtils.readFileToByteArray(new File(uploadPath + "\\" + filePath));
+			File file = new File(uploadPath + "\\" + filePath);
+	        byte[] fileByte = Files.readAllBytes(file.toPath());
 	        response.setHeader("Content-Type", "application/octet-stream");
 	        response.setHeader("Content-Transfer-Encoding", "binary"); 
 	        response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(oriFileNm, "UTF-8")+"\";");
