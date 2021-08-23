@@ -30,10 +30,10 @@
 	    </div>	
 	    <br>
 		<!-- 그리드영역 -->	
-		<p>기준연월 세금계산서 상세 </p>	
+		<div class="grid_title">기준연월 세금계산서 상세 </div>	
 		<div id="sheet1"></div>
 		<br>
-		<p>최근 1년간 전표 데이터</p>	
+		<div class="grid_title">최근 1년간 전표 데이터</div>	
 		<div id="sheet2"></div>
 	</div>
 </div>

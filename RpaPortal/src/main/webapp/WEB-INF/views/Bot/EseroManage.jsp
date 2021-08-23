@@ -50,9 +50,9 @@
 	    	<a class="btn_common" id="btn_tax_off_download">전자계산서 다운로드</a>
 	    </div>
 	    <!-- 그리드영역 -->
-	    <p>세금계산서</p>
+	    <div class="grid_title">세금계산서</div>
    	    <div id="sheet1"></div>
-   	    <p>계산서</p>
+   	    <div class="grid_title">계산서</div>
    	    <div id="sheet2"></div>
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">

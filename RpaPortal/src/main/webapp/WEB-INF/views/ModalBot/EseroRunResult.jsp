@@ -6,10 +6,9 @@
 	<!-- 컨텐츠 -->
 	<div class="contents">
 		<!-- 그리드영역 -->
-		<p>홈택스 (세금)계산서 데이터</p>
+		<div class="grid_title">홈택스 (세금)계산서 데이터</div>
 		<div id="sheet1"></div>
-		<br>
-		<p>오라클 데이터</p>
+		<div class="grid_title">오라클 데이터</div>
 		<div id="sheet2"></div>
 	</div>
 </div>

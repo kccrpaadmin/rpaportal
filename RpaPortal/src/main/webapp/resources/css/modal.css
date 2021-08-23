@@ -75,6 +75,5 @@ input[type=radio],input[type=checkbox],input[type=image]{margin:0;border:none 0;
 .search_dtl_box .search_dtl_tbl .search_dtl_th{height:32px;line-height:32px;padding-left:18px;background:url("/resources/imgs/icon/icon_search_title.png") no-repeat 8px 14px;text-align:left;vertical-align:middle;}
 .search_dtl_box .search_dtl_tbl .search_dtl_td{height:32px;line-height:32px;vertical-align:middle;}
 
-
-
-
+/* 그리드 제목 */
+.grid_title{height:16px;line-height:16px;margin:20px 0px 5px 0px;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;transform:skew(-0.1deg);color:#4c4c4c;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;vertical-align:middle;}

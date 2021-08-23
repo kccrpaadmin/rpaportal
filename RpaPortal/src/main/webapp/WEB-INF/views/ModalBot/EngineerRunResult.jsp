@@ -6,15 +6,15 @@
 	<!-- 컨텐츠 -->
 	<div class="contents">
 		<!-- 그리드영역 -->
-		<p>기본교육 및 최초교육 이수 현황</p>
+		<div class="grid_title">기본교육 및 최초교육 이수 현황</div>
 		<div id="sheet1"></div>
-		<p>품질관리 현재등급 및 승급교육후 등급</p>
+		<div class="grid_title">품질관리 현재등급 및 승급교육후 등급</div>
 		<div id="sheet2"></div>
-		<p>품질관리 계속교육 이수자</p>
+		<div class="grid_title">품질관리 계속교육 이수자</div>
 		<div id="sheet3"></div>
-		<p>품질관리 계속교육 미이수자</p>
+		<div class="grid_title">품질관리 계속교육 미이수자</div>
 		<div id="sheet4"></div>
-		<p>기술자 경력 내역</p>
+		<div class="grid_title">기술자 경력 내역</div>
 		<div id="sheet5"></div>
 	</div>
 </div>
