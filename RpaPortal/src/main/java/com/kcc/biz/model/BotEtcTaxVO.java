@@ -22,6 +22,7 @@ public class BotEtcTaxVO {
 	private String OraCancelFlag;
 	private String OraSlipNo;
 	private String OraLineNo;
+	private String ErrorYn;
 	
 	public String getRequestNo() {
 		return RequestNo;
@@ -100,5 +101,11 @@ public class BotEtcTaxVO {
 	}
 	public void setOraLineNo(String oraLineNo) {
 		OraLineNo = oraLineNo;
+	}	
+	public String getErrorYn() {
+		return ErrorYn;
+	}
+	public void setErrorYn(String errorYn) {
+		ErrorYn = errorYn;
 	}	
 }

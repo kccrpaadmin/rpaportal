@@ -5,6 +5,24 @@
 <div id="container">
 	<!-- 컨텐츠 -->
 	<div class="contents">
+		<div class="search_dtl_box">
+			<table class="search_dtl_tbl">
+				<colgroup>
+					<col style="width:10%;" />
+	                <col style="width:20%;" />
+	                <col />
+				</colgroup>
+				<tbody>
+					<tr>
+						<th class="search_dtl_th">조회구분</th>
+						<td class="search_dtl_td">
+							<label class="lbl_every"><input type="checkbox" class="chk_every" id="error_yn" /><span class="spn_every">불일치건만 조회</span></label>
+							<input type="button"  id="btn_search" value="조회" />						
+						</td>				
+					</tr>				
+				</tbody>				
+			</table>
+	    </div>	
 		<!-- 그리드영역 -->
 		<div id="sheet"></div>
 	</div>
@@ -18,16 +36,16 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		listEtcTaxList(requestNo);
+		searchListEtcTaxList();
 	});
 	
-	//  기타영수증  엑셀 업로드 데이터 목록 조회
-	function listEtcTaxList(pRequestNo) {
+	//  기타영수증 엑셀 업로드 데이터 목록 조회
+	function listEtcTaxList(pRequestNo, pErrorYn) {
 		$.ajax({
 			url: "/AjaxBot/ListEtcTaxList.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "requestNo": pRequestNo }),
+			data : JSON.stringify({ "requestNo": pRequestNo, "errorYn": pErrorYn }),
 		    dataType : "json",
 	        async: true,
 			success: function(listDatas) {
@@ -46,7 +64,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "510px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "450px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
@@ -84,5 +102,26 @@
 			}
 		}
 	}
+    
+	// 목록 조회 공통 함수
+	function searchListEtcTaxList() {
+		var errorYn = getCheckYn("#error_yn");		
+		
+		listEtcTaxList(requestNo, errorYn);
+	}
+	
+	// 체크 박스 체크 여부 조회
+	function getCheckYn(pChkBoxId) {
+		var returnVal = "";
+		if ($(pChkBoxId).is(":checked")) {
+			returnVal = "Y";
+		}
+		return returnVal;
+	}
+    
+	// 조회 버튼 클릭 이벤트
+	$(document).on("click", "#btn_search", function (e) {								
+		searchListEtcTaxList();
+	});
 	
 </script>
