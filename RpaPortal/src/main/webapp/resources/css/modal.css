@@ -28,14 +28,14 @@ input[type=radio],input[type=checkbox],input[type=image]{margin:0;border:none 0;
 .contents{overflow:hidden;}
 
 /* 제목 */
-.main_title{margin:15px 0;padding-left:20px;background:url("/resources/imgs/icon/icon_modal_dot1.png") no-repeat left 2px;font-family:'NanumSquare' ;font-size:12px;color:#000000;}
-.sub_title{margin:15px 0;padding-left:20px;background:url("/resources/imgs/icon/icon_modal_dot2.png") no-repeat left 2px;font-family:'NanumSquare' ;font-size:12px;color:#666666;}
+.main_title{margin:15px 0;padding-left:20px;background:url("/resources/imgs/icon/icon_modal_dot1.png") no-repeat left 2px;font-family:'NanumSquare' ;font-size:12px;color:#000000;transform:skew(-0.1deg);}
+.sub_title{margin:15px 0;padding-left:20px;background:url("/resources/imgs/icon/icon_modal_dot2.png") no-repeat left 2px;font-family:'NanumSquare' ;font-size:12px;color:#666666;transform:skew(-0.1deg);}
 
 /* 업무설명 */
 .work_info{overflow:hidden;}
 .work_info .info_line{overflow:hidden;}
-.work_info .info_line .info_line_title{margin-bottom:15px;font-family:'NanumSquare' ;font-size:18px;font-weight:bold;color:#000000;}
-.work_info .info_line .info_line_content{line-height:21px; margin-bottom:15px;font-family:'NanumSquare' ;font-size:14px;color:#666666;word-wrap:break-word;}
+.work_info .info_line .info_line_title{margin-bottom:15px;font-family:'NanumSquare' ;font-size:18px;font-weight:bold;color:#000000;transform:skew(-0.1deg);}
+.work_info .info_line .info_line_content{line-height:21px; margin-bottom:15px;font-family:'NanumSquare' ;font-size:14px;color:#666666;word-wrap:break-word;transform:skew(-0.1deg);}
 
 /* 상세영역 */
 .detail_box{overflow:hidden;}
@@ -63,7 +63,7 @@ input[type=radio],input[type=checkbox],input[type=image]{margin:0;border:none 0;
 
 /* 버튼영역 */
 .btn_box{overflow:hidden;margin:20px 0;text-align:center;}
-.btn_box .btn_common{margin:0 3px;padding:7px 18px;background-color:#4d4cac;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;color:#ffffff;}
+.btn_box .btn_common{margin:0 3px;padding:7px 18px;background-color:#4d4cac;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;color:#ffffff;transform:skew(-0.1deg);}
 
 /* 시스템체크 이미지 */
 .capture_img{width:1038px;height:550px;border:1px solid #000000;}
@@ -76,4 +76,4 @@ input[type=radio],input[type=checkbox],input[type=image]{margin:0;border:none 0;
 .search_dtl_box .search_dtl_tbl .search_dtl_td{height:32px;line-height:32px;vertical-align:middle;}
 
 /* 그리드 제목 */
-.grid_title{height:16px;line-height:16px;margin:20px 0px 5px 0px;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;transform:skew(-0.1deg);color:#4c4c4c;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;vertical-align:middle;}
+.grid_title{height:16px;line-height:16px;margin:15px 0px 5px 0px;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-size:12px;font-weight:bold;color:#4c4c4c;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;vertical-align:middle;}

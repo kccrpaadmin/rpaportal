@@ -28,11 +28,9 @@
 	            </tbody>
 	        </table>
 	    </div>	
-	    <br>
 		<!-- 그리드영역 -->	
 		<div class="grid_title">기준연월 세금계산서 상세 </div>	
 		<div id="sheet1"></div>
-		<br>
 		<div class="grid_title">최근 1년간 전표 데이터</div>	
 		<div id="sheet2"></div>
 	</div>
@@ -96,7 +94,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet1"), "mySheet1", "1060px", "200px");
+        createIBSheet2(document.getElementById("sheet1"), "mySheet1", "1060px", "190px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
@@ -131,7 +129,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet2"), "mySheet2", "1060px", "192px");
+        createIBSheet2(document.getElementById("sheet2"), "mySheet2", "1060px", "185px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };

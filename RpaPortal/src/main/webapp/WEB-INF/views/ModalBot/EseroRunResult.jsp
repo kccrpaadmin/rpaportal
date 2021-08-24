@@ -50,7 +50,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet1"), "mySheet", "1060px", "250px");
+        createIBSheet2(document.getElementById("sheet1"), "mySheet", "1060px", "240px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
