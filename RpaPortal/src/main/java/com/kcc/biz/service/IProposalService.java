@@ -3,6 +3,7 @@ package com.kcc.biz.service;
 import java.util.List;
 
 import com.kcc.biz.model.ProposalVO;
+import com.kcc.biz.model.AttFileVO;
 
 public interface IProposalService {
 	List<ProposalVO> listProposal(ProposalVO vo) throws Exception;

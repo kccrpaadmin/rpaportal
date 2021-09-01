@@ -31,6 +31,7 @@
 					#{MenuId}
 	               ,#{ProposalNm}
 	               ,#{ProposalContent}
+	               ,#{AttId}
 	               ,#{ProposalDeptCd}
 	               ,#{RegUserId}
             	)

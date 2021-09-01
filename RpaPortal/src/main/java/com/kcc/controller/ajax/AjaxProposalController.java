@@ -29,11 +29,13 @@ import com.kcc.biz.model.AccessVO;
 import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.ProposalVO;
 import com.kcc.biz.model.StatusVO;
+import com.kcc.biz.model.AttFileVO;
 import com.kcc.biz.service.IAccessService;
 import com.kcc.biz.service.IProposalService;
 import com.kcc.biz.service.ILoginService;
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IRouteUtilService;
+import com.kcc.biz.service.IAttFileService;
 
 @RequestMapping("/AjaxProposal")
 @Controller
@@ -42,6 +44,9 @@ public class AjaxProposalController extends BaseController {
 	
 	@Resource(name="proposalService")
 	private IProposalService proposalService;
+	
+	@Resource(name="attFileService")
+	private IAttFileService attFileService;
 	
 	@PostMapping("/ListProposal.do")
 	public @ResponseBody Map<String, Object> ListProposal(@RequestBody ProposalVO vo) {
@@ -141,4 +146,24 @@ public class AjaxProposalController extends BaseController {
 			
 			return statusVO;
 	 }
+	
+	// 첨부파일 목록 조회
+	@PostMapping("/ListAttFile.do")
+	public @ResponseBody Map<String, Object> ListAttFile(@RequestBody AttFileVO vo) {
+		logger.info("/AjaxProposal/ListAttFile.do");
+		
+		List<AttFileVO> listAttFileVO = new ArrayList<AttFileVO>();
+		try {
+			
+			listAttFileVO = attFileService.listAttFile(vo);			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", listAttFileVO);
+		
+		return map;
+	}	
 }

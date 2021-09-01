@@ -59,7 +59,7 @@
 	                </tr>	               
 	            </tbody>
 	        </table>
-	        <br><br>
+	        <br>	   
 	        <div class="proposaltitle" style="display:none">
 	        	 <div class="proposalnm">${outProposalVO.proposalNm}</div>
 	        	 <div class="proposaldetail">
@@ -70,7 +70,25 @@
 	        </div>
 	        <div class="proposalcontent" style="display:none">${outProposalVO.proposalContent}</div>       
 	    </div>
-	    <br>
+	    
+	    <!-- 첨부영역 -->
+			<div class="file_box">
+					<div class="file_div">
+			        	<table class="file_tbl" id="file_table" >
+				            <caption>파일영역</caption>
+				            <colgroup>				            	
+				            	<col style="width:80%;" />
+				                <col style="width:20%;" />
+				                <col />
+				            </colgroup>
+				            <tr>
+				            	<th class="file_th_l">파일명</th>
+				            	<th class="file_th_l">파일크기(KB)</th>
+				            </tr>	            
+				        </table>	        
+			    	</div>
+			</div>
+	    
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a class="btn_common" id="btn_update" style="display:none">수정</a>
@@ -88,11 +106,32 @@
 	
 	// 전역 변수
 	var proposalNo = "${outProposalVO.proposalNo}";
+	var attId = "${outProposalVO.attId}";
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
 		enableButtonControl();
+		listAttFile(attId);
 	});
+	
+	// 첨부파일 목록 조회
+	function listAttFile(pAttId) {
+		$.ajax({
+			url: "/AjaxProposal/ListAttFile.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({ "attId": pAttId }),
+		    dataType : "json",
+	        async: true,
+			success: function(listDatas) {
+				makeAttTable(listDatas);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
 	
 	// 과제 건의 삭제
     function deleteProposal() {
@@ -116,6 +155,19 @@
 				return false;
 			}
 		});
+    }
+	
+    // 그리드 생성 함수
+    function makeAttTable(pListDatas) {
+    	var fileListLen = pListDatas.data.length;
+    	
+	 	for (var i = 0; i < fileListLen; i++) {
+	 		var str = "<tr id=file" + i + ">"
+	 		           +    "<td class='file_td_l'>" + pListDatas.data[i].attId + "</td>"
+	 		           +    "<td class='file_td_l'>" + " KB</td>"
+	 		           + "</tr>";
+	 		$("#file_table").append(str);
+	 	}
     }
 	
     // 과제 건의 삭제 후 목록 페이지로 이동
