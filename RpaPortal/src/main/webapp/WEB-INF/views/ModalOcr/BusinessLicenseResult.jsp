@@ -9,7 +9,7 @@
 		<div id="sheet"></div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_business_license_extract">사업자등록증 추출</a>
+	    	<a class="btn_common1" id="btn_business_license_extract">사업자등록증 추출</a>
 	    </div>
 	    <!-- 상세영역 -->
 	    <div class="detail_box">

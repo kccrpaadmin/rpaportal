@@ -18,7 +18,6 @@
 				</div>
 			</div>
 			<!-- 제목 -->
-			
 			<!-- 상세영역 -->
 		    <div class="proposalwrite_box">
 	        	<table class="detail_tbl">
@@ -56,9 +55,64 @@
 		        <input type="hidden" id="proposal_no" name="proposalNo" value="${outProposalVO.proposalNo}" />    
 		    </div>	   
 		    
-		    <!-- 첨부영역 -->
+		    <%-- ${fileListBoxAttId} --%>
+		    <div class='file_control_box'>
+			    <div class='file_control' style='float:left;width:49%'>
+			    	<input type='hidden' name='AttId' value=''>
+			    	<div class='file_header'>
+			    		<div class='file_header_left'>제목</div>
+			    		<div class='file_header_right'><a class='btn_common2' id='btn_add_AttId'>파일추가</a></div>
+			    	</div>
+			    	<div class='file_body'>
+			    		<h1 class='file_h1'>파일명</h1>
+			    		<div class='file_body_scroll'>
+					    	<table class='file_tbl'>
+				    			<colgroup>
+				    				<col width='70%' />
+				    				<col width='' />
+				    			</colgroup>
+						    	<tbody id='file_tbody_AttId'>
+					    			<tr>
+					    				<td class='file_tbl_td_l'>
+					    					<a href='/FileDownload/Download.do?attId=424242&seq=1'>qwqqwqwqw</a>
+					    					<input type='hidden' name='AttIdSavedSeqs' value='1' />
+					    				</td>
+					    				<td class='file_tbl_td_r'>
+					    					<a class='btn_common2' id='btn_delete_AttId'>파일삭제</a>
+					    				</td>
+					    			</tr>
+					    			<tr>
+					    				<td class='file_tbl_td_l'>
+					    					<a href='/FileDownload/Download.do?attId=424242&seq=1'>qwqqwqwqw</a>
+					    					<input type='hidden' name='AttIdSavedSeqs' value='1' />
+					    				</td>
+					    				<td class='file_tbl_td_r'>
+					    					<a class='btn_common2' id='btn_delete_AttId'>파일삭제</a>
+					    				</td>
+					    			</tr>
+					    			<tr>
+					    				<td class='file_tbl_td_l'>
+					    					<a href='/FileDownload/Download.do?attId=424242&seq=1'>qwqqwqwqw</a>
+					    					<input type='hidden' name='AttIdSavedSeqs' value='1' />
+					    				</td>
+					    				<td class='file_tbl_td_r'>
+					    					<a class='btn_common2' id='btn_delete_AttId'>파일삭제</a>
+					    				</td>
+					    			</tr>
+
+						    	</tbody>
+						    </table>
+					    </div>
+				    </div>
+			    </div>
+			    
+		    </div>
+		    
+		    
+		    
+		    <!-- 첨부영역 
 			<div class="file_box" id="file_box">		
-			        <a class="label_file" id="btn_addfile" >파일추가</a>
+			        <a class="btn_add_file" id="btn_addfile" >파일추가</a>
 			        	
 					<div class="file_div">
 			        	<table class="file_tbl" id="file_table" >
@@ -68,10 +122,11 @@
 				            </tr>	            
 				        </table>	        
 			    	</div>
-			</div>					
+			</div>		
+			-->			
 		    <!-- 버튼영역 -->
 		    <div class="btn_box">
-		    	 <a class="btn_common" id="btn_save">저장</a>  	
+		    	 <a class="btn_common1" id="btn_save">저장</a>  	
 		    </div>	    
 	   	    <!-- 버튼영역 -->
 		    <div class="btn_box">
@@ -135,39 +190,12 @@
 	// 파일 추가 버튼 클릭 이벤트
 	$(document).on("click", "#btn_addfile", function (e) {	
 		var str = "<tr>"
-                  +    "<td class='file_td_l'><input type='file' name='files' multiple='multiple'/><a href='#this' name='delete' class='btn'>삭제하기</a></td>"        
-                  + "</tr>";
+      				+ "<td class='file_td_l'><input type='file' name='files'/><a class='btn'>삭제하기</a></td>"        
+                  	+ "</tr>";
 		
         $("#file_table").append(str);		
 	});
 	
 
-	// 파일 컨트롤 변경 이벤트 
-	$(document).on("change", "#input_file", function (e) {
-		var inputFile = document.getElementById('input_file');
-	 	var fileList = inputFile.files;
-	 	var fileListLen = fileList.length;
-	 	var returnVal = "";
-	 	
-		// 10개 이상 체크 차단
-	 	if (fileListLen > 10) {
-	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일은 10개이하로 선택해 주세요.", null, null);
-	 		// input file 초기화
-	 		inputFile.value = null;
-	 		$("#input_file_txt").val("");
-	 		return false;
-	 	}
-	 		 	
-	 	// 체크 로직이 이상이 없는 경우만 
-	 	for (var i = 0; i < fileListLen; i++) {
-	 		//returnVal = returnVal + fileList[i].name + ";";	 		
-	 		
-	 		
-	 		
-	 	}
-	 	
-	 	fileListArr = new Array();
-	 	fileListArr = fileArr;
-	});
 	
 </script>

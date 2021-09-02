@@ -91,9 +91,9 @@
 	    
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_update" style="display:none">수정</a>
-	    	<a class="btn_common" id="btn_delete" style="display:none">삭제</a>
-	    	<a class="btn_common" id="btn_review" style="display:none">검토의견작성</a>
+	    	<a class="btn_common1" id="btn_update" style="display:none">수정</a>
+	    	<a class="btn_common1" id="btn_delete" style="display:none">삭제</a>
+	    	<a class="btn_common1" id="btn_review" style="display:none">검토의견작성</a>
 	    </div>	    
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">

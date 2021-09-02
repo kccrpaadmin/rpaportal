@@ -74,8 +74,8 @@
 	    </div>
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_immediate_call" style="display:none;">즉시실행</a>
-	    	<a class="btn_common" id="btn_schedule_open" style="display:none;">예약실행</a>
+	    	<a class="btn_common1" id="btn_immediate_call" style="display:none;">즉시실행</a>
+	    	<a class="btn_common1" id="btn_schedule_open" style="display:none;">예약실행</a>
 	    </div>
 	    <!-- 그리드영역 -->
    	    <div id="sheet"></div>

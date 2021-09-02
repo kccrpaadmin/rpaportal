@@ -7,8 +7,8 @@
 	<div class="contents">
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_add">추가</a>
-	    	<a class="btn_common" id="btn_save">저장</a>
+	    	<a class="btn_common1" id="btn_add">추가</a>
+	    	<a class="btn_common1" id="btn_save">저장</a>
 	    </div>
 	    <!-- 그리드영역 -->
 		<div id="sheet"></div>

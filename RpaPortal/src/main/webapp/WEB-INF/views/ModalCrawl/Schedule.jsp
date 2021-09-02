@@ -108,8 +108,8 @@
 	    </div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_create">생성</a>
-	    	<a class="btn_common" id="btn_delete">삭제</a>
+	    	<a class="btn_common1" id="btn_create">생성</a>
+	    	<a class="btn_common1" id="btn_delete">삭제</a>
 	    </div>
 	    <!-- 그리드영역 -->
 		<div id="sheet"></div>

@@ -44,23 +44,23 @@
 	    </div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_search">조회</a>
-	    	<a class="btn_common" id="btn_orachecklist">오라클 체크리스트</a>
-	    	<!-- <a class="btn_common" id="btn_tax_on_download">전자세금계산서 다운로드</a>
-	    	<a class="btn_common" id="btn_tax_off_download">전자계산서 다운로드</a>  -->
+	    	<a class="btn_common1" id="btn_search">조회</a>
+	    	<a class="btn_common1" id="btn_orachecklist">오라클 체크리스트</a>
+	    	<!-- <a class="btn_common1" id="btn_tax_on_download">전자세금계산서 다운로드</a>
+	    	<a class="btn_common1" id="btn_tax_off_download">전자계산서 다운로드</a>  -->
 	    </div>
 	    <!-- 그리드영역 -->
 	    <div class="grid_box">
 		    <div class="grid_title">세금계산서</div>
 		    <div class="grid_btn">
-		    	<a class="btn_excel" id="btn_tax_on_download">엑셀</a>
+		    	<a class="btn_common2" id="btn_tax_on_download">엑셀</a>
 		    </div>
 	    </div>
    	    <div id="sheet1"></div>
    	    <div class="grid_box">
    	    	<div class="grid_title">계산서</div>
    	    	<div class="grid_btn">
-		    	<a class="btn_excel" id="btn_tax_off_download">엑셀</a>
+		    	<a class="btn_common2" id="btn_tax_off_download">엑셀</a>
 		    </div>
    	    </div>
    	    <div id="sheet2"></div>

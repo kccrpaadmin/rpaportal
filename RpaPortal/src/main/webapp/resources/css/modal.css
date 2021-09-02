@@ -63,7 +63,7 @@ input[type=radio],input[type=checkbox],input[type=image]{margin:0;border:none 0;
 
 /* 버튼영역 */
 .btn_box{overflow:hidden;margin:20px 0;text-align:center;}
-.btn_box .btn_common{margin:0 3px;padding:7px 18px;background-color:#4d4cac;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;color:#ffffff;transform:skew(-0.1deg);}
+.btn_common1{margin:0 3px;padding:7px 18px;background-color:#4d4cac;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;color:#ffffff;transform:skew(-0.1deg);}
 
 /* 시스템체크 이미지 */
 .capture_img{width:1038px;height:550px;border:1px solid #000000;}

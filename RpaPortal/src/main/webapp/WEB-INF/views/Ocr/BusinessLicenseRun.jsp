@@ -60,7 +60,7 @@
 		</div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_file_upload">파일업로드</a>
+	    	<a class="btn_common1" id="btn_file_upload">파일업로드</a>
 	    </div>
 	     <!-- 그리드영역 -->
    	    <div id="sheet"></div>

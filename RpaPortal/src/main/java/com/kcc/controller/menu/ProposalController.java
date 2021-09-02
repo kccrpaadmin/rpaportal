@@ -121,6 +121,7 @@ public class ProposalController extends BaseController {
 		
 		model.addAttribute("menuCdComboBox", commonUtilService.getCodeProcedureSelectBox("menuId", "PRA_Proposal_listProposalMenuCombo", "", true, "", ""));
 		model.addAttribute("outProposalVO", outProposalVO);
+		model.addAttribute("fileListBoxAttId", fileUploadUtilService.createFileControl("첨부파일", "AttId", commonUtilService.isEmptyCheck(outProposalVO) ? "" :  outProposalVO.getAttId(), true, "Left", "49%"));
 		
 		return "Proposal/ProposalWrite";
 	}

@@ -52,7 +52,7 @@
 	    </div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_search">조회</a>
+	    	<a class="btn_common1" id="btn_search">조회</a>
 	    </div>
 	    <p>※ 다른 전표 건과 통합 지급된 경우, 전표 금액보다 실송금액이 클 수 있습니다.</p>
 	    <p>※ 실송금액이 10억 원 이상일 경우, 10억 원 단위로 분리 지급되므로 여러 행이 표시될 수 있습니다.</p>

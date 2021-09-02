@@ -9,7 +9,7 @@
 		<div id="sheet"></div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_text_extract">텍스트 추출</a>
+	    	<a class="btn_common1" id="btn_text_extract">텍스트 추출</a>
 	    </div>
 	    <!-- 데이터영역 -->
 	    <textarea id="ocr_data" style="width:1054px;height:250px"></textarea>
