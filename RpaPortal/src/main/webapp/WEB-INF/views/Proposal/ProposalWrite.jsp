@@ -124,15 +124,4 @@
     	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveProposalWriteConfirm);    	
     });		
 	
-	// 파일 추가 버튼 클릭 이벤트
-	$(document).on("click", "#btn_addfile", function (e) {	
-		var str = "<tr>"
-      				+ "<td class='file_td_l'><input type='file' name='files'/><a class='btn'>삭제하기</a></td>"        
-                  	+ "</tr>";
-		
-        $("#file_table").append(str);		
-	});
-	
-
-	
 </script>
