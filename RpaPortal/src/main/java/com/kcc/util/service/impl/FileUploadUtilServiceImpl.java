@@ -10,6 +10,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.velocity.runtime.directive.Foreach;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,24 +150,60 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 	public String createFileControl(String title, String id, String attId, Boolean editable, String pos, String width) {
 		AttFileVO inAttFileVO = new AttFileVO();
 		List<AttFileVO> outListAttFileVO = new ArrayList<AttFileVO>();
-		
-		if (!commonUtilService.isEmptyCheck(attId)) {
-			inAttFileVO.setAttId(attId);
+		inAttFileVO.setAttId(attId);
 			
-			try {
-				outListAttFileVO = attFileService.listAttFile(inAttFileVO);
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		try {
+			outListAttFileVO = attFileService.listAttFile(inAttFileVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}		
 		
 		StringBuilder sb =  new StringBuilder("");
 		
 		// 수정이 가능한 경우
 		if (editable) {
-			sb.append("<div class='file_control' style='style='" + width + "'>");
+			sb.append("<div class='file_control' style='float:" + pos + ";width:" + width + "'>");
+			sb.append("<input type='hidden' name='" + id + "' value='" + attId + "'>");
+			sb.append("<div class='file_header'>");
+			sb.append("<div class='file_header_left'>" + title + "</div>");
+			sb.append("<div class='file_header_right'><a class='btn_common2' id='btn_add_" + id + "'>파일추가</a></div>");
 			sb.append("</div>");
+			sb.append("<div class='file_body'>");
+			sb.append("<h1 class='file_h1'>파일명</h1>");
+			sb.append("<div class='file_body_scroll'>");
+			sb.append("<table class='file_tbl'>");
+			sb.append("<colgroup>");
+			sb.append("<col width='70%' />");
+			sb.append("<col width='' />");
+			sb.append("</colgroup>");
+			sb.append("<tbody id='file_tbody_" + id + "'>");
+			
+			for (AttFileVO attFileVO : outListAttFileVO) {
+				sb.append("<tr>");
+				sb.append("<td class='file_tbl_td_l'>");
+				sb.append("<a href='/FileDownload/Download.do?attId=" + attFileVO.getAttId() + "&seq=" + attFileVO.getSeq() + "'>" + attFileVO.getFileNm() + "</a>");
+				sb.append("<input type='hidden' name='" + id + "Seqs' value='" + attFileVO.getSeq() + "' />");
+				sb.append("</td>");
+				sb.append("<td class='file_tbl_td_r'>");
+				sb.append("<a class='btn_common2'>파일삭제</a>");
+				sb.append("</td>");
+				sb.append("</tr>");
+			}
+			sb.append("</tbody>");
+			sb.append("</table>");
+			sb.append("</div>");
+			sb.append("</div>");
+			sb.append("</div>");
+			
+			sb.append("<script type='text/javascript'>");
+			sb.append("$(document).on('click', '#btn_add_" + id + "', function (e) {");
+			sb.append("$('#file_tbody_" + id + "').append('<tr><td class=\"file_tbl_td_l\"><input type=\"file\" name=\"" + id + "Files\" /></td><td class=\"file_tbl_td_r\"><a class=\"btn_common2\" id=\"btn_delete_" + id + "\">파일삭제</a></td></tr>');");
+			sb.append("});");
+			sb.append("$(document).on('click', '#file_tbody_" + id + " .btn_common2', function (e) {");
+			sb.append("$(this).parent().parent().remove();");
+			sb.append("});");
+			sb.append("</script>");			
 		}
 		else {
 			

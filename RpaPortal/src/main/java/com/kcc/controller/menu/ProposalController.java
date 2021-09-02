@@ -31,7 +31,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.kcc.auth.UseCustomUserDetails;
@@ -121,22 +123,26 @@ public class ProposalController extends BaseController {
 		
 		model.addAttribute("menuCdComboBox", commonUtilService.getCodeProcedureSelectBox("menuId", "PRA_Proposal_listProposalMenuCombo", "", true, "", ""));
 		model.addAttribute("outProposalVO", outProposalVO);
-		model.addAttribute("fileListBoxAttId", fileUploadUtilService.createFileControl("첨부파일", "AttId", commonUtilService.isEmptyCheck(outProposalVO) ? "" :  outProposalVO.getAttId(), true, "Left", "49%"));
+		model.addAttribute("attIdFileBox", fileUploadUtilService.createFileControl("첨부파일", "attId", commonUtilService.isEmptyCheck(outProposalVO) ? "" :  outProposalVO.getAttId(), true, "Left", "49%"));
 		
 		return "Proposal/ProposalWrite";
 	}
 	
 	@PostMapping("/ProposalWrite.do")
-	public String ProposalWrite(FileUploadVO fvo, ProposalVO vo) {
+	public String ProposalWrite(HttpServletRequest req, @RequestPart List<MultipartFile> attIdFiles, ProposalVO vo) {
 		logger.info("/Proposal/ProposalWrite.do");
 		logger.info(vo.getProposalNo());
 		String status = "Fail";
 		String errorMsg = "";
 		String attId = "";
 		
+		logger.info(req.getParameter("attIdSeqs"));
+		logger.info(req.getParameter("attId"));
+		
+		
 		try {
 			// 첨부파일 저장
-			attId = fileUploadUtilService.createFiles(fvo.getFiles(), "Proposal", vo.getEmpNo());
+			attId = fileUploadUtilService.createFiles(attIdFiles, "Proposal", vo.getEmpNo());
 			status = "Success";
 		}
 		catch (Exception e1) {

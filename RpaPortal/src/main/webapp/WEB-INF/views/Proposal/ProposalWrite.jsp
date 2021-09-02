@@ -55,75 +55,11 @@
 		        <input type="hidden" id="proposal_no" name="proposalNo" value="${outProposalVO.proposalNo}" />    
 		    </div>	   
 		    
-		    <%-- ${fileListBoxAttId} --%>
+		    <!-- 첨부영역 -->
 		    <div class='file_control_box'>
-			    <div class='file_control' style='float:left;width:49%'>
-			    	<input type='hidden' name='AttId' value=''>
-			    	<div class='file_header'>
-			    		<div class='file_header_left'>제목</div>
-			    		<div class='file_header_right'><a class='btn_common2' id='btn_add_AttId'>파일추가</a></div>
-			    	</div>
-			    	<div class='file_body'>
-			    		<h1 class='file_h1'>파일명</h1>
-			    		<div class='file_body_scroll'>
-					    	<table class='file_tbl'>
-				    			<colgroup>
-				    				<col width='70%' />
-				    				<col width='' />
-				    			</colgroup>
-						    	<tbody id='file_tbody_AttId'>
-					    			<tr>
-					    				<td class='file_tbl_td_l'>
-					    					<a href='/FileDownload/Download.do?attId=424242&seq=1'>qwqqwqwqw</a>
-					    					<input type='hidden' name='AttIdSavedSeqs' value='1' />
-					    				</td>
-					    				<td class='file_tbl_td_r'>
-					    					<a class='btn_common2' id='btn_delete_AttId'>파일삭제</a>
-					    				</td>
-					    			</tr>
-					    			<tr>
-					    				<td class='file_tbl_td_l'>
-					    					<a href='/FileDownload/Download.do?attId=424242&seq=1'>qwqqwqwqw</a>
-					    					<input type='hidden' name='AttIdSavedSeqs' value='1' />
-					    				</td>
-					    				<td class='file_tbl_td_r'>
-					    					<a class='btn_common2' id='btn_delete_AttId'>파일삭제</a>
-					    				</td>
-					    			</tr>
-					    			<tr>
-					    				<td class='file_tbl_td_l'>
-					    					<a href='/FileDownload/Download.do?attId=424242&seq=1'>qwqqwqwqw</a>
-					    					<input type='hidden' name='AttIdSavedSeqs' value='1' />
-					    				</td>
-					    				<td class='file_tbl_td_r'>
-					    					<a class='btn_common2' id='btn_delete_AttId'>파일삭제</a>
-					    				</td>
-					    			</tr>
-
-						    	</tbody>
-						    </table>
-					    </div>
-				    </div>
-			    </div>
-			    
+    		    	${attIdFileBox}
 		    </div>
 		    
-		    
-		    
-		    <!-- 첨부영역 
-			<div class="file_box" id="file_box">		
-			        <a class="btn_add_file" id="btn_addfile" >파일추가</a>
-			        	
-					<div class="file_div">
-			        	<table class="file_tbl" id="file_table" >
-				            <caption>파일영역</caption>				            
-				            <tr>
-				            	<th class="file_th_l">파일명</th>
-				            </tr>	            
-				        </table>	        
-			    	</div>
-			</div>		
-			-->			
 		    <!-- 버튼영역 -->
 		    <div class="btn_box">
 		    	 <a class="btn_common1" id="btn_save">저장</a>  	
@@ -162,7 +98,8 @@
 		}
 		else
 		{
-			updateProposalWrite(proposalNo, menuId, proposalNm, proposalContent);
+			$("#frm").submit();
+			//updateProposalWrite(proposalNo, menuId, proposalNm, proposalContent);
 		}
 	}
 	
