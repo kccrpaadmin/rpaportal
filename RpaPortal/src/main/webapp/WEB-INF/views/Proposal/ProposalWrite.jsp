@@ -54,12 +54,10 @@
 		        <input type="hidden" id="reg_user_id" name="regUserId" />           
 		        <input type="hidden" id="proposal_no" name="proposalNo" value="${outProposalVO.proposalNo}" />    
 		    </div>	   
-		    
 		    <!-- 첨부영역 -->
 		    <div class='file_control_box'>
     		    	${attIdFileBox}
 		    </div>
-		    
 		    <!-- 버튼영역 -->
 		    <div class="btn_box">
 		    	 <a class="btn_common1" id="btn_save">저장</a>  	

@@ -236,11 +236,11 @@ html,body{width:100%;height:100%;}
 .file_control_box .file_control .file_header .file_header_left{overflow:hidden;float:left;width:47%;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;transform:skew(-0.1deg);color:#4c4c4c;vertical-align:middle;}
 .file_control_box .file_control .file_header .file_header_right{overflow:hidden;float:right;width:47%;padding-right:4px;vertical-align:middle;text-align:right;}
 .file_control_box .file_control .file_body{position:relative; margin-top:5px;border:1px solid #d1d1d4;}
-.file_control_box .file_control .file_body .file_h1{height:18px;line-height:18px;padding:3px;border-bottom:1px solid #d1d1d4;background-color:#f5f5fb;text-align:center;}
+.file_control_box .file_control .file_body .file_h1{height:26px;line-height:26px;padding:3px 5px;border-bottom:1px solid #d1d1d4;background-color:#f5f5fb;text-align:center;}
 .file_control_box .file_control .file_body .file_body_scroll{overflow-y:auto;height:100px;}
 .file_control_box .file_control .file_body .file_body_scroll .file_tbl{table-layout:fixed;margin-bottom:15px;}
-.file_control_box .file_control .file_body .file_body_scroll .file_tbl .file_tbl_td_l{padding:3px;border-bottom:1px solid #d1d1d4;text-align:left;}
-.file_control_box .file_control .file_body .file_body_scroll .file_tbl .file_tbl_td_r{padding:3px;border-bottom:1px solid #d1d1d4;text-align:right;}
+.file_control_box .file_control .file_body .file_body_scroll .file_tbl .file_tbl_td_l{height:26px;padding:3px 5px;border-bottom:1px solid #d1d1d4;text-align:left;vertical-align:middle;}
+.file_control_box .file_control .file_body .file_body_scroll .file_tbl .file_tbl_td_r{height:26px;padding:3px 5px;border-bottom:1px solid #d1d1d4;text-align:right;vertical-align:middle;}
 
 /* 버튼영역 */
 .btn_box{overflow:hidden;margin:20px 0;text-align:center;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;}

@@ -70,25 +70,10 @@
 	        </div>
 	        <div class="proposalcontent" style="display:none">${outProposalVO.proposalContent}</div>       
 	    </div>
-	    
 	    <!-- 첨부영역 -->
-			<div class="file_box">
-					<div class="file_div">
-			        	<table class="file_tbl" id="file_table" >
-				            <caption>파일영역</caption>
-				            <colgroup>				            	
-				            	<col style="width:80%;" />
-				                <col style="width:20%;" />
-				                <col />
-				            </colgroup>
-				            <tr>
-				            	<th class="file_th_l">파일명</th>
-				            	<th class="file_th_l">파일크기(KB)</th>
-				            </tr>	            
-				        </table>	        
-			    	</div>
-			</div>
-	    
+	    <div class='file_control_box'>
+   		    	${attIdFileBox}
+	    </div>	    
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a class="btn_common1" id="btn_update" style="display:none">수정</a>

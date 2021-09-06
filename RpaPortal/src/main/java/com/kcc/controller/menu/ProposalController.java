@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -97,6 +98,7 @@ public class ProposalController extends BaseController {
 		
 		// 모델 정의
 		model.addAttribute("outProposalVO", outProposalVO);
+		model.addAttribute("attIdFileBox", fileUploadUtilService.createFileControl("첨부파일", "attId", commonUtilService.isEmptyCheck(outProposalVO) ? "" :  outProposalVO.getAttId(), false, "Left", "49%"));
 		
 		return "Proposal/ProposalDetail";
 	}
@@ -129,51 +131,43 @@ public class ProposalController extends BaseController {
 	}
 	
 	@PostMapping("/ProposalWrite.do")
-	public String ProposalWrite(HttpServletRequest req, @RequestPart List<MultipartFile> attIdFiles, ProposalVO vo) {
+	public String ProposalWrite(@RequestParam(value="attIdSeq", required=false) List<String> attIdSeqs, @RequestPart List<MultipartFile> attIdFiles, ProposalVO vo) {
 		logger.info("/Proposal/ProposalWrite.do");
 		logger.info(vo.getProposalNo());
-		String status = "Fail";
-		String errorMsg = "";
-		String attId = "";
 		
-		logger.info(req.getParameter("attIdSeqs"));
-		logger.info(req.getParameter("attId"));
-		
+			
+		logger.info(attIdSeqs.toString());
 		
 		try {
-			// 첨부파일 저장
-			attId = fileUploadUtilService.createFiles(attIdFiles, "Proposal", vo.getEmpNo());
-			status = "Success";
-		}
-		catch (Exception e1) {
-			status = "FileSaveError";
-			errorMsg = e1.getMessage();
-			e1.printStackTrace();
-		}		
-		
-		// 첨부파일 저장이 성공한 경우
-		if (status.equals("Success")) {
-			vo.setAttId(attId);
+			String attId = "";
 			
-			logger.info(attId);
-			
-			try {
-				proposalService.createProposalWrite(vo);
-			} 
-			catch (Exception e2) {
-				status = "SaveError";
-				errorMsg = e2.getMessage();
-				e2.printStackTrace();
+			// 첨부파일 생성
+			if (commonUtilService.isEmptyCheck(vo.getAttId())) {
+				attId = fileUploadUtilService.createFiles(attIdFiles, "PROPOSAL", vo.getEmpNo());
 			}
+			// 첨부파일 수정
+			else {
+				fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs.toArray(new String[attIdSeqs.size()]), attIdFiles, "PROPOSAL", vo.getEmpNo());
+			}
+			
+			// 
+			if (commonUtilService.isEmptyCheck(vo.getProposalNo())) {
+				vo.setAttId(attId);
+				proposalService.createProposalWrite(vo);	
+			}
+			else {
+				
+			}
+			
+			
 		}
-					
-		StatusVO statusVO = new StatusVO();
-		statusVO.setStatus(status);
-		statusVO.setErrorMsg(errorMsg);
-		
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+				
 		return "Proposal/ListProposal";
 	}
-		
+	
 	@GetMapping("ProposalReview.do")
 	public String ProposalReview(String pProposalNo, String pMode, Model model) {
 		logger.info("/Proposal/ProposalReview.do");
