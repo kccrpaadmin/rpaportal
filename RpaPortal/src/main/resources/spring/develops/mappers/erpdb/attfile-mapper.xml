@@ -51,5 +51,16 @@
 			}
 		]]>
 	</select>
-		
+	
+	<delete id="deleteAttFile" statementType="CALLABLE" parameterType="attFileVO">
+		<![CDATA[
+			{ 
+	            call PRA_AttFile_deleteAttFile (
+            		#{AttId}
+	            	,#{SeqStr}
+            	)
+			}
+		]]>
+	</delete>
+	
 </mapper>

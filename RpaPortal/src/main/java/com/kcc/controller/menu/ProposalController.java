@@ -135,9 +135,6 @@ public class ProposalController extends BaseController {
 		logger.info("/Proposal/ProposalWrite.do");
 		logger.info(vo.getProposalNo());
 		
-			
-		logger.info(attIdSeqs.toString());
-		
 		try {
 			String attId = "";
 			
@@ -147,7 +144,7 @@ public class ProposalController extends BaseController {
 			}
 			// 첨부파일 수정
 			else {
-				fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs.toArray(new String[attIdSeqs.size()]), attIdFiles, "PROPOSAL", vo.getEmpNo());
+				fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs, attIdFiles, "PROPOSAL", vo.getEmpNo());
 			}
 			
 			// 

@@ -56,7 +56,7 @@
 		    </div>	   
 		    <!-- 첨부영역 -->
 		    <div class='file_control_box'>
-    		    	${attIdFileBox}
+	    		${attIdFileBox}
 		    </div>
 		    <!-- 버튼영역 -->
 		    <div class="btn_box">

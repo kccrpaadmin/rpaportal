@@ -17,53 +17,60 @@ public class AttFileVO {
 	private String SaveFileNm;
 	private String FileSize;
 	private String EmpNo;
+	private String SeqStr;
 	
 	public String getAttId() {
 		return AttId;
 	}
-	public String getMenuId() {
-		return MenuId;
-	}
-	public String getSeq() {
-		return Seq;
-	}
-	public String getFilePath() {
-		return FilePath;
-	}
-	public String getFileNm() {
-		return FileNm;
-	}
-	public String getSaveFileNm() {
-		return SaveFileNm;
-	}
-	public String getFileSize() {
-		return FileSize;
-	}
-	public String getEmpNo() {
-		return EmpNo;
-	}
 	public void setAttId(String attId) {
 		AttId = attId;
+	}
+	public String getMenuId() {
+		return MenuId;
 	}
 	public void setMenuId(String menuId) {
 		MenuId = menuId;
 	}
+	public String getSeq() {
+		return Seq;
+	}
 	public void setSeq(String seq) {
 		Seq = seq;
+	}
+	public String getFilePath() {
+		return FilePath;
 	}
 	public void setFilePath(String filePath) {
 		FilePath = filePath;
 	}
+	public String getFileNm() {
+		return FileNm;
+	}
 	public void setFileNm(String fileNm) {
 		FileNm = fileNm;
+	}
+	public String getSaveFileNm() {
+		return SaveFileNm;
 	}
 	public void setSaveFileNm(String saveFileNm) {
 		SaveFileNm = saveFileNm;
 	}
+	public String getFileSize() {
+		return FileSize;
+	}
 	public void setFileSize(String fileSize) {
 		FileSize = fileSize;
 	}
+	public String getEmpNo() {
+		return EmpNo;
+	}
 	public void setEmpNo(String empNo) {
 		EmpNo = empNo;
+	}
+	public String getSeqStr() {
+		return SeqStr;
+	}
+	public void setSeqStr(String seqStr) {
+		SeqStr = seqStr;
 	}	
 }

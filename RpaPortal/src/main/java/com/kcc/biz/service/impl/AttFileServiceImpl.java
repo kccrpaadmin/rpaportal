@@ -26,7 +26,7 @@ public class AttFileServiceImpl implements IAttFileService {
 	@Resource(name="attFileRepository")
 	private AttFileRepository attFileRepository;
 	
-	public void createAttAndAttFile(AttFileVO vo, List<AttFileVO> lvo) throws Exception {
+	public void createAttAndAttFiles(AttFileVO vo, List<AttFileVO> lvo) throws Exception {
 		attFileRepository.createAtt(vo);
 		
 		for (AttFileVO attFileVO : lvo) {
@@ -40,5 +40,15 @@ public class AttFileServiceImpl implements IAttFileService {
 	
 	public AttFileVO getAttFile(AttFileVO vo) throws Exception {
 		return attFileRepository.getAttFile(vo);
+	}
+	
+	public void deleteAttFile(AttFileVO vo) throws Exception {
+		attFileRepository.deleteAttFile(vo);
+	}
+	
+	public void createAttFiles(List<AttFileVO> lvo) throws Exception {
+		for (AttFileVO attFileVO : lvo) {
+			attFileRepository.createAttFile(attFileVO);	
+		}
 	}
 }

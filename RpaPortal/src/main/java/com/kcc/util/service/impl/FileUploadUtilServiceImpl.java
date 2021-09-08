@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -75,7 +76,9 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 		String yearMon = cal.get(Calendar.YEAR) + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
 		String folderPath = uploadFilePath + File.separator + menuId + File.separator + yearMon;
 		String filePath = menuId + File.separator +  yearMon;
+		
 		logger.info(attId);
+		
 		// 저장 디렉토리 생성
 		String saveFolderPath = createfolder(folderPath);
 
@@ -125,37 +128,52 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 		}
 		
 		// 저장 - 오류 발생시 서비스단에서 롤백처리
-		attFileService.createAttAndAttFile(inAttFileVO, inListAttFileVO);
+		attFileService.createAttAndAttFiles(inAttFileVO, inListAttFileVO);
 		
 		return attId;
 	}
 	
 	// 첨부파일 수정
-	public void saveFiles(String attId, String[] seqs, List<MultipartFile> files, String menuId, String empNo) throws Exception {
-		for (String seq : seqs) {
-			logger.info(seq.toString());
-		}
+	public void saveFiles(String attId, List<String> seqs, List<MultipartFile> files, String menuId, String empNo) throws Exception {
+		// 첨부파일 입력
 		AttFileVO inAttFileVO = new AttFileVO();
-		List<AttFileVO> outListAttFileVO = new ArrayList<AttFileVO>();
 		inAttFileVO.setAttId(attId);
-			
+		
+		// 첨부파일 출력 
+		List<AttFileVO> outListAttFileVO = new ArrayList<AttFileVO>();
+		
+		// 첨부파일 목록 조회
 		outListAttFileVO = attFileService.listAttFile(inAttFileVO);
 		
-		List<String> deleteSeqs = new ArrayList<String>();
+		// 삭제 대상 순번 목록
+		StringBuilder deleteSb =  new StringBuilder("");
+		
+		int i = 0;
+		int maxSeq = 0;
+		
+		// 삭제대상 순번 목록에 삽입
+		for (AttFileVO attFileVO : outListAttFileVO) {
+			if (commonUtilService.isEmptyCheck(seqs) || seqs.contains(attFileVO.getSeq()) == false) {
+				if (i == 0) {
+					deleteSb.append(attFileVO.getSeq());	
+				}
+				else {
+					deleteSb.append("," + attFileVO.getSeq());
+				}
+				i++;
+			}
+			
+			// 최종 순번
+			maxSeq = Integer.parseInt(attFileVO.getSeq());
+		}
+		
+		// 삭제 대상이 있는 경우
+		if (commonUtilService.isEmptyCheck(deleteSb.toString()) == false) {
+			inAttFileVO.setSeqStr(deleteSb.toString());
+			attFileService.deleteAttFile(inAttFileVO);
+		}
 		
 		// 
-		for (AttFileVO attFileVO : outListAttFileVO) {
-			logger.info(attFileVO.getSeq());
-			if (commonUtilService.isEmptyCheck(seqs) || Arrays.asList(seqs).contains(attFileVO.getSeq()) == false) {
-				deleteSeqs.add(attFileVO.getSeq());
-			}
-		}
-		
-		for (String string : deleteSeqs) {
-			logger.info(string);
-		}
-		
-		/*
 		double fileSizeSum = 0;
 		double maxLimitUploadSize = Double.parseDouble(limitUploadSize);
 		
@@ -172,22 +190,17 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 		String uploadFilePath = uploadPath;
 		
 		// 년월일시분초.밀리세컨드
-		attId = menuId + "-" + new java.text.SimpleDateFormat("yyyyMMddHHmmssSSS").format(new java.util.Date()) + Integer.toString(getRandomRange(1000, 9999));
 		Calendar cal = Calendar.getInstance();
 		String yearMon = cal.get(Calendar.YEAR) + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
 		String folderPath = uploadFilePath + File.separator + menuId + File.separator + yearMon;
 		String filePath = menuId + File.separator +  yearMon;
+		
 		logger.info(attId);
+		
 		// 저장 디렉토리 생성
 		String saveFolderPath = createfolder(folderPath);
 
-		// 첨부 VO 생성
-		AttFileVO inAttFileVO2 = new AttFileVO();
-		inAttFileVO2.setAttId(attId);
-		inAttFileVO2.setMenuId(menuId);
-		inAttFileVO2.setEmpNo(empNo);
-		
-		int seq = 0;
+		int seq = maxSeq;
 		
 		// 첨부파일 목록 VO 생성
 		List<AttFileVO> inListAttFileVO = new ArrayList<AttFileVO>();
@@ -227,8 +240,7 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 		}
 		
 		// 저장 - 오류 발생시 서비스단에서 롤백처리
-		attFileService.createAttAndAttFile(inAttFileVO2, inListAttFileVO);
-		*/
+		attFileService.createAttFiles(inListAttFileVO);		
 	}
 	
 	// 첨부폴더 생성
