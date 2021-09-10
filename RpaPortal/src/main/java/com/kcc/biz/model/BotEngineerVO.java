@@ -51,6 +51,9 @@ public class BotEngineerVO {
 	private String OrgTypeCd;
 	private String OrgTypeNm;
 	private String DeptNm;
+	private String ChkYn;
+	private String EmpNo;
+	private String EngineerTargetUser;
 		
 	public String getMenuId() {
 		return MenuId;
@@ -303,5 +306,23 @@ public class BotEngineerVO {
 	}
 	public void setDeptNm(String deptNm) {
 		DeptNm = deptNm;
+	}
+	public String getChkYn() {
+		return ChkYn;
+	}
+	public void setChkYn(String chkYn) {
+		ChkYn = chkYn;
+	}
+	public String getEmpNo() {
+		return EmpNo;
+	}
+	public void setEmpNo(String empNo) {
+		EmpNo = empNo;
+	}
+	public String getEngineerTargetUser() {
+		return EngineerTargetUser;
+	}
+	public void setEngineerTargetUser(String engineerTargetUser) {
+		EngineerTargetUser = engineerTargetUser;
 	}
 }

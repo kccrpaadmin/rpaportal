@@ -35,6 +35,7 @@ import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IUserService;
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IRouteUtilService;
+import com.kcc.util.service.ICommonUtilService;
 
 @RequestMapping("/ModalBot")
 @Controller
@@ -46,6 +47,9 @@ public class ModalBotController extends BaseController {
 	
 	@Resource(name="botEseroService")
 	private IBotEseroService botEseroService;
+	
+	@Resource(name="commonUtilService")
+	private ICommonUtilService commonUtilService;
 	
 	@GetMapping("/WorkInfo.do")
 	public String WorkInfo(String pMenuId, String pEmpNo, Model model) {
@@ -219,11 +223,30 @@ public class ModalBotController extends BaseController {
 	}
 	
 	@GetMapping("/EngineerManageCareerList.do")
-	public String EngineerManageCareerList(String pUserId, Model model) {
+	public String EngineerManageCareerList(String pUserId, String pUserNm, String pResNo, Model model) {
 		logger.info("/ModalBot/EngineerManageCareerList.do");
 		
 		model.addAttribute("userId", pUserId);
+		model.addAttribute("userNm", pUserNm);
+		model.addAttribute("resNo", pResNo);
 		
 		return "ModalBot/EngineerManageCareerList";
+	}
+	
+	@GetMapping("/EngineerRunTargetUser.do")
+	public String EngineerRunTargetUser(String pMenuId, Model model) {
+		logger.info("/ModalBot/EngineerRunTargetUser.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("orgTypeComboBox", commonUtilService.getCodeProcedureSelectBox("org_type_cd", "PRA_Bot_listOrgTypeCombo", "", true, "전체", "전체"));
+		
+		return "ModalBot/EngineerRunTargetUser";
+	}
+	
+	@GetMapping("/EngineerRunTargetUserSearchUser.do")
+	public String EngineerRunTargetUserSearchUser(Model model) {
+		logger.info("/ModalBot/EngineerRunTargetUserSearchUser.do");
+				
+		return "ModalBot/EngineerRunTargetUserSearchUser";
 	}
 }

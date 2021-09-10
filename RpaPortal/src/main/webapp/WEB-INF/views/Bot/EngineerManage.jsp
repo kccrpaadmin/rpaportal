@@ -52,6 +52,7 @@
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a class="btn_common1" id="btn_search">조회</a>
+	    	<a class="btn_common1" id="btn_searchCareerList">전체기술경력조회</a>
 	    </div>
 	    <!-- 그리드영역 -->
    	    <div id="sheet"></div>
@@ -133,7 +134,10 @@
 		
 		if (mySheet.ColSaveName(Col) == "userId") {			
 			var userId = mySheet.GetCellValue(Row, "userId");
-			libraryFunc.createModal(null, null, null, 1100, 560, "기술경력", "/ModalBot/EngineerManageCareerList.do" + "?pUserId=" + userId );
+			var userNm = mySheet.GetCellValue(Row, "userNm");
+			var resNo = mySheet.GetCellValue(Row, "resNo");
+			
+			libraryFunc.createModal(null, null, null, 1100, 560, "기술경력", "/ModalBot/EngineerManageCareerList.do" + "?pUserId=" + userId + "&pUserNm=" + userNm + "&pResNo=" + resNo );
    		}		
 	}
 	
@@ -149,6 +153,15 @@
 	// 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_search", function (e) {				
 		searchListEngineerManage();
+	});
+	
+	// 전체기술경력조회 버튼 클릭 이벤트
+	$(document).on("click", "#btn_searchCareerList", function (e) {				
+		var userId = "";		
+		var userNm = "";		
+		var resNo = "";
+		
+		libraryFunc.createModal(null, null, null, 1100, 560, "기술경력", "/ModalBot/EngineerManageCareerList.do" + "?pUserId=" + userId + "&pUserNm=" + userNm + "&pResNo=" + resNo );
 	});
 		
 </script>

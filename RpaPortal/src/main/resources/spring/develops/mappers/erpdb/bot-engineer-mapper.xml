@@ -71,9 +71,43 @@
 			{ 
 	            call PRA_Bot_listBotEngineerManageCareerList (            		
             	   #{UserId}
+            	  ,#{UserNm}
+            	  ,#{ResNo}
             	)
 			}
 		]]>
 	</select>
 	
+	<select id="listBotEngineerTargetUser" statementType="CALLABLE" parameterType="botEngineerVO" resultType="botEngineerVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEngineerTargetUserList ( 
+	              #{OrgTypeCd}
+	             ,#{UserNm}
+	             ,#{ResNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<update id="saveBotEngineerTargetUser" statementType="CALLABLE" parameterType="botEngineerVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_saveBotEngineerTargetUser (
+            		 #{EmpNo}
+            		,#{EngineerTargetUser}
+            	)
+			}
+		]]>
+	</update>
+	
+	<select id="listBotEngineerTargetUserSearchUser" statementType="CALLABLE" parameterType="botEngineerVO" resultType="botEngineerVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEngineerTargetUserSearchUser ( 
+	              #{UserNm}
+            	)
+			}
+		]]>
+	</select>	
 </mapper>

@@ -74,6 +74,7 @@
 	    </div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
+	    	<a class="btn_common1" id="btn_target_person" >대상인원</a>
 	    	<a class="btn_common1" id="btn_immediate_call" style="display:none;">즉시실행</a>
 	    	<a class="btn_common1" id="btn_schedule_open" style="display:none;">예약실행</a>
 	    </div>
@@ -217,6 +218,11 @@
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {
 		libraryFunc.createModal(null, null, null, 1100, 560, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
+	});
+	
+	// 대상인원 버튼 클릭 이벤트
+	$(document).on("click", "#btn_target_person", function (e) {
+		libraryFunc.createModal(null, null, null, 1100, 560, "대상인원", "/ModalBot/EngineerRunTargetUser.do?pMenuId=" + menuId);
 	});
 	
 </script>

@@ -39,10 +39,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotScheduleVO;
-import com.kcc.biz.model.CrawlRequestVO;
-import com.kcc.biz.model.CrawlScheduleVO;
 import com.kcc.biz.model.FileUploadVO;
-import com.kcc.biz.model.OcrRequestVO;
 import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.BotMoneySendVO;
 import com.kcc.biz.model.BotCostDivideVO;
@@ -54,7 +51,6 @@ import com.kcc.biz.model.BotEngineerVO;
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
 import com.kcc.biz.service.IBotScheduleService;
-import com.kcc.biz.service.ICrawlScheduleService;
 import com.kcc.biz.service.IBotMoneySendService;
 import com.kcc.biz.service.IBotCostDivideService;
 import com.kcc.biz.service.IBotKisconConstService;
@@ -64,7 +60,6 @@ import com.kcc.biz.service.IBotEngineerService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
-import com.kcc.util.service.ICrawlUtilService;
 import com.kcc.util.service.IFileUploadUtilService;
 
 @RequestMapping("/AjaxBot")
@@ -687,4 +682,61 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}
+	
+	@PostMapping("/ListEngineerTargetUser.do")
+	public @ResponseBody Map<String, Object> ListEngineerTargetUser(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/ListEngineerTargetUser.do");
+		
+		List<BotEngineerVO> outListEngineerTargetUserVO = new ArrayList<BotEngineerVO>();
+		try {
+			outListEngineerTargetUserVO = botEngineerService.listBotEngineerTargetUser(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListEngineerTargetUserVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/SaveEngineerTargetUser.do")
+	public @ResponseBody StatusVO SaveEngineerTargetUser(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/SaveEngineerTargetUser.do");
+		String status = "Success";
+				
+		try {
+			botEngineerService.saveBotEngineerTargetUser(vo);
+		} 
+		catch (Exception e) {
+			status = "SaveError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
+		
+		
+	}
+	
+	@PostMapping("/ListEngineerTargetUserSearchUser.do")
+	public @ResponseBody Map<String, Object> ListEngineerTargetUserSearchUser(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/ListEngineerTargetUserSearchUser.do");
+		
+		List<BotEngineerVO> outListEngineerTargetUserVO = new ArrayList<BotEngineerVO>();
+		try {
+			outListEngineerTargetUserVO = botEngineerService.listBotEngineerTargetUserSearchUser(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListEngineerTargetUserVO);
+		
+		return map;
+	}		
 }
