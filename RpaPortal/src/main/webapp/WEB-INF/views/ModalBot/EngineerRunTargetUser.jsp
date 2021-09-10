@@ -59,7 +59,7 @@
 	// 대상인원 목록 조회
 	function listEngineerTargetUser(pOrgTypeCd, pUserNm, pResNo) {
 		$.ajax({
-			url: "/AjaxBot/ListEngineerTargetUser.do",
+			url: "/AjaxBot/ListEngineerTargetUserList.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({"orgTypeCd":pOrgTypeCd, "userNm": pUserNm, "resNo": pResNo }),
@@ -125,6 +125,13 @@
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet.LoadSearchData(pListDatas);        
     }
+	
+    // 불일치 행에 폰트 색상 변경 함수
+	function mySheet_OnRowSearchEnd(row) {
+		if(mySheet.GetCellValue(row, "deptNm") == "사직"){
+			mySheet.SetRowFontColor(row , "#FF0000");			    
+		}  		
+	}
 	
     // 저장 전, 확인 함수
 	function saveEngineerTargetUserConfirm(pOption) {

@@ -683,13 +683,13 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
-	@PostMapping("/ListEngineerTargetUser.do")
-	public @ResponseBody Map<String, Object> ListEngineerTargetUser(@RequestBody BotEngineerVO vo) {
-		logger.info("/AjaxBot/ListEngineerTargetUser.do");
+	@PostMapping("/ListEngineerTargetUserList.do")
+	public @ResponseBody Map<String, Object> ListEngineerTargetUserList(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/ListEngineerTargetUserList.do");
 		
 		List<BotEngineerVO> outListEngineerTargetUserVO = new ArrayList<BotEngineerVO>();
 		try {
-			outListEngineerTargetUserVO = botEngineerService.listBotEngineerTargetUser(vo);
+			outListEngineerTargetUserVO = botEngineerService.listBotEngineerTargetUserList(vo);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();

@@ -32,6 +32,11 @@
 			</table>
 	    </div>
 		<!-- 그리드영역 -->
+		<div class="grid_box">
+		    <div class="grid_btn">
+		    	<a class="btn_common2" id="btn_career_list_download">엑셀</a>
+		    </div>	  
+	    </div>  
 		<div id="sheet"></div>
 	</div>
 </div>
@@ -76,7 +81,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "450px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "400px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
@@ -113,4 +118,11 @@
 		
 		listEngineerManageCareerList(searchUserId, searchUserNm, searchResNo);
 	});
+    
+	// 엑셀 다운로드 버튼 클릭 이벤트
+	$(document).on("click", "#btn_career_list_download", function (e) {		
+		var params = { Multipart: 0, FileName: "EngineerCareerList.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		mySheet.Down2Excel(params);
+	});
+	
 </script>

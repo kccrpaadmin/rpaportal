@@ -78,7 +78,7 @@
 		]]>
 	</select>
 	
-	<select id="listBotEngineerTargetUser" statementType="CALLABLE" parameterType="botEngineerVO" resultType="botEngineerVO">
+	<select id="listBotEngineerTargetUserList" statementType="CALLABLE" parameterType="botEngineerVO" resultType="botEngineerVO">
 		<![CDATA[
 			{ 
 	            call PRA_Bot_listBotEngineerTargetUserList ( 
