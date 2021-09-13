@@ -27,4 +27,20 @@ public class BoardServiceImpl implements IBoardService {
 	public List<BoardVO> listBasicBoard(BoardVO vo) throws Exception {
 		return boardRepository.listBasicBoard(vo);
 	}
+	
+	public BoardVO getBoardDetail(BoardVO vo) throws Exception {
+		return boardRepository.getBoardDetail(vo);
+	}	
+	
+	public void deleteBoard(BoardVO vo) throws Exception {
+		boardRepository.deleteBoard(vo);
+	}
+	
+	public void createBoardWrite(BoardVO vo) throws Exception {
+		boardRepository.createBoardWrite(vo);
+	}
+	
+	public void updateBoardWrite(BoardVO vo) throws Exception {
+		boardRepository.updateBoardWrite(vo);
+	}
 }

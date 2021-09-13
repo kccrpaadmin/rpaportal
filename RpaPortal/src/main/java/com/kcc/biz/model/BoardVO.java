@@ -19,6 +19,9 @@ public class BoardVO {
 	private String RegUserId;
 	private String RegUserNm;
 	private String RegDate;
+	private String Mode;
+	private String SaveMode;
+	private String Ord;
 	
 	public String getSearchTxt() {
 		return SearchTxt;
@@ -80,4 +83,22 @@ public class BoardVO {
 	public void setRegDate(String regDate) {
 		RegDate = regDate;
 	}	
+	public String getMode() {
+		return Mode;
+	}
+	public void setMode(String mode) {
+		Mode = mode;
+	}	
+	public String getSaveMode() {
+		return SaveMode;
+	}
+	public void setSaveMode(String saveMode) {
+		SaveMode = saveMode;
+	}
+	public String getOrd() {
+		return Ord;
+	}
+	public void setOrd(String ord) {
+		Ord = ord;
+	}
 }

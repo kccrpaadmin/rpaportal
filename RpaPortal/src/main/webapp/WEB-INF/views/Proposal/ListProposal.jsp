@@ -35,8 +35,8 @@
 	    </div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common1" id="btn_edit">작성</a>
 	    	<a class="btn_common1" id="btn_search">조회</a>
+	    	<a class="btn_common1" id="btn_edit">작성</a>
 	    </div>
 	    <!-- 그리드영역 -->
    	    <div id="sheet"></div>
@@ -134,6 +134,13 @@
 		
 		window.location.href = "/Proposal/ProposalWrite.do?pProposalNo=0&pMode=" + mode + "&pSaveMode=" + saveMode;
     });
+	
+	// 업체명 엔터 이벤트
+	$(document).on("keydown", "#search_txt", function (e) {
+		if (e.keyCode == 13) {
+			$("#btn_search").trigger("click");
+		}
+	});
 	
 		
 </script>

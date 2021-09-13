@@ -314,7 +314,7 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 			sb.append("$(document).on('click', '#btn_add_" + id + "', function (e) {");
 			sb.append("$('#file_tbody_" + id + "').append('<tr><td class=\"file_tbl_td_l\"><input type=\"file\" name=\"" + id + "Files\" /></td><td class=\"file_tbl_td_r\"><a class=\"btn_common4\" id=\"btn_delete_" + id + "\">파일삭제</a></td></tr>');");
 			sb.append("});");
-			sb.append("$(document).on('click', '#file_tbody_" + id + " .btn_common2', function (e) {");
+			sb.append("$(document).on('click', '#file_tbody_" + id + " .btn_common4', function (e) {");
 			sb.append("$(this).parent().parent().remove();");
 			sb.append("});");
 			sb.append("</script>");

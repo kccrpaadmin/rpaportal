@@ -13,4 +13,49 @@
 		]]>
 	</select>
 		
+	<select id="getBoardDetail" statementType="CALLABLE" parameterType="boardVO" resultType="boardVO">
+		<![CDATA[
+			{ 
+	            call PRA_Board_getBoardDetail (
+	            	#{Seq}
+	               ,#{Mode}
+            	)
+			}
+		]]>
+	</select>	
+		
+	<insert id="createBoardWrite" statementType="CALLABLE" parameterType="boardVO">
+		<![CDATA[
+			{ 
+	            call PRA_Board_createBoardWrite (
+	                #{BoardNm}
+	               ,#{BoardContent}
+	               ,#{AttId}
+	               ,#{RegUserId}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<insert id="updateBoardWrite" statementType="CALLABLE" parameterType="boardVO">
+		<![CDATA[
+			{ 
+	            call PRA_Board_updateBoardWrite (
+				    #{Seq}
+	               ,#{BoardNm}
+	               ,#{BoardContent}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<insert id="deleteBoard" statementType="CALLABLE" parameterType="boardVO">
+		<![CDATA[
+			{ 
+	            call PRA_Board_deleteBoard (
+	            	#{Seq}
+            	)
+			}
+		]]>
+	</insert>
 </mapper>
