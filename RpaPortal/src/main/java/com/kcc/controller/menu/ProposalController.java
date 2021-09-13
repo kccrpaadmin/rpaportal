@@ -135,11 +135,9 @@ public class ProposalController extends BaseController {
 	@PostMapping("/ProposalWrite.do")
 	public String ProposalWrite(@RequestParam(value="attIdSeq", required=false) List<String> attIdSeqs, @RequestPart List<MultipartFile> attIdFiles, ProposalVO vo) {
 		logger.info("/Proposal/ProposalWrite.do");
-<<<<<<< HEAD
+
 		logger.info(vo.getProposalNo());
-=======
->>>>>>> branch 'main' of https://github.com/psmpsm9197/gitportal.git
-		
+
 		try {
 			String attId = "";
 			
@@ -148,13 +146,11 @@ public class ProposalController extends BaseController {
 				attId = fileUploadUtilService.createFiles(attIdFiles, "PROPOSAL", vo.getEmpNo());
 			}
 			// 첨부파일 수정
-<<<<<<< HEAD
 			else {
 				fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs, attIdFiles, "PROPOSAL", vo.getEmpNo());
-=======
-			else {				
-				fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs.toArray(new String[attIdSeqs.size()]), attIdFiles, "PROPOSAL", vo.getEmpNo());
->>>>>>> branch 'main' of https://github.com/psmpsm9197/gitportal.git
+				/*
+				 * else { 
+				 * 		fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs.toArray(new String[attIdSeqs.size()]), attIdFiles, "PROPOSAL", vo.getEmpNo());*/
 			}
 
 			if (vo.getSaveMode().equals("C")) {
@@ -163,8 +159,7 @@ public class ProposalController extends BaseController {
 			}
 			else {
 				proposalService.updateProposalWrite(vo);	
-			}
-			
+			}			
 			
 		}
 		catch (Exception e) {
