@@ -31,21 +31,21 @@ import com.kcc.biz.service.IUserService;
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IRouteUtilService;
 
-@RequestMapping("/Main")
+@RequestMapping("/Home")
 @Controller
-public class MainController extends BaseController {
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+public class HomeController extends BaseController {
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@GetMapping("/Home.do")
 	public String Home(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
-		logger.info("/Main/Home.do");
-		return "Main/Home";
+		logger.info("/Home/Home.do");
+		return "Home/Home";
 	}
 	
 	@GetMapping("/Home1.do")
 	public String Home1(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
-		logger.info("/Main/Home1.do");
-		return "Main/Home1";
+		logger.info("/Home/Home1.do");
+		return "Home/Home1";
 	}
 	
 }
