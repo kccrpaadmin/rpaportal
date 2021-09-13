@@ -5,8 +5,7 @@
 <div id="container">
 	<!-- 컨텐츠 -->
 	<div class="contents">
-		<!-- 이미지 -->	
-		<img src="/resources/imgs/background/bg_main.png" />
+		<div class="home_title">공지사항</div>
 	</div>
 </div>
 

@@ -141,6 +141,7 @@ html,body{width:100%;height:100%;}
 
 /* 제목 */
 .title{height:23px;line-height:23px;margin:20px 0;padding-left:20px;background:url("/resources/imgs/icon/icon_list_dot.png") no-repeat left 7px;font-family:'NanumSquare' ;font-size:18px;font-weight:bold;color:#000000;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;transform:skew(-0.1deg);}
+.home_title{height:23px;line-height:23px;margin:20px 0;padding-left:20px;background:url("/resources/imgs/icon/icon_home_title.png") no-repeat left 7px;font-family:'NanumSquare' ;font-size:18px;font-weight:bold;color:#000000;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;transform:skew(-0.1deg);}
 
 /* 상세영역 */
 .detail_box{overflow:hidden;}
@@ -171,24 +172,6 @@ html,body{width:100%;height:100%;}
 .datepicker_y{width:40px;height:22px;line-height:22px;text-align:center;box-sizing:border-box;}
 .ui-datepicker-trigger{margin-left:1px;vertical-align:middle;cursor:pointer;}
 
-/* 첨부영역 */
-.file_box{margin:20px 0;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;}
-.file_box .input_file{overflow:hidden;position:absolute;width:0;height:0;padding:0;border:0;}
-.file_box .label_file{display:inline-block;height:35px;line-height:35px;padding:0 20px;border:1px solid #6684f1;background-color:#f5f5fb;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;color:#6684f1;vertical-align:middle;cursor:pointer;transform:skew(-0.1deg);}
-.file_box .input_file_txt{display:inline-block;width:1000px;height:35px;line-height:35px;padding:0 10px;border:1px dashed #6684f1;background-color:#f5f5f5;font-family:'NanumSquare' ;font-size:12px;font-weight:bold;color:#6684f1;vertical-align:middle;transform:skew(-0.1deg);}
-.file_box .file_div{border:1px solid #d1d1d4;min-height:150px;margin:5px 0px;width:50%}
-.file_box .file_div .file_tbl{table-layout:fixed;}
-.file_box .file_div .file_tbl .file_th_l{height:18px;line-height:18px;border-bottom:1px solid #d1d1d4;padding:3px 3px 3px 8px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:left;vertical-align:middle;}
-.file_box .file_div .file_tbl .file_th_c{height:18px;line-height:18px;border-bottom:1px solid #d1d1d4;padding:3px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:center;vertical-align:middle;;}
-.file_box .file_div .file_tbl .file_th_r{height:18px;line-height:18px;border-bottom:1px solid #d1d1d4;padding:3px 8px 3px 3px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:right;vertical-align:middle;}
-.file_box .file_div .file_tbl .file_td_l{height:18px;line-height:18px;padding:3px 3px 3px 8px;font-size:12px;color:#4c4c4c;text-align:left;vertical-align:middle;;}
-.file_box .file_div .file_tbl .file_td_c{height:18px;line-height:18px;padding:3px;font-size:12px;color:#4c4c4c;text-align:center;vertical-align:middle;;}
-.file_box .file_div .file_tbl .file_td_r{height:18px;line-height:18px;padding:3px 8px 3px 3px;font-size:12px;color:#4c4c4c;text-align:right;vertical-align:middle;}
-
-/* 차트영역 */
-.chart_box{overflow:hidden;float:left;margin-top:20px;padding:20px;border:1px solid #eeeeee;background-color:#fafafa;}
-.chart_box .chart_header{height:30px;line-height:30px;border-bottom:2px solid #eeeeee;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;transform:skew(-0.1deg);}
-
 /* 마진 */
 .margin_top_20{margin-top:20px;}
 .margin_left_20{margin-left:20px;}
@@ -202,7 +185,6 @@ html,body{width:100%;height:100%;}
 .proposaldetail_box .detail_tbl .detail_td_c{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px;font-size:12px;color:#4c4c4c;text-align:center;vertical-align:middle;;}
 .proposaldetail_box .detail_tbl .detail_td_r{height:28px;line-height:28px;border:1px solid #d1d1d4;padding:3px 8px 3px 3px;font-size:12px;color:#4c4c4c;text-align:right;vertical-align:middle;}
 .proposaldetail_box .detail_tbl .detail_td_l .txt_box_proposalContent{width:99%;line-height:20px;border:0;padding-left:3px;}
-
 .proposaltitle{display:table;border-bottom:1px solid #555;border-top:3px solid #555;width:100%;}
 .proposaltitle .proposalnm{font-size:20px;color:#4c4c4c;text-align:left;vertical-align:middle;font-family:'NanumSquare';font-weight:700;padding:25px 10px;transform:skew(-0.01deg);}
 .proposaltitle .proposaldetail{font-family:'NanumSquare';font-size:16px;font-weight:500;padding:10px 10px;transform:skew(-0.01deg);}
@@ -229,7 +211,7 @@ html,body{width:100%;height:100%;}
 .grid_box .grid_title{float:left;height:16px;line-height:16px;margin:20px 0px 5px 0px;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;transform:skew(-0.1deg);color:#4c4c4c;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;vertical-align:middle;}
 .grid_box .grid_btn{overflow:hidden;margin:15px 0px 0px 0px;text-align:center;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;float:right;}
 
-/* 첨부영역 */
+/* 첨부영역1 */
 .file_control_box{overflow:hidden;margin-top:20px;}
 .file_control_box .file_control{overflow:hidden;}
 .file_control_box .file_control .file_header{overflow:hidden;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;}
@@ -241,6 +223,24 @@ html,body{width:100%;height:100%;}
 .file_control_box .file_control .file_body .file_body_scroll .file_tbl{table-layout:fixed;margin-bottom:15px;}
 .file_control_box .file_control .file_body .file_body_scroll .file_tbl .file_tbl_td_l{height:26px;padding:3px 5px;border-bottom:1px solid #d1d1d4;text-align:left;vertical-align:middle;}
 .file_control_box .file_control .file_body .file_body_scroll .file_tbl .file_tbl_td_r{height:26px;padding:3px 5px;border-bottom:1px solid #d1d1d4;text-align:right;vertical-align:middle;}
+
+/* 첨부영역2 */
+.file_box{margin:20px 0;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;}
+.file_box .input_file{overflow:hidden;position:absolute;width:0;height:0;padding:0;border:0;}
+.file_box .label_file{display:inline-block;height:35px;line-height:35px;padding:0 20px;border:1px solid #6684f1;background-color:#f5f5fb;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;color:#6684f1;vertical-align:middle;cursor:pointer;transform:skew(-0.1deg);}
+.file_box .input_file_txt{display:inline-block;width:1000px;height:35px;line-height:35px;padding:0 10px;border:1px dashed #6684f1;background-color:#f5f5f5;font-family:'NanumSquare' ;font-size:12px;font-weight:bold;color:#6684f1;vertical-align:middle;transform:skew(-0.1deg);}
+.file_box .file_div{border:1px solid #d1d1d4;min-height:150px;margin:5px 0px;width:50%}
+.file_box .file_div .file_tbl{table-layout:fixed;}
+.file_box .file_div .file_tbl .file_th_l{height:18px;line-height:18px;border-bottom:1px solid #d1d1d4;padding:3px 3px 3px 8px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:left;vertical-align:middle;}
+.file_box .file_div .file_tbl .file_th_c{height:18px;line-height:18px;border-bottom:1px solid #d1d1d4;padding:3px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:center;vertical-align:middle;;}
+.file_box .file_div .file_tbl .file_th_r{height:18px;line-height:18px;border-bottom:1px solid #d1d1d4;padding:3px 8px 3px 3px;background-color:#f5f5fb;font-size:12px;color:#4c4c4c;text-align:right;vertical-align:middle;}
+.file_box .file_div .file_tbl .file_td_l{height:18px;line-height:18px;padding:3px 3px 3px 8px;font-size:12px;color:#4c4c4c;text-align:left;vertical-align:middle;;}
+.file_box .file_div .file_tbl .file_td_c{height:18px;line-height:18px;padding:3px;font-size:12px;color:#4c4c4c;text-align:center;vertical-align:middle;;}
+.file_box .file_div .file_tbl .file_td_r{height:18px;line-height:18px;padding:3px 8px 3px 3px;font-size:12px;color:#4c4c4c;text-align:right;vertical-align:middle;}
+
+/* 차트영역 */
+.chart_box{overflow:hidden;float:left;margin-top:20px;padding:20px;border:1px solid #eeeeee;background-color:#fafafa;}
+.chart_box .chart_header{height:30px;line-height:30px;border-bottom:2px solid #eeeeee;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;transform:skew(-0.1deg);}
 
 /* 버튼영역 */
 .btn_box{overflow:hidden;margin:20px 0;text-align:center;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;}
