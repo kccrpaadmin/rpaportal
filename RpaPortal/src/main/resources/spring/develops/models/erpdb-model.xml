@@ -29,6 +29,8 @@
 		<typeAlias alias="boardVO" type="com.kcc.biz.model.BoardVO" />
 		<!-- 과제건의함 -->
 		<typeAlias alias="proposalVO" type="com.kcc.biz.model.ProposalVO" />
+		<!-- 홈화면 -->
+		<typeAlias alias="homeVO" type="com.kcc.biz.model.HomeVO" />
 		
 		<!-- 웹크롤링 스케쥴 -->
 		<typeAlias alias="crawlScheduleVO" type="com.kcc.biz.model.CrawlScheduleVO" />

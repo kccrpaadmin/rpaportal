@@ -9,68 +9,26 @@ package com.kcc.biz.model;
 // @RequestBody VO vo 매핑시에도 첫 글자 소문자와 매핑 된다. (input name="userId") 
 
 public class HomeVO {
-	private String UserId;
-	private String RoleType;
-	private String AccessUrl;
-	private String AccessIp;
-	private String AccessDevice;
-	private String Params;
-	private String LoginYn;
-	private String EmpNo;
-	private String Pwd;
+	private String UpMenuId;
+	private String DeptNm;
+	private String DeptRunTime;
 	
-	public String getUserId() {
-		return UserId;
+	public String getUpMenuId() {
+		return UpMenuId;
 	}
-	public String getRoleType() {
-		return RoleType;
+	public void setUpMenuId(String upMenuId) {
+		UpMenuId = upMenuId;
 	}
-	public String getAccessUrl() {
-		return AccessUrl;
+	public String getDeptNm() {
+		return DeptNm;
 	}
-	public String getAccessIp() {
-		return AccessIp;
+	public void setDeptNm(String deptNm) {
+		DeptNm = deptNm;
 	}
-	public String getAccessDevice() {
-		return AccessDevice;
+	public String getDeptRunTime() {
+		return DeptRunTime;
 	}
-	public String getParams() {
-		return Params;
+	public void setDeptRunTime(String deptRunTime) {
+		DeptRunTime = deptRunTime;
 	}
-	public String getLoginYn() {
-		return LoginYn;
-	}
-	public String getEmpNo() {
-		return EmpNo;
-	}
-	public String getPwd() {
-		return Pwd;
-	}
-	public void setUserId(String userId) {
-		UserId = userId;
-	}
-	public void setRoleType(String roleType) {
-		RoleType = roleType;
-	}
-	public void setAccessUrl(String accessUrl) {
-		AccessUrl = accessUrl;
-	}
-	public void setAccessIp(String accessIp) {
-		AccessIp = accessIp;
-	}
-	public void setAccessDevice(String accessDevice) {
-		AccessDevice = accessDevice;
-	}
-	public void setParams(String params) {
-		Params = params;
-	}
-	public void setLoginYn(String loginYn) {
-		LoginYn = loginYn;
-	}
-	public void setEmpNo(String empNo) {
-		EmpNo = empNo;
-	}
-	public void setPwd(String pwd) {
-		Pwd = pwd;
-	}	
 }
