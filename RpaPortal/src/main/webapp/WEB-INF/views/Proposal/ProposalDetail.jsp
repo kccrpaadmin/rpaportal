@@ -177,8 +177,9 @@
     // 수정 버튼 클릭 이벤트
 	$(document).on("click", "#btn_update", function (e) {			
 		var mode = "ProposalWrite"
+		var saveMode = "U"
 		
-		window.location.href = "/Proposal/ProposalWrite.do?pProposalNo="+ proposalNo + "&pMode=" + mode;
+		window.location.href = "/Proposal/ProposalWrite.do?pProposalNo="+ proposalNo + "&pMode=" + mode + "&pSaveMode=" + saveMode;
 	});
 	
     // 삭제 버튼 클릭 이벤트
@@ -189,8 +190,9 @@
 	// 검토의견작성 버튼 클릭 이벤트
 	$(document).on("click", "#btn_review", function (e) {			
 		var mode = "ProposalReview"
+		var saveMode = "U"
 		
-		window.location.href = "/Proposal/ProposalReview.do?pProposalNo="+ proposalNo + "&pMode=" + mode;
+		window.location.href = "/Proposal/ProposalReview.do?pProposalNo="+ proposalNo + "&pMode=" + mode + "&pSaveMode=" + saveMode;
 	});
 	
 </script>

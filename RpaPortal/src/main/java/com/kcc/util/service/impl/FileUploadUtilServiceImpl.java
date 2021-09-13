@@ -269,7 +269,7 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 			sb.append("<input type='hidden' name='" + id + "' value='" + attId + "'>");
 			sb.append("<div class='file_header'>");
 			sb.append("<div class='file_header_left'>" + title + "</div>");
-			sb.append("<div class='file_header_right'><a class='btn_common2' id='btn_add_" + id + "'>파일추가</a></div>");
+			sb.append("<div class='file_header_right'><a class='btn_common3' id='btn_add_" + id + "'>파일추가</a></div>");
 			sb.append("</div>");
 			sb.append("<div class='file_body'>");
 			sb.append("<h1 class='file_h1'>파일명</h1>");
@@ -288,7 +288,7 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 				sb.append("<input type='hidden' name='" + id + "Seq' value='" + attFileVO.getSeq() + "' />");
 				sb.append("</td>");
 				sb.append("<td class='file_tbl_td_r'>");
-				sb.append("<a class='btn_common2'>파일삭제</a>");
+				sb.append("<a class='btn_common4'>파일삭제</a>");
 				sb.append("</td>");
 				sb.append("</tr>");
 			}
@@ -300,7 +300,7 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 			
 			sb.append("<script type='text/javascript'>");
 			sb.append("$(document).on('click', '#btn_add_" + id + "', function (e) {");
-			sb.append("$('#file_tbody_" + id + "').append('<tr><td class=\"file_tbl_td_l\"><input type=\"file\" name=\"" + id + "Files\" /></td><td class=\"file_tbl_td_r\"><a class=\"btn_common2\" id=\"btn_delete_" + id + "\">파일삭제</a></td></tr>');");
+			sb.append("$('#file_tbody_" + id + "').append('<tr><td class=\"file_tbl_td_l\"><input type=\"file\" name=\"" + id + "Files\" /></td><td class=\"file_tbl_td_r\"><a class=\"btn_common4\" id=\"btn_delete_" + id + "\">파일삭제</a></td></tr>');");
 			sb.append("});");
 			sb.append("$(document).on('click', '#file_tbody_" + id + " .btn_common2', function (e) {");
 			sb.append("$(this).parent().parent().remove();");

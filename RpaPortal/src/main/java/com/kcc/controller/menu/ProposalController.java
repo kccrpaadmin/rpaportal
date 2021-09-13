@@ -104,13 +104,14 @@ public class ProposalController extends BaseController {
 	}
 	
 	@GetMapping("ProposalWrite.do")
-	public String ProposalWrite(String pProposalNo, String pMode, Model model) {
+	public String ProposalWrite(String pProposalNo, String pMode, String pSaveMode, Model model) {
 		logger.info("/Proposal/ProposalWrite.do");
 
 		// ProposalVO 입력
 		ProposalVO inProposalVO = new ProposalVO();
 		inProposalVO.setProposalNo(pProposalNo);
 		inProposalVO.setMode(pMode);
+		inProposalVO.setSaveMode(pSaveMode);
 		
 		// ProposalVO 출력
 		ProposalVO outProposalVO = new ProposalVO();
@@ -126,6 +127,7 @@ public class ProposalController extends BaseController {
 		model.addAttribute("menuCdComboBox", commonUtilService.getCodeProcedureSelectBox("menuId", "PRA_Proposal_listProposalMenuCombo", "", true, "", ""));
 		model.addAttribute("outProposalVO", outProposalVO);
 		model.addAttribute("attIdFileBox", fileUploadUtilService.createFileControl("첨부파일", "attId", commonUtilService.isEmptyCheck(outProposalVO) ? "" :  outProposalVO.getAttId(), true, "Left", "49%"));
+		model.addAttribute("saveMode", pSaveMode);
 		
 		return "Proposal/ProposalWrite";
 	}
@@ -133,10 +135,6 @@ public class ProposalController extends BaseController {
 	@PostMapping("/ProposalWrite.do")
 	public String ProposalWrite(@RequestParam(value="attIdSeq", required=false) List<String> attIdSeqs, @RequestPart List<MultipartFile> attIdFiles, ProposalVO vo) {
 		logger.info("/Proposal/ProposalWrite.do");
-		logger.info(vo.getProposalNo());
-		
-			
-		logger.info(attIdSeqs.toString());
 		
 		try {
 			String attId = "";
@@ -146,17 +144,16 @@ public class ProposalController extends BaseController {
 				attId = fileUploadUtilService.createFiles(attIdFiles, "PROPOSAL", vo.getEmpNo());
 			}
 			// 첨부파일 수정
-			else {
+			else {				
 				fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs.toArray(new String[attIdSeqs.size()]), attIdFiles, "PROPOSAL", vo.getEmpNo());
 			}
-			
-			// 
-			if (commonUtilService.isEmptyCheck(vo.getProposalNo())) {
+
+			if (vo.getSaveMode().equals("C")) {
 				vo.setAttId(attId);
 				proposalService.createProposalWrite(vo);	
 			}
 			else {
-				
+				proposalService.updateProposalWrite(vo);	
 			}
 			
 			

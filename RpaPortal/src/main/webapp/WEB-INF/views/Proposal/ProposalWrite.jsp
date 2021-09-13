@@ -53,6 +53,7 @@
 		        <input type="hidden" id="proposal_dept_cd" name="proposalDeptCd" />       
 		        <input type="hidden" id="reg_user_id" name="regUserId" />           
 		        <input type="hidden" id="proposal_no" name="proposalNo" value="${outProposalVO.proposalNo}" />    
+		        <input type="hidden" id="save_mode" name="saveMode" value="${saveMode}" />    
 		    </div>	   
 		    <!-- 첨부영역 -->
 		    <div class='file_control_box'>
@@ -87,9 +88,11 @@
 	});
 			
     // 저장 전, 확인 함수
-	function saveProposalWriteConfirm() {		
+	function saveProposalWrite() {		
 		
-		if($("#proposal_no").val() == "")
+		$("#frm").submit();
+		/* 
+		if(saveMode == "C")
 		{
 			$("#frm").submit();
 			//createProposalWrite(menuId, proposalNm, proposalContent, proposalDeptCd, regUserId);
@@ -98,7 +101,7 @@
 		{
 			$("#frm").submit();
 			//updateProposalWrite(proposalNo, menuId, proposalNm, proposalContent);
-		}
+		 }*/
 	}
 	
 	// 저장 버튼 클릭 이벤트
@@ -119,7 +122,7 @@
 			return false;
 		}
     	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveProposalWriteConfirm);    	
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveProposalWrite);    	
     });		
 	
 </script>
