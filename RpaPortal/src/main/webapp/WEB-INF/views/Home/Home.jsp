@@ -16,7 +16,6 @@
 					<div class="home_ocr_content">텍스트 추출 바로가기</div>
 				</div>
 			</div>
-			
 			<div class="home_body">
 				<div class="home_body_left">
 					<div class="home_title">웹크롤링 운영현황</div>
@@ -33,7 +32,6 @@
 					</div>
 				</div>
 			</div>
-			
 			<div class="home_body">
 				<div class="home_body_left">
 					<div class="home_title">BOT 운영현황</div>
@@ -50,10 +48,7 @@
 					</div>
 				</div>
 			</div>
-			
 		</div>
-		
-		
 	</div>
 </div>
 
