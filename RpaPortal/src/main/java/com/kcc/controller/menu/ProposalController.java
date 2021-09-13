@@ -68,8 +68,7 @@ public class ProposalController extends BaseController {
 	
 	@Resource(name="fileUploadUtilService")
 	private IFileUploadUtilService fileUploadUtilService;
-	
-	
+		
 	@GetMapping("/ListProposal.do")
 	public String ListProposal() {
 		logger.info("/Proposal/ListProposal.do");
@@ -111,7 +110,6 @@ public class ProposalController extends BaseController {
 		ProposalVO inProposalVO = new ProposalVO();
 		inProposalVO.setProposalNo(pProposalNo);
 		inProposalVO.setMode(pMode);
-		inProposalVO.setSaveMode(pSaveMode);
 		
 		// ProposalVO 출력
 		ProposalVO outProposalVO = new ProposalVO();
@@ -135,8 +133,6 @@ public class ProposalController extends BaseController {
 	@PostMapping("/ProposalWrite.do")
 	public String ProposalWrite(@RequestParam(value="attIdSeq", required=false) List<String> attIdSeqs, @RequestPart List<MultipartFile> attIdFiles, ProposalVO vo) {
 		logger.info("/Proposal/ProposalWrite.do");
-
-		logger.info(vo.getProposalNo());
 
 		try {
 			String attId = "";

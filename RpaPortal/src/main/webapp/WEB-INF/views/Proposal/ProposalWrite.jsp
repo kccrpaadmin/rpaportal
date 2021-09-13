@@ -87,21 +87,9 @@
 		$("#menuId").val("${outProposalVO.menuId}");		
 	});
 			
-    // 저장 전, 확인 함수
+    // 저장 함수
 	function saveProposalWrite() {		
-		
-		$("#frm").submit();
-		/* 
-		if(saveMode == "C")
-		{
-			$("#frm").submit();
-			//createProposalWrite(menuId, proposalNm, proposalContent, proposalDeptCd, regUserId);
-		}
-		else
-		{
-			$("#frm").submit();
-			//updateProposalWrite(proposalNo, menuId, proposalNm, proposalContent);
-		 }*/
+		$("#frm").submit();		
 	}
 	
 	// 저장 버튼 클릭 이벤트

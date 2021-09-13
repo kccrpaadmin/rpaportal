@@ -8,7 +8,7 @@
 		<!-- 로케이션 -->
 		<div class="location_box">
 			<div class="location_left">
-				<div class="location_title">상세내용</div>	
+				<div class="location_title">과제 건의 내용</div>	
 			</div>
 			<div class="location_right">
 				<span class="location_home">홈</span>
@@ -96,27 +96,7 @@
 	// 페이지 로드 
 	$(document).ready(function (e) {
 		enableButtonControl();
-		listAttFile(attId);
 	});
-	
-	// 첨부파일 목록 조회
-	function listAttFile(pAttId) {
-		$.ajax({
-			url: "/AjaxProposal/ListAttFile.do",
-			type: "POST",
-			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "attId": pAttId }),
-		    dataType : "json",
-	        async: true,
-			success: function(listDatas) {
-				makeAttTable(listDatas);
-			},
-			error: function(xhr, status, err) {
-				commonFunc.handleErrorMsg(xhr, status, err);
-				return false;
-			}
-		});
-	}
 	
 	// 과제 건의 삭제
     function deleteProposal() {
@@ -140,19 +120,6 @@
 				return false;
 			}
 		});
-    }
-	
-    // 그리드 생성 함수
-    function makeAttTable(pListDatas) {
-    	var fileListLen = pListDatas.data.length;
-    	
-	 	for (var i = 0; i < fileListLen; i++) {
-	 		var str = "<tr id=file" + i + ">"
-	 		           +    "<td class='file_td_l'>" + pListDatas.data[i].attId + "</td>"
-	 		           +    "<td class='file_td_l'>" + " KB</td>"
-	 		           + "</tr>";
-	 		$("#file_table").append(str);
-	 	}
     }
 	
     // 과제 건의 삭제 후 목록 페이지로 이동

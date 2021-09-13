@@ -35,8 +35,8 @@
 	    </div>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a class="btn_common" id="btn_edit">작성</a>
-	    	<a class="btn_common" id="btn_search">조회</a>
+	    	<a class="btn_common1" id="btn_search">조회</a>
+	    	<a class="btn_common1" id="btn_edit" style="display:none">작성</a>
 	    </div>
 	    <!-- 그리드영역 -->
    	    <div id="sheet"></div>
@@ -47,10 +47,11 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		listBasicBoard($("#search_txt").val());
+		enableButtonControl();
+		searchListBoard();
 	});
 	
-	// 웹크롤링 메뉴 목록 생성 함수
+	// 공지사항 목록 조회 함수
 	function listBasicBoard(pSearchTxt) {
 		$.ajax({
 			url: "/AjaxBoard/ListBasicBoard.do",
@@ -80,12 +81,11 @@
         initdata.Cfg = { SearchMode: smClientPaging, Page: 10, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "요청번호", Type: "Text", Width: 150, SaveName: "boardTypeCd", Align: "Center" },
-            { Header: "메뉴ID", Type: "Text", Width: 100, SaveName: "boardTypeNm", Align: "Center" },
-            { Header: "요청명", Type: "Text", Width: 450, SaveName: "seq", Align: "Center" },
-            { Header: "진행상태", Type: "Text", Width: 110, SaveName: "boardNm", Align: "Center" },
-            { Header: "요청자", Type: "Text", Width: 110, SaveName: "regUserNm", Align: "Center" },
-            { Header: "시작시간", Type: "Text", Width: 150, SaveName: "regDate", Align: "Center" }
+        	{ Header: "순번", Type: "Text", Width: 50, SaveName: "ord", Align: "Center" },
+        	{ Header: "공지번호", Type: "Text", Width: 0, SaveName: "seq", Hidden:"true"},
+        	{ Header: "구분", Type: "Text", Width: 80, SaveName: "boardTypeNm", Align: "Center" },
+	        { Header: "제목", Type: "Text", Width: 930, SaveName: "boardNm" },
+	        { Header: "작성일자", Type: "Text", Width: 120, SaveName: "regDate", Align: "Center" }
         ];
 
         IBS_InitSheet(mySheet, initdata);
@@ -98,5 +98,53 @@
 		mySheet.SetPagingPosition(2); // 페이지 네비게이션 버튼 표시
         mySheet.LoadSearchData(pListDatas);
     }  
+	
+ // 그리드 클릭 함수
+	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
+		if (Row == 0) {
+			return false;
+		}
+		
+		if (mySheet.ColSaveName(Col) == "boardNm") {
+			var seq = mySheet.GetCellValue(Row, "seq");
+			var mode = "BoardDetail"
+			
+			window.location.href = "/Board/BoardDetail.do?pSeq=" + seq + "&pMode=" + mode;
+   		}
+	}
+ 
+	// 목록 조회 공통 함수
+	function searchListBoard() {
+		var searchTxt = $("#search_txt").val()
+		
+		listBasicBoard(searchTxt);
+	}	
+	
+	// 버튼 활성화, 비활성화 함수
+	function enableButtonControl() {		
+		if (commonFunc.certInfo.roleType == "ROLE_ADMIN") {
+			$("#btn_edit").css("display", "inline-block");   
+        }		
+	}
+	
+	// 조회 버튼 클릭 이벤트
+	$(document).on("click", "#btn_search", function (e) {								
+		searchListBoard();
+	});
+	
+	// 작성 버튼 클릭 이벤트
+	$(document).on("click", "#btn_edit", function (e) {					
+		var mode = "BoardWrite"
+		var saveMode = "C"
+		
+		window.location.href = "/Board/BoardWrite.do?pSeq=0&pMode=" + mode + "&pSaveMode=" + saveMode;
+    });
+	
+	// 업체명 엔터 이벤트
+	$(document).on("keydown", "#search_txt", function (e) {
+		if (e.keyCode == 13) {
+			$("#btn_search").trigger("click");
+		}
+	});
 	
 </script>

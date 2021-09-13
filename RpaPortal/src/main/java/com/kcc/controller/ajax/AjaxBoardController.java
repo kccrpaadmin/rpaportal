@@ -2,6 +2,7 @@ package com.kcc.controller.ajax;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -27,6 +28,7 @@ import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.AccessVO;
 import com.kcc.biz.model.BoardVO;
 import com.kcc.biz.model.MenuVO;
+import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.UserVO;
 import com.kcc.biz.service.IAccessService;
 import com.kcc.biz.service.IBoardService;
@@ -44,8 +46,9 @@ public class AjaxBoardController extends BaseController {
 	@Resource(name="boardService")
 	private IBoardService boardService;
 	
+	// 공지사항 목록 조회
 	@PostMapping("/ListBasicBoard.do")
-	public @ResponseBody List<BoardVO> ListBasicBoard(@RequestBody BoardVO vo) {
+	public @ResponseBody Map<String, Object> ListBasicBoardl(@RequestBody BoardVO vo) {
 		logger.info("/AjaxBoard/ListBasicBoard.do");
 		
 		List<BoardVO> listBoardVO = new ArrayList<BoardVO>();
@@ -55,8 +58,31 @@ public class AjaxBoardController extends BaseController {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		Map map = new HashMap<String, Object>();
+		map.put("data", listBoardVO);
 		
-		return listBoardVO;
+		return map;
 	}
+	
+    //	공지사항 삭제
+	@PostMapping("/DeleteBoard.do")
+	public @ResponseBody StatusVO DeleteBoard(@RequestBody BoardVO vo) {
+			logger.info("/AjaxBoard/DeleteBoard.do");
+			String status = "Success";
+			
+			try {
+				boardService.deleteBoard(vo);
+			} 
+			catch (Exception e) {
+				status = "SaveError";
+				e.printStackTrace();
+			}
+			
+			StatusVO statusVO = new StatusVO();
+			statusVO.setStatus(status);
+			
+			return statusVO;
+	 }
 	
 }
