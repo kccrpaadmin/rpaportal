@@ -130,7 +130,9 @@
 	// 작성 버튼 클릭 이벤트
 	$(document).on("click", "#btn_edit", function (e) {					
 		var mode = "ProposalWrite"
-		window.location.href = "/Proposal/ProposalWrite.do?pProposalNo=0&pMode=" + mode;
+		var saveMode = "C"
+		
+		window.location.href = "/Proposal/ProposalWrite.do?pProposalNo=0&pMode=" + mode + "&pSaveMode=" + saveMode;
     });
 	
 		

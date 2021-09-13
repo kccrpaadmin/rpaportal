@@ -28,6 +28,7 @@ public class ProposalVO {
 	private String SearchTxt;
 	private String Mode;
 	private String EmpNo;
+	private String SaveMode;
 	
 	public String getProposalNo() {
 		return ProposalNo;
@@ -142,5 +143,11 @@ public class ProposalVO {
 	}
 	public void setEmpNo(String empNo) {
 		EmpNo = empNo;
+	}
+	public String getSaveMode() {
+		return SaveMode;
+	}
+	public void setSaveMode(String saveMode) {
+		SaveMode = saveMode;
 	}
 }
