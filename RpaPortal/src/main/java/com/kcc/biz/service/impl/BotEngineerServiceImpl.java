@@ -45,4 +45,16 @@ public class BotEngineerServiceImpl implements IBotEngineerService {
 	public List<BotEngineerVO> listBotEngineerManageCareerList(BotEngineerVO vo) throws Exception {		
 		return botEngineerRepository.listBotEngineerManageCareerList(vo);
 	}
+	
+	public List<BotEngineerVO> listBotEngineerTargetUserList(BotEngineerVO vo) throws Exception {		
+		return botEngineerRepository.listBotEngineerTargetUserList(vo);
+	}
+	
+	public void saveBotEngineerTargetUser(BotEngineerVO vo) throws Exception {
+		botEngineerRepository.saveBotEngineerTargetUser(vo);
+	}
+	
+	public List<BotEngineerVO> listBotEngineerTargetUserSearchUser(BotEngineerVO vo) throws Exception {		
+		return botEngineerRepository.listBotEngineerTargetUserSearchUser(vo);
+	}
 }

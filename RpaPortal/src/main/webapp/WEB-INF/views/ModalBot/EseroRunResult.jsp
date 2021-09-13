@@ -6,9 +6,13 @@
 	<!-- 컨텐츠 -->
 	<div class="contents">
 		<!-- 그리드영역 -->
-		<div class="grid_title">홈택스 (세금)계산서 데이터</div>
+		<div class="grid_box">
+			<div class="grid_title">홈택스 (세금)계산서 데이터</div>
+		</div>
 		<div id="sheet1"></div>
-		<div class="grid_title">오라클 데이터</div>
+		<div class="grid_box">
+			<div class="grid_title">오라클 데이터</div>
+		</div>
 		<div id="sheet2"></div>
 	</div>
 </div>

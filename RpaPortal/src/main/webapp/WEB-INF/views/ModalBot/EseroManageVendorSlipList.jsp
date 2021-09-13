@@ -29,9 +29,13 @@
 	        </table>
 	    </div>	
 		<!-- 그리드영역 -->	
-		<div class="grid_title">기준연월 세금계산서 상세 </div>	
+		<div class="grid_box">
+			<div class="grid_title">기준연월 세금계산서 상세 </div>	
+		</div>	
 		<div id="sheet1"></div>
-		<div class="grid_title">최근 1년간 전표 데이터</div>	
+		<div class="grid_box">
+			<div class="grid_title">최근 1년간 전표 데이터</div>	
+		</div>
 		<div id="sheet2"></div>
 	</div>
 </div>

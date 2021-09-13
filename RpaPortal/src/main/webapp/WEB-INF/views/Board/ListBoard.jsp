@@ -8,7 +8,7 @@
 		<!-- 로케이션 -->
 		<div class="location_box">
 			<div class="location_left">
-				<div class="location_title">RPA 소식</div>	
+				<div class="location_title">공지사항</div>	
 			</div>
 			<div class="location_right">
 				<span class="location_home">홈</span>

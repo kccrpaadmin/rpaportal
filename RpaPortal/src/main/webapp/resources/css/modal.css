@@ -64,16 +64,19 @@ input[type=radio],input[type=checkbox],input[type=image]{margin:0;border:none 0;
 /* 버튼영역 */
 .btn_box{overflow:hidden;margin:20px 0;text-align:center;}
 .btn_common1{margin:0 3px;padding:7px 18px;background-color:#4d4cac;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;color:#ffffff;transform:skew(-0.1deg);}
+.btn_common2{margin:0 3px;padding:5px 10px;background-color:#227447;font-family:'NanumSquare' ;font-size:12px;font-weight:bold;color:#ffffff;transform:skew(-0.1deg);}
 
 /* 시스템체크 이미지 */
 .capture_img{width:1038px;height:550px;border:1px solid #000000;}
 .capture_file{height:24px;color:#0000ff;text-decoration:underline;}
 
 /* 검색영역 */
-.search_dtl_box{margin-bottom:20px;padding:5px 0;border:1px solid #d6d6d6;background-color:#f6f6f6;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;}
+.search_dtl_box{margin-bottom:10px;padding:5px 0;border:1px solid #d6d6d6;background-color:#f6f6f6;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;}
 .search_dtl_box .search_dtl_tbl{table-layout:fixed;}
 .search_dtl_box .search_dtl_tbl .search_dtl_th{height:32px;line-height:32px;padding-left:18px;background:url("/resources/imgs/icon/icon_search_title.png") no-repeat 8px 14px;text-align:left;vertical-align:middle;}
 .search_dtl_box .search_dtl_tbl .search_dtl_td{height:32px;line-height:32px;vertical-align:middle;}
 
 /* 그리드 제목 */
-.grid_title{height:16px;line-height:16px;margin:15px 0px 5px 0px;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-size:12px;font-weight:bold;color:#4c4c4c;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;vertical-align:middle;}
+.grid_box{overflow:hidden;margin-bottom:1px}
+.grid_box .grid_title{height:16px;line-height:16px;margin:15px 0px 5px 0px;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-size:12px;font-weight:bold;color:#4c4c4c;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;vertical-align:middle;}
+.grid_box .grid_btn{overflow:hidden;margin:10px 0px 5px 0px;text-align:center;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;float:right;}

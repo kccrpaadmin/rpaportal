@@ -12,4 +12,7 @@ public interface IBotEngineerService {
 	List<BotEngineerVO> listBotEngineerCareerList(BotEngineerVO vo) throws Exception;		
 	List<BotEngineerVO> listBotEngineerManage(BotEngineerVO vo) throws Exception;	
 	List<BotEngineerVO> listBotEngineerManageCareerList(BotEngineerVO vo) throws Exception;	
+	List<BotEngineerVO> listBotEngineerTargetUserList(BotEngineerVO vo) throws Exception;
+	void saveBotEngineerTargetUser(BotEngineerVO vo) throws Exception;
+	List<BotEngineerVO> listBotEngineerTargetUserSearchUser(BotEngineerVO vo) throws Exception;
 }
