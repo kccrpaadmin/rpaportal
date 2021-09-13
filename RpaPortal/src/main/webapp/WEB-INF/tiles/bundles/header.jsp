@@ -9,7 +9,7 @@
 <div id="header_back">
 	<div id="header">
 		<div class="header_left">
-			<a href="/Main/Home.do"><img src="/resources/imgs/logo/logo_home.png" /></a>
+			<a href="/Home/Home.do"><img src="/resources/imgs/logo/logo_home.png" /></a>
 		</div>
 		<div class="header_right">
 			<span class="header_time_info">[${curTime}]</span>
