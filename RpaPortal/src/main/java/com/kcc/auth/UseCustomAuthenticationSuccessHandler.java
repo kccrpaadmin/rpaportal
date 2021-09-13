@@ -60,6 +60,6 @@ public class UseCustomAuthenticationSuccessHandler implements AuthenticationSucc
         HttpSession session = req.getSession();
         session.setAttribute("certInfo", commonUtilService.getCertInfo());
         
-    	res.sendRedirect("/Main/Home.do");
+    	res.sendRedirect("/Home/Home.do");
     }
 }
