@@ -41,11 +41,4 @@ public class HomeController extends BaseController {
 		logger.info("/Home/Home.do");
 		return "Home/Home";
 	}
-	
-	@GetMapping("/Home1.do")
-	public String Home1(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
-		logger.info("/Home/Home1.do");
-		return "Home/Home1";
-	}
-	
 }
