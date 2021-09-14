@@ -7,7 +7,7 @@
 		<![CDATA[
 			{ 
 	            call PRA_Home_listDeptRunTime (
-            		#{UpMenuId}
+            		#{WorkTypeCd}
             	)
 			}
 		]]>

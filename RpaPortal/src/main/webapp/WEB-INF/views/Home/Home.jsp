@@ -39,7 +39,40 @@
 				</div>
 				<div class="home_body_center">
 					<div class="home_title">BOT 타임라인</div>
-					<div class="home_task"></div>
+					<div class="home_task">
+						<div class="home_time_line_box">
+							<div class="home_time_line">
+								<div class="home_time_line_left"><div class="home_time_line_status_r">실행</div></div>
+								<div class="home_time_line_center">10:00</div>
+								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
+							</div>
+							<div class="home_time_line">
+								<div class="home_time_line_left"><div class="home_time_line_status_q">대기</div></div>
+								<div class="home_time_line_center">10:00</div>
+								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
+							</div>
+							<div class="home_time_line">
+								<div class="home_time_line_left"><div class="home_time_line_status_s">예약</div></div>
+								<div class="home_time_line_center">10:00</div>
+								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
+							</div>
+							<div class="home_time_line">
+								<div class="home_time_line_left"><div class="home_time_line_status_s">예약</div></div>
+								<div class="home_time_line_center">10:00</div>
+								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
+							</div>
+							<div class="home_time_line">
+								<div class="home_time_line_left"><div class="home_time_line_status_s">예약</div></div>
+								<div class="home_time_line_center">10:00</div>
+								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
+							</div>
+							<div class="home_time_line">
+								<div class="home_time_line_left"><div class="home_time_line_status_s">예약</div></div>
+								<div class="home_time_line_center">10:00</div>
+								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="home_body_right">
 					<div class="home_title">BOT 사용현황</div>
@@ -57,18 +90,17 @@
 	// 페이지 로드 
 	$(document).ready(function (e) {
 		$("body").css("background-color", "#f5f5fb");
-		listDeptRunTimeWeb("RA002");
-		listDeptRunTimeBot("RA004");
+		listDeptRunTimeCrawl("RA002001");
+		listDeptRunTimeBot("RA002003");
 	});
-	
-	
-	// 년간 부서별 업무 절감시간 목록 조회
-	function listDeptRunTimeWeb(pUpMenuId) {
+		
+	// 홈화면 절감시간 목록 조회
+	function listDeptRunTimeCrawl(pWorkTypeCd) {
 		$.ajax({
 			url: "/AjaxHome/ListDeptRunTime.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "upMenuId": pUpMenuId }),
+			data : JSON.stringify({ "workTypeCd": pWorkTypeCd }),
 		    dataType : "json",
 	        async: true,
 			success: function(datas) {
@@ -81,13 +113,13 @@
 		});
 	}
 	
-	// 년간 부서별 업무 절감시간 목록 조회
-	function listDeptRunTimeBot(pUpMenuId) {
+	// 홈화면 절감시간 목록 조회
+	function listDeptRunTimeBot(pWorkTypeCd) {
 		$.ajax({
 			url: "/AjaxHome/ListDeptRunTime.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "upMenuId": pUpMenuId }),
+			data : JSON.stringify({ "workTypeCd": pWorkTypeCd }),
 		    dataType : "json",
 	        async: true,
 			success: function(datas) {

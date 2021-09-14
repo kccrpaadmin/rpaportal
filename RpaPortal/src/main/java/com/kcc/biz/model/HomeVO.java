@@ -9,15 +9,26 @@ package com.kcc.biz.model;
 // @RequestBody VO vo 매핑시에도 첫 글자 소문자와 매핑 된다. (input name="userId") 
 
 public class HomeVO {
-	private String UpMenuId;
+	private String WorkTypeCd;
+	private String CallDate;
 	private String DeptNm;
 	private String DeptRunTime;
+	private String MenuId;
+	private String MenuNm;
+	private String StartTime;
+	private String RegUserId;
 	
-	public String getUpMenuId() {
-		return UpMenuId;
+	public String getWorkTypeCd() {
+		return WorkTypeCd;
 	}
-	public void setUpMenuId(String upMenuId) {
-		UpMenuId = upMenuId;
+	public void setWorkTypeCd(String workTypeCd) {
+		WorkTypeCd = workTypeCd;
+	}
+	public String getCallDate() {
+		return CallDate;
+	}
+	public void setCallDate(String callDate) {
+		CallDate = callDate;
 	}
 	public String getDeptNm() {
 		return DeptNm;
@@ -31,4 +42,28 @@ public class HomeVO {
 	public void setDeptRunTime(String deptRunTime) {
 		DeptRunTime = deptRunTime;
 	}
+	public String getMenuId() {
+		return MenuId;
+	}
+	public void setMenuId(String menuId) {
+		MenuId = menuId;
+	}
+	public String getMenuNm() {
+		return MenuNm;
+	}
+	public void setMenuNm(String menuNm) {
+		MenuNm = menuNm;
+	}
+	public String getStartTime() {
+		return StartTime;
+	}
+	public void setStartTime(String startTime) {
+		StartTime = startTime;
+	}
+	public String getRegUserId() {
+		return RegUserId;
+	}
+	public void setRegUserId(String regUserId) {
+		RegUserId = regUserId;
+	}	
 }
