@@ -84,7 +84,7 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 	 
 	@Scheduled(cron = "0 * * * * *")
 	public void callCrawlApi() {
-		if (!"Local2".equals(commonUtilService.getServerEnv())) {
+		if (!"Local1".equals(commonUtilService.getServerEnv()) && !"Local2".equals(commonUtilService.getServerEnv())) {
 			String curDate = yyyyMMddHHmm.format(new Date()).toString();
 			CrawlScheduleVO inCrawlScheduleVO = new CrawlScheduleVO();
 			inCrawlScheduleVO.setCallDate(curDate);
@@ -130,7 +130,7 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 	
 	@Scheduled(cron = "0 * * * * *")
 	public void callBotApi() {
-		if (!"Local2".equals(commonUtilService.getServerEnv())) {
+		if (!"Local1".equals(commonUtilService.getServerEnv()) && !"Local2".equals(commonUtilService.getServerEnv())) {
 			String curDate = yyyyMMddHHmm.format(new Date()).toString();
 			BotScheduleVO inBotScheduleVO = new BotScheduleVO();
 			inBotScheduleVO.setCallDate(curDate);
