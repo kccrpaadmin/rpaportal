@@ -6,5 +6,6 @@ import com.kcc.biz.model.HomeVO;
 import com.kcc.biz.model.MenuVO;
 
 public interface IHomeService {
+	List<HomeVO> listTimeLine(HomeVO vo) throws Exception;
 	List<HomeVO> listDeptRunTime(HomeVO vo) throws Exception;
 }

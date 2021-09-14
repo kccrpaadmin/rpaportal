@@ -24,6 +24,10 @@ public class HomeServiceImpl implements IHomeService {
 	@Resource(name="homeRepository")
 	private HomeRepository homeRepository;
 	
+	public List<HomeVO> listTimeLine(HomeVO vo) throws Exception {
+		return homeRepository.listTimeLine(vo);
+	}
+	
 	public List<HomeVO> listDeptRunTime(HomeVO vo) throws Exception {
 		return homeRepository.listDeptRunTime(vo);
 	}

@@ -9,5 +9,6 @@ import com.kcc.biz.model.MenuVO;
 
 @Repository("homeRepository")
 public interface HomeRepository {
+	List<HomeVO> listTimeLine(HomeVO vo) throws Exception;
 	List<HomeVO> listDeptRunTime(HomeVO vo) throws Exception;
 }

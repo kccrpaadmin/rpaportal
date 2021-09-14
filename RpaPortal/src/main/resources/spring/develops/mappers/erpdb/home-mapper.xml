@@ -3,6 +3,17 @@
 
 <mapper namespace="com.kcc.biz.dao.HomeRepository">
 
+	<select id="listTimeLine" statementType="CALLABLE" parameterType="homeVO" resultType="homeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Home_listTimeLine (
+	            	#{WorkTypeCd}
+            		,#{CallDate}
+            	)
+			}
+		]]>
+	</select>
+	
 	<select id="listDeptRunTime" statementType="CALLABLE" parameterType="homeVO" resultType="homeVO">
 		<![CDATA[
 			{ 
@@ -12,5 +23,6 @@
 			}
 		]]>
 	</select>
+
 	
 </mapper>

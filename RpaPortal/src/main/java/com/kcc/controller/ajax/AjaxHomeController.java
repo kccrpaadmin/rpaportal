@@ -1,7 +1,9 @@
 package com.kcc.controller.ajax;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -44,6 +46,25 @@ public class AjaxHomeController extends BaseController {
 	@Resource(name="homeService")
 	private IHomeService homeService;
 	
+	@PostMapping("/ListTimeLine.do")
+	public @ResponseBody List<HomeVO> ListTimeLine(@RequestBody HomeVO vo) {
+		logger.info("/AjaxHome/ListTimeLine.do");
+		
+		SimpleDateFormat yyyyMMddHHmm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		String curDate = yyyyMMddHHmm.format(new Date()).toString();
+		vo.setCallDate(curDate);
+		
+		List<HomeVO> listHomeVO = new ArrayList<HomeVO>();
+		try {
+			listHomeVO = homeService.listTimeLine(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listHomeVO;
+	}
+	
 	@PostMapping("/ListDeptRunTime.do")
 	public @ResponseBody List<HomeVO> ListDeptRunTime(@RequestBody HomeVO vo) {
 		logger.info("/AjaxHome/ListDeptRunTime.do");
@@ -57,6 +78,6 @@ public class AjaxHomeController extends BaseController {
 		}
 		
 		return listHomeVO;
-	}		
+	}
 	
 }

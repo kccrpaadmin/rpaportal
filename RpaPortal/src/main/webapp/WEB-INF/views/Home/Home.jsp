@@ -90,11 +90,51 @@
 	// 페이지 로드 
 	$(document).ready(function (e) {
 		$("body").css("background-color", "#f5f5fb");
+		listTimeLineCrawl("RA002001");
+		listTimeLineBot("RA002003");
 		listDeptRunTimeCrawl("RA002001");
 		listDeptRunTimeBot("RA002003");
 	});
-		
-	// 홈화면 절감시간 목록 조회
+	
+	// 웹크롤링 홈화면 타임라인 목록 조회
+	function listTimeLineCrawl(pWorkTypeCd) {
+		$.ajax({
+			url: "/AjaxHome/ListTimeLine.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({ "workTypeCd": pWorkTypeCd }),
+		    dataType : "json",
+	        async: true,
+			success: function(datas) {
+				alert(datas);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
+	// 봇 홈화면 타임라인 목록 조회
+	function listTimeLineBot(pWorkTypeCd) {
+		$.ajax({
+			url: "/AjaxHome/ListTimeLine.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({ "workTypeCd": pWorkTypeCd }),
+		    dataType : "json",
+	        async: true,
+			success: function(datas) {
+				alert(datas);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
+	// 웹크롤링 홈화면 절감시간 목록 조회
 	function listDeptRunTimeCrawl(pWorkTypeCd) {
 		$.ajax({
 			url: "/AjaxHome/ListDeptRunTime.do",
@@ -113,7 +153,7 @@
 		});
 	}
 	
-	// 홈화면 절감시간 목록 조회
+	// 봇 홈화면 절감시간 목록 조회
 	function listDeptRunTimeBot(pWorkTypeCd) {
 		$.ajax({
 			url: "/AjaxHome/ListDeptRunTime.do",
@@ -130,9 +170,9 @@
 				return false;
 			}
 		});
-	}
+	}	
 	
-	// 년간 부서별 업무 절감시간 생성 함수
+	// 홈화면 절감시간 차트 생성 함수
 	function make2DColumnChart(pChartNm, pChartElmtNm, pWidth, pHeight, pDatas, pSubject, pSubjectStyle, pUnit, pCategoryField, pLabelRotation) {
 		rMateChartH5.create(pChartNm, pChartElmtNm, "", pWidth, pHeight);
 		var layoutStr =
