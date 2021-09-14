@@ -18,36 +18,56 @@
 			</div>
 			<div class="home_body">
 				<div class="home_body_left">
-					<div class="home_title">웹크롤링 운영현황</div>
-					<div class="home_task"></div>
+					<div class="home_title">웹크롤링 과제현황</div>
+					<div class="home_task1">
+						<div class="home_represent_menu_left">
+							<div class="home_represent_top" id="crawl_dept_nm"></div>
+							<div class="home_represent_middle" id="crawl_menu_nm"></div>
+							<div class="home_represent_middle" id="crawl_time"></div>
+							<div class="home_represent_bottom" id="crawl_content"></div>
+						</div>
+						<div class="home_represent_menu_right">
+							<a><img src="/resources/imgs/button/btn_home_more.png" /></a>
+						</div>
+					</div>
 				</div>
 				<div class="home_body_center">
 					<div class="home_title">웹크롤링 타임라인</div>
-					<div class="home_task">
+					<div class="home_task2">
 						<div class="home_time_line_box" id="home_time_line_box_crawl"></div>
 					</div>
 				</div>
 				<div class="home_body_right">
 					<div class="home_title">웹크롤링 사용현황</div>
-					<div class="home_task">
+					<div class="home_task2">
 						<div id="chartHolder1"></div>
 					</div>
 				</div>
 			</div>
 			<div class="home_body">
 				<div class="home_body_left">
-					<div class="home_title">BOT 운영현황</div>
-					<div class="home_task"></div>
+					<div class="home_title">BOT 과제현황</div>
+					<div class="home_task1">
+						<div class="home_represent_menu_left">
+							<div class="home_represent_top" id="bot_dept_nm"></div>
+							<div class="home_represent_middle" id="bot_menu_nm"></div>
+							<div class="home_represent_middle" id="bot_time"></div>
+							<div class="home_represent_bottom" id="bot_content"></div>
+						</div>
+						<div class="home_represent_menu_right">
+							<a><img src="/resources/imgs/button/btn_home_more.png" /></a>
+						</div>
+					</div>
 				</div>
 				<div class="home_body_center">
 					<div class="home_title">BOT 타임라인</div>
-					<div class="home_task">
+					<div class="home_task2">
 						<div class="home_time_line_box" id="home_time_line_box_bot"></div>
 					</div>
 				</div>
 				<div class="home_body_right">
 					<div class="home_title">BOT 사용현황</div>
-					<div class="home_task">
+					<div class="home_task2">
 						<div id="chartHolder2"></div>
 					</div>
 				</div>
@@ -61,11 +81,51 @@
 	// 페이지 로드 
 	$(document).ready(function (e) {
 		$("body").css("background-color", "#f5f5fb");
+		getCrawlMenu("RA002003", commonFunc.certInfo.empNo);
+		getBotMenu("RA004004", commonFunc.certInfo.empNo);
 		listTimeLineCrawl("RA002001");
 		listTimeLineBot("RA002003");
 		listDeptRunTimeCrawl("RA002001");
 		listDeptRunTimeBot("RA002003");
 	});
+	
+	// 웹크롤링 메뉴 정보 상세 조회
+	function getCrawlMenu(pMenuId, pEmpNo) {
+		$.ajax({
+			url: "/AjaxMenu/GetCrawlMenu.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo }),
+		    dataType : "json",
+	        async: false,
+			success: function(data) {
+				setCrawlMenu(data);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
+	// 봇 메뉴 정보 상세 조회
+	function getBotMenu(pMenuId, pEmpNo) {
+		$.ajax({
+			url: "/AjaxMenu/GetBotMenu.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo }),
+		    dataType : "json",
+	        async: false,
+			success: function(data) {
+				setBotMenu(data);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
 	
 	// 웹크롤링 홈화면 타임라인 목록 조회
 	function listTimeLineCrawl(pWorkTypeCd) {
@@ -75,7 +135,7 @@
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "workTypeCd": pWorkTypeCd }),
 		    dataType : "json",
-	        async: true,
+	        async: false,
 			success: function(datas) {
 				commonFunc.createHomeTimeLineList("home_time_line_box_crawl", datas);
 			},
@@ -94,7 +154,7 @@
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "workTypeCd": pWorkTypeCd }),
 		    dataType : "json",
-	        async: true,
+	        async: false,
 			success: function(datas) {
 				commonFunc.createHomeTimeLineList("home_time_line_box_bot", datas);
 			},
@@ -113,7 +173,7 @@
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "workTypeCd": pWorkTypeCd }),
 		    dataType : "json",
-	        async: true,
+	        async: false,
 			success: function(datas) {
 				make2DColumnChart("chart1", "chartHolder1", "450px", "240px", datas, "", "subjectStyleType1", "단위(시간)", "deptNm", "");
 			},
@@ -132,7 +192,7 @@
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "workTypeCd": pWorkTypeCd }),
 		    dataType : "json",
-	        async: true,
+	        async: false,
 			success: function(datas) {
 				make2DColumnChart("chart2", "chartHolder2", "450px", "240px", datas, "", "subjectStyleType1", "단위(시간)", "deptNm", "");
 			},
@@ -141,7 +201,23 @@
 				return false;
 			}
 		});
-	}	
+	}
+	
+	// 웹클롤링 과제현황 데이터 변경
+	function setCrawlMenu(pData) {
+		$("#crawl_dept_nm").text("[" + pData.deptNm + "]");
+		$("#crawl_menu_nm").text(pData.menuNm);
+		$("#crawl_time").text(pData.timeTypeNm + " / " + pData.runSeq + " / " + pData.runTime);
+		$("#crawl_content").text(pData.content);		
+	}
+	
+	// 봇 과제현황 데이터 변경
+	function setBotMenu(pData) {
+		$("#bot_dept_nm").text("[" + pData.deptNm + "]");
+		$("#bot_menu_nm").text(pData.menuNm);
+		$("#bot_time").text(pData.timeTypeNm + " / " + pData.runSeq + " / " + pData.runTime);
+		$("#bot_content").text(pData.content);
+	}
 	
 	// 홈화면 절감시간 차트 생성 함수
 	function make2DColumnChart(pChartNm, pChartElmtNm, pWidth, pHeight, pDatas, pSubject, pSubjectStyle, pUnit, pCategoryField, pLabelRotation) {

@@ -101,4 +101,34 @@ public class AjaxMenuController extends BaseController {
 
 		return menuVO;
 	}
+	
+	@PostMapping("/GetCrawlMenu.do")
+	public @ResponseBody MenuVO GetCrawlMenu(@RequestBody MenuVO vo) {
+		logger.info("/AjaxMenu/GetCrawlMenu.do");
+		
+		MenuVO menuVO = new MenuVO();
+		try {
+			menuVO = menuService.getCrawlMenu(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return menuVO;
+	}
+	
+	@PostMapping("/GetBotMenu.do")
+	public @ResponseBody MenuVO GetBotMenu(@RequestBody MenuVO vo) {
+		logger.info("/AjaxMenu/GetBotMenu.do");
+		
+		MenuVO menuVO = new MenuVO();
+		try {
+			menuVO = menuService.getBotMenu(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return menuVO;
+	}
 }
