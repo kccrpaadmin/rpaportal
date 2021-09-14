@@ -93,6 +93,11 @@
     	return checkNullYn;
     }
     
+    // 홈화면 타임라인 목록 생성 함수
+    CommonFunc.prototype.createHomeTimeLineList = function (pArea, pListDatas) {
+		cmCommonFunc.createHomeTimeLineList(pArea, pListDatas);
+    }
+    
     // 비공개 영역
 
     // 라이브러리 공통 연관 함수
@@ -616,6 +621,57 @@
         	}
         	
         	return checkNullYn;
+        },
+        createHomeTimeLineList: function (pArea, pListDatas) {
+        	var area = document.getElementById(pArea);
+        	var listDatas = pListDatas;
+        	var listDatasLen = listDatas.length;
+        	
+        	// 기존 목록 삭제
+        	cmCommonFunc.removeChileNode(area);
+
+        	// 데이터가 존재 하는 경우
+        	if (listDatasLen > 0) {
+        		for (var i = 0; i < listDatasLen; i++) {
+        			var data = listDatas[i];
+        			
+        			// 타임라인 박스 
+        			var homeTimeLine = document.createElement("div");
+        			homeTimeLine.className = "home_time_line";
+        			area.appendChild(homeTimeLine);
+        			
+        			// 왼쪽 박스
+            		var homeTimeLineLeft = document.createElement("div");
+            		homeTimeLineLeft.className = "home_time_line_left";
+            		homeTimeLine.appendChild(homeTimeLineLeft);
+
+            		// 중간 박스
+            		var homeTimeLineCenter = document.createElement("div");
+            		homeTimeLineCenter.className = "home_time_line_center";
+            		homeTimeLineCenter.innerText = data.startTime;
+            		homeTimeLine.appendChild(homeTimeLineCenter);
+
+            		// 오른쪽 박스
+            		var homeTimeLineRight = document.createElement("div");
+            		homeTimeLineRight.className = "home_time_line_right";
+            		homeTimeLineRight.innerText = data.menuNm;
+            		homeTimeLine.appendChild(homeTimeLineRight);
+            		
+            		// 상태 박스
+        			var homeTimeLineStatus = document.createElement("div");
+            		homeTimeLineStatus.innerText = data.statusType;
+            		if (data.statusType == "실행") {
+            			homeTimeLineStatus.className = "home_time_line_status_r";	
+            		}
+            		else if (data.statusType == "대기") {
+            			homeTimeLineStatus.className = "home_time_line_status_q";
+            		}
+            		else {
+            			homeTimeLineStatus.className = "home_time_line_status_s";
+            		}
+            		homeTimeLineLeft.appendChild(homeTimeLineStatus);
+    			}
+    		}
         }
     }
     

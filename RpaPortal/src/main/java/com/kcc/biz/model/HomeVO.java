@@ -13,10 +13,10 @@ public class HomeVO {
 	private String CallDate;
 	private String DeptNm;
 	private String DeptRunTime;
+	private String StatusType;
 	private String MenuId;
 	private String MenuNm;
 	private String StartTime;
-	private String RegUserId;
 	
 	public String getWorkTypeCd() {
 		return WorkTypeCd;
@@ -42,6 +42,12 @@ public class HomeVO {
 	public void setDeptRunTime(String deptRunTime) {
 		DeptRunTime = deptRunTime;
 	}
+	public String getStatusType() {
+		return StatusType;
+	}
+	public void setStatusType(String statusType) {
+		StatusType = statusType;
+	}
 	public String getMenuId() {
 		return MenuId;
 	}
@@ -60,10 +66,4 @@ public class HomeVO {
 	public void setStartTime(String startTime) {
 		StartTime = startTime;
 	}
-	public String getRegUserId() {
-		return RegUserId;
-	}
-	public void setRegUserId(String regUserId) {
-		RegUserId = regUserId;
-	}	
 }

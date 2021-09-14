@@ -23,7 +23,9 @@
 				</div>
 				<div class="home_body_center">
 					<div class="home_title">웹크롤링 타임라인</div>
-					<div class="home_task"></div>
+					<div class="home_task">
+						<div class="home_time_line_box" id="home_time_line_box_crawl"></div>
+					</div>
 				</div>
 				<div class="home_body_right">
 					<div class="home_title">웹크롤링 사용현황</div>
@@ -40,38 +42,7 @@
 				<div class="home_body_center">
 					<div class="home_title">BOT 타임라인</div>
 					<div class="home_task">
-						<div class="home_time_line_box">
-							<div class="home_time_line">
-								<div class="home_time_line_left"><div class="home_time_line_status_r">실행</div></div>
-								<div class="home_time_line_center">10:00</div>
-								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
-							</div>
-							<div class="home_time_line">
-								<div class="home_time_line_left"><div class="home_time_line_status_q">대기</div></div>
-								<div class="home_time_line_center">10:00</div>
-								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
-							</div>
-							<div class="home_time_line">
-								<div class="home_time_line_left"><div class="home_time_line_status_s">예약</div></div>
-								<div class="home_time_line_center">10:00</div>
-								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
-							</div>
-							<div class="home_time_line">
-								<div class="home_time_line_left"><div class="home_time_line_status_s">예약</div></div>
-								<div class="home_time_line_center">10:00</div>
-								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
-							</div>
-							<div class="home_time_line">
-								<div class="home_time_line_left"><div class="home_time_line_status_s">예약</div></div>
-								<div class="home_time_line_center">10:00</div>
-								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
-							</div>
-							<div class="home_time_line">
-								<div class="home_time_line_left"><div class="home_time_line_status_s">예약</div></div>
-								<div class="home_time_line_center">10:00</div>
-								<div class="home_time_line_right">(세금)계산서, 전표 데이터 대사업무</div>
-							</div>
-						</div>
+						<div class="home_time_line_box" id="home_time_line_box_bot"></div>
 					</div>
 				</div>
 				<div class="home_body_right">
@@ -106,7 +77,7 @@
 		    dataType : "json",
 	        async: true,
 			success: function(datas) {
-				alert(datas);
+				commonFunc.createHomeTimeLineList("home_time_line_box_crawl", datas);
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
@@ -125,7 +96,7 @@
 		    dataType : "json",
 	        async: true,
 			success: function(datas) {
-				alert(datas);
+				commonFunc.createHomeTimeLineList("home_time_line_box_bot", datas);
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
