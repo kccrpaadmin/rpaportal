@@ -87,13 +87,17 @@ public class AccessLogInterceptor extends HandlerInterceptorAdapter {
 		1. 정상적인 접근은 Ajax를 통해서 권한체크 후, 리턴
 		2. 정상적인 접근은 인터셉터에서 권한체크 후, req.getHeader("referer")를 통해 이전 페이지를 구해서 리다이렉트
 		
-		직접적인 Url 접근도 허용하고 이전 페이지 체크를 공통화 할 수 있다면 더 좋을것 같다.		
+		1. 직접적인 Url 접근도 허용하고 이전 페이지 체크를 공통화 할 수 있다면 더 좋을것 같다.
+		2. 이전 페이지를 해더에 넣고 체크 하려고 해도, 직접적인 Url 접근시에는 req.getHeader("referer") 값이 null이라서 어렵다.
+		3. 컨트롤러에서 이전페이지 값을 받아서 공통처리 하던지, 인터셉터나 필터에서 좀더 시도해 본다.
 	    */
 		
-		// 직접적인 Url 접근 차단
+		// 직접적인 Url 접근 차단 - 2021.09.16 그룹웨어 SSO 처리시 해당부분을 수행하는 문제 발생으로 주석처리
+		/*
 		if (req.getHeader("referer") == null) {
 			routeUtilService.MessageAndMove("직접적인 Url 호출은 불가능 합니다.", "/Main/Home.do");
 		}
+		*/
 		
 		// 권한 체크해서 req.getHeader("referer") 이전 페이지 확인 후, 리턴 가능하나 
 		// 이미 직접적인 Url 접근 차단 처리 했음으로 Ajax 통해서 처리할 예정
