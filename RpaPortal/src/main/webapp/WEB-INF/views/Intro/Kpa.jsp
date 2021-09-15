@@ -29,5 +29,18 @@
 			  	controls>
   			</video>
 		</div>
+		<div class="intro_textbox" >
+			<div><span class="intro_title">그룹사 인사발령 수집 업무 자동화 (총무부)</span></div>
+			<div><span class="intro_description">그룹사 인사발령 정보를 수집하여 당사 그룹웨어에 게시합니다.</span></div>
+		</div>
+		<div class="intro_video">
+			<video src="/resources/intro/vdo_personappoint.mp4"
+		  		width="778px"
+		  		height="393px"
+			  	poster="/resources/intro/img_personappoint.jpg"
+			  	preload="auto"
+			  	controls>
+  			</video>
+		</div>
 	</div>
 </div>
