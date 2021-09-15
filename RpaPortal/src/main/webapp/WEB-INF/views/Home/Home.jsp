@@ -9,11 +9,11 @@
 			<div class="home_header">
 				<div class="home_header_left">
 					<div class="home_title">공지사항</div>
-					<div class="home_notice_content">RPA 오픈 안내</div>
+					<a class="home_notice_content" href="/Ocr/ListMenu.do">RPA 오픈 안내</a>
 				</div>
 				<div class="home_header_right">
 					<div class="home_title">OCR</div>
-					<div class="home_ocr_content">텍스트 추출 바로가기</div>
+					<a class="home_ocr_content" href="/Ocr/ListMenu.do">텍스트 추출 바로가기</a>
 				</div>
 			</div>
 			<div class="home_body">
@@ -27,7 +27,7 @@
 							<div class="home_represent_bottom" id="crawl_content"></div>
 						</div>
 						<div class="home_represent_menu_right">
-							<a><img src="/resources/imgs/button/btn_home_more.png" /></a>
+							<a href="/Crawl/ListMenu.do"><img src="/resources/imgs/button/btn_home_more.png" /></a>
 						</div>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 							<div class="home_represent_bottom" id="bot_content"></div>
 						</div>
 						<div class="home_represent_menu_right">
-							<a><img src="/resources/imgs/button/btn_home_more.png" /></a>
+							<a href="/Bot/ListMenu.do"><img src="/resources/imgs/button/btn_home_more.png" /></a>
 						</div>
 					</div>
 				</div>
