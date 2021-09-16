@@ -150,7 +150,7 @@ public class ProposalController extends BaseController {
 			}
 
 			vo.setAttId(attId);
-			
+			//
 			if (vo.getSaveMode().equals("C")) {
 				proposalService.createProposalWrite(vo);	
 			}
