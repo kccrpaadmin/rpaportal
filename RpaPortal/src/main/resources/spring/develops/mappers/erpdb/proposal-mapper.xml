@@ -47,6 +47,7 @@
 				   ,#{MenuId}
 	               ,#{ProposalNm}
 	               ,#{ProposalContent}
+	               ,#{AttId}
             	)
 			}
 		]]>

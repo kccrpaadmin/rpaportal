@@ -149,8 +149,9 @@ public class ProposalController extends BaseController {
 				 * 		fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs.toArray(new String[attIdSeqs.size()]), attIdFiles, "PROPOSAL", vo.getEmpNo());*/
 			}
 
+			vo.setAttId(attId);
+			
 			if (vo.getSaveMode().equals("C")) {
-				vo.setAttId(attId);
 				proposalService.createProposalWrite(vo);	
 			}
 			else {
