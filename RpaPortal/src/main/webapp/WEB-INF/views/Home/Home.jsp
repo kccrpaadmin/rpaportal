@@ -82,7 +82,7 @@
 	$(document).ready(function (e) {
 		$("body").css("background-color", "#f5f5fb");
 		getCrawlMenu("RA002003", commonFunc.certInfo.empNo);
-		getBotMenu("RA004004", commonFunc.certInfo.empNo);
+		getBotMenu("RA004001", commonFunc.certInfo.empNo);
 		listTimeLineCrawl("RA002001");
 		listTimeLineBot("RA002003");
 		listDeptRunTimeCrawl("RA002001");
@@ -262,7 +262,7 @@
 							+'<lines>'
 								+'<AxisLine value="0" lineStyle="normal">'
 									+'<stroke>'
-										+'<Stroke color="#f15151" weight="1"/>'
+										+'<Stroke color="#dddddd" weight="1"/>'
 									+'</stroke>'
 								+'</AxisLine>'
 							+'</lines>'
