@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<div class="home_body_right">
-					<div class="home_title">웹크롤링 연간 절감시간</div>
+					<div class="home_title">웹크롤링 절감시간(년)</div>
 					<div class="home_task2">
 						<div id="chartHolder1"></div>
 					</div>
@@ -66,7 +66,7 @@
 					</div>
 				</div>
 				<div class="home_body_right">
-					<div class="home_title">BOT 연간 절감시간</div>
+					<div class="home_title">BOT 절감시간(년)</div>
 					<div class="home_task2">
 						<div id="chartHolder2"></div>
 					</div>
