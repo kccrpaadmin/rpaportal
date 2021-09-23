@@ -130,7 +130,7 @@
 
         createIBSheet2(document.getElementById("sheet1"), "mySheet1", "1120px", "348px");
 
-        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
         	{ Header: "요청번호|요청번호", Type: "Text", Width: 0, SaveName: "requestNo", Align: "Center", Hidden: true },
@@ -145,7 +145,11 @@
             { Header: "전표|개수", Type: "Float", Width: 56, SaveName: "slipCnt", Align: "Right" },
             { Header: "전표|공급가액", Type: "Float", Width: 100, SaveName: "slipSupplyAmt", Align: "Right"},        
             { Header: "전표|부가세액", Type: "Float", Width: 100, SaveName: "slipVatAmt", Align: "Right" },
-            { Header: "전표|합계", Type: "Float", Width: 100, SaveName: "slipTotAmt", Align: "Right" }
+            { Header: "전표|합계", Type: "Float", Width: 100, SaveName: "slipTotAmt", Align: "Right" },
+            { Header: "차이|개수", Type: "Float", Width: 56, SaveName: "gapCnt", Align: "Right" },
+            { Header: "차이|공급가액", Type: "Float", Width: 100, SaveName: "gapSupplyAmt", Align: "Right"},        
+            { Header: "차이|부가세액", Type: "Float", Width: 100, SaveName: "gapVatAmt", Align: "Right" },
+            { Header: "차이|합계", Type: "Float", Width: 100, SaveName: "gapTotAmt", Align: "Right" }
         ];
 
         IBS_InitSheet(mySheet1, initdata);
@@ -165,7 +169,7 @@
 
         createIBSheet2(document.getElementById("sheet2"), "mySheet2", "1120px", "348px");
 
-        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
         	{ Header: "요청번호|요청번호", Type: "Text", Width: 0, SaveName: "requestNo", Align: "Center", Hidden: true },
@@ -180,7 +184,11 @@
             { Header: "전표|개수", Type: "Float", Width: 56, SaveName: "slipCnt", Align: "Right" },
             { Header: "전표|공급가액", Type: "Float", Width: 100, SaveName: "slipSupplyAmt", Align: "Right"},        
             { Header: "전표|부가세액", Type: "Float", Width: 100, SaveName: "slipVatAmt", Align: "Right" },
-            { Header: "전표|합계", Type: "Float", Width: 100, SaveName: "slipTotAmt", Align: "Right" }
+            { Header: "전표|합계", Type: "Float", Width: 100, SaveName: "slipTotAmt", Align: "Right" },
+            { Header: "차이|개수", Type: "Float", Width: 56, SaveName: "gapCnt", Align: "Right" },
+            { Header: "차이|공급가액", Type: "Float", Width: 100, SaveName: "gapSupplyAmt", Align: "Right"},        
+            { Header: "차이|부가세액", Type: "Float", Width: 100, SaveName: "gapVatAmt", Align: "Right" },
+            { Header: "차이|합계", Type: "Float", Width: 100, SaveName: "gapTotAmt", Align: "Right" }
         ];
 		
         IBS_InitSheet(mySheet2, initdata);

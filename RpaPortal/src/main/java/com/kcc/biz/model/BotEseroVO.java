@@ -72,6 +72,10 @@ public class BotEseroVO {
 	private String SlipSupplyAmt;
 	private String SlipVatAmt;
 	private String SlipTotAmt;
+	private String GapCnt;
+	private String GapSupplyAmt;
+	private String GapVatAmt;
+	private String GapTotAmt;
 	private String ErrorYn;	
 	private String SlipPaymentDate;
 	private String SlipBizNo;
@@ -92,7 +96,7 @@ public class BotEseroVO {
 	private String UserMobileNo;		
 	private String DutyNm;		
 	private String UserId;		
-	private String UserNm;		
+	private String UserNm;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -123,480 +127,503 @@ public class BotEseroVO {
 	}
 	public void setEseroTargetDate(String eseroTargetDate) {
 		EseroTargetDate = eseroTargetDate;
-	}	
-	public String getIssueNo()  {
+	}
+	public String getIssueNo() {
 		return IssueNo;
 	}
-	public void setIssueNo (String issueNo) {
+	public void setIssueNo(String issueNo) {
 		IssueNo = issueNo;
 	}
-	public String getInvoiceTaxType()  {
+	public String getInvoiceTaxType() {
 		return InvoiceTaxType;
 	}
-	public void setInvoiceTaxType (String invoiceTaxType) {
+	public void setInvoiceTaxType(String invoiceTaxType) {
 		InvoiceTaxType = invoiceTaxType;
 	}
-	public String getInvoiceTypeCd()  {
+	public String getInvoiceTypeCd() {
 		return InvoiceTypeCd;
 	}
-	public void setInvoiceTypeCd (String invoiceTypeCd) {
+	public void setInvoiceTypeCd(String invoiceTypeCd) {
 		InvoiceTypeCd = invoiceTypeCd;
 	}
-	public String getMakeDate()  {
+	public String getMakeDate() {
 		return MakeDate;
 	}
-	public void setMakeDate (String makeDate) {
+	public void setMakeDate(String makeDate) {
 		MakeDate = makeDate;
 	}
-	public String getDrawDate()  {
+	public String getDrawDate() {
 		return DrawDate;
 	}
-	public void setDrawDate (String drawDate) {
+	public void setDrawDate(String drawDate) {
 		DrawDate = drawDate;
 	}
-	public String getSendDate()  {
+	public String getSendDate() {
 		return SendDate;
 	}
-	public void setSendDate (String sendDate) {
+	public void setSendDate(String sendDate) {
 		SendDate = sendDate;
 	}
-	public String getSalesBizNo()  {
+	public String getSalesBizNo() {
 		return SalesBizNo;
 	}
-	public void setSalesBizNo (String salesBizNo) {
+	public void setSalesBizNo(String salesBizNo) {
 		SalesBizNo = salesBizNo;
 	}
 	public String getSalesPlaceNo() {
 		return SalesPlaceNo;
 	}
-	public void setSalesPlaceNo (String salesPlaceNo) {
+	public void setSalesPlaceNo(String salesPlaceNo) {
 		SalesPlaceNo = salesPlaceNo;
 	}
 	public String getSalesVendorNm() {
 		return SalesVendorNm;
 	}
-	public void setSalesVendorNm (String salesVendorNm) {
+	public void setSalesVendorNm(String salesVendorNm) {
 		SalesVendorNm = salesVendorNm;
 	}
 	public String getSalesRepNm() {
-		return  SalesRepNm;
+		return SalesRepNm;
 	}
-	public void setSalesRepNm (String salesRepNm) {
+	public void setSalesRepNm(String salesRepNm) {
 		SalesRepNm = salesRepNm;
 	}
 	public String getSalesAddr() {
 		return SalesAddr;
 	}
-	public void setSalesAddr (String salesAddr) {
+	public void setSalesAddr(String salesAddr) {
 		SalesAddr = salesAddr;
 	}
 	public String getBuyBizNo() {
 		return BuyBizNo;
 	}
-	public void setBuyBizNo (String buyBizNo) {
+	public void setBuyBizNo(String buyBizNo) {
 		BuyBizNo = buyBizNo;
 	}
 	public String getBuyPlaceNo() {
 		return BuyPlaceNo;
 	}
-	public void setBuyPlaceNo (String buyPlaceNo) {
+	public void setBuyPlaceNo(String buyPlaceNo) {
 		BuyPlaceNo = buyPlaceNo;
 	}
 	public String getBuyVendorNm() {
 		return BuyVendorNm;
 	}
-	public void setBuyVendorNm (String buyVendorNm) {
+	public void setBuyVendorNm(String buyVendorNm) {
 		BuyVendorNm = buyVendorNm;
 	}
 	public String getBuyRepNm() {
 		return BuyRepNm;
 	}
-	public void setBuyRepNm (String buyRepNm) {
+	public void setBuyRepNm(String buyRepNm) {
 		BuyRepNm = buyRepNm;
 	}
 	public String getBuyAddr() {
 		return BuyAddr;
 	}
-	public void setBuyAddr (String buyAddr) {
+	public void setBuyAddr(String buyAddr) {
 		BuyAddr = buyAddr;
 	}
 	public String getTotAmt() {
 		return TotAmt;
 	}
-	public void setTotAmt (String totAmt) {
+	public void setTotAmt(String totAmt) {
 		TotAmt = totAmt;
 	}
 	public String getSupplyAmt() {
 		return SupplyAmt;
 	}
-	public void setSupplyAmt (String supplyAmt) {
+	public void setSupplyAmt(String supplyAmt) {
 		SupplyAmt = supplyAmt;
 	}
 	public String getVatAmt() {
 		return VatAmt;
 	}
-	public void setVatAmt (String vatAmt) {
+	public void setVatAmt(String vatAmt) {
 		VatAmt = vatAmt;
 	}
 	public String getInvoiceType() {
 		return InvoiceType;
 	}
-	public void setInvoiceType (String invoiceType) {
+	public void setInvoiceType(String invoiceType) {
 		InvoiceType = invoiceType;
 	}
 	public String getInvoiceKind() {
 		return InvoiceKind;
 	}
-	public void setInvoiceKind (String invoiceKind) {
+	public void setInvoiceKind(String invoiceKind) {
 		InvoiceKind = invoiceKind;
 	}
 	public String getInvoiceSource() {
 		return InvoiceSource;
 	}
-	public void setInvoiceSource (String invoiceSource) {
+	public void setInvoiceSource(String invoiceSource) {
 		InvoiceSource = invoiceSource;
 	}
 	public String getEtc() {
 		return Etc;
 	}
-	public void setEtc (String etc) {
+	public void setEtc(String etc) {
 		Etc = etc;
 	}
 	public String getReqResType() {
 		return ReqResType;
 	}
-	public void setReqResType (String reqResType) {
+	public void setReqResType(String reqResType) {
 		ReqResType = reqResType;
 	}
 	public String getSalesEmail() {
 		return SalesEmail;
 	}
-	public void setSalesEmail (String salesEmail) {
+	public void setSalesEmail(String salesEmail) {
 		SalesEmail = salesEmail;
 	}
 	public String getBuyEmail1() {
 		return BuyEmail1;
 	}
-	public void setBuyEmail1 (String buyEmail1) {
+	public void setBuyEmail1(String buyEmail1) {
 		BuyEmail1 = buyEmail1;
 	}
 	public String getBuyEmail2() {
 		return BuyEmail2;
 	}
-	public void setBuyEmail2 (String buyEmail2) {
+	public void setBuyEmail2(String buyEmail2) {
 		BuyEmail2 = buyEmail2;
 	}
 	public String getItemDate() {
 		return ItemDate;
 	}
-	public void setItemDate (String itemDate) {
+	public void setItemDate(String itemDate) {
 		ItemDate = itemDate;
 	}
 	public String getItemNm() {
 		return ItemNm;
 	}
-	public void setItemNm (String itemNm) {
+	public void setItemNm(String itemNm) {
 		ItemNm = itemNm;
 	}
 	public String getItemUnit() {
 		return ItemUnit;
 	}
-	public void setItemUnit (String itemUnit) {
+	public void setItemUnit(String itemUnit) {
 		ItemUnit = itemUnit;
 	}
 	public String getItemQty() {
 		return ItemQty;
 	}
-	public void setItemQty (String itemQty) {
+	public void setItemQty(String itemQty) {
 		ItemQty = itemQty;
 	}
 	public String getItemCost() {
 		return ItemCost;
 	}
-	public void setItemCost (String itemCost) {
+	public void setItemCost(String itemCost) {
 		ItemCost = itemCost;
 	}
 	public String getItemSupplyAmt() {
 		return ItemSupplyAmt;
 	}
-	public void setItemSupplyAmt (String itemSupplyAmt) {
+	public void setItemSupplyAmt(String itemSupplyAmt) {
 		ItemSupplyAmt = itemSupplyAmt;
 	}
 	public String getItemVatAmt() {
 		return ItemVatAmt;
 	}
-	public void setItemVatAmt (String itemVatAmt) {
+	public void setItemVatAmt(String itemVatAmt) {
 		ItemVatAmt = itemVatAmt;
 	}
 	public String getItemEtc() {
 		return ItemEtc;
 	}
-	public void setItemEtc (String itemEtc) {
+	public void setItemEtc(String itemEtc) {
 		ItemEtc = itemEtc;
-	}	
+	}
 	public String getSlipNo() {
 		return SlipNo;
 	}
-	public void setSlipNo (String slipNo) {
+	public void setSlipNo(String slipNo) {
 		SlipNo = slipNo;
-	}	
+	}
 	public String getDeptNm() {
 		return DeptNm;
 	}
-	public void setDeptNm (String deptNm) {
+	public void setDeptNm(String deptNm) {
 		DeptNm = deptNm;
-	}	
+	}
 	public String getPaymentDate() {
 		return PaymentDate;
 	}
-	public void setPaymentDate (String paymentDate) {
+	public void setPaymentDate(String paymentDate) {
 		PaymentDate = paymentDate;
-	}		
+	}
 	public String getBizNo() {
 		return BizNo;
 	}
-	public void setBizNo (String bizNo) {
+	public void setBizNo(String bizNo) {
 		BizNo = bizNo;
-	}	
+	}
 	public String getVendorNm() {
 		return VendorNm;
 	}
-	public void setVendorNm (String vendorNm) {
+	public void setVendorNm(String vendorNm) {
 		VendorNm = vendorNm;
-	}	
+	}
 	public String getSummary() {
 		return Summary;
 	}
-	public void setSummary (String summary) {
+	public void setSummary(String summary) {
 		Summary = summary;
-	}	
+	}
 	public String getCorpType() {
 		return CorpType;
 	}
-	public void setCorpType (String corpType) {
+	public void setCorpType(String corpType) {
 		CorpType = corpType;
-	}	
+	}
 	public String getMergeSlipNo() {
 		return MergeSlipNo;
 	}
-	public void setMergeSlipNo (String mergeSlipNo) {
+	public void setMergeSlipNo(String mergeSlipNo) {
 		MergeSlipNo = mergeSlipNo;
-	}	
+	}
 	public String getBuySalesType() {
 		return BuySalesType;
 	}
-	public void setBuySalesType (String buySalesType) {
+	public void setBuySalesType(String buySalesType) {
 		BuySalesType = buySalesType;
-	}	
+	}
 	public String getConfirmDate() {
 		return ConfirmDate;
 	}
-	public void setConfirmDate (String confirmDate) {
+	public void setConfirmDate(String confirmDate) {
 		ConfirmDate = confirmDate;
-	}	
+	}
 	public String getOriSlipNo() {
 		return OriSlipNo;
 	}
-	public void setOriSlipNo (String oriSlipNo) {
+	public void setOriSlipNo(String oriSlipNo) {
 		OriSlipNo = oriSlipNo;
-	}	
+	}
 	public String getOnOffType() {
 		return OnOffType;
 	}
-	public void setOnOffType (String onOffType) {
+	public void setOnOffType(String onOffType) {
 		OnOffType = onOffType;
-	}	
+	}
 	public String getInvoiceYearMon() {
 		return InvoiceYearMon;
 	}
-	public void setInvoiceYearMon (String invoiceYearMon) {
+	public void setInvoiceYearMon(String invoiceYearMon) {
 		InvoiceYearMon = invoiceYearMon;
-	}	
+	}
 	public String getInvoiceBizNo() {
 		return InvoiceBizNo;
 	}
-	public void setInvoiceBizNo (String invoiceBizNo) {
+	public void setInvoiceBizNo(String invoiceBizNo) {
 		InvoiceBizNo = invoiceBizNo;
-	}	
+	}
 	public String getVendorCd() {
 		return VendorCd;
 	}
-	public void setVendorCd (String vendorCd) {
+	public void setVendorCd(String vendorCd) {
 		VendorCd = vendorCd;
-	}	
+	}
 	public String getInvoiceCnt() {
 		return InvoiceCnt;
 	}
-	public void setInvoiceCnt (String invoiceCnt) {
+	public void setInvoiceCnt(String invoiceCnt) {
 		InvoiceCnt = invoiceCnt;
-	}	
+	}
 	public String getInvoiceSupplyAmt() {
 		return InvoiceSupplyAmt;
 	}
-	public void setInvoiceSupplyAmt (String invoiceSupplyAmt) {
+	public void setInvoiceSupplyAmt(String invoiceSupplyAmt) {
 		InvoiceSupplyAmt = invoiceSupplyAmt;
-	}	
+	}
 	public String getInvoiceVatAmt() {
 		return InvoiceVatAmt;
 	}
-	public void setInvoiceVatAmt (String invoiceVatAmt) {
+	public void setInvoiceVatAmt(String invoiceVatAmt) {
 		InvoiceVatAmt = invoiceVatAmt;
-	}	
+	}
 	public String getInvoiceTotAmt() {
 		return InvoiceTotAmt;
 	}
-	public void setInvoiceTotAmt (String invoiceTotAmt) {
+	public void setInvoiceTotAmt(String invoiceTotAmt) {
 		InvoiceTotAmt = invoiceTotAmt;
-	}	
+	}
 	public String getSlipCnt() {
 		return SlipCnt;
 	}
-	public void setSlipCnt (String slipCnt) {
+	public void setSlipCnt(String slipCnt) {
 		SlipCnt = slipCnt;
-	}	
+	}
 	public String getSlipSupplyAmt() {
 		return SlipSupplyAmt;
 	}
-	public void setSlipSupplyAmt (String slipSupplyAmt) {
+	public void setSlipSupplyAmt(String slipSupplyAmt) {
 		SlipSupplyAmt = slipSupplyAmt;
-	}	
+	}
 	public String getSlipVatAmt() {
 		return SlipVatAmt;
 	}
-	public void setSlipVatAmt (String slipVatAmt) {
+	public void setSlipVatAmt(String slipVatAmt) {
 		SlipVatAmt = slipVatAmt;
-	}	
+	}
 	public String getSlipTotAmt() {
 		return SlipTotAmt;
 	}
-	public void setSlipTotAmt (String slipTotAmt) {
+	public void setSlipTotAmt(String slipTotAmt) {
 		SlipTotAmt = slipTotAmt;
-	}	
+	}
+	public String getGapCnt() {
+		return GapCnt;
+	}
+	public void setGapCnt(String gapCnt) {
+		GapCnt = gapCnt;
+	}
+	public String getGapSupplyAmt() {
+		return GapSupplyAmt;
+	}
+	public void setGapSupplyAmt(String gapSupplyAmt) {
+		GapSupplyAmt = gapSupplyAmt;
+	}
+	public String getGapVatAmt() {
+		return GapVatAmt;
+	}
+	public void setGapVatAmt(String gapVatAmt) {
+		GapVatAmt = gapVatAmt;
+	}
+	public String getGapTotAmt() {
+		return GapTotAmt;
+	}
+	public void setGapTotAmt(String gapTotAmt) {
+		GapTotAmt = gapTotAmt;
+	}
 	public String getErrorYn() {
 		return ErrorYn;
 	}
-	public void setErrorYn (String errorYn) {
+	public void setErrorYn(String errorYn) {
 		ErrorYn = errorYn;
-	}	
+	}
 	public String getSlipPaymentDate() {
 		return SlipPaymentDate;
 	}
-	public void setSlipPaymentDate (String slipPaymentDate) {
+	public void setSlipPaymentDate(String slipPaymentDate) {
 		SlipPaymentDate = slipPaymentDate;
-	}	
+	}
 	public String getSlipBizNo() {
 		return SlipBizNo;
 	}
-	public void setSlipBizNo (String slipBizNo) {
+	public void setSlipBizNo(String slipBizNo) {
 		SlipBizNo = slipBizNo;
-	}	
+	}
 	public String getSlipDrawDate() {
 		return SlipDrawDate;
 	}
-	public void setSlipDrawDate (String slipDrawDate) {
+	public void setSlipDrawDate(String slipDrawDate) {
 		SlipDrawDate = slipDrawDate;
-	}	
+	}
 	public String getSlipIssueNo() {
 		return SlipIssueNo;
 	}
-	public void setSlipIssueNo (String slipIssueNo) {
+	public void setSlipIssueNo(String slipIssueNo) {
 		SlipIssueNo = slipIssueNo;
-	}	
+	}
 	public String getInvoiceIssueNo() {
 		return InvoiceIssueNo;
 	}
-	public void setInvoiceIssueNo (String invoiceIssueNo) {
+	public void setInvoiceIssueNo(String invoiceIssueNo) {
 		InvoiceIssueNo = invoiceIssueNo;
-	}	
+	}
 	public String getInvoiceMakeDate() {
 		return InvoiceMakeDate;
 	}
-	public void setEInvoiceMakeDate (String invoiceMakeDate) {
+	public void setInvoiceMakeDate(String invoiceMakeDate) {
 		InvoiceMakeDate = invoiceMakeDate;
-	}	
+	}
 	public String getIssueNoYn() {
 		return IssueNoYn;
 	}
-	public void setIssueNoYn (String issueNoYn) {
+	public void setIssueNoYn(String issueNoYn) {
 		IssueNoYn = issueNoYn;
-	}	
+	}
 	public String getBizNoYn() {
 		return BizNoYn;
 	}
-	public void setBizNoYn (String bizNoYn) {
+	public void setBizNoYn(String bizNoYn) {
 		BizNoYn = bizNoYn;
-	}	
+	}
 	public String getDrawDateYn() {
 		return DrawDateYn;
 	}
-	public void setDrawDateYn (String drawDateYn) {
+	public void setDrawDateYn(String drawDateYn) {
 		DrawDateYn = drawDateYn;
-	}	
+	}
 	public String getSupplyAmtYn() {
 		return SupplyAmtYn;
 	}
-	public void setSupplyAmtYn (String supplyAmtYn) {
+	public void setSupplyAmtYn(String supplyAmtYn) {
 		SupplyAmtYn = supplyAmtYn;
-	}	
+	}
 	public String getVatAmtYn() {
 		return VatAmtYn;
 	}
-	public void setVatAmtYn (String vatAmtYn) {
+	public void setVatAmtYn(String vatAmtYn) {
 		VatAmtYn = vatAmtYn;
-	}	
+	}
 	public String getTotAmtYn() {
 		return TotAmtYn;
 	}
-	public void setTotAmtYn (String totAmtYn) {
+	public void setTotAmtYn(String totAmtYn) {
 		TotAmtYn = totAmtYn;
 	}
 	public String getSlipId() {
 		return SlipId;
 	}
-	public void setSlipId (String slipId) {
+	public void setSlipId(String slipId) {
 		SlipId = slipId;
 	}
 	public String getGlDate() {
 		return GlDate;
 	}
-	public void setGlDate (String glDate) {
+	public void setGlDate(String glDate) {
 		GlDate = glDate;
 	}
 	public String getAddr() {
 		return Addr;
 	}
-	public void setAddr (String addr) {
+	public void setAddr(String addr) {
 		Addr = addr;
 	}
 	public String getTelNo() {
 		return TelNo;
 	}
-	public void setTelNo (String telNo) {
+	public void setTelNo(String telNo) {
 		TelNo = telNo;
 	}
 	public String getUserMobileNo() {
 		return UserMobileNo;
 	}
-	public void setUserMobileNo (String userMobileNo) {
+	public void setUserMobileNo(String userMobileNo) {
 		UserMobileNo = userMobileNo;
 	}
 	public String getDutyNm() {
 		return DutyNm;
 	}
-	public void setDutyNm (String dutyNm) {
+	public void setDutyNm(String dutyNm) {
 		DutyNm = dutyNm;
 	}
 	public String getUserId() {
 		return UserId;
 	}
-	public void setUserId (String userId) {
+	public void setUserId(String userId) {
 		UserId = userId;
 	}
 	public String getUserNm() {
 		return UserNm;
 	}
-	public void setUserNm (String userNm) {
+	public void setUserNm(String userNm) {
 		UserNm = userNm;
-	}
-	
+	}			
 }
