@@ -4,7 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 	
  	<!-- 파일 업로드 설정 -->
- 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+ 	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
+ 	<bean id="multipartResolver" class="com.kcc.multipart.IbsheetMultipartResolver">
  		<!-- biz-context.xml 등록된 code-properties.xml 파일 사용 -->
  		<!-- 파일 업로드 용량을 <multipart-config> 및 multipartResolver 에서 제한하지 않고, 프로그램 단에서 처리 -->
  		<!-- 최대 업로드 가능한 바이트 크기, -1은 제한이 없음을 의미합니다. Default(-1) -->

@@ -276,13 +276,13 @@
 	
 	// 전자세금계산서 다운로드 버튼 클릭 이벤트
 	$(document).on("click", "#btn_tax_on_download", function (e) {		
-		var params = { Multipart: 0, FileName: "TaxInvoiceFile.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		var params = { FileName: "TaxInvoiceFile.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
 		mySheet1.Down2Excel(params);
 	});
 	
 	// 전자계산서 다운로드 버튼 클릭 이벤트
 	$(document).on("click", "#btn_tax_off_download", function (e) {		
-		var params = { Multipart: 0, FileName: "InvoiceFile.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		var params = { FileName: "InvoiceFile.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
 		mySheet2.Down2Excel(params);
 	});
 	

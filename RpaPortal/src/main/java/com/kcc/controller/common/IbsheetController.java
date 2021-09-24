@@ -342,7 +342,7 @@ public class IbsheetController {
     }
 	
 	@PostMapping("/LoadExcel.do")
-    public void LoadExcel(HttpServletRequest req, HttpServletResponse res, @RequestParam("file") MultipartFile excelFile) {
+    public void LoadExcel(HttpServletRequest req, HttpServletResponse res) {
 		logger.info("/Ibsheet/LoadExcel.do");
 		
         File tempfile = null;
