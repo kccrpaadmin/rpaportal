@@ -76,6 +76,7 @@
 	    <div class="btn_box">
 	    	<a class="btn_common1" id="btn_immediate_call">즉시실행</a>
 	    	<a class="btn_common1" id="btn_schedule_open" style="display:none;">예약실행</a>
+	    	<a class="btn_common1" id="btn_call">테스트</a>
 	    </div>
 	    <!-- 그리드영역 -->
    	    <div id="sheet"></div>
@@ -217,5 +218,9 @@
 	$(document).on("click", "#btn_schedule_open", function (e) {
 		libraryFunc.createModal(null, null, null, 1100, 560, "예약등록", "/ModalCrawl/Schedule.do?pMenuId=" + menuId);
 	});
-	
+
+	$(document).on("click", "#btn_call", function (e) {
+		mySheet.LoadExcel();
+	});
+		
 </script>
