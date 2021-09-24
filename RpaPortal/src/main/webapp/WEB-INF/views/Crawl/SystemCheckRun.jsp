@@ -221,7 +221,7 @@
 
 	$(document).on("click", "#btn_call", function (e) {
 		mySheet.RemoveAll();
-		var params = { Mode : "HeaderSkip", StartRow: "1" } ;
+		var params = { Mode : "HeaderSkip", StartRow: "1" }
 		mySheet.LoadExcel(params);
 	});
 	
