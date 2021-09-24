@@ -174,20 +174,15 @@
 		var sendAmt = $("#send_amt").val();
 		
 		if (vendorCd == "") {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업체가 선택되지 않았습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업체가 선택되지 않았습니다.", null, null, null);
     		return false;
     	}
 		
 		if (glDate == "") {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "회계처리일자가 입력되지 않았습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "회계처리일자가 입력되지 않았습니다.", null, null, null);
     		return false;
     	}
-		
-// 		if (sendAmt == "") {
-//     		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "송금액이 입력되지 않았습니다.", null, null);
-//     		return false;
-//     	}
-		
+			
 		searchListMoneySendManage(vendorCd, glDate, sendAmt);
 	});
 

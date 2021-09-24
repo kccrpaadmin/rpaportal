@@ -255,7 +255,7 @@
 		var yearMon = commonFunc.getReplaceAll($("#year_mon").val(),"-","");		
 		
 		if (yearMon == "") {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "기준연월이 선택되지 않았습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "기준연월이 선택되지 않았습니다.", null, null, null);
     		return false;
     	}		
 		
@@ -267,7 +267,7 @@
 		var yearMon = commonFunc.getReplaceAll($("#year_mon").val(),"-","");		
 		
 		if (yearMon == "") {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "기준연월이 선택되지 않았습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "기준연월이 선택되지 않았습니다.", null, null, null);
     		return false;
     	}		
 				

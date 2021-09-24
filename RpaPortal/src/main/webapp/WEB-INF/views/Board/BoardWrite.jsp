@@ -79,16 +79,16 @@
 	$(document).on("click", "#btn_save", function (e) {								
 		// 내용이 입력되지 않은 경우
 		if (commonFunc.getCheckNullYn($("#board_nm").val()) == "Y") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "제목을 입력하지 않았습니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "제목을 입력하지 않았습니다.", null, null, null);
 			return false;
 		}
     	
     	if (commonFunc.getCheckNullYn($("#board_content").val()) == "Y") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "내용을 입력하지 않았습니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "내용을 입력하지 않았습니다.", null, null, null);
 			return false;
 		}
     	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveBoardWrite);    	
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveBoardWrite, null);    	
     });		
 	
 </script>

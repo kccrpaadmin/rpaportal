@@ -81,7 +81,7 @@
 					});
 				}
 				else {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
 				}
 			},
 			error: function(xhr, status, err) {
@@ -133,7 +133,7 @@
 			createEngineerTargetUser(userId, orgTypeCd, empNo);	
 		} );    
 	}
-		
+	
 	// 라디오 버튼 기본 체크 함수
 	function checkButtonControl() {
 		if (commonFunc.certInfo.deptCd == "C10043") {

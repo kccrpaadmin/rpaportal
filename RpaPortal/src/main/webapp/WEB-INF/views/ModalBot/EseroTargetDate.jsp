@@ -36,10 +36,10 @@
 	        async: true,
 			success: function(data) {
 				if (data.status == "Success") {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청이 성공 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청이 성공 하였습니다.", null, commonFunc.refreshPage, null);
 				}
 				else {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
 				}
 			},
 			error: function(xhr, status, err) {
@@ -169,17 +169,17 @@
    		
     	// 대상기간이 입력되지 않은 경우
     	if (!saveEseroTargetDateNullCheck()) {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "대상기간을 선택하지 않았습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "대상기간을 선택하지 않았습니다.", null, null, null);
     		return false;
     	}
     	
     	// 저장되야하는 데이터가 존재하지 않는 경우
     	if (!saveEseroTargetDateRowCheck()) {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장대상 데이터가 존재하지 않습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장대상 데이터가 존재하지 않습니다.", null, null, null);
     		return false;
     	}
    	
-		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveEseroTargetDateConfirm);    	
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveEseroTargetDateConfirm, null);    	
     });
  	
 </script>	

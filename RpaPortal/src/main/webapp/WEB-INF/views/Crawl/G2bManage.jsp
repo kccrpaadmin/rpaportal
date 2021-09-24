@@ -105,10 +105,10 @@
 	        async: true,
 			success: function(data) {
 				if (data.status == "Success") {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장 되었습니다.", null, searchListCrawlG2bManage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장 되었습니다.", null, searchListCrawlG2bManage, null);
 				}
 				else {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
 				}
 			},
 			error: function(xhr, status, err) {
@@ -207,11 +207,11 @@
 		var saveStr = mySheet.GetSaveString();
     	
     	if (saveStr == "") {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "숨김 대상을 선택하지 않았습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "숨김 대상을 선택하지 않았습니다.", null, null, null);
     		return false;
     	}
     	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveCrawlG2bManageConfirm);    
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveCrawlG2bManageConfirm, null);    
     });
 	
 </script>

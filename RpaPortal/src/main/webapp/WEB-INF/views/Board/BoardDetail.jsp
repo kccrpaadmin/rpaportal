@@ -84,10 +84,10 @@
 	        async: true,
 			success: function(data) {
 				if (data.status == "Success") {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "삭제되었습니다.", null, callbackDeleteBoard);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "삭제되었습니다.", null, callbackDeleteBoard, null);
 				}
 				else {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
 				}
 			},
 			error: function(xhr, status, err) {
@@ -127,7 +127,7 @@
 	
     // 삭제 버튼 클릭 이벤트
 	$(document).on("click", "#btn_delete", function (e) {			
-		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteBoardConfirm);    
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteBoardConfirm, null);    
 	});
             
 </script>

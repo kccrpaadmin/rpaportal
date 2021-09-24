@@ -162,10 +162,10 @@
 	        async: true,
 			success: function(data) {
 				if (data.status == "Success") {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "생성 되었습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "생성 되었습니다.", null, commonFunc.refreshPage, null);
 				}
 				else {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
 				}
 			},
 			error: function(xhr, status, err) {
@@ -186,10 +186,10 @@
 	        async: true,
 			success: function(data) {
 				if (data.status == "Success") {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "삭제 되었습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "삭제 되었습니다.", null, commonFunc.refreshPage, null);
 				}
 				else {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
 				}
 			},
 			error: function(xhr, status, err) {
@@ -538,34 +538,34 @@
  	// 저장 버튼 클릭 이벤트
     $(document).on("click", "#btn_create", function (e) {
     	if (getCheckBoxCheckCnt("#chk_months") == 0) {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "월을 선택하지 않았습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "월을 선택하지 않았습니다.", null, null, null);
     		return false;
     	}
     	
     	if ($("input:radio[name='day_week_type']:checked").attr("id") == "rdo_day") {
     		if (getCheckBoxCheckCnt("#chk_days") == 0) {
-    			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "일을 선택하지 않았습니다.", null, null);
+    			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "일을 선택하지 않았습니다.", null, null, null);
         		return false;
         	}
     	}
     	else {
     		if (getCheckBoxCheckCnt("#chk_weeks") == 0) {
-    			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "주차를 선택하지 않았습니다.", null, null);
+    			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "주차를 선택하지 않았습니다.", null, null, null);
         		return false;
         	}
     		
     		if (getCheckBoxCheckCnt("#chk_week_days") == 0) {
-    			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요일을 선택하지 않았습니다.", null, null);
+    			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요일을 선택하지 않았습니다.", null, null, null);
         		return false;
         	}
     	}
     	
     	if ($("#exp_date").val() == "") {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "만료일자를 선택하지 않았습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "만료일자를 선택하지 않았습니다.", null, null, null);
     		return false;
     	}
     	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "생성 하시겠습니까?", null, createScheduleConfirm);
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "생성 하시겠습니까?", null, createScheduleConfirm, null);
     });
  	
  	// 삭제 버튼 클릭 이벤트
@@ -573,11 +573,11 @@
     	var saveStr = mySheet.GetSaveString();
     	
     	if (saveStr == "") {
-    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "삭제 대상을 선택하지 않았습니다.", null, null);
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "삭제 대상을 선택하지 않았습니다.", null, null, null);
     		return false;
     	}
     	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteScheduleConfirm);    	
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteScheduleConfirm, null);    	
     });
  	
 </script>	

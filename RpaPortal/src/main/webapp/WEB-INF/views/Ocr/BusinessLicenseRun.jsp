@@ -174,7 +174,7 @@
 
 		// 10개 이상 체크 차단
 	 	if (fileListLen > 10) {
-	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일은 10개이하로 선택해 주세요.", null, null);
+	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일은 10개이하로 선택해 주세요.", null, null, null);
 	 		// input file 초기화
 	 		inputFile.value = null;
 	 		$("#input_file_txt").val("");
@@ -184,7 +184,7 @@
 	 	// 첨부 확장자 체크 차단
 	 	for (var i = 0; i < fileListLen; i++) {
 	 		if (!checkAllowExtension(fileList[i].type)) {
-	 			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "파일(" + fileList[i].name + ")의 확장자는 지원되지 않습니다.", null, null);
+	 			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "파일(" + fileList[i].name + ")의 확장자는 지원되지 않습니다.", null, null, null);
 	 			// input file 초기화
 		 		inputFile.value = null;
 		 		$("#input_file_txt").val("");
@@ -217,11 +217,11 @@
 	// 파일 업로드 후, 대화상자 오픈 함수
 	function openDialog(pData) {
 		if (pData.status == "Success") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업로드를 완료 하였습니다.", null, commonFunc.refreshPage);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업로드를 완료 하였습니다.", null, commonFunc.refreshPage, null);
 			return false;
 		}
 		else {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", pData.errorMsg, null, commonFunc.refreshPage);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", pData.errorMsg, null, commonFunc.refreshPage, null);
 			return false;
 		}
 	}
@@ -232,11 +232,11 @@
 	 	var fileListLen = fileList.length;
 	 	
 	 	if (fileListLen == 0) {
-	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일이 선택되지 않았습니다.", null, null);
+	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일이 선택되지 않았습니다.", null, null, null);
 	 		return false;
 	 	}
 		
-	 	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "업로드를 진행 하시겠습니까?", null, uploadFilesConfirm);
+	 	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "업로드를 진행 하시겠습니까?", null, uploadFilesConfirm, null);
 	});
 	
 </script>

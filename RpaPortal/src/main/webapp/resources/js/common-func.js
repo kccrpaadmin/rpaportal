@@ -148,13 +148,13 @@
         	var err = pErr;
         	
         	if (xhr.status == 401) {
-        		libraryFunc.createDialog("Alert", null, null, null, 250, "알림", "인증만료", null, null);
+        		libraryFunc.createDialog("Alert", null, null, null, 250, "알림", "인증만료", null, null, null);
     		}
     		else if (xhr.status == 403) {
-    			libraryFunc.createDialog("Alert", null, null, null, 250, "알림", "접근금지", null, null);
+    			libraryFunc.createDialog("Alert", null, null, null, 250, "알림", "접근금지", null, null, null);
     		}
     		else {
-    			libraryFunc.createDialog("Alert", null, null, null, 250, "알림", "오류발생", null, null);
+    			libraryFunc.createDialog("Alert", null, null, null, 250, "알림", "오류발생", null, null, null);
     		}
         },
         createDatepicker: function (pElmt, pType) {

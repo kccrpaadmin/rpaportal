@@ -98,21 +98,21 @@
 	$(document).on("click", "#btn_save", function (e) {								
 		// 내용이 입력되지 않은 경우
     	if (commonFunc.getCheckNullYn($("#menuId").val()) == "Y") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "메뉴구분을 선택하지 않았습니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "메뉴구분을 선택하지 않았습니다.", null, null, null);
 			return false;
 		}
 		
     	if (commonFunc.getCheckNullYn($("#proposal_nm").val()) == "Y") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "제목을 입력하지 않았습니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "제목을 입력하지 않았습니다.", null, null, null);
 			return false;
 		}
     	
     	if (commonFunc.getCheckNullYn($("#proposal_content").val()) == "Y") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "내용을 입력하지 않았습니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "내용을 입력하지 않았습니다.", null, null, null);
 			return false;
 		}
     	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveProposalWrite);    	
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveProposalWrite, null);    	
     });		
 	
 </script>

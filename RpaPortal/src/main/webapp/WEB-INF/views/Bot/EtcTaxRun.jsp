@@ -230,12 +230,12 @@
 	// 파일 업로드 후, 대화상자 오픈 함수
 	function openDialogUploadFilesEtcTax(pData) {
 		if (pData.status == "Success") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업로드를 완료 하였습니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업로드를 완료 하였습니다.", null, null, null);
 			$("#attId").val(pData.attId);
 			return false;
 		}
 		else {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", pData.errorMsg, null, commonFunc.refreshPage);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", pData.errorMsg, null, commonFunc.refreshPage, null);
 			return false;
 		}
 	}
@@ -250,15 +250,15 @@
 	// 즉시실행 후, 대화상자 오픈 함수
 	function openDialogRunBot(pData) {
 		if (pData == "Progress") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "이미 실행중인 요청이 있습니다.<br/>잠시후에 다시시도 하세요.", null, commonFunc.refreshPage);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "이미 실행중인 요청이 있습니다.<br/>잠시후에 다시시도 하세요.", null, commonFunc.refreshPage, null);
 			return false;
 		}
 		else if (pData == "Success") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청을 완료 하였습니다.", null, commonFunc.refreshPage);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청을 완료 하였습니다.", null, commonFunc.refreshPage, null);
 			return false;
 		}
 		else {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청중 오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청중 오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
 			return false;
 		}
 	}
@@ -272,7 +272,7 @@
 
 		// 1개 이상 체크 차단
 	 	if (fileListLen > 1) {
-	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일은 1개이하로 선택해 주세요.", null, null);
+	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일은 1개이하로 선택해 주세요.", null, null, null);
 	 		// input file 초기화
 	 		inputFile.value = null;
 	 		$("#input_file_txt").val("");
@@ -282,7 +282,7 @@
 	 	// 첨부 확장자 체크 차단
 	 	for (var i = 0; i < fileListLen; i++) {
 	 		if (!checkAllowExtension(fileList[i].type)) {
-	 			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "파일(" + fileList[i].name + ")의 확장자는 지원되지 않습니다.", null, null);
+	 			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "파일(" + fileList[i].name + ")의 확장자는 지원되지 않습니다.", null, null, null);
 	 			// input file 초기화
 		 		inputFile.value = null;
 		 		$("#input_file_txt").val("");
@@ -304,11 +304,11 @@
 	 	var fileListLen = fileList.length;
 	 	
 	 	if (fileListLen == 0) {
-	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일이 선택되지 않았습니다.", null, null);
+	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일이 선택되지 않았습니다.", null, null, null);
 	 		return false;
 	 	}
 		
-	 	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "업로드를 진행 하시겠습니까?", null, uploadFilesEtcTaxConfirm);
+	 	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "업로드를 진행 하시겠습니까?", null, uploadFilesEtcTaxConfirm, null);
 	});
 	
 	// 즉시실행 버튼 클릭 이벤트
@@ -316,11 +316,11 @@
 		var attIdYn = commonFunc.getCheckNullYn($("#attId").val());
 	 	
 	 	if (attIdYn == "Y") {
-	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일이 업로드되지 않았습니다.", null, null);
+	 		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "첨부파일이 업로드되지 않았습니다.", null, null, null);
 	 		return false;
 	 	}
 		
-		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "요청을 진행 하시겠습니까?", null, runBotConfirm);
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "요청을 진행 하시겠습니까?", null, runBotConfirm, null);
 	});
 	
 </script>

@@ -124,10 +124,10 @@
 	        async: true,
 			success: function(data) {
 				if (data.status == "Success") {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청이 성공 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청이 성공 하였습니다.", null, commonFunc.refreshPage, null);
 				}
 				else {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
 				}
 			},
 			error: function(xhr, status, err) {
@@ -199,7 +199,7 @@
  	
 	// 사업자등록증 추출 버튼 클릭 이벤트
 	$(document).on("click", "#btn_business_license_extract", function (e) {
-		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "사업자등록증 추출을 진행 하시겠습니까?", null, runOcrBusinessLicenseConfirm);
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "사업자등록증 추출을 진행 하시겠습니까?", null, runOcrBusinessLicenseConfirm, null);
 	});
 	
 </script>

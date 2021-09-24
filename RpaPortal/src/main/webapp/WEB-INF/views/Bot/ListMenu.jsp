@@ -73,7 +73,7 @@
 	// 권한 확인 및 상세 페이지 이동 함수
 	function checkAuthAndMoveDetail(pData, pMenuId, pAccessUrl) {
 		if (pData.authYn == "N") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "접근권한이 없습니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "접근권한이 없습니다.", null, null, null);
 			return false;
 		}
 		
@@ -108,7 +108,7 @@
 		var checkNullYn = commonFunc.getCheckNullYn(accessUrl);
 		
 		if (checkNullYn == "Y") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업무수행 대상 메뉴가 아닙니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업무수행 대상 메뉴가 아닙니다.", null, null, null);
 			return false;
 		}
 		else {
@@ -126,7 +126,7 @@
 		var checkNullYn = commonFunc.getCheckNullYn(accessUrl);
 		
 		if (checkNullYn == "Y") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업무관리 대상 메뉴가 아닙니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "업무관리 대상 메뉴가 아닙니다.", null, null, null);
 			return false;
 		}
 		else {

@@ -6,7 +6,7 @@
 	
 	//페이지 로드
 	$(document).ready(function(e) {
-		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "${pMsg}", null, returnPage);
+		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "${pMsg}", null, returnPage, null);
 	});
 
 	function returnPage(pOpt) {

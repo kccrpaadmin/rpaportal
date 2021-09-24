@@ -98,10 +98,10 @@
 	        async: true,
 			success: function(data) {
 				if (data.status == "Success") {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장되었습니다.", null, callbackSaveProposalReview);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장되었습니다.", null, callbackSaveProposalReview, null);
 				}
 				else {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
 				}
 			},
 			error: function(xhr, status, err) {
@@ -132,16 +132,16 @@
 	$(document).on("click", "#btn_save", function (e) {								
 		// 내용이 입력되지 않은 경우 
 		if (commonFunc.getCheckNullYn($("#status_cd").val()) == "Y") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "진행상태를 입력하지 않았습니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "진행상태를 입력하지 않았습니다.", null, null, null);
 			return false;
 		}
 		
     	if (commonFunc.getCheckNullYn($("#review_content").val()) == "Y") {
-			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "검토의견을 입력하지 않았습니다.", null, null);
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "검토의견을 입력하지 않았습니다.", null, null, null);
 			return false;
 		}
     	
-    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveProposalReviewConfirm);    	
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveProposalReviewConfirm, null);    	
     });	
 	
 </script>
