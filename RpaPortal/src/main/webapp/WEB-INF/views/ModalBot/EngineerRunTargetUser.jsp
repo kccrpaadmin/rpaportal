@@ -76,12 +76,12 @@
 	}
 	
 	// 대상 인원 목록 저장
-	function saveEngineerTargetUser(pEmpNo, pEngineerTargetUser) {
+	function saveEngineerTargetUser(pArrBotEngineerTargetUser) {
 		$.ajax({
 			url: "/AjaxBot/SaveEngineerTargetUser.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({"empNo": pEmpNo, "engineerTargetUser": pEngineerTargetUser}),
+			data : JSON.stringify(pArrBotEngineerTargetUser),
 			dataType : "json",
 	        async: true,
 			success: function(data) {
@@ -111,7 +111,7 @@
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [     
         	{ Header: "상태", Type: "Status", Width: 50, SaveName: "status", Align: "Center" },
-        	{ Header: "삭제", Type: "DelCheck", Width: 50, SaveName: "delete", Align: "Center" },
+        	{ Header: "삭제", Type: "DelCheck", Width: 50, SaveName: "deleteYn", Align: "Center" },
         	{ Header: "부문코드", Type: "Text", Width: 0, SaveName: "orgTypeCd", Align: "Center", Edit: false, Hidden: true },
         	{ Header: "부문", Type: "Text", Width: 150, SaveName: "orgTypeNm", Align: "Center", Edit: false },
         	{ Header: "사번", Type: "Text", Width: 150, SaveName: "userId", Align: "Center", Edit: false },
@@ -136,30 +136,17 @@
     // 저장 전, 확인 함수
 	function saveEngineerTargetUserConfirm(pOption) {
 		if (pOption.sdBtnKey == "o") {
-			var empNo = commonFunc.certInfo.empNo;
-			var saveJson = mySheet.GetSaveJson({AllSave:1});
-			var saveDataArr = [];
-	    	var saveDataStr = "";
+			var saveJson = mySheet.GetSaveJson().data;
+			var saveJsonLen = saveJson.length;
+			var arrData = [];
 			
-			for (var i = 0; i < saveJson.data.length; i++) {
+			for (var i = 0; i < saveJsonLen; i++) {
 				var jsonData = {};
-				// 삭제 데이터 제거 
-	    		if (saveJson.data[i].delete == 0) {
-	    			saveColStr = saveJson.data[i].userId + "‡" + saveJson.data[i].orgTypeCd
-	    			saveDataArr.push(saveColStr);
-	    		}				
+				jsonData.userId = saveJson[i].userId;
+				arrData.push(jsonData);
 			}
 			
-			for (var i = 0; i < saveDataArr.length; i++) {
-				if (commonFunc.getCheckNullYn(saveDataStr) == "Y") {
-					saveDataStr = saveDataArr[i];
-				}
-				else {
-					saveDataStr = saveDataStr + "≡" + saveDataArr[i];
-				}
-			}
-			
-			saveEngineerTargetUser(empNo, saveDataStr);
+			saveEngineerTargetUser(arrData);
         }
 	}
     

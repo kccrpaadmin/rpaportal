@@ -54,6 +54,7 @@ public class BotEngineerVO {
 	private String ChkYn;
 	private String EmpNo;
 	private String EngineerTargetUser;
+	private String EngineerExistType;
 		
 	public String getMenuId() {
 		return MenuId;
@@ -324,5 +325,11 @@ public class BotEngineerVO {
 	}
 	public void setEngineerTargetUser(String engineerTargetUser) {
 		EngineerTargetUser = engineerTargetUser;
+	}
+	public String getEngineerExistType() {
+		return EngineerExistType;
+	}
+	public void setEngineerExistType(String engineerExistType) {
+		EngineerExistType = engineerExistType;
 	}
 }

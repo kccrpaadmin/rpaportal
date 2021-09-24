@@ -30,18 +30,18 @@
 	            </colgroup>
 	            <tbody>
 	                <tr>
-	                	<th class="detail_th_l">구분</th>
+	                	<th class="detail_th_c">구분</th>
 	                    <td class="detail_td_l">${outBoardVO.boardTypeNm}</td>
-	                    <th class="detail_th_l">작성일자</th>
+	                    <th class="detail_th_c">작성일자</th>
 	                    <td class="detail_td_l">${outBoardVO.regDate}</td>
 	                </tr>
 	                <tr>
-	                    <th class="detail_th_l">제목</th>
+	                    <th class="detail_th_c">제목</th>
 	                    <td class="detail_td_l"colspan="3">${outBoardVO.boardNm}</td>
 	                </tr>
 	                <tr>
-	                    <th class="detail_th_l" >내용</th>
-	                    <td class="detail_td_l"colspan="3"><div style="min-height:350px;'">${outBoardVO.boardContent}</div></td>
+	                    <th class="detail_th_c" >내용</th>
+	                    <td class="detail_td_l_content"colspan="3"><div style="min-height:350px;'">${outBoardVO.boardContent}</div></td>
 	                </tr>              
 	            </tbody>
 	        </table>
@@ -110,6 +110,13 @@
         }		
 	}
 	
+	// 삭제 전, 확인 함수
+	function deleteBoardConfirm(pOption) {		
+		if (pOption.sdBtnKey == "o") {
+			deleteBoard();        
+		}		
+	}
+	
     // 수정 버튼 클릭 이벤트
 	$(document).on("click", "#btn_update", function (e) {			
 		var mode = "BoardWrite"
@@ -120,7 +127,7 @@
 	
     // 삭제 버튼 클릭 이벤트
 	$(document).on("click", "#btn_delete", function (e) {			
-		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteBoard);    
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteBoardConfirm);    
 	});
-    
+            
 </script>
