@@ -22,8 +22,8 @@
     var seedNumber = new SeedNumber();
     
     // 대화상자 생성 함수
-    LibraryFunc.prototype.createDialog = function (pType, pTheme, pTop, pLeft, pWidth, pTitle, pMsg, pPromptList, callback) {
-        lfSkillFunc.createDialog(pType, pTheme, pTop, pLeft, pWidth, pTitle, pMsg, pPromptList, callback);
+    LibraryFunc.prototype.createDialog = function (pType, pTheme, pTop, pLeft, pWidth, pTitle, pMsg, pPromptList, callback, pParam) {
+        lfSkillFunc.createDialog(pType, pTheme, pTop, pLeft, pWidth, pTitle, pMsg, pPromptList, callback, pParam);
     }
 	
 	// 대화상자 닫기 함수
@@ -60,7 +60,7 @@
     
     // 라이브러리 기능 연관 함수
     var lfSkillFunc = {
-		createDialog: function (pType, pTheme, pTop, pLeft, pWidth, pTitle, pMsg, pPromptList, callback) {
+		createDialog: function (pType, pTheme, pTop, pLeft, pWidth, pTitle, pMsg, pPromptList, callback, pParam) {
             seedDialog.setConfig({
                 sdTheme: "sd_theme10",		// 테마 (sd_theme1 ~ 10)
                 sdTop: "center",        			// 위치(Top)
@@ -106,7 +106,8 @@
                 seedDialog,
                 pType,
                 userConfig,
-                callback
+                callback,
+                pParam
             );
         },
         closeDialog: function () {
