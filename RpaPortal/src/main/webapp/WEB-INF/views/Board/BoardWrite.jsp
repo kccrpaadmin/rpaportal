@@ -28,11 +28,11 @@
 		            </colgroup>
 		            <tbody>
 		                <tr>
-		                    <th class="detail_th_l">제목</th>
+		                    <th class="detail_th_c">제목</th>
 		                    <td class="detail_td_l"><input type="text" class="txt_box_proposalNm"  id="board_nm" name="boardNm" value="${outBoardVO.boardNm}"/></td>
 		                </tr>
 		                <tr>
-		                    <th class="detail_th_l" >내용</th>
+		                    <th class="detail_th_c" >내용</th>
 		                    <td class="detail_td_l"><textarea class="txt_box_proposalContent" id="board_content" name="boardContent" rows="20" ><c:out value="${outBoardVO.boardContent}" /></textarea></td>
 		                </tr>	  	                            
 		            </tbody>
@@ -70,7 +70,9 @@
 			
     // 저장 함수
 	function saveBoardWrite() {		
-		$("#frm").submit();		
+		if (pOption.sdBtnKey == "o") {
+			$("#frm").submit();
+		}		
 	}
 	
 	// 저장 버튼 클릭 이벤트

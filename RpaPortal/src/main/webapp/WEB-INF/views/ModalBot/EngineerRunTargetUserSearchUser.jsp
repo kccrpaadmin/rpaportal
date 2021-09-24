@@ -64,6 +64,33 @@
 		});
 	}
 	
+	// 대상 인원 목록 저장
+	function createEngineerTargetUser(pUserId, pOrgTypeCd, pEmpNo) {
+		$.ajax({
+			url: "/AjaxBot/CreateEngineerTargetUser.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({"userId": pUserId, "orgTypeCd": pOrgTypeCd, "empNo": pEmpNo}),
+			dataType : "json",
+	        async: true,
+			success: function(data) {
+				if (data.status == "Success") {
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "추가 되었습니다.", null, function () {
+						commonFunc.refreshPage();
+						parent[0].commonFunc.refreshPage();
+					});
+				}
+				else {
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage);
+				}
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
 	// 그리드 생성 함수
 	function makeGrid(pListDatas) {
 		commonFunc.initSheet("mySheet2");
@@ -95,36 +122,18 @@
 		if (Row == 0) {
 			return false;
 		}
-				
-		if ($("input:radio[name='org_type']:checked").attr("id") == "rdo_civil") {
-			var orgTypeNm = document.getElementById("span_civil").innerText;
-		 }else{
-			var orgTypeNm = document.getElementById("span_build").innerText;
-		 }
 		
-		var orgTypeCd = $("input:radio[name='org_type']:checked").attr("value");
-		var userId = mySheet2.GetCellValue(Row, "userId");
 		var userNm = mySheet2.GetCellValue(Row, "userNm");
-		var resNo = mySheet2.GetCellValue(Row, "resNo");
-		var deptNm = mySheet2.GetCellValue(Row, "deptNm");
-		var empNo = commonFunc.certInfo.empNo;
 		
-		if (mySheet2.ColSaveName(Col) == "userNm") {						
-			parent[0].mySheet.DataInsert(-1);
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", userNm + " 사원을 추가하시겠습니까?", null, function () {
+			var userId = mySheet2.GetCellValue(Row, "userId");
+			var orgTypeCd = $("input:radio[name='org_type']:checked").attr("value");
+			var empNo = commonFunc.certInfo.empNo;
 			
-			var lastRowIndex = parent[0].mySheet.LastRow();
-
-			parent[0].mySheet.SetCellValue(lastRowIndex, "orgTypeCd", orgTypeCd);
-			parent[0].mySheet.SetCellValue(lastRowIndex, "orgTypeNm", orgTypeNm);
-			parent[0].mySheet.SetCellValue(lastRowIndex, "userId", userId);
-			parent[0].mySheet.SetCellValue(lastRowIndex, "userNm", userNm);		
-			parent[0].mySheet.SetCellValue(lastRowIndex, "resNo", resNo);		
-			parent[0].mySheet.SetCellValue(lastRowIndex, "deptNm", deptNm);
-			
-			libraryFunc.closeModal();	
-		}		
+			createEngineerTargetUser(userId, orgTypeCd, empNo);	
+		} );    
 	}
-	
+		
 	// 라디오 버튼 기본 체크 함수
 	function checkButtonControl() {
 		if (commonFunc.certInfo.deptCd == "C10043") {

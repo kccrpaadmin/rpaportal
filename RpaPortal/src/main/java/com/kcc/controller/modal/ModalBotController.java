@@ -229,6 +229,7 @@ public class ModalBotController extends BaseController {
 		model.addAttribute("userId", pUserId);
 		model.addAttribute("userNm", pUserNm);
 		model.addAttribute("resNo", pResNo);
+		model.addAttribute("orgTypeComboBox", commonUtilService.getCodeProcedureSelectBox("org_type_cd", "PRA_Bot_listOrgTypeCombo", "", true, "전체", "전체"));
 		
 		return "ModalBot/EngineerManageCareerList";
 	}

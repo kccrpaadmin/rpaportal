@@ -44,6 +44,7 @@
 				    #{Seq}
 	               ,#{BoardNm}
 	               ,#{BoardContent}
+	               ,#{AttId}
             	)
 			}
 		]]>

@@ -144,6 +144,7 @@ public class ProposalController extends BaseController {
 			// 첨부파일 수정
 			else {
 				fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs, attIdFiles, "PROPOSAL", vo.getEmpNo());
+				attId = vo.getAttId();
 			}
 
 			vo.setAttId(attId);
@@ -185,6 +186,7 @@ public class ProposalController extends BaseController {
 			
 		model.addAttribute("statusCdComboBox", commonUtilService.getCodeProcedureSelectBox("status_cd", "PRA_Proposal_listProposalStatusCombo", "", true, "", ""));
 		model.addAttribute("outProposalVO", outProposalVO);
+		model.addAttribute("attIdFileBox", fileUploadUtilService.createFileControl("첨부파일", "attId", commonUtilService.isEmptyCheck(outProposalVO) ? "" :  outProposalVO.getAttId(), false, "Left", "49%"));
 		
 		return "Proposal/ProposalReview";
 	}

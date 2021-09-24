@@ -16,6 +16,7 @@ public interface BotEngineerRepository {
 	List<BotEngineerVO> listBotEngineerManage(BotEngineerVO vo) throws Exception;	
 	List<BotEngineerVO> listBotEngineerManageCareerList(BotEngineerVO vo) throws Exception;	
 	List<BotEngineerVO> listBotEngineerTargetUserList(BotEngineerVO vo) throws Exception;	
-	void saveBotEngineerTargetUser(BotEngineerVO vo) throws Exception;	
+	void deleteBotEngineerTargetUser(BotEngineerVO vo) throws Exception;
+	void createBotEngineerTargetUser(BotEngineerVO vo) throws Exception;	
 	List<BotEngineerVO> listBotEngineerTargetUserSearchUser(BotEngineerVO vo) throws Exception;	
 }

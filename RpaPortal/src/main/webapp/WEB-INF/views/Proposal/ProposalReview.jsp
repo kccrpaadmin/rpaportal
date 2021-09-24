@@ -30,36 +30,40 @@
 	            </colgroup>
 	            <tbody>
 	                <tr>
-	                    <th class="detail_th_l">진행상태</th>
+	                    <th class="detail_th_c">진행상태</th>
 	                    <td class="detail_td_l">${statusCdComboBox}</td>
-	                    <th class="detail_th_l">요청일시</th>
+	                    <th class="detail_th_c">요청일시</th>
 	                    <td class="detail_td_l">${outProposalVO.regDate}</td>
 	                </tr>
 	                <tr>
-	                    <th class="detail_th_l">요청부서</th>
+	                    <th class="detail_th_c">요청부서</th>
 	                    <td class="detail_td_l">${outProposalVO.proposalDeptNm}</td>
-	                    <th class="detail_th_l">요청자</th>
+	                    <th class="detail_th_c">요청자</th>
 	                    <td class="detail_td_l">${outProposalVO.regUserNm}</td>
 	                </tr>
 	                 <tr>
-	                    <th class="detail_th_l">구분</th>
+	                    <th class="detail_th_c">구분</th>
 	                    <td class="detail_td_l" colspan="3">${outProposalVO.menuNm}</td>	                    
 	                </tr>
 	                <tr>
-	                    <th class="detail_th_l">제목</th>
+	                    <th class="detail_th_c">제목</th>
 	                    <td class="detail_td_l"colspan="3">${outProposalVO.proposalNm}</td>
 	                </tr>
 	                <tr>
-	                    <th class="detail_th_l" >내용</th>
+	                    <th class="detail_th_c" >내용</th>
 	                    <td class="detail_td_l"colspan="3"><div style="min-height:250px;'">${outProposalVO.proposalContent}</div></td>
 	                </tr>	  
 	                <tr>
-	                    <th class="detail_th_l" >검토의견</th>
+	                    <th class="detail_th_c" >검토의견</th>
 	                    <td class="detail_td_l"colspan="3"><textarea class="txt_box_proposalContent" id="review_content" rows="12" >${outProposalVO.reviewContent}</textarea></td>
 	                </tr>	               
 	            </tbody>
 	        </table> 
 	    </div>
+	    <!-- 첨부영역 -->
+	    <div class='file_control_box'>
+    		${attIdFileBox}
+	    </div>	
 	    <br>
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
@@ -76,6 +80,7 @@
 	
 	// 전역 변수
 	var proposalNo = "${outProposalVO.proposalNo}";
+	var attId = "${outProposalVO.attId}";
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
@@ -112,13 +117,15 @@
 	}	
 	
 	// 저장 전, 확인 함수
-	function saveProposalReviewConfirm() {			
-		var proposalNo = "${outProposalVO.proposalNo}"
-		var statusCd = $("#status_cd").val();
-		var reviewContent = $("#review_content").val();
-		var regUserId = commonFunc.certInfo.empNo;
-		
-		saveProposalReview(proposalNo, statusCd, reviewContent, regUserId);		
+	function saveProposalReviewConfirm(pOption) {	
+		if (pOption.sdBtnKey == "o") {
+			var proposalNo = "${outProposalVO.proposalNo}"
+			var statusCd = $("#status_cd").val();
+			var reviewContent = $("#review_content").val();
+			var regUserId = commonFunc.certInfo.empNo;
+			
+			saveProposalReview(proposalNo, statusCd, reviewContent, regUserId);		
+		}		
 	}
 		
 	// 저장 버튼 클릭 이벤트

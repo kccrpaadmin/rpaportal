@@ -135,14 +135,17 @@ public class BoardController extends BaseController {
 			}
 			// 첨부파일 수정
 			else {
-				fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs, attIdFiles, "BOARD", vo.getRegUserId());
+				fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs, attIdFiles, "BOARD", vo.getRegUserId());				
+				attId = vo.getAttId();
 				/*
 				 * else { 
 				 * 		fileUploadUtilService.saveFiles(vo.getAttId(), attIdSeqs.toArray(new String[attIdSeqs.size()]), attIdFiles, "PROPOSAL", vo.getEmpNo());*/
 			}
 
+			vo.setAttId(attId);
+			logger.info(attId);
+			
 			if (vo.getSaveMode().equals("C")) {
-				vo.setAttId(attId);
 				boardService.createBoardWrite(vo);	
 			}
 			else {

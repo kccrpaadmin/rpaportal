@@ -30,21 +30,21 @@
 		            </colgroup>
 		            <tbody>	                
 		                <tr>
-		                    <th class="detail_th_l">요청부서</th>
+		                    <th class="detail_th_c">요청부서</th>
 		                    <td class="detail_td_l"><input type="text" class="txt_box_proposalDeptNm" id="proposal_dept_nm" disabled/></td>
-		                    <th class="detail_th_l">요청자</th>
+		                    <th class="detail_th_c">요청자</th>
 		                    <td class="detail_td_l" ><input type="text" class="txt_box_proposalUserNm"  id="proposal_user_nm" name="proposal_user_nm" disabled/></td>
 		                </tr>
 		                <tr>
-		                    <th class="detail_th_l">구분</th>
+		                    <th class="detail_th_c">구분</th>
 		                    <td class="detail_td_l"colspan="3">${menuCdComboBox}</td>	                    
 		                </tr>
 		                <tr>
-		                    <th class="detail_th_l">제목</th>
+		                    <th class="detail_th_c">제목</th>
 		                    <td class="detail_td_l"colspan="3"><input type="text" class="txt_box_proposalNm"  id="proposal_nm" name="proposalNm" value="${outProposalVO.proposalNm}"/></td>
 		                </tr>
 		                <tr>
-		                    <th class="detail_th_l" >내용</th>
+		                    <th class="detail_th_c" >내용</th>
 		                    <td class="detail_td_l"colspan="3"><textarea class="txt_box_proposalContent" id="proposal_content" name="proposalContent" rows="20" ><c:out value="${outProposalVO.proposalContent}" /></textarea></td>
 		                </tr>	  	                            
 		            </tbody>
@@ -88,8 +88,10 @@
 	});
 			
     // 저장 함수
-	function saveProposalWrite() {		
-		$("#frm").submit();		
+	function saveProposalWrite(pOption) {		
+		if (pOption.sdBtnKey == "o") {
+	    	$("#frm").submit();		
+		}
 	}
 	
 	// 저장 버튼 클릭 이벤트

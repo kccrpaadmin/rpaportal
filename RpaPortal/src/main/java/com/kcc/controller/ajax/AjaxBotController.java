@@ -39,6 +39,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotScheduleVO;
+import com.kcc.biz.model.CrawlG2bVO;
 import com.kcc.biz.model.FileUploadVO;
 import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.BotMoneySendVO;
@@ -702,12 +703,38 @@ public class AjaxBotController extends BaseController {
 	}
 	
 	@PostMapping("/SaveEngineerTargetUser.do")
-	public @ResponseBody StatusVO SaveEngineerTargetUser(@RequestBody BotEngineerVO vo) {
+	public @ResponseBody StatusVO SaveEngineerTargetUser(@RequestBody BotEngineerVO[] vo) {
 		logger.info("/AjaxBot/SaveEngineerTargetUser.do");
+		String status = "Success";
+
+		List<BotEngineerVO> inListBotEngineerVO = new ArrayList<BotEngineerVO>();
+		
+		// json-simple 사용시 배열 파라미터 사용 가능
+		for (BotEngineerVO botEngineerVO : vo) {
+			inListBotEngineerVO.add(botEngineerVO);
+		}
+		
+		try {
+			botEngineerService.deleteBotEngineerTargetUser(inListBotEngineerVO);
+		} 
+		catch (Exception e) {
+			status = "DeleteError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;		
+	}
+	
+	@PostMapping("/CreateEngineerTargetUser.do")
+	public @ResponseBody StatusVO CreateEngineerTargetUser(@RequestBody BotEngineerVO vo) {
+		logger.info("/AjaxBot/CreateEngineerTargetUser.do");
 		String status = "Success";
 				
 		try {
-			botEngineerService.saveBotEngineerTargetUser(vo);
+			botEngineerService.createBotEngineerTargetUser(vo);
 		} 
 		catch (Exception e) {
 			status = "SaveError";
@@ -717,9 +744,7 @@ public class AjaxBotController extends BaseController {
 		StatusVO statusVO = new StatusVO();
 		statusVO.setStatus(status);
 		
-		return statusVO;
-		
-		
+		return statusVO;		
 	}
 	
 	@PostMapping("/ListEngineerTargetUserSearchUser.do")

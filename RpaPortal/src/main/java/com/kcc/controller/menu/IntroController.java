@@ -42,9 +42,9 @@ public class IntroController extends BaseController {
 		return "Intro/Rpa";
 	}
 	
-	@GetMapping("/Kpa.do")
-	public String Kpa(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
-		logger.info("/Intro/Kpa.do");
-		return "Intro/Kpa";
+	@GetMapping("/Krpa.do")
+	public String Krpa(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
+		logger.info("/Intro/Krpa.do");
+		return "Intro/Krpa";
 	}
 }

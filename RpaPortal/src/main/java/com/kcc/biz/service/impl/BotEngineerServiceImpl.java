@@ -50,8 +50,14 @@ public class BotEngineerServiceImpl implements IBotEngineerService {
 		return botEngineerRepository.listBotEngineerTargetUserList(vo);
 	}
 	
-	public void saveBotEngineerTargetUser(BotEngineerVO vo) throws Exception {
-		botEngineerRepository.saveBotEngineerTargetUser(vo);
+	public void deleteBotEngineerTargetUser(List<BotEngineerVO> vo) throws Exception {
+		for (BotEngineerVO botEngineerVO : vo) {
+			botEngineerRepository.deleteBotEngineerTargetUser(botEngineerVO);
+		}
+	}
+	
+	public void createBotEngineerTargetUser(BotEngineerVO vo) throws Exception {
+		botEngineerRepository.createBotEngineerTargetUser(vo);
 	}
 	
 	public List<BotEngineerVO> listBotEngineerTargetUserSearchUser(BotEngineerVO vo) throws Exception {		

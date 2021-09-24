@@ -18,7 +18,7 @@
 		<a class="btn_lnb_menu btn_lnb_menu_i_b">RPA 소개</a>
 		<div class="lnb_sub_menu_box">
 			<a href="/Intro/Rpa.do" class="btn_lnb_sub_menu">RPA 소개</a>
-			<a href="/Intro/Kpa.do" class="btn_lnb_sub_menu">K-RPA 소개</a>
+			<a href="/Intro/Krpa.do" class="btn_lnb_sub_menu">K-RPA 소개</a>
 		</div>
 		<a class="btn_lnb_menu btn_lnb_menu_n_b">RPA 소식</a>
 		<div class="lnb_sub_menu_box">

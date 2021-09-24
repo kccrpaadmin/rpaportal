@@ -30,31 +30,31 @@
 	            </colgroup>
 	            <tbody>
 	                <tr>
-	                    <th class="detail_th_l">진행상태</th>
+	                    <th class="detail_th_c">진행상태</th>
 	                    <td class="detail_td_l">${outProposalVO.statusNm}</td>
-	                    <th class="detail_th_l">요청일시</th>
+	                    <th class="detail_th_c">요청일시</th>
 	                    <td class="detail_td_l">${outProposalVO.regDate}</td>
 	                </tr>
 	                <tr>
-	                    <th class="detail_th_l">요청부서</th>
+	                    <th class="detail_th_c">요청부서</th>
 	                    <td class="detail_td_l">${outProposalVO.proposalDeptNm}</td>
-	                    <th class="detail_th_l">요청자</th>
+	                    <th class="detail_th_c">요청자</th>
 	                    <td class="detail_td_l">${outProposalVO.regUserNm}</td>
 	                </tr>
 	                 <tr>
-	                    <th class="detail_th_l">구분</th>
+	                    <th class="detail_th_c">구분</th>
 	                    <td class="detail_td_l" colspan="3">${outProposalVO.menuNm}</td>	                    
 	                </tr>
 	                <tr>
-	                    <th class="detail_th_l">제목</th>
+	                    <th class="detail_th_c">제목</th>
 	                    <td class="detail_td_l"colspan="3">${outProposalVO.proposalNm}</td>
 	                </tr>
 	                <tr>
-	                    <th class="detail_th_l" >내용</th>
+	                    <th class="detail_th_c" >내용</th>
 	                    <td class="detail_td_l"colspan="3"><div style="min-height:250px;'">${outProposalVO.proposalContent}</div></td>
 	                </tr>	  
 	                <tr>
-	                    <th class="detail_th_l" >검토의견</th>
+	                    <th class="detail_th_c" >검토의견</th>
 	                    <td class="detail_td_l"colspan="3"><div style="min-height:150px;'">${outProposalVO.reviewContent}</div></td>
 	                </tr>	               
 	            </tbody>
@@ -141,6 +141,13 @@
         }		
 	}
 	
+	// 삭제 전, 확인 함수
+	function deleteProposalConfirm(pOption) {		
+		if (pOption.sdBtnKey == "o") {
+			deleteProposal();        
+		}		
+	}
+	
     // 수정 버튼 클릭 이벤트
 	$(document).on("click", "#btn_update", function (e) {			
 		var mode = "ProposalWrite"
@@ -151,7 +158,7 @@
 	
     // 삭제 버튼 클릭 이벤트
 	$(document).on("click", "#btn_delete", function (e) {			
-		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteProposal);    
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "삭제 하시겠습니까?", null, deleteProposalConfirm);    
 	});
     
 	// 검토의견작성 버튼 클릭 이벤트

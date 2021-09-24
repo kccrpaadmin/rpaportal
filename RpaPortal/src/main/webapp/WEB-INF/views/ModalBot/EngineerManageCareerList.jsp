@@ -12,11 +12,17 @@
 	                <col style="width:20%;" />
 					<col style="width:10%;" />
 	                <col style="width:20%;" />
+					<col style="width:10%;" />
+	                <col style="width:20%;" />
 	                <col />
 				</colgroup>
 				<tbody>
 					<tr>
-						<th class="search_dtl_th">이름</th>
+						<th class="search_dtl_th">부문</th>
+	                    <td class="search_dtl_td">
+	                         ${orgTypeComboBox}
+	                    </td>
+						<th class="search_dtl_th">성명</th>
 						<td class="search_dtl_td">
 							<input type="text" class="txt_box_l" style="width:160px;" id="user_nm"  />										
 						</td>
@@ -53,16 +59,16 @@
 		$("#user_nm").val(userNm);
 		$("#res_no").val(resNo);		
 		
-		listEngineerManageCareerList(userId, "", "");
+		listEngineerManageCareerList("전체", userId, "", "");
 	});
 		
 	// 업체 조회
-	function listEngineerManageCareerList(pUserId, pUserNm, pResNo) {
+	function listEngineerManageCareerList(pOrgTypeCd, pUserId, pUserNm, pResNo) {
 		$.ajax({
 			url: "/AjaxBot/ListEngineerManageCareerList.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "userId": pUserId, "userNm": pUserNm, "resNo":pResNo }),
+			data : JSON.stringify({"orgTypeCd": pOrgTypeCd, "userId": pUserId, "userNm": pUserNm, "resNo":pResNo }),
 		    dataType : "json",
 	        async: true,
 			success: function(listDatas) {
@@ -81,22 +87,24 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "400px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "415px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [                        
-        	{ Header: "사번", Type: "Text", Width: 65, SaveName: "userId", Align: "Center"},
-        	{ Header: "성명", Type: "Text", Width: 70, SaveName: "userNm", Align: "Center"},
-        	{ Header: "생년월일", Type: "Text", Width: 80, SaveName: "resNo", Align: "Center"},
-        	{ Header: "업체명", Type: "Text", Width: 130, SaveName: "vendorNm", Align: "Center"},
-        	{ Header: "참여기간", Type: "Text", Width: 150, SaveName: "playDateTerm", Align: "Center"},
+        	{ Header: "부문", Type: "Text", Width: 50, SaveName: "orgTypeNm", Align: "Center" },
+        	{ Header: "사번", Type: "Text", Width: 65, SaveName: "userId", Align: "Center" },
+        	{ Header: "성명", Type: "Text", Width: 70, SaveName: "userNm", Align: "Center" },
+        	{ Header: "생년월일", Type: "Text", Width: 80, SaveName: "resNo", Align: "Center" },
+        	{ Header: "기술인정보\n유무", Type: "Text", Width: 70, SaveName: "engineerExistType", Align: "Center" },
+        	{ Header: "업체명", Type: "Text", Width: 130, SaveName: "vendorNm", Align: "Center" },
+        	{ Header: "참여기간", Type: "Text", Width: 150, SaveName: "playDateTerm", Align: "Center" },
             { Header: "인정일", Type: "Text", Width: 70, SaveName: "approveDays", Align: "Center" },
             { Header: "사업명", Type: "Text", Width: 300, SaveName: "constNm", Align: "Center" },            
             { Header: "발주자", Type: "Text", Width: 180, SaveName: "orderVendorNm", Align: "Center" },
             { Header: "공사종류", Type: "Text", Width: 150, SaveName: "constType", Align: "Center" },      
             { Header: "공법", Type: "Text", Width: 100, SaveName: "constMethod", Align: "Center" },
-            { Header: "직무분야", Type: "Text", Width: 80, SaveName: "jobKind", Align: "Center" },
+            { Header: "직무분야", Type: "Text", Width: 70, SaveName: "jobKind", Align: "Center" },
             { Header: "전문분야", Type: "Text", Width: 90, SaveName: "specialKind", Align: "Center" },
             { Header: "담당업무", Type: "Text", Width: 100, SaveName: "assignWork", Align: "Center" },
             { Header: "직위", Type: "Text", Width: 60, SaveName: "titleNm", Align: "Center" },
@@ -115,14 +123,29 @@
 		var searchUserId = "";
 		var searchUserNm = $("#user_nm").val();
 		var searchResNo = $("#res_no").val();
+		var searchOrgTypeCd = $("#org_type_cd").val();
 		
-		listEngineerManageCareerList(searchUserId, searchUserNm, searchResNo);
+		listEngineerManageCareerList(searchOrgTypeCd, searchUserId, searchUserNm, searchResNo);
 	});
     
 	// 엑셀 다운로드 버튼 클릭 이벤트
 	$(document).on("click", "#btn_career_list_download", function (e) {		
 		var params = { Multipart: 0, FileName: "EngineerCareerList.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
 		mySheet.Down2Excel(params);
+	});
+	
+	// 성명 엔터 이벤트
+	$(document).on("keydown", "#user_nm", function (e) {
+		if (e.keyCode == 13) {
+			$("#btn_searchuser").trigger("click");
+		}
+	});
+	
+	// 생년월일 엔터 이벤트
+	$(document).on("keydown", "#res_no", function (e) {
+		if (e.keyCode == 13) {
+			$("#btn_searchuser").trigger("click");
+		}
 	});
 	
 </script>
