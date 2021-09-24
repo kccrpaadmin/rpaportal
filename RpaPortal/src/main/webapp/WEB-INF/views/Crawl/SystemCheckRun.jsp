@@ -220,7 +220,19 @@
 	});
 
 	$(document).on("click", "#btn_call", function (e) {
-		mySheet.LoadExcel();
+		mySheet.RemoveAll();
+		var params = { Mode : "HeaderSkip", StartRow: "1" } ;
+		mySheet.LoadExcel(params);
 	});
-		
+	
+	function mySheet_OnLoadExcel(result) {
+		if(result) {
+		    alert('엑셀 로딩이 완료되었습니다.');
+		} 
+		else {
+			alert('엑셀 로딩중 오류가 발생하였습니다.');
+		}
+	}
+
+	
 </script>
