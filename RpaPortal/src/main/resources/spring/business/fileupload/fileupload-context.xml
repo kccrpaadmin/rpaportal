@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 	
  	<!-- 파일 업로드 설정 -->
+ 	<!-- 아이비시트 엑셀 로드 기능을 위해서 클래스를 경유하게 만듬 -->
  	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
  	<bean id="multipartResolver" class="com.kcc.multipart.IbsheetMultipartResolver">
  		<!-- biz-context.xml 등록된 code-properties.xml 파일 사용 -->
