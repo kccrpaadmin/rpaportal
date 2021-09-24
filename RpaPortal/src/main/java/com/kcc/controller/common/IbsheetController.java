@@ -350,6 +350,9 @@ public class IbsheetController {
         
         try {
             load = new IBSheetLoad(req, res, true);
+          
+            load.setLog(true);
+            System.out.println("===========......................>>>>>>>>>>>>>>>>>>		");
             
             //====================================================================================================
             // [ 사용자 환경 설정 #0 ]

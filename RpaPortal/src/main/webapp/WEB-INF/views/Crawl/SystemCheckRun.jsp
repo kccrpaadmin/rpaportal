@@ -226,6 +226,7 @@
 	});
 	
 	function mySheet_OnLoadExcel(result) {
+		alert(1);
 		if(result) {
 		    alert('엑셀 로딩이 완료되었습니다.');
 		} 
@@ -234,5 +235,10 @@
 		}
 	}
 
+		function mySheet_OnLoadData(data) {
+			console.log(data);
+			
+			return data;
+		}
 	
 </script>
