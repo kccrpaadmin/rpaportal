@@ -225,7 +225,9 @@
 		var params = { Mode : "HeaderSkip", StartRow: "1" }
 		mySheet.LoadExcel(params);
 	});
+	*/
 	
+	/*
 	function mySheet_OnLoadExcel(result) {
 		alert(1);
 		if(result) {
