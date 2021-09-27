@@ -271,7 +271,7 @@ html,body{width:100%;height:100%;}
 .home_box .home_body .home_represent_menu_left{float:left;width:204px;height:220px;margin-right:20px;border-radius:10px;background-color:#eef2fd;}
 .home_box .home_body .home_represent_menu_left .home_represent_top{margin-top:25px;padding:0 10px;font-family:'NanumSquare' ;font-size:16px;font-weight:bold;color:#000000;text-align:center;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;transform:skew(-0.1deg);}
 .home_box .home_body .home_represent_menu_left .home_represent_middle{margin-top:15px;padding:0 10px;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;color:#000000;text-align:center;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;transform:skew(-0.1deg);}
-.home_box .home_body .home_represent_menu_left .home_represent_bottom{margin-top:25px;padding:0 10px;font-family:'NanumSquare' ;font-size:14px;color:#000000;text-align:center;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;transform:skew(-0.1deg);}
+.home_box .home_body .home_represent_menu_left .home_represent_bottom{margin-top:25px;padding:0 10px;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;color:#000000;text-align:center;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;transform:skew(-0.1deg);}
 .home_box .home_body .home_represent_menu_right{float:left;width:36px;height:220px;line-height:220px;text-align:right;}
 
 .home_box .home_body .home_time_line_box{overflow-y:auto;width:290px;height:250px;}
