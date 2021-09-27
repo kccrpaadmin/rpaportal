@@ -37,4 +37,14 @@
 		]]>
 	</select>
 	
+	<select id="getOcrRequestUseRangeOverYn" statementType="CALLABLE" parameterType="ocrRequestVO" resultType="ocrRequestVO">
+		<![CDATA[
+			{ 
+	            call PRA_Ocr_getOcrRequestUseRangeOverYn (
+	            	#{CallDate}
+            	)
+			}
+		]]>
+	</select>
+	
 </mapper>

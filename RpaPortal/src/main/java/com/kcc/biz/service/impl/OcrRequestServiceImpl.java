@@ -32,4 +32,8 @@ public class OcrRequestServiceImpl implements IOcrRequestService {
 	public List<OcrRequestVO> listOcrRequestAttFile(OcrRequestVO vo) throws Exception {
 		 return ocrRequestRepository.listOcrRequestAttFile(vo);
 	}
+	
+	public OcrRequestVO getOcrRequestUseRangeOverYn(OcrRequestVO vo) throws Exception {
+		 return ocrRequestRepository.getOcrRequestUseRangeOverYn(vo);
+	}
 }

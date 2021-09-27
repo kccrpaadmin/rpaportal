@@ -31,6 +31,8 @@ public class OcrRequestVO {
 	private String FileNm;
 	private String FileSize;
 	private String FullFilePath;
+	private String CallDate;
+	private String UseRangeOverYn;
 	
 	public String getRequestNo() {
 		return RequestNo;
@@ -163,5 +165,17 @@ public class OcrRequestVO {
 	}
 	public void setFullFilePath(String fullFilePath) {
 		FullFilePath = fullFilePath;
+	}
+	public String getCallDate() {
+		return CallDate;
+	}
+	public void setCallDate(String callDate) {
+		CallDate = callDate;
+	}
+	public String getUseRangeOverYn() {
+		return UseRangeOverYn;
+	}
+	public void setUseRangeOverYn(String useRangeOverYn) {
+		UseRangeOverYn = useRangeOverYn;
 	}	
 }

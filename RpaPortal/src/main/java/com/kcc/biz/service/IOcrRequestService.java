@@ -8,4 +8,5 @@ public interface IOcrRequestService {
 	void createOcrRequest(OcrRequestVO vo) throws Exception;
 	List<OcrRequestVO> listOcrRequest(OcrRequestVO vo) throws Exception;
 	List<OcrRequestVO> listOcrRequestAttFile(OcrRequestVO vo) throws Exception;
+	OcrRequestVO getOcrRequestUseRangeOverYn(OcrRequestVO vo) throws Exception;
 }

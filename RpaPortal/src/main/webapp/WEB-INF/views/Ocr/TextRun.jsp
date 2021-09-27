@@ -122,6 +122,28 @@
 		});
 	}
 	
+	// OCR 요청 사용범위 초과 여부 조회
+	function getOcrRequestUseRangeOverYn() {
+		var useRangeOverYn = "N";
+		
+		$.ajax({
+			url: "/AjaxOcr/GetOcrRequestUseRangeOverYn.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+		    dataType : "json",
+	        async: false,
+			success: function(datas) {
+				useRangeOverYn = datas.useRangeOverYn; 
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+		
+		return useRangeOverYn;
+	}
+	
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
     	commonFunc.initSheet("mySheet");
@@ -228,6 +250,11 @@
 	
 	// 파일 업로드 버튼 클릭 이벤트
 	$(document).on("click", "#btn_file_upload", function (e) {
+		if (getOcrRequestUseRangeOverYn() == "Y") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "OCR 요청 월별 사용횟수가 초과 되었습니다. (월 1000회)", null, null, null);
+	 		return false;
+		}
+		
 		var fileList = document.getElementById('input_file').files;
 	 	var fileListLen = fileList.length;
 	 	

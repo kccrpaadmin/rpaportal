@@ -5,7 +5,9 @@ import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -50,6 +52,7 @@ import com.kcc.biz.model.StatusMapVO;
 import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.CrawlRequestVO;
 import com.kcc.biz.model.CrawlRunVO;
+import com.kcc.biz.model.CrawlScheduleVO;
 import com.kcc.biz.model.UserVO;
 import com.kcc.biz.service.IAccessService;
 import com.kcc.biz.service.IAttFileService;
@@ -149,6 +152,26 @@ public class AjaxOcrController extends BaseController {
 		map.put("data", outListOcrRequestVO);
 		
 		return map;
+	}
+	
+	@PostMapping("/GetOcrRequestUseRangeOverYn.do")
+	public @ResponseBody OcrRequestVO GetOcrRequestUseRangeOverYn() {
+		logger.info("/AjaxOcr/GetOcrRequestUseRangeOverYn.do");
+		
+		SimpleDateFormat yyyyMMddHHmm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		String curDate = yyyyMMddHHmm.format(new Date()).toString();
+		OcrRequestVO inOcrRequestVO = new OcrRequestVO();
+		inOcrRequestVO.setCallDate(curDate);
+		
+		OcrRequestVO outOcrRequestVO = new OcrRequestVO();
+		try {
+			outOcrRequestVO = ocrRequestService.getOcrRequestUseRangeOverYn(inOcrRequestVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return outOcrRequestVO;
 	}
 	
 	@PostMapping("/ListText.do")
