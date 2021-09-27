@@ -69,7 +69,7 @@
 	});
 			
     // 저장 함수
-	function saveBoardWrite() {		
+	function saveBoardWrite(pOption) {		
 		if (pOption.sdBtnKey == "o") {
 			$("#frm").submit();
 		}		

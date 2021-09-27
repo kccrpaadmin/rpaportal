@@ -123,15 +123,21 @@
 			return false;
 		}
 		
-		var userNm = mySheet2.GetCellValue(Row, "userNm");
+		var userNm = mySheet2.GetCellValue(Row, "userNm");	
+		var param = [];
+		param.push(Row);		
 		
-		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", userNm + " 사원을 추가하시겠습니까?", null, function () {
-			var userId = mySheet2.GetCellValue(Row, "userId");
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", userNm + " 사원을 추가하시겠습니까?", null, createEngineerTargetUserConfirm, param);    
+	}
+	
+	function createEngineerTargetUserConfirm(pOption, pParam){
+		if (pOption.sdBtnKey == "o") {
+			var userId = mySheet2.GetCellValue(pParam[0], "userId");
 			var orgTypeCd = $("input:radio[name='org_type']:checked").attr("value");
 			var empNo = commonFunc.certInfo.empNo;
 			
 			createEngineerTargetUser(userId, orgTypeCd, empNo);	
-		} );    
+		}	
 	}
 	
 	// 라디오 버튼 기본 체크 함수
