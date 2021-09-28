@@ -56,6 +56,12 @@
 	    	<a class="btn_common1" id="btn_search">조회</a>
 	    </div>
 	    <!-- 그리드영역 -->
+	    <div class="grid_box">
+		    <div class="grid_title">수주정보</div>
+		    <div class="grid_btn">
+		    	<a class="btn_common2" id="btn_g2b_download">엑셀</a>
+		    </div>
+	    </div>
    	    <div id="sheet"></div>
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">
@@ -214,4 +220,10 @@
     	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장 하시겠습니까?", null, saveCrawlG2bManageConfirm, null);    
     });
 	
+ 	// 엑셀 버튼 클릭 이벤트
+	$(document).on("click", "#btn_g2b_download", function (e) {		
+		var params = { Multipart: 0, FileName: "G2b.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		mySheet.Down2Excel(params);
+	});
+ 	
 </script>
