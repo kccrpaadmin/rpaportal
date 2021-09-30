@@ -350,7 +350,10 @@ public class IbsheetController {
         
         try {
             load = new IBSheetLoad(req, res, true);
-          
+            
+            // 크롬에서 엑셀 로드 후, ContentType이 없는 경우 정상동작하지 않아서 추가  
+        	res.setContentType("text/html;charset=UTF-8");
+        	
             load.setLog(true);
             System.out.println("===========......................>>>>>>>>>>>>>>>>>>		");
             

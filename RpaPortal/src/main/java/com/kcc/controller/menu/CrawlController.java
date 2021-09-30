@@ -185,7 +185,7 @@ public class CrawlController extends BaseController {
 		
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
-		model.addAttribute("basicDate", commonUtilService.getDateUserFormat("yyyy-MM", "Month", -1));
+		model.addAttribute("basicDate", commonUtilService.getDateUserFormat("yyyy-MM", "Month", 0));
 		
 		return "Crawl/KomisManage";
 	}
