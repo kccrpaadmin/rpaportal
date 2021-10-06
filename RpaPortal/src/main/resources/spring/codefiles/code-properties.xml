@@ -10,6 +10,7 @@
 	<entry key="maxInMemorySize">1048576</entry>
 	<entry key="limitUploadSize">104857600</entry>
 	<entry key="uploadPath">X:\AttFiles</entry>
+	<entry key="uploadLocalPath">D:\\AttFiles</entry>
 	<!-- <entry key="realUploadPath">\\70.71.11.159\AttFiles</entry> -->
 	
 </properties>

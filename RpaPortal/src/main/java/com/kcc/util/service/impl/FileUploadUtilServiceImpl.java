@@ -1,6 +1,10 @@
 package com.kcc.util.service.impl;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,10 +31,11 @@ import com.kcc.biz.service.IAttFileService;
 import com.kcc.util.service.ICommonUtilService;
 import com.kcc.util.service.IFileUploadUtilService;
 import com.kcc.words.ConstWord;
+import com.markany.nt.WDSCryptAll;
 
 public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 	private static final Logger logger = LoggerFactory.getLogger(FileUploadUtilServiceImpl.class);
-		
+	
 	// 업로드 제한 용량 (code-properties.xml)
 	@Value("#{codeProperties['limitUploadSize']}")
 	private String limitUploadSize;
@@ -38,6 +43,10 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 	// 서버 업로드 폴더 위치 (code-properties.xml)
 	@Value("#{codeProperties['uploadPath']}")
 	private String uploadPath;
+	
+	// 로컬 업로드 폴더 위치 (code-properties.xml)
+	@Value("#{codeProperties['uploadLocalPath']}")
+	private String uploadLocalPath;
 	
 	@Resource(name="commonUtilService")
 	private ICommonUtilService commonUtilService;
@@ -69,18 +78,22 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 		}
 		
 		String uploadFilePath = uploadPath;
+		String uploadLocalFilePath = uploadLocalPath;
 		
 		// 년월일시분초.밀리세컨드
 		attId = menuId + "-" + new java.text.SimpleDateFormat("yyyyMMddHHmmssSSS").format(new java.util.Date()) + Integer.toString(getRandomRange(1000, 9999));
 		Calendar cal = Calendar.getInstance();
 		String yearMon = cal.get(Calendar.YEAR) + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
-		String folderPath = uploadFilePath + File.separator + menuId + File.separator + yearMon;
-		String filePath = menuId + File.separator +  yearMon;
+		String saveUploadFilePath = uploadFilePath + File.separator + menuId + File.separator + yearMon;
+		String saveFilePath = menuId + File.separator +  yearMon;
+		String saveUploadLocalFilePath = uploadLocalFilePath + File.separator + File.separator + menuId + File.separator + File.separator + yearMon;
+		String saveLocalFilePath = menuId + File.separator + File.separator +  yearMon;
 		
 		logger.info(attId);
 		
 		// 저장 디렉토리 생성
-		String saveFolderPath = createfolder(folderPath);
+		saveUploadFilePath = createfolder(saveUploadFilePath);
+		saveUploadLocalFilePath = createfolder(saveUploadLocalFilePath);
 
 		// 첨부 VO 생성
 		AttFileVO inAttFileVO = new AttFileVO();
@@ -110,15 +123,57 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 				// 원본이름 + 년월일 + 랜덤값
 				String saveFileNm = fileNm + "_" + strDate + uid + "." + fileExt;
 	
-				// 파일 저장
-				File fileData = new File(saveFolderPath, saveFileNm);
+				// 파일 로컬 드라이브 저장
+				File fileData = new File(saveUploadLocalFilePath, saveFileNm);
 				file.transferTo(fileData);
+				
+				// 파일 복호화
+				WDSCryptAll cryptAll = null;
+				cryptAll = new WDSCryptAll();
+				
+				String saveUploadLocalFileFullPath = saveUploadLocalFilePath + File.separator + File.separator + saveFileNm;
+				
+				// 물리 드라이브 경로 확인
+				logger.info(saveUploadLocalFileFullPath);
+				
+				cryptAll.sSourceFilePath = saveUploadLocalFileFullPath;			
+				
+				int chkRs = cryptAll.iEncCheck();
+				
+				// 암호화 여부 체크
+				logger.info(Integer.toString(chkRs));
+				
+				if (chkRs == 1 || chkRs == 2) {
+					int decRs = cryptAll.iDecrypt();
+					logger.info("파일 복호화 결과 : " + decRs);
+
+					// 복호화 실패
+					if (decRs != 0) {
+						fileData.delete();
+						throw new Exception("파일 복호화 오류가 발생 하였습니다.");
+		            }					
+				}
+				
+				// 파일 이동
+				/*
+				 * 네트워크 드라이브로 이동 안됨
+				Path srcPath = Paths.get(saveUploadLocalFileFullPath);
+				Path dstPath = Paths.get(saveUploadFilePath + File.separator + saveFileNm);
+				Files.move(srcPath, dstPath, StandardCopyOption.ATOMIC_MOVE);
+				*/
+				
+				logger.info(saveUploadLocalFileFullPath);
+				logger.info(saveUploadFilePath + File.separator + saveFileNm);
+				
+				File srcFile = new File(saveUploadLocalFileFullPath);
+				File dstFile = new File(saveUploadFilePath + File.separator + saveFileNm);
+				srcFile.renameTo(dstFile);
 				
 				// 첨부파일 목록 VO 삽입
 				AttFileVO attFileVO = new AttFileVO();
 				attFileVO.setAttId(attId);
 				attFileVO.setSeq(Integer.toString(seq));
-				attFileVO.setFilePath(filePath);
+				attFileVO.setFilePath(saveFilePath);
 				attFileVO.setFileNm(orgFileNm);
 				attFileVO.setSaveFileNm(saveFileNm);
 				attFileVO.setFileSize(Long.toString(file.getSize()));
@@ -173,7 +228,7 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 			attFileService.deleteAttFile(inAttFileVO);
 		}
 		
-		// 
+		// 파일 저장
 		double fileSizeSum = 0;
 		double maxLimitUploadSize = Double.parseDouble(limitUploadSize);
 		
@@ -188,17 +243,21 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 		}
 		
 		String uploadFilePath = uploadPath;
+		String uploadLocalFilePath = uploadLocalPath;
 		
 		// 년월일시분초.밀리세컨드
 		Calendar cal = Calendar.getInstance();
 		String yearMon = cal.get(Calendar.YEAR) + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
-		String folderPath = uploadFilePath + File.separator + menuId + File.separator + yearMon;
-		String filePath = menuId + File.separator +  yearMon;
+		String saveUploadFilePath = uploadFilePath + File.separator + menuId + File.separator + yearMon;
+		String saveFilePath = menuId + File.separator +  yearMon;
+		String saveUploadLocalFilePath = uploadLocalFilePath + File.separator + File.separator + menuId + File.separator + File.separator + yearMon;
+		String saveLocalFilePath = menuId + File.separator + File.separator +  yearMon;
 		
 		logger.info(attId);
 		
 		// 저장 디렉토리 생성
-		String saveFolderPath = createfolder(folderPath);
+		saveUploadFilePath = createfolder(saveUploadFilePath);
+		saveUploadLocalFilePath = createfolder(saveUploadLocalFilePath);
 
 		int seq = maxSeq;
 		
@@ -222,15 +281,57 @@ public class FileUploadUtilServiceImpl implements IFileUploadUtilService {
 				// 원본이름 + 년월일 + 랜덤값
 				String saveFileNm = fileNm + "_" + strDate + uid + "." + fileExt;
 	
-				// 파일 저장
-				File fileData = new File(saveFolderPath, saveFileNm);
+				// 파일 로컬 드라이브 저장
+				File fileData = new File(saveUploadLocalFilePath, saveFileNm);
 				file.transferTo(fileData);
+				
+				// 파일 복호화
+				WDSCryptAll cryptAll = null;
+				cryptAll = new WDSCryptAll();
+				
+				String saveUploadLocalFileFullPath = saveUploadLocalFilePath + File.separator + File.separator + saveFileNm;
+				
+				// 물리 드라이브 경로 확인
+				logger.info(saveUploadLocalFileFullPath);
+				
+				cryptAll.sSourceFilePath = saveUploadLocalFileFullPath;			
+				
+				int chkRs = cryptAll.iEncCheck();
+				
+				// 암호화 여부 체크
+				logger.info(Integer.toString(chkRs));
+				
+				if (chkRs == 1 || chkRs == 2) {
+					int decRs = cryptAll.iDecrypt();
+					logger.info("파일 복호화 결과 : " + decRs);
+
+					// 복호화 실패
+					if (decRs != 0) {
+						fileData.delete();
+						throw new Exception("파일 복호화 오류가 발생 하였습니다.");
+		            }					
+				}
+				
+				// 파일 이동
+				/*
+				 * 네트워크 드라이브로 이동 안됨
+				Path srcPath = Paths.get(saveUploadLocalFileFullPath);
+				Path dstPath = Paths.get(saveUploadFilePath + File.separator + saveFileNm);
+				Files.move(srcPath, dstPath, StandardCopyOption.ATOMIC_MOVE);
+				*/
+				
+				logger.info(saveUploadLocalFileFullPath);
+				logger.info(saveUploadFilePath + File.separator + saveFileNm);
+				
+				File srcFile = new File(saveUploadLocalFileFullPath);
+				File dstFile = new File(saveUploadFilePath + File.separator + saveFileNm);
+				srcFile.renameTo(dstFile);
 				
 				// 첨부파일 목록 VO 삽입
 				AttFileVO attFileVO = new AttFileVO();
 				attFileVO.setAttId(attId);
 				attFileVO.setSeq(Integer.toString(seq));
-				attFileVO.setFilePath(filePath);
+				attFileVO.setFilePath(saveFilePath);
 				attFileVO.setFileNm(orgFileNm);
 				attFileVO.setSaveFileNm(saveFileNm);
 				attFileVO.setFileSize(Long.toString(file.getSize()));
