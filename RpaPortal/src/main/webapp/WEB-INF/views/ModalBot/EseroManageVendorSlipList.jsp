@@ -30,11 +30,17 @@
 	    </div>	
 		<!-- 그리드영역 -->	
 		<div class="grid_box">
-			<div class="grid_title">기준연월 세금계산서 상세 </div>	
+			<div class="grid_title">기준연월 (세금)계산서 상세 </div>	
+			<div class="grid_btn">
+		    	<a class="btn_common2" id="btn_invoice_download">엑셀</a>
+		    </div>
 		</div>	
 		<div id="sheet1"></div>
 		<div class="grid_box">
 			<div class="grid_title">최근 1년간 전표 데이터</div>	
+			<div class="grid_btn">
+		    	<a class="btn_common2" id="btn_slip_download">엑셀</a>
+		    </div>
 		</div>
 		<div id="sheet2"></div>
 	</div>
@@ -98,7 +104,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet1"), "mySheet1", "1060px", "190px");
+        createIBSheet2(document.getElementById("sheet1"), "mySheet1", "1060px", "185px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
@@ -116,7 +122,7 @@
             { Header: "이름", Type: "Text", Width: 70, SaveName: "userNm", Align: "Center" },
             { Header: "부서", Type: "Text", Width: 150, SaveName: "deptNm" },
             { Header: "휴대전화번호", Type: "Text", Width: 100, SaveName: "userMobileNo", Align: "Center" },
-            { Header: "직급", Type: "Text", Width: 60, SaveName: "dutyNm", Align: "Center" },
+            { Header: "직급", Type: "Text", Width: 60, SaveName: "dutyNm", Align: "Center" }
             //{ Header: "사번", Type: "Text", Width: 60, SaveName: "userId", Align: "Center" }
         ];
 
@@ -143,7 +149,8 @@
             { Header: "회계처리일자", Type: "Text", Width: 80, SaveName: "glDate", Align: "Center" },
             { Header: "발의부서", Type: "Text", Width: 200, SaveName: "deptNm", Align: "Center" },
             { Header: "작성자", Type: "Text", Width: 120, SaveName: "userNm", Align: "Center" },
-            { Header: "적요", Type: "Text", Width: 490, SaveName: "summary" }
+            { Header: "적요", Type: "Text", Width: 300, SaveName: "summary" },
+            { Header: "품목", Type: "Text", Width: 190, SaveName: "description" }
         ];
 
         IBS_InitSheet(mySheet2, initdata);
@@ -152,4 +159,16 @@
         mySheet2.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet2.LoadSearchData(pListDatas);
     }    
+	
+    // 기준연월 세금계산서 상세 엑셀 다운로드 버튼 클릭 이벤트
+	$(document).on("click", "#btn_invoice_download", function (e) {			
+		var params = { Multipart: 0, FileName: "VendorInvoiceFile.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		mySheet1.Down2Excel(params);
+	});
+	
+	// 최근 1년간 전표데이터 엑셀 다운로드 버튼 클릭 이벤트
+	$(document).on("click", "#btn_slip_download", function (e) {		
+		var params = { Multipart: 0, FileName: "VendorSlipFile.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		mySheet2.Down2Excel(params);
+	});
 </script>
