@@ -78,5 +78,5 @@ input[type=radio],input[type=checkbox],input[type=image]{margin:0;border:none 0;
 
 /* 그리드 제목 */
 .grid_box{overflow:hidden;margin-bottom:1px}
-.grid_box .grid_title{height:16px;line-height:16px;margin:15px 0px 5px 0px;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-size:12px;font-weight:bold;color:#4c4c4c;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;vertical-align:middle;}
+.grid_box .grid_title{float:left;height:16px;line-height:16px;margin:15px 0px 5px 0px;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-size:12px;font-weight:bold;color:#4c4c4c;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;vertical-align:middle;}
 .grid_box .grid_btn{overflow:hidden;margin:10px 0px 5px 0px;text-align:center;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;float:right;}

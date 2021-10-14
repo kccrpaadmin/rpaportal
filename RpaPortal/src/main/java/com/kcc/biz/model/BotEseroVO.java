@@ -97,6 +97,7 @@ public class BotEseroVO {
 	private String DutyNm;		
 	private String UserId;		
 	private String UserNm;
+	private String Description;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -625,5 +626,11 @@ public class BotEseroVO {
 	}
 	public void setUserNm(String userNm) {
 		UserNm = userNm;
-	}			
+	}		
+	public String getDescription() {
+		return Description;
+	}
+	public void setDescription(String description) {
+		Description = description;
+	}
 }

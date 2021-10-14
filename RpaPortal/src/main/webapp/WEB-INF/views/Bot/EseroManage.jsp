@@ -134,22 +134,22 @@
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
         	{ Header: "요청번호|요청번호", Type: "Text", Width: 0, SaveName: "requestNo", Align: "Center", Hidden: true },
-        	{ Header: "기준연월|기준연월", Type: "Text", Width: 60, SaveName: "invoiceYearMon", Align: "Center" },
-            { Header: "사업자번호|사업자번호", Type: "Text", Width: 90, SaveName: "invoiceBizNo", Align: "Center" },
-            { Header: "업체코드|업체코드", Type: "Text", Width: 70, SaveName: "vendorCd", Align: "Center" },            
-            { Header: "업체명|업체명", Type: "Text", Width: 170, SaveName: "vendorNm", Align: "Center" },
-            { Header: "세금계산서|개수", Type: "Float", Width: 56, SaveName: "invoiceCnt", Align: "Right" },
-            { Header: "세금계산서|공급가액", Type: "Float", Width: 100, SaveName: "invoiceSupplyAmt", Align: "Right" },            
-            { Header: "세금계산서|부가세액", Type: "Float", Width: 100, SaveName: "invoiceVatAmt", Align: "Right" },
-            { Header: "세금계산서|합계", Type: "Float", Width: 100, SaveName: "invoiceTotAmt", Align: "Right" },
-            { Header: "전표|개수", Type: "Float", Width: 56, SaveName: "slipCnt", Align: "Right" },
-            { Header: "전표|공급가액", Type: "Float", Width: 100, SaveName: "slipSupplyAmt", Align: "Right"},        
-            { Header: "전표|부가세액", Type: "Float", Width: 100, SaveName: "slipVatAmt", Align: "Right" },
-            { Header: "전표|합계", Type: "Float", Width: 100, SaveName: "slipTotAmt", Align: "Right" },
-            { Header: "차이|개수", Type: "Float", Width: 56, SaveName: "gapCnt", Align: "Right" },
-            { Header: "차이|공급가액", Type: "Float", Width: 100, SaveName: "gapSupplyAmt", Align: "Right"},        
-            { Header: "차이|부가세액", Type: "Float", Width: 100, SaveName: "gapVatAmt", Align: "Right" },
-            { Header: "차이|합계", Type: "Float", Width: 100, SaveName: "gapTotAmt", Align: "Right" }
+        	{ Header: "기준연월|기준연월", Type: "Text", Width: 55, SaveName: "invoiceYearMon", Align: "Center" },
+            { Header: "사업자번호|사업자번호", Type: "Text", Width: 85, SaveName: "invoiceBizNo", Align: "Center" },
+            { Header: "업체코드|업체코드", Type: "Text", Width: 65, SaveName: "vendorCd", Align: "Center" },            
+            { Header: "업체명|업체명", Type: "Text", Width: 150, SaveName: "vendorNm", Align: "Center" },
+            { Header: "세금계산서|개수", Type: "AutoSum", Width: 55, SaveName: "invoiceCnt", Align: "Right" },
+            { Header: "세금계산서|공급가액", Type: "AutoSum", Width: 110, SaveName: "invoiceSupplyAmt", Align: "Right" },            
+            { Header: "세금계산서|부가세액", Type: "AutoSum", Width: 105, SaveName: "invoiceVatAmt", Align: "Right" },
+            { Header: "세금계산서|합계", Type: "AutoSum", Width: 110, SaveName: "invoiceTotAmt", Align: "Right" },
+            { Header: "전표|개수", Type: "AutoSum", Width: 55, SaveName: "slipCnt", Align: "Right" },
+            { Header: "전표|공급가액", Type: "AutoSum", Width: 110, SaveName: "slipSupplyAmt", Align: "Right"},        
+            { Header: "전표|부가세액", Type: "AutoSum", Width: 105, SaveName: "slipVatAmt", Align: "Right" },
+            { Header: "전표|합계", Type: "AutoSum", Width: 110, SaveName: "slipTotAmt", Align: "Right" },
+            { Header: "차이|개수", Type: "AutoSum", Width: 55, SaveName: "gapCnt", Align: "Right" },
+            { Header: "차이|공급가액", Type: "AutoSum", Width: 110, SaveName: "gapSupplyAmt", Align: "Right"},        
+            { Header: "차이|부가세액", Type: "AutoSum", Width: 105, SaveName: "gapVatAmt", Align: "Right" },
+            { Header: "차이|합계", Type: "AutoSum", Width: 110, SaveName: "gapTotAmt", Align: "Right" }
         ];
 
         IBS_InitSheet(mySheet1, initdata);
@@ -159,6 +159,10 @@
         mySheet1.SetColFontUnderline("vendorNm", true);
         mySheet1.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet1.LoadSearchData(pListDatas);
+        
+        mySheet1.SetSumText(1, "합계");
+        var lastRow = mySheet1.LastRow();
+        mySheet1.SetMergeCell(lastRow, 1, 1, 4);        
     }  
 	
 	// 그리드 생성 함수
@@ -173,22 +177,22 @@
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
         	{ Header: "요청번호|요청번호", Type: "Text", Width: 0, SaveName: "requestNo", Align: "Center", Hidden: true },
-        	{ Header: "기준연월|기준연월", Type: "Text", Width: 60, SaveName: "invoiceYearMon", Align: "Center" },
-            { Header: "사업자번호|사업자번호", Type: "Text", Width: 90, SaveName: "invoiceBizNo", Align: "Center" },
-            { Header: "업체코드|업체코드", Type: "Text", Width: 70, SaveName: "vendorCd", Align: "Center" },            
-            { Header: "업체명|업체명", Type: "Text", Width: 170, SaveName: "vendorNm", Align: "Center" },
-            { Header: "계산서|개수", Type: "Float", Width: 56, SaveName: "invoiceCnt", Align: "Right" },
-            { Header: "계산서|공급가액", Type: "Float", Width: 100, SaveName: "invoiceSupplyAmt", Align: "Right" },            
-            { Header: "계산서|부가세액", Type: "Float", Width: 100, SaveName: "invoiceVatAmt", Align: "Right" },
-            { Header: "계산서|합계", Type: "Float", Width: 100, SaveName: "invoiceTotAmt", Align: "Right" },
-            { Header: "전표|개수", Type: "Float", Width: 56, SaveName: "slipCnt", Align: "Right" },
-            { Header: "전표|공급가액", Type: "Float", Width: 100, SaveName: "slipSupplyAmt", Align: "Right"},        
-            { Header: "전표|부가세액", Type: "Float", Width: 100, SaveName: "slipVatAmt", Align: "Right" },
-            { Header: "전표|합계", Type: "Float", Width: 100, SaveName: "slipTotAmt", Align: "Right" },
-            { Header: "차이|개수", Type: "Float", Width: 56, SaveName: "gapCnt", Align: "Right" },
-            { Header: "차이|공급가액", Type: "Float", Width: 100, SaveName: "gapSupplyAmt", Align: "Right"},        
-            { Header: "차이|부가세액", Type: "Float", Width: 100, SaveName: "gapVatAmt", Align: "Right" },
-            { Header: "차이|합계", Type: "Float", Width: 100, SaveName: "gapTotAmt", Align: "Right" }
+        	{ Header: "기준연월|기준연월", Type: "Text", Width: 55, SaveName: "invoiceYearMon", Align: "Center" },
+            { Header: "사업자번호|사업자번호", Type: "Text", Width: 85, SaveName: "invoiceBizNo", Align: "Center" },
+            { Header: "업체코드|업체코드", Type: "Text", Width: 65, SaveName: "vendorCd", Align: "Center" },            
+            { Header: "업체명|업체명", Type: "Text", Width: 150, SaveName: "vendorNm", Align: "Center" },
+            { Header: "계산서|개수", Type: "AutoSum", Width: 55, SaveName: "invoiceCnt", Align: "Right" },
+            { Header: "계산서|공급가액", Type: "AutoSum", Width: 110, SaveName: "invoiceSupplyAmt", Align: "Right" },            
+            { Header: "계산서|부가세액", Type: "AutoSum", Width: 105, SaveName: "invoiceVatAmt", Align: "Right" },
+            { Header: "계산서|합계", Type: "AutoSum", Width: 110, SaveName: "invoiceTotAmt", Align: "Right" },
+            { Header: "전표|개수", Type: "AutoSum", Width: 55, SaveName: "slipCnt", Align: "Right" },
+            { Header: "전표|공급가액", Type: "AutoSum", Width: 110, SaveName: "slipSupplyAmt", Align: "Right"},        
+            { Header: "전표|부가세액", Type: "AutoSum", Width: 105, SaveName: "slipVatAmt", Align: "Right" },
+            { Header: "전표|합계", Type: "AutoSum", Width: 110, SaveName: "slipTotAmt", Align: "Right" },
+            { Header: "차이|개수", Type: "AutoSum", Width: 55, SaveName: "gapCnt", Align: "Right" },
+            { Header: "차이|공급가액", Type: "AutoSum", Width: 110, SaveName: "gapSupplyAmt", Align: "Right"},        
+            { Header: "차이|부가세액", Type: "AutoSum", Width: 105, SaveName: "gapVatAmt", Align: "Right" },
+            { Header: "차이|합계", Type: "AutoSum", Width: 110, SaveName: "gapTotAmt", Align: "Right" }
         ];
 		
         IBS_InitSheet(mySheet2, initdata);
@@ -198,6 +202,10 @@
         mySheet2.SetColFontUnderline("vendorNm", true);
         mySheet2.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet2.LoadSearchData(pListDatas);
+        
+        mySheet2.SetSumText(1, "합계");
+        var lastRow = mySheet2.LastRow();
+        mySheet2.SetMergeCell(lastRow, 1, 1, 4);        
     } 
 	
     // 세금계산서 그리드 클릭 함수
