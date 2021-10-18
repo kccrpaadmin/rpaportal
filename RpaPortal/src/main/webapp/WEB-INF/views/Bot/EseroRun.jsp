@@ -75,7 +75,7 @@
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a class="btn_common1" id="btn_target_date_open">대상기간</a>
-	    	<a class="btn_common1" id="btn_immediate_call" style="display:none;">즉시실행</a>
+	    	<a class="btn_common1" id="btn_immediate_call">즉시실행</a>
 	    	<a class="btn_common1" id="btn_schedule_open" style="display:none;">예약실행</a>
 	    </div>
 	    <!-- 그리드영역 -->
@@ -139,7 +139,6 @@
 	// 버튼 활성화, 비활성화 함수
 	function enableButtonControl() {
 		if (commonFunc.certInfo.roleType == "ROLE_ADMIN") {
-			$("#btn_immediate_call").css("display", "inline-block");
 			$("#btn_schedule_open").css("display", "inline-block");   
         }
 	}
