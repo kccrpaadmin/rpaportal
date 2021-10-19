@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="lnb_bar">
 	<a class="btn_lnb_bar_o" id="btn_lnb_menu_open"></a>
-	<a class="btn_lnb_bar btn_lnb_bar_w">관리자</a>
+	<a class="btn_lnb_bar btn_lnb_bar_a">관리자</a>
 </div>
 <div id="lnb_menu">
 	<div class="lnb_menu_header">
@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	<div class="lnb_menu_body">
-		<a class="btn_lnb_menu btn_lnb_menu_w_b">관리자</a>
+		<a class="btn_lnb_menu btn_lnb_menu_a_b">관리자</a>
 		<div class="lnb_sub_menu_box">
 			<a href="/Admin/CodeManage.do" class="btn_lnb_sub_menu">공통코드관리</a>
 			<a href="/Admin/MenuManage.do" class="btn_lnb_sub_menu">메뉴관리</a>

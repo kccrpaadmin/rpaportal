@@ -8,7 +8,7 @@
     <meta http-equiv="Contents-Type" content="text/html" charset="utf-8" />
    	<link rel="shortcut icon" type="text/css" href="/resources/imgs/favicon/kccenc.ico" />
     <link rel="stylesheet" type="text/css" href="/resources/css/font/nanumsquare.css" />
-    <link rel="stylesheet" type="text/css" href="/resources/css/rpa.css?ver=0.3" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/admin.css?ver=0.3" />
     <link rel="stylesheet" type="text/css" href="/resources/js/library/seeddialog/seeddialog.min.css" />
     <link rel="stylesheet" type="text/css" href="/resources/js/library/seedmodal/seedmodal.min.css" />
     <link rel="stylesheet" type="text/css" href="/resources/js/library/seedtree/seedtree.min.css" />
