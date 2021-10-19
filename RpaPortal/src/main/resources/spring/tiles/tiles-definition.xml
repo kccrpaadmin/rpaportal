@@ -18,14 +18,22 @@
 		<put-attribute name="body" value="/WEB-INF/views/Modal{1}/{2}.jsp" />
 	</definition>
 	
+	<!-- 관리자 -->
+ 	<definition name="layout_admin" template="/WEB-INF/tiles/layouts/layout_admin.jsp" preparer="com.kcc.tiles.CustumViewPreparer">
+		<put-attribute name="header" value="/WEB-INF/tiles/bundles/header_admin.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/tiles/bundles/menu_admin.jsp" />
+	</definition>
+	<definition name="Admin/*" extends="layout_admin">
+		<put-attribute name="body" value="/WEB-INF/views/Admin/{1}.jsp" />
+	</definition>
+	
 	<!-- 일반 -->
  	<definition name="layout" template="/WEB-INF/tiles/layouts/layout.jsp" preparer="com.kcc.tiles.CustumViewPreparer">
 		<put-attribute name="header" value="/WEB-INF/tiles/bundles/header.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/tiles/bundles/menu.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/tiles/bundles/footer.jsp" />
 	</definition>
 	<definition name="*/*" extends="layout">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
-
+		
 </tiles-definitions>
