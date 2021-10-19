@@ -48,6 +48,7 @@
             commonFunc = new CommonFunc();
             // "" 없는 데이터는 문법 오류 발생, 이스케이프 문자 처리 가능
             commonFunc.setCertInfo(<c:out value="${certInfo}" escapeXml="false" />);
+           	enableButtonControl();
            	reSizeHeightMobile();
 	    });
        	
@@ -140,6 +141,13 @@
 					$(lnbMenu).next().slideDown(500);;
 				}
 			}
+		}
+		
+		// 버튼 활성화, 비활성화 함수
+		function enableButtonControl() {
+			if (commonFunc.certInfo.roleType == "ROLE_ADMIN") {
+				$("#btn_admin").css("display", "inline-block");
+	        }
 		}
 		
 		// 모바일 높이 변경 (아이패드 크롬의 경우 너비를 못 맞추는 증상)  

@@ -12,6 +12,7 @@
 			<a href="/Home/Home.do"><img src="/resources/imgs/logo/logo_home.png" /></a>
 		</div>
 		<div class="header_right">
+			<a href="/Admin/Admin.do" class="header_admin" id="btn_admin" style="display:none;"><img src="/resources/imgs/button/btn_admin.png" /></a>
 			<span class="header_time_info">[${curTime}]</span>
 			<span class="header_user_info">${userInfo}</span>
 			<a href="/Account/Logout.do" class="header_logout">로그아웃</a>

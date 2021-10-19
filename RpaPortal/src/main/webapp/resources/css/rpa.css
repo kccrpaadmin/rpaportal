@@ -55,6 +55,7 @@ html,body{width:100%;height:100%;}
 #header_back #header{overflow:hidden;width:1200px;}
 #header_back #header .header_left{float:left;width:560px;height:60px;line-height:60px;padding-left:40px;}
 #header_back #header .header_right{float:right;width:600px;height:60px;line-height:60px;text-align:right;}
+#header_back #header .header_right .header_admin{margin-right:15px;}
 #header_back #header .header_right .header_time_info{margin-right:15px;font-family:'NanumSquare' ;font-size:14px;color:#4c63b4;transform:skew(-0.1deg);}
 #header_back #header .header_right .header_user_info{margin-right:15px;font-family:'NanumSquare' ;font-size:14px;color:#4c63b4;transform:skew(-0.1deg);}
 #header_back #header .header_right .header_logout{margin-right:15px;font-family:'NanumSquare' ;font-size:14px;color:#000000;transform:skew(-0.1deg);}
