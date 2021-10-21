@@ -48,7 +48,7 @@
             commonFunc = new CommonFunc();
             // "" 없는 데이터는 문법 오류 발생, 이스케이프 문자 처리 가능
             commonFunc.setCertInfo(<c:out value="${certInfo}" escapeXml="false" />);
-           	enableButtonControl();
+           	enableAdminButton();
            	reSizeHeightMobile();
 	    });
        	
@@ -144,7 +144,7 @@
 		}
 		
 		// 버튼 활성화, 비활성화 함수
-		function enableButtonControl() {
+		function enableAdminButton() {
 			if (commonFunc.certInfo.roleType == "ROLE_ADMIN") {
 				$("#btn_admin").css("display", "inline-block");
 	        }

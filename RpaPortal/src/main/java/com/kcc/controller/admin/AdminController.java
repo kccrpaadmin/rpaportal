@@ -34,5 +34,14 @@ public class AdminController extends BaseController {
 		logger.info("/Admin/Admin.do");
 		
 		return "Admin/Admin";
-	}	
+	}
+	
+	@GetMapping("/CodeManage.do")
+	public String CodeManage(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
+		logger.info("/Admin/CodeManage.do");
+		
+		return "Admin/CodeManage";
+	}
+	
+	
 }
