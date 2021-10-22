@@ -27,62 +27,56 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.AccessVO;
 import com.kcc.biz.model.BoardVO;
+import com.kcc.biz.model.CodeVO;
 import com.kcc.biz.model.MenuVO;
-import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.UserVO;
 import com.kcc.biz.service.IAccessService;
-import com.kcc.biz.service.IBoardService;
+import com.kcc.biz.service.ICodeService;
 import com.kcc.biz.service.ILoginService;
 import com.kcc.biz.service.IMenuService;
 import com.kcc.biz.service.IUserService;
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IRouteUtilService;
 
-@RequestMapping("/AjaxBoard")
+@RequestMapping("/AjaxAdmin")
 @Controller
-public class AjaxBoardController extends BaseController {
-	private static final Logger logger = LoggerFactory.getLogger(AjaxBoardController.class);
+public class AjaxAdminController extends BaseController {
+	private static final Logger logger = LoggerFactory.getLogger(AjaxAdminController.class);
 	
-	@Resource(name="boardService")
-	private IBoardService boardService;
+	@Resource(name="codeService")
+	private ICodeService codeService;
 	
-	// 공지사항 목록 조회
-	@PostMapping("/ListBasicBoard.do")
-	public @ResponseBody Map<String, Object> ListBasicBoard(@RequestBody BoardVO vo) {
-		logger.info("/AjaxBoard/ListBasicBoard.do");
+	@PostMapping("/ListCodeTree.do")
+	public @ResponseBody List<CodeVO> ListCodeTree(@RequestBody CodeVO vo) {
+		logger.info("/AjaxAdmin/ListCodeTree.do");
 		
-		List<BoardVO> listBoardVO = new ArrayList<BoardVO>();
+		List<CodeVO> listCodeVO = new ArrayList<CodeVO>();
 		try {
-			listBoardVO = boardService.listBasicBoard(vo);
+			listCodeVO = codeService.listCodeTree(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listCodeVO;
+	}		
+	
+	// 공통코드 자식 목록 조회
+	@PostMapping("/ListCodeChild.do")
+	public @ResponseBody Map<String, Object> ListCodeChild(@RequestBody CodeVO vo) {
+		logger.info("/AjaxAdmin/ListCodeChild.do");
+		
+		List<CodeVO> listCodeVO = new ArrayList<CodeVO>();
+		try {
+			listCodeVO = codeService.listCodeChild(vo);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		Map map = new HashMap<String, Object>();
-		map.put("data", listBoardVO);
+		map.put("data", listCodeVO);
 		
 		return map;
 	}
-	
-    //	공지사항 삭제
-	@PostMapping("/DeleteBoard.do")
-	public @ResponseBody StatusVO DeleteBoard(@RequestBody BoardVO vo) {
-			logger.info("/AjaxBoard/DeleteBoard.do");
-			String status = "Success";
-			
-			try {
-				boardService.deleteBoard(vo);
-			} 
-			catch (Exception e) {
-				status = "SaveError";
-				e.printStackTrace();
-			}
-			
-			StatusVO statusVO = new StatusVO();
-			statusVO.setStatus(status);
-			
-			return statusVO;
-	 }
-	
 }

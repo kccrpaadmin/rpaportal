@@ -9,4 +9,6 @@ import com.kcc.biz.model.CodeVO;
 @Repository("codeRepository")
 public interface CodeRepository {
 	List<CodeVO> listCodeProcedure(CodeVO vo) throws Exception;
+	List<CodeVO> listCodeTree(CodeVO vo) throws Exception;
+	List<CodeVO> listCodeChild(CodeVO vo) throws Exception;
 }

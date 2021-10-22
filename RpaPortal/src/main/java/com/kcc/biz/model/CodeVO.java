@@ -20,6 +20,7 @@ public class CodeVO {
 	private String ParentCd;
 	private String ChildYn;
 	private String OpenYn;
+	private String ViewNode;
 	
 	public String getProcedureNm() {
 		return ProcedureNm;
@@ -86,5 +87,11 @@ public class CodeVO {
 	}
 	public void setOpenYn(String openYn) {
 		OpenYn = openYn;
-	}	
+	}
+	public String getViewNode() {
+		return ViewNode;
+	}
+	public void setViewNode(String viewNode) {
+		ViewNode = viewNode;
+	}		
 }

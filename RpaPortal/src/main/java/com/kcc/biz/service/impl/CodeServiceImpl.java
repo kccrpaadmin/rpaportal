@@ -24,4 +24,12 @@ public class CodeServiceImpl implements ICodeService {
 	public List<CodeVO> listCodeProcedure(CodeVO vo) throws Exception {
 		return codeRepository.listCodeProcedure(vo);
 	}
+	
+	public List<CodeVO> listCodeTree(CodeVO vo) throws Exception {
+		return codeRepository.listCodeTree(vo);
+	}
+	
+	public List<CodeVO> listCodeChild(CodeVO vo) throws Exception {
+		return codeRepository.listCodeChild(vo);
+	}
 }
