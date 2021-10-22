@@ -118,7 +118,9 @@
  	
  	// 추가 버튼 클릭 이벤트
     $(document).on("click", "#btn_add", function (e) {
-    	mySheet.DataInsert(-1);
+    	var row = mySheet.DataInsert(-1);
+    	mySheet.SetCellValue(row, "upCd", $("#hdn_upcd").val());
+    	mySheet.SetCellValue(row, "lvl", $("#hdn_lvl").val());
     });
  	
 </script>
