@@ -12,23 +12,79 @@ public class CodeVO {
 	private String ProcedureNm;
 	private String Cd;
 	private String CdNm;
+	private String UpCd;
+	private String Lvl;
+	private String Ord;
+	private String UseYn;
+	private String Nm;
+	private String ParentCd;
+	private String ChildYn;
+	private String OpenYn;
 	
 	public String getProcedureNm() {
 		return ProcedureNm;
 	}
-	public String getCd() {
-		return Cd;
-	}
-	public String getCdNm() {
-		return CdNm;
-	}
 	public void setProcedureNm(String procedureNm) {
 		ProcedureNm = procedureNm;
+	}
+	public String getCd() {
+		return Cd;
 	}
 	public void setCd(String cd) {
 		Cd = cd;
 	}
+	public String getCdNm() {
+		return CdNm;
+	}
 	public void setCdNm(String cdNm) {
 		CdNm = cdNm;
+	}
+	public String getUpCd() {
+		return UpCd;
+	}
+	public void setUpCd(String upCd) {
+		UpCd = upCd;
+	}
+	public String getLvl() {
+		return Lvl;
+	}
+	public void setLvl(String lvl) {
+		Lvl = lvl;
+	}
+	public String getOrd() {
+		return Ord;
+	}
+	public void setOrd(String ord) {
+		Ord = ord;
+	}
+	public String getUseYn() {
+		return UseYn;
+	}
+	public void setUseYn(String useYn) {
+		UseYn = useYn;
+	}
+	public String getNm() {
+		return Nm;
+	}
+	public void setNm(String nm) {
+		Nm = nm;
+	}
+	public String getParentCd() {
+		return ParentCd;
+	}
+	public void setParentCd(String parentCd) {
+		ParentCd = parentCd;
+	}
+	public String getChildYn() {
+		return ChildYn;
+	}
+	public void setChildYn(String childYn) {
+		ChildYn = childYn;
+	}
+	public String getOpenYn() {
+		return OpenYn;
+	}
+	public void setOpenYn(String openYn) {
+		OpenYn = openYn;
 	}	
 }
