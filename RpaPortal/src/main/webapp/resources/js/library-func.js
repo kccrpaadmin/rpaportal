@@ -15,6 +15,9 @@
     // 모달팝업 객체 생성
     var seedModal = new SeedModal();
     
+    // 트리 객체 생성
+    var seedTree = new SeedTree();
+    
     // 프로그레스 객체 생성
     var seedProgress = new SeedProgress();
     
@@ -39,6 +42,11 @@
    	// 모달팝업 닫기 함수
     LibraryFunc.prototype.closeModal = function () {
         lfSkillFunc.closeModal();
+    }
+    
+    // 트리 생성 함수
+    LibraryFunc.prototype.createTree = function (pArea, pType, pName, pWidth, pHeight, pDatas, pViewNode, callback, pParam) {
+    	lfSkillFunc.createTree(pArea, pType, pName, pWidth, pHeight, pDatas, pViewNode, callback, pParam);
     }
     
     // 프로그레스 생성 함수
@@ -143,6 +151,20 @@
         },
         closeModal: function () {
             seedModal.close();
+        },
+        createTree: function (pArea, pType, pName, pWidth, pHeight, pDatas, pViewNode, callback, pParam) {
+        	// 트리 설정값
+    		var treeConfig = {
+	        	stArea: pArea,
+	        	stType: pType,
+	        	stName: pName,
+	        	stWidth: pWidth,
+	        	stHeight: pHeight,
+	        	stBackColor: "#fafafa",
+	        	stBorderColor: "#d5d5d5"
+    		}
+    		
+    		seedTree.makeTree(seedTree, treeConfig, pDatas, pViewNode, callback, pParam);    
         },
         createProgress: function () {
         	seedProgress.progress(seedProgress);
