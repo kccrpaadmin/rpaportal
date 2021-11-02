@@ -55,6 +55,11 @@
 	    	<a class="btn_common1" id="btn_searchCareerList">전체기술경력조회</a>
 	    </div>
 	    <!-- 그리드영역 -->
+	    <div class="grid_box">
+		    <div class="grid_btn">
+		    	<a class="btn_common2" id="btn_engineer_list_download" style="margin-bottom:3px;">엑셀</a>
+		    </div>	  
+	    </div>  
    	    <div id="sheet"></div>
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">
@@ -162,6 +167,12 @@
 		var resNo = "";
 		
 		libraryFunc.createModal(null, null, null, 1100, 560, "기술경력", "/ModalBot/EngineerManageCareerList.do" + "?pUserId=" + userId + "&pUserNm=" + userNm + "&pResNo=" + resNo );
+	});
+	
+	// 엑셀 다운로드 버튼 클릭 이벤트
+	$(document).on("click", "#btn_engineer_list_download", function (e) {		
+		var params = { Multipart: 0, FileName: "EngineerList.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		mySheet.Down2Excel(params);
 	});
 		
 </script>
