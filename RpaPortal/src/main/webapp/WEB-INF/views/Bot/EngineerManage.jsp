@@ -57,7 +57,7 @@
 	    <!-- 그리드영역 -->
 	    <div class="grid_box">
 		    <div class="grid_btn">
-		    	<a class="btn_common2" id="btn_engineer_list_download" style="margin-bottom:3px;">엑셀1</a>
+		    	<a class="btn_common2" id="btn_engineer_list_download" style="margin-bottom:3px;">엑셀</a>
 		    </div>	  
 	    </div>  
    	    <div id="sheet"></div>
