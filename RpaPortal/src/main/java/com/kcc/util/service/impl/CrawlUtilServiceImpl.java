@@ -106,6 +106,10 @@ public class CrawlUtilServiceImpl implements ICrawlUtilService {
 					crawlRunVO.setApiUrl(ConstWord.CRAWL_LOCAL2_IP);
 					crawlRunVO.setApiKey(ConstWord.CRAWL_API_KEY);
 				}
+				else if ("Local3".equals(commonUtilService.getServerEnv())) {
+					crawlRunVO.setApiUrl(ConstWord.CRAWL_LOCAL3_IP);
+					crawlRunVO.setApiKey(ConstWord.CRAWL_API_KEY);
+				}
 				else {
 					crawlRunVO.setApiUrl(ConstWord.CRAWL_LOCAL1_IP);
 					crawlRunVO.setApiKey(ConstWord.CRAWL_API_KEY);

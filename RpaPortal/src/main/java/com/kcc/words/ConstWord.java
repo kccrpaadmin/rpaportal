@@ -6,11 +6,13 @@ public class ConstWord {
 	
 	public final static String PORTAL_LOCAL1_IP = "70.71.14.112";
 	public final static String PORTAL_LOCAL2_IP = "70.71.14.115";
+	public final static String PORTAL_LOCAL3_IP = "70.71.14.141";
 	public final static String PORTAL_DEV_IP = "70.71.14.119";
 	public final static String PORTAL_REAL_IP = "70.71.14.123";
 	
 	public final static String CRAWL_LOCAL1_IP = "http://70.71.14.113/AppCrawl/RunWebCrawl";
 	public final static String CRAWL_LOCAL2_IP = "http://70.71.14.116/AppCrawl/RunWebCrawl";
+	public final static String CRAWL_LOCAL3_IP = "http://70.71.14.142/AppCrawl/RunWebCrawl";
 	public final static String CRAWL_DEV_IP = "http://crawldev.kccworld.net/AppCrawl/RunWebCrawl";
 	public final static String CRAWL_REAL_IP = "http://crawl.kccworld.net/AppCrawl/RunWebCrawl";
 	public final static String CRAWL_API_KEY = "505bed6a2e833cf90e1d6877c0c9f63862c94d046535e56f6fe7e7e6a92f61f6";
