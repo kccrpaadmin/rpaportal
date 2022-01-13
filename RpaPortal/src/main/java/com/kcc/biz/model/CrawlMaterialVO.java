@@ -9,12 +9,19 @@ package com.kcc.biz.model;
 // @RequestBody VO vo 매핑시에도 첫 글자 소문자와 매핑 된다. (input name="userId") 
 
 public class CrawlMaterialVO {
+	private String MenuId	;
 	private String RequestNo	;
 	private String StandardDate;	
 	private String MaterialTypeCd;
 	private String MaterialTypeNm;
 	private String Amt;
 	
+	public String getMenuId() {
+		return MenuId;
+	}
+	public void setMenuId(String menuId) {
+		MenuId = menuId;
+	}
 	public String getRequestNo() {
 		return RequestNo;
 	}

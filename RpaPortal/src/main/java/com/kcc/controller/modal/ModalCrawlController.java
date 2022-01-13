@@ -23,6 +23,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.AccessVO;
+import com.kcc.biz.model.CrawlMaterialVO;
 import com.kcc.biz.model.CrawlRequestVO;
 import com.kcc.biz.model.MenuVO;
 import com.kcc.biz.model.OcrRequestVO;
@@ -129,5 +130,18 @@ public class ModalCrawlController extends BaseController {
 		model.addAttribute("crawlRequestVO", crawlRequestVO);
 		
 		return "ModalCrawl/PersonInfoRunResult";
+	}
+	
+	@GetMapping("/MaterialRunResult.do")
+	public String MaterialRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalCrawl/MaterialRunResult.do");
+		
+		// CrawlRequestVO 입력
+		CrawlRequestVO crawlRequestVO = new CrawlRequestVO();
+		crawlRequestVO.setMenuId(pMenuId);
+		crawlRequestVO.setRequestNo(pRequestNo);
+		model.addAttribute("crawlRequestVO", crawlRequestVO);
+		
+		return "ModalCrawl/MaterialRunResult";
 	}
 }

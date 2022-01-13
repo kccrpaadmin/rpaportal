@@ -40,6 +40,7 @@ import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.AccessVO;
 import com.kcc.biz.model.CrawlG2bVO;
 import com.kcc.biz.model.CrawlKomisVO;
+import com.kcc.biz.model.CrawlMaterialVO;
 import com.kcc.biz.model.CrawlPersonInfoVO;
 import com.kcc.biz.model.MenuVO;
 import com.kcc.biz.model.StatusVO;
@@ -56,6 +57,7 @@ import com.kcc.biz.service.ICrawlScheduleService;
 import com.kcc.biz.service.ICrawlSystemCheckService;
 import com.kcc.biz.service.ICrawlG2bService;
 import com.kcc.biz.service.ICrawlKomisService;
+import com.kcc.biz.service.ICrawlMaterialService;
 import com.kcc.biz.service.ICrawlPersonInfoService;
 import com.kcc.biz.service.IUserService;
 import com.kcc.controller.base.BaseController;
@@ -88,6 +90,9 @@ public class AjaxCrawlController extends BaseController {
 	
 	@Resource(name="crawlPersonInfoService")
 	private ICrawlPersonInfoService crawlPersonInfoService;
+	
+	@Resource(name="crawlMaterialService")
+	private ICrawlMaterialService crawlMaterialService;
 	
 	@PostMapping("/RunCrawl.do")
 	public @ResponseBody CrawlRequestVO RunCrawl(@RequestBody CrawlRequestVO vo) {
@@ -358,5 +363,24 @@ public class AjaxCrawlController extends BaseController {
 		map.put("data", outListCrawlPersonInfoVO);
 		
 		return map;
-	}	
+	}
+
+	@PostMapping("/ListMaterial.do")
+	public @ResponseBody Map<String, Object> ListMaterial(@RequestBody CrawlMaterialVO vo) {
+		logger.info("/AjaxCrawl/ListMaterial.do");
+		
+		List<CrawlMaterialVO> outListCrawlMaterialVO = new ArrayList<CrawlMaterialVO>();
+		try {
+			outListCrawlMaterialVO = crawlMaterialService.listCrawlMaterial(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListCrawlMaterialVO);
+		
+		return map;
+	}
+	
 }
