@@ -42,8 +42,10 @@
 		<typeAlias alias="crawlG2bVO" type="com.kcc.biz.model.CrawlG2bVO" />
 		<!-- 웹크롤링 동관 및 환율정보 -->
 		<typeAlias alias="crawlKomisVO" type="com.kcc.biz.model.CrawlKomisVO" />
-		<!-- 발주처 직원정보 -->
+		<!-- 웹크롤링 발주처 직원정보 -->
 		<typeAlias alias="crawlPersonInfoVO" type="com.kcc.biz.model.CrawlPersonInfoVO" />
+		<!-- 웹크롤링 원자재 정보 -->
+		<typeAlias alias="crawlMaterialVO" type="com.kcc.biz.model.CrawlMaterialVO" />
 		
 		<!-- Ocr 요청 -->
 		<typeAlias alias="ocrRequestVO" type="com.kcc.biz.model.OcrRequestVO" />

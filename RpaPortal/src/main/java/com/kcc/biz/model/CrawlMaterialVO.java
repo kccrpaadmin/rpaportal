@@ -9,75 +9,40 @@ package com.kcc.biz.model;
 // @RequestBody VO vo 매핑시에도 첫 글자 소문자와 매핑 된다. (input name="userId") 
 
 public class CrawlMaterialVO {
-	private String RequestNo;
-	private String StandardDate;
-	private String CopperAmt;
-	private String ExchangeAmt;
-	private String MinCopperAmt;
-	private String MaxCopperAmt;
-	private String MinExchangeAmt;
-	private String MaxExchangeAmt;
-	private String YearMon;
-	private String SortType;
+	private String RequestNo	;
+	private String StandardDate;	
+	private String MaterialTypeCd;
+	private String MaterialTypeNm;
+	private String Amt;
 	
 	public String getRequestNo() {
 		return RequestNo;
 	}
-	public String getStandardDate() {
-		return StandardDate;
-	}
-	public String getCopperAmt() {
-		return CopperAmt;
-	}
-	public String getExchangeAmt() {
-		return ExchangeAmt;
-	}
-	public String getMinCopperAmt() {
-		return MinCopperAmt;
-	}
-	public String getMaxCopperAmt() {
-		return MaxCopperAmt;
-	}
-	public String getMinExchangeAmt() {
-		return MinExchangeAmt;
-	}
-	public String getMaxExchangeAmt() {
-		return MaxExchangeAmt;
-	}
-	public String getYearMon() {
-		return YearMon;
-	}
-	public String getSortType() {
-		return SortType;
-	}
 	public void setRequestNo(String requestNo) {
 		RequestNo = requestNo;
+	}
+	public String getStandardDate() {
+		return StandardDate;
 	}
 	public void setStandardDate(String standardDate) {
 		StandardDate = standardDate;
 	}
-	public void setCopperAmt(String copperAmt) {
-		CopperAmt = copperAmt;
+	public String getMaterialTypeCd() {
+		return MaterialTypeCd;
 	}
-	public void setExchangeAmt(String exchangeAmt) {
-		ExchangeAmt = exchangeAmt;
+	public void setMaterialTypeCd(String materialTypeCd) {
+		MaterialTypeCd = materialTypeCd;
 	}
-	public void setMinCopperAmt(String minCopperAmt) {
-		MinCopperAmt = minCopperAmt;
+	public String getMaterialTypeNm() {
+		return MaterialTypeNm;
 	}
-	public void setMaxCopperAmt(String maxCopperAmt) {
-		MaxCopperAmt = maxCopperAmt;
+	public void setMaterialTypeNm(String materialTypeNm) {
+		MaterialTypeNm = materialTypeNm;
 	}
-	public void setMinExchangeAmt(String minExchangeAmt) {
-		MinExchangeAmt = minExchangeAmt;
+	public String getAmt() {
+		return Amt;
 	}
-	public void setMaxExchangeAmt(String maxExchangeAmt) {
-		MaxExchangeAmt = maxExchangeAmt;
-	}
-	public void setYearMon(String yearMon) {
-		YearMon = yearMon;
-	}
-	public void setSortType(String sortType) {
-		SortType = sortType;
+	public void setAmt(String amt) {
+		Amt = amt;
 	}	
 }
