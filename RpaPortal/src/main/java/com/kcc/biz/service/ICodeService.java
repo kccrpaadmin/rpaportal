@@ -8,4 +8,5 @@ public interface ICodeService {
 	List<CodeVO> listCodeProcedure(CodeVO vo) throws Exception;
 	List<CodeVO> listCodeTree(CodeVO vo) throws Exception;
 	List<CodeVO> listCodeChild(CodeVO vo) throws Exception;
+	void saveCodeManage(List<CodeVO> vo) throws Exception;
 }

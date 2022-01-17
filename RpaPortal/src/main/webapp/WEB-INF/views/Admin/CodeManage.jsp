@@ -83,6 +83,30 @@
 		});
 	}
 	
+	// 코드 생성
+	function saveCodeManage(pArrCodeManage) {
+		$.ajax({
+			url: "/AjaxAdmin/SaveCodeManage.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify(pArrCodeManage),
+			dataType : "json",
+	        async: true,
+			success: function(data) {
+				if (data.status == "Success") {
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장 되었습니다.", null, commonFunc.refreshPage, null);
+				}
+				else {
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
+				}
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+		
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
     	commonFunc.initSheet("mySheet");
@@ -94,11 +118,12 @@
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
+        	{ Header: "상태", Type: "Status", Width: 40, SaveName: "status", Align: "Center" },
             { Header: "코드", Type: "Text", Width: 100, SaveName: "cd", Align: "Center" },
             { Header: "코드명", Type: "Text", Width: 290, SaveName: "cdNm" },
             { Header: "상위코드", Type: "Text", Width: 100, SaveName: "upCd", Align: "Center", Edit: false },
-            { Header: "레벨", Type: "Text", Width: 100, SaveName: "lvl", Align: "Center", Edit: false },
-            { Header: "순번", Type: "Text", Width: 100, SaveName: "ord", Align: "Center" },
+            { Header: "레벨", Type: "Text", Width: 80, SaveName: "lvl", Align: "Center", Edit: false },
+            { Header: "순번", Type: "Text", Width: 80, SaveName: "ord", Align: "Center" },
             { Header: "사용여부", Type: "Combo", Width: 100, SaveName: "useYn", ComboText: "Y|N", Align: "Center" }
         ];
 		
@@ -108,6 +133,32 @@
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet.LoadSearchData(pListDatas);
     }
+	
+    // 저장 전, 확인 함수
+	function saveCodeManageConfirm(pOption) {
+		if (pOption.sdBtnKey == "o") {
+			var saveJson = mySheet.GetSaveJson().data;
+			var saveJsonLen = saveJson.length;
+			var arrData = [];
+			
+			for (var i = 0; i < saveJsonLen; i++) {
+				var jsonData = {};
+
+				jsonData.status = saveJson[i].status;
+				jsonData.cd = saveJson[i].cd;
+				jsonData.cdNm = saveJson[i].cdNm;
+				jsonData.upCd = saveJson[i].upCd;
+				jsonData.lvl = saveJson[i].lvl;
+				jsonData.ord = saveJson[i].ord;
+				jsonData.useYn = saveJson[i].useYn;
+				jsonData.empNo = commonFunc.certInfo.empNo;				
+				
+				arrData.push(jsonData);										
+			}
+			
+			saveCodeManage(arrData);			
+        }
+	}
 	
 	// 트리 클릭 이벤트
     function tree_click(pNodeCd, pNodeNm, pParentNodeCd, pNodeChild, pNodeData, pParam) {
@@ -121,6 +172,20 @@
     	var row = mySheet.DataInsert(-1);
     	mySheet.SetCellValue(row, "upCd", $("#hdn_upcd").val());
     	mySheet.SetCellValue(row, "lvl", $("#hdn_lvl").val());
+    });
+ 	
+    // 저장 버튼 클릭 이벤트
+    $(document).on("click", "#btn_save", function (e) {
+		var saveStr = mySheet.GetSaveString();
+    	
+    	if (saveStr == "") {
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "변경 사항이 없습니다.", null, null, null);
+    		return false;
+    	}
+    	
+    	
+    	
+    	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장하시겠습니까?", null, saveCodeManageConfirm, null);    
     });
  	
 </script>

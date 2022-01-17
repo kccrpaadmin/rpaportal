@@ -29,6 +29,7 @@ import com.kcc.biz.model.AccessVO;
 import com.kcc.biz.model.BoardVO;
 import com.kcc.biz.model.CodeVO;
 import com.kcc.biz.model.MenuVO;
+import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.UserVO;
 import com.kcc.biz.service.IAccessService;
 import com.kcc.biz.service.ICodeService;
@@ -78,5 +79,32 @@ public class AjaxAdminController extends BaseController {
 		map.put("data", listCodeVO);
 		
 		return map;
+	}
+	
+	// 공통코드 저장
+	@PostMapping("/SaveCodeManage.do")
+	public @ResponseBody StatusVO SaveCodeManage(@RequestBody CodeVO[] vo) {
+		logger.info("/AjaxAdmin/SaveCodeManage.do");
+		String status = "Success";
+		
+		List<CodeVO> inListCodeVO = new ArrayList<CodeVO>();
+		
+		// json-simple 사용시 배열 파라미터 사용 가능
+		for (CodeVO codeVO : vo) {
+			inListCodeVO.add(codeVO);
+		}
+		
+		try {
+			codeService.saveCodeManage(inListCodeVO);
+		} 
+		catch (Exception e) {
+			status = "SaveError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
 	}
 }

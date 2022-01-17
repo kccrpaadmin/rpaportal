@@ -32,4 +32,10 @@ public class CodeServiceImpl implements ICodeService {
 	public List<CodeVO> listCodeChild(CodeVO vo) throws Exception {
 		return codeRepository.listCodeChild(vo);
 	}
+	
+	public void saveCodeManage(List<CodeVO> vo) throws Exception {
+		for (CodeVO codeVO : vo) {
+			codeRepository.saveCodeManage(codeVO);
+		}
+	}
 }
