@@ -21,6 +21,8 @@ public class CodeVO {
 	private String ChildYn;
 	private String OpenYn;
 	private String ViewNode;
+	private String Status;
+	private String EmpNo;
 	
 	public String getProcedureNm() {
 		return ProcedureNm;
@@ -94,4 +96,16 @@ public class CodeVO {
 	public void setViewNode(String viewNode) {
 		ViewNode = viewNode;
 	}		
+	public String getStatus() {
+		return Status;
+	}
+	public void setStatus(String status) {
+		Status = status;
+	}	
+	public String getEmpNo() {
+		return EmpNo;
+	}
+	public void setEmpNo(String empNo) {
+		EmpNo = empNo;
+	}
 }

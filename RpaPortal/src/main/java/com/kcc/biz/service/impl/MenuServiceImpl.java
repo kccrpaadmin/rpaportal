@@ -8,11 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.kcc.biz.dao.MenuRepository;
-import com.kcc.biz.dao.UserRepository;
 import com.kcc.biz.model.MenuVO;
-import com.kcc.biz.model.UserVO;
 import com.kcc.biz.service.IMenuService;
-import com.kcc.biz.service.IUserService;
 
 @Service("menuService")
 public class MenuServiceImpl implements IMenuService {
@@ -47,5 +44,19 @@ public class MenuServiceImpl implements IMenuService {
 	
 	public MenuVO getMenuAuth(MenuVO vo) throws Exception {
 		return menuRepository.getMenuAuth(vo);
+	}
+	
+	public List<MenuVO> listMenuTree(MenuVO vo) throws Exception {
+		return menuRepository.listMenuTree(vo);
+	}
+	
+	public List<MenuVO> listMenuChild(MenuVO vo) throws Exception {
+		return menuRepository.listMenuChild(vo);
+	}
+	
+	public void saveMenuManage(List<MenuVO> vo) throws Exception {
+		for (MenuVO menuVO : vo) {
+			menuRepository.saveMenuManage(menuVO);
+		}
 	}
 }

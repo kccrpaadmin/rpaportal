@@ -15,4 +15,7 @@ public interface MenuRepository {
 	List<MenuVO> listBotMenu(MenuVO vo) throws Exception;
 	MenuVO getBotMenu(MenuVO vo) throws Exception;
 	MenuVO getMenuAuth(MenuVO vo) throws Exception;
+	List<MenuVO> listMenuTree(MenuVO vo) throws Exception;
+	List<MenuVO> listMenuChild(MenuVO vo) throws Exception;
+	void saveMenuManage(MenuVO vo) throws Exception;	
 }

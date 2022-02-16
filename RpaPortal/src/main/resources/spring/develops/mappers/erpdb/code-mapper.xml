@@ -34,4 +34,30 @@
 		]]>
 	</select>
 	
+	<select id="saveCodeManage" statementType="CALLABLE" parameterType="codeVO" resultType="codeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Code_saveCode (
+	                #{Status}
+	               ,#{Cd}
+	               ,#{CdNm}
+	               ,#{UpCd}
+	               ,#{Lvl}
+	               ,#{Ord}
+	               ,#{UseYn}
+	               ,#{EmpNo}
+            	)
+			}
+		]]>
+	</select>
+	<select id="getGridCodeCombo" statementType="CALLABLE" parameterType="codeVO" resultType="codeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Code_getGridCodeCombo (
+	            	#{UpCd}
+            	)
+			}
+		]]>
+	</select>
+	
 </mapper>

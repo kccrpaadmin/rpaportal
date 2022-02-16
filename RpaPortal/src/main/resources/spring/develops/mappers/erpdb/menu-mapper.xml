@@ -80,4 +80,45 @@
 		]]>
 	</select>	
 	
+	<select id="listMenuTree" statementType="CALLABLE" parameterType="menuVO" resultType="menuVO">
+		<![CDATA[
+			{ 
+	            call PRA_Menu_listMenuTree (
+            		#{ViewNode}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listMenuChild" statementType="CALLABLE" parameterType="menuVO" resultType="menuVO">
+		<![CDATA[
+			{ 
+	            call PRA_Menu_listMenuChild (
+	            	#{UpMenuId}
+            	)
+			}
+		]]>
+	</select>
+	<select id="saveMenuManage" statementType="CALLABLE" parameterType="menuVO" resultType="menuVO">
+		<![CDATA[
+			{ 
+	            call PRA_Menu_saveMenu (
+	                #{Status}
+	               ,#{MenuId}
+	               ,#{MenuNm}
+	               ,#{UpMenuId}
+	               ,#{TaskTypeCd}
+	               ,#{ExecTypeCd}
+	               ,#{Lvl}
+	               ,#{Ord}
+	               ,#{RunUrl}
+	               ,#{ManageUrl}
+	               ,#{Content}
+	               ,#{UseYn}
+	               ,#{EmpNo}
+            	)
+			}
+		]]>
+	</select>
+	
 </mapper>

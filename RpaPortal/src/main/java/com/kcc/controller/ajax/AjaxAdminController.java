@@ -29,6 +29,7 @@ import com.kcc.biz.model.AccessVO;
 import com.kcc.biz.model.BoardVO;
 import com.kcc.biz.model.CodeVO;
 import com.kcc.biz.model.MenuVO;
+import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.UserVO;
 import com.kcc.biz.service.IAccessService;
 import com.kcc.biz.service.ICodeService;
@@ -46,6 +47,10 @@ public class AjaxAdminController extends BaseController {
 	@Resource(name="codeService")
 	private ICodeService codeService;
 	
+	@Resource(name="menuService")
+	private IMenuService menuService;
+	
+	// 공통코드 트리 목록 조회
 	@PostMapping("/ListCodeTree.do")
 	public @ResponseBody List<CodeVO> ListCodeTree(@RequestBody CodeVO vo) {
 		logger.info("/AjaxAdmin/ListCodeTree.do");
@@ -79,4 +84,93 @@ public class AjaxAdminController extends BaseController {
 		
 		return map;
 	}
+	
+	// 공통코드 저장
+	@PostMapping("/SaveCodeManage.do")
+	public @ResponseBody StatusVO SaveCodeManage(@RequestBody CodeVO[] vo) {
+		logger.info("/AjaxAdmin/SaveCodeManage.do");
+		String status = "Success";
+		
+		List<CodeVO> inListCodeVO = new ArrayList<CodeVO>();
+		
+		// json-simple 사용시 배열 파라미터 사용 가능
+		for (CodeVO codeVO : vo) {
+			inListCodeVO.add(codeVO);
+		}
+		
+		try {
+			codeService.saveCodeManage(inListCodeVO);
+		} 
+		catch (Exception e) {
+			status = "SaveError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
+	}
+	
+	// 메뉴 트리 목록 조회
+	@PostMapping("/ListMenuTree.do")
+	public @ResponseBody List<MenuVO> ListMenuTree(@RequestBody MenuVO vo) {
+		logger.info("/AjaxAdmin/ListMenuTree.do");
+		
+		List<MenuVO> listMenuVO = new ArrayList<MenuVO>();
+		try {
+			listMenuVO = menuService.listMenuTree(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listMenuVO;
+	}	
+		
+	// 메뉴 자식 목록 조회
+	@PostMapping("/ListMenuChild.do")
+	public @ResponseBody Map<String, Object> ListMenuChild(@RequestBody MenuVO vo) {
+		logger.info("/AjaxAdmin/ListMenuChild.do");
+		
+		List<MenuVO> listMenuVO = new ArrayList<MenuVO>();
+		try {
+			listMenuVO = menuService.listMenuChild(vo);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Map map = new HashMap<String, Object>();
+		map.put("data", listMenuVO);
+		
+		return map;
+	}	
+	
+	// 메뉴 저장
+	@PostMapping("/SaveMenuManage.do")
+	public @ResponseBody StatusVO SaveMenuManage(@RequestBody MenuVO[] vo) {
+		logger.info("/AjaxAdmin/SaveMenuManage.do");
+		String status = "Success";
+		
+		List<MenuVO> inListMenuVO = new ArrayList<MenuVO>();
+		
+		// json-simple 사용시 배열 파라미터 사용 가능
+		for (MenuVO menuVO : vo) {
+			inListMenuVO.add(menuVO);
+		}
+		
+		try {
+			menuService.saveMenuManage(inListMenuVO);
+		} 
+		catch (Exception e) {
+			status = "SaveError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
+	}	
 }
