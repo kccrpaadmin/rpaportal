@@ -23,11 +23,15 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.service.ILoginService;
 import com.kcc.controller.base.BaseController;
+import com.kcc.util.service.ICommonUtilService;
 
 @RequestMapping("/Admin")
 @Controller
 public class AdminController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+	
+	@Resource(name="commonUtilService")
+	private ICommonUtilService commonUtilService;
 	
 	@GetMapping("/Admin.do")
 	public String Admin(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
@@ -41,6 +45,18 @@ public class AdminController extends BaseController {
 		logger.info("/Admin/CodeManage.do");
 		
 		return "Admin/CodeManage";
+	}
+	
+	@GetMapping("/MenuManage.do")
+	public String MenuManage(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
+		logger.info("/Admin/MenuManage.do");
+		
+		model.addAttribute("taskTypeComboCd", commonUtilService.getGridCodeCombo("RA004", "Cd"));
+		model.addAttribute("taskTypeComboCdNm", commonUtilService.getGridCodeCombo("RA004", "CdNm"));
+		model.addAttribute("execTypeComboCd", commonUtilService.getGridCodeCombo("RA007", "Cd"));
+		model.addAttribute("execTypeComboCdNm", commonUtilService.getGridCodeCombo("RA007", "CdNm"));
+		
+		return "Admin/MenuManage";
 	}
 	
 	

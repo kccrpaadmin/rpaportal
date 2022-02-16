@@ -89,8 +89,32 @@
 		});
 	}
 	
-	// 메뉴 저장
+	// 코드 저장
 	function saveMenuManage(pArrMenuManage) {
+		$.ajax({
+			url: "/AjaxAdmin/SaveMenuManage.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify(pArrMenuManage),
+		    dataType : "json",
+	        async: true,
+			success: function(data) {
+				if (data.status == "Success") {
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장 되었습니다.", null, commonFunc.refreshPage, null);
+				}
+				else {
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
+				}
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
+	// 메뉴 저장
+	/* function saveMenuManage(pArrMenuManage) {
 		$.ajax({
 			url: "/AjaxAdmin/SaveMenuManage.do",
 			type: "POST",
@@ -111,7 +135,7 @@
 				return false;
 			}
 		});
-	}
+	} */
 		
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
@@ -186,7 +210,7 @@
  	// 추가 버튼 클릭 이벤트
     $(document).on("click", "#btn_add", function (e) {
     	var row = mySheet.DataInsert(-1);
-    	mySheet.SetCellValue(row, "upCd", $("#hdn_upcd").val());
+    	mySheet.SetCellValue(row, "upMenuId", $("#hdn_upcd").val());
     	mySheet.SetCellValue(row, "lvl", $("#hdn_lvl").val());
     });
  	

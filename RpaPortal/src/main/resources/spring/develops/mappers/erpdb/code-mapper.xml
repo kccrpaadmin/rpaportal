@@ -50,5 +50,14 @@
 			}
 		]]>
 	</select>
+	<select id="getGridCodeCombo" statementType="CALLABLE" parameterType="codeVO" resultType="codeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Code_getGridCodeCombo (
+	            	#{UpCd}
+            	)
+			}
+		]]>
+	</select>
 	
 </mapper>

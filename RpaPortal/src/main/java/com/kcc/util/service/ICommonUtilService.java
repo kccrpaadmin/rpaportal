@@ -21,4 +21,5 @@ public interface ICommonUtilService {
 	JSONObject getOcrNaverRequestJsonData(String menuId, String filePath);
 	String getDateUserFormat(String formatType, String dateType, int controlDate);
 	String getCodeProcedureSelectBox(String selectBoxNm, String procedureNm, String cd, Boolean isAddFirstRow, String addFirstRowNm, String selectedCd);
+	String getGridCodeCombo(String upCd, String colNm);
 }

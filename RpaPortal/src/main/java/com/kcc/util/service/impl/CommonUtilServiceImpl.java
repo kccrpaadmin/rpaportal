@@ -40,6 +40,7 @@ import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.AttFileVO;
 import com.kcc.biz.model.BotScheduleVO;
 import com.kcc.biz.model.CodeVO;
+import com.kcc.biz.model.MenuVO;
 import com.kcc.biz.service.IAttFileService;
 import com.kcc.biz.service.ICodeService;
 import com.kcc.util.service.ICommonUtilService;
@@ -360,6 +361,32 @@ public class CommonUtilServiceImpl implements ICommonUtilService {
 		sb.append("</select>");
 		
 		return sb.toString();
+	}
+	
+	// 그리드 공통코드 목록 조회 (공통 프로시져)
+	public String getGridCodeCombo(String upCd, String colNm) {
+		CodeVO inCodeVO = new CodeVO();		
+		inCodeVO.setUpCd(upCd);
+		
+		// CodeVO 출력
+		CodeVO outCodeVO = new CodeVO();
+		String returnValue = "";
+				
+		try {
+			outCodeVO = codeService.getGridCodeCombo(inCodeVO);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(colNm.equals("Cd")) {
+			returnValue = outCodeVO.getCd();
+		}
+		else	{
+			returnValue = outCodeVO.getCdNm();
+		}
+				
+		return returnValue;
 	}
 	
 }

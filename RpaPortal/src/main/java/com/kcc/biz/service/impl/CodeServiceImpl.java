@@ -38,4 +38,8 @@ public class CodeServiceImpl implements ICodeService {
 			codeRepository.saveCodeManage(codeVO);
 		}
 	}
+	
+	public CodeVO getGridCodeCombo(CodeVO vo) throws Exception {
+		return codeRepository.getGridCodeCombo(vo);
+	}	
 }

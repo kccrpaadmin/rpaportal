@@ -47,6 +47,12 @@ public class MenuVO {
 	private String ChgDate;
 	private String MenuDetailNm;
 	private String MenuDetailUrl;
+	private String ViewNode;
+	private String Cd;
+	private String Nm;
+	private String ParentCd;
+	private String ChildYn;
+	private String OpenYn;
 	
 	public String getSearchTxt() {
 		return SearchTxt;
@@ -275,5 +281,41 @@ public class MenuVO {
 	}
 	public void setMenuDetailUrl(String menuDetailUrl) {
 		MenuDetailUrl = menuDetailUrl;
+	}	
+	public String getViewNode() {
+		return ViewNode;
+	}
+	public void setViewNode(String viewNode) {
+		ViewNode = viewNode;
+	}	
+	public String getCd() {
+		return Cd;
+	}
+	public void setCd(String cd) {
+		Cd = cd;
+	}	
+	public String getNm() {
+		return Nm;
+	}
+	public void setNm(String nm) {
+		Nm = nm;
+	}	
+	public String getParentCd() {
+		return ParentCd;
+	}
+	public void setParentCd(String parentCd) {
+		ParentCd = parentCd;
+	}	
+	public String getChildYn() {
+		return ChildYn;
+	}
+	public void setChildYn(String childYn) {
+		ChildYn = childYn;
+	}	
+	public String getOpenYn() {
+		return OpenYn;
+	}
+	public void setVOpenYn(String openYn) {
+		OpenYn = openYn;
 	}	
 }
