@@ -7,4 +7,6 @@ import com.kcc.biz.model.CrawlMaterialVO;
 
 public interface ICrawlMaterialService {
 	List<CrawlMaterialVO> listCrawlMaterial(CrawlMaterialVO vo) throws Exception;
+	List<CrawlMaterialVO> listCrawlMaterialManageSteelScrap(CrawlMaterialVO vo) throws Exception;
+	List<CrawlMaterialVO> listCrawlMaterialManageSteelScrapAndRebar(CrawlMaterialVO vo) throws Exception;
 }

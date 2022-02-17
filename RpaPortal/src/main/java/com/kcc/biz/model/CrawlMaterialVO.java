@@ -15,6 +15,10 @@ public class CrawlMaterialVO {
 	private String MaterialTypeCd;
 	private String MaterialTypeNm;
 	private String Amt;
+	private String StartDate;
+	private String EndDate;
+	private String ScrapRate;
+	private String RebarRate;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -51,5 +55,29 @@ public class CrawlMaterialVO {
 	}
 	public void setAmt(String amt) {
 		Amt = amt;
-	}	
+	}
+	public String getStartDate() {
+		return StartDate;
+	}
+	public void setStartDate(String startDate) {
+		StartDate = startDate;
+	}
+	public String getEndDate() {
+		return EndDate;
+	}
+	public void setEndDate(String endDate) {
+		EndDate = endDate;
+	}
+	public String getScrapRate() {
+		return ScrapRate;
+	}
+	public void setScrapRate(String scrapRate) {
+		ScrapRate = scrapRate;
+	}
+	public String getRebarRate() {
+		return RebarRate;
+	}
+	public void setRebarRate(String rebarRate) {
+		RebarRate = rebarRate;
+	}
 }

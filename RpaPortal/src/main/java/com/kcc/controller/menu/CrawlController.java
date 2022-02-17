@@ -268,4 +268,33 @@ public class CrawlController extends BaseController {
 		
 		return "Crawl/MaterialRun";
 	}
+	
+	@GetMapping("/MaterialManage.do")
+	public String MaterialManage(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Crawl/MaterialManage.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getCrawlMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		model.addAttribute("startDate", commonUtilService.getDateUserFormat("yyyy-MM", "Month", -11));
+		model.addAttribute("endDate", commonUtilService.getDateUserFormat("yyyy-MM", "Month", 0));
+
+		return "Crawl/MaterialManage";
+	}
+	
 }

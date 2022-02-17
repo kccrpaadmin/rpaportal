@@ -13,4 +13,28 @@
 		]]>
 	</select>
 	
+	<select id="listCrawlMaterialManageSteelScrap" statementType="CALLABLE" parameterType="crawlMaterialVO" resultType="crawlMaterialVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlMaterialManageSteelScrap (
+            		#{MaterialTypeCd}
+            		,#{StartDate}
+            		,#{EndDate}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listCrawlMaterialManageSteelScrapAndRebar" statementType="CALLABLE" parameterType="crawlMaterialVO" resultType="crawlMaterialVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlMaterialManageSteelScrapAndRebar (
+            		#{MaterialTypeCd}
+            		,#{StartDate}
+            		,#{EndDate}
+            	)
+			}
+		]]>
+	</select>
+	
 </mapper>

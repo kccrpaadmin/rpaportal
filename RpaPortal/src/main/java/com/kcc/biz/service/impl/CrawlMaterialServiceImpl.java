@@ -29,5 +29,13 @@ public class CrawlMaterialServiceImpl implements ICrawlMaterialService {
 	
 	public List<CrawlMaterialVO> listCrawlMaterial(CrawlMaterialVO vo) throws Exception {
 		return crawlMaterialRepository.listCrawlMaterial(vo);
-	}	
+	}
+	
+	public List<CrawlMaterialVO> listCrawlMaterialManageSteelScrap(CrawlMaterialVO vo) throws Exception {
+		return crawlMaterialRepository.listCrawlMaterialManageSteelScrap(vo);
+	}
+	
+	public List<CrawlMaterialVO> listCrawlMaterialManageSteelScrapAndRebar(CrawlMaterialVO vo) throws Exception {
+		return crawlMaterialRepository.listCrawlMaterialManageSteelScrapAndRebar(vo);
+	}
 }

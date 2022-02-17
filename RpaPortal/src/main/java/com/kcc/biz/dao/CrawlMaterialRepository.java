@@ -10,4 +10,6 @@ import com.kcc.biz.model.CrawlMaterialVO;
 @Repository("crawlMaterialRepository")
 public interface CrawlMaterialRepository {
 	List<CrawlMaterialVO> listCrawlMaterial(CrawlMaterialVO vo) throws Exception;
+	List<CrawlMaterialVO> listCrawlMaterialManageSteelScrap(CrawlMaterialVO vo) throws Exception;
+	List<CrawlMaterialVO> listCrawlMaterialManageSteelScrapAndRebar(CrawlMaterialVO vo) throws Exception;
 }

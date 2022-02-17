@@ -383,4 +383,31 @@ public class AjaxCrawlController extends BaseController {
 		return map;
 	}
 	
+	@PostMapping("/ListMaterialManage.do")
+	public @ResponseBody Map<String, Object> ListMaterialManage(@RequestBody CrawlMaterialVO vo) {
+		logger.info("/AjaxCrawl/ListMaterialManage.do");
+		
+		List<CrawlMaterialVO> outListCrawlMaterialSteelScrapVO = new ArrayList<CrawlMaterialVO>();
+		try {
+			outListCrawlMaterialSteelScrapVO = crawlMaterialService.listCrawlMaterialManageSteelScrap(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		List<CrawlMaterialVO> outListCrawlMaterialSteelScrapAndRebarVO = new ArrayList<CrawlMaterialVO>();
+		try {
+			outListCrawlMaterialSteelScrapAndRebarVO = crawlMaterialService.listCrawlMaterialManageSteelScrapAndRebar(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("outListCrawlMaterialSteelScrapVO", outListCrawlMaterialSteelScrapVO);
+		map.put("outListCrawlMaterialSteelScrapAndRebarVO", outListCrawlMaterialSteelScrapAndRebarVO);
+		
+		return map;
+	}
+	
 }
