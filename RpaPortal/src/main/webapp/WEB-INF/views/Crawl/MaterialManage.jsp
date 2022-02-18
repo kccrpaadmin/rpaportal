@@ -54,7 +54,7 @@
 		</div>
 		<!-- 차트영역 -->
     	<div class="chart_box">
-			<div class=chart_header>최근 철급수급계획 현황</div>
+			<div class=chart_header>최근 철근수급계획 현황</div>
 			<div id="chartHolder3"></div>
 		</div>
    	    <!-- 버튼영역 -->
