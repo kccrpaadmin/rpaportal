@@ -19,6 +19,8 @@ public class CrawlMaterialVO {
 	private String EndDate;
 	private String ScrapRate;
 	private String RebarRate;
+	private String YearMon;
+	private String PlanQty;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -79,5 +81,17 @@ public class CrawlMaterialVO {
 	}
 	public void setRebarRate(String rebarRate) {
 		RebarRate = rebarRate;
+	}
+	public String getYearMon() {
+		return YearMon;
+	}
+	public void setYearMon(String yearMon) {
+		YearMon = yearMon;
+	}
+	public String getPlanQty() {
+		return PlanQty;
+	}
+	public void setPlanQty(String planQty) {
+		PlanQty = planQty;
 	}
 }

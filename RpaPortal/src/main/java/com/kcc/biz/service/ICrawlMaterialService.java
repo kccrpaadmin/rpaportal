@@ -9,4 +9,5 @@ public interface ICrawlMaterialService {
 	List<CrawlMaterialVO> listCrawlMaterial(CrawlMaterialVO vo) throws Exception;
 	List<CrawlMaterialVO> listCrawlMaterialManageSteelScrap(CrawlMaterialVO vo) throws Exception;
 	List<CrawlMaterialVO> listCrawlMaterialManageSteelScrapAndRebar(CrawlMaterialVO vo) throws Exception;
+	List<CrawlMaterialVO> listCrawlMaterialManageRebarPlan(CrawlMaterialVO vo) throws Exception;
 }

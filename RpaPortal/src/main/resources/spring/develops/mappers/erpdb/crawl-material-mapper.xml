@@ -37,4 +37,12 @@
 		]]>
 	</select>
 	
+	<select id="listCrawlMaterialManageRebarPlan" statementType="CALLABLE" parameterType="crawlMaterialVO" resultType="crawlMaterialVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlMaterialManageRebarPlan
+			}
+		]]>
+	</select>
+	
 </mapper>

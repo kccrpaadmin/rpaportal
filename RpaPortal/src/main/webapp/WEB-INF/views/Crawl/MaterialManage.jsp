@@ -52,6 +52,11 @@
 			<div class=chart_header>가격 지수 변동 현황</div>
 			<div id="chartHolder2"></div>
 		</div>
+		<!-- 차트영역 -->
+    	<div class="chart_box">
+			<div class=chart_header>최근 철급수급계획 현황</div>
+			<div id="chartHolder3"></div>
+		</div>
    	    <!-- 버튼영역 -->
 	    <div class="btn_box" style="float:left;width:100%">
 	    	<a href="/Crawl/ListMenu.do"><img src="/resources/imgs/button/btn_box_go_back.png" /></a>
@@ -80,8 +85,9 @@
 		    dataType : "json",
 	        async: true,
 			success: function(datas) {
-				make2DLineChartSteel("chart1", "chartHolder1", "1078px", "400px", datas.outListCrawlMaterialSteelScrapVO, "", "subjectStyleType1", "단위(달러)", "standardDate", "false");
-				make2DLineChart("chart2", "chartHolder2", "1078px", "400px", datas.outListCrawlMaterialSteelScrapAndRebarVO, "", "subjectStyleType1", "단위(%)", "standardDate", "false");
+				make2DLineChart("chart1", "chartHolder1", "1078px", "400px", datas.outListCrawlMaterialSteelScrapVO, "", "subjectStyleType1", "단위(달러)", "standardDate", "false");
+				make2DLineChartMulti("chart2", "chartHolder2", "1078px", "400px", datas.outListCrawlMaterialSteelScrapAndRebarVO, "", "subjectStyleType1", "단위(%)", "standardDate", "false");
+				make2DColumnChart("chart3", "chartHolder3", "1078px", "400px", datas.outListCrawlMaterialRebarPlanVO, "", "subjectStyleType1", "단위(수량)", "yearMon", "");
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
@@ -91,7 +97,7 @@
 	}
 	
 	// 원자재정보 철스크랩 차트 생성
-	function make2DLineChartSteel(pChartNm, pChartElmtNm, pWidth, pHeight, pDatas, pSubject, pSubjectStyle, pUnit, pCategoryField, pButtonMode) {
+	function make2DLineChart(pChartNm, pChartElmtNm, pWidth, pHeight, pDatas, pSubject, pSubjectStyle, pUnit, pCategoryField, pButtonMode) {
 		rMateChartH5.create(pChartNm, pChartElmtNm, "", pWidth, pHeight);
 		var layoutStr =
 			'<rMateChart backgroundColor="#FAFAFA" borderStyle="none">'
@@ -146,7 +152,8 @@
 		});
 	}
 	
-	function make2DLineChart(pChartNm, pChartElmtNm, pWidth, pHeight, pDatas, pSubject, pSubjectStyle, pUnit, pCategoryField, pButtonMode) {
+	// 원자재정보 철스크랩-철근 지수차이 차트 생성
+	function make2DLineChartMulti(pChartNm, pChartElmtNm, pWidth, pHeight, pDatas, pSubject, pSubjectStyle, pUnit, pCategoryField, pButtonMode) {
 		rMateChartH5.create(pChartNm, pChartElmtNm, "", pWidth, pHeight);
 		var layoutStr =
 			'<rMateChart backgroundColor="#FAFAFA" borderStyle="none">'
@@ -208,6 +215,62 @@
 		    "setData" : pDatas
 		});
 	}
+	
+	// 원자재정보 최근 철근수급계획 차트 생성
+	function make2DColumnChart(pChartNm, pChartElmtNm, pWidth, pHeight, pDatas, pSubject, pSubjectStyle, pUnit, pCategoryField, pLabelRotation) {
+		rMateChartH5.create(pChartNm, pChartElmtNm, "", pWidth, pHeight);
+		var layoutStr =
+			'<rMateChart backgroundColor="#FAFAFA" borderStyle="none">'
+				+'<Options>'
+					+'<Caption text="' + pSubject + '" styleName="' + pSubjectStyle + '"/>'
+		            +'<SubCaption text="' + pUnit + '" textAlign="right"/>'
+				+'</Options>'
+				+'<NumberFormatter id="numFmt" useThousandsSeparator="true" precision="2"/>'
+				+'<Column2DChart showDataTips="true" selectionMode="multiple" columnWidthRatio="0.4" columnWidthMinRatio="0.1" maxColumnWidth="12">'
+					+'<horizontalAxis>'
+						+'<CategoryAxis id="hAxis" categoryField="' + pCategoryField +'"/>'
+					+'</horizontalAxis>'
+					+'<verticalAxis>'
+						+'<LinearAxis formatter="{numFmt}"/>'
+					+'</verticalAxis>'
+					+'<series>'
+						+'<Column2DSeries yField="planQty" displayName="" fillJsFunction="" labelPosition="outside">'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate/>'
+							+'</showDataEffect>'
+							+'<fills>'
+								+'<SolidColor color="#03a9f5" alpha="0.7"/>'
+								+'<SolidColor color="#fd6783" alpha="0.7"/>'
+								+'<SolidColor color="#fabc05" alpha="0.7"/>'
+							+'</fills>'
+						+'</Column2DSeries>'
+					+'</series>'
+				  	+'<horizontalAxisRenderers>'
+	                	+'<Axis2DRenderer axis="{hAxis}" labelRotation="' + pLabelRotation + '"/>'
+	              	+'</horizontalAxisRenderers>'
+	              	+'<backgroundElements>'
+						+'<GridLines/>'
+						+'<AxisMarker>'
+							+'<lines>'
+								+'<AxisLine value="0" lineStyle="normal">'
+									+'<stroke>'
+										+'<Stroke color="#f15151" weight="1"/>'
+									+'</stroke>'
+								+'</AxisLine>'
+							+'</lines>'
+						+'</AxisMarker>'
+					+'</backgroundElements>'
+				+'</Column2DChart>'
+			 	+'<Style>'
+			 		+'.subjectStyleType1{fontSize:15;fontFamily:dotum;fontWeight:bold;color:#5D5D5D;}'
+	         	+'</Style>'
+			+'</rMateChart>';
+		
+		rMateChartH5.calls(pChartNm, {
+		    "setLayout" : layoutStr,
+		    "setData" : pDatas
+		});
+	}	
 	
 	// 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_search", function (e) {

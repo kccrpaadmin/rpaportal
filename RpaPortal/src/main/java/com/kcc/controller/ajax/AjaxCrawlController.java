@@ -403,9 +403,18 @@ public class AjaxCrawlController extends BaseController {
 			e.printStackTrace();
 		}
 		
+		List<CrawlMaterialVO> outListCrawlMaterialRebarPlanVO = new ArrayList<CrawlMaterialVO>();
+		try {
+			outListCrawlMaterialRebarPlanVO = crawlMaterialService.listCrawlMaterialManageRebarPlan(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		Map map = new HashMap<String, Object>();
 		map.put("outListCrawlMaterialSteelScrapVO", outListCrawlMaterialSteelScrapVO);
 		map.put("outListCrawlMaterialSteelScrapAndRebarVO", outListCrawlMaterialSteelScrapAndRebarVO);
+		map.put("outListCrawlMaterialRebarPlanVO", outListCrawlMaterialRebarPlanVO);
 		
 		return map;
 	}
