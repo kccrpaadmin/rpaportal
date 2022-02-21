@@ -112,6 +112,8 @@
           
             { Header: "기준연월", Type: "Text", Width: 0, SaveName: "yearMon", Align: "Center", Hidden: true },
             { Header: "계산서일자", Type: "Text", Width: 80, SaveName: "makeDate", Align: "Center" },
+            { Header: "발급일자", Type: "Text", Width: 80, SaveName: "drawDate", Align: "Center" },
+            { Header: "전송일자", Type: "Text", Width: 80, SaveName: "sendDate", Align: "Center" },
             { Header: "전표번호", Type: "Text", Width: 150, SaveName: "slipNo", Align: "Center" },
             { Header: "국세청인증번호", Type: "Text", Width: 180, SaveName: "issueNo", Align: "Center" },
             { Header: "적요", Type: "Text", Width: 250, SaveName: "itemNm" },
@@ -161,14 +163,22 @@
     }    
 	
     // 기준연월 세금계산서 상세 엑셀 다운로드 버튼 클릭 이벤트
-	$(document).on("click", "#btn_invoice_download", function (e) {			
-		var params = { Multipart: 0, FileName: "VendorInvoiceFile.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+	$(document).on("click", "#btn_invoice_download", function (e) {	
+		var fileName = yearMon + "_" + "${outEseroVO.vendorNm}" + "_(세금)계산서상세내역.xls"
+		
+		//var params = { Multipart: 0, FileName: "VendorInvoiceFile.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		var params = { Multipart: 0, FileName: fileName,  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		
 		mySheet1.Down2Excel(params);
 	});
 	
 	// 최근 1년간 전표데이터 엑셀 다운로드 버튼 클릭 이벤트
 	$(document).on("click", "#btn_slip_download", function (e) {		
-		var params = { Multipart: 0, FileName: "VendorSlipFile.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		var fileName = yearMon + "_" + "${outEseroVO.vendorNm}" + "_최근1년간전표내역.xls"
+		
+		//var params = { Multipart: 0, FileName: "VendorSlipFile.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		var params = { Multipart: 0, FileName: fileName,  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		
 		mySheet2.Down2Excel(params);
 	});
 </script>
