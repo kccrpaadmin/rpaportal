@@ -53,9 +53,9 @@
         initdata.Cols = [
             { Header: "요청번호", Type: "Text", Width: 100, SaveName: "requestNo", Hidden:true },            
             { Header: "계약정보|계약번호", Type: "Text", Width: 110, SaveName: "contractNo", Align: "Center" },
-            { Header: "계약정보|현장명", Type: "Text", Width: 180, SaveName: "siteNm },
-            { Header: "계약정보|공사명", Type: "Text", Width: 140, SaveName: "contractNm"},            
-            { Header: "계약정보|업체명", Type: "Text", Width: 120, SaveName: "vendorNm"},
+            { Header: "계약정보|현장명", Type: "Text", Width: 180, SaveName: "siteNm" },
+            { Header: "계약정보|공사명", Type: "Text", Width: 140, SaveName: "contractNm" },            
+            { Header: "계약정보|업체명", Type: "Text", Width: 120, SaveName: "vendorNm" },
             { Header: "계약정보|계약일자", Type: "Text", Width: 80, SaveName: "contractDate", Align: "Center" },
             { Header: "계약정보|계약금액", Type: "Float", Width: 100, SaveName: "contractAmt", Align: "Right"},
             { Header: "계약정보|계약시작일자", Type: "Text", Width: 80, SaveName: "contractStartDate", Align: "Center" },
