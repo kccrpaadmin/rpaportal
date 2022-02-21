@@ -53,16 +53,15 @@
         initdata.Cols = [
             { Header: "요청번호", Type: "Text", Width: 100, SaveName: "requestNo", Hidden:true },            
             { Header: "계약정보|계약번호", Type: "Text", Width: 110, SaveName: "contractNo", Align: "Center" },
-            { Header: "계약정보|현장명", Type: "Text", Width: 180, SaveName: "siteNm", Align: "Center" },
-            { Header: "계약정보|공사명", Type: "Text", Width: 160, SaveName: "contractNm", Align: "Center"},            
-            { Header: "계약정보|업체명", Type: "Text", Width: 140, SaveName: "vendorNm", Align: "Center"},
+            { Header: "계약정보|현장명", Type: "Text", Width: 180, SaveName: "siteNm },
+            { Header: "계약정보|공사명", Type: "Text", Width: 140, SaveName: "contractNm"},            
+            { Header: "계약정보|업체명", Type: "Text", Width: 120, SaveName: "vendorNm"},
             { Header: "계약정보|계약일자", Type: "Text", Width: 80, SaveName: "contractDate", Align: "Center" },
-            { Header: "계약정보|변경사유", Type: "Text", Width: 180, SaveName: "contractChgReason", Align: "Center" },
             { Header: "계약정보|계약금액", Type: "Float", Width: 100, SaveName: "contractAmt", Align: "Right"},
             { Header: "계약정보|계약시작일자", Type: "Text", Width: 80, SaveName: "contractStartDate", Align: "Center" },
             { Header: "계약정보|계약종료일자", Type: "Text", Width: 80, SaveName: "contractFinishDate", Align: "Center" },
-            { Header: "하도급대금지급보증|보증기관", Type: "Text", Width: 120, SaveName: "guaranteeOrgNm", Align: "Center" },
-            { Header: "하도급대금지급보증|보증서번호", Type: "Text", Width: 140, SaveName: "guaranteePolicyNo", Align: "Center" },
+            { Header: "하도급대금지급보증|보증기관", Type: "Text", Width: 100, SaveName: "guaranteeOrgNm", Align: "Center" },
+            { Header: "하도급대금지급보증|보증서번호", Type: "Text", Width: 120, SaveName: "guaranteePolicyNo", Align: "Center" },
             { Header: "등록상태|등록상태", Type: "Text", Width: 70, SaveName: "successType", Align: "Center" },
             { Header: "오류메세지|오류메세지", Type: "Text", Width: 200, SaveName: "errorMsg" }
         ];
