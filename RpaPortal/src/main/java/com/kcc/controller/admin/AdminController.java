@@ -59,5 +59,12 @@ public class AdminController extends BaseController {
 		return "Admin/MenuManage";
 	}
 	
+	@GetMapping("/AuthManage.do")
+	public String AuthManage(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
+		logger.info("/Admin/AuthManage.do");
+		
+		return "Admin/AuthManage";
+	}
+	
 	
 }

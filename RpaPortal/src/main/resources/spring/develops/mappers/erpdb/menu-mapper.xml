@@ -99,7 +99,8 @@
 			}
 		]]>
 	</select>
-	<select id="saveMenuManage" statementType="CALLABLE" parameterType="menuVO" resultType="menuVO">
+	
+	<update id="saveMenuManage" statementType="CALLABLE" parameterType="menuVO" >
 		<![CDATA[
 			{ 
 	            call PRA_Menu_saveMenu (
@@ -119,6 +120,89 @@
             	)
 			}
 		]]>
+	</update>
+	
+	<select id="listMenuAuthRunChild" statementType="CALLABLE" parameterType="menuVO" resultType="menuVO">
+		<![CDATA[
+			{ 
+	            call PRA_Menu_listMenuAuthRunChild (
+	            	#{MenuId}
+            	)
+			}
+		]]>
 	</select>
+	
+	<select id="listMenuAuthManageChild" statementType="CALLABLE" parameterType="menuVO" resultType="menuVO">
+		<![CDATA[
+			{ 
+	            call PRA_Menu_listMenuAuthManageChild (
+	            	#{MenuId}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listAuthManageSearchUser" statementType="CALLABLE" parameterType="menuVO" resultType="menuVO">
+		<![CDATA[
+			{ 
+	            call PRA_Menu_listAuthManageSearchUser (
+	            	#{MenuId}
+	               ,#{MenuType}
+	               ,#{SearchTxt}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listAuthManageSearchDegree" statementType="CALLABLE" parameterType="menuVO" resultType="menuVO">
+		<![CDATA[
+			{ 
+	            call PRA_Menu_listAuthManageSearchDegree (
+	            	#{MenuId}
+	               ,#{MenuType}
+	               ,#{SearchTxt}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listAuthManageSearchDept" statementType="CALLABLE" parameterType="menuVO" resultType="menuVO">
+		<![CDATA[
+			{ 
+	            call PRA_Menu_listAuthManageSearchDept (
+	            	#{MenuId}
+	               ,#{MenuType}
+	               ,#{SearchTxt}
+            	)
+			}
+		]]>
+	</select>
+		
+	<insert id="createAuthManage" statementType="CALLABLE" parameterType="menuVO" >
+		<![CDATA[
+			{ 
+	            call PRA_Menu_createAuthManage (
+	            	#{MenuId}
+	               ,#{MenuType}
+	               ,#{AuthTypeCd}
+	               ,#{AuthType}
+	               ,#{EmpNo}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<update id="deleteAuthManage" statementType="CALLABLE" parameterType="menuVO">
+		<![CDATA[
+			{ 
+	            call PRA_Menu_deleteAuthManage (
+            		  #{MenuId}
+            		 ,#{MenuType}
+            		 ,#{AuthType}
+            	)
+			}
+		]]>
+	</update>
+	
 	
 </mapper>

@@ -31,8 +31,8 @@
 	    		<!-- 그리드영역 -->
 				<div id="sheet"></div>
 	    	</div>
-	    	<input type="text" id="hdn_upcd">
-	    	<input type="text" id="hdn_lvl">
+	    	<input type="hidden" id="hdn_upcd">
+	    	<input type="hidden" id="hdn_lvl">
 	    </div>
 	</div>
 </div>
@@ -113,30 +113,6 @@
 		});
 	}
 	
-	// 메뉴 저장
-	/* function saveMenuManage(pArrMenuManage) {
-		$.ajax({
-			url: "/AjaxAdmin/SaveMenuManage.do",
-			type: "POST",
-			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify(pArrMenuManage),
-			dataType : "json",
-	        async: true,
-			success: function(data) {
-				if (data.status == "Success") {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "저장 되었습니다.", null, commonFunc.refreshPage, null);
-				}
-				else {
-					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
-				}
-			},
-			error: function(xhr, status, err) {
-				commonFunc.handleErrorMsg(xhr, status, err);
-				return false;
-			}
-		});
-	} */
-		
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
     	commonFunc.initSheet("mySheet");
@@ -149,7 +125,7 @@
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
         	{ Header: "상태", Type: "Status", Width: 30, SaveName: "status", Align: "Center" },
-            { Header: "메뉴", Type: "Text", Width: 80, SaveName: "menuId", Align: "Center" },
+            { Header: "메뉴ID", Type: "Text", Width: 80, SaveName: "menuId", Align: "Center" },
             { Header: "메뉴명", Type: "Text", Width: 280, SaveName: "menuNm" },
             { Header: "상위메뉴", Type: "Text", Width: 70, SaveName: "upMenuId", Align: "Center", Edit: false },
             { Header: "수행타입", Type: "Combo", Width: 80, SaveName: "taskTypeCd", Align: "Center", ComboText: taskTypeComboCdNm, ComboCode: taskTypeComboCd },
@@ -180,9 +156,9 @@
 				var jsonData = {};
 
 				jsonData.status = saveJson[i].status;
-				jsonData.cd = saveJson[i].menuId;
-				jsonData.cdNm = saveJson[i].menuNm;
-				jsonData.upCd = saveJson[i].upMenuId;
+				jsonData.menuId = saveJson[i].menuId;
+				jsonData.menuNm = saveJson[i].menuNm;
+				jsonData.upMenuId = saveJson[i].upMenuId;
 				jsonData.taskTypeCd = saveJson[i].taskTypeCd;
 				jsonData.execTypeCd = saveJson[i].execTypeCd;
 				jsonData.lvl = saveJson[i].lvl;
@@ -199,7 +175,21 @@
 			saveMenuManage(arrData);			
         }
 	}
-	
+    
+	// 저장 데이터 Null값 확인 함수
+	function saveMenuManageNullCheck() {
+		var returnVal = true;
+ 		var saveJson = mySheet.GetSaveJson({AllSave:1});
+		
+		for (var i = 0; i < saveJson.data.length; i++) {
+			if (commonFunc.getCheckNullYn(saveJson.data[i].menuId) == "Y") {
+				returnVal = false;
+    		}
+		}
+		
+		return returnVal;
+	}
+    	
 	// 트리 클릭 이벤트
     function tree_click(pNodeCd, pNodeNm, pParentNodeCd, pNodeChild, pNodeData, pParam) {
         listMenuChild(pNodeCd);
@@ -216,7 +206,13 @@
  	
     // 저장 버튼 클릭 이벤트
     $(document).on("click", "#btn_save", function (e) {
-		var saveStr = mySheet.GetSaveString();
+    	// MenuId가 입력되지 않은 경우
+    	if (!saveMenuManageNullCheck()) {
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "메뉴ID 항목은 필수 입력 항목입니다. ", null, null, null);
+    		return false;
+    	}
+    	
+    	var saveStr = mySheet.GetSaveString();
     	
     	if (saveStr == "") {
     		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "변경 사항이 없습니다.", null, null, null);

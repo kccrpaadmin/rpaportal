@@ -53,6 +53,14 @@ public class MenuVO {
 	private String ParentCd;
 	private String ChildYn;
 	private String OpenYn;
+	private String Status;
+	private String AuthTypeCdNm;
+	private String AuthTypeNm;
+	private String UserNm;
+	private String MenuType;
+    private String EpUserId;
+    private String DegreeCd;
+    private String DegreeNm;
 	
 	public String getSearchTxt() {
 		return SearchTxt;
@@ -315,7 +323,56 @@ public class MenuVO {
 	public String getOpenYn() {
 		return OpenYn;
 	}
-	public void setVOpenYn(String openYn) {
+	public void setOpenYn(String openYn) {
 		OpenYn = openYn;
 	}	
+	public String getStatus() {
+		return Status;
+	}
+	public void setStatus(String status) {
+		Status = status;
+	}
+	public String getAuthTypeCdNm() {
+		return AuthTypeCdNm;
+	}
+	public void setAuthTypeCdNm(String authTypeCdNm) {
+		AuthTypeCdNm = authTypeCdNm;
+	}	
+	public String getAuthTypeNm() {
+		return AuthTypeNm;
+	}
+	public void setAuthTypeNm(String authTypeNm) {
+		AuthTypeNm = authTypeNm;
+	}	
+	public String getUserNm() {
+		return UserNm;
+	}
+	public void setUserNm(String userNm) {
+		UserNm = userNm;
+	}	
+	public String getMenuType() {
+		return MenuType;
+	}
+	public void setMenuType(String menuType) {
+		MenuType = menuType;
+	}	
+	public String getEpUserId() {
+		return EpUserId;
+	}
+	public void setEpUserId(String epUserId) {
+		EpUserId = epUserId;
+	}	
+	public String getDegreeCd() {
+		return DegreeCd;
+	}
+	public void setDegreeCd(String degreeCd) {
+		DegreeCd = degreeCd;
+	}	
+	public String getDegreeNm() {
+		return DegreeNm;
+	}
+	public void setDegreeNm(String degreeNm) {
+		DegreeNm = degreeNm;
+	}	
+	
 }

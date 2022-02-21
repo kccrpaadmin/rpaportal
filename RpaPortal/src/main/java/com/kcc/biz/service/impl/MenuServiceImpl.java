@@ -59,4 +59,35 @@ public class MenuServiceImpl implements IMenuService {
 			menuRepository.saveMenuManage(menuVO);
 		}
 	}
+	
+	public List<MenuVO> listMenuAuthRunChild(MenuVO vo) throws Exception {
+		return menuRepository.listMenuAuthRunChild(vo);
+	}
+
+	public List<MenuVO> listMenuAuthManageChild(MenuVO vo) throws Exception {
+		return menuRepository.listMenuAuthManageChild(vo);
+	}
+	
+	public List<MenuVO> listAuthManageSearchUser(MenuVO vo) throws Exception {
+		return menuRepository.listAuthManageSearchUser(vo);
+	}
+	
+	public List<MenuVO> listAuthManageSearchDegree(MenuVO vo) throws Exception {
+		return menuRepository.listAuthManageSearchDegree(vo);
+	}
+	
+	public List<MenuVO> listAuthManageSearchDept(MenuVO vo) throws Exception {
+		return menuRepository.listAuthManageSearchDept(vo);
+	}
+	
+	public void createAuthManage(MenuVO vo) throws Exception {
+		menuRepository.createAuthManage(vo);
+	}
+	
+	public void deleteAuthManage(List<MenuVO> vo) throws Exception {
+		for (MenuVO menuVO : vo) {
+			menuRepository.deleteAuthManage(menuVO);
+		}
+	}
+	
 }

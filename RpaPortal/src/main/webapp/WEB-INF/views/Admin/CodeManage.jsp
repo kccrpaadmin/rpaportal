@@ -31,8 +31,8 @@
 	    		<!-- 그리드영역 -->
 				<div id="sheet"></div>
 	    	</div>
-	    	<input type="text" id="hdn_upcd">
-	    	<input type="text" id="hdn_lvl">
+	    	<input type="hidden" id="hdn_upcd">
+	    	<input type="hidden" id="hdn_lvl">
 	    </div>
 	</div>
 </div>
@@ -159,6 +159,20 @@
 			saveCodeManage(arrData);			
         }
 	}
+    
+	// 저장 데이터 Null값 확인 함수
+	function saveCodeManageNullCheck() {
+		var returnVal = true;
+ 		var saveJson = mySheet.GetSaveJson({AllSave:1});
+		
+		for (var i = 0; i < saveJson.data.length; i++) {
+			if (commonFunc.getCheckNullYn(saveJson.data[i].cd) == "Y") {
+				returnVal = false;
+    		}
+		}
+		
+		return returnVal;
+	}
 	
 	// 트리 클릭 이벤트
     function tree_click(pNodeCd, pNodeNm, pParentNodeCd, pNodeChild, pNodeData, pParam) {
@@ -176,14 +190,17 @@
  	
     // 저장 버튼 클릭 이벤트
     $(document).on("click", "#btn_save", function (e) {
+    	// 코드가 입력되지 않은 경우
+    	if (!saveCodeManageNullCheck()) {
+    		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "코드 항목은 필수 입력 항목입니다. ", null, null, null);
+    		return false;
+    	}
 		var saveStr = mySheet.GetSaveString();
     	
     	if (saveStr == "") {
     		libraryFunc.createDialog("Alert", null, null, null, null, "알림", "변경 사항이 없습니다.", null, null, null);
     		return false;
-    	}
-    	
-    	
+    	}   	
     	
     	libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "저장하시겠습니까?", null, saveCodeManageConfirm, null);    
     });
