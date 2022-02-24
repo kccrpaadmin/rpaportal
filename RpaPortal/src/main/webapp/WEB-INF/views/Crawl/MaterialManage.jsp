@@ -168,7 +168,7 @@
 						+'<CategoryAxis categoryField="' + pCategoryField + '"/>'
 					+'</horizontalAxis>'
 					+'<verticalAxis>'
-						+'<LinearAxis formatter="{numFmt}"/>'					
+						+'<LinearAxis formatter="{numFmt}" minimum="80"/>'					
 					+'</verticalAxis>'
 					+'<series>'
 						+'<Line2DSeries yField="scrapRate" displayName="철스크랩" fillJsFunction="" labelPosition="" itemRenderer="RectangleItemRenderer">'
