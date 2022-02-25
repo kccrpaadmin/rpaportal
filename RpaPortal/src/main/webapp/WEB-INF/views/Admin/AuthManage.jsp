@@ -162,7 +162,7 @@
             { Header: "메뉴ID", Type: "Text", Width: 0, SaveName: "menuId", Align: "Center", Hidden: true, Edit: false },
             { Header: "메뉴타입", Type: "Text", Width: 0, SaveName: "menuType", Align: "Center", Hidden: true, Edit: false },
             { Header: "권한타입코드", Type: "Text", Width: 0, SaveName: "authTypeCd", Align: "Center", Hidden: true, Edit: false },
-            { Header: "권한타입", Type: "Text", Width: 180, SaveName: "authTypeCdNm", Align: "Center", Edit: false },
+            { Header: "권한타입", Type: "Text", Width: 162, SaveName: "authTypeCdNm", Align: "Center", Edit: false },
             { Header: "권한대상코드", Type: "Text", Width: 210, SaveName: "authType", Align: "Center", Edit: false },
             { Header: "권한대상", Type: "Text", Width: 300, SaveName: "authTypeNm", Align: "Center", Edit: false }
         ];
@@ -189,7 +189,7 @@
             { Header: "메뉴ID", Type: "Text", Width: 0, SaveName: "menuId", Align: "Center", Hidden: true, Edit: false },
             { Header: "메뉴타입", Type: "Text", Width: 0, SaveName: "menuType", Align: "Center", Hidden: true, Edit: false },
             { Header: "권한타입코드", Type: "Text", Width: 0, SaveName: "authTypeCd", Align: "Center", Hidden: true, Edit: false },
-            { Header: "권한타입", Type: "Text", Width: 180, SaveName: "authTypeCdNm", Align: "Center", Edit: false },
+            { Header: "권한타입", Type: "Text", Width: 162, SaveName: "authTypeCdNm", Align: "Center", Edit: false },
             { Header: "권한대상코드", Type: "Text", Width: 210, SaveName: "authType", Align: "Center", Edit: false },
             { Header: "권한대상", Type: "Text", Width: 300, SaveName: "authTypeNm", Align: "Center", Edit: false }
         ];
