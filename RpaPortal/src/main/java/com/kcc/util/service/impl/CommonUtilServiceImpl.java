@@ -215,6 +215,9 @@ public class CommonUtilServiceImpl implements ICommonUtilService {
 		else if (ConstWord.PORTAL_LOCAL2_IP.equals(getLocalHostIp())) {
 			serverEnv = "Local2";
 		}
+		else if (ConstWord.PORTAL_LOCAL3_IP.equals(getLocalHostIp())) {
+			serverEnv = "Local3";
+		}
 		
 		return serverEnv;
     }
