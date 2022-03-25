@@ -90,4 +90,8 @@ public class MenuServiceImpl implements IMenuService {
 		}
 	}
 	
+	public List<MenuVO> listMenuManageSearchDept(MenuVO vo) throws Exception {
+		return menuRepository.listMenuManageSearchDept(vo);
+	}
+	
 }

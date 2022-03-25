@@ -61,6 +61,7 @@ public class MenuVO {
     private String EpUserId;
     private String DegreeCd;
     private String DegreeNm;
+    private String BtnAddDept;
 	
 	public String getSearchTxt() {
 		return SearchTxt;
@@ -373,6 +374,12 @@ public class MenuVO {
 	}
 	public void setDegreeNm(String degreeNm) {
 		DegreeNm = degreeNm;
+	}	
+	public String getBtnAddDept() {
+		return BtnAddDept;
+	}
+	public void setBtnAddDept(String btnAddDept) {
+		BtnAddDept = btnAddDept;
 	}	
 	
 }

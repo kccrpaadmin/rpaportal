@@ -22,4 +22,5 @@ public interface IMenuService {
 	List<MenuVO> listAuthManageSearchDept(MenuVO vo) throws Exception;
 	void createAuthManage(MenuVO vo) throws Exception;
 	void deleteAuthManage(List<MenuVO> vo) throws Exception;	
+	List<MenuVO> listMenuManageSearchDept(MenuVO vo) throws Exception;
 }

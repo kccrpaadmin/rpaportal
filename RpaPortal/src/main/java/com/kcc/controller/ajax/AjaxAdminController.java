@@ -316,4 +316,23 @@ public class AjaxAdminController extends BaseController {
 		
 		return statusVO;		
 	}
+	
+	// 메뉴관리 부서 검색
+	@PostMapping("/ListMenuManageSearchDept.do")
+	public @ResponseBody Map<String, Object> ListMenuManageSearchDept(@RequestBody MenuVO vo) {
+			logger.info("/AjaxAdmin/ListMenuManageSearchDept.do");
+			
+			List<MenuVO> outListMenuManageTargetDeptVO = new ArrayList<MenuVO>();
+			try {
+				outListMenuManageTargetDeptVO = menuService.listMenuManageSearchDept(vo);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			Map map = new HashMap<String, Object>();
+			map.put("data", outListMenuManageTargetDeptVO);
+			
+			return map;
+		}
 }

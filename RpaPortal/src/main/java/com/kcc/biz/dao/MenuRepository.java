@@ -25,4 +25,5 @@ public interface MenuRepository {
 	List<MenuVO> listAuthManageSearchDept(MenuVO vo) throws Exception;
 	void createAuthManage(MenuVO vo) throws Exception;	
 	void deleteAuthManage(MenuVO vo) throws Exception;
+	List<MenuVO> listMenuManageSearchDept(MenuVO vo) throws Exception;
 }
