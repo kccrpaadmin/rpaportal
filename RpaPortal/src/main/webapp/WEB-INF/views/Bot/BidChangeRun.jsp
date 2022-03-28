@@ -222,7 +222,7 @@
 	
 	// 대상공사 버튼 클릭 이벤트
 	$(document).on("click", "#btn_target_person", function (e) {
-		libraryFunc.createModal(null, null, null, 1100, 560, "대상인원", "/ModalBot/BidChangeRunTargetBid.do?pMenuId=" + menuId);
+		libraryFunc.createModal(null, null, null, 1100, 560, "대상공사", "/ModalBot/BidChangeRunTargetBid.do?pMenuId=" + menuId);
 	});
 	
 </script>

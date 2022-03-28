@@ -250,4 +250,11 @@ public class ModalBotController extends BaseController {
 				
 		return "ModalBot/EngineerRunTargetUserSearchUser";
 	}
+
+	@GetMapping("/BidChangeRunTargetBid.do")
+	public String BidChangeRunTargetBid(Model model) {
+		logger.info("/ModalBot/BidChangeRunTargetBid.do");
+				
+		return "ModalBot/BidChangeRunTargetBid";
+	}
 }

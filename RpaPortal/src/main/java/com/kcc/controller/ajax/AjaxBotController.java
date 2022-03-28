@@ -48,6 +48,7 @@ import com.kcc.biz.model.BotKisconConstVO;
 import com.kcc.biz.model.BotEtcTaxVO;
 import com.kcc.biz.model.BotPersonAppointVO;
 import com.kcc.biz.model.BotEngineerVO;
+import com.kcc.biz.model.BotBidChangeVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -58,6 +59,7 @@ import com.kcc.biz.service.IBotKisconConstService;
 import com.kcc.biz.service.IBotEtcTaxService;
 import com.kcc.biz.service.IBotPersonAppointService;
 import com.kcc.biz.service.IBotEngineerService;
+import com.kcc.biz.service.IBotBidChangeService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -100,6 +102,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botEngineerService")
 	private IBotEngineerService botEngineerService;
+	
+	@Resource(name="botBidChangeService")
+	private IBotBidChangeService botBidChangeService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -764,4 +769,23 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}		
+	
+	@PostMapping("/ListBidChangeG2b.do")
+	public @ResponseBody Map<String, Object> ListBidChangeG2b(@RequestBody BotBidChangeVO vo) {
+		logger.info("/AjaxBot/ListBidChangeG2b.do");
+		
+		List<BotBidChangeVO> outListBidChangeG2bVO = new ArrayList<BotBidChangeVO>();
+		try {
+			outListBidChangeG2bVO = botBidChangeService.listBotBidChangeG2b(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBidChangeG2bVO);
+		
+		return map;
+	}
+	
 }

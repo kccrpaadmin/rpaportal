@@ -3,7 +3,6 @@ package com.kcc.biz.service;
 import java.util.List;
 
 import com.kcc.biz.model.BotEngineerVO;
-import com.kcc.biz.model.CrawlG2bVO;
 
 public interface IBotEngineerService {	
 	List<BotEngineerVO> listBotEngineerBasic(BotEngineerVO vo) throws Exception;	
