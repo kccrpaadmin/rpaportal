@@ -8,8 +8,41 @@
 			{ 
 	            call PRA_Bot_listBotBidChangeG2b (
             		#{ConstNm}
+            	   ,#{StartReceiveDate}
+            	   ,#{EndReceiveDate}
             	)
 			}
 		]]>
-	</select>	
+	</select>
+	
+	<select id="listBotBidChangeTargetBid" statementType="CALLABLE" parameterType="botBidChangeVO" resultType="botBidChangeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotBidChangeTargetBid (
+            		#{MenuId}
+            	)
+			}
+		]]>
+	</select>
+	
+	<insert id="createBotBidChangeTargetBid" statementType="CALLABLE" parameterType="botBidChangeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_createBotBidChangeTargetBid (
+            		 #{ManageNo}
+            		,#{EmpNo}
+            	)
+			}
+		]]>
+	</insert>	
+	
+	<update id="deleteBotBidChangeTargetBid" statementType="CALLABLE" parameterType="botBidChangeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_deleteBotBidChangeTargetBid (
+            		 #{ManageNo}
+            	)
+			}
+		]]>
+	</update>	
 </mapper>

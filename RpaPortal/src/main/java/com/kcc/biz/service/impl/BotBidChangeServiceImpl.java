@@ -21,4 +21,20 @@ public class BotBidChangeServiceImpl implements IBotBidChangeService {
 	public List<BotBidChangeVO> listBotBidChangeG2b(BotBidChangeVO vo) throws Exception {		
 		return botBidChangeRepository.listBotBidChangeG2b(vo);
 	}	
+	
+	public List<BotBidChangeVO> listBotBidChangeTargetBid(BotBidChangeVO vo) throws Exception {		
+		return botBidChangeRepository.listBotBidChangeTargetBid(vo);
+	}
+	
+	public void createBotBidChangeTargetBid(List<BotBidChangeVO> vo) throws Exception {
+		for (BotBidChangeVO botBidChangeVO : vo) {
+			botBidChangeRepository.createBotBidChangeTargetBid(botBidChangeVO);
+		}
+	}
+	
+	public void deleteBotBidChangeTargetBid(List<BotBidChangeVO> vo) throws Exception {
+		for (BotBidChangeVO botBidChangeVO : vo) {
+			botBidChangeRepository.deleteBotBidChangeTargetBid(botBidChangeVO);
+		}
+	}
 }

@@ -12,7 +12,10 @@ public class BotBidChangeVO {
 	private String MenuId;
 	private String ConstNm;
 	private String ManageNo;
+	private String BidNo;
 	private String ReceiveDate;
+	private String StartReceiveDate;
+	private String EndReceiveDate;
 	private String OrderAgency;
 	private String ContractType;
 	private String ContractProperty;
@@ -41,11 +44,29 @@ public class BotBidChangeVO {
 	public void setManageNo(String manageNo) {
 		ManageNo = manageNo;
 	}
+	public String getBidNo() {
+		return BidNo;
+	}
+	public void setBidNo(String bidNo) {
+		BidNo = bidNo;
+	}
 	public String getReceiveDate() {
 		return ReceiveDate;
 	}
 	public void setReceiveDate(String receiveDate) {
 		ReceiveDate = receiveDate;
+	}
+	public String getStartReceiveDate() {
+		return StartReceiveDate;
+	}
+	public void setStartReceiveDate(String startReceiveDate) {
+		StartReceiveDate = startReceiveDate;
+	}
+	public String getEndReceiveDate() {
+		return EndReceiveDate;
+	}
+	public void setEndReceiveDate(String endReceiveDate) {
+		EndReceiveDate = endReceiveDate;
 	}
 	public String getOrderAgency() {
 		return OrderAgency;

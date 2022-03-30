@@ -252,9 +252,13 @@ public class ModalBotController extends BaseController {
 	}
 
 	@GetMapping("/BidChangeRunTargetBid.do")
-	public String BidChangeRunTargetBid(Model model) {
+	public String BidChangeRunTargetBid(String pMenuId, Model model) {
 		logger.info("/ModalBot/BidChangeRunTargetBid.do");
-				
+
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("startReceiveDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", -3));
+		model.addAttribute("endReceiveDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", 0));
+		
 		return "ModalBot/BidChangeRunTargetBid";
 	}
 }

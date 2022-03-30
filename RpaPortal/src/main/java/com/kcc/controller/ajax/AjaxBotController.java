@@ -788,4 +788,73 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
+	@PostMapping("/ListBidChangeTargetBid.do")
+	public @ResponseBody Map<String, Object> ListBidChangeTargetBid(@RequestBody BotBidChangeVO vo) {
+		logger.info("/AjaxBot/ListBidChangeTargetBid.do");
+		
+		List<BotBidChangeVO> outListBidChangeTargetBidVO = new ArrayList<BotBidChangeVO>();
+		try {
+			outListBidChangeTargetBidVO = botBidChangeService.listBotBidChangeTargetBid(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBidChangeTargetBidVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/CreateBotBidChangeTargetBid.do")
+	public @ResponseBody StatusVO CreateBotBidChangeTargetBid(@RequestBody BotBidChangeVO[] vo) {
+		logger.info("/AjaxBot/CreateBotBidChangeTargetBid.do");
+		String status = "Success";
+				
+		List<BotBidChangeVO> inListBotBidChangeVO = new ArrayList<BotBidChangeVO>();
+		
+		// json-simple 사용시 배열 파라미터 사용 가능
+		for (BotBidChangeVO botBidChangeVO : vo) {
+			inListBotBidChangeVO.add(botBidChangeVO);
+		}
+		
+		try {
+			botBidChangeService.createBotBidChangeTargetBid(inListBotBidChangeVO);
+		} 
+		catch (Exception e) {
+			status = "SaveError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;		
+	}
+	
+	@PostMapping("/DeleteBotBidChangeTargetBid.do")
+	public @ResponseBody StatusVO DeleteBotBidChangeTargetBid(@RequestBody BotBidChangeVO[] vo) {
+		logger.info("/AjaxBot/DeleteBotBidChangeTargetBid.do");
+		String status = "Success";
+				
+		List<BotBidChangeVO> inListBotBidChangeVO = new ArrayList<BotBidChangeVO>();
+		
+		// json-simple 사용시 배열 파라미터 사용 가능
+		for (BotBidChangeVO botBidChangeVO : vo) {
+			inListBotBidChangeVO.add(botBidChangeVO);
+		}
+		
+		try {
+			botBidChangeService.deleteBotBidChangeTargetBid(inListBotBidChangeVO);
+		} 
+		catch (Exception e) {
+			status = "SaveError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;		
+	}
 }
