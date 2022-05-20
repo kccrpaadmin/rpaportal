@@ -18,7 +18,7 @@
 	<select id="listBotBidChangeTargetBid" statementType="CALLABLE" parameterType="botBidChangeVO" resultType="botBidChangeVO">
 		<![CDATA[
 			{ 
-	            call PRA_Bot_listBotBidChangeTargetBid (
+	            call PRA_Bot_listBotBidChangeTargetBidList (
             		#{MenuId}
             	)
 			}
