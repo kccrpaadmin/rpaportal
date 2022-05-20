@@ -256,7 +256,7 @@ public class ModalBotController extends BaseController {
 		logger.info("/ModalBot/BidChangeRunTargetBid.do");
 
 		model.addAttribute("menuId", pMenuId);
-		model.addAttribute("startReceiveDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", -3));
+		model.addAttribute("startReceiveDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", -6));
 		model.addAttribute("endReceiveDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", 0));
 		
 		return "ModalBot/BidChangeRunTargetBid";
