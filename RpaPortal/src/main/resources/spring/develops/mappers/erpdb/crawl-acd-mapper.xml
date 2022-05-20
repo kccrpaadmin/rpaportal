@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.CrawlAcdRepository">
+	
+	<select id="listCrawlAcd" statementType="CALLABLE" parameterType="crawlAcdVO" resultType="crawlAcdVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlAcd (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listCrawlAcdManage" statementType="CALLABLE" parameterType="crawlAcdVO" resultType="crawlAcdVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlAcdManage (            		
+            		#{StartDate}
+            		,#{EndDate}
+            		,#{AccidentType}
+            	)
+			}
+		]]>
+	</select>
+		
+</mapper>

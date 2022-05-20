@@ -297,4 +297,57 @@ public class CrawlController extends BaseController {
 		return "Crawl/MaterialManage";
 	}
 	
+	@GetMapping("/AcdRun.do")
+	public String AccidentRun(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Crawl/AcdRun.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getCrawlMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
+		return "Crawl/AcdRun";
+	}
+	
+	@GetMapping("/AcdManage.do")
+	public String AcdManage(String pMenuId, String pEmpNo, Model model) {
+		logger.info("/Crawl/AcdManage.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getCrawlMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		model.addAttribute("startDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", -1));
+		model.addAttribute("endDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", 0));
+		
+		return "Crawl/AcdManage";
+	}
 }

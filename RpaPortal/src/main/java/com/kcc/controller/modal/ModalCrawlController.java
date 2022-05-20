@@ -144,4 +144,17 @@ public class ModalCrawlController extends BaseController {
 		
 		return "ModalCrawl/MaterialRunResult";
 	}
+	
+	@GetMapping("/AcdRunResult.do")
+	public String AccidentRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalCrawl/AcdRunResult.do");
+		
+		// CrawlRequestVO 입력
+		CrawlRequestVO crawlRequestVO = new CrawlRequestVO();
+		crawlRequestVO.setMenuId(pMenuId);
+		crawlRequestVO.setRequestNo(pRequestNo);
+		model.addAttribute("crawlRequestVO", crawlRequestVO);
+		
+		return "ModalCrawl/AcdRunResult";
+	}
 }

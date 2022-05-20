@@ -38,6 +38,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.AccessVO;
+import com.kcc.biz.model.CrawlAcdVO;
 import com.kcc.biz.model.CrawlG2bVO;
 import com.kcc.biz.model.CrawlKomisVO;
 import com.kcc.biz.model.CrawlMaterialVO;
@@ -55,6 +56,7 @@ import com.kcc.biz.service.IMenuService;
 import com.kcc.biz.service.ICrawlRequestService;
 import com.kcc.biz.service.ICrawlScheduleService;
 import com.kcc.biz.service.ICrawlSystemCheckService;
+import com.kcc.biz.service.ICrawlAcdService;
 import com.kcc.biz.service.ICrawlG2bService;
 import com.kcc.biz.service.ICrawlKomisService;
 import com.kcc.biz.service.ICrawlMaterialService;
@@ -93,6 +95,9 @@ public class AjaxCrawlController extends BaseController {
 	
 	@Resource(name="crawlMaterialService")
 	private ICrawlMaterialService crawlMaterialService;
+	
+	@Resource(name="crawlAcdService")
+	private ICrawlAcdService crawlAcdService;
 	
 	@PostMapping("/RunCrawl.do")
 	public @ResponseBody CrawlRequestVO RunCrawl(@RequestBody CrawlRequestVO vo) {
@@ -415,6 +420,42 @@ public class AjaxCrawlController extends BaseController {
 		map.put("outListCrawlMaterialSteelScrapVO", outListCrawlMaterialSteelScrapVO);
 		map.put("outListCrawlMaterialSteelScrapAndRebarVO", outListCrawlMaterialSteelScrapAndRebarVO);
 		map.put("outListCrawlMaterialRebarPlanVO", outListCrawlMaterialRebarPlanVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListAcd.do")
+	public @ResponseBody Map<String, Object> ListAcd(@RequestBody CrawlAcdVO vo) {
+		logger.info("/AjaxCrawl/ListAcd.do");
+		
+		List<CrawlAcdVO> outListCrawlAcdVO = new ArrayList<CrawlAcdVO>();
+		try {
+			outListCrawlAcdVO = crawlAcdService.listCrawlAcd(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListCrawlAcdVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListAcdManage.do")
+	public @ResponseBody Map<String, Object> ListAcdManage(@RequestBody CrawlAcdVO vo) {
+		logger.info("/AjaxCrawl/ListAcdManage.do");
+		
+		List<CrawlAcdVO> outListCrawlAcdVO = new ArrayList<CrawlAcdVO>();
+		try {
+			outListCrawlAcdVO = crawlAcdService.listCrawlAcdManage(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListCrawlAcdVO);
 		
 		return map;
 	}

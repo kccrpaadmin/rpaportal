@@ -46,6 +46,8 @@
 		<typeAlias alias="crawlPersonInfoVO" type="com.kcc.biz.model.CrawlPersonInfoVO" />
 		<!-- 웹크롤링 원자재 정보 -->
 		<typeAlias alias="crawlMaterialVO" type="com.kcc.biz.model.CrawlMaterialVO" />
+		<!-- 웹크롤링 사고사례 -->
+		<typeAlias alias="crawlAcdVO" type="com.kcc.biz.model.CrawlAcdVO" />
 		
 		<!-- Ocr 요청 -->
 		<typeAlias alias="ocrRequestVO" type="com.kcc.biz.model.OcrRequestVO" />
