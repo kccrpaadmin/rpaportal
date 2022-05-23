@@ -26,6 +26,13 @@ public class BotEngineerEduVO {
 	private String PassTimes;
 	private String PassScore;
 	private String ReceiptDate;
+	private String DutyCd;
+	private String DutyNm;
+	private String UserId;
+	private String OrgTypeCd;
+	private String SocietyUserNm;
+	private String SocietyResNo;
+	private String Etc;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -128,5 +135,47 @@ public class BotEngineerEduVO {
 	}
 	public void setReceiptDate(String receiptDate) {
 		ReceiptDate = receiptDate;
+	}
+	public String getDutyCd() {
+		return DutyCd;
+	}
+	public void setDutyCd(String dutyCd) {
+		DutyCd = dutyCd;
+	}
+	public String getDutyNm() {
+		return DutyNm;
+	}
+	public void setDutyNm(String dutyNm) {
+		DutyNm = dutyNm;
+	}
+	public String getUserId() {
+		return UserId;
+	}
+	public void setUserId(String userId) {
+		UserId = userId;
+	}
+	public String getOrgTypeCd() {
+		return OrgTypeCd;
+	}
+	public void setOrgTypeCd(String orgTypeCd) {
+		OrgTypeCd = orgTypeCd;
+	}
+	public String getSocietyUserNm() {
+		return SocietyUserNm;
+	}
+	public void setSocietyUserNm(String societyUserNm) {
+		SocietyUserNm = societyUserNm;
+	}
+	public String getSocietyResNo() {
+		return SocietyResNo;
+	}
+	public void setSocietyResNo(String societyResNo) {
+		SocietyResNo = societyResNo;
+	}
+	public String getEtc() {
+		return Etc;
+	}
+	public void setEtc(String etc) {
+		Etc = etc;
 	}	
 }

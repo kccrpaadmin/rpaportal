@@ -23,4 +23,28 @@
 		]]>
 	</select>
 	
+	<select id="listBotEngineerEduManageQualityEdu" statementType="CALLABLE" parameterType="botEngineerEduVO" resultType="botEngineerEduVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEngineerEduManageQualityEdu (
+            		#{OrgTypeCd}
+            		,#{DutyNm}
+            		,#{UserNm}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotEngineerEduManageConstEdu" statementType="CALLABLE" parameterType="botEngineerEduVO" resultType="botEngineerEduVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotEngineerEduManageConstEdu (
+            		#{OrgTypeCd}
+            		,#{DutyNm}
+            		,#{UserNm}
+            	)
+			}
+		]]>
+	</select>
+	
 </mapper>

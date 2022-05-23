@@ -27,5 +27,13 @@ public class BotEngineerEduServiceImpl implements IBotEngineerEduService {
 	
 	public List<BotEngineerEduVO> listBotEngineerConstEduFail(BotEngineerEduVO vo) throws Exception {		
 		return botEngineerEduRepository.listBotEngineerConstEduFail(vo);
-	}	
+	}
+	
+	public List<BotEngineerEduVO> listBotEngineerEduManageQualityEdu(BotEngineerEduVO vo) throws Exception {		
+		return botEngineerEduRepository.listBotEngineerEduManageQualityEdu(vo);
+	}
+	
+	public List<BotEngineerEduVO> listBotEngineerEduManageConstEdu(BotEngineerEduVO vo) throws Exception {		
+		return botEngineerEduRepository.listBotEngineerEduManageConstEdu(vo);
+	}
 }

@@ -811,6 +811,42 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
+	@PostMapping("/ListBotEngineerEduManageQualityEdu.do")
+	public @ResponseBody Map<String, Object> ListBotEngineerEduManageQualityEdu(@RequestBody BotEngineerEduVO vo) {
+		logger.info("/AjaxBot/ListBotEngineerEduManageQualityEdu.do");
+		
+		List<BotEngineerEduVO> outListQualityEduVO = new ArrayList<BotEngineerEduVO>();
+		try {
+			outListQualityEduVO = botEngineerEduService.listBotEngineerEduManageQualityEdu(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListQualityEduVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListBotEngineerEduManageConstEdu.do")
+	public @ResponseBody Map<String, Object> ListBotEngineerEduManageConstEdu(@RequestBody BotEngineerEduVO vo) {
+		logger.info("/AjaxBot/ListBotEngineerEduManageConstEdu.do");
+		
+		List<BotEngineerEduVO> outListConstEduVO = new ArrayList<BotEngineerEduVO>();
+		try {
+			outListConstEduVO = botEngineerEduService.listBotEngineerEduManageConstEdu(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListConstEduVO);
+		
+		return map;
+	}
+	
 	@PostMapping("/ListBidChangeG2b.do")
 	public @ResponseBody Map<String, Object> ListBidChangeG2b(@RequestBody BotBidChangeVO vo) {
 		logger.info("/AjaxBot/ListBidChangeG2b.do");

@@ -55,11 +55,19 @@
 	    </div>
 	    <!-- 그리드영역 -->
 	    <div class="grid_box">
+		    <div class="grid_title">품질관리교육</div>
 		    <div class="grid_btn">
-		    	<a class="btn_common2" id="btn_engineer_list_download" style="margin-bottom:3px;">엑셀</a>
-		    </div>	  
-	    </div>  
-   	    <div id="sheet"></div>
+		    	<a class="btn_common2" id="btn_engineer_quality_edu_list_download">엑셀</a>
+		    </div>
+	    </div>
+   	    <div id="sheet1"></div>
+   	    <div class="grid_box">
+   	    	<div class="grid_title">설계시공교육</div>
+   	    	<div class="grid_btn">
+		    	<a class="btn_common2" id="btn_engineer_const_edu_list_download">엑셀</a>
+		    </div>
+   	    </div>
+   	    <div id="sheet2"></div>
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a href="/Bot/ListMenu.do"><img src="/resources/imgs/button/btn_box_go_back.png" /></a>
@@ -74,20 +82,39 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		searchListEngineerManage();
+		searchListEngineerEduManage();
 	});
 	
-	// 기술인협회 기술자정보 목록 조회
-	function ListEngineerManage(pMenuId, pOrgTypeCd, pDutyNm, pUserNm) {
+	// 기술인협회 교육정보 업무관리 품질관리교육 목록 조회
+	function listEngineerEduManageQualityEdu(pOrgTypeCd, pDutyNm, pUserNm) {
 		$.ajax({
-			url: "/AjaxBot/ListEngineerManage.do",
+			url: "/AjaxBot/ListBotEngineerEduManageQualityEdu.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({"menuId": pMenuId, "orgTypeCd": pOrgTypeCd, "dutyNm": pDutyNm, "userNm": pUserNm}),
+			data : JSON.stringify({"orgTypeCd": pOrgTypeCd, "dutyNm": pDutyNm, "userNm": pUserNm}),
 		    dataType : "json",
 	        async: true,
 			success: function(listDatas) {
-				makeGrid(listDatas);
+				makeGrid1(listDatas);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
+	// 기술인협회 교육정보 업무관리 설계시공교육 목록 조회
+	function listEngineerEduManageConstEdu(pOrgTypeCd, pDutyNm, pUserNm) {
+		$.ajax({
+			url: "/AjaxBot/ListBotEngineerEduManageConstEdu.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({"orgTypeCd": pOrgTypeCd, "dutyNm": pDutyNm, "userNm": pUserNm}),
+		    dataType : "json",
+	        async: true,
+			success: function(listDatas) {
+				makeGrid2(listDatas);
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
@@ -97,72 +124,102 @@
 	}
 	
 	// 그리드 생성 함수
-    function makeGrid(pListDatas) {
-    	commonFunc.initSheet("mySheet");
+    function makeGrid1(pListDatas) {
+    	commonFunc.initSheet("mySheet1");
 		
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1120px", "510px");
+        createIBSheet2(document.getElementById("sheet1"), "mySheet1", "1120px", "510px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
         	 { Header: "구분", Type: "Text", Width: 0, SaveName: "orgTypeNm", Align: "Center", Hidden:true },     
-        	 { Header: "직급", Type: "Text", Width: 50, SaveName: "dutyNm", Align: "Center" },    
-             { Header: "사번", Type: "Text", Width: 70, SaveName: "userId", Align: "Center" },        
-             { Header: "성명", Type: "Text", Width: 70, SaveName: "userNm", Align: "Center" },        
+        	 { Header: "직급", Type: "Text", Width: 60, SaveName: "dutyNm", Align: "Center" },    
+             { Header: "사번", Type: "Text", Width: 80, SaveName: "userId", Align: "Center" },        
+             { Header: "성명", Type: "Text", Width: 80, SaveName: "userNm", Align: "Center" },        
              { Header: "생년월일", Type: "Text", Width: 80, SaveName: "resNo", Align: "Center" },
-             { Header: "현재등급", Type: "Text", Width: 70, SaveName: "ranking", Align: "Center"},            
-             { Header: "현 역량지수", Type: "Float", Width: 80, SaveName: "rankingRate", Align: "Center"},
-             { Header: "승급가능등급\n(승급교육 이수 후 등급)", Type: "Text", Width: 140, SaveName: "afterRanking", Align: "Center" },
-             { Header: "기본교육/최초교육\n이수여부", Type: "Text", Width: 230, SaveName: "etc", Align: "Center" },
-             { Header: "기본교육 현황", Type: "Text", Width: 100, SaveName: "basicEdu", Align: "Center" },
-             { Header: "최초교육 현황\n품질관리", Type: "Text", Width: 175, SaveName: "qualityEdu", Align: "Center"},
-             { Header: "근무 현장", Type: "Text", Width: 230, SaveName: "deptNm" }
+             { Header: "차수", Type: "Text", Width: 60, SaveName: "phase", Align: "Center"},            
+             { Header: "기산일", Type: "Text", Width: 100, SaveName: "initDate", Align: "Center"},
+             { Header: "수행일", Type: "Text", Width: 80, SaveName: "runDays", Align: "Center" },
+             { Header: "3년되는날", Type: "Text", Width: 100, SaveName: "threeYearDate", Align: "Center" },
+             { Header: "이수/교육종류", Type: "Text", Width: 100, SaveName: "eduType", Align: "Center" },
+             { Header: "교육시간", Type: "Text", Width: 80, SaveName: "eduTimes", Align: "Center" },
+             { Header: "이수일", Type: "Text", Width: 100, SaveName: "passDate", Align: "Center" },
+             { Header: "이수시간", Type: "Text", Width: 80, SaveName: "passTimes", Align: "Center" },
+             { Header: "비고", Type: "Text", Width: 120, SaveName: "etc", Align: "Center" }
         ];
 		
-        IBS_InitSheet(mySheet, initdata);
-        mySheet.SetEditable(0);
-        mySheet.SetEditableColorDiff(0);
-        mySheet.SetColFontUnderline("userId", true);
-        mySheet.SetDataLinkMouse("userId", true);
-        mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
-        mySheet.LoadSearchData(pListDatas);
+        IBS_InitSheet(mySheet1, initdata);
+        mySheet1.SetEditable(0);
+        mySheet1.SetEditableColorDiff(0);
+        mySheet1.SetColFontUnderline("userId", true);
+        mySheet1.SetDataLinkMouse("userId", true);
+        mySheet1.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
+        mySheet1.LoadSearchData(pListDatas);
     }  
 	
- 	// 그리드 클릭 함수
-	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
-		if (Row == 0) {
-			return false;
-		}		
+ 	// 그리드 생성 함수
+    function makeGrid2(pListDatas) {
+    	commonFunc.initSheet("mySheet2");
 		
-		if (mySheet.ColSaveName(Col) == "userId") {			
-			var userId = mySheet.GetCellValue(Row, "userId");
-			var userNm = mySheet.GetCellValue(Row, "userNm");
-			var resNo = mySheet.GetCellValue(Row, "resNo");
-			
-			libraryFunc.createModal(null, null, null, 1100, 560, "기술경력", "/ModalBot/EngineerManageCareerList.do" + "?pUserId=" + userId + "&pUserNm=" + userNm + "&pResNo=" + resNo );
-   		}		
-	}
-	
-	// 목록 조회 공통 함수
-	function searchListEngineerManage() {
-		var orgTypeCd = $("#org_type_cd").val();
+        var initdata = {};
+
+        createIBSheet2(document.getElementById("sheet2"), "mySheet2", "1120px", "510px");
+		
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
+        initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
+        initdata.Cols = [
+        	{ Header: "구분", Type: "Text", Width: 0, SaveName: "orgTypeNm", Align: "Center", Hidden:true },     
+       	 	{ Header: "직급", Type: "Text", Width: 60, SaveName: "dutyNm", Align: "Center" },    
+            { Header: "사번", Type: "Text", Width: 80, SaveName: "userId", Align: "Center" },        
+            { Header: "성명", Type: "Text", Width: 80, SaveName: "userNm", Align: "Center" },        
+            { Header: "생년월일", Type: "Text", Width: 80, SaveName: "resNo", Align: "Center" },
+            { Header: "차수", Type: "Text", Width: 60, SaveName: "phase", Align: "Center"},            
+            { Header: "기산일", Type: "Text", Width: 100, SaveName: "initDate", Align: "Center"},
+            { Header: "수행일", Type: "Text", Width: 80, SaveName: "runDays", Align: "Center" },
+            { Header: "3년되는날", Type: "Text", Width: 100, SaveName: "threeYearDate", Align: "Center" },
+            { Header: "이수/교육종류", Type: "Text", Width: 100, SaveName: "eduType", Align: "Center" },
+            { Header: "교육시간", Type: "Text", Width: 80, SaveName: "eduTimes", Align: "Center" },
+            { Header: "이수일", Type: "Text", Width: 100, SaveName: "passDate", Align: "Center" },
+            { Header: "이수시간", Type: "Text", Width: 80, SaveName: "passTimes", Align: "Center" },
+            { Header: "비고", Type: "Text", Width: 120, SaveName: "etc", Align: "Center" }
+        ];
+		
+        IBS_InitSheet(mySheet2, initdata);
+        mySheet2.SetEditable(0);
+        mySheet2.SetEditableColorDiff(0);
+        mySheet2.SetColFontUnderline("userId", true);
+        mySheet2.SetDataLinkMouse("userId", true);
+        mySheet2.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
+        mySheet2.LoadSearchData(pListDatas);
+    }  
+ 
+	// 목록 조회 함수
+	function searchListEngineerEduManage() {
+		var orgTypeCd = $("#org_type_cd").val() == "전체" ? "" : $("#org_type_cd").val(); 
 		var dutyNm = $("#duty_nm").val();
 		var userNm = $("#user_nm").val();
 		
-		ListEngineerManage(menuId, orgTypeCd, dutyNm, userNm);
+		listEngineerEduManageQualityEdu(orgTypeCd, dutyNm, userNm);
+		listEngineerEduManageConstEdu(orgTypeCd, dutyNm, userNm);
 	}
 	
 	// 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_search", function (e) {				
-		searchListEngineerManage();
+		searchListEngineerEduManage();
 	});	
-
-	// 엑셀 다운로드 버튼 클릭 이벤트
-	$(document).on("click", "#btn_engineer_list_download", function (e) {		
-		var params = { Multipart: 0, FileName: "EngineerList.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
-		mySheet.Down2Excel(params);
+	
+	// 품질관리교육 엑셀 다운로드 버튼 클릭 이벤트
+	$(document).on("click", "#btn_engineer_quality_edu_list_download", function (e) {		
+		var params = { Multipart: 0, FileName: "EngineerQualityEduList.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		mySheet1.Down2Excel(params);
+	});
+	
+	// 설계시공교육 엑셀 다운로드 버튼 클릭 이벤트
+	$(document).on("click", "#btn_engineer_const_edu_list_download", function (e) {		
+		var params = { Multipart: 0, FileName: "EngineerConstEduList.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		mySheet2.Down2Excel(params);
 	});
 	
 </script>
