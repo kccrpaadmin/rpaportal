@@ -271,4 +271,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/BidChangeRunTargetBid";
 	}
+	
+	@GetMapping("/BidChangeRunResult.do")
+	public String BidChangeRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/BidChangeRunResult.do");
+
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/BidChangeRunResult";
+	}
 }

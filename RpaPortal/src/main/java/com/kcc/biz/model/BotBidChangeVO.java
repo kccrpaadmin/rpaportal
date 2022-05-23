@@ -25,6 +25,14 @@ public class BotBidChangeVO {
 	private String RegJobTypeDept;
 	private String UserId;
 	private String EmpNo;
+	private String RequestNo;
+	private String ChangeType;
+	private String PqVendorAttId;
+	private String PqVendorAttNm;
+	private String BidDetailAttId;
+	private String BidDetailAttNm;
+	private String BasePrice;
+	private String BidNm;
 		
 	public String getMenuId() {
 		return MenuId;
@@ -121,5 +129,53 @@ public class BotBidChangeVO {
 	}
 	public void setEmpNo(String empNo) {
 		EmpNo = empNo;
+	}
+	public String getRequestNo() {
+		return RequestNo;
+	}
+	public void setRequestNo(String requestNo) {
+		RequestNo = requestNo;
+	}
+	public String getChangeType() {
+		return ChangeType;
+	}
+	public void setChangeType(String changeType) {
+		ChangeType = changeType;
+	}
+	public String getPqVendorAttId() {
+		return PqVendorAttId;
+	}
+	public void setPqVendorAttId(String pqVendorAttId) {
+		PqVendorAttId = pqVendorAttId;
+	}
+	public String getPqVendorAttNm() {
+		return PqVendorAttNm;
+	}
+	public void setPqVendorAttNm(String pqVendorAttNm) {
+		PqVendorAttNm = pqVendorAttNm;
+	}
+	public String getBidDetailAttId() {
+		return BidDetailAttId;
+	}
+	public void setBidDetailAttId(String bidDetailAttId) {
+		BidDetailAttId = bidDetailAttId;
+	}
+	public String getBidDetailAttNm() {
+		return BidDetailAttNm;
+	}
+	public void setBidDetailAttNm(String bidDetailAttNm) {
+		BidDetailAttNm = bidDetailAttNm;
+	}
+	public String getBasePrice() {
+		return BasePrice;
+	}
+	public void setBasePrice(String basePrice) {
+		BasePrice = basePrice;
+	}
+	public String getBidNm() {
+		return BidNm;
+	}
+	public void setBidNm(String bidNm) {
+		BidNm = bidNm;
 	}
 }

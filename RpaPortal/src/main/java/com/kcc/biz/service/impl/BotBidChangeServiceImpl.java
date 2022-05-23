@@ -37,4 +37,8 @@ public class BotBidChangeServiceImpl implements IBotBidChangeService {
 			botBidChangeRepository.deleteBotBidChangeTargetBid(botBidChangeVO);
 		}
 	}
+	
+	public List<BotBidChangeVO> listBotBidChange(BotBidChangeVO vo) throws Exception {		
+		return botBidChangeRepository.listBotBidChange(vo);
+	}
 }

@@ -45,4 +45,15 @@
 			}
 		]]>
 	</update>	
+	
+	<select id="listBotBidChange" statementType="CALLABLE" parameterType="botBidChangeVO" resultType="botBidChangeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotBidChangeList (
+            		#{MenuId}
+            	   ,#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
 </mapper>
