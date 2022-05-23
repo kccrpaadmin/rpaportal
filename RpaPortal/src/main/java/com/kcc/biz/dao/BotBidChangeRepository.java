@@ -12,4 +12,5 @@ public interface BotBidChangeRepository {
 	List<BotBidChangeVO> listBotBidChangeTargetBid(BotBidChangeVO vo) throws Exception;	
 	void createBotBidChangeTargetBid(BotBidChangeVO vo) throws Exception;	
 	void deleteBotBidChangeTargetBid(BotBidChangeVO vo) throws Exception;
+	List<BotBidChangeVO> listBotBidChange(BotBidChangeVO vo) throws Exception;	
 }

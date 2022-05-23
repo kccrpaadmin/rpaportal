@@ -898,4 +898,22 @@ public class AjaxBotController extends BaseController {
 		
 		return statusVO;		
 	}
+	
+	@PostMapping("/ListBidChange.do")
+	public @ResponseBody Map<String, Object> ListBidChange(@RequestBody BotBidChangeVO vo) {
+		logger.info("/AjaxBot/ListBidChange.do");
+		
+		List<BotBidChangeVO> outListBidChangeVO = new ArrayList<BotBidChangeVO>();
+		try {
+			outListBidChangeVO = botBidChangeService.listBotBidChange(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBidChangeVO);
+		
+		return map;
+	}
 }

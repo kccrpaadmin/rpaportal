@@ -9,4 +9,5 @@ public interface IBotBidChangeService {
 	List<BotBidChangeVO> listBotBidChangeTargetBid(BotBidChangeVO vo) throws Exception;	
 	void createBotBidChangeTargetBid(List<BotBidChangeVO> vo) throws Exception;
 	void deleteBotBidChangeTargetBid(List<BotBidChangeVO> vo) throws Exception;
+	List<BotBidChangeVO> listBotBidChange(BotBidChangeVO vo) throws Exception;	
 }
