@@ -44,6 +44,7 @@ import com.kcc.biz.model.FileUploadVO;
 import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.BotMoneySendVO;
 import com.kcc.biz.model.BotCostDivideVO;
+import com.kcc.biz.model.BotEngineerEduVO;
 import com.kcc.biz.model.BotKisconConstVO;
 import com.kcc.biz.model.BotEtcTaxVO;
 import com.kcc.biz.model.BotPersonAppointVO;
@@ -55,6 +56,7 @@ import com.kcc.biz.service.IBotRequestService;
 import com.kcc.biz.service.IBotScheduleService;
 import com.kcc.biz.service.IBotMoneySendService;
 import com.kcc.biz.service.IBotCostDivideService;
+import com.kcc.biz.service.IBotEngineerEduService;
 import com.kcc.biz.service.IBotKisconConstService;
 import com.kcc.biz.service.IBotEtcTaxService;
 import com.kcc.biz.service.IBotPersonAppointService;
@@ -102,6 +104,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botEngineerService")
 	private IBotEngineerService botEngineerService;
+	
+	@Resource(name="botEngineerEduService")
+	private IBotEngineerEduService botEngineerEduService;
 	
 	@Resource(name="botBidChangeService")
 	private IBotBidChangeService botBidChangeService;
@@ -769,6 +774,42 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}		
+	
+	@PostMapping("/ListBotEngineerConstEduPass.do")
+	public @ResponseBody Map<String, Object> ListBotEngineerConstEduPass(@RequestBody BotEngineerEduVO vo) {
+		logger.info("/AjaxBot/ListBotEngineerConstEduPass.do");
+		
+		List<BotEngineerEduVO> outListBotEngineerConstEduPassVO = new ArrayList<BotEngineerEduVO>();
+		try {
+			outListBotEngineerConstEduPassVO = botEngineerEduService.listBotEngineerConstEduPass(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEngineerConstEduPassVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListBotEngineerConstEduFail.do")
+	public @ResponseBody Map<String, Object> ListBotEngineerConstEduFail(@RequestBody BotEngineerEduVO vo) {
+		logger.info("/AjaxBot/ListBotEngineerConstEduFail.do");
+		
+		List<BotEngineerEduVO> outListBotEngineerConstEduFailVO = new ArrayList<BotEngineerEduVO>();
+		try {
+			outListBotEngineerConstEduFailVO = botEngineerEduService.listBotEngineerConstEduFail(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEngineerConstEduFailVO);
+		
+		return map;
+	}
 	
 	@PostMapping("/ListBidChangeG2b.do")
 	public @ResponseBody Map<String, Object> ListBidChangeG2b(@RequestBody BotBidChangeVO vo) {

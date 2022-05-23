@@ -250,7 +250,17 @@ public class ModalBotController extends BaseController {
 				
 		return "ModalBot/EngineerRunTargetUserSearchUser";
 	}
-
+	
+	@GetMapping("/EngineerEduRunResult.do")
+	public String EngineerEduRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/EngineerEduRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/EngineerEduRunResult";
+	}
+	
 	@GetMapping("/BidChangeRunTargetBid.do")
 	public String BidChangeRunTargetBid(String pMenuId, Model model) {
 		logger.info("/ModalBot/BidChangeRunTargetBid.do");

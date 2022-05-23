@@ -74,10 +74,11 @@
 		<typeAlias alias="botPersonAppointVO" type="com.kcc.biz.model.BotPersonAppointVO" />
 		<!-- BOT 기술인협회 기술자정보 수집 업무 -->
 		<typeAlias alias="botEngineerVO" type="com.kcc.biz.model.BotEngineerVO" />
+		<!-- BOT 기술인협회 교육정보 수집 업무 -->
+		<typeAlias alias="botEngineerEduVO" type="com.kcc.biz.model.BotEngineerEduVO" />
 		<!-- BOT 나라장터 입찰 예정공사 변경사항 수집 업무 -->
 		<typeAlias alias="botBidChangeVO" type="com.kcc.biz.model.BotBidChangeVO" />
-		
-		
+				
 	</typeAliases>
 	
 </configuration>
