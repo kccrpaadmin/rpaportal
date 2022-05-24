@@ -115,10 +115,25 @@
 		
         IBS_InitSheet(mySheet, initdata);
         mySheet.SetEditableColorDiff(0);
-        mySheet.SetEditable(1);
+        mySheet.SetColFontUnderline("link", true);
+        mySheet.SetDataLinkMouse("link", true);
+        mySheet.SetEditable(0);
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet.LoadSearchData(pListDatas);
-    }  
+    }
+	
+ // 그리드 클릭 함수
+	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
+		if (Row == 0) {
+			return false;
+		}		
+		
+		if (mySheet.ColSaveName(Col) == "link") {			
+			var link = mySheet.GetCellValue(Row, "link");
+						
+			window.open(link, "_blank");
+   		}		
+	}
 	
 	// 목록 조회 공통 함수
 	function searchListCrawlAcdManage() {		
