@@ -345,8 +345,8 @@ public class CrawlController extends BaseController {
 		
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
-		model.addAttribute("startDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", -1));
-		model.addAttribute("endDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", 0));
+		model.addAttribute("startDate", commonUtilService.getDateUserFormat("yyyy-MM", "Month", -1));
+		model.addAttribute("endDate", commonUtilService.getDateUserFormat("yyyy-MM", "Month", 0));
 		
 		return "Crawl/AcdManage";
 	}
