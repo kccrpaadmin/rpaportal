@@ -289,6 +289,7 @@
             { Header: "공법", Type: "Text", Width: 80, SaveName: "constMethod", Align: "Center" },
             { Header: "직무분야", Type: "Text", Width: 60, SaveName: "jobKind", Align: "Center" },
             { Header: "전문분야", Type: "Text", Width: 80, SaveName: "specialKind", Align: "Center" },
+            { Header: "책임정도", Type: "Text", Width: 90, SaveName: "responsibility", Align: "Center" },
             { Header: "담당업무", Type: "Text", Width: 100, SaveName: "assignWork", Align: "Center" },
             { Header: "직위", Type: "Text", Width: 60, SaveName: "titleNm", Align: "Center" },
             { Header: "신고구분", Type: "Text", Width: 60, SaveName: "reportType", Align: "Center" },

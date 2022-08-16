@@ -56,6 +56,7 @@ public class BotEngineerVO {
 	private String EngineerTargetUser;
 	private String EngineerExistType;
 	private String TitleNm;
+	private String Responsibility;
 		
 	public String getMenuId() {
 		return MenuId;
@@ -338,5 +339,11 @@ public class BotEngineerVO {
 	}
 	public void setTitleNm(String titleNm) {
 		TitleNm = titleNm;
+	}
+	public String getResponsibility() {
+		return Responsibility;
+	}
+	public void setResponsibility(String responsibility) {
+		Responsibility = responsibility;
 	}
 }
