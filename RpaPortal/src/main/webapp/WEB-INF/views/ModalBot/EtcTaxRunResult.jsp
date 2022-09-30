@@ -60,7 +60,7 @@
 				return false;
 			}
 		});
-	}
+	} 
 	
 	// 그리드 생성 함수
     function makeGrid(pListDatas) {
