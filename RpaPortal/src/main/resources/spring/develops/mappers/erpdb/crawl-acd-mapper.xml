@@ -24,5 +24,16 @@
 			}
 		]]>
 	</select>
+	
+	<select id="listAcdManageUseList" statementType="CALLABLE" parameterType="crawlAcdVO" resultType="crawlAcdVO">
+		<![CDATA[
+			{ 
+	            call PRA_Crawl_listCrawlAcdManageUseList (            		
+            		#{StartDate}
+            		,#{EndDate}            		
+            	)
+			}
+		]]>
+	</select>
 		
 </mapper>

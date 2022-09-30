@@ -460,4 +460,22 @@ public class AjaxCrawlController extends BaseController {
 		return map;
 	}
 	
+	@PostMapping("/ListAcdManageUseList.do")
+	public @ResponseBody Map<String, Object> ListAcdManageUseList(@RequestBody CrawlAcdVO vo) {
+		logger.info("/AjaxCrawl/ListAcdManageUseList.do");
+		
+		List<CrawlAcdVO> outListCrawlAcdVO = new ArrayList<CrawlAcdVO>();
+		try {
+			outListCrawlAcdVO = crawlAcdService.listAcdManageUseList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListCrawlAcdVO);
+		
+		return map;
+	}
+	
 }

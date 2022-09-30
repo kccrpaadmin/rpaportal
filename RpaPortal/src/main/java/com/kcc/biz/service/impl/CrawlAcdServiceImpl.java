@@ -29,4 +29,7 @@ public class CrawlAcdServiceImpl implements ICrawlAcdService {
 		return crawlAcdRepository.listCrawlAcdManage(vo);
 	}
 	
+	public List<CrawlAcdVO> listAcdManageUseList(CrawlAcdVO vo) throws Exception {
+		return crawlAcdRepository.listAcdManageUseList(vo);
+	}
 }

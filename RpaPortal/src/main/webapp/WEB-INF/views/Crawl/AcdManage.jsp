@@ -47,6 +47,7 @@
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">	    	
 	    	<a class="btn_common1" id="btn_search">조회</a>
+	    	<a class="btn_common1" id="btn_usersearch">사용자현황 조회</a>
 	    </div>
 	    <!-- 그리드영역 -->
 	    <div class="grid_box">
@@ -157,6 +158,11 @@
 	$(document).on("click", "#btn_acd_download", function (e) {		
 		var params = { Multipart: 0, FileName: "Acd.xls",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
 		mySheet.Down2Excel(params);
+	});
+ 	
+	// 사용자현황 조회 버튼 클릭 이벤트
+	$(document).on("click", "#btn_usersearch", function (e) {				
+		libraryFunc.createModal(null, null, null, 700, 500, "사용자현황", "/ModalCrawl/AcdManageUseList.do?pMenuId=" + menuId);
 	});
  	
 </script>

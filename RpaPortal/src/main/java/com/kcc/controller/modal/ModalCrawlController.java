@@ -157,4 +157,13 @@ public class ModalCrawlController extends BaseController {
 		
 		return "ModalCrawl/AcdRunResult";
 	}
+	
+	@GetMapping("/AcdManageUseList.do")
+	public String AcdManageUseList(String pMenuId, Model model) {
+		logger.info("/ModalCrawl/AcdManageUseList.do");
+		
+		model.addAttribute("menuId", pMenuId);		
+		
+		return "ModalCrawl/AcdManageUseList";
+	}
 }

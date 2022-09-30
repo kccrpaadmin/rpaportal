@@ -8,8 +8,8 @@
 		<div class="search_dtl_box">
 			<table class="search_dtl_tbl">
 				<colgroup>
-					<col style="width:10%;" />
-	                <col style="width:30%;" />
+					<col style="width:20%;" />
+	                <col style="width:70%;" />	                
 	                <col />
 				</colgroup>
 				<tbody>
@@ -18,8 +18,8 @@
 	                    <td class="search_dtl_td">
 	                        <input type="text" class="datepicker_ym" readonly="readonly"  id="start_date" value="${startDate}" />
 	                        <span>~</span>
-	                        <input type="text" class="datepicker_ym" readonly="readonly" id="end_date" value="${endDate}" />
-	                    </td>						
+	                        <input type="text" class="datepicker_ym" readonly="readonly" id="end_date" value="${endDate}" />	                    
+	                    </td>							                    
 						<td class="search_dtl_td">							
 							<input type="button"  id="btn_search" value="조회" />						
 						</td>				
@@ -37,7 +37,7 @@
 	var menuId = "${menuId}";
 
 	// 페이지 로드 
-	$(document).ready(function (e) {
+	$(document).ready(function (e) {		
 		commonFunc.createDatepicker(".datepicker_ym", "YearMonth");
 		searchListAcdManageUseList();
 	});
@@ -67,16 +67,16 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "600px", "250px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "680px", "500px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-        	 { Header: "성명", Type: "Text", Width: 90, SaveName: "usernm",  Align: "Left" },
-             { Header: "부서명", Type: "Text", Width: 150, SaveName: "deptnm", Align: "Left" },
-             { Header: "직급", Type: "Text", Width: 90, SaveName: "titlenm", Align: "Left" },
+        	 { Header: "성명", Type: "Text", Width: 100, SaveName: "usernm",  Align: "Left" },
+             { Header: "부서명", Type: "Text", Width: 160, SaveName: "deptnm", Align: "Left" },
+             { Header: "직급", Type: "Text", Width: 100, SaveName: "titlenm", Align: "Left" },
              { Header: "접속기기", Type: "Text", Width: 90, SaveName: "accessdevice" , Align: "Left" },
-             { Header: "조회년월", Type: "Text", Width: 100, SaveName: "userdate" , Align: "Left"},
+             { Header: "조회년월", Type: "Text", Width: 110, SaveName: "userdate" , Align: "Left"},
              { Header: "조회수", Type: "Int", Width: 80, SaveName: "cnt", Align: "Center" },                         
         ];
 
@@ -98,6 +98,7 @@
 	// 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_search", function (e) {								
 		searchListAcdManageUseList();
+		
 	});
 		
 </script>
