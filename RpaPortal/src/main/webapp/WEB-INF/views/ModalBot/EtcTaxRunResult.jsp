@@ -25,6 +25,10 @@
 	    </div>	
 		<!-- 그리드영역 -->
 		<div id="sheet"></div>
+		<!-- 첨부영역 -->
+	    <div class='file_control_box'>
+    		${attIdFileBox}
+	    </div>	   
 	</div>
 </div>
 
@@ -64,7 +68,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "450px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1060px", "400px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };

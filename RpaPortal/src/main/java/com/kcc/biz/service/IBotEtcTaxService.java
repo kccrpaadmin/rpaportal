@@ -6,4 +6,5 @@ import com.kcc.biz.model.BotEtcTaxVO;
 
 public interface IBotEtcTaxService {	
 	List<BotEtcTaxVO> listBotEtcTaxList(BotEtcTaxVO vo) throws Exception;
+	BotEtcTaxVO getBotEtcTaxAttId(BotEtcTaxVO vo) throws Exception;
 }

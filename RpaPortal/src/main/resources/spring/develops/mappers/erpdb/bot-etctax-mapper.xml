@@ -14,4 +14,14 @@
 		]]>
 	</select>
 	
+	<select id="getBotEtcTaxAttId" statementType="CALLABLE" parameterType="botEtcTaxVO" resultType="botEtcTaxVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_getBotEtcTaxAttId (
+	            	#{RequestNo}
+            	)
+			}
+		]]>
+	</select>	
+	
 </mapper>

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.AccessVO;
@@ -27,15 +28,18 @@ import com.kcc.biz.model.MenuVO;
 import com.kcc.biz.model.CrawlSystemCheckVO;
 import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.UserVO;
+import com.kcc.biz.model.BotEtcTaxVO;
 import com.kcc.biz.service.IAccessService;
 import com.kcc.biz.service.ILoginService;
 import com.kcc.biz.service.IMenuService;
 import com.kcc.biz.service.ICrawlSystemCheckService;
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IUserService;
+import com.kcc.biz.service.IBotEtcTaxService;
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IRouteUtilService;
 import com.kcc.util.service.ICommonUtilService;
+import com.kcc.util.service.IFileUploadUtilService;
 
 @RequestMapping("/ModalBot")
 @Controller
@@ -50,6 +54,12 @@ public class ModalBotController extends BaseController {
 	
 	@Resource(name="commonUtilService")
 	private ICommonUtilService commonUtilService;
+
+	@Resource(name="botEtcTaxService")
+	private IBotEtcTaxService botEtcTaxService;
+	
+	@Resource(name="fileUploadUtilService")
+	private IFileUploadUtilService fileUploadUtilService;
 	
 	@GetMapping("/WorkInfo.do")
 	public String WorkInfo(String pMenuId, String pEmpNo, Model model) {
@@ -180,9 +190,27 @@ public class ModalBotController extends BaseController {
 	public String EtcTaxRunResult(String pMenuId, String pRequestNo, Model model) {
 		logger.info("/ModalBot/EtcTaxRunResult.do");
 		
+		// EtcTaxVO 입력
+		BotEtcTaxVO inEtcTaxVO = new BotEtcTaxVO();
+		inEtcTaxVO.setRequestNo(pRequestNo);
+		
+		// MenuVO 출력
+		BotEtcTaxVO outEtcTaxVO = new BotEtcTaxVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outEtcTaxVO = botEtcTaxService.getBotEtcTaxAttId(inEtcTaxVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		model.addAttribute("menuId", pMenuId);
 		model.addAttribute("requestNo", pRequestNo);
+		model.addAttribute("outBoardVO", outEtcTaxVO);
+		model.addAttribute("attIdFileBox", fileUploadUtilService.createFileControl("첨부파일", "attId", commonUtilService.isEmptyCheck(outEtcTaxVO) ? "" :  outEtcTaxVO.getAttId(), false, "Left", "49%"));
 		
+				
 		return "ModalBot/EtcTaxRunResult";
 	}
 	
