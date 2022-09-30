@@ -9,4 +9,5 @@ import com.kcc.biz.model.BotEtcTaxVO;
 @Repository("botEtcTaxRepository")
 public interface BotEtcTaxRepository {	
 	List<BotEtcTaxVO> listBotEtcTaxList(BotEtcTaxVO vo) throws Exception;
+	BotEtcTaxVO getBotEtcTaxAttId(BotEtcTaxVO vo) throws Exception;
 }

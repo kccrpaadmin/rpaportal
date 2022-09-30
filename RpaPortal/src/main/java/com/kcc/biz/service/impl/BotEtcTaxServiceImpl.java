@@ -21,4 +21,8 @@ public class BotEtcTaxServiceImpl implements IBotEtcTaxService {
 	public List<BotEtcTaxVO> listBotEtcTaxList(BotEtcTaxVO vo) throws Exception {
 		return botEtcTaxRepository.listBotEtcTaxList(vo);
 	}
+	
+	public BotEtcTaxVO getBotEtcTaxAttId(BotEtcTaxVO vo) throws Exception{
+		return botEtcTaxRepository.getBotEtcTaxAttId(vo);
+	} 
 }

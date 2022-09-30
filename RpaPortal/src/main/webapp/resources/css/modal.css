@@ -80,3 +80,16 @@ input[type=radio],input[type=checkbox],input[type=image]{margin:0;border:none 0;
 .grid_box{overflow:hidden;margin-bottom:1px}
 .grid_box .grid_title{float:left;height:16px;line-height:16px;margin:15px 0px 5px 0px;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-size:12px;font-weight:bold;color:#4c4c4c;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;vertical-align:middle;}
 .grid_box .grid_btn{overflow:hidden;margin:10px 0px 5px 0px;text-align:center;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;float:right;}
+
+/* 첨부영역1 */
+.file_control_box{overflow:hidden;margin-top:20px;}
+.file_control_box .file_control{overflow:hidden;}
+.file_control_box .file_control .file_header{overflow:hidden;-ms-user-select:none;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;user-select:none;}
+.file_control_box .file_control .file_header .file_header_left{overflow:hidden;float:left;width:47%;padding-left:20px;background:url("/resources/imgs/icon/icon_lnb_minus.png") no-repeat left 7px;font-family:'NanumSquare' ;font-size:14px;font-weight:bold;transform:skew(-0.1deg);color:#4c4c4c;vertical-align:middle;}
+.file_control_box .file_control .file_header .file_header_right{overflow:hidden;float:right;width:47%;padding-right:0px;vertical-align:middle;text-align:right;}
+.file_control_box .file_control .file_body{position:relative; margin-top:5px;border:1px solid #d1d1d4;}
+.file_control_box .file_control .file_body .file_h1{height:26px;line-height:26px;padding:3px 5px;border-bottom:1px solid #d1d1d4;background-color:#f5f5fb;text-align:center;}
+.file_control_box .file_control .file_body .file_body_scroll{overflow-y:auto;height:50px;}
+.file_control_box .file_control .file_body .file_body_scroll .file_tbl{table-layout:fixed;margin-bottom:15px;}
+.file_control_box .file_control .file_body .file_body_scroll .file_tbl .file_tbl_td_l{height:26px;padding:3px 5px;border-bottom:1px solid #d1d1d4;text-align:left;vertical-align:middle;}
+.file_control_box .file_control .file_body .file_body_scroll .file_tbl .file_tbl_td_r{height:26px;padding:3px 5px;border-bottom:1px solid #d1d1d4;text-align:right;vertical-align:middle;}
