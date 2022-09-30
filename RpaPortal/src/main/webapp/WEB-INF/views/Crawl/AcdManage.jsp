@@ -163,6 +163,6 @@
 	// 사용자현황 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_usersearch", function (e) {				
 		libraryFunc.createModal(null, null, null, 700, 500, "사용자현황", "/ModalCrawl/AcdManageUseList.do?pMenuId=" + menuId);
-	});
+	}); 
  	
 </script>
