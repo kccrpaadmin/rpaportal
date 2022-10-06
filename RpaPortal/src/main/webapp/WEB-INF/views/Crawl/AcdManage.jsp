@@ -47,7 +47,7 @@
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">	    	
 	    	<a class="btn_common1" id="btn_search">조회</a>
-	    	<a class="btn_common1" id="btn_usersearch">사용자현황 조회</a>
+	    	<a class="btn_common1" id="btn_usersearch">사용현황 조회</a>
 	    </div>
 	    <!-- 그리드영역 -->
 	    <div class="grid_box">
@@ -162,7 +162,7 @@
  	
 	// 사용자현황 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_usersearch", function (e) {				
-		libraryFunc.createModal(null, null, null, 620, 700, "사용자현황", "/ModalCrawl/AcdManageUseList.do?pMenuId=" + menuId);
+		libraryFunc.createModal(null, null, null, 620, 700, "사용현황", "/ModalCrawl/AcdManageUseList.do?pMenuId=" + menuId);
 	}); 
  	
 </script>

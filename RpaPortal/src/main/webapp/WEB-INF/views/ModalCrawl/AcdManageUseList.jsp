@@ -76,7 +76,7 @@
              { Header: "부서명", Type: "Text", Width: 160, SaveName: "deptNm", Align: "Center" },
              { Header: "직급", Type: "Text", Width: 100, SaveName: "titleNm", Align: "Center" },
              { Header: "접속기기", Type: "Text", Width: 90, SaveName: "accessDevice" , Align: "Center" },
-             { Header: "조회년월", Type: "Text", Width: 110, SaveName: "useDate" , Align: "Center"},                                    
+             { Header: "접속일자", Type: "Text", Width: 110, SaveName: "useDate" , Align: "Center"},                                    
         ];
 
         IBS_InitSheet(mySheet, initdata);
