@@ -24,8 +24,7 @@ public class CrawlAcdVO {
 	private String DeptNm;
 	private String TitleNm;
 	private String AccessDevice;
-	private String UseDate;
-	private String Cnt;
+	private String UseDate;	
 	
 	public String getSeq() {
 		return Seq;
@@ -57,13 +56,16 @@ public class CrawlAcdVO {
 	public String getStartDate() {
 		return StartDate;
 	}
+	public String getEndDate() {
+		return EndDate;
+	}
 	public String getUserNm() {
 		return UserNm;
 	}
 	public String getDeptNm() {
 		return DeptNm;
 	}
-	public String getTilteNm() {
+	public String getTitleNm() {
 		return TitleNm;
 	}
 	public String getAccessDevice() {
@@ -71,10 +73,7 @@ public class CrawlAcdVO {
 	}
 	public String getUseDate() {
 		return UseDate;
-	}
-	public String getCnt() {
-		return Cnt;
-	}
+	}	
 	public void setSeq(String seq) {
 		Seq = seq;
 	}
@@ -105,6 +104,9 @@ public class CrawlAcdVO {
 	public void setStartDate(String startDate) {
 		StartDate = startDate;
 	}
+	public void setEndDate(String endDate) {
+		EndDate = endDate;
+	}
 	public void setUserNm(String userNm) {
 		UserNm = userNm;
 	}
@@ -119,8 +121,5 @@ public class CrawlAcdVO {
 	}
 	public void setUseDate(String useDate) {
 		UseDate = useDate;
-	}
-	public void setCnt(String cnt) {
-		Cnt = cnt;
-	}
+	}	
 }

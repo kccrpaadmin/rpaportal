@@ -76,7 +76,7 @@
 	});
 	
 	// 나라장터 수집 데이터 관리 목록 조회
-	function listAcdManage(pStartDate, pEndDate, pAccidentType) {					
+	function listAcdManage(pStartDate, pEndDate, pAccidentType) {		
 		$.ajax({
 			url: "/AjaxCrawl/ListAcdManage.do",
 			type: "POST",
@@ -162,7 +162,7 @@
  	
 	// 사용자현황 조회 버튼 클릭 이벤트
 	$(document).on("click", "#btn_usersearch", function (e) {				
-		libraryFunc.createModal(null, null, null, 700, 500, "사용자현황", "/ModalCrawl/AcdManageUseList.do?pMenuId=" + menuId);
+		libraryFunc.createModal(null, null, null, 620, 700, "사용자현황", "/ModalCrawl/AcdManageUseList.do?pMenuId=" + menuId);
 	}); 
  	
 </script>

@@ -67,17 +67,16 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "680px", "500px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "600px", "700px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-        	 { Header: "성명", Type: "Text", Width: 100, SaveName: "usernm",  Align: "Left" },
-             { Header: "부서명", Type: "Text", Width: 160, SaveName: "deptnm", Align: "Left" },
-             { Header: "직급", Type: "Text", Width: 100, SaveName: "titlenm", Align: "Left" },
-             { Header: "접속기기", Type: "Text", Width: 90, SaveName: "accessdevice" , Align: "Left" },
-             { Header: "조회년월", Type: "Text", Width: 110, SaveName: "userdate" , Align: "Left"},
-             { Header: "조회수", Type: "Int", Width: 80, SaveName: "cnt", Align: "Center" },                         
+        	 { Header: "성명", Type: "Text", Width: 100, SaveName: "userNm",  Align: "Center" },
+             { Header: "부서명", Type: "Text", Width: 160, SaveName: "deptNm", Align: "Center" },
+             { Header: "직급", Type: "Text", Width: 100, SaveName: "titleNm", Align: "Center" },
+             { Header: "접속기기", Type: "Text", Width: 90, SaveName: "accessDevice" , Align: "Center" },
+             { Header: "조회년월", Type: "Text", Width: 110, SaveName: "useDate" , Align: "Center"},                                    
         ];
 
         IBS_InitSheet(mySheet, initdata);
