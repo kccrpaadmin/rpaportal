@@ -50,6 +50,7 @@ import com.kcc.biz.model.BotEtcTaxVO;
 import com.kcc.biz.model.BotPersonAppointVO;
 import com.kcc.biz.model.BotEngineerVO;
 import com.kcc.biz.model.BotBidChangeVO;
+import com.kcc.biz.model.BotPersonalBccVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -62,6 +63,7 @@ import com.kcc.biz.service.IBotEtcTaxService;
 import com.kcc.biz.service.IBotPersonAppointService;
 import com.kcc.biz.service.IBotEngineerService;
 import com.kcc.biz.service.IBotBidChangeService;
+import com.kcc.biz.service.IBotPersonalBccService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -110,6 +112,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botBidChangeService")
 	private IBotBidChangeService botBidChangeService;
+	
+	@Resource(name="botPersonalBccService")
+	private IBotPersonalBccService botPersonalBccService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -949,6 +954,24 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListBidChangeVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListPersonalBcc.do")
+	public @ResponseBody Map<String, Object> ListPersonalBcc(@RequestBody BotPersonalBccVO vo) {
+		logger.info("/AjaxBot/ListPersonalBcc.do");
+		
+		List<BotPersonalBccVO> outListPersonalBccVO = new ArrayList<BotPersonalBccVO>();
+		try {
+			outListPersonalBccVO = botPersonalBccService.listBotPersonalBcc(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListPersonalBccVO);
 		
 		return map;
 	}

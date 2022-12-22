@@ -78,6 +78,8 @@
 		<typeAlias alias="botEngineerEduVO" type="com.kcc.biz.model.BotEngineerEduVO" />
 		<!-- BOT 나라장터 입찰 예정공사 변경사항 수집 업무 -->
 		<typeAlias alias="botBidChangeVO" type="com.kcc.biz.model.BotBidChangeVO" />
+		<!-- BOT 법인카드 신청 업무 -->
+		<typeAlias alias="botPersonalBccVO" type="com.kcc.biz.model.BotPersonalBccVO" />
 				
 	</typeAliases>
 	
