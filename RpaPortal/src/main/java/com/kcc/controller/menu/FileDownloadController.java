@@ -67,7 +67,10 @@ public class FileDownloadController extends BaseController {
 		
 		try {
 			AttFileVO attFileVO = attFileService.getAttFile(vo);
+			
 			String oriFileNm = attFileVO.getFileNm();
+					 oriFileNm = URLEncoder.encode(oriFileNm, "UTF-8");
+					 oriFileNm = oriFileNm.replaceAll("\\+", "%20");
 			String filePath = attFileVO.getFilePath();
 			
 			// 2021.08.19 아이비시트 파일 다운로드 추가후, commons-io 충돌로 인한 수정
@@ -76,7 +79,7 @@ public class FileDownloadController extends BaseController {
 	        byte[] fileByte = Files.readAllBytes(file.toPath());
 	        response.setHeader("Content-Type", "application/octet-stream");
 	        response.setHeader("Content-Transfer-Encoding", "binary"); 
-	        response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(oriFileNm, "UTF-8")+"\";");
+	        response.setHeader("Content-Disposition", "attachment; fileName=\"" + oriFileNm + "\";");
 	        response.setHeader("Content-Length", Long.toString(fileByte.length));
 	        response.setHeader("Pragma", "no-cache;");
 	        response.setHeader("Expires", "-1;");
