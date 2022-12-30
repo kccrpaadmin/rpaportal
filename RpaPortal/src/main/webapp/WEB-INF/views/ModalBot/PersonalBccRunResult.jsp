@@ -51,19 +51,13 @@
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "요청번호", 		Type: "Text", Width: 0,    SaveName: "requestNo", 				Hidden:true },            
-            { Header: "사번", 			Type: "Text", Width: 70,  SaveName: "applicantId", 				Align: "Center" },
-            { Header: "이름", 			Type: "Text", Width: 70, SaveName: "userNm", 						Align: "Center" },
-            { Header: "부서/현장",		Type: "Text", Width: 180, SaveName: "deptNm", 					Align: "Center" },
-            { Header: "직급", 			Type: "Text", Width: 50,  SaveName: "dutyNm", 					Align: "Center" },
-            { Header: "한도", 			Type: "Text", Width: 50,  SaveName: "amtLmt", 						Align: "Center" },
-            { Header: "신청구분", 		Type: "Text", Width: 60,  SaveName: "applyCdNm", 				Align: "Center" },
-            { Header: "영문성", 		Type: "Text", Width: 60, SaveName: "engLastNm", 				Align: "Center" },
-            { Header: "영문이름", 		Type: "Text", Width: 100, SaveName: "engFirstNm", 				Align: "Center" },
-            { Header: "우편번호", 		Type: "Text", Width: 60, SaveName: "zipCd", 						Align: "Center" },
-            { Header: "수령지주소", 	Type: "Text", Width: 200, SaveName: "compAddress", 			Align: "Center" },
-            { Header: "성공여부", 		Type: "Text", Width: 60, SaveName: "successTypeCdNm", 		Align: "Center" },
-            { Header: "오류내용", 		Type: "Text", Width: 100, SaveName: "errorMsg", 					Align: "Center" }
+            { Header: "요청번호", 		Type: "Text", Width: 0,     SaveName: "requestNo", 				Hidden:true },            
+            { Header: "사번", 			Type: "Text", Width: 100,  SaveName: "applicantId", 				Align: "Center" },
+            { Header: "이름", 			Type: "Text", Width: 100,  SaveName: "userNm", 					Align: "Center" },
+            { Header: "부서/현장",		Type: "Text", Width: 200,  SaveName: "deptNm", 					Align: "Center" },
+            { Header: "직급", 			Type: "Text", Width: 100,  SaveName: "dutyNm", 					Align: "Center" },          
+            { Header: "성공여부", 		Type: "Text", Width: 100,  SaveName: "successTypeCdNm", 	Align: "Center" },
+            { Header: "오류내용", 		Type: "Text", Width: 460,  SaveName: "errorMsg", 					Align: "Center" }
         ];
 
         IBS_InitSheet(mySheet, initdata);
