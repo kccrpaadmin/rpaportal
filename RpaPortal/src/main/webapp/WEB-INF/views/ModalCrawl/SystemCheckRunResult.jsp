@@ -49,7 +49,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1040px", "541px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1040px", "567px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
