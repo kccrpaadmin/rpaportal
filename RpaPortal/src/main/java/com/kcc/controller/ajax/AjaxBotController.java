@@ -38,6 +38,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.BotRequestVO;
+import com.kcc.biz.model.BotSalesEseroVO;
 import com.kcc.biz.model.BotScheduleVO;
 import com.kcc.biz.model.CrawlG2bVO;
 import com.kcc.biz.model.FileUploadVO;
@@ -54,6 +55,7 @@ import com.kcc.biz.model.BotPersonalBccVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
+import com.kcc.biz.service.IBotSalesEseroService;
 import com.kcc.biz.service.IBotScheduleService;
 import com.kcc.biz.service.IBotMoneySendService;
 import com.kcc.biz.service.IBotCostDivideService;
@@ -115,6 +117,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botPersonalBccService")
 	private IBotPersonalBccService botPersonalBccService;
+	
+	@Resource(name="botSalesEseroService")
+	private IBotSalesEseroService botSalesEseroService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -972,6 +977,170 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListPersonalBccVO);
+		
+		return map;
+	}
+	
+	// 매출 (세금)계산서, 전표 데이터 대사업무	
+	@PostMapping("/SaveSalesEseroTargetDate.do")
+	public @ResponseBody StatusVO SaveSalesEseroTargetDate(@RequestBody BotSalesEseroVO vo) {
+		logger.info("/AjaxBot/SaveSalesEseroTargetDate.do");
+		String status = "Success";
+		
+		try {
+			botSalesEseroService.saveBotSalesEseroTargetDate(vo);
+		} 
+		catch (Exception e) {
+			status = "SaveError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
+	}
+	
+	@PostMapping("/ListSalesEseroTargetDate.do")
+	public @ResponseBody Map<String, Object> ListSalesEseroTargetDate(@RequestBody BotSalesEseroVO vo) {
+		logger.info("/AjaxBot/ListEseroTargetDate.do");
+		
+		List<BotSalesEseroVO> outListBotEseroVO = new ArrayList<BotSalesEseroVO>();
+		try {
+			outListBotEseroVO = botSalesEseroService.listBotSalesEseroTargetDate(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListICHomeTaxList.do")
+	public @ResponseBody Map<String, Object> ListICHomeTaxList(@RequestBody BotSalesEseroVO vo) {
+		logger.info("/AjaxBot/ListICHomeTaxList.do");
+		
+		List<BotSalesEseroVO> outListBotEseroVO = new ArrayList<BotSalesEseroVO>();
+		try {
+			outListBotEseroVO = botSalesEseroService.listBotICHomeTaxList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListICOracleList.do")
+	public @ResponseBody Map<String, Object> ListICOracleList(@RequestBody BotSalesEseroVO vo) {
+		logger.info("/AjaxBot/ListICOracleList.do");
+		
+		List<BotSalesEseroVO> outListBotEseroVO = new ArrayList<BotSalesEseroVO>();
+		try {
+			outListBotEseroVO = botSalesEseroService.listBotICOracleList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListICSalesSlipList.do")
+	public @ResponseBody Map<String, Object> ListICSalesSlipList(@RequestBody BotSalesEseroVO vo) {
+		logger.info("/AjaxBot/ListICSalesSlipList.do");
+		
+		List<BotSalesEseroVO> outListBotEseroVO = new ArrayList<BotSalesEseroVO>();
+		try {
+			outListBotEseroVO = botSalesEseroService.listBotICSalesSlipList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListICBuySlipList.do")
+	public @ResponseBody Map<String, Object> ListICBuySlipList(@RequestBody BotSalesEseroVO vo) {
+		logger.info("/AjaxBot/ListICBuySlipList.do");
+		
+		List<BotSalesEseroVO> outListBotEseroVO = new ArrayList<BotSalesEseroVO>();
+		try {
+			outListBotEseroVO = botSalesEseroService.listBotICBuySlipList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListICManage.do")
+	public @ResponseBody Map<String, Object> ListICManage(@RequestBody BotSalesEseroVO vo) {
+		logger.info("/AjaxBot/ListICManage.do");
+		
+		List<BotSalesEseroVO> outListBotEseroVO = new ArrayList<BotSalesEseroVO>();
+		try {
+			outListBotEseroVO = botSalesEseroService.listBotICTotalList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/SalesEseroDetail.do")
+	public @ResponseBody Map<String, Object> SalesEseroDetail(@RequestBody BotSalesEseroVO vo) {
+		logger.info("/AjaxBot/SalesEseroDetail.do");
+		
+		List<BotSalesEseroVO> outListBotEseroVO = new ArrayList<BotSalesEseroVO>();
+		try {
+			outListBotEseroVO = botSalesEseroService.listSalesEseroDetail(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListSalesEseroManageVendorInvoiceList.do")
+	public @ResponseBody Map<String, Object> ListSalesEseroManageVendorInvoiceList(@RequestBody BotSalesEseroVO vo) {
+		logger.info("/AjaxBot/ListSalesEseroManageVendorInvoiceList.do");
+		
+		List<BotSalesEseroVO> outListBotEseroVO = new ArrayList<BotSalesEseroVO>();
+		try {
+			outListBotEseroVO = botSalesEseroService.listBotSalesEseroManageVendorInvoiceList(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
 		
 		return map;
 	}

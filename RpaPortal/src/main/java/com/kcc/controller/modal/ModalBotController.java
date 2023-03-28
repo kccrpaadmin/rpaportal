@@ -2,6 +2,7 @@ package com.kcc.controller.modal;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -17,8 +18,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,6 +33,7 @@ import com.kcc.biz.model.CrawlSystemCheckVO;
 import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.UserVO;
 import com.kcc.biz.model.BotEtcTaxVO;
+import com.kcc.biz.model.BotSalesEseroVO;
 import com.kcc.biz.service.IAccessService;
 import com.kcc.biz.service.ILoginService;
 import com.kcc.biz.service.IMenuService;
@@ -318,5 +323,82 @@ public class ModalBotController extends BaseController {
 		model.addAttribute("requestNo", pRequestNo);
 		
 		return "ModalBot/PersonalBccRunResult";
+	}
+	
+	@GetMapping("/SalesEseroTargetDate.do")
+	public String SalesEseroTargetDate(String pMenuId, Model model) {
+		logger.info("/ModalBot/SalesEseroTargetDate.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		
+		return "ModalBot/SalesEseroTargetDate";
+	}
+	
+	@GetMapping("/SalesEseroRunResult.do")
+	public String SalesEseroRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/SalesEseroRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/SalesEseroRunResult";
+	}
+	
+	@GetMapping("/SalesEseroDetail.do")
+	public String  SalesEseroDetail(String pRequestNo, String pDivision, String pDivision1, String pDivision2, String pInvoiceType, String pVatAmtYn, Model model) {
+		logger.info("/ModalBot/SalesEseroDetail.do");
+		
+		model.addAttribute("requestNo", pRequestNo);
+		model.addAttribute("division", pDivision);
+		model.addAttribute("division1", pDivision1);
+		model.addAttribute("division2", pDivision2);
+		model.addAttribute("invoiceType", pInvoiceType);
+		model.addAttribute("vatAmtYn", pVatAmtYn);
+		return "ModalBot/SalesEseroDetail";
+		/*
+		List<BotSalesEseroVO> outListBotEseroVO = new ArrayList<BotSalesEseroVO>();
+		try {
+			outListBotEseroVO = botSalesEseroService.listSalesEseroDetail(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEseroVO);
+		
+		return map;
+		*/
+	}
+	
+	@GetMapping("/SalesEseroManageVendorSlipList.do")
+	public String SalesEseroManageVendorSlipList(String pVendorCd, String pRequestNo, String pYearMon, String pInvoiceTypeCd, Model model) {
+		logger.info("/ModalBot/SalesEseroManageVendorSlipList.do");
+
+		// EseroVO 입력
+		BotEseroVO inEseroVO = new BotEseroVO();
+		inEseroVO.setVendorCd(pVendorCd);
+		inEseroVO.setRequestNo(pRequestNo);
+		inEseroVO.setYearMon(pYearMon);
+		inEseroVO.setInvoiceTypeCd(pInvoiceTypeCd);
+		
+		// MenuVO 출력
+		BotEseroVO outEseroVO = new BotEseroVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outEseroVO = botEseroService.getBotEseroManageVendorInfo(inEseroVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("vendorCd", pVendorCd);
+		model.addAttribute("requestNo", pRequestNo);
+		model.addAttribute("yearMon", pYearMon);
+		model.addAttribute("invoiceTypeCd", pInvoiceTypeCd);
+		model.addAttribute("outEseroVO", outEseroVO);
+		
+		return "ModalBot/SalesEseroManageVendorSlipList";
 	}
 }

@@ -80,6 +80,8 @@
 		<typeAlias alias="botBidChangeVO" type="com.kcc.biz.model.BotBidChangeVO" />
 		<!-- BOT 법인카드 신청 업무 -->
 		<typeAlias alias="botPersonalBccVO" type="com.kcc.biz.model.BotPersonalBccVO" />
+		<!-- BOT 매출 (세금)계산서, 전표 데이터 대사업무 -->
+		<typeAlias alias="botSalesEseroVO" type="com.kcc.biz.model.BotSalesEseroVO" />
 				
 	</typeAliases>
 	
