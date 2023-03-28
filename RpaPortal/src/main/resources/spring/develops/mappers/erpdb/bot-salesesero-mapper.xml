@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.BotSalesEseroRepository">
+	
+	<insert id="saveBotSalesEseroTargetDate" statementType="CALLABLE" parameterType="botSalesEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_saveBotSalesEseroTargetDate (
+					#{MenuId}
+	            	,#{EmpNo}
+	            	,#{EseroTargetDate}
+            	)
+			}
+		]]>
+	</insert>
+	
+	<select id="listBotSalesEseroTargetDate" statementType="CALLABLE" parameterType="botEseroVO" resultType="botSalesEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotSalesEseroTargetDate (
+            		#{MenuId}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotICHomeTaxList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botSalesEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotICHomeTaxList (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotICOracleList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botSalesEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotICOracleList (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotICSalesSlipList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botSalesEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotICSalesSlipList (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotICBuySlipList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botSalesEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotICBuySlipList (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotICTotalList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botSalesEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotICTotalList (
+            		#{YearMon}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listSalesEseroDetail" statementType="CALLABLE" parameterType="botEseroVO" resultType="botSalesEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listSalesEseroDetail (
+            		#{RequestNo},
+            		#{Division},
+            		#{Division1},
+            		#{Division2},
+            		#{InvoiceType},
+            		#{VatAmtYn}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotSalesEseroManageVendorInvoiceList" statementType="CALLABLE" parameterType="botEseroVO" resultType="botEseroVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotSalesEseroManageVendorInvoiceList (
+            		#{VendorCd}
+            	   ,#{RequestNo}
+            	   ,#{YearMon}
+            	   ,#{InvoiceTypeCd}
+            	)
+			}
+		]]>
+	</select>
+	
+</mapper>
