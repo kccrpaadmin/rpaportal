@@ -103,29 +103,29 @@
         	{ Header: "구분|구분|구분", Type: "Text", Width: 150, SaveName: "division1", Align: "Center" },
         	{ Header: "구분|구분|구분", Type: "Text", Width: 50, SaveName: "division2", Align: "Center" },
         	
-        	{ Header: "1.세금계산서 발행 내역|세금계산서|건수", Type: "Float", Width: 55, SaveName: "a_TotCnt1", Align: "Center" },
-        	{ Header: "1.세금계산서 발행 내역|세금계산서|공급가액", Type: "Float", Width: 100, SaveName: "a_SupplyAmt1", Align: "Center" },
-        	{ Header: "1.세금계산서 발행 내역|세금계산서|부가가치세", Type: "Float", Width: 100, SaveName: "a_VatAmt1", Align: "Center" },
-        	{ Header: "1.세금계산서 발행 내역|계산서|건수", Type: "Float", Width: 55, SaveName: "a_TotCnt2", Align: "Center" },
-        	{ Header: "1.세금계산서 발행 내역|계산서|공급가액", Type: "Float", Width: 100, SaveName: "a_SupplyAmt2", Align: "Center" },
-        	{ Header: "1.세금계산서 발행 내역|영세율|건수", Type: "Float", Width: 55, SaveName: "a_TotCnt3", Align: "Center" },
-        	{ Header: "1.세금계산서 발행 내역|영세율|공급가액", Type: "Float", Width: 100, SaveName: "a_SupplyAmt3", Align: "Center" },
+        	{ Header: "1.세금계산서 발행 내역|세금계산서|건수", Type: "Int", Width: 55, SaveName: "a_TotCnt1", Align: "Center" },
+        	{ Header: "1.세금계산서 발행 내역|세금계산서|공급가액", Type: "Int", Width: 100, SaveName: "a_SupplyAmt1", Align: "Center" },
+        	{ Header: "1.세금계산서 발행 내역|세금계산서|부가가치세", Type: "Int", Width: 100, SaveName: "a_VatAmt1", Align: "Center" },
+        	{ Header: "1.세금계산서 발행 내역|계산서|건수", Type: "Int", Width: 55, SaveName: "a_TotCnt2", Align: "Center" },
+        	{ Header: "1.세금계산서 발행 내역|계산서|공급가액", Type: "Int", Width: 100, SaveName: "a_SupplyAmt2", Align: "Center" },
+        	{ Header: "1.세금계산서 발행 내역|영세율|건수", Type: "Int", Width: 55, SaveName: "a_TotCnt3", Align: "Center" },
+        	{ Header: "1.세금계산서 발행 내역|영세율|공급가액", Type: "Int", Width: 100, SaveName: "a_SupplyAmt3", Align: "Center" },
         	
-        	{ Header: "2.홈택스 전송여부|세금계산서|건수", Type: "Float", Width: 55, SaveName: "h_TotCnt1", Align: "Center",ColMerge:1},
-        	{ Header: "2.홈택스 전송여부|세금계산서|공급가액", Type: "Float", Width: 100, SaveName: "h_SupplyAmt1", Align: "Center" },
-        	{ Header: "2.홈택스 전송여부|세금계산서|부가가치세", Type: "Float", Width: 100, SaveName: "h_VatAmt1", Align: "Center" },
-        	{ Header: "2.홈택스 전송여부|계산서|건수", Type: "Float", Width: 55, SaveName: "h_TotCnt2", Align: "Center" },
-        	{ Header: "2.홈택스 전송여부|계산서|공급가액", Type: "Float", Width: 100, SaveName: "h_SupplyAmt2", Align: "Center" },
-        	{ Header: "2.홈택스 전송여부|영세율|건수", Type: "Float", Width: 55, SaveName: "h_TotCnt3", Align: "Center" },
-        	{ Header: "2.홈택스 전송여부|영세율|공급가액", Type: "Float", Width: 100, SaveName: "h_SupplyAmt3", Align: "Center" },
+        	{ Header: "2.홈택스 전송여부|세금계산서|건수", Type: "Int", Width: 55, SaveName: "h_TotCnt1", Align: "Center",ColMerge:1},
+        	{ Header: "2.홈택스 전송여부|세금계산서|공급가액", Type: "Int", Width: 100, SaveName: "h_SupplyAmt1", Align: "Center" },
+        	{ Header: "2.홈택스 전송여부|세금계산서|부가가치세", Type: "Int", Width: 100, SaveName: "h_VatAmt1", Align: "Center" },
+        	{ Header: "2.홈택스 전송여부|계산서|건수", Type: "Int", Width: 55, SaveName: "h_TotCnt2", Align: "Center" },
+        	{ Header: "2.홈택스 전송여부|계산서|공급가액", Type: "Int", Width: 100, SaveName: "h_SupplyAmt2", Align: "Center" },
+        	{ Header: "2.홈택스 전송여부|영세율|건수", Type: "Int", Width: 55, SaveName: "h_TotCnt3", Align: "Center" },
+        	{ Header: "2.홈택스 전송여부|영세율|공급가액", Type: "Int", Width: 100, SaveName: "h_SupplyAmt3", Align: "Center" },
         	
-        	{ Header: "3.차이(1-2)|세금계산서|건수", Type: "Float", Width: 55, SaveName: "mTotCnt1", Align: "Center" },
-        	{ Header: "3.차이(1-2)|세금계산서|공급가액", Type: "Float", Width: 100, SaveName: "mSupplyAmt1", Align: "Center" }, 
-        	{ Header: "3.차이(1-2)|세금계산서|부가가치세", Type: "Float", Width: 100, SaveName: "mVatAmt1", Align: "Center" },  
-        	{ Header: "3.차이(1-2)|계산서|건수", Type: "Float", Width: 55, SaveName: "mTotCnt2", Align: "Center" },
-        	{ Header: "3.차이(1-2)|계산서|공급가액", Type: "Float", Width: 100, SaveName: "mSupplyAmt2", Align: "Center" },
-        	{ Header: "3.차이(1-2)|영세율|건수", Type: "Float", Width: 55, SaveName: "mTotCnt3", Align: "Center"},  
-        	{ Header: "3.차이(1-2)|영세율|공급가액", Type: "Float", Width: 100, SaveName: "mSupplyAmt3", Align: "Center" } 
+        	{ Header: "3.차이(1-2)|세금계산서|건수", Type: "Int", Width: 55, SaveName: "mTotCnt1", Align: "Center" },
+        	{ Header: "3.차이(1-2)|세금계산서|공급가액", Type: "Int", Width: 100, SaveName: "mSupplyAmt1", Align: "Center" }, 
+        	{ Header: "3.차이(1-2)|세금계산서|부가가치세", Type: "Int", Width: 100, SaveName: "mVatAmt1", Align: "Center" },  
+        	{ Header: "3.차이(1-2)|계산서|건수", Type: "Int", Width: 55, SaveName: "mTotCnt2", Align: "Center" },
+        	{ Header: "3.차이(1-2)|계산서|공급가액", Type: "Int", Width: 100, SaveName: "mSupplyAmt2", Align: "Center" },
+        	{ Header: "3.차이(1-2)|영세율|건수", Type: "Int", Width: 55, SaveName: "mTotCnt3", Align: "Center"},  
+        	{ Header: "3.차이(1-2)|영세율|공급가액", Type: "Int", Width: 100, SaveName: "mSupplyAmt3", Align: "Center" } 
         ];
 
         IBS_InitSheet(mySheet1, initdata);
@@ -258,9 +258,13 @@
 		searchListEseroInvoiceSlipListManage();
 	});
 	
-	// 전자세금계산서 다운로드 버튼 클릭 이벤트
+	// 파일 다운로드 버튼 클릭 이벤트
 	$(document).on("click", "#btn_download", function (e) {		
-		var params = { Multipart: 0, FileName: "ContrastResultFile.xlsx",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 }
+		let currentDate = new Date().toJSON().slice(0, 10);
+		var date = currentDate.replaceAll("-",""); 
+		var month = commonFunc.getReplaceAll($("#year_mon").val(),"-","").substring(4);
+		if(month.substring(0,1) == "0") month = month.substring(1);
+		var params = { Multipart: 0, FileName: "e세로전송("+month+"월증빙)_"+date+".xlsx",  SheetName: "Sheet", Merge:1, AutoSizeColumn:1, ExcelRowHeight:20 ,HiddenColumn:1}
 		mySheet1.Down2Excel(params);
 	});
 	
