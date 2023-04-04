@@ -167,8 +167,11 @@
             //홈택스 매입 부분 머지
             if(r<10) {
 	            for(c=10; c<=lastCol; c++) {//열
-	     		   if(r%4 == 0) {
-	 	    	   	mySheet1.SetMergeCell(r, c, 2, 1); //r행 c열 2칸 1컬럼
+	            	var division2 = mySheet1.GetCellText(r,2);
+	     		   if(division2 == "외주") {
+	     			  var above = mySheet1.GetCellText(r,c);
+	     			  var below = mySheet1.GetCellText(r+1,c);
+	     			  if(above == below) mySheet1.SetMergeCell(r, c, 2, 1); //r행 c열 2칸 1컬럼
 	     		   }
 	 	       }
            }
@@ -185,8 +188,10 @@
 	        for(r=3; r<=lastRow; r++) { //행
 	        	var standard = mySheet1.ComputeSum("|"+c+"|",r,r);
 	            var contrast = mySheet1.ComputeSum("|"+(c+7)+"|",r,r);
-	        	if(r<10 && r%4 == 0) {
-	        		standard = mySheet1.ComputeSum("|"+c+"|",r,r+1);
+	            var division2_a = mySheet1.GetCellText(r,2);
+	        	if(r<10 && division2_a == "외주") {
+	        		var division2_b = mySheet1.GetCellText(r+1,2);
+	        		if(division2_b == "자재") standard = mySheet1.ComputeSum("|"+c+"|",r,r+1);
 	        	}
 	        	mySheet1.SetCellValue(r,c+14,standard-contrast);
 	        	if(r<10 && r%4 == 0) r++;
