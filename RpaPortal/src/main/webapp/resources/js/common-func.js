@@ -75,6 +75,11 @@
     CommonFunc.prototype.createBotMenulList = function (pArea, pListDatas) {
     	cmCommonFunc.createBotMenulList(pArea, pListDatas);
     }
+
+	// 절감시간 메뉴 목록 생성 함수
+    CommonFunc.prototype.createResultMenulList = function (pArea, pListDatas) {
+    	cmCommonFunc.createResultMenulList(pArea, pListDatas);
+    }
     
     // 아이비시트 초기화 함수
     CommonFunc.prototype.initSheet = function (pSheetNm) {
@@ -598,6 +603,84 @@
             		btnBotManageInfo.innerText = "업무관리";
             		btnBotManageInfo.setAttribute("manageUrl", data.manageUrl);
             		botMenuBtn.appendChild(btnBotManageInfo);
+    			}
+    		}
+        },        
+        createResultMenulList: function (pArea, pListDatas) {
+        	var area = document.getElementById(pArea);
+        	var listDatas = pListDatas;
+        	var listDatasLen = listDatas.length;
+        	
+        	// 기존 목록 삭제
+        	cmCommonFunc.removeChileNode(area);
+        	
+        	var botMenuListCnt = document.createElement("div");
+        	botMenuListCnt.className = "menu_list_cnt";
+        	botMenuListCnt.innerText = "총 " + listDatasLen + "건"
+        	area.appendChild(botMenuListCnt);
+        	
+        	// 데이터가 존재 하는 경우
+        	if (listDatasLen > 0) {
+        		for (var i = 0; i < listDatasLen; i++) {
+        			var data = listDatas[i];
+        			
+        			// 리스트 여러개를 감싸는 박스 
+        			var botMenuListBox = document.createElement("div");
+            		botMenuListBox.className = "menu_list_box";
+            		area.appendChild(botMenuListBox);
+            		
+            		// 리스트 박스
+            		var botMenuList = document.createElement("div");
+            		botMenuList.className = "menu_list";
+            		botMenuList.id = data.menuId;
+            		botMenuListBox.appendChild(botMenuList);
+            		
+            		// 제목 영역
+            		var botMenuSubject = document.createElement("div");
+            		botMenuSubject.className = "menu_subject";
+            		botMenuSubject.innerText = data.menuNm;
+            		botMenuList.appendChild(botMenuSubject);
+            		
+            		// 담당부서 영역
+            		var botMenuDept = document.createElement("div");
+            		botMenuDept.className = "menu_dept";
+            		botMenuList.appendChild(botMenuDept);
+            		
+            		var botMenuDeptTitle = document.createElement("div");
+            		botMenuDeptTitle.className = "menu_dept_title";
+            		botMenuDeptTitle.innerText = "담당부서";
+            		botMenuDept.appendChild(botMenuDeptTitle);
+            		
+            		var botMenuDeptInfo = document.createElement("div");
+            		botMenuDeptInfo.className = "menu_dept_info";
+            		botMenuDeptInfo.innerText = data.deptNm;
+            		botMenuDept.appendChild(botMenuDeptInfo);
+            		
+            		// 절감시간 영역
+            		var botMenuWork = document.createElement("div");
+            		botMenuWork.className = "menu_work";
+            		botMenuList.appendChild(botMenuWork);
+            		
+            		var botMenuWorkTitle = document.createElement("div");
+            		botMenuWorkTitle.className = "menu_work_title";
+            		botMenuWorkTitle.innerText = "누계 절감시간";
+            		botMenuWork.appendChild(botMenuWorkTitle);
+            		
+            		var botMenuWorkInfo = document.createElement("div");
+            		botMenuWorkInfo.className = "menu_work_info";
+            		botMenuWorkInfo.innerText = data.runCnt + " / " + data.totTime;
+            		botMenuWork.appendChild(botMenuWorkInfo);
+            		
+            		// 버튼영역
+            		var botMenuBtn = document.createElement("div");
+            		botMenuBtn.className = "menu_btn";
+            		botMenuList.appendChild(botMenuBtn);
+            		
+            		var btnBotWorkInfo = document.createElement("a");
+            		btnBotWorkInfo.className = "btn_work_info";
+            		btnBotWorkInfo.innerText = "업무설명";
+            		botMenuBtn.appendChild(btnBotWorkInfo);
+            		
     			}
     		}
         },        

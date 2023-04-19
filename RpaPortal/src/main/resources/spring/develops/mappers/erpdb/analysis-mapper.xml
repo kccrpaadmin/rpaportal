@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.AnalysisRepository">
+
+	<select id="ListProcessVisits" statementType="CALLABLE" parameterType="analysisVO" resultType="analysisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Analysis_listProcessVisits (
+            		#{SearchCondition},#{BeginDate},#{EndDate}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="ListVisitUser" statementType="CALLABLE" parameterType="analysisVO" resultType="analysisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Analysis_listVisitUser (
+            		#{AccessUrl},#{BeginDate},#{EndDate}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="ListProcessResult" statementType="CALLABLE" parameterType="analysisVO" resultType="analysisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Analysis_listProcessResult (
+            		#{BeginDate},#{EndDate}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="getProcessResultTot" statementType="CALLABLE" parameterType="analysisVO" resultType="analysisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Analysis_getProcessResultTot (
+            		#{BeginDate},#{EndDate}
+            	)
+			}
+		]]>
+	</select>
+	
+</mapper>

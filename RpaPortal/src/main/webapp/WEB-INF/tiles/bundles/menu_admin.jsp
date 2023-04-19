@@ -18,6 +18,8 @@
 			<a href="/Admin/CodeManage.do" class="btn_lnb_sub_menu">공통코드관리</a>
 			<a href="/Admin/MenuManage.do" class="btn_lnb_sub_menu">메뉴관리</a>
 			<a href="/Admin/AuthManage.do" class="btn_lnb_sub_menu">권한관리</a>
+			<a href="/Admin/AnalysisManage.do" class="btn_lnb_sub_menu">방문자통계</a>
+			<a href="/Admin/AnalysisResult.do" class="btn_lnb_sub_menu">누적 절감시간</a>
 		</div>		
 	</div>
 </div>

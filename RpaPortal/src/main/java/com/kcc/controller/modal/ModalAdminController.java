@@ -79,4 +79,15 @@ public class ModalAdminController extends BaseController {
 		
 		return "ModalAdmin/MenuManageAddDept";
 	}	
+	
+	@GetMapping("/VisitList.do")
+	public String ListVisitUser(String pAccessUrl, String pBeginDate, String pEndDate, Model model) {
+		logger.info("/ModalAdmin/VisitList.do");
+		
+		model.addAttribute("accessUrl", pAccessUrl);
+		model.addAttribute("beginDate", pBeginDate);
+		model.addAttribute("endDate", pEndDate);
+		
+		return "ModalAdmin/VisitList";
+	}	
 }

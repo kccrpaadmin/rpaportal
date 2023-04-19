@@ -37,7 +37,7 @@ public class AdminController extends BaseController {
 	public String Admin(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
 		logger.info("/Admin/Admin.do");
 		
-		return "Admin/Admin";
+		return "redirect:/Admin/AnalysisManage.do";
 	}
 	
 	@GetMapping("/CodeManage.do")
@@ -66,6 +66,24 @@ public class AdminController extends BaseController {
 		logger.info("/Admin/AuthManage.do");
 		
 		return "Admin/AuthManage";
+	}
+	
+	@GetMapping("/AnalysisManage.do")
+	public String AnalysisManage(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
+		logger.info("/Admin/AnalysisManage.do");
+		
+		model.addAttribute("beginDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", -1));
+		model.addAttribute("endDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", 0));
+		return "Admin/AnalysisManage";
+	}
+	
+	@GetMapping("/AnalysisResult.do")
+	public String AnalysisResult(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
+		logger.info("/Admin/AnalysisResult.do");
+		
+		model.addAttribute("beginDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", -1));
+		model.addAttribute("endDate", commonUtilService.getDateUserFormat("yyyy-MM-dd", "Month", 0));
+		return "Admin/AnalysisResult";
 	}
 	
 	

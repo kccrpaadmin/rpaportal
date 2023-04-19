@@ -1,44 +1,28 @@
 package com.kcc.controller.ajax;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.kcc.auth.UseCustomUserDetails;
-import com.kcc.biz.model.AccessVO;
-import com.kcc.biz.model.BoardVO;
-import com.kcc.biz.model.BotEngineerVO;
+import com.kcc.biz.model.AnalysisVO;
 import com.kcc.biz.model.CodeVO;
 import com.kcc.biz.model.MenuVO;
 import com.kcc.biz.model.StatusVO;
-import com.kcc.biz.model.UserVO;
-import com.kcc.biz.service.IAccessService;
+import com.kcc.biz.service.IAnalysisService;
 import com.kcc.biz.service.ICodeService;
-import com.kcc.biz.service.ILoginService;
 import com.kcc.biz.service.IMenuService;
-import com.kcc.biz.service.IUserService;
 import com.kcc.controller.base.BaseController;
-import com.kcc.util.service.IRouteUtilService;
 
 @RequestMapping("/AjaxAdmin")
 @Controller
@@ -50,6 +34,9 @@ public class AjaxAdminController extends BaseController {
 	
 	@Resource(name="menuService")
 	private IMenuService menuService;
+	
+	@Resource(name="analysisService")
+	private IAnalysisService analysisService;
 	
 	// 공통코드 트리 목록 조회
 	@PostMapping("/ListCodeTree.do")
@@ -335,4 +322,67 @@ public class AjaxAdminController extends BaseController {
 			
 			return map;
 		}
+	
+	@PostMapping("/ListProcessVisits.do")
+	public @ResponseBody List<AnalysisVO> ListProcessVisists(@RequestBody AnalysisVO vo) {
+		logger.info("/AjaxAdmin/ListProcessVisits.do");
+		
+		List<AnalysisVO> listAnalysisVO = new ArrayList<AnalysisVO>();
+		try {
+			listAnalysisVO = analysisService.ListProcessVisits(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listAnalysisVO;
+	}
+	
+	@PostMapping("/ListVisitUser.do")
+	public @ResponseBody Map<String, Object> ListVisitUser(@RequestBody AnalysisVO vo) {
+		logger.info("/AjaxAdmin/ListVisitUser.do");
+		
+		List<AnalysisVO> listAnalysisVO = new ArrayList<AnalysisVO>();
+		try {
+			listAnalysisVO = analysisService.ListVisitUser(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", listAnalysisVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListProcessResult.do")
+	public @ResponseBody List<AnalysisVO> ListProcessResult(@RequestBody AnalysisVO vo) {
+		logger.info("/AjaxAdmin/ListProcessResult.do");
+		
+		List<AnalysisVO> listAnalysisVO = new ArrayList<AnalysisVO>();
+		try {
+			listAnalysisVO = analysisService.ListProcessResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listAnalysisVO;
+	}
+	
+	@PostMapping("/ListProcessResultTot.do")
+	public @ResponseBody AnalysisVO ListProcessResultTot(@RequestBody AnalysisVO vo) {
+		logger.info("/AjaxAdmin/ListProcessResultTot.do");
+		
+		AnalysisVO analysisVO = new AnalysisVO();
+		try {
+			analysisVO = analysisService.getProcessResultTot(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return analysisVO;
+	}
 }
