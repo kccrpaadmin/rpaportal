@@ -401,4 +401,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/SalesEseroManageVendorSlipList";
 	}
+	
+	@GetMapping("/SCSystemCheckRunResult.do")
+	public String SCSystemCheckRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/SCSystemCheckRunResult.do");
+
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/SCSystemCheckRunResult";
+	}
 }

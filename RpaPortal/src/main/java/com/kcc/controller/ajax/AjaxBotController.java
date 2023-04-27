@@ -52,6 +52,7 @@ import com.kcc.biz.model.BotPersonAppointVO;
 import com.kcc.biz.model.BotEngineerVO;
 import com.kcc.biz.model.BotBidChangeVO;
 import com.kcc.biz.model.BotPersonalBccVO;
+import com.kcc.biz.model.BotSCSystemCheckVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -66,6 +67,7 @@ import com.kcc.biz.service.IBotPersonAppointService;
 import com.kcc.biz.service.IBotEngineerService;
 import com.kcc.biz.service.IBotBidChangeService;
 import com.kcc.biz.service.IBotPersonalBccService;
+import com.kcc.biz.service.IBotSCSystemCheckService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -120,6 +122,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botSalesEseroService")
 	private IBotSalesEseroService botSalesEseroService;
+	
+	@Resource(name="botSCSystemCheckService")
+	private IBotSCSystemCheckService botSCSystemCheckService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -239,8 +244,8 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
-		@PostMapping("/ListMoneySendManage.do")
-		public @ResponseBody Map<String, Object> ListMoneySendManage(@RequestBody BotMoneySendVO vo) {
+	@PostMapping("/ListMoneySendManage.do")
+	public @ResponseBody Map<String, Object> ListMoneySendManage(@RequestBody BotMoneySendVO vo) {
 			logger.info("/AjaxBot/ListMoneySendManage.do");
 			
 			List<BotMoneySendVO> outListBotMoneySendManageVO = new ArrayList<BotMoneySendVO>();
@@ -257,8 +262,8 @@ public class AjaxBotController extends BaseController {
 			return map;
 		}
 	
-		@PostMapping("/ListMoneySendManageSearchVendor.do")
-		public @ResponseBody Map<String, Object> ListMoneySendManageSearchVendor(@RequestBody BotMoneySendVO vo) {
+	@PostMapping("/ListMoneySendManageSearchVendor.do")
+	public @ResponseBody Map<String, Object> ListMoneySendManageSearchVendor(@RequestBody BotMoneySendVO vo) {
 			logger.info("/AjaxBot/ListMoneySendManageSearchVendor.do");
 			
 			List<BotMoneySendVO> outListBotMoneySendManageSearchVendorVO = new ArrayList<BotMoneySendVO>();
@@ -275,8 +280,8 @@ public class AjaxBotController extends BaseController {
 			return map;
 		}
 		
-		@PostMapping("/ListMoneySendManageSendAmt.do")
-		public @ResponseBody Map<String, Object> ListMoneySendManageSendAmt(@RequestBody BotMoneySendVO vo) {
+	@PostMapping("/ListMoneySendManageSendAmt.do")
+	public @ResponseBody Map<String, Object> ListMoneySendManageSendAmt(@RequestBody BotMoneySendVO vo) {
 			logger.info("/AjaxBot/ListMoneySendManageSendAmt.do");
 			
 			List<BotMoneySendVO> outListBotMoneySendManageSendAmtVO = new ArrayList<BotMoneySendVO>();
@@ -1141,6 +1146,25 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListBotEseroVO);
+		
+		return map;
+	}
+	
+
+	@PostMapping("/ListSCSystemCheck.do")
+	public @ResponseBody Map<String, Object> ListSCSystemCheck(@RequestBody BotSCSystemCheckVO vo) {
+		logger.info("/AjaxBot/ListSCSystemCheck.do");
+		
+		List<BotSCSystemCheckVO> outListSCSystemCheckVO = new ArrayList<BotSCSystemCheckVO>();
+		try {
+			outListSCSystemCheckVO = botSCSystemCheckService.listBotSCSystemCheck(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListSCSystemCheckVO);
 		
 		return map;
 	}

@@ -84,6 +84,8 @@
 		<typeAlias alias="botPersonalBccVO" type="com.kcc.biz.model.BotPersonalBccVO" />
 		<!-- BOT 매출 (세금)계산서, 전표 데이터 대사업무 -->
 		<typeAlias alias="botSalesEseroVO" type="com.kcc.biz.model.BotSalesEseroVO" />
+		<!-- BOT 스마트건설팀 시스템 체크업무 -->
+		<typeAlias alias="botSCSystemCheckVO" type="com.kcc.biz.model.BotSCSystemCheckVO" />
 				
 	</typeAliases>
 	
