@@ -46,15 +46,16 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1040px", "467px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1051px", "517px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "요청번호", Type: "Text", Width: 100, SaveName: "requestNo", Hidden:true },
-            { Header: "시스템", Type: "Text", Width: 100, SaveName: "systemNm" },
-            { Header: "동작상태코드", Type: "Text", Width: 100, SaveName: "actionCd", Align: "Center" },
-            { Header: "동작상태", Type: "Text", Width: 100, SaveName: "actionNm", Align: "Center" }
+            { Header: "요청번호", Type: "Text", Width: 130, SaveName: "requestNo", Hidden:true },
+            { Header: "시스템", Type: "Text", Width: 130, SaveName: "systemNm" },
+            { Header: "동작상태코드", Type: "Text", Width: 130, SaveName: "actionCd", Align: "Center" },
+            { Header: "동작상태", Type: "Text", Width: 130, SaveName: "actionNm", Align: "Center" },
+            { Header: "오류메세지", Type: "Text", Width: 531, SaveName: "errorMsg" }
         ];
 
         IBS_InitSheet(mySheet, initdata);
