@@ -78,10 +78,11 @@
 			  	<input type="file" name="files" class="input_file" multiple="multiple" id="input_file" />
 				<input type="text" class="input_file_txt" readonly="readonly" id="input_file_txt" />
 				<label for="input_file" class="label_file">찾아보기</label>
+	    		<p style="margin-top:5px;">※ 작업용 엑셀 파일의 양식을 변경하지 마시고, 수정 내역 외 다른 데이터가 들어가지 않도록 확인 후 업로드 바랍니다.</p>
 				<input type="hidden" id="menuId" name="menuId" value="${outMenuVO.menuId}" />
 				<input type="hidden" id="empNo" name="empNo" />
 			</form>
-		</div>
+		</div>		
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a class="btn_common1" id="btn_file_upload">파일업로드</a>
