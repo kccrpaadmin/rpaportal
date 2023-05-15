@@ -13,6 +13,7 @@
 	    <!-- 그리드영역 -->
 		<div id="sheet"></div>
 	</div>
+	<p style="margin-top:5px">* 대사작업을 실행하시기 전 영업/분양 GL전표의 국세청승인번호 연동을 선처리 후 수행하시기 바랍니다.</p>
 </div>
 
 <script type="text/javascript">
