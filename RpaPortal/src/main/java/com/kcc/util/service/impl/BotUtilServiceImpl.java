@@ -349,7 +349,8 @@ public class BotUtilServiceImpl implements IBotUtilService {
 		
 		JSONObject inStartInfoJsonObject = new JSONObject();
 		inStartInfoJsonObject.put("ReleaseKey", vo.getReleaseKey());
-		inStartInfoJsonObject.put("Strategy", "All");
+		inStartInfoJsonObject.put("Strategy", "RobotCount"); // "All"  env1에 bot 3개 배정 시, "All"로 하면 봇 3개에 모두 동시할당되서 에러 발생. 3개 중에 비수행중인 로봇으로 자동할당되도록 수정 20230707 suyeon26
+		inStartInfoJsonObject.put("NoOfRobots", "1");
 		inStartInfoJsonObject.put("InputArguments", inInputArgumentsJsonObject.toString());
 		
 		JSONObject inJsonObject = new JSONObject();
