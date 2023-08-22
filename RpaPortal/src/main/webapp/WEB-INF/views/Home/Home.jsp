@@ -194,7 +194,7 @@
 		    dataType : "json",
 	        async: false,
 			success: function(datas) {
-				make2DColumnChart("chart2", "chartHolder2", "450px", "240px", datas, "", "subjectStyleType1", "단위(시간)", "deptNm", "");
+				make2DColumnChart("chart2", "chartHolder2", "450px", "240px", datas, "", "subjectStyleType1", "단위(시간)", "deptNm", "45");
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
