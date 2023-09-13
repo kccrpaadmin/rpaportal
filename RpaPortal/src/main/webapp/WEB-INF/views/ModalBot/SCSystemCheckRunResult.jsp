@@ -51,16 +51,20 @@
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "요청번호", Type: "Text", Width: 130, SaveName: "requestNo", Hidden:true },
-            { Header: "시스템", Type: "Text", Width: 130, SaveName: "systemNm" },
-            { Header: "동작상태코드", Type: "Text", Width: 130, SaveName: "actionCd", Align: "Center" },
-            { Header: "동작상태", Type: "Text", Width: 130, SaveName: "actionNm", Align: "Center" },
-            { Header: "오류메세지", Type: "Text", Width: 531, SaveName: "errorMsg" }
+            { Header: "요청번호", Type: "Text", Width: 0, SaveName: "requestNo", Hidden:true },
+            { Header: "시스템", Type: "Text", Width: 110, SaveName: "systemNm" },
+            { Header: "동작상태코드", Type: "Text", Width: 80, SaveName: "actionCd", Align: "Center" },
+            { Header: "동작상태", Type: "Text", Width: 80, SaveName: "actionNm", Align: "Center" },
+            { Header: "오류메세지", Type: "Text", Width: 501, SaveName: "errorMsg" },
+            { Header: "오류화면스크린샷첨부ID", Type: "Text", Width: 0, SaveName: "failAttId", Hidden:true },
+            { Header: "오류화면스크린샷", Type: "Text", Width: 140, SaveName: "failAttFileNm" }
         ];
 
         IBS_InitSheet(mySheet, initdata);
         mySheet.SetEditable(0);
         mySheet.SetEditableColorDiff(0);
+        mySheet.SetDataLinkMouse("failAttFileNm", true);
+        mySheet.SetColFontUnderline("failAttFileNm", true);
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet.LoadSearchData(pListDatas);
     }
@@ -70,6 +74,18 @@
     	if (mySheet.GetCellValue(row, "actionCd") == "RA005002"){
 			mySheet.SetRowFontColor(row , "#FF0000");
 		}
+	}
+
+    // 그리드 클릭 함수 
+	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
+		if (Row == 0) {
+			return false;
+		}
+		
+		if (mySheet.ColSaveName(Col) == "failAttFileNm") {
+			var failAttId = mySheet.GetCellValue(Row, "failAttId");
+			window.location.href = "/FileDownload/Download.do?attId=" + failAttId + "&seq=1";
+   		}
 	}
 	
 </script>

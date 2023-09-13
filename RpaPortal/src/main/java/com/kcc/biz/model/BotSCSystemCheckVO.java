@@ -16,6 +16,8 @@ public class BotSCSystemCheckVO {
 	private String ActionNm;
 	private String FilePath;
 	private String ErrorMsg;
+	private String FailAttId;
+	private String FailAttFileNm;
 	
 	public String getRequestNo() {
 		return RequestNo;
@@ -38,6 +40,12 @@ public class BotSCSystemCheckVO {
 	public String getErrorMsg() {
 		return ErrorMsg;
 	}
+	public String getFailAttId() {
+		return FailAttId;
+	}
+	public String getFailAttFileNm() {
+		return FailAttFileNm;
+	}
 	public void setRequestNo(String requestNo) {
 		RequestNo = requestNo;
 	}
@@ -58,5 +66,11 @@ public class BotSCSystemCheckVO {
 	}
 	public void setErrorMsg(String errorMsg) {
 		ErrorMsg = errorMsg;
+	}	
+	public void setFailAttId(String failAttId) {
+		ErrorMsg = failAttId;
+	}	
+	public void setFailAttFileNm(String failAttFileNm) {
+		ErrorMsg = failAttFileNm;
 	}	
 }
