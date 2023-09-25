@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.BotAdDailyReportRepository">
+	
+	<select id="listBotAdDailyReport" statementType="CALLABLE" parameterType="botAdDailyReportVO" resultType="botAdDailyReportVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listAdDailyReport (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listBotAdDailyReportTargetAd" statementType="CALLABLE" parameterType="botAdDailyReportVO" resultType="botAdDailyReportVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listAdDailyReportTargetAd (
+            		#{MenuId}
+            	)
+			}
+		]]>
+	</select>
+		
+	<select id="listBotAdDailyReportManage" statementType="CALLABLE" parameterType="botAdDailyReportVO" resultType="botAdDailyReportVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listAdDailyReportManage (
+            	)
+			}
+		]]>
+	</select>
+		
+</mapper>

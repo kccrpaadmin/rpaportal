@@ -53,6 +53,7 @@ import com.kcc.biz.model.BotEngineerVO;
 import com.kcc.biz.model.BotBidChangeVO;
 import com.kcc.biz.model.BotPersonalBccVO;
 import com.kcc.biz.model.BotSCSystemCheckVO;
+import com.kcc.biz.model.BotAdDailyReportVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -68,6 +69,7 @@ import com.kcc.biz.service.IBotEngineerService;
 import com.kcc.biz.service.IBotBidChangeService;
 import com.kcc.biz.service.IBotPersonalBccService;
 import com.kcc.biz.service.IBotSCSystemCheckService;
+import com.kcc.biz.service.IBotAdDailyReportService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -125,6 +127,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botSCSystemCheckService")
 	private IBotSCSystemCheckService botSCSystemCheckService;
+	
+	@Resource(name="botAdDailyReportService")
+	private IBotAdDailyReportService botAdDailyReportService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1150,7 +1155,6 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
-
 	@PostMapping("/ListSCSystemCheck.do")
 	public @ResponseBody Map<String, Object> ListSCSystemCheck(@RequestBody BotSCSystemCheckVO vo) {
 		logger.info("/AjaxBot/ListSCSystemCheck.do");
@@ -1165,6 +1169,60 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListSCSystemCheckVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListAdDailyReport.do")
+	public @ResponseBody Map<String, Object> ListAdDailyReport(@RequestBody BotAdDailyReportVO vo) {
+		logger.info("/AjaxBot/ListAdDailyReport.do");
+		
+		List<BotAdDailyReportVO> outListAdDailyReportVO = new ArrayList<BotAdDailyReportVO>();
+		try {
+			outListAdDailyReportVO = botAdDailyReportService.listBotAdDailyReport(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListAdDailyReportVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListAdDailyReportTargetAd.do")
+	public @ResponseBody Map<String, Object> ListAdDailyReportTargetAd(@RequestBody BotAdDailyReportVO vo) {
+		logger.info("/AjaxBot/ListAdDailyReportTargetAd.do");
+		
+		List<BotAdDailyReportVO> outListBotAdDailyReportVO = new ArrayList<BotAdDailyReportVO>();
+		try {
+			outListBotAdDailyReportVO = botAdDailyReportService.listBotAdDailyReportTargetAd(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotAdDailyReportVO);
+		
+		return map;
+	}
+
+	@PostMapping("/ListAdDailyReportManage.do")
+	public @ResponseBody Map<String, Object> ListAdDailyReportManage(@RequestBody BotAdDailyReportVO vo) {
+		logger.info("/AjaxBot/ListAdDailyReportManage.do");
+		
+		List<BotAdDailyReportVO> outListBotAdDailyReportVO = new ArrayList<BotAdDailyReportVO>();
+		try {
+			outListBotAdDailyReportVO = botAdDailyReportService.listBotAdDailyReportManage(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotAdDailyReportVO);
 		
 		return map;
 	}

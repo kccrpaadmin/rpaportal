@@ -411,4 +411,23 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/SCSystemCheckRunResult";
 	}
+	
+	@GetMapping("/AdDailyReportRunResult.do")
+	public String AdDailyReportRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/AdDailyReportRunResult.do");
+
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/AdDailyReportRunResult";
+	}
+
+	@GetMapping("/AdDailyReportTargetAd.do")
+	public String AdDailyReportTargetAd(String pMenuId, Model model) {
+		logger.info("/ModalBot/AdDailyReportTargetAd.do");
+
+		model.addAttribute("menuId", pMenuId);
+		
+		return "ModalBot/AdDailyReportTargetAd";
+	}
 }

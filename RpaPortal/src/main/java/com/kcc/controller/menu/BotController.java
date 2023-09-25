@@ -582,5 +582,57 @@ public class BotController extends BaseController {
 		model.addAttribute("outMenuVO", outMenuVO);
 		
 		return "Bot/SCSystemCheckRun";
+	}	
+
+	@GetMapping("/AdDailyReportRun.do")
+	public String AdDailyReportRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/AdDailyReport.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
+		return "Bot/AdDailyReportRun";
+	}
+	
+	@GetMapping("/AdDailyReportManage.do")
+	public String AdDailyReportManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/AdDailyReportManage.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
+		return "Bot/AdDailyReportManage";
 	}
 }

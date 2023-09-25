@@ -86,6 +86,8 @@
 		<typeAlias alias="botSalesEseroVO" type="com.kcc.biz.model.BotSalesEseroVO" />
 		<!-- BOT 스마트건설팀 시스템 체크업무 -->
 		<typeAlias alias="botSCSystemCheckVO" type="com.kcc.biz.model.BotSCSystemCheckVO" />
+		<!-- BOT 스위첸 유튜브 광고현황 수집업무 -->
+		<typeAlias alias="botAdDailyReportVO" type="com.kcc.biz.model.BotAdDailyReportVO" />
 				
 	</typeAliases>
 	
