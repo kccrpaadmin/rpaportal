@@ -52,12 +52,12 @@
 	}
 	
 	// 메뉴 권한 조회 함수
-	function getMenuAuth(pUrlType, pMenuId, pUserId, pTitleCd, pDeptCd, pAccessUrl) {
+	function getMenuAuth(pUrlType, pMenuId, pUserId, pDutyCd, pDeptCd, pAccessUrl) {
 		$.ajax({
 			url: "/AjaxMenu/GetMenuAuth.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "urlType": pUrlType, "menuId": pMenuId, "userId": pUserId, "titleCd": pTitleCd, "deptCd": pDeptCd }),
+			data : JSON.stringify({ "urlType": pUrlType, "menuId": pMenuId, "userId": pUserId, "dutyCd": pDutyCd, "deptCd": pDeptCd }),
 		    dataType : "json",
 	        async: true,
 			success: function(data) {
@@ -102,7 +102,7 @@
 	$(document).on("click", ".btn_bot_run_info", function (e) {
 		var menuId = $(this).parent().parent().attr("id");
 		var userId = commonFunc.certInfo.userId;
-		var titleCd = commonFunc.certInfo.titleCd;
+		var dutyCd = commonFunc.certInfo.dutyCd;
 		var deptCd = commonFunc.certInfo.deptCd;
 		var accessUrl = $(this).attr("runUrl");
 		var checkNullYn = commonFunc.getCheckNullYn(accessUrl);
@@ -112,7 +112,7 @@
 			return false;
 		}
 		else {
-			getMenuAuth("Run", menuId, userId, titleCd, deptCd, accessUrl);	
+			getMenuAuth("Run", menuId, userId, dutyCd, deptCd, accessUrl);	
 		}
 	});
 	
@@ -120,7 +120,7 @@
 	$(document).on("click", ".btn_bot_manage_info", function (e) {
   		var menuId = $(this).parent().parent().attr("id");
   		var userId = commonFunc.certInfo.userId;
-		var titleCd = commonFunc.certInfo.titleCd;
+		var dutyCd = commonFunc.certInfo.dutyCd;
 		var deptCd = commonFunc.certInfo.deptCd;
 		var accessUrl = $(this).attr("manageUrl");
 		var checkNullYn = commonFunc.getCheckNullYn(accessUrl);
@@ -130,7 +130,7 @@
 			return false;
 		}
 		else {
-			getMenuAuth("Manage", menuId, userId, titleCd, deptCd, accessUrl);	
+			getMenuAuth("Manage", menuId, userId, dutyCd, deptCd, accessUrl);	
 		}
 	});
 	
