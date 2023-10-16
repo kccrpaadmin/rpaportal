@@ -84,7 +84,10 @@
 		
 		if (mySheet.ColSaveName(Col) == "failAttFileNm") {
 			var failAttId = mySheet.GetCellValue(Row, "failAttId");
-			window.location.href = "/FileDownload/Download.do?attId=" + failAttId + "&seq=1";
+			
+			if (failAttId != ""){
+				window.location.href = "/FileDownload/Download.do?attId=" + failAttId + "&seq=1";
+			}
    		}
 	}
 	
