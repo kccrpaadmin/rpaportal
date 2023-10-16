@@ -21,6 +21,8 @@ public class BotAdDailyReportVO {
 	private String RegDate;
 	private String RunDate;
 	private String RunTime;
+	private String ScreenshotAttId;
+	private String ScreenshotAttFileNm;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -58,6 +60,12 @@ public class BotAdDailyReportVO {
 	public String getRunTime() {
 		return RunTime;
 	}
+	public String getScreenshotAttId() {
+		return ScreenshotAttId;
+	}
+	public String getScreenshotAttFileNm() {
+		return ScreenshotAttFileNm;
+	}
 
 	public void setMenuId(String menuId) {
 		MenuId = menuId;
@@ -94,5 +102,11 @@ public class BotAdDailyReportVO {
 	}
 	public void setRunTime(String runTime) {
 		RunTime = runTime;
+	}
+	public void setScreenshotAttId(String screenshotAttId) {
+		ScreenshotAttId = screenshotAttId;
+	}
+	public void setScreenshotAttFileNm(String screenshotAttFileNm) {
+		ScreenshotAttFileNm = screenshotAttFileNm;
 	}
 }

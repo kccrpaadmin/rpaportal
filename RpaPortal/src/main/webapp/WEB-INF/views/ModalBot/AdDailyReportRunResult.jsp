@@ -46,17 +46,19 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1051px", "517px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "951px", "417px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
             { Header: "요청번호", Type: "Text", Width: 0, SaveName: "requestNo", Hidden:true },
-            { Header: "광고번호", Type: "Text", Width: 101, SaveName: "adNo", Align: "Center" },
-            { Header: "광고명", Type: "Text", Width: 500, SaveName: "adNm" },
-            { Header: "조회수", Type: "Text", Width: 150, SaveName: "viewCount", Align: "Right" },
-            { Header: "좋아요수", Type: "Text", Width: 150, SaveName: "likeCount", Align: "Right" },
-            { Header: "댓글수", Type: "Text", Width: 150, SaveName: "commentCount", Align: "Right" },
+            { Header: "광고번호", Type: "Text", Width: 81, SaveName: "adNo", Align: "Center" },
+            { Header: "광고명", Type: "Text", Width: 360, SaveName: "adNm" },
+            { Header: "조회수", Type: "Text", Width: 110, SaveName: "viewCount", Align: "Center" },
+            { Header: "좋아요수", Type: "Text", Width: 110, SaveName: "likeCount", Align: "Center" },
+            { Header: "댓글수", Type: "Text", Width: 110, SaveName: "commentCount", Align: "Center" },
+            { Header: "현황화면스크린샷첨부ID", Type: "Text", Width: 0, SaveName: "screenshotAttId", Hidden:true },
+            { Header: "현황화면스크린샷", Type: "Text", Width: 160, SaveName: "screenshotAttFileNm", Align: "Center" }
         ];
 
         IBS_InitSheet(mySheet, initdata);
@@ -65,5 +67,20 @@
         mySheet.SetTheme("LPP", "LightPurple"); // 테마 색상 변경
         mySheet.LoadSearchData(pListDatas);
     }
+
+    // 그리드 클릭 함수 
+	function mySheet_OnClick(Row, Col, Value, CellX, CellY, CellW, CellH) {
+		if (Row == 0) {
+			return false;
+		}
+		
+		if (mySheet.ColSaveName(Col) == "screenshotAttFileNm") {
+			var screenshotAttId = mySheet.GetCellValue(Row, "screenshotAttId");
+			
+			if (screenshotAttId != ""){
+				window.location.href = "/FileDownload/Download.do?attId=" + screenshotAttId + "&seq=1";
+			}
+   		}
+	}
 	
 </script>

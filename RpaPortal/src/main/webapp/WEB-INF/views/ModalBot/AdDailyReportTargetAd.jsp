@@ -11,6 +11,7 @@
 	    </div>
   	    <!-- 그리드영역 -->
 		<div id="sheet"></div>
+		<div><p style="margin-top:5px;">※ '광고명'은 현황 엑셀 파일에 들어갈 광고명으로 작성하시기 바랍니다.</p></div>
 	</div>
 </div>
 
@@ -49,7 +50,7 @@
 
         var initdata = {};
 
-        createIBSheet2(document.getElementById("sheet"), "mySheet", "1043px", "449px");
+        createIBSheet2(document.getElementById("sheet"), "mySheet", "1043px", "429px");
 
         initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
