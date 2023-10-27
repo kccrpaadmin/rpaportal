@@ -23,6 +23,20 @@ public class BotAdDailyReportVO {
 	private String RunTime;
 	private String ScreenshotAttId;
 	private String ScreenshotAttFileNm;
+	private String WeekCount;
+	private String DayCount;
+	private String LatestViewCount;
+	private String BeforeViewCount;
+	private String Type;
+	private String Mon;
+	private String Tue;
+	private String Wed;
+	private String Thu;
+	private String Fri;
+	private String Sat;
+	private String Sun;
+	private String AdSelect1;
+	private String AdSelect2;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -66,6 +80,48 @@ public class BotAdDailyReportVO {
 	public String getScreenshotAttFileNm() {
 		return ScreenshotAttFileNm;
 	}
+	public String getWeekCount() {
+		return WeekCount;
+	}
+	public String getDayCount() {
+		return DayCount;
+	}
+	public String getLatestViewCount() {
+		return LatestViewCount;
+	}
+	public String getBeforeViewCount() {
+		return BeforeViewCount;
+	}
+	public String getType() {
+		return Type;
+	}
+	public String getMon() {
+		return Mon;
+	}
+	public String getTue() {
+		return Tue ;
+	}
+	public String getWed() {
+		return Wed;
+	}
+	public String getThu() {
+		return Thu;
+	}
+	public String getFri() {
+		return Fri;
+	}
+	public String getSat() {
+		return Sat;
+	}
+	public String getSun() {
+		return Sun;
+	}
+	public String getAdSelect1() {
+		return AdSelect1;
+	}
+	public String getAdSelect2() {
+		return AdSelect2;
+	}
 
 	public void setMenuId(String menuId) {
 		MenuId = menuId;
@@ -108,5 +164,47 @@ public class BotAdDailyReportVO {
 	}
 	public void setScreenshotAttFileNm(String screenshotAttFileNm) {
 		ScreenshotAttFileNm = screenshotAttFileNm;
+	}
+	public void setWeekCount(String weekCount) {
+		WeekCount = weekCount;
+	}
+	public void setDayCount(String dayCount) {
+		DayCount = dayCount;
+	}
+	public void setLatestViewCount(String latestViewCount) {
+		LatestViewCount = latestViewCount;
+	}
+	public void setBeforeViewCount(String beforeViewCount) {
+		BeforeViewCount = beforeViewCount;
+	}
+	public void setType(String type) {
+		Type = type;
+	}
+	public void setMon(String mon) {
+		Mon = mon;
+	}
+	public void setTue(String tue) {
+		Tue = tue;
+	}
+	public void setWed(String wed) {
+		Wed = wed;
+	}
+	public void setThu(String thu) {
+		Thu = thu;
+	}
+	public void setFri(String fri) {
+		Fri = fri;
+	}
+	public void setSat(String sat) {
+		Sat = sat;
+	}
+	public void setSun(String sun) {
+		Sun = sun;
+	}
+	public void setAdSelect1(String adSelect1) {
+		AdSelect1 = adSelect1;
+	}
+	public void setAdSelect2(String adSelect2) {
+		AdSelect2 = adSelect2;
 	}
 }

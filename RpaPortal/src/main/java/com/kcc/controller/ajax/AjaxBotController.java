@@ -1221,8 +1221,17 @@ public class AjaxBotController extends BaseController {
 			e.printStackTrace();
 		}
 		
+		List<BotAdDailyReportVO> outListBotAdDailyVOChart = new ArrayList<BotAdDailyReportVO>();
+		try {
+			outListBotAdDailyVOChart = botAdDailyReportService.listBotAdDailyReportManageChart(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListBotAdDailyReportVO);
+		map.put("chartData", outListBotAdDailyVOChart);
 		
 		return map;
 	}

@@ -632,6 +632,8 @@ public class BotController extends BaseController {
 		
 		// 모델 정의
 		model.addAttribute("outMenuVO", outMenuVO);
+		model.addAttribute("select1ComboBox", commonUtilService.getCodeProcedureSelectBox("ad_select_1", "PRA_Bot_listAdCombo", "", false, "", ""));
+		model.addAttribute("select2ComboBox", commonUtilService.getCodeProcedureSelectBox("ad_select_2", "PRA_Bot_listAdCombo", "", true, "", ""));
 		
 		return "Bot/AdDailyReportManage";
 	}

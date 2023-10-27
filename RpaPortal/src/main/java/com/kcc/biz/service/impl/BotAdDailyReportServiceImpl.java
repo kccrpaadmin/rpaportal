@@ -29,4 +29,8 @@ public class BotAdDailyReportServiceImpl implements IBotAdDailyReportService {
 	public List<BotAdDailyReportVO> listBotAdDailyReportManage(BotAdDailyReportVO vo) throws Exception {
 		return botAdDailyReportRepository.listBotAdDailyReportManage(vo);
 	}
+	
+	public List<BotAdDailyReportVO> listBotAdDailyReportManageChart(BotAdDailyReportVO vo) throws Exception {
+		return botAdDailyReportRepository.listBotAdDailyReportManageChart(vo);
+	}
 }

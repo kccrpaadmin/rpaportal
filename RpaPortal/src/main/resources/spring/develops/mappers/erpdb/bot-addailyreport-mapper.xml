@@ -27,6 +27,19 @@
 		<![CDATA[
 			{ 
 	            call PRA_Bot_listAdDailyReportManage (
+	            	#{AdSelect1}
+	               ,#{AdSelect2}
+            	)
+			}
+		]]>
+	</select>
+		
+	<select id="listBotAdDailyReportManageChart" statementType="CALLABLE" parameterType="botAdDailyReportVO" resultType="botAdDailyReportVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listAdDailyReportManageChart (
+	            	#{AdSelect1}
+	               ,#{AdSelect2}
             	)
 			}
 		]]>
