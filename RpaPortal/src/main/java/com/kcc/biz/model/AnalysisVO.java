@@ -25,6 +25,10 @@ public class AnalysisVO {
     private String MenuId;
     private String RunCnt;
     private String TotTime;
+    private String WorkRun;
+    private String WorkManage;
+    private String RunUrl;
+    private String ManageUrl;
     
 	public String getSearchCondition() {
 		return SearchCondition;
@@ -111,12 +115,28 @@ public class AnalysisVO {
 	public void setRunCnt(String runCnt) {
 		RunCnt = runCnt;
 	}
-	public String getTotTime() {
-		return TotTime;
+	public String getWorkRun() {
+		return WorkRun;
 	}
-	public void setTotTime(String totTime) {
-		TotTime = totTime;
+	public void setWorkRun(String workRun) {
+		WorkRun = workRun;
 	}
-    
-    
+	public String getWorkManage() {
+		return WorkManage;
+	}
+	public void setWorkManage(String workManage) {
+		WorkManage = workManage;
+	}
+	public String getRunUrl() {
+		return RunUrl;
+	}
+	public void setRunUrl(String runUrl) {
+		RunUrl = runUrl;
+	}
+	public String getManageUrl() {
+		return ManageUrl;
+	}
+	public void setManageUrl(String manageUrl) {
+		ManageUrl = manageUrl;
+	}
 }

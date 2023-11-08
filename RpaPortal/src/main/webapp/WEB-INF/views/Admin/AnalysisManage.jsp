@@ -74,7 +74,15 @@
 	function showMore(seriesId, displayText, index, data, values) {
 		var beginDate = $("#year_mon_day1").val();
 		var endDate = $("#year_mon_day2").val(); 
+		
 		var accessUrl = data.accessUrl;
+		
+		if(values[0] == data.runCnt){
+			accessUrl = data.runUrl;
+		} else {
+			accessUrl = data.manageUrl;
+		}
+
 		libraryFunc.createModal(null, null, null, 650, 650, "상세내역", "/ModalAdmin/VisitList.do" 
 				+ '?pAccessUrl=' + accessUrl 
 				+ '&pBeginDate=' + beginDate
@@ -100,7 +108,7 @@
 		    dataType : "json",
 	        async: false,
 			success: function(datas) {
-				make2DColumnChart("chart1", "chartHolder1", "1000px", "500px", datas, "", "subjectStyleType1", "단위(건)", "menuNm", "");
+				make2DColumnChart("chart1", "chartHolder1", "1000px", "600px", datas, "", "subjectStyleType1", "단위(건)", "menuNm", "");
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
@@ -143,31 +151,41 @@
 		});
 	}
 	
-	// 메뉴 접속량 차트 생성 함수
+	// 메뉴 접속량 차트 생성 함수	
 	function make2DColumnChart(pChartNm, pChartElmtNm, pWidth, pHeight, pDatas, pSubject, pSubjectStyle, pUnit, pCategoryField, pLabelRotation) {
 		rMateChartH5.create(pChartNm, pChartElmtNm, "", pWidth, pHeight);
 		var layoutStr =
-			'<rMateChart backgroundColor="#ffffff" borderStyle="solid" >'
-				+'<Options>'
-					+'<Caption text="' + pSubject + '" styleName="' + pSubjectStyle + '"/>'
-		            +'<SubCaption text="' + pUnit + '" textAlign="right"/>'
-				+'</Options>'
-				+'<Bar2DChart showDataTips="true" itemClickJsFunction="showMore">'
-	               +'<verticalAxis>'
-	                  +'<CategoryAxis categoryField="menuNm"/>'
-	               +'</verticalAxis>'
-	                 +'<series>'
-	                    +'<Bar2DSeries labelPosition="inside" xField="accessCnt" displayName="접속수" showValueLabels="true" color="#ffffff" insideLabelYOffset="-2">'
-	                       +'<showDataEffect>'
-	                            +'<SeriesInterpolate/>'
-	                        +'</showDataEffect>'
-	                   +'</Bar2DSeries>'
-	              +'</series>'
-	           +'</Bar2DChart>'
-			 	+'<Style>'
-			 		+'.subjectStyleType1{fontSize:12;fontFamily:dotum;fontWeight:bold;color:#5D5D5D;}'
-	         	+'</Style>'
-			+'</rMateChart>';
+			 '<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+            +'<Options>'
+	            +'<Caption text="' + pSubject + '" styleName="' + pSubjectStyle + '"/>'
+	            	+'<SubCaption text="' + pUnit + '" textAlign="right"/>'
+              +'<Legend defaultMouseOverAction="false" useVisibleCheck="true"/>'
+             +'</Options>'
+          +'<Bar2DChart showDataTips="true" selectionMode="single" barWidthRatio="0.66" itemClickJsFunction="showMore">'
+                +'<horizontalAxis>'
+                    +'<LinearAxis maximum="150" interval="10"/>'
+               +'</horizontalAxis>'
+               +'<verticalAxis>'
+                  +'<CategoryAxis categoryField="menuNm" id="hAxis"/>'
+               +'</verticalAxis>'
+                 +'<series>'
+                /* Bar2D Multi-Sereis 를 생성시에는 Bar2DSeries 여러 개 정의합니다 */
+                  +'<Bar2DSeries labelPosition="inside" halfWidthOffset="1" showValueLabels="true" xField="runCnt" displayName="업무수행" color="#ffffff" insideLabelYOffset="-2">'
+                      +'<showDataEffect>'
+                            +'<SeriesInterpolate/>'
+                        +'</showDataEffect>'
+                   +'</Bar2DSeries>'
+                  +'<Bar2DSeries labelPosition="inside" halfWidthOffset="1" showValueLabels="true" xField="workManage" displayName="업무관리" color="#ffffff" insideLabelYOffset="-2">'
+                         +'<showDataEffect>'
+                            +'<SeriesInterpolate/>'
+                        +'</showDataEffect>'
+                   +'</Bar2DSeries>'
+              +'</series>'
+              +'<verticalAxisRenderers>'
+         		+'<Axis2DRenderer axis="{hAxis}" fontSize="12" showLine="true" tickPlacement="none" minorTickPlacement="none"/>'
+       		  +'</verticalAxisRenderers>'
+           +'</Bar2DChart>'
+       +'</rMateChart>';
 		
 		rMateChartH5.calls(pChartNm, {
 		    "setLayout" : layoutStr,
@@ -175,5 +193,4 @@
 		});
 		console.log(pDatas);
 	}	
-	 	
 </script>

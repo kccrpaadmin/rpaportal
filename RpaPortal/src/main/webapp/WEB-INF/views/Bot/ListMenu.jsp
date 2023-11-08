@@ -34,11 +34,13 @@
 	
 	// BOT 메뉴 목록 생성 함수
 	function createBotMenulList(pSearchTxt) {
+		var EmpNo = commonFunc.certInfo.empNo;
+		
 		$.ajax({
 			url: "/AjaxMenu/ListBotMenu.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "searchTxt": pSearchTxt }),
+			data : JSON.stringify({ "searchTxt": pSearchTxt, "empNo": EmpNo }),
 		    dataType : "json",
 	        async: true,
 			success: function(listDatas) {
