@@ -430,4 +430,13 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/AdDailyReportTargetAd";
 	}
+	
+	@GetMapping("/EaisSchedule.do")
+	public String EaisSchedule(String pMenuId, Model model) {
+		logger.info("/ModalBot/EaisSchedule.do");
+
+		model.addAttribute("menuId", pMenuId);
+		
+		return "ModalBot/EaisSchedule";
+	}
 }

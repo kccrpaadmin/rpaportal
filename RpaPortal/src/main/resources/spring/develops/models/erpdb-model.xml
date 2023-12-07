@@ -88,6 +88,8 @@
 		<typeAlias alias="botSCSystemCheckVO" type="com.kcc.biz.model.BotSCSystemCheckVO" />
 		<!-- BOT 스위첸 유튜브 광고현황 수집업무 -->
 		<typeAlias alias="botAdDailyReportVO" type="com.kcc.biz.model.BotAdDailyReportVO" />
+		<!-- BOT 세움터 사용승인(허가) 수집업무 -->
+		<typeAlias alias="botEaisVO" type="com.kcc.biz.model.BotEaisVO" />
 				
 	</typeAliases>
 	

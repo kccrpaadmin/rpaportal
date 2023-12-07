@@ -54,6 +54,7 @@ import com.kcc.biz.model.BotBidChangeVO;
 import com.kcc.biz.model.BotPersonalBccVO;
 import com.kcc.biz.model.BotSCSystemCheckVO;
 import com.kcc.biz.model.BotAdDailyReportVO;
+import com.kcc.biz.model.BotEaisVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -70,6 +71,7 @@ import com.kcc.biz.service.IBotBidChangeService;
 import com.kcc.biz.service.IBotPersonalBccService;
 import com.kcc.biz.service.IBotSCSystemCheckService;
 import com.kcc.biz.service.IBotAdDailyReportService;
+import com.kcc.biz.service.IBotEaisService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -130,6 +132,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botAdDailyReportService")
 	private IBotAdDailyReportService botAdDailyReportService;
+	
+	@Resource(name="botEaisService")
+	private IBotEaisService botEaisService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1234,5 +1239,50 @@ public class AjaxBotController extends BaseController {
 		map.put("chartData", outListBotAdDailyVOChart);
 		
 		return map;
+	}
+	
+	// 세움터 사용승인(허가) 발급 체크업무
+	@PostMapping("/ListEaisSchedule.do")
+	public @ResponseBody Map<String, Object> ListEaisSchedule(@RequestBody BotEaisVO vo) {
+		logger.info("/AjaxBot/ListEaisSchedule.do");
+		
+		List<BotEaisVO> outListBotEaisVO = new ArrayList<BotEaisVO>();
+		try {
+			outListBotEaisVO = botEaisService.listBotEaisSchedule(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEaisVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/SaveEaisSchedule.do")
+	public @ResponseBody StatusVO SaveEaisSchedule(@RequestBody BotEaisVO[] vo) {
+		logger.info("/AjaxBot/SaveEaisSchedule.do");
+		String status = "Success";
+		
+		List<BotEaisVO> inListBotEaisVO = new ArrayList<BotEaisVO>();
+		
+		// json-simple 사용시 배열 파라미터 사용 가능
+		for (BotEaisVO botEaisVO : vo) {
+			inListBotEaisVO.add(botEaisVO);
+		}
+		
+		try {
+			botEaisService.saveEaisSchedule(inListBotEaisVO);
+		} 
+		catch (Exception e) {
+			status = "SaveError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
 	}
 }
