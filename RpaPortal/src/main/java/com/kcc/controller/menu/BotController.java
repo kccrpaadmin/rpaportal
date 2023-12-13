@@ -663,4 +663,58 @@ public class BotController extends BaseController {
 		
 		return "Bot/EaisRun";
 	}
+	
+	@GetMapping("/DelayedPaymentRun.do")
+	public String DelayedPaymentRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/EaisRun.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
+		return "Bot/DelayedPaymentRun";
+	}
+	
+	@GetMapping("/DelayedPaymentManage.do")
+	public String DelayedPaymentManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/DelayedPaymentManage.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		//model.addAttribute("select1ComboBox", commonUtilService.getCodeProcedureSelectBox("ad_select_1", "PRA_Bot_listAdCombo", "", false, "", ""));
+		//model.addAttribute("select2ComboBox", commonUtilService.getCodeProcedureSelectBox("ad_select_2", "PRA_Bot_listAdCombo", "", true, "", ""));
+		
+		return "Bot/DelayedPaymentManage";
+	}
 }
