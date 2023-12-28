@@ -29,4 +29,14 @@
 		]]>
 	</insert>
 	
+	<select id="listEais" statementType="CALLABLE" parameterType="botEaisVO" resultType="botEaisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listEais (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
 </mapper>

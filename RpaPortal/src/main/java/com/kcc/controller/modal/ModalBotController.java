@@ -439,4 +439,24 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/EaisSchedule";
 	}
+		
+	@GetMapping("/EaisRunResult.do")
+	public String EaisRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/EaisRunResult.do");
+
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/EaisRunResult";
+	}
+	
+	@GetMapping("/InsuranceRunResult.do")
+	public String InsuranceRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/InsuranceRunResult.do");
+
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/InsuranceRunResult";
+	}
 }

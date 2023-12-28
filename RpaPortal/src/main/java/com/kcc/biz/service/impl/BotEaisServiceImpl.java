@@ -27,4 +27,8 @@ public class BotEaisServiceImpl implements IBotEaisService {
 			botEaisRepository.saveEaisSchedule(botEaisVO);
 		}
 	}
+
+	public List<BotEaisVO> listEais(BotEaisVO vo) throws Exception {
+		return botEaisRepository.listEais(vo);
+	}
 }

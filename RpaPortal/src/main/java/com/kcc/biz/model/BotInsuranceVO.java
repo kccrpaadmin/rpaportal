@@ -8,7 +8,7 @@ package com.kcc.biz.model;
 // el(jstl)에서는 무조건 첫 글자를 소문자로 써야하는 것으로 결론 지었다.
 // @RequestBody VO vo 매핑시에도 첫 글자 소문자와 매핑 된다. (input name="userId")
 
-public class BotEaisVO {
+public class BotInsuranceVO {
 	private String MenuId;
 	private String RequestNo;
 	private String No;
@@ -21,15 +21,15 @@ public class BotEaisVO {
 	private String Seq;
 	private String EmpNo;
 	private String EditYn;
-	private String MenuTypeNm;
-	private String SiteLocation;
-	private String RepNm;
-	private String ComplNm;
-	private String ComplRegDate;
-	private String ComplReqDate;
-	private String ComplProcExpDate;
-	private String ComplProcDate;
-	private String SmsSendYn;
+	private String ContractNo;
+	private String ChgSeq;
+	private String InsTypeNm;
+	private String IssueNo;
+	private String BizMngNo;
+	private String BizNo;
+	private String BizNm;
+	private String VendorPayAmt;
+	private String ConfirmPayAmt;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -67,32 +67,32 @@ public class BotEaisVO {
 	public String getEditYn() {
 		return EditYn;
 	}
-	public String getMenuTypeNm() {
-		return MenuTypeNm;
+	public String getContractNo() {
+		return ContractNo;
 	}
-	public String getSiteLocation() {
-		return SiteLocation;
+	public String getChgSeq() {
+		return ChgSeq;
 	}
-	public String getRepNm() {
-		return RepNm;
+	public String getInsTypeNm() {
+		return InsTypeNm;
 	}
-	public String getComplNm() {
-		return ComplNm;
+	public String getIssueNo() {
+		return IssueNo;
 	}
-	public String getComplRegDate() {
-		return ComplRegDate;
+	public String getBizMngNo() {
+		return BizMngNo;
 	}
-	public String getComplReqDate() {
-		return ComplReqDate;
+	public String getBizNo() {
+		return BizNo;
 	}
-	public String getComplProcExpDate() {
-		return ComplProcExpDate;
+	public String getBizNm() {
+		return BizNm;
 	}
-	public String getComplProcDate() {
-		return ComplProcDate;
+	public String getVendorPayAmt() {
+		return VendorPayAmt;
 	}
-	public String getSmsSendYn() {
-		return SmsSendYn;
+	public String getConfirmPayAmt() {
+		return ConfirmPayAmt;
 	}
 
 	public void setMenuId(String menuId) {
@@ -131,31 +131,28 @@ public class BotEaisVO {
 	public void setEditYn(String editYn) {
 		EditYn = editYn;
 	}
-	public void setMenuTypeNm(String menuTypeNm) {
-		MenuTypeNm = menuTypeNm;
+	public void setContractNo(String contractNo) {
+		ContractNo = contractNo;
 	}
-	public void setSiteLocation(String siteLocation) {
-		SiteLocation = siteLocation;
+	public void setChgSeq(String chgSeq) {
+		ChgSeq = chgSeq;
 	}
-	public void setRepNm(String repNm) {
-		RepNm = repNm;
+	public void setInsTypeNm(String insTypeNm) {
+		InsTypeNm = insTypeNm;
 	}
-	public void setComplNm(String complNm) {
-		ComplNm = complNm;
+	public void setIssueNo(String issueNo) {
+		IssueNo = issueNo;
 	}
-	public void setComplRegDate(String complRegDate) {
-		ComplRegDate = complRegDate;
+	public void setBizMngNo(String bizMngNo) {
+		BizMngNo = bizMngNo;
 	}
-	public void setComplReqDate(String complReqDate) {
-		ComplReqDate = complReqDate;
+	public void setBizNo(String bizNo) {
+		BizNo = bizNo;
 	}
-	public void setComplProcExpDate(String complProcExpDate) {
-		ComplProcExpDate = complProcExpDate;
+	public void setBizNm(String bizNm) {
+		BizNm = bizNm;
 	}
-	public void setComplProcDate(String complProcDate) {
-		ComplProcDate = complProcDate;
-	}
-	public void setSmsSendYn(String smsSendYn) {
-		SmsSendYn = smsSendYn;
+	public void setVendorPayAmt(String vendorPayAmt) {
+		VendorPayAmt = vendorPayAmt;
 	}
 }

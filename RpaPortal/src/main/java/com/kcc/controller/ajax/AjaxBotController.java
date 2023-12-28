@@ -55,6 +55,7 @@ import com.kcc.biz.model.BotPersonalBccVO;
 import com.kcc.biz.model.BotSCSystemCheckVO;
 import com.kcc.biz.model.BotAdDailyReportVO;
 import com.kcc.biz.model.BotEaisVO;
+import com.kcc.biz.model.BotInsuranceVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -72,6 +73,7 @@ import com.kcc.biz.service.IBotPersonalBccService;
 import com.kcc.biz.service.IBotSCSystemCheckService;
 import com.kcc.biz.service.IBotAdDailyReportService;
 import com.kcc.biz.service.IBotEaisService;
+import com.kcc.biz.service.IBotInsuranceService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -135,6 +137,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botEaisService")
 	private IBotEaisService botEaisService;
+
+	@Resource(name="botInsuranceService")
+	private IBotInsuranceService botInsuranceService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1284,5 +1289,41 @@ public class AjaxBotController extends BaseController {
 		statusVO.setStatus(status);
 		
 		return statusVO;
+	}
+	
+	@PostMapping("/ListEais.do")
+	public @ResponseBody Map<String, Object> ListEais(@RequestBody BotEaisVO vo) {
+		logger.info("/AjaxBot/ListEais.do");
+		
+		List<BotEaisVO> outListEaisVO = new ArrayList<BotEaisVO>();
+		try {
+			outListEaisVO = botEaisService.listEais(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListEaisVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListInsurance.do")
+	public @ResponseBody Map<String, Object> ListInsurance(@RequestBody BotInsuranceVO vo) {
+		logger.info("/AjaxBot/ListInsurance.do");
+		
+		List<BotInsuranceVO> outListInsuranceVO = new ArrayList<BotInsuranceVO>();
+		try {
+			outListInsuranceVO = botInsuranceService.listInsurance(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListInsuranceVO);
+		
+		return map;
 	}
 }
