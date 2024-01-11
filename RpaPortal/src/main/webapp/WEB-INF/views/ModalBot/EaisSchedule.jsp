@@ -83,11 +83,11 @@
             { Header: "상태", Type: "Status", Width: 50, SaveName: "status", Align: "Center" },
             { Header: "번호", Type: "Text", Width: 50, SaveName: "seq", Align: "Center", Edit: false },
             { Header: "현장명", Type: "Text", Width: 300, SaveName: "siteNm", Edit: true, KeyField: true },
-            { Header: "시작일자", Type: "Date", Width: 100, SaveName: "startDate", Align: "Center", Edit: true, KeyField: true },
+            { Header: "시작일자", Type: "Date", Width: 100, SaveName: "startDate", Align: "Center", Edit: false, KeyField: true },
             { Header: "종료일자", Type: "Date", Width: 100, SaveName: "finishDate", Align: "Center", Edit: true, KeyField: true },
             { Header: "종료처리여부", Type: "CheckBox", Width: 100, SaveName: "finishYn", Align: "Center", Edit: true, KeyField: true },
-            { Header: "등록자", Type: "Date", Width: 100, SaveName: "regUserNm", Align: "Center", Edit: false },
-            { Header: "편집가능", Type: "Date", Width: 100, SaveName: "editYn", Align: "Center", Edit: false, Hidden: true }
+            { Header: "등록자", Type: "Text", Width: 100, SaveName: "regUserNm", Align: "Center", Edit: false },
+            { Header: "편집가능", Type: "Text", Width: 100, SaveName: "editYn", Align: "Center", Edit: false, Hidden: true }
         ];
 
         IBS_InitSheet(mySheet, initdata);
@@ -137,9 +137,11 @@
     $(document).on("click", "#btn_add", function (e) {
     	mySheet.DataInsert(0);
     	mySheet.SetEditable(1);
-    	//mySheet.SetCellEditable(mySheet.GetDataLastRow(), "SiteNm", true);
-    	//mySheet.SetCellEditable(mySheet.GetDataLastRow(), "startDate", true);
-    	//mySheet.SelectCell(mySheet.GetDataLastRow(), "adNm");
+    	
+    	var today = new Date();
+    	today = today.format("yyyy-MM-dd");
+    	
+    	mySheet.SetCellValue(1, 4, today);  // 시작일자는 오늘날짜로 지정 
     });
 
 	// 저장 버튼 클릭 이벤트
