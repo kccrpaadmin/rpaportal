@@ -469,4 +469,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/KisconFirstConstRunResult";
 	}
+
+	@GetMapping("/ChgPersonalBccRunResult.do")
+	public String ChgPersonalBccRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/ChgPersonalBccRunResult.do");
+
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/ChgPersonalBccRunResult";
+	}
 }

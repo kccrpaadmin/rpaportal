@@ -25,6 +25,9 @@ public class BotPersonalBccVO {
 	private String CompAddress;
 	private String SuccessTypeCdNm;
 	private String ErrorMsg;
+	private String ChgTypeNm;
+	private String CancelReason;
+	private String RetireDate;
 	
 		
 	public String getMenuId() {
@@ -123,4 +126,22 @@ public class BotPersonalBccVO {
 	public void setErrorMsg(String errorMsg) {
 		ErrorMsg = errorMsg;
 	}	
+	public String getChgTypeNm() {
+		return ChgTypeNm;
+	}
+	public void setChgTypeNm(String chgTypeNm) {
+		ChgTypeNm = chgTypeNm;
+	}
+	public String getCancelReason() {
+		return CancelReason;
+	}
+	public void setCancelReason(String cancelReason) {
+		CancelReason = cancelReason;
+	}
+	public String getRetireDate() {
+		return RetireDate;
+	}
+	public void setRetireDate(String retireDate) {
+		RetireDate = retireDate;
+	}
 }

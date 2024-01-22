@@ -3,20 +3,20 @@
 
 <mapper namespace="com.kcc.biz.dao.BotKisconConstRepository">
 		
-	<select id="listBotKisconConstSubcontract" statementType="CALLABLE" parameterType="botKisconConstVO" resultType="botKisconConstVO">
+	<select id="listKisconConstSubcontract" statementType="CALLABLE" parameterType="botKisconConstVO" resultType="botKisconConstVO">
 		<![CDATA[
 			{ 
-	            call PRA_Bot_listBotKisconConstSubcontract (
+	            call PRA_Bot_listKisconConstSubcontract (
             		#{RequestNo}
             	)
 			}
 		]]>
 	</select>
 	
-	<select id="listBotKisconConstManage" statementType="CALLABLE" parameterType="botKisconConstVO" resultType="botKisconConstVO">
+	<select id="listKisconConstManage" statementType="CALLABLE" parameterType="botKisconConstVO" resultType="botKisconConstVO">
 		<![CDATA[
 			{ 
-	            call PRA_Bot_listBotKisconConstManage (
+	            call PRA_Bot_listKisconConstManage (
             		#{SiteNm},
             		#{ContractNm}            		
             	)
@@ -24,10 +24,10 @@
 		]]>
 	</select>
 	
-	<select id="listBotKisconFirstConstSubcontract" statementType="CALLABLE" parameterType="botKisconConstVO" resultType="botKisconConstVO">
+	<select id="listKisconFirstConstSubcontract" statementType="CALLABLE" parameterType="botKisconConstVO" resultType="botKisconConstVO">
 		<![CDATA[
 			{ 
-	            call PRA_Bot_listBotKisconFirstConstSubcontract (
+	            call PRA_Bot_listKisconFirstConstSubcontract (
             		#{RequestNo}
             	)
 			}

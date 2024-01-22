@@ -501,16 +501,16 @@ public class AjaxBotController extends BaseController {
 	public @ResponseBody Map<String, Object> ListKisconConstSubcontract(@RequestBody BotKisconConstVO vo) {
 		logger.info("/AjaxBot/ListKisconConstSubcontract.do");
 		
-		List<BotKisconConstVO> outListBotKisconConstSubcontractVO = new ArrayList<BotKisconConstVO>();
+		List<BotKisconConstVO> outListKisconConstSubcontractVO = new ArrayList<BotKisconConstVO>();
 		try {
-			outListBotKisconConstSubcontractVO = botKisconConstService.listBotKisconConstSubcontract(vo);
+			outListKisconConstSubcontractVO = botKisconConstService.listKisconConstSubcontract(vo);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		Map map = new HashMap<String, Object>();
-		map.put("data", outListBotKisconConstSubcontractVO);
+		map.put("data", outListKisconConstSubcontractVO);
 		
 		return map;
 	}
@@ -519,16 +519,16 @@ public class AjaxBotController extends BaseController {
 	public @ResponseBody Map<String, Object> ListKisconConstManage(@RequestBody BotKisconConstVO vo) {
 		logger.info("/AjaxBot/ListKisconConstManage.do");
 		
-		List<BotKisconConstVO> outListBotKisconConstManageVO = new ArrayList<BotKisconConstVO>();
+		List<BotKisconConstVO> outListKisconConstManageVO = new ArrayList<BotKisconConstVO>();
 		try {
-			outListBotKisconConstManageVO = botKisconConstService.listBotKisconConstManage(vo);
+			outListKisconConstManageVO = botKisconConstService.listKisconConstManage(vo);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		Map map = new HashMap<String, Object>();
-		map.put("data", outListBotKisconConstManageVO);
+		map.put("data", outListKisconConstManageVO);
 		
 		return map;
 	}
@@ -989,7 +989,7 @@ public class AjaxBotController extends BaseController {
 		
 		List<BotPersonalBccVO> outListPersonalBccVO = new ArrayList<BotPersonalBccVO>();
 		try {
-			outListPersonalBccVO = botPersonalBccService.listBotPersonalBcc(vo);
+			outListPersonalBccVO = botPersonalBccService.listPersonalBcc(vo);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -1332,16 +1332,34 @@ public class AjaxBotController extends BaseController {
 	public @ResponseBody Map<String, Object> ListKisconFirstConstSubcontract(@RequestBody BotKisconConstVO vo) {
 		logger.info("/AjaxBot/ListKisconFirstConstSubcontract.do");
 		
-		List<BotKisconConstVO> outListBotKisconFirstConstSubcontractVO = new ArrayList<BotKisconConstVO>();
+		List<BotKisconConstVO> outListKisconFirstConstSubcontractVO = new ArrayList<BotKisconConstVO>();
 		try {
-			outListBotKisconFirstConstSubcontractVO = botKisconConstService.listBotKisconFirstConstSubcontract(vo);
+			outListKisconFirstConstSubcontractVO = botKisconConstService.listKisconFirstConstSubcontract(vo);
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		Map map = new HashMap<String, Object>();
-		map.put("data", outListBotKisconFirstConstSubcontractVO);
+		map.put("data", outListKisconFirstConstSubcontractVO);
+		
+		return map;
+	}
+
+	@PostMapping("/ListChgPersonalBcc.do")
+	public @ResponseBody Map<String, Object> ListChgPersonalBcc(@RequestBody BotPersonalBccVO vo) {
+		logger.info("/AjaxBot/ListChgPersonalBcc.do");
+		
+		List<BotPersonalBccVO> outListChgPersonalBccVO = new ArrayList<BotPersonalBccVO>();
+		try {
+			outListChgPersonalBccVO = botPersonalBccService.listChgPersonalBcc(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListChgPersonalBccVO);
 		
 		return map;
 	}

@@ -5,7 +5,7 @@ import java.util.List;
 import com.kcc.biz.model.BotKisconConstVO;
 
 public interface IBotKisconConstService {	
-	List<BotKisconConstVO> listBotKisconConstSubcontract(BotKisconConstVO vo) throws Exception;
-	List<BotKisconConstVO> listBotKisconConstManage(BotKisconConstVO vo) throws Exception;
-	List<BotKisconConstVO> listBotKisconFirstConstSubcontract(BotKisconConstVO vo) throws Exception;
+	List<BotKisconConstVO> listKisconConstSubcontract(BotKisconConstVO vo) throws Exception;
+	List<BotKisconConstVO> listKisconConstManage(BotKisconConstVO vo) throws Exception;
+	List<BotKisconConstVO> listKisconFirstConstSubcontract(BotKisconConstVO vo) throws Exception;
 }

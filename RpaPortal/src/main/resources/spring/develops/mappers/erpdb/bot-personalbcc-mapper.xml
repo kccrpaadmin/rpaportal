@@ -3,10 +3,21 @@
 
 <mapper namespace="com.kcc.biz.dao.BotPersonalBccRepository">
 	
-	<select id="listBotPersonalBcc" statementType="CALLABLE" parameterType="botPersonalBccVO" resultType="botPersonalBccVO">
+	<select id="listPersonalBcc" statementType="CALLABLE" parameterType="botPersonalBccVO" resultType="botPersonalBccVO">
 		<![CDATA[
 			{ 
-	            call PRA_Bot_listBotPersonalBccList (
+	            call PRA_Bot_listPersonalBcc (
+            		#{MenuId}
+            	   ,#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="listChgPersonalBcc" statementType="CALLABLE" parameterType="botPersonalBccVO" resultType="botPersonalBccVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listChgPersonalBcc (
             		#{MenuId}
             	   ,#{RequestNo}
             	)

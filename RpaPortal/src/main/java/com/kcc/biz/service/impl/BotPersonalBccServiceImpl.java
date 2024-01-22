@@ -18,7 +18,11 @@ public class BotPersonalBccServiceImpl implements IBotPersonalBccService {
 	@Resource(name="botPersonalBccRepository")
 	private BotPersonalBccRepository botPersonalBccRepository;
 	
-	public List<BotPersonalBccVO> listBotPersonalBcc(BotPersonalBccVO vo) throws Exception {		
-		return botPersonalBccRepository.listBotPersonalBcc(vo);
+	public List<BotPersonalBccVO> listPersonalBcc(BotPersonalBccVO vo) throws Exception {		
+		return botPersonalBccRepository.listPersonalBcc(vo);
+	}
+	
+	public List<BotPersonalBccVO> listChgPersonalBcc(BotPersonalBccVO vo) throws Exception {		
+		return botPersonalBccRepository.listChgPersonalBcc(vo);
 	}
 }

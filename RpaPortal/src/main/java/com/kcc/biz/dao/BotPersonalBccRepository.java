@@ -8,5 +8,6 @@ import com.kcc.biz.model.BotPersonalBccVO;
 
 @Repository("botPersonalBccRepository")
 public interface BotPersonalBccRepository {	
-	List<BotPersonalBccVO> listBotPersonalBcc(BotPersonalBccVO vo) throws Exception;	
+	List<BotPersonalBccVO> listPersonalBcc(BotPersonalBccVO vo) throws Exception;	
+	List<BotPersonalBccVO> listChgPersonalBcc(BotPersonalBccVO vo) throws Exception;	
 }

@@ -18,15 +18,15 @@ public class BotKisconConstServiceImpl implements IBotKisconConstService {
 	@Resource(name="botKisconConstRepository")
 	private BotKisconConstRepository botKisconConstRepository;
 		
-	public List<BotKisconConstVO> listBotKisconConstSubcontract(BotKisconConstVO vo) throws Exception {
-		return botKisconConstRepository.listBotKisconConstSubcontract(vo);
+	public List<BotKisconConstVO> listKisconConstSubcontract(BotKisconConstVO vo) throws Exception {
+		return botKisconConstRepository.listKisconConstSubcontract(vo);
 	}
 	
-	public List<BotKisconConstVO> listBotKisconConstManage(BotKisconConstVO vo) throws Exception {
-		return botKisconConstRepository.listBotKisconConstManage(vo);
+	public List<BotKisconConstVO> listKisconConstManage(BotKisconConstVO vo) throws Exception {
+		return botKisconConstRepository.listKisconConstManage(vo);
 	}
 
-	public List<BotKisconConstVO> listBotKisconFirstConstSubcontract(BotKisconConstVO vo) throws Exception {
-		return botKisconConstRepository.listBotKisconFirstConstSubcontract(vo);
+	public List<BotKisconConstVO> listKisconFirstConstSubcontract(BotKisconConstVO vo) throws Exception {
+		return botKisconConstRepository.listKisconFirstConstSubcontract(vo);
 	}
 }
