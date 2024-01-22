@@ -459,4 +459,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/InsuranceRunResult";
 	}
+
+	@GetMapping("/KisconFirstConstRunResult.do")
+	public String KisconFirstConstRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/KisconFirstConstRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/KisconFirstConstRunResult";
+	}
 }

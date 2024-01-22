@@ -10,4 +10,5 @@ import com.kcc.biz.model.BotKisconConstVO;
 public interface BotKisconConstRepository {	
 	List<BotKisconConstVO> listBotKisconConstSubcontract(BotKisconConstVO vo) throws Exception;
 	List<BotKisconConstVO> listBotKisconConstManage(BotKisconConstVO vo) throws Exception;
+	List<BotKisconConstVO> listBotKisconFirstConstSubcontract(BotKisconConstVO vo) throws Exception;
 }

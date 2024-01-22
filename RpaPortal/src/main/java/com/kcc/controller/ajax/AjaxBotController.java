@@ -1326,4 +1326,23 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}
+	
+	// 하도급 당초계약 키스콘 등록 업무
+	@PostMapping("/ListKisconFirstConstSubcontract.do")
+	public @ResponseBody Map<String, Object> ListKisconFirstConstSubcontract(@RequestBody BotKisconConstVO vo) {
+		logger.info("/AjaxBot/ListKisconFirstConstSubcontract.do");
+		
+		List<BotKisconConstVO> outListBotKisconFirstConstSubcontractVO = new ArrayList<BotKisconConstVO>();
+		try {
+			outListBotKisconFirstConstSubcontractVO = botKisconConstService.listBotKisconFirstConstSubcontract(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotKisconFirstConstSubcontractVO);
+		
+		return map;
+	}
 }

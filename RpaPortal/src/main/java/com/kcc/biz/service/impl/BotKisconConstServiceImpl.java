@@ -25,4 +25,8 @@ public class BotKisconConstServiceImpl implements IBotKisconConstService {
 	public List<BotKisconConstVO> listBotKisconConstManage(BotKisconConstVO vo) throws Exception {
 		return botKisconConstRepository.listBotKisconConstManage(vo);
 	}
+
+	public List<BotKisconConstVO> listBotKisconFirstConstSubcontract(BotKisconConstVO vo) throws Exception {
+		return botKisconConstRepository.listBotKisconFirstConstSubcontract(vo);
+	}
 }

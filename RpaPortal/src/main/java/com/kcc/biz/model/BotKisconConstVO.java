@@ -27,6 +27,8 @@ public class BotKisconConstVO {
 	private String ErrorMsg;
 	private String NotificationCloseDate;	
 	private String PricePaymentYn;	
+	private String RegJobTypeNm;
+	private String LicenseType;
 	
 	public String getRequestNo() {
 		return RequestNo;
@@ -135,5 +137,17 @@ public class BotKisconConstVO {
 	}
 	public void setPricePaymentYn(String pricePaymentYn) {
 		PricePaymentYn = pricePaymentYn;
+	}
+	public String getRegJobTypeNm() {
+		return RegJobTypeNm;
+	}
+	public void setRegJobTypeNm(String regJobTypeNm) {
+		RegJobTypeNm = regJobTypeNm;
+	}
+	public String getLicenseType() {
+		return LicenseType;
+	}
+	public void setLicenseType(String licenseType) {
+		LicenseType = licenseType;
 	}
 }
