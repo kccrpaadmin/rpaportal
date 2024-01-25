@@ -97,15 +97,10 @@
         initdata.Cols = [
         	 { Header: "No", Type: "Text", Width: 80, SaveName: "notificationCloseDate", Align: "Center" },    
              { Header: "계약번호", Type: "Text", Width: 160, SaveName: "siteNm", Align: "Center" },        
-             { Header: "계약번호", Type: "Text", Width: 105, SaveName: "contractNo", Align: "Center" },
+             { Header: "게약차수", Type: "Text", Width: 105, SaveName: "contractNo", Align: "Center" },
              { Header: "계약명", Type: "Text", Width: 157, SaveName: "contractNm", Align: "Center"},            
-             { Header: "업체명", Type: "Text", Width: 135, SaveName: "vendorNm", Align: "Center"},
-             { Header: "계약일자", Type: "Text", Width: 80, SaveName: "contractDate", Align: "Center" },
-             { Header: "계약시작일자", Type: "Text", Width: 80, SaveName: "contractStartDate", Align: "Center" },
-             { Header: "계약종료일자", Type: "Text", Width: 80, SaveName: "contractFinishDate", Align: "Center" },
-             { Header: "계약금액", Type: "Float", Width: 95, SaveName: "contractAmt", Align: "Right"},
-             { Header: "대금지급보증\nERP입력여부", Type: "Text", Width: 80, SaveName: "pricePaymentYn", Align: "Center" },
-             { Header: "BOT\n수행여부", Type: "Text", Width: 50, SaveName: "successType", Align: "Center" }
+             { Header: "계약금액", Type: "Text", Width: 135, SaveName: "vendorNm", Align: "Center"},
+             { Header: "E계좌번호", Type: "Text", Width: 80, SaveName: "contractDate", Align: "Center" }
         ];
 		
         IBS_InitSheet(mySheet, initdata);
