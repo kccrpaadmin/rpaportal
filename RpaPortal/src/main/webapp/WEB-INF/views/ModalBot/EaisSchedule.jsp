@@ -19,6 +19,9 @@
 		
 	// 전역 변수
 	var menuId = "${menuId}";
+	var siteLocationComboText = "${eaisSiteLocationComboText}";
+	var siteCdComboText = "${eaisSiteCdComboText}";
+	var siteCdComboCd = "${eaisSiteCdComboCd}";
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
@@ -76,18 +79,19 @@
 
         createIBSheet2(document.getElementById("sheet"), "mySheet", "760px", "249px");
 
-        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1 };
+        initdata.Cfg = { SearchMode: smLazyLoad, MergeSheet: msHeaderOnly, AutoFitColWidth: "search", MaxSort: 1, ComboEditValidation:1 };
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
-            { Header: "편집가능", Type: "Text", Width: 0, SaveName: "editYn", Align: "Center", Edit: false, Hidden: true },
-            { Header: "상태", Type: "Status", Width: 50, SaveName: "status", Align: "Center" },
-            { Header: "번호", Type: "Text", Width: 50, SaveName: "seq", Align: "Center", Edit: false },
-            { Header: "현장명", Type: "Text", Width: 300, SaveName: "siteNm", Edit: true, KeyField: true },
-            { Header: "시작일자", Type: "Date", Width: 100, SaveName: "startDate", Align: "Center", Edit: false, KeyField: true },
-            { Header: "종료일자", Type: "Date", Width: 100, SaveName: "finishDate", Align: "Center", Edit: true, KeyField: true },
-            { Header: "종료처리여부", Type: "CheckBox", Width: 100, SaveName: "finishYn", Align: "Center", Edit: true, KeyField: true },
-            { Header: "등록자", Type: "Text", Width: 100, SaveName: "regUserNm", Align: "Center", Edit: false },
-            { Header: "편집가능", Type: "Text", Width: 100, SaveName: "editYn", Align: "Center", Edit: false, Hidden: true }
+            { Header: "편집가능", 		Type: "Text", 		Width: 0, 	SaveName: "editYn", 		Align: "Center", Edit: false, 						Hidden: true },
+            { Header: "상태", 		Type: "Status", 	Width: 30, 	SaveName: "status", 		Align: "Center" },
+            { Header: "번호", 		Type: "Text", 		Width: 30, 	SaveName: "seq", 			Align: "Center", Edit: false },
+            { Header: "대지위치", 		Type: "Combo", 		Width: 230, SaveName: "siteLocation", 	Align: "Center", ComboText: siteLocationComboText, 	ComboCode: siteLocationComboText,  	DefaultValue:"" },
+            { Header: "현장명", 		Type: "ComboEdit", 	Width: 150, SaveName: "siteCd", 		Align: "Center", ComboText: siteCdComboText, 		ComboCode: siteCdComboCd, 			DefaultValue:"", Validation:1 },
+            { Header: "시작일자", 		Type: "Date", 		Width: 85, 	SaveName: "startDate", 		Align: "Center", Edit: false, 						KeyField: true },
+            { Header: "종료일자", 		Type: "Date", 		Width: 85, 	SaveName: "finishDate", 	Align: "Center", Edit: true, 						KeyField: true },
+            { Header: "종료처리", 		Type: "CheckBox", 	Width: 70, 	SaveName: "finishYn", 		Align: "Center", Edit: true, 						KeyField: true },
+            { Header: "등록자", 		Type: "Text", 		Width: 60, 	SaveName: "regUserNm", 		Align: "Center", Edit: false },
+            { Header: "편집가능", 		Type: "Text", 		Width: 0, 	SaveName: "editYn", 		Align: "Center", Edit: false, 						Hidden: true }
         ];
 
         IBS_InitSheet(mySheet, initdata);
@@ -120,11 +124,12 @@
 					var jsonData = {};
 					jsonData.status = saveJson[i].status;
 					jsonData.seq = saveJson[i].seq;
-					jsonData.siteNm = saveJson[i].siteNm;
+					jsonData.siteCd = saveJson[i].siteCd;
 					jsonData.startDate = saveJson[i].startDate;
 					jsonData.finishDate = saveJson[i].finishDate;
 					jsonData.finishYn = saveJson[i].finishYn;
 					jsonData.empNo = commonFunc.certInfo.empNo;
+					jsonData.siteLocation = saveJson[i].siteLocation;
 					arrData.push(jsonData);
 				}
 				
@@ -141,7 +146,7 @@
     	var today = new Date();
     	today = today.format("yyyy-MM-dd");
     	
-    	mySheet.SetCellValue(1, 4, today);  // 시작일자는 오늘날짜로 지정 
+    	mySheet.SetCellValue(1, 5, today);  // 시작일자는 오늘날짜로 지정 
     });
 
 	// 저장 버튼 클릭 이벤트

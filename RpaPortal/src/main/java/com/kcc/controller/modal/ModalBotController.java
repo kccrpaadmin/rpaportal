@@ -34,6 +34,7 @@ import com.kcc.biz.model.BotEseroVO;
 import com.kcc.biz.model.UserVO;
 import com.kcc.biz.model.BotEtcTaxVO;
 import com.kcc.biz.model.BotSalesEseroVO;
+import com.kcc.biz.model.BotEaisVO;
 import com.kcc.biz.service.IAccessService;
 import com.kcc.biz.service.ILoginService;
 import com.kcc.biz.service.IMenuService;
@@ -41,6 +42,7 @@ import com.kcc.biz.service.ICrawlSystemCheckService;
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IUserService;
 import com.kcc.biz.service.IBotEtcTaxService;
+import com.kcc.biz.service.IBotEaisService;
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IRouteUtilService;
 import com.kcc.util.service.ICommonUtilService;
@@ -62,6 +64,9 @@ public class ModalBotController extends BaseController {
 
 	@Resource(name="botEtcTaxService")
 	private IBotEtcTaxService botEtcTaxService;
+	
+	@Resource(name="botEaisService")
+	private IBotEaisService botEaisService;
 	
 	@Resource(name="fileUploadUtilService")
 	private IFileUploadUtilService fileUploadUtilService;
@@ -436,6 +441,9 @@ public class ModalBotController extends BaseController {
 		logger.info("/ModalBot/EaisSchedule.do");
 
 		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("eaisSiteLocationComboText", botEaisService.getEaisSiteLocationCombo("SiteLocation"));
+		model.addAttribute("eaisSiteCdComboText", botEaisService.getEaisSiteCdCombo("SiteNm"));
+		model.addAttribute("eaisSiteCdComboCd", botEaisService.getEaisSiteCdCombo("SiteCd"));
 		
 		return "ModalBot/EaisSchedule";
 	}

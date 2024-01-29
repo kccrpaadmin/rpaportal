@@ -9,7 +9,7 @@
 			<div class="home_header">
 				<div class="home_header_left">
 					<div class="home_title">공지사항</div>
-					<a class="home_notice_content" href="/Board/ListBoard.do">RPA 오픈 안내</a>
+					<a class="home_notice_content" href="/Board/ListBoard.do">RPA 2차 개발 프로젝트 오픈 공지</a>
 				</div>
 				<div class="home_header_right">
 					<div class="home_title">OCR</div>

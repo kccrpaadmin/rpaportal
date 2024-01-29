@@ -19,11 +19,12 @@
 	            call PRA_Bot_saveEaisSchedule (
             		 #{Status}
             		,#{Seq}
-            		,#{SiteNm}
+            		,#{SiteCd}
             		,#{StartDate}
             		,#{FinishDate}
             		,#{FinishYn}
             		,#{EmpNo}
+            		,#{SiteLocation}
             	)
 			}
 		]]>
@@ -34,6 +35,26 @@
 			{ 
 	            call PRA_Bot_listEais (
             		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="getEaisSiteLocationCombo" statementType="CALLABLE" parameterType="botEaisVO" resultType="botEaisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_getEaisSiteLocationCombo (
+            		
+            	)
+			}
+		]]>
+	</select>
+	
+	<select id="getEaisSiteCdCombo" statementType="CALLABLE" parameterType="botEaisVO" resultType="botEaisVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_getEaisSiteCdCombo (
+            		
             	)
 			}
 		]]>

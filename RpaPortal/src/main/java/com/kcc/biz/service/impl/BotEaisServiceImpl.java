@@ -31,4 +31,58 @@ public class BotEaisServiceImpl implements IBotEaisService {
 	public List<BotEaisVO> listEais(BotEaisVO vo) throws Exception {
 		return botEaisRepository.listEais(vo);
 	}
+
+	// 세움터 '보완' 대지위치 수집 목록 조회
+	public String getEaisSiteLocationCombo(String colNm) {
+		// CodeVO 출력
+		BotEaisVO outEaisVO = new BotEaisVO();
+		String returnValue = "";
+				
+		try {
+			outEaisVO = getEaisSiteLocationComboSub();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(colNm.equals("Seq")) {
+			returnValue = outEaisVO.getSeq();
+		}
+		else	{
+			returnValue = outEaisVO.getSiteLocation();
+		}
+				
+		return returnValue;
+	}
+	
+	public BotEaisVO getEaisSiteLocationComboSub() throws Exception {
+		return botEaisRepository.getEaisSiteLocationCombo();
+	}
+	
+	// 세움터 현장명 목록 조회
+	public String getEaisSiteCdCombo(String colNm) {
+		// CodeVO 출력
+		BotEaisVO outEaisVO = new BotEaisVO();
+		String returnValue = "";
+				
+		try {
+			outEaisVO = getEaisSiteCdComboSub();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(colNm.equals("SiteCd")) {
+			returnValue = outEaisVO.getSiteCd();
+		}
+		else	{
+			returnValue = outEaisVO.getSiteNm();
+		}
+				
+		return returnValue;
+	}
+	
+	public BotEaisVO getEaisSiteCdComboSub() throws Exception {
+		return botEaisRepository.getEaisSiteCdCombo();
+	}
 }

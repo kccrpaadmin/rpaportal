@@ -12,6 +12,7 @@ public class BotEaisVO {
 	private String MenuId;
 	private String RequestNo;
 	private String No;
+	private String SiteCd;
 	private String SiteNm;
 	private String StartDate;
 	private String FinishDate;
@@ -30,6 +31,7 @@ public class BotEaisVO {
 	private String ComplProcExpDate;
 	private String ComplProcDate;
 	private String SmsSendYn;
+	private String ColNm;
 	
 	public String getMenuId() {
 		return MenuId;
@@ -39,6 +41,9 @@ public class BotEaisVO {
 	}
 	public String getNo() {
 		return No;
+	}
+	public String getSiteCd() {
+		return SiteCd;
 	}
 	public String getSiteNm() {
 		return SiteNm;
@@ -94,6 +99,9 @@ public class BotEaisVO {
 	public String getSmsSendYn() {
 		return SmsSendYn;
 	}
+	public String getColNm() {
+		return ColNm;
+	}
 
 	public void setMenuId(String menuId) {
 		MenuId = menuId;
@@ -103,6 +111,9 @@ public class BotEaisVO {
 	}
 	public void setNo(String no) {
 		No = no;
+	}
+	public void setSiteCd(String siteCd) {
+		SiteCd = siteCd;
 	}
 	public void setSiteNm(String siteNm) {
 		SiteNm = siteNm;
@@ -157,5 +168,8 @@ public class BotEaisVO {
 	}
 	public void setSmsSendYn(String smsSendYn) {
 		SmsSendYn = smsSendYn;
+	}
+	public void setColNm(String colNm) {
+		ColNm = colNm;
 	}
 }
