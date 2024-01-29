@@ -45,6 +45,7 @@ import com.kcc.biz.model.FileUploadVO;
 import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.BotMoneySendVO;
 import com.kcc.biz.model.BotCostDivideVO;
+import com.kcc.biz.model.BotDelayedPaymentVO;
 import com.kcc.biz.model.BotEngineerEduVO;
 import com.kcc.biz.model.BotKisconConstVO;
 import com.kcc.biz.model.BotEtcTaxVO;
@@ -74,6 +75,7 @@ import com.kcc.biz.service.IBotSCSystemCheckService;
 import com.kcc.biz.service.IBotAdDailyReportService;
 import com.kcc.biz.service.IBotEaisService;
 import com.kcc.biz.service.IBotInsuranceService;
+import com.kcc.biz.service.IBotDelayedPaymentService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -140,6 +142,9 @@ public class AjaxBotController extends BaseController {
 
 	@Resource(name="botInsuranceService")
 	private IBotInsuranceService botInsuranceService;
+	
+	@Resource(name="botDelayedPaymentService")
+	private IBotDelayedPaymentService botDelayedPaymentService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1360,6 +1365,45 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListChgPersonalBccVO);
+		
+		return map;
+	}
+	
+	// 채불e제로 관리업무
+	@PostMapping("/DelayedPaymentManage.do")
+	public @ResponseBody Map<String, Object> DelayedPaymentManage(@RequestBody BotDelayedPaymentVO vo) {
+		logger.info("/AjaxBot/DelayedPaymentManage.do");
+
+		List<BotDelayedPaymentVO> outListBotDelayedPaymentManageVO = new ArrayList<BotDelayedPaymentVO>();
+		try {
+			outListBotDelayedPaymentManageVO = botDelayedPaymentService.listBotDelayedPaymentManage(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotDelayedPaymentManageVO);
+		
+		return map;
+	}
+	
+	// 채불e제로 결과 팝업
+	@PostMapping("/ListDelayedPaymentResult.do")
+	public @ResponseBody Map<String, Object> ListDelayedPaymentResult(@RequestBody BotDelayedPaymentVO vo) {
+		logger.info("/AjaxBot/ListDelayedPaymentResult.do");
+		
+		List<BotDelayedPaymentVO> outListBotDelayedPaymentManageVO = new ArrayList<BotDelayedPaymentVO>();
+		
+		try {
+			outListBotDelayedPaymentManageVO = botDelayedPaymentService.ListDelayedPaymentResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotDelayedPaymentManageVO);
 		
 		return map;
 	}

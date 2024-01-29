@@ -487,4 +487,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/ChgPersonalBccRunResult";
 	}
+	
+	@GetMapping("/DelayedPaymentRunResult.do")
+	public String DelayedPaymentRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/DelayedPaymentRunResult.do");
+
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/DelayedPaymentRunResult";
+	}
 }
