@@ -57,6 +57,7 @@ import com.kcc.biz.model.BotSCSystemCheckVO;
 import com.kcc.biz.model.BotAdDailyReportVO;
 import com.kcc.biz.model.BotEaisVO;
 import com.kcc.biz.model.BotInsuranceVO;
+import com.kcc.biz.model.BotXmlVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -76,6 +77,7 @@ import com.kcc.biz.service.IBotAdDailyReportService;
 import com.kcc.biz.service.IBotEaisService;
 import com.kcc.biz.service.IBotInsuranceService;
 import com.kcc.biz.service.IBotDelayedPaymentService;
+import com.kcc.biz.service.IBotXmlService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -145,6 +147,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botDelayedPaymentService")
 	private IBotDelayedPaymentService botDelayedPaymentService;
+	
+	@Resource(name="botXmlService")
+	private IBotXmlService botXmlService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1404,6 +1409,27 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListBotDelayedPaymentManageVO);
+		
+		return map;
+	}
+	
+	// 그룹사 인사발령 수집 업무
+	@PostMapping("/ListXmlResult.do")
+	public @ResponseBody Map<String, Object> ListXmlResult(@RequestBody BotXmlVO vo) {
+		logger.info("/AjaxBot/ListXmlResult.do");
+		System.out.println("test1");
+		List<BotXmlVO> outListXMLVO = new ArrayList<BotXmlVO>();
+		try {
+			System.out.println("test2");
+			outListXMLVO = botXmlService.listXmlResult(vo);
+			System.out.println("test3");
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListXMLVO);
 		
 		return map;
 	}

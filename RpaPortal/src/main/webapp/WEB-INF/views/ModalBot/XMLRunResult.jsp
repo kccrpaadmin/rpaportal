@@ -18,13 +18,13 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		listPersonAppointList(requestNo);
+		listXmlList(requestNo);
 	});
 	
 	//  그룹사 인사발령 데이터 목록 조회
-	function listPersonAppointList(pRequestNo) {
+	function listXmlList(pRequestNo) {
 		$.ajax({
-			url: "/AjaxBot/ListPersonAppointList.do",
+			url: "/AjaxBot/ListXmlResult.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "requestNo": pRequestNo }),
@@ -53,9 +53,9 @@
         initdata.Cols = [
             { Header: "요청번호", Type: "Text", Width: 100, SaveName: "requestNo", Hidden:true },              
             { Header: "제목", Type: "Text", Width: 300, SaveName: "title", Align: "Center" },          
-            { Header: "등록여부", Type: "Text", Width: 50, SaveName: "subOfficerNo", Align: "Center"},
-            { Header: "처리결과", Type: "Text", Width: 100, SaveName: "attId", Align: "Center"},
-            { Header: "등록자", Type: "Text", Width: 50, SaveName: "attId", Align: "Center"},           
+            { Header: "등록여부", Type: "Text", Width: 50, SaveName: "resultNm", Align: "Center"},
+            { Header: "처리결과", Type: "Text", Width: 100, SaveName: "resultMsg", Align: "Center"},
+            { Header: "등록자", Type: "Text", Width: 50, SaveName: "regUserNm", Align: "Center"},           
         ];
 
         IBS_InitSheet(mySheet, initdata);

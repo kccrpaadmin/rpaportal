@@ -94,6 +94,8 @@
 		<typeAlias alias="botInsuranceVO" type="com.kcc.biz.model.BotInsuranceVO" />
 		<!-- BOT 채불e제로 수집업무 -->
 		<typeAlias alias="botDelayedPaymentVO" type="com.kcc.biz.model.BotDelayedPaymentVO" />
+		<!-- BOT 채불e제로 수집업무 -->
+		<typeAlias alias="botXmlVO" type="com.kcc.biz.model.BotXmlVO" />
 				
 	</typeAliases>
 	
