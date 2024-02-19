@@ -517,4 +517,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/XMLRunResult";
 	}
+	
+	@GetMapping("/SpecialConditionRunResult.do")
+	public String SpecialConditionRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/SpecialConditionRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/SpecialConditionRunResult";
+	}
 }

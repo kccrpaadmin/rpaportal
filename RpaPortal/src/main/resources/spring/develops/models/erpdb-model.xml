@@ -96,6 +96,8 @@
 		<typeAlias alias="botDelayedPaymentVO" type="com.kcc.biz.model.BotDelayedPaymentVO" />
 		<!-- BOT 채불e제로 수집업무 -->
 		<typeAlias alias="botXmlVO" type="com.kcc.biz.model.BotXmlVO" />
+		<!-- BOT 외주 견적특수조건 검토업무 -->
+		<typeAlias alias="botSpecialConditionVO" type="com.kcc.biz.model.BotSpecialConditionVO" />
 				
 	</typeAliases>
 	

@@ -58,6 +58,7 @@ import com.kcc.biz.model.BotAdDailyReportVO;
 import com.kcc.biz.model.BotEaisVO;
 import com.kcc.biz.model.BotInsuranceVO;
 import com.kcc.biz.model.BotXmlVO;
+import com.kcc.biz.model.BotSpecialConditionVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -78,6 +79,7 @@ import com.kcc.biz.service.IBotEaisService;
 import com.kcc.biz.service.IBotInsuranceService;
 import com.kcc.biz.service.IBotDelayedPaymentService;
 import com.kcc.biz.service.IBotXmlService;
+import com.kcc.biz.service.IBotSpecialConditionService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -150,6 +152,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botXmlService")
 	private IBotXmlService botXmlService;
+	
+	@Resource(name="botSpecialConditionService")
+	private IBotSpecialConditionService botSpecialConditionService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1413,7 +1418,7 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
-	// 그룹사 인사발령 수집 업무
+	// 
 	@PostMapping("/ListXmlResult.do")
 	public @ResponseBody Map<String, Object> ListXmlResult(@RequestBody BotXmlVO vo) {
 		logger.info("/AjaxBot/ListXmlResult.do");
@@ -1430,6 +1435,26 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListXMLVO);
+		
+		return map;
+	}
+
+	// 외주 견적특수조건 결과 팝업
+	@PostMapping("/ListSpecialCondition.do")
+	public @ResponseBody Map<String, Object> ListSpecialCondition(@RequestBody BotSpecialConditionVO vo) {
+		logger.info("/AjaxBot/ListSpecialCondition.do");
+		
+		List<BotSpecialConditionVO> outListSpecialConditionVO = new ArrayList<BotSpecialConditionVO>();
+		
+		try {
+			outListSpecialConditionVO = botSpecialConditionService.listSpecialCondition(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListSpecialConditionVO);
 		
 		return map;
 	}
