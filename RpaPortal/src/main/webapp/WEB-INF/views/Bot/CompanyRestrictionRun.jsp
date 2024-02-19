@@ -182,7 +182,7 @@
 		
 		if (mySheet.ColSaveName(Col) == "requestNm") {
 			var requestNo = mySheet.GetCellValue(Row, "requestNo");
-			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalBot/XMLRunResult.do" + "?pMenuId=" + menuId + "&pRequestNo=" + requestNo);
+			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalBot/CorporateNoticeRunResult.do" + "?pMenuId=" + menuId + "&pRequestNo=" + requestNo);
    		}
 	}
    	

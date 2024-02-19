@@ -497,4 +497,24 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/DelayedPaymentRunResult";
 	}
+	
+	@GetMapping("/CorporateNoticeRunResult.do")
+	public String CorporateNoticeRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/CorporateNoticeRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/CorporateNoticeRunResult";
+	}
+	
+	@GetMapping("/XMLRunResult.do")
+	public String XMLRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/XMLRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/XMLRunResult";
+	}
 }
