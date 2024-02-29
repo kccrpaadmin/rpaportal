@@ -51,6 +51,7 @@
 	            call PRA_Menu_listBotMenu (
             		#{SearchTxt}
             		,#{EmpNo}
+            		,#{CategoryCd}
             	)
 			}
 		]]>

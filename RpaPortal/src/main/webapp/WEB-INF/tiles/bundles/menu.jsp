@@ -29,7 +29,7 @@
 		<div class="lnb_sub_menu_box">
 			<a href="/Crawl/ListMenu.do" class="btn_lnb_sub_menu">웹크롤링</a>
 			<a href="/Ocr/ListMenu.do" class="btn_lnb_sub_menu">OCR</a>
-			<a href="/Bot/ListMenu.do" class="btn_lnb_sub_menu">BOT</a>
+			<a href="/Bot/ListMenu.do?pCategoryCd=Main" class="btn_lnb_sub_menu">BOT</a>
 		</div>		
 	</div>
 </div>

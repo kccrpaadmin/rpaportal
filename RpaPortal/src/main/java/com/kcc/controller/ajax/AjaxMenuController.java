@@ -75,6 +75,7 @@ public class AjaxMenuController extends BaseController {
 	@PostMapping("/ListBotMenu.do")
 	public @ResponseBody List<MenuVO> ListBotMenu(@RequestBody MenuVO vo) {
 		logger.info("/AjaxMenu/ListBotMenu.do");
+		logger.info("MenuVo.CategoryCd : " + vo.getCategoryCd());
 		
 		List<MenuVO> listMenuVO = new ArrayList<MenuVO>();
 		try {

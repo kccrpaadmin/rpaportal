@@ -52,8 +52,12 @@ public class BotController extends BaseController {
 	private IMenuService menuService;
 	
 	@GetMapping("/ListMenu.do")
-	public String ListMenu() {
+	public String ListMenu(String pCategoryCd, Model model) {
 		logger.info("/Bot/ListMenu.do");
+
+		model.addAttribute("categoryCd", pCategoryCd);
+		model.addAttribute("categoryBox", commonUtilService.getCodeChildCategoryBox("category_type_cd", "RA023", true, "전체", pCategoryCd));
+		
 		return "Bot/ListMenu";
 	}
 	

@@ -22,4 +22,5 @@ public interface ICommonUtilService {
 	String getDateUserFormat(String formatType, String dateType, int controlDate);
 	String getCodeProcedureSelectBox(String selectBoxNm, String procedureNm, String cd, Boolean isAddFirstRow, String addFirstRowNm, String selectedCd);
 	String getGridCodeCombo(String upCd, String colNm);
+	String getCodeChildCategoryBox(String categoryBoxNm, String cd, Boolean isAddFirstRow, String addFirstRowNm, String selectedCd);
 }

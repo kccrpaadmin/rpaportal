@@ -392,4 +392,44 @@ public class CommonUtilServiceImpl implements ICommonUtilService {
 		return returnValue;
 	}
 	
+	// 공통코드 목록 조회 (프로시져 지정)
+	public String getCodeChildCategoryBox(String categoryBoxNm, String upCd, Boolean isAddFirstRow, String addFirstRowNm, String selectedCd) {
+		CodeVO vo = new CodeVO();
+		vo.setUpCd(upCd);
+		
+		List<CodeVO> listCodeVO = new ArrayList<CodeVO>();
+		
+		try {
+			listCodeVO = codeService.listCodeChild(vo);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		StringBuilder sb =  new StringBuilder();
+		sb.append("<ul id='" + categoryBoxNm + "' name='" + categoryBoxNm + "' class='category_ul'>");
+		
+		if (isAddFirstRow) {
+			if (selectedCd.equals("Main")) {
+				sb.append("<li value='' class='category_li_active'> <a href='/Bot/ListMenu.do?pCategoryCd=Main' class='category_a_active'>" + addFirstRowNm + "</a></li>");
+			}
+			else {
+				sb.append("<li value='' class='category_li'> <a href='/Bot/ListMenu.do?pCategoryCd=Main' class='category_a'>" + addFirstRowNm + "</a></li>");
+			}
+		}
+		
+		for (CodeVO codeVO : listCodeVO) {
+			if (codeVO.getCd().equals(selectedCd)) {
+				sb.append("<li value='" + codeVO.getCd() + "' class='category_li_active'> <a href='/Bot/ListMenu.do?pCategoryCd=" + codeVO.getCd() + "' class='category_a_active'>" + codeVO.getCdNm() + "</a></li>");
+			}
+			else {
+				sb.append("<li value='" + codeVO.getCd() + "' class='category_li'> <a href='/Bot/ListMenu.do?pCategoryCd=" + codeVO.getCd() + "' class='category_a'>" + codeVO.getCdNm() + "</a></li>");
+			}
+		}
+
+		sb.append("</ul>");
+		
+		return sb.toString();
+	}
+	
 }

@@ -20,6 +20,10 @@
 			<input type="text" class="search_txt" id="search_txt" placeholder="검색어를 입력하세요" />
 			<a class="btn_search" id="btn_search" ></a>
 		</div>
+		<!-- 카테고리박스 -->
+		<div class="category_box">
+			${categoryBox}
+		</div>
 		<!-- BOT 메뉴 목록 -->
 		<div id="bot_menu_list_box"></div>
 	</div>
@@ -27,20 +31,23 @@
 
 <script type="text/javascript">
 	
+	// 전역 변수
+	var categoryCd = "${categoryCd}";
+	
 	// 페이지 로드 
     $(document).ready(function (e) {
-    	createBotMenulList($("#search_txt").val());
+    	createBotMenulList($("#search_txt").val(), categoryCd);
     });
 	
 	// BOT 메뉴 목록 생성 함수
-	function createBotMenulList(pSearchTxt) {
+	function createBotMenulList(pSearchTxt, pCategoryCd) {
 		var EmpNo = commonFunc.certInfo.empNo;
 		
 		$.ajax({
 			url: "/AjaxMenu/ListBotMenu.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "searchTxt": pSearchTxt, "empNo": EmpNo }),
+			data : JSON.stringify({ "searchTxt": pSearchTxt, "empNo": EmpNo, "categoryCd": pCategoryCd }),
 		    dataType : "json",
 	        async: true,
 			success: function(listDatas) {
@@ -84,7 +91,7 @@
 	
 	// 검색 버튼 클릭 이벤트
 	$(document).on("click", "#btn_search", function (e) {
-		createBotMenulList($("#search_txt").val());
+		createBotMenulList($("#search_txt").val(), categoryCd);
 	});
  	
 	// 검색 박스 엔터 이벤트

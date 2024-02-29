@@ -63,6 +63,7 @@ public class MenuVO {
     private String DegreeNm;
     private String BtnAddDept;
     private String DutyCd;
+    private String CategoryCd;
 	
 	public String getSearchTxt() {
 		return SearchTxt;
@@ -387,6 +388,12 @@ public class MenuVO {
 	}
 	public void setDutyCd(String dutyCd) {
 		DutyCd = dutyCd;
+	}	
+	public String getCategoryCd() {
+		return CategoryCd;
+	}
+	public void setCategoryCd(String categoryCd) {
+		CategoryCd = categoryCd;
 	}	
 	
 }
