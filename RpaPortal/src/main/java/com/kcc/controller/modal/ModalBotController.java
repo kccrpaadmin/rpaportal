@@ -527,4 +527,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/SpecialConditionRunResult";
 	}
+	
+	@GetMapping("/CompanyRestrictionRunResult.do")
+	public String CompanyRestrictionRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/CompanyRestrictionRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/CompanyRestrictionRunResult";
+	}
 }

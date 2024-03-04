@@ -98,6 +98,10 @@
 		<typeAlias alias="botXmlVO" type="com.kcc.biz.model.BotXmlVO" />
 		<!-- BOT 외주 견적특수조건 검토업무 -->
 		<typeAlias alias="botSpecialConditionVO" type="com.kcc.biz.model.BotSpecialConditionVO" />
+		<!-- BOT 서울회생법원 회생/파산 수집업무 -->
+		<typeAlias alias="botCorporateNoticeVO" type="com.kcc.biz.model.BotCorporateNoticeVO" />
+		<!-- BOT 키스콘 하도급참여제한업체 수집업무 -->
+		<typeAlias alias="botCompanyRestrictionVO" type="com.kcc.biz.model.BotCompanyRestrictionVO" />
 				
 	</typeAliases>
 	

@@ -59,6 +59,8 @@ import com.kcc.biz.model.BotEaisVO;
 import com.kcc.biz.model.BotInsuranceVO;
 import com.kcc.biz.model.BotXmlVO;
 import com.kcc.biz.model.BotSpecialConditionVO;
+import com.kcc.biz.model.BotCorporateNoticeVO;
+import com.kcc.biz.model.BotCompanyRestrictionVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -80,6 +82,9 @@ import com.kcc.biz.service.IBotInsuranceService;
 import com.kcc.biz.service.IBotDelayedPaymentService;
 import com.kcc.biz.service.IBotXmlService;
 import com.kcc.biz.service.IBotSpecialConditionService;
+import com.kcc.biz.service.IBotCorporateNoticeService;
+import com.kcc.biz.service.IBotCompanyRestrictionService;
+
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -155,6 +160,12 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botSpecialConditionService")
 	private IBotSpecialConditionService botSpecialConditionService;
+	
+	@Resource(name="botCorporateNoticeService")
+	private IBotCorporateNoticeService botCorporateNoticeService;
+	
+	@Resource(name="botCompanyRestrictionService")
+	private IBotCompanyRestrictionService botCompanyRestrictionService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1455,6 +1466,46 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListSpecialConditionVO);
+		
+		return map;
+	}
+	
+	// 서울회생법원 회생/파산 결과 팝업
+	@PostMapping("/ListCorporateNoticeResult.do")
+	public @ResponseBody Map<String, Object> ListCorporateNoticeResult(@RequestBody BotCorporateNoticeVO vo) {
+		logger.info("/AjaxBot/ListCorporateNoticeResult.do");
+		
+		List<BotCorporateNoticeVO> outListBotCorporateNoticeVO = new ArrayList<BotCorporateNoticeVO>();
+		
+		try {
+			outListBotCorporateNoticeVO = botCorporateNoticeService.listCorporateNoticeResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotCorporateNoticeVO);
+		
+		return map;
+	}
+	
+	// 키스콘 참여제한업체 수집 결과 팝업
+	@PostMapping("/ListCompanyRestrictionResult.do")
+	public @ResponseBody Map<String, Object> ListCompanyRestrictionResult(@RequestBody BotCompanyRestrictionVO vo) {
+		logger.info("/AjaxBot/ListCompanyRestrictionResult.do");
+
+		List<BotCompanyRestrictionVO> outListBotCompanyRestrictionVO = new ArrayList<BotCompanyRestrictionVO>();
+		
+		try {
+			outListBotCompanyRestrictionVO = botCompanyRestrictionService.listCompanyRestrictionResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotCompanyRestrictionVO);
 		
 		return map;
 	}
