@@ -46,6 +46,8 @@
 	var execTypeComboCdNm = "${execTypeComboCdNm}";
 	var timeTypeComboCd = "${timeTypeComboCd}";
 	var timeTypeComboCdNm = "${timeTypeComboCdNm}";
+	var botMenuTypeComboCd = "${botMenuTypeComboCd}";
+	var botMenuTypeComboCdNm = "${botMenuTypeComboCdNm}";
 
 	// 페이지 로드 
 	$(document).ready(function (e) {
@@ -136,7 +138,8 @@
             { Header: "실행타입", Type: "Combo", Width: 70, SaveName: "execTypeCd", Align: "Center", ComboText: execTypeComboCdNm, ComboCode: execTypeComboCd },     
             { Header: "담당부서", Type: "Text", Width: 100, SaveName: "deptNm", Edit: false },
             { Header: "담당부서코드", Type: "Text", Width: 0, SaveName: "deptCd", Edit: false, Hidden:true  },
-            { Header: "담당부서", Type: "Button", Width: 60, SaveName: "btnAddDept", Align: "Center"},        
+            { Header: "담당부서", Type: "Button", Width: 60, SaveName: "btnAddDept", Align: "Center"},
+            { Header: "메뉴타입", Type: "Combo", Width: 70, SaveName: "categoryCd", Align: "Center", ComboText: botMenuTypeComboCdNm, ComboCode: botMenuTypeComboCd },
             { Header: "시간타입", Type: "Combo", Width: 70, SaveName: "timeTypeCd", Align: "Center", ComboText: timeTypeComboCdNm, ComboCode: timeTypeComboCd },
             { Header: "실행횟수", Type: "Int", Width: 60, SaveName: "runSeq", Align: "Center" },     
             { Header: "실행시간", Type: "Float", Width: 60, SaveName: "runTime", Align: "Center" },     
@@ -177,6 +180,7 @@
 				jsonData.useYn = saveJson[i].useYn;
 				jsonData.empNo = commonFunc.certInfo.empNo;			
 				jsonData.deptCd = saveJson[i].deptCd;
+				jsonData.categoryCd = saveJson[i].categoryCd;
 				jsonData.timeTypeCd = saveJson[i].timeTypeCd;
 				jsonData.runSeq = saveJson[i].runSeq;
 				jsonData.runTime = saveJson[i].runTime;	

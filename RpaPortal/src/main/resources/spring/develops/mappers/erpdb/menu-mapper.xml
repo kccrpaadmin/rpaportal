@@ -123,6 +123,7 @@
 	               ,#{TimeTypeCd}
 	               ,#{RunSeq}
 	               ,#{RunTime}
+	               ,#{CategoryCd}
             	)
 			}
 		]]>

@@ -57,6 +57,8 @@ public class AdminController extends BaseController {
 		model.addAttribute("execTypeComboCdNm", commonUtilService.getGridCodeCombo("RA007", "CdNm"));
 		model.addAttribute("timeTypeComboCd", commonUtilService.getGridCodeCombo("RA003", "Cd"));
 		model.addAttribute("timeTypeComboCdNm", commonUtilService.getGridCodeCombo("RA003", "CdNm"));
+		model.addAttribute("botMenuTypeComboCd", commonUtilService.getGridCodeCombo("RA023", "Cd"));
+		model.addAttribute("botMenuTypeComboCdNm", commonUtilService.getGridCodeCombo("RA023", "CdNm"));
 		
 		return "Admin/MenuManage";
 	}
