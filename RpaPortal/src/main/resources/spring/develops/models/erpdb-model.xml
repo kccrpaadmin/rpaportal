@@ -102,7 +102,10 @@
 		<typeAlias alias="botCorporateNoticeVO" type="com.kcc.biz.model.BotCorporateNoticeVO" />
 		<!-- BOT 키스콘 하도급참여제한업체 수집업무 -->
 		<typeAlias alias="botCompanyRestrictionVO" type="com.kcc.biz.model.BotCompanyRestrictionVO" />
-				
+		<!-- BOT 인지세 자동발급 업무 -->
+		<typeAlias alias="botContractElecStampTaxVO" type="com.kcc.biz.model.BotContractElecStampTaxVO" />
+		<!-- BOT 현장별 체감온도 문자발송 -->
+		<typeAlias alias="botSensoryTemperatureVO" type="com.kcc.biz.model.BotSensoryTemperatureVO" />
 	</typeAliases>
 	
 </configuration>

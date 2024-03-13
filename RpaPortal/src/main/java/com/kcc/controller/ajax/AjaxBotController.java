@@ -61,6 +61,8 @@ import com.kcc.biz.model.BotXmlVO;
 import com.kcc.biz.model.BotSpecialConditionVO;
 import com.kcc.biz.model.BotCorporateNoticeVO;
 import com.kcc.biz.model.BotCompanyRestrictionVO;
+import com.kcc.biz.model.BotContractElecStampTaxVO;
+import com.kcc.biz.model.BotSensoryTemperatureVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -84,6 +86,9 @@ import com.kcc.biz.service.IBotXmlService;
 import com.kcc.biz.service.IBotSpecialConditionService;
 import com.kcc.biz.service.IBotCorporateNoticeService;
 import com.kcc.biz.service.IBotCompanyRestrictionService;
+import com.kcc.biz.service.IBotContractElecStampTaxService;
+import com.kcc.biz.service.IBotSensoryTemperatureService;
+
 
 
 import com.kcc.controller.base.BaseController;
@@ -166,6 +171,12 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botCompanyRestrictionService")
 	private IBotCompanyRestrictionService botCompanyRestrictionService;
+	
+	@Resource(name="botContractElecStampTaxService")
+	private IBotContractElecStampTaxService botContractElecStampTaxService;
+	
+	@Resource(name="botSensoryTemperatureService")
+	private IBotSensoryTemperatureService botSensoryTemperatureService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1506,6 +1517,45 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListBotCompanyRestrictionVO);
+		
+		return map;
+	}
+	
+	// 인지세 자동납부 결과 팝업
+	@PostMapping("/ListContractElecStampTaxResult.do")
+	public @ResponseBody Map<String, Object> ListContractElecStampTaxResult(@RequestBody BotContractElecStampTaxVO vo) {
+		logger.info("/AjaxBot/ListContractElecStampTaxResult.do");
+
+		List<BotContractElecStampTaxVO> outListBotContractElecStampTaxVO = new ArrayList<BotContractElecStampTaxVO>();
+		
+		try {
+			outListBotContractElecStampTaxVO = botContractElecStampTaxService.listContractElecStampTaxResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotContractElecStampTaxVO);
+		
+		return map;
+	}
+	
+	@PostMapping("/ListSensoryTemperatureResult.do")
+	public @ResponseBody Map<String, Object> ListSensoryTemperatureResult(@RequestBody BotSensoryTemperatureVO vo) {
+		logger.info("/AjaxBot/ListSensoryTemperatureResult.do");
+
+		List<BotSensoryTemperatureVO> outListBotSensoryTemperatureVO = new ArrayList<BotSensoryTemperatureVO>();
+		
+		try {
+			outListBotSensoryTemperatureVO = botSensoryTemperatureService.listSensoryTemperatureResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotSensoryTemperatureVO);
 		
 		return map;
 	}

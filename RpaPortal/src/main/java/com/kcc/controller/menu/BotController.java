@@ -54,7 +54,7 @@ public class BotController extends BaseController {
 	@GetMapping("/ListMenu.do")
 	public String ListMenu(String pCategoryCd, Model model) {
 		logger.info("/Bot/ListMenu.do");
-
+System.out.println("test~ : " + pCategoryCd);
 		model.addAttribute("categoryCd", pCategoryCd);
 		model.addAttribute("categoryBox", commonUtilService.getCodeChildCategoryBox("category_type_cd", "RA023", true, "전체", pCategoryCd));
 		
@@ -902,6 +902,58 @@ public class BotController extends BaseController {
 		model.addAttribute("outMenuVO", outMenuVO);
 		
 		return "Bot/SpecialConditionRun";
+	}
+	
+	@GetMapping("/ContractElecStampTaxRun.do")
+	public String ContractElecStampTaxRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/ContractElecStampTaxRun.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
+		return "Bot/ContractElecStampTaxRun";
+	}
+	
+	@GetMapping("/SensoryTemperatureRun.do")
+	public String SensoryTemperatureRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/SensoryTemperatureRun.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
+		return "Bot/SensoryTemperatureRun";
 	}
 	
 }

@@ -537,4 +537,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/CompanyRestrictionRunResult";
 	}
+	
+	@GetMapping("/SensoryTemperatureRunResult.do")
+	public String SensoryTemperatureRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/SensoryTemperatureRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/SensoryTemperatureRunResult";
+	}
 }
