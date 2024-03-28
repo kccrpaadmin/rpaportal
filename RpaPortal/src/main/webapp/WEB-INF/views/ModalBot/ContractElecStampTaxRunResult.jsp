@@ -18,13 +18,13 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		listCompanyRestrictionResult(requestNo);
+		listContractElecStampTaxResult(requestNo);
 	});
 	
 	//  그룹사 인사발령 데이터 목록 조회
-	function listCompanyRestrictionResult(pRequestNo) {
+	function listContractElecStampTaxResult(pRequestNo) {
 		$.ajax({
-			url: "/AjaxBot/ListCompanyRestrictionResult.do",
+			url: "/AjaxBot/ListContractElecStampTaxResult.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "requestNo": pRequestNo }),
@@ -52,13 +52,12 @@
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
             //{ Header: "요청번호", Type: "Text", Width: 100, SaveName: "requestNo", hidden:true},
-            { Header: "상호", Type: "Text", Width: 80, SaveName: "companyNm", Align: "Left" },
-            { Header: "사업자번호", Type: "Text", Width: 50, SaveName: "bizNo", Align: "Left"},  
-            { Header: "대표자", Type: "Text", Width: 50, SaveName: "repNm", Align: "Left" },          
-            { Header: "하도급참여제한일", Type: "Text", Width: 80, SaveName: "restrictionDate", Align: "Center"},
-            { Header: "게재구분", Type: "Text", Width: 50, SaveName: "gubun", Align: "Center" },         
-            { Header: "게재일", Type: "Text", Width: 50, SaveName: "publishDate", Align: "Center" },
-            { Header: "사유", Type: "Text", Width: 200, SaveName: "reason", Align: "Center" }
+            { Header: "계약번호", Type: "Text", Width: 100, SaveName: "contractNo", Align: "Center" },
+            { Header: "계약차수", Type: "Text", Width: 50, SaveName: "chgSeq", Align: "Center" },
+            { Header: "계약명", Type: "Text", Width: 400, SaveName: "contractNm", Align: "Center" },
+            { Header: "요청업체", Type: "Text", Width: 110, SaveName: "vendorNm", Align: "Center" },
+            { Header: "KCC인지세 납부금액", Type: "Text", Width: 100, SaveName: "kCCStampTaxAmt", Align: "Center" },
+            { Header: "상태", Type: "Text", Width: 80, SaveName: "cdNm", Align: "Center" }
         ];
 
         IBS_InitSheet(mySheet, initdata);

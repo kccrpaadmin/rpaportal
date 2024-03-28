@@ -547,4 +547,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/SensoryTemperatureRunResult";
 	}
+	
+	@GetMapping("/ContractElecStampTaxRunResult.do")
+	public String ContractElecStampTaxRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/ContractElecStampTaxRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/ContractElecStampTaxRunResult";
+	}
 }
