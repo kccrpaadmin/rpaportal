@@ -7,8 +7,8 @@
 		<![CDATA[
 			{ 
 	            call PRA_Home_listTimeLine (
-	            	#{WorkTypeCd}
-            		,#{CallDate}
+            		#{CallDate}
+            		,#{Ord}
             	)
 			}
 		]]>
@@ -23,6 +23,37 @@
 			}
 		]]>
 	</select>
-
+	
+	<select id="getTaskRunTime" statementType="CALLABLE" resultType="homeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Home_getTaskRunTime
+			}
+		]]>
+	</select>
+	
+	<select id="getNoticeTask" statementType="CALLABLE" resultType="homeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Home_getNoticeTask
+			}
+		]]>
+	</select>
+	
+	<select id="listBotRunTime" statementType="CALLABLE" resultType="homeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Home_listBotRunTime
+			}
+		]]>
+	</select>
+	
+	<select id="listBotNumberTime" statementType="CALLABLE" resultType="homeVO">
+		<![CDATA[
+			{ 
+	            call PRA_Home_listBotNumberTime
+			}
+		]]>
+	</select>
 	
 </mapper>

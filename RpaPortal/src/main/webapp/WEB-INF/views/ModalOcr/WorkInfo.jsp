@@ -11,7 +11,7 @@
 				<span class="info_line_title">${outMenuVO.menuNm}</span>
 			</div>
 			<div class="info_line">
-				<span class="info_line_content">담당부서 : ${outMenuVO.deptNm}</span>
+				<span class="info_line_content">사용부서 : ${outMenuVO.deptNm}</span>
 			</div>
 			<div class="info_line">
 				<span class="info_line_content">기능설명 : 편의기능</span>

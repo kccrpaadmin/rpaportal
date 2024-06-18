@@ -16,9 +16,9 @@
 			</div>
 		</div>
 		<!-- 검색박스 -->
-		<div class="search_box">
-			<input type="text" class="search_txt" id="search_txt" placeholder="검색어를 입력하세요" />
-			<a class="btn_search" id="btn_search" ></a>
+			<div class="search_box2 clearfix">
+				<input type="text" class="search_txt" id="search_txt" placeholder="검색어를 입력하세요" />
+				<a class="btn_search" id="btn_search" ></a>
 		</div>
 		<!-- 카테고리박스 -->
 		<div class="category_box">

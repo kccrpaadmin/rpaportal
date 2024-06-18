@@ -36,7 +36,7 @@
 	                    <td class="detail_td_l">${outMenuVO.menuNm}</td>
 	                </tr>
 	                <tr>
-	                    <th class="detail_th_l">담당부서</th>
+	                    <th class="detail_th_l">사용부서</th>
 	                    <td class="detail_td_l">${outMenuVO.deptNm}</td>
 	                    <th class="detail_th_l">업무분류</th>
 	                    <td class="detail_td_l">${outMenuVO.workTypeNm}</td>

@@ -411,19 +411,19 @@ public class CommonUtilServiceImpl implements ICommonUtilService {
 		
 		if (isAddFirstRow) {
 			if (selectedCd.equals("Main")) {
-				sb.append("<li value='' class='category_li_active'> <a href='/Bot/ListMenu.do?pCategoryCd=Main' class='category_a_active'>" + addFirstRowNm + "</a></li>");
+				sb.append("<li value='' class='category_li_active'> <a href='/Bot/ListMenu.do?pCategoryCd=Main' class='category_a_active' style='display:block'>" + addFirstRowNm + "</a></li>");
 			}
 			else {
-				sb.append("<li value='' class='category_li'> <a href='/Bot/ListMenu.do?pCategoryCd=Main' class='category_a'>" + addFirstRowNm + "</a></li>");
+				sb.append("<li value='' class='category_li'> <a href='/Bot/ListMenu.do?pCategoryCd=Main' class='category_a' style='display:block'>" + addFirstRowNm + "</a></li>");
 			}
 		}
 		
 		for (CodeVO codeVO : listCodeVO) {
 			if (codeVO.getCd().equals(selectedCd)) {
-				sb.append("<li value='" + codeVO.getCd() + "' class='category_li_active'> <a href='/Bot/ListMenu.do?pCategoryCd=" + codeVO.getCd() + "' class='category_a_active'>" + codeVO.getCdNm() + "</a></li>");
+				sb.append("<li value='" + codeVO.getCd() + "' class='category_li_active'> <a href='/Bot/ListMenu.do?pCategoryCd=" + codeVO.getCd() + "' class='category_a_active' style='display:block'>" + codeVO.getCdNm() + "</a></li>");
 			}
 			else {
-				sb.append("<li value='" + codeVO.getCd() + "' class='category_li'> <a href='/Bot/ListMenu.do?pCategoryCd=" + codeVO.getCd() + "' class='category_a'>" + codeVO.getCdNm() + "</a></li>");
+				sb.append("<li value='" + codeVO.getCd() + "' class='category_li'> <a href='/Bot/ListMenu.do?pCategoryCd=" + codeVO.getCd() + "' class='category_a' style='display:block'>" + codeVO.getCdNm() + "</a></li>");
 			}
 		}
 

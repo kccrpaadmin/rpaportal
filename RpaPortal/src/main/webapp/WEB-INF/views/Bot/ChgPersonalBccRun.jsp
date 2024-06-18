@@ -36,7 +36,7 @@
 	                    <td class="detail_td_l">${outMenuVO.menuNm}</td>
 	                </tr>
 	                <tr>
-	                    <th class="detail_th_l">담당부서</th>
+	                    <th class="detail_th_l">사용부서</th>
 	                    <td class="detail_td_l">${outMenuVO.deptNm}</td>
 	                    <th class="detail_th_l">업무분류</th>
 	                    <td class="detail_td_l">${outMenuVO.workTypeNm}</td>
@@ -81,7 +81,7 @@
    	    <div id="sheet"></div>
    	    <!-- 버튼영역 -->
 	    <div class="btn_box">
-	    	<a href="/Bot/ListMenu.do"><img src="/resources/imgs/button/btn_box_go_back.png" /></a>
+	    	<a href="/Bot/ListMenu.do?pCategoryCd=${outMenuVO.categoryCd}"><img src="/resources/imgs/button/btn_box_go_back.png" /></a>
 	    </div>
 	</div>
 </div>

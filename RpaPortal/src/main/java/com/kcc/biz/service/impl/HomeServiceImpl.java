@@ -31,4 +31,20 @@ public class HomeServiceImpl implements IHomeService {
 	public List<HomeVO> listDeptRunTime(HomeVO vo) throws Exception {
 		return homeRepository.listDeptRunTime(vo);
 	}
+	
+	public HomeVO getTaskRunTime() throws Exception {
+		return homeRepository.getTaskRunTime();
+	}
+	
+	public HomeVO getNoticeTask() throws Exception {
+		return homeRepository.getNoticeTask();
+	}
+	
+	public List<HomeVO> listBotRunTime() throws Exception {
+		return homeRepository.listBotRunTime();
+	}
+	
+	public List<HomeVO> listBotNumberTime() throws Exception {
+		return homeRepository.listBotNumberTime();
+	}
 }

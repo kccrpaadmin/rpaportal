@@ -124,6 +124,8 @@
 	               ,#{RunSeq}
 	               ,#{RunTime}
 	               ,#{CategoryCd}
+	               ,#{NoticeTaskYn}
+	               ,#{RequestDeptCd}
             	)
 			}
 		]]>
@@ -217,6 +219,7 @@
 	            call PRA_Menu_listMenuManageSearchDept (
 	            	#{MenuId}
 	               ,#{SearchTxt}
+	               ,#{DeptSearchType}
             	)
 			}
 		]]>

@@ -80,4 +80,50 @@ public class AjaxHomeController extends BaseController {
 		return listHomeVO;
 	}
 	
+	@PostMapping("/getTaskRunTime.do")
+	public @ResponseBody HomeVO getTaskRunTime() {
+		logger.info("/AjaxHome/getTaskRunTime.do");
+		
+		HomeVO getHomeVO = new HomeVO();
+		try {
+			getHomeVO = homeService.getTaskRunTime();
+			//model.addAttribute("eaisSiteLocationComboText", botEaisService.getEaisSiteLocationCombo("SiteLocation"));
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return getHomeVO;
+	}
+	
+	@PostMapping("/ListBotRunTime.do")
+	public @ResponseBody List<HomeVO> ListBotRunTime(@RequestBody HomeVO vo) {
+		logger.info("/AjaxHome/ListBotRunTime.do");
+		
+		List<HomeVO> listHomeVO = new ArrayList<HomeVO>();
+		try {
+			listHomeVO = homeService.listBotRunTime();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listHomeVO;
+	}
+	
+	@PostMapping("/ListBotNumberTime.do")
+	public @ResponseBody List<HomeVO> ListBotNumberTime(@RequestBody HomeVO vo) {
+		logger.info("/AjaxHome/ListBotNumberTime.do");
+		
+		List<HomeVO> listHomeVO = new ArrayList<HomeVO>();
+		try {
+			listHomeVO = homeService.listBotNumberTime();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listHomeVO;
+	}
+	
 }

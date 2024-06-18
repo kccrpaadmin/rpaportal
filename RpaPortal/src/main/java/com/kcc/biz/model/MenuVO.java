@@ -64,6 +64,11 @@ public class MenuVO {
     private String BtnAddDept;
     private String DutyCd;
     private String CategoryCd;
+    private String NoticeTaskYn;
+    private String RequestDeptCd;
+    private String RequestDeptNm;
+    private String BtnAddRequestDept;
+    private String DeptSearchType;
 	
 	public String getSearchTxt() {
 		return SearchTxt;
@@ -395,5 +400,34 @@ public class MenuVO {
 	public void setCategoryCd(String categoryCd) {
 		CategoryCd = categoryCd;
 	}	
-	
+	public String getNoticeTaskYn() {
+		return NoticeTaskYn;
+	}
+	public void setNoticeTaskYn(String noticeTaskYn) {
+		NoticeTaskYn = noticeTaskYn;
+	}
+	public String getRequestDeptCd() {
+		return RequestDeptCd;
+	}
+	public void setRequestDeptCd(String requestDeptCd) {
+		RequestDeptCd = requestDeptCd;
+	}
+	public String getRequestDeptNm() {
+		return RequestDeptNm;
+	}
+	public void setRequestDeptNm(String requestDeptNm) {
+		RequestDeptNm = requestDeptNm;
+	}
+	public String getBtnAddRequestDept() {
+		return BtnAddRequestDept;
+	}
+	public void setBtnAddRequestDept(String btnAddRequestDept) {
+		BtnAddRequestDept = btnAddRequestDept;
+	}
+	public String getDeptSearchType() {
+		return DeptSearchType;
+	}
+	public void setDeptSearchType(String deptSearchType) {
+		DeptSearchType = deptSearchType;
+	}
 }

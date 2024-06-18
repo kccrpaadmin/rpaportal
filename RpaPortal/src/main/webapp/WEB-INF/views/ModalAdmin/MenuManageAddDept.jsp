@@ -31,7 +31,9 @@
 	
 	//전역 변수
 	menuId = "${menuId}";
-	
+	col1 = "${col1}";
+	col2 = "${col2}";
+
 	// 페이지 로드 
 	$(document).ready(function (e) {		
 		ListMenuManageSearchDept(menuId, "");
@@ -39,11 +41,19 @@
 	
 	// 직급 조회
 	function ListMenuManageSearchDept(pMenuId, pSearchTxt) {
+		
+		var deptSearchType = "Use"
+		
+		if(col1 =="requestDeptNm")
+		{
+			deptSearchType = "Request"
+		}
+		
 		$.ajax({
 			url: "/AjaxAdmin/ListMenuManageSearchDept.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
-			data : JSON.stringify({ "menuId": pMenuId, "searchTxt": pSearchTxt }),
+			data : JSON.stringify({ "menuId": pMenuId, "searchTxt": pSearchTxt, "deptSearchType": deptSearchType}),
 		    dataType : "json",
 	        async: true,
 			success: function(listDatas) {
@@ -117,7 +127,7 @@
 		var deptNm = mySheet.GetCellValue(Row, "deptNm");	
 		
 		if (mySheet.ColSaveName(Col) == "deptNm") {
-			parent.setDeptCd(deptCd, deptNm);
+			parent.setDeptCd(deptCd, deptNm, col1, col2);
 			
 			libraryFunc.closeModal();	
 		}	

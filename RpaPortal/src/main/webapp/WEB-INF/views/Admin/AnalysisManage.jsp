@@ -108,7 +108,9 @@
 		    dataType : "json",
 	        async: false,
 			success: function(datas) {
-				make2DColumnChart("chart1", "chartHolder1", "1000px", "600px", datas, "", "subjectStyleType1", "단위(건)", "menuNm", "");
+				var height = datas.length * 40
+				height = height + "px";
+				make2DColumnChart("chart1", "chartHolder1", "1000px", height, datas, "", "subjectStyleType1", "단위(건)", "menuNm", "");
 			},
 			error: function(xhr, status, err) {
 				commonFunc.handleErrorMsg(xhr, status, err);
@@ -163,7 +165,7 @@
              +'</Options>'
           +'<Bar2DChart showDataTips="true" selectionMode="single" barWidthRatio="0.66" itemClickJsFunction="showMore">'
                 +'<horizontalAxis>'
-                    +'<LinearAxis maximum="150" interval="10"/>'
+                    +'<LinearAxis interval="10"/>'
                +'</horizontalAxis>'
                +'<verticalAxis>'
                   +'<CategoryAxis categoryField="menuNm" id="hAxis"/>'

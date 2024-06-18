@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Contents-Type" content="text/html" charset="utf-8" />
+	<link rel="shortcut icon" type="text/css" href="../../../resources/imgs/favicon/kccenc.ico" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/css/font/nanumsquare.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/css/rpa.css"/>
+
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/library/seeddialog/seeddialog.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/library/seedmodal/seedmodal.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/library/seedtree/seedtree.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/library/seedprogress/seedprogress.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/jquery/jquery-ui-1.12.1/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/library/rMateChartH5Web_v6.0/rMateChartH5/Assets/Css/rMateChartH5.css" />
+</head>
+<body>
+	<div id="wrap">
+		<!-- header -->
+		<div id="header_back">
+			<div id="header">
+				<div class="header_left">
+					<a href="/Home/Home.do"><img src="../../../resources/imgs/logo/logo_home.png" /></a>
+				</div>
+				<div class="header_right">
+					<a href="/Admin/Admin.do" class="header_admin" id="btn_admin" style="display:none;"><img
+							src="../../../resources/imgs/button/btn_admin.png" /></a>
+					<span class="header_time_info">[${curTime}]</span>
+					<span class="header_user_info">${userInfo}</span>
+					<a href="/Account/Logout.do" class="header_logout">로그아웃</a>
+				</div>
+			</div>
+		</div>
+		<!-- header end -->
+		<!-- menu -->
+		<div id="lnb_bar">
+			<a class="btn_lnb_bar_o" id="btn_lnb_menu_open"></a>
+			<a class="btn_lnb_bar btn_lnb_bar_i">RPA 소개</a>
+			<a class="btn_lnb_bar btn_lnb_bar_n">RPA 소식</a>
+			<a class="btn_lnb_bar btn_lnb_bar_w">업무수행</a>
+		</div>
+		<div id="lnb_menu">
+			<div class="lnb_menu_header">
+				<div class="lnb_menu_header_left">MENU</div>
+				<div class="lnb_menu_header_right">
+					<a class="btn_lnb_menu_close" id="btn_lnb_menu_close"></a>
+				</div>
+			</div>
+			<div class="lnb_menu_body">
+				<a class="btn_lnb_menu btn_lnb_menu_i_b">RPA 소개</a>
+				<div class="lnb_sub_menu_box">
+					<a href="/Intro/Rpa.do" class="btn_lnb_sub_menu">RPA 소개</a>
+					<a href="/Intro/Krpa.do" class="btn_lnb_sub_menu">K-RPA 소개</a>
+				</div>
+				<a class="btn_lnb_menu btn_lnb_menu_n_b">RPA 소식</a>
+				<div class="lnb_sub_menu_box">
+					<a href="/Board/ListBoard.do" class="btn_lnb_sub_menu">공지사항</a>
+					<a href="/Proposal/ListProposal.do" class="btn_lnb_sub_menu">RPA 과제 건의함</a>
+				</div>
+				<a class="btn_lnb_menu btn_lnb_menu_w_b">업무수행</a>
+				<div class="lnb_sub_menu_box">
+					<a href="/Crawl/ListMenu.do" class="btn_lnb_sub_menu">웹크롤링</a>
+					<a href="/Ocr/ListMenu.do" class="btn_lnb_sub_menu">OCR</a>
+					<a href="/Bot/ListMenu.do?pCategoryCd=Main" class="btn_lnb_sub_menu">BOT</a>
+				</div>
+			</div>
+		</div>
+		<!-- menu end -->
+		<!-- contents -->
+		<div id="container">
+			<!-- 컨텐츠 -->
+			<div class="contents">
+				<!-- 로케이션 -->
+				<div class="location_box">
+					<div class="location_left">
+						<div class="location_title">BOT</div>	
+					</div>
+					<div class="location_right">
+						<span class="location_home">홈</span>
+						<span class="location_arrow">BOT</span>
+					</div>
+				</div>
+				<!-- 검색박스 -->
+				<div class="search_box2 clearfix">
+					<input type="text" class="search_txt" id="search_txt" placeholder="검색어를 입력하세요" />
+					<a class="btn_search" id="btn_search" ></a>
+				</div>
+				<!-- 카테고리박스 -->
+				<div class="category_box">
+				</div>
+				<!-- BOT 메뉴 목록 -->
+				<div id="bot_menu_list_box"></div>
+			</div>
+		</div>
+	</div>
+		<!-- contents end -->
+	</div>
+</body>
+
+</html>

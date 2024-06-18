@@ -72,10 +72,12 @@ public class ModalAdminController extends BaseController {
 	}	
 	
 	@GetMapping("/MenuManageAddDept.do")
-	public String MenuManageAddDept(String pMenuId,  Model model) {
+	public String MenuManageAddDept(String pMenuId, String pCol1, String pCol2, Model model) {
 		logger.info("/ModalAdmin/MenuManageAddDept.do");
 		
 		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("col1", pCol1);
+		model.addAttribute("col2", pCol2);
 		
 		return "ModalAdmin/MenuManageAddDept";
 	}	

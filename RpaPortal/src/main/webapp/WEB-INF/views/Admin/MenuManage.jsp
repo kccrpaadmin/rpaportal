@@ -48,6 +48,7 @@
 	var timeTypeComboCdNm = "${timeTypeComboCdNm}";
 	var botMenuTypeComboCd = "${botMenuTypeComboCd}";
 	var botMenuTypeComboCdNm = "${botMenuTypeComboCdNm}";
+	var checkMenuId = "";
 
 	// 페이지 로드 
 	$(document).ready(function (e) {
@@ -136,9 +137,12 @@
             { Header: "순번", Type: "Text", Width: 40, SaveName: "ord", Align: "Center" },
             { Header: "수행타입", Type: "Combo", Width: 70, SaveName: "taskTypeCd", Align: "Center", ComboText: taskTypeComboCdNm, ComboCode: taskTypeComboCd },
             { Header: "실행타입", Type: "Combo", Width: 70, SaveName: "execTypeCd", Align: "Center", ComboText: execTypeComboCdNm, ComboCode: execTypeComboCd },     
-            { Header: "담당부서", Type: "Text", Width: 100, SaveName: "deptNm", Edit: false },
-            { Header: "담당부서코드", Type: "Text", Width: 0, SaveName: "deptCd", Edit: false, Hidden:true  },
-            { Header: "담당부서", Type: "Button", Width: 60, SaveName: "btnAddDept", Align: "Center"},
+            { Header: "사용부서", Type: "Text", Width: 100, SaveName: "deptNm", Edit: false },
+            { Header: "사용부서코드", Type: "Text", Width: 0, SaveName: "deptCd", Edit: false, Hidden:true  },
+            { Header: "사용부서", Type: "Button", Width: 60, SaveName: "btnAddDept", Align: "Center"},
+            { Header: "요청부서", Type: "Text", Width: 100, SaveName: "requestDeptNm", Edit: false },
+            { Header: "요청부서코드", Type: "Text", Width: 0, SaveName: "requestDeptCd", Edit: false, Hidden:true  },
+            { Header: "요청부서", Type: "Button", Width: 60, SaveName: "btnAddRequestDept", Align: "Center"},
             { Header: "메뉴타입", Type: "Combo", Width: 70, SaveName: "categoryCd", Align: "Center", ComboText: botMenuTypeComboCdNm, ComboCode: botMenuTypeComboCd },
             { Header: "시간타입", Type: "Combo", Width: 70, SaveName: "timeTypeCd", Align: "Center", ComboText: timeTypeComboCdNm, ComboCode: timeTypeComboCd },
             { Header: "실행횟수", Type: "Int", Width: 60, SaveName: "runSeq", Align: "Center" },     
@@ -146,6 +150,7 @@
             { Header: "업무수행 URL", Type: "Text", Width: 160, SaveName: "runUrl" },
             { Header: "업무관리 URL", Type: "Text", Width: 160, SaveName: "manageUrl" },
             { Header: "내용", Type: "Text", Width: 200, SaveName: "content" },
+            { Header: "대표과제 여부", Type: "Combo", Width: 80, SaveName: "noticeTaskYn", ComboText: "Y|N", Align: "Center" },
             { Header: "사용여부", Type: "Combo", Width: 60, SaveName: "useYn", ComboText: "Y|N", Align: "Center" }
         ];
 		
@@ -158,11 +163,36 @@
 	
     // 저장 전, 확인 함수
 	function saveMenuManageConfirm(pOption) {
+		
 		if (pOption.sdBtnKey == "o") {
+			
+			//Bot메뉴의 경우 대표과제 중복 체크
+			if(checkMenuId == "RA004"){
+		    	var Treejson = mySheet.GetTreeJson().data;
+		    	var Treejsonlen = Treejson.length;
+		    	var arr = []
+		    	
+		    	for(var i = 0; i < Treejsonlen; i++)
+		  		{
+		    		var jsonData = {};
+		    		
+		    		if(Treejson[i].noticeTaskYn == "Y")
+		    		{
+		    			arr.push(Treejson[i].noticeTaskYn)	
+		    		}
+		    	}
+				
+				if(arr.length >= 2)
+				{
+					libraryFunc.createDialog("Alert", null, null, null, null, "알림", "대표과제는 하나만 가능합니다.", null, null, null);
+					return;
+				}
+	    	}
+			
 			var saveJson = mySheet.GetSaveJson().data;
 			var saveJsonLen = saveJson.length;
 			var arrData = [];
-			
+
 			for (var i = 0; i < saveJsonLen; i++) {
 				var jsonData = {};
 
@@ -180,10 +210,12 @@
 				jsonData.useYn = saveJson[i].useYn;
 				jsonData.empNo = commonFunc.certInfo.empNo;			
 				jsonData.deptCd = saveJson[i].deptCd;
+				jsonData.requestDeptCd = saveJson[i].requestDeptCd;
 				jsonData.categoryCd = saveJson[i].categoryCd;
 				jsonData.timeTypeCd = saveJson[i].timeTypeCd;
 				jsonData.runSeq = saveJson[i].runSeq;
-				jsonData.runTime = saveJson[i].runTime;	
+				jsonData.runTime = saveJson[i].runTime;
+				jsonData.noticeTaskYn = saveJson[i].noticeTaskYn;
 				
 				arrData.push(jsonData);										
 			}
@@ -207,24 +239,26 @@
 	}
 	
 	// 담당부서코드, 담당부서명 설정
-	function setDeptCd(pDeptCd, pDeptNm) {
+	function setDeptCd(pDeptCd, pDeptNm, pCol1, pCol2) {
 		var rowIndex = mySheet.GetSelectRow();
-		var deptNm = mySheet.GetCellValue(rowIndex, "deptNm");
+		var deptNm = mySheet.GetCellValue(rowIndex, pCol1);
 		
-		mySheet.SetCellValue(rowIndex, "deptCd", pDeptCd);
+		mySheet.SetCellValue(rowIndex, pCol2, pDeptCd);
 		
-		if(deptNm == "") {
-			mySheet.SetCellValue(rowIndex, "deptNm", pDeptNm);
+		//요청부서는 한개부서만 가능
+		if(deptNm == "" || pCol1 =="requestDeptNm") {
+			mySheet.SetCellValue(rowIndex, pCol1, pDeptNm);
 		}
 		else {
-			mySheet.SetCellValue(rowIndex, "deptNm", deptNm + ", " + pDeptNm);
+			mySheet.SetCellValue(rowIndex, pCol1, deptNm + ", " + pDeptNm);
 		}
 		
 	}
     	
 	// 트리 클릭 이벤트
     function tree_click(pNodeCd, pNodeNm, pParentNodeCd, pNodeChild, pNodeData, pParam) {
-        listMenuChild(pNodeCd);
+    	checkMenuId = pNodeCd;
+		listMenuChild(pNodeCd);
         $("#hdn_upcd").val(pNodeData.cd);
         $("#hdn_lvl").val(Number(pNodeData.lvl) + 1);
     }
@@ -244,7 +278,12 @@
 		
 		if (mySheet.ColSaveName(Col) == "btnAddDept") {
 			var menuId = mySheet.GetCellValue(Row, "menuId");
-			libraryFunc.createModal(null, null, null, 600, 440, "담당부서 추가", "/ModalAdmin/MenuManageAddDept.do?pMenuId=" + menuId);
+			libraryFunc.createModal(null, null, null, 600, 440, "사용부서 추가", "/ModalAdmin/MenuManageAddDept.do?pMenuId=" + menuId + "&pCol1=deptNm&pCol2=deptCd");
+   		}
+		
+		if (mySheet.ColSaveName(Col) == "btnAddRequestDept") {
+			var menuId = mySheet.GetCellValue(Row, "menuId");
+			libraryFunc.createModal(null, null, null, 600, 440, "요청부서 추가", "/ModalAdmin/MenuManageAddDept.do?pMenuId=" + menuId + "&pCol1=requestDeptNm&pCol2=requestDeptCd");
    		}
 	}
  	

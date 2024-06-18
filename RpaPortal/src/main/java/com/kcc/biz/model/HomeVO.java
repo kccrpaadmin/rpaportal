@@ -17,6 +17,27 @@ public class HomeVO {
 	private String MenuId;
 	private String MenuNm;
 	private String StartTime;
+	private String TotalCnt;
+	private String CrawlCnt;
+	private String OcrCnt;
+	private String BotCnt;
+	private String RunTime;
+	private String Content;
+	private String RunUrl;
+	private String Ord;
+	private String Year;
+	private String MonthWeek;
+	private String BotIP;
+	private String SumMin;
+	private String Bot1;
+	private String Bot2;
+	private String Bot3;
+	private String RegMonth;
+	private String Year1;
+	private String Year2;
+	private String Year3;
+	private String BotType;
+	private String Week;
 	
 	public String getWorkTypeCd() {
 		return WorkTypeCd;
@@ -65,5 +86,131 @@ public class HomeVO {
 	}
 	public void setStartTime(String startTime) {
 		StartTime = startTime;
+	}
+	public String getTotalCnt() {
+		return TotalCnt;
+	}
+	public void setTotalCnt(String totalCnt) {
+		TotalCnt = totalCnt;
+	}
+	public String getCrawlCnt() {
+		return CrawlCnt;
+	}
+	public void setCrawlCnt(String crawlCnt) {
+		CrawlCnt = crawlCnt;
+	}
+	public String getOcrCnt() {
+		return OcrCnt;
+	}
+	public void setOcrCnt(String ocrCnt) {
+		OcrCnt = ocrCnt;
+	}
+	public String getBotCnt() {
+		return BotCnt;
+	}
+	public void setBotCnt(String botCnt) {
+		BotCnt = botCnt;
+	}
+	public String getRunTime() {
+		return RunTime;
+	}
+	public void setRunTime(String runTime) {
+		RunTime = runTime;
+	}
+	public String getContent() {
+		return Content;
+	}
+	public void setContent(String content) {
+		Content = content;
+	}
+	public String getRunUrl() {
+		return RunUrl;
+	}
+	public void setRunUrl(String runUrl) {
+		RunUrl = runUrl;
+	}
+	public String getOrd() {
+		return Ord;
+	}
+	public void setOrd(String ord) {
+		Ord = ord;
+	}
+	public String getYear() {
+		return Year;
+	}
+	public void setYear(String year) {
+		Year = year;
+	}
+	public String getMonthWeek() {
+		return MonthWeek;
+	}
+	public void setMonthWeek(String monthWeek) {
+		MonthWeek = monthWeek;
+	}
+	public String getBotIP() {
+		return BotIP;
+	}
+	public void setBotIP(String botIP) {
+		BotIP = botIP;
+	}
+	public String getSumMin() {
+		return SumMin;
+	}
+	public void setSumMin(String sumMin) {
+		SumMin = sumMin;
+	}
+	public String getBot1() {
+		return Bot1;
+	}
+	public void setBot1(String bot1) {
+		Bot1 = bot1;
+	}
+	public String getBot2() {
+		return Bot2;
+	}
+	public void setBot2(String bot2) {
+		Bot2 = bot2;
+	}
+	public String getBot3() {
+		return Bot3;
+	}
+	public void setBot3(String bot3) {
+		Bot3 = bot3;
+	}
+	public String getRegMonth() {
+		return RegMonth;
+	}
+	public void setRegMonth(String regMonth) {
+		RegMonth = regMonth;
+	}
+	public String getYear1() {
+		return Year1;
+	}
+	public void setYear1(String year1) {
+		Year1 = year1;
+	}
+	public String getYear2() {
+		return Year2;
+	}
+	public void setYear2(String year2) {
+		Year2 = year2;
+	}
+	public String getYear3() {
+		return Year3;
+	}
+	public void setYear3(String year3) {
+		Year3 = year3;
+	}
+	public String getBotType() {
+		return BotType;
+	}
+	public void setBotType(String botType) {
+		BotType = botType;
+	}
+	public String getWeek() {
+		return Week;
+	}
+	public void setWeek(String week) {
+		Week = week;
 	}
 }

@@ -387,7 +387,7 @@
             		
             		var crawlMenuDeptTitle = document.createElement("div");
             		crawlMenuDeptTitle.className = "crawl_menu_dept_title";
-            		crawlMenuDeptTitle.innerText = "담당부서";
+            		crawlMenuDeptTitle.innerText = "사용부서";
             		crawlMenuDept.appendChild(crawlMenuDeptTitle);
             		
             		var crawlMenuDeptInfo = document.createElement("div");
@@ -476,7 +476,7 @@
             		
             		var ocrMenuDeptTitle = document.createElement("div");
             		ocrMenuDeptTitle.className = "ocr_menu_dept_title";
-            		ocrMenuDeptTitle.innerText = "담당부서";
+            		ocrMenuDeptTitle.innerText = "사용부서";
             		ocrMenuDept.appendChild(ocrMenuDeptTitle);
             		
             		var ocrMenuDeptInfo = document.createElement("div");
@@ -559,7 +559,7 @@
             		
             		var botMenuDeptTitle = document.createElement("div");
             		botMenuDeptTitle.className = "bot_menu_dept_title";
-            		botMenuDeptTitle.innerText = "담당부서";
+            		botMenuDeptTitle.innerText = "사용부서";
             		botMenuDept.appendChild(botMenuDeptTitle);
             		
             		var botMenuDeptInfo = document.createElement("div");
@@ -648,7 +648,7 @@
             		
             		var botMenuDeptTitle = document.createElement("div");
             		botMenuDeptTitle.className = "menu_dept_title";
-            		botMenuDeptTitle.innerText = "담당부서";
+            		botMenuDeptTitle.innerText = "사용부서";
             		botMenuDept.appendChild(botMenuDeptTitle);
             		
             		var botMenuDeptInfo = document.createElement("div");

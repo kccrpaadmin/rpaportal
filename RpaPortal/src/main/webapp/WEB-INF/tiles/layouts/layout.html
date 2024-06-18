@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Contents-Type" content="text/html" charset="utf-8" />
+	<link rel="shortcut icon" type="text/css" href="../../../resources/imgs/favicon/kccenc.ico" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/css/font/nanumsquare.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/css/rpa.css"/>
+
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/library/seeddialog/seeddialog.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/library/seedmodal/seedmodal.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/library/seedtree/seedtree.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/library/seedprogress/seedprogress.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/jquery/jquery-ui-1.12.1/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../resources/js/library/rMateChartH5Web_v6.0/rMateChartH5/Assets/Css/rMateChartH5.css" />
+</head>
+<body>
+	<div id="wrap">
+		<!-- header -->
+		<div id="header_back">
+			<div id="header">
+				<div class="header_left">
+					<a href="/Home/Home.do"><img src="../../../resources/imgs/logo/logo_home.png" /></a>
+				</div>
+				<div class="header_right">
+					<a href="/Admin/Admin.do" class="header_admin" id="btn_admin" style="display:none;"><img
+							src="../../../resources/imgs/button/btn_admin.png" /></a>
+					<span class="header_time_info">[${curTime}]</span>
+					<span class="header_user_info">${userInfo}</span>
+					<a href="/Account/Logout.do" class="header_logout">로그아웃</a>
+				</div>
+			</div>
+		</div>
+		<!-- header end -->
+		<!-- menu -->
+		<div id="lnb_bar">
+			<a class="btn_lnb_bar_o" id="btn_lnb_menu_open"></a>
+			<a class="btn_lnb_bar btn_lnb_bar_i">RPA 소개</a>
+			<a class="btn_lnb_bar btn_lnb_bar_n">RPA 소식</a>
+			<a class="btn_lnb_bar btn_lnb_bar_w">업무수행</a>
+		</div>
+		<div id="lnb_menu">
+			<div class="lnb_menu_header">
+				<div class="lnb_menu_header_left">MENU</div>
+				<div class="lnb_menu_header_right">
+					<a class="btn_lnb_menu_close" id="btn_lnb_menu_close"></a>
+				</div>
+			</div>
+			<div class="lnb_menu_body">
+				<a class="btn_lnb_menu btn_lnb_menu_i_b">RPA 소개</a>
+				<div class="lnb_sub_menu_box">
+					<a href="/Intro/Rpa.do" class="btn_lnb_sub_menu">RPA 소개</a>
+					<a href="/Intro/Krpa.do" class="btn_lnb_sub_menu">K-RPA 소개</a>
+				</div>
+				<a class="btn_lnb_menu btn_lnb_menu_n_b">RPA 소식</a>
+				<div class="lnb_sub_menu_box">
+					<a href="/Board/ListBoard.do" class="btn_lnb_sub_menu">공지사항</a>
+					<a href="/Proposal/ListProposal.do" class="btn_lnb_sub_menu">RPA 과제 건의함</a>
+				</div>
+				<a class="btn_lnb_menu btn_lnb_menu_w_b">업무수행</a>
+				<div class="lnb_sub_menu_box">
+					<a href="/Crawl/ListMenu.do" class="btn_lnb_sub_menu">웹크롤링</a>
+					<a href="/Ocr/ListMenu.do" class="btn_lnb_sub_menu">OCR</a>
+					<a href="/Bot/ListMenu.do?pCategoryCd=Main" class="btn_lnb_sub_menu">BOT</a>
+				</div>
+			</div>
+		</div>
+		<!-- menu end -->
+		<!-- contents -->
+		<div id="container">
+			<div class="contents contents2">
+				<div class="home_wrap">
+					<div class="home_box_wrap clearfix">
+						<div class="home_card_box card_box1 fl">
+							<div class="card_body clearfix">
+								<div class="card_body_txt_box fl">
+									<p><strong>31</strong>개</p>
+								</div>
+								<div class="fr">
+									<i class="ico_home_card1"></i>
+								</div>
+							</div>
+							<div class="card_bottom">
+								<p>총 과제 수</p>
+							</div>
+						</div>
+						<div class="home_card_box card_box2 fl">
+							<div class="card_body clearfix">
+								<div class="card_body_txt_box fl">
+									<p><strong>5</strong>개</p>
+								</div>
+								<div class="fr">
+									<i class="ico_home_card2"></i>
+								</div>
+							</div>
+							<div class="card_bottom">
+								<p>웹 크롤링</p>
+							</div>
+						</div>
+						<div class="home_card_box card_box3 fl">
+							<div class="card_body clearfix">
+								<div class="card_body_txt_box fl">
+									<p><strong>1</strong>개</p>
+								</div>
+								<div class="fr">
+									<i class="ico_home_card3"></i>
+								</div>
+							</div>
+							<div class="card_bottom">
+								<p>OCR</p>
+							</div>
+						</div>
+						<div class="home_card_box card_box4 fl">
+							<div class="card_body clearfix">
+								<div class="card_body_txt_box fl">
+									<p><strong>25</strong>개</p>
+								</div>
+								<div class="fr">
+									<i class="ico_home_card4"></i>
+								</div>
+							</div>
+							<div class="card_bottom">
+								<p>BOT</p>
+							</div>
+						</div>
+						<div class="home_card_box card_box5 fl">
+							<span class="txt_top">연간 약</span>
+							<div class="card_body clearfix">
+								<div class="card_body_txt_box fl">
+									<p><strong>4300</strong>시간</p>
+								</div>
+								<div class="fr">
+									<i class="ico_home_card5"></i>
+								</div>
+							</div>
+							<div class="card_bottom">
+								<p>총 절감시간</p>
+							</div>
+						</div>
+					</div>
+					<div class="home_box_wrap clearfix">
+						<div class="fl">
+							<div class="clearfix home_box_wrap">
+								<div class="home_box_style home_notice_box fl">
+									<div class="clearfix">
+										<div class="home_box_title_box fl">
+											<i class="ico_home_notice"></i>
+											<span>공지사항</span>
+										</div>
+										<div class="fr"><a href="/Board/ListBoard.do" class="ico_home_more"></a></div>
+									</div>
+									<p>RPA 2차 개발 프로젝트 오픈공지</p>
+								</div>
+								<div class="home_box_style home_ocr_box fl">
+									<div class="home_box_title_box">
+										<i class="ico_home_ocr"></i>
+										<span>OCR</span>
+									</div>
+									<div class="btn_ocr"><a href="/Ocr/ListMenu.do">텍스트 추출 바로가기<i
+												class="ico_home_move"></i></a></div>
+								</div>
+							</div>
+							<div class="home_box_style home_new_box">
+								<div class="clearfix">
+									<div class="home_box_title_box fl">
+										<i class="ico_home_new"></i>
+										<span>신규과제 소개</span>
+									</div>
+									<div class="fr"><a href="" class="ico_home_more"></a></div>
+								</div>
+								<div class="home_box_text_box">
+									<p><i class="ico_home_new_title"></i>RPA 2차 개발 프로젝트 오픈공지</p>
+									<hr />
+									<p class="new_text">재정부 담당자가 사용승인 발급 예정시, 세움터 사이트에서 수시로 사용승인 발급여부를 체크하던 업무를
+										Bot이 자동으로 체크하여 수집결과를 제공합니다.</br>
+										(최대 3줄까지 가능합니다)
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="home_box_style home_timeline_box fl">
+							<div class="home_box_title_box">
+								<i class="ico_home_timeline"></i>
+								<span>오늘의 타임라인</span>
+							</div>
+							<div class="tl_bot_box clearfix">
+								<div class="tl_bbox fl clerfix">
+									<div class="fl">
+										<i class="ico_home_tl_all"></i>
+									</div>
+									<div class="tl_text_box fl">
+										<p class="tl_title">12</p>
+										<p class="tl_text">전체</p>
+									</div>
+								</div>
+								<div class="tl_bbox fl clerfix">
+									<div class="fl">
+										<i class="ico_home_tl_com"></i>
+									</div>
+									<div class="tl_text_box fl">
+										<p class="tl_title tl_text2">5</p>
+										<p class="tl_text tl_text2">수행완료</p>
+									</div>
+								</div>
+								<div class="tl_bbox fl clerfix">
+									<div class="fl">
+										<i class="ico_home_tl_res"></i>
+									</div>
+									<div class="tl_text_box fl">
+										<p class="tl_title tl_text3">7</p>
+										<p class="tl_text tl_text3">수행예약</p>
+									</div>
+								</div>
+							</div>
+							<div class="tl_bot_list_box">
+								<ul>
+									<li class="tl_bot_list_bbox clearfix">
+										<div class="tl_bot_list_text_box fl">
+											<span class="tl_status_st1">실행</span>
+											<span>09:10</span>
+											<span class="circle1"></span>
+											<span>스마트건설 시스템 체크업무</span>
+										</div>
+										<div class="fr">
+											<span class="tl_now_status_st1">BOT2</span>
+										</div>
+									</li>
+									<li class="tl_bot_list_bbox">
+										<div class="tl_bot_list_text_box">
+											<span class="tl_status_st2">대기</span>
+											<span>09:00</span>
+											<span class="circle2"></span>
+											<span>법인카드 변경신청업무</span>
+										</div>
+									</li>
+									<li class="tl_bot_list_bbox">
+										<div class="tl_bot_list_text_box">
+											<span class="tl_status_st3">예약</span>
+											<span>10:00</span>
+											<span class="circle3"></span>
+											<span>그룹사 인사발령 수집업무</span>
+										</div>
+									</li>
+									<li class="tl_bot_list_bbox">
+										<div class="tl_bot_list_text_box">
+											<span class="tl_status_st3">예약</span>
+											<span>11:00</span>
+											<span class="circle3"></span>
+											<span>겸용서식 세금계산서 자동...</span>
+										</div>
+									</li>
+									<li class="tl_bot_list_bbox clearfix">
+										<div class="tl_bot_list_text_box fl">
+											<span class="tl_status_st1">실행</span>
+											<span>11:30</span>
+											<span class="circle1"></span>
+											<span>스마트건설 시스템 체크업무</span>
+										</div>
+										<div class="fr">
+											<span class="tl_now_status_st1">BOT3</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="home_box_style home_bot_graph_box fl">
+							<div class="home_box_title_box">
+								<i class="ico_home_bot"></i>
+								<span>BOT 가동 현황(최근 3개월)</span>
+							</div>
+							<div>
+								<!-- 그래프 위치 -->
+							</div>
+						</div>
+						<div class="home_box_style home_rpa_graph_box fl">
+							<div class="home_box_title_box">
+								<i class="ico_home_rpa"></i>
+								<span>RPA 수행 현황(최근 3년)</span>
+							</div>
+							<div>
+								<!-- 그래프 위치 -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- contents end -->
+	</div>
+</body>
+
+</html>
