@@ -557,4 +557,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/ContractElecStampTaxRunResult";
 	}
+	
+	@GetMapping("/AutoCADCancelRunResult.do")
+	public String AutoCADCancelRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/AutoCADCancelRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/AutoCADCancelRunResult";
+	}
 }

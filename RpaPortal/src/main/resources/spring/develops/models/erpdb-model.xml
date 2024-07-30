@@ -106,6 +106,8 @@
 		<typeAlias alias="botContractElecStampTaxVO" type="com.kcc.biz.model.BotContractElecStampTaxVO" />
 		<!-- BOT 현장별 체감온도 문자발송 -->
 		<typeAlias alias="botSensoryTemperatureVO" type="com.kcc.biz.model.BotSensoryTemperatureVO" />
+		<!-- BOT 오토캐드 할장해제 -->
+		<typeAlias alias="botAutoCADCancelVO" type="com.kcc.biz.model.BotAutoCADCancelVO" />
 	</typeAliases>
 	
 </configuration>

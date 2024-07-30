@@ -55,6 +55,7 @@ import com.kcc.biz.model.BotBidChangeVO;
 import com.kcc.biz.model.BotPersonalBccVO;
 import com.kcc.biz.model.BotSCSystemCheckVO;
 import com.kcc.biz.model.BotAdDailyReportVO;
+import com.kcc.biz.model.BotAutoCADCancelVO;
 import com.kcc.biz.model.BotEaisVO;
 import com.kcc.biz.model.BotInsuranceVO;
 import com.kcc.biz.model.BotXmlVO;
@@ -79,6 +80,7 @@ import com.kcc.biz.service.IBotBidChangeService;
 import com.kcc.biz.service.IBotPersonalBccService;
 import com.kcc.biz.service.IBotSCSystemCheckService;
 import com.kcc.biz.service.IBotAdDailyReportService;
+import com.kcc.biz.service.IBotAutoCADCancelService;
 import com.kcc.biz.service.IBotEaisService;
 import com.kcc.biz.service.IBotInsuranceService;
 import com.kcc.biz.service.IBotDelayedPaymentService;
@@ -177,6 +179,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botSensoryTemperatureService")
 	private IBotSensoryTemperatureService botSensoryTemperatureService;
+	
+	@Resource(name="botAutoCADCancelService")
+	private IBotAutoCADCancelService botAutoCADCancelService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1559,4 +1564,24 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}
+	
+	// 서울회생법원 회생/파산 결과 팝업
+		@PostMapping("/ListAutoCADCancelRunResult.do")
+		public @ResponseBody Map<String, Object> ListAutoCADCancelRunResult(@RequestBody BotAutoCADCancelVO vo) {
+			logger.info("/AjaxBot/ListAutoCADCancelRunResult.do");
+			
+			List<BotAutoCADCancelVO> outListBotAutoCADCancelVO = new ArrayList<BotAutoCADCancelVO>();
+			
+			try {
+				outListBotAutoCADCancelVO =  botAutoCADCancelService.listAutoCADCancelResult(vo);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			Map map = new HashMap<String, Object>();
+			map.put("data", outListBotAutoCADCancelVO);
+			
+			return map;
+		}
 }
