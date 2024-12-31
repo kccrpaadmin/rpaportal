@@ -64,6 +64,7 @@ import com.kcc.biz.model.BotCorporateNoticeVO;
 import com.kcc.biz.model.BotCompanyRestrictionVO;
 import com.kcc.biz.model.BotContractElecStampTaxVO;
 import com.kcc.biz.model.BotSensoryTemperatureVO;
+import com.kcc.biz.model.BotCorpCardSendVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -90,6 +91,7 @@ import com.kcc.biz.service.IBotCorporateNoticeService;
 import com.kcc.biz.service.IBotCompanyRestrictionService;
 import com.kcc.biz.service.IBotContractElecStampTaxService;
 import com.kcc.biz.service.IBotSensoryTemperatureService;
+import com.kcc.biz.service.IBotCorpCardSendService;
 
 
 
@@ -182,6 +184,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botAutoCADCancelService")
 	private IBotAutoCADCancelService botAutoCADCancelService;
+	
+	@Resource(name="botCorpCardSendService")
+	private IBotCorpCardSendService botCorpCardSendService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1566,22 +1571,42 @@ public class AjaxBotController extends BaseController {
 	}
 	
 	// 서울회생법원 회생/파산 결과 팝업
-		@PostMapping("/ListAutoCADCancelRunResult.do")
-		public @ResponseBody Map<String, Object> ListAutoCADCancelRunResult(@RequestBody BotAutoCADCancelVO vo) {
-			logger.info("/AjaxBot/ListAutoCADCancelRunResult.do");
-			
-			List<BotAutoCADCancelVO> outListBotAutoCADCancelVO = new ArrayList<BotAutoCADCancelVO>();
-			
-			try {
-				outListBotAutoCADCancelVO =  botAutoCADCancelService.listAutoCADCancelResult(vo);
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			Map map = new HashMap<String, Object>();
-			map.put("data", outListBotAutoCADCancelVO);
-			
-			return map;
+	@PostMapping("/ListAutoCADCancelRunResult.do")
+	public @ResponseBody Map<String, Object> ListAutoCADCancelRunResult(@RequestBody BotAutoCADCancelVO vo) {
+		logger.info("/AjaxBot/ListAutoCADCancelRunResult.do");
+		
+		List<BotAutoCADCancelVO> outListBotAutoCADCancelVO = new ArrayList<BotAutoCADCancelVO>();
+		
+		try {
+			outListBotAutoCADCancelVO =  botAutoCADCancelService.listAutoCADCancelResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
 		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotAutoCADCancelVO);
+		
+		return map;
+	}
+	
+	// 법인카드 사용내역 메일 발송
+	@PostMapping("/ListCorpCardSendResult.do")
+	public @ResponseBody Map<String, Object> ListCorpCardSendResult(@RequestBody BotCorpCardSendVO vo) {
+		logger.info("/AjaxBot/ListCorpCardSendResult.do");
+
+		List<BotCorpCardSendVO> outListBotCompanyRestrictionVO = new ArrayList<BotCorpCardSendVO>();
+		
+		try {
+			outListBotCompanyRestrictionVO = botCorpCardSendService.listCorpCardSendResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotCompanyRestrictionVO);
+		
+		return map;
+	}
 }

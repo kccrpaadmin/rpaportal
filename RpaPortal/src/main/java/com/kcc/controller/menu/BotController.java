@@ -984,4 +984,30 @@ public class BotController extends BaseController {
 		return "Bot/AutoCADCancelRun";
 	}
 	
+	@GetMapping("/CorpCardSendRun.do")
+	public String CorpCardSendRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/CorpCardSendRun.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
+		return "Bot/CorpCardSendRun";
+	}
+	
 }

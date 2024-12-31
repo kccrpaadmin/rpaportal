@@ -108,6 +108,8 @@
 		<typeAlias alias="botSensoryTemperatureVO" type="com.kcc.biz.model.BotSensoryTemperatureVO" />
 		<!-- BOT 오토캐드 할장해제 -->
 		<typeAlias alias="botAutoCADCancelVO" type="com.kcc.biz.model.BotAutoCADCancelVO" />
+		<!-- BOT 법인카드 사용내역 발송 -->
+		<typeAlias alias="botCorpCardSendVO" type="com.kcc.biz.model.BotCorpCardSendVO" />
 	</typeAliases>
 	
 </configuration>
