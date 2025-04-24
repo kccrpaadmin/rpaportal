@@ -110,6 +110,8 @@
 		<typeAlias alias="botAutoCADCancelVO" type="com.kcc.biz.model.BotAutoCADCancelVO" />
 		<!-- BOT 법인카드 사용내역 발송 -->
 		<typeAlias alias="botCorpCardSendVO" type="com.kcc.biz.model.BotCorpCardSendVO" />
+		<!-- BOT 기술인협회 설계시공 수집업무 -->
+		<typeAlias alias="botEngineerConstructionVO" type="com.kcc.biz.model.BotEngineerConstructionVO" />
 	</typeAliases>
 	
 </configuration>

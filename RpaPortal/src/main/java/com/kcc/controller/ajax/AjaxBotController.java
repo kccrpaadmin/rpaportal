@@ -65,6 +65,7 @@ import com.kcc.biz.model.BotCompanyRestrictionVO;
 import com.kcc.biz.model.BotContractElecStampTaxVO;
 import com.kcc.biz.model.BotSensoryTemperatureVO;
 import com.kcc.biz.model.BotCorpCardSendVO;
+import com.kcc.biz.model.BotEngineerConstructionVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -92,6 +93,7 @@ import com.kcc.biz.service.IBotCompanyRestrictionService;
 import com.kcc.biz.service.IBotContractElecStampTaxService;
 import com.kcc.biz.service.IBotSensoryTemperatureService;
 import com.kcc.biz.service.IBotCorpCardSendService;
+import com.kcc.biz.service.IBotEngineerConstructionService;
 
 
 
@@ -187,6 +189,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botCorpCardSendService")
 	private IBotCorpCardSendService botCorpCardSendService;
+	
+	@Resource(name="botEngineerConstructionService")
+	private IBotEngineerConstructionService botEngineerConstructionService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1606,6 +1611,44 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListBotCompanyRestrictionVO);
+		
+		return map;
+	}
+	
+	//설계시공 등급 결과조회
+	@PostMapping("/ListBotEngineerConstructionResult.do")
+	public @ResponseBody Map<String, Object> ListBotEngineerConstructionResult(@RequestBody BotEngineerConstructionVO vo) {
+		logger.info("/AjaxBot/ListBotEngineerConstructionResult.do");
+		
+		List<BotEngineerConstructionVO> outListBotEngineerConstructionResult = new ArrayList<BotEngineerConstructionVO>();
+		try {
+			outListBotEngineerConstructionResult = botEngineerConstructionService.listBotEngineerConstructionResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEngineerConstructionResult);
+		
+		return map;
+	}
+	
+	//설계시공 등급 업무관리
+	@PostMapping("/ListEngineerConstructionManage.do")
+	public @ResponseBody Map<String, Object> ListEngineerConstructionManage(@RequestBody BotEngineerConstructionVO vo) {
+		logger.info("/AjaxBot/ListEngineerConstructionManage.do");
+		
+		List<BotEngineerConstructionVO> outListBotEngineerConstructionResult = new ArrayList<BotEngineerConstructionVO>();
+		try {
+			outListBotEngineerConstructionResult = botEngineerConstructionService.listBotEngineerConstructionManage(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEngineerConstructionResult);
 		
 		return map;
 	}

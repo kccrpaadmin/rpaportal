@@ -1010,4 +1010,56 @@ public class BotController extends BaseController {
 		return "Bot/CorpCardSendRun";
 	}
 	
+	@GetMapping("/EngineerConstructionRun.do")
+	public String EngineerConstructionRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/EngineerEduRun.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
+		return "Bot/EngineerConstructionRun";
+	}
+	
+	@GetMapping("/EngineerConstructionManage.do")
+	public String EngineerConstructionManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/EngineerConstructionManage.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		model.addAttribute("orgTypeComboBox", commonUtilService.getCodeProcedureSelectBox("org_type_cd", "PRA_Bot_listOrgTypeCombo", "", true, "전체", "전체"));
+		
+		return "Bot/EngineerConstructionManage";
+	}
 }

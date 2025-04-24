@@ -137,7 +137,7 @@
 	
 	// 버튼 활성화, 비활성화 함수
 	function enableButtonControl() {
-		if (commonFunc.certInfo.roleType == "ROLE_ADMIN" || commonFunc.certInfo.deptCd.substr(0,5) == "B1012") {
+		if (commonFunc.certInfo.roleType == "ROLE_ADMIN") {
 			$("#btn_immediate_call").css("display", "inline-block");
 			$("#btn_schedule_open").css("display", "inline-block");   
         }
@@ -182,7 +182,7 @@
 		
 		if (mySheet.ColSaveName(Col) == "requestNm") {
 			var requestNo = mySheet.GetCellValue(Row, "requestNo");
-			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalBot/PersonalBccRunResult.do" + "?pMenuId=" + menuId + "&pRequestNo=" + requestNo);
+			libraryFunc.createModal(null, null, null, 1100, 560, "결과보기", "/ModalBot/EngineerConstructionRunResult.do" + "?pMenuId=" + menuId + "&pRequestNo=" + requestNo);
    		}
 	}
    	
@@ -217,5 +217,6 @@
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {
 		libraryFunc.createModal(null, null, null, 1100, 560, "예약등록", "/ModalBot/Schedule.do?pMenuId=" + menuId);
-	});	
+	});
+	
 </script>

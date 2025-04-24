@@ -219,7 +219,7 @@
 				
 				arrData.push(jsonData);										
 			}
-			
+
 			saveMenuManage(arrData);			
         }
 	}

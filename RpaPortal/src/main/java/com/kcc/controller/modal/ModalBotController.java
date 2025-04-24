@@ -567,4 +567,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/AutoCADCancelRunResult";
 	}
+	
+	@GetMapping("/EngineerConstructionRunResult.do")
+	public String EngineerConstructionRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/EngineerConstructionRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/EngineerConstructionRunResult";
+	}
 }

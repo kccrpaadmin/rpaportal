@@ -137,7 +137,7 @@
 	
 	// 버튼 활성화, 비활성화 함수
 	function enableButtonControl() {
-		if (commonFunc.certInfo.roleType == "ROLE_ADMIN") {
+		if (commonFunc.certInfo.roleType == "ROLE_ADMIN" || commonFunc.certInfo.deptCd.substr(0,5) == "B1012") {
 			$("#btn_immediate_call").css("display", "inline-block");
 			$("#btn_schedule_open").css("display", "inline-block");   
         }
