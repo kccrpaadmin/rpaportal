@@ -1062,4 +1062,57 @@ public class BotController extends BaseController {
 		
 		return "Bot/EngineerConstructionManage";
 	}
+	
+	@GetMapping("/PersonalBccManage.do")
+	public String PersonalBccManage(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/EngineerManage.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		model.addAttribute("orgTypeComboBox", commonUtilService.getCodeProcedureSelectBox("org_type_cd", "PRA_Bot_listOrgTypeCombo", "", true, "전체", "전체"));
+		
+		return "Bot/PersonalBccManage";
+	}
+	
+	@GetMapping("/StampTaxSlipDataRun.do")
+	public String StampTaxSlipDataRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/StamptaxSlipDataRun.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		
+		return "Bot/StampTaxSlipDataRun";
+	}
 }

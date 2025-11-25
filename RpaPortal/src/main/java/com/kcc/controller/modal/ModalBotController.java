@@ -577,4 +577,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/EngineerConstructionRunResult";
 	}
+	
+	@GetMapping("/StampTaxSlipDataRunResult.do")
+	public String StampTaxSlipDataRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/StampTaxSlipDataRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/StampTaxSlipDataRunResult";
+	}
 }

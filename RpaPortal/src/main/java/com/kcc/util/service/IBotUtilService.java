@@ -9,4 +9,6 @@ import com.kcc.biz.model.BotRunVO;
 
 public interface IBotUtilService {
 	BotRequestVO requestBot(BotRequestVO vo);
+
+	BotRequestVO requestBotPa(BotRequestVO vo);
 }

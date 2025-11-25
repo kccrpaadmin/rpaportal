@@ -1,0 +1,10 @@
+powerautomate:
+  tenant-id: "105247df-8874-4c38-be0a-994997788183"
+  client-id: "e69b3c72-5586-448d-bf96-686d6a994d8f"
+  client-secret: "82dfb5fb-4d75-41b4-971a-dbbfdac04286" # 시크릿은 환경변수로 주입 권장
+  audience: "api://e69b3c72-5586-448d-bf96-686d6a994d8f"
+  flow-url: "https://default105247df88744c38be0a9949977881.83.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/aa15e7f5c2d04f9595a359a8e2751566/triggers/manual/paths/invoke?api-version=1"
+
+http:
+  connectTimeoutMs: 5000
+  readTimeoutMs: 15000

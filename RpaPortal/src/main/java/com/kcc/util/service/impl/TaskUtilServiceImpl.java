@@ -8,7 +8,9 @@ import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,10 +57,15 @@ import com.kcc.util.service.ICrawlUtilService;
 import com.kcc.util.service.ITaskUtilService;
 import com.kcc.words.ConstWord;
 
+import lombok.RequiredArgsConstructor;
+
+import com.kcc.config.PowerAutomateClient;
 @Component("taskUtilService")
+@RequiredArgsConstructor
 public class TaskUtilServiceImpl implements ITaskUtilService {
 	private static final Logger logger = LoggerFactory.getLogger(TaskUtilServiceImpl.class);
-	 
+	private final com.kcc.config.PowerAutomateClient client;
+	
 	@Resource(name="commonUtilService")
 	ICommonUtilService commonUtilService;
 	
@@ -150,7 +157,25 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 					
 					// 봇 수행 (진행중인 경우 수행 안함)
 					BotRequestVO outBotRequestVO = new BotRequestVO();
-					outBotRequestVO = botUtilService.requestBot(inBotRequestVO);
+					if("RA004007".equals(botScheduleVO.getMenuId().toString()) || "RA004022".equals(botScheduleVO.getMenuId().toString()) || "RA004025".equals(botScheduleVO.getMenuId().toString()) || "RA004029".equals(botScheduleVO.getMenuId().toString()))
+					{
+						outBotRequestVO = botUtilService.requestBotPa(inBotRequestVO);
+						
+						Map<String, Object> payload = new LinkedHashMap<>();
+						payload.put("MenuId", botScheduleVO.getMenuId());
+						payload.put("RequestNo", outBotRequestVO.getRequestNo());
+						
+						System.out.println("MenuId = " + botScheduleVO.getMenuId());
+						System.out.println("requestno = " + outBotRequestVO.getRequestNo());
+						System.out.println("PowerAutomate Schedule 실행");
+					    //client.invokeFlow(payload);
+					    
+					    outBotRequestVO.setStatusCd("RA005004");
+						outBotRequestVO.setErrorMsg("Success");
+					} else
+					{
+						outBotRequestVO = botUtilService.requestBot(inBotRequestVO);
+					}
 					
 					// 오류 발생시
 					if ("Fail".equals(outBotRequestVO.getRequestStatus())) {

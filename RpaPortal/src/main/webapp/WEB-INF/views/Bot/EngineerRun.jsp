@@ -120,7 +120,7 @@
 	// 봇 실행
 	function runBot(pMenuId, pEmpNo, pUserId) {
 		$.ajax({
-			url: "/AjaxBot/RunBot.do",
+			url: "/AjaxBot/RunPaBot.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo, "userId": pUserId }),

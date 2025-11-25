@@ -16,6 +16,9 @@
 	<context:component-scan base-package="com.kcc.biz.*" />
 	<context:component-scan base-package="com.kcc.util.*" />
 	
+	<!-- 자바 @Configuration 등록 -->
+  	<bean class="com.kcc.config.AppConfig"/>
+  	<bean class="com.kcc.config.OAuth2ClientConfig"/>
 	<!-- Task 어노테이션 변환 설정 - 스케쥴 사용시 -->
 	<task:annotation-driven/>
 	
@@ -33,7 +36,14 @@
 	<!-- 프로퍼티 정의 파일 등록 -->
 	<bean id="placeholderConfigurer" class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
 		<constructor-arg ref="stringEncryptor" />
-		<property name="locations" value="classpath:spring/properties/jdbc-#{systemProperties['spring.profiles.active']}.properties" />
+		<!-- <property name="locations" value="classpath:spring/properties/jdbc-#{systemProperties['spring.profiles.active']}.properties" /> -->
+		<property name="locations">
+		    <list>
+		      <value>classpath:spring/properties/jdbc-#{systemProperties['spring.profiles.active']}.properties</value>
+		      <value>classpath:spring/properties/pa-#{systemProperties['spring.profiles.active']}.properties</value>
+		    </list>
+	    </property>
+	    <property name="ignoreUnresolvablePlaceholders" value="true"/>
 	</bean>
 	
 	<!-- 코드정보 xml 파일 등록 -->

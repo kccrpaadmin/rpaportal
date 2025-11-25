@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -66,6 +67,7 @@ import com.kcc.biz.model.BotContractElecStampTaxVO;
 import com.kcc.biz.model.BotSensoryTemperatureVO;
 import com.kcc.biz.model.BotCorpCardSendVO;
 import com.kcc.biz.model.BotEngineerConstructionVO;
+import com.kcc.biz.model.BotStampTaxSlipDataVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -87,6 +89,7 @@ import com.kcc.biz.service.IBotEaisService;
 import com.kcc.biz.service.IBotInsuranceService;
 import com.kcc.biz.service.IBotDelayedPaymentService;
 import com.kcc.biz.service.IBotXmlService;
+import com.kcc.config.PowerAutomateClient;
 import com.kcc.biz.service.IBotSpecialConditionService;
 import com.kcc.biz.service.IBotCorporateNoticeService;
 import com.kcc.biz.service.IBotCompanyRestrictionService;
@@ -94,18 +97,27 @@ import com.kcc.biz.service.IBotContractElecStampTaxService;
 import com.kcc.biz.service.IBotSensoryTemperatureService;
 import com.kcc.biz.service.IBotCorpCardSendService;
 import com.kcc.biz.service.IBotEngineerConstructionService;
-
+import com.kcc.biz.service.IBotContractElecStampTaxService;
+import com.kcc.biz.service.IBotStampTaxSlipDataService;
 
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
 import com.kcc.util.service.IFileUploadUtilService;
 
+import lombok.RequiredArgsConstructor;
+
 @RequestMapping("/AjaxBot")
 @Controller
+@ResponseBody
+@RequiredArgsConstructor
 public class AjaxBotController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(AjaxBotController.class);
 
+	private final com.kcc.config.PowerAutomateClient client;
+	
+	
+	
 	@Resource(name="fileUploadUtilService")
 	private IFileUploadUtilService fileUploadUtilService;
 	
@@ -193,6 +205,9 @@ public class AjaxBotController extends BaseController {
 	@Resource(name="botEngineerConstructionService")
 	private IBotEngineerConstructionService botEngineerConstructionService;
 	
+	@Resource(name="botStampTaxSlipDataService")
+	private IBotStampTaxSlipDataService botStampTaxSlipDataService;
+	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
 		logger.info("/AjaxBot/RunBot.do");
@@ -200,6 +215,33 @@ public class AjaxBotController extends BaseController {
 		// 봇 수행 (진행중인 경우 수행 안함)
 		BotRequestVO outBotRequestVO = new BotRequestVO();
 		outBotRequestVO = botUtilService.requestBot(vo);
+		
+		// 오류 발생시
+		if ("Fail".equals(outBotRequestVO.getRequestStatus())) {
+			outBotRequestVO.setStatusCd("RA005003");
+			outBotRequestVO.setErrorMsg("봇 요청시 오류가 발생 하였습니다.");
+			
+			try {
+				// 봇 요청 정보 변경
+				botRequestService.updateBotRequest(outBotRequestVO);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return outBotRequestVO;
+	}
+	
+	@PostMapping("/RunPaBot.do")
+	public @ResponseBody BotRequestVO RunPaBot(@RequestBody BotRequestVO vo) {
+		logger.info("/AjaxBot/RunPaBot.do");
+
+		Map<String,Object> payload = Collections.singletonMap("MenuID", vo.getMenuId());
+		
+		// 봇 수행 (진행중인 경우 수행 안함)
+		BotRequestVO outBotRequestVO = new BotRequestVO();
+		outBotRequestVO = botUtilService.requestBotPa(vo);
 		
 		// 오류 발생시
 		if ("Fail".equals(outBotRequestVO.getRequestStatus())) {
@@ -1649,6 +1691,26 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListBotEngineerConstructionResult);
+		
+		return map;
+	}
+	
+	// 인지세 자동납부 결과 팝업
+	@PostMapping("/ListStampTaxSlipDataResult.do")
+	public @ResponseBody Map<String, Object> ListStampTaxSlipDataResult(@RequestBody BotStampTaxSlipDataVO vo) {
+		logger.info("/AjaxBot/ListStampTaxSlipDataResult.do");
+
+		List<BotStampTaxSlipDataVO> outListBotStampTaxSlipDataVO = new ArrayList<BotStampTaxSlipDataVO>();
+		
+		try {
+			outListBotStampTaxSlipDataVO = botStampTaxSlipDataService.listStampTaxSlipDataResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotStampTaxSlipDataVO);
 		
 		return map;
 	}

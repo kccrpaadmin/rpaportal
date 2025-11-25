@@ -8,7 +8,7 @@ package com.kcc.biz.model;
 // el(jstl)에서는 무조건 첫 글자를 소문자로 써야하는 것으로 결론 지었다.
 // @RequestBody VO vo 매핑시에도 첫 글자 소문자와 매핑 된다. (input name="userId") 
 
-public class BotContractElecStampTaxVO {
+public class BotStampTaxSlipDataVO {
 	private String RequestNo;
 	private String ContractNo;
 	private String ChgSeq;
@@ -17,7 +17,6 @@ public class BotContractElecStampTaxVO {
 	private String BizNo;
 	private String VendorNm;
 	private String StampTaxAmt;
-	private String CdNm;
 	
 	public String getRequestNo() {
 		return RequestNo;
@@ -64,13 +63,7 @@ public class BotContractElecStampTaxVO {
 	public String getStampTaxAmt() {
 		return StampTaxAmt;
 	}
-	public void setStampTaxAmt(String stampTaxAmt) {
-		StampTaxAmt = stampTaxAmt;
-	}
-	public String getCdNm() {
-		return CdNm;
-	}
-	public void setCdNm(String cdNm) {
-		CdNm = cdNm;
+	public void setStampTaxAmt(String kCCStampTaxAmt) {
+		StampTaxAmt = kCCStampTaxAmt;
 	}
 }

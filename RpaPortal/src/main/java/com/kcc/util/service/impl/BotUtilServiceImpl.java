@@ -15,7 +15,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.cert.X509Certificate;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,9 +72,14 @@ import com.kcc.util.service.IBotUtilService;
 import com.kcc.util.service.ICommonUtilService;
 import com.kcc.words.ConstWord;
 
+import lombok.RequiredArgsConstructor;
+
 @Component("botUtilService")
+@RequiredArgsConstructor
 public class BotUtilServiceImpl implements IBotUtilService {
 	private static final Logger logger = LoggerFactory.getLogger(BotUtilServiceImpl.class);
+	
+	private final com.kcc.config.PowerAutomateClient client;
 	
 	@Resource(name="commonUtilService")
 	ICommonUtilService commonUtilService;
@@ -169,6 +176,79 @@ public class BotUtilServiceImpl implements IBotUtilService {
 				if ("Fail".equals(botRunVO.getRequestStatus())) {
 					throw new Exception();
 				}
+				
+				outBotRequestVO.setRequestStatus("Success");
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				outBotRequestVO.setRequestStatus("Fail");
+				return outBotRequestVO;
+			}
+		}
+		
+		return outBotRequestVO;
+	}
+	
+	// 봇 요청 공통 메소드
+	public BotRequestVO requestBotPa(BotRequestVO vo) {
+		// RequestVO 출력
+		BotRequestVO outBotRequestVO = new BotRequestVO();
+		outBotRequestVO.setRequestStatus("Fail");
+		
+		try {
+			// 웹크롤링 메뉴별 진행여부 조회
+			outBotRequestVO = botRequestService.getBotRequestStatus(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			outBotRequestVO.setRequestStatus("Fail");
+			return outBotRequestVO;
+		}
+		
+		// 진행여부를 판단 (진행중인 건이 있는 경우) - 정지
+		if ("Progress".equals(outBotRequestVO.getRequestStatus())) {
+			// 진행중으로 변경 (Progress)
+			return outBotRequestVO;
+		}
+		// 진행여부를 판단 (진행중인 건이 없는 경우) - 시작
+		else {
+			try {
+				// 봇 요청 정보 생성
+				botRequestService.createBotRequest(vo);
+				
+				// NewRequestNo 삽입
+				vo.setRequestNo(vo.getNewRequestNo());
+				outBotRequestVO.setRequestNo(vo.getNewRequestNo());
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+				outBotRequestVO.setRequestStatus("Fail");
+				return outBotRequestVO;
+			}
+			
+			try {
+				// 봇 요청시 메뉴별 저장
+				createByMenuData(vo);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+				outBotRequestVO.setRequestStatus("Fail");
+				return outBotRequestVO;
+			}
+			
+			try {
+				// 봇 수행 모델
+				BotRunVO botRunVO = new BotRunVO();   
+				botRunVO.setMenuId(vo.getMenuId());
+				botRunVO.setEmpNo(vo.getEmpNo());
+				botRunVO.setUserId(vo.getUserId());
+				botRunVO.setRequestNo(vo.getRequestNo());
+				
+				Map<String, Object> payload = new LinkedHashMap<>();
+				payload.put("MenuId", vo.getMenuId());
+				payload.put("RequestNo", vo.getRequestNo());
+				
+				client.invokeFlow(payload);
 				
 				outBotRequestVO.setRequestStatus("Success");
 			}

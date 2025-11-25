@@ -112,6 +112,8 @@
 		<typeAlias alias="botCorpCardSendVO" type="com.kcc.biz.model.BotCorpCardSendVO" />
 		<!-- BOT 기술인협회 설계시공 수집업무 -->
 		<typeAlias alias="botEngineerConstructionVO" type="com.kcc.biz.model.BotEngineerConstructionVO" />
+		<!-- BOT 기술인협회 설계시공 수집업무 -->
+		<typeAlias alias="botStampTaxSlipDataVO" type="com.kcc.biz.model.BotStampTaxSlipDataVO" />
 	</typeAliases>
 	
 </configuration>
