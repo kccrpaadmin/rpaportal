@@ -24,7 +24,7 @@ public class AppConfig {
 	  SimpleClientHttpRequestFactory f = new SimpleClientHttpRequestFactory();
 	  f.setConnectTimeout(connectTimeout);
 	  f.setReadTimeout(readTimeout);
-
+//test
 	  RestTemplate rt = new RestTemplate(f);
 
 	  // ★ 요청 로그 (Authorization 헤더 포함 여부 확인)
