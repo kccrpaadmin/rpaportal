@@ -112,8 +112,10 @@
 		<typeAlias alias="botCorpCardSendVO" type="com.kcc.biz.model.BotCorpCardSendVO" />
 		<!-- BOT 기술인협회 설계시공 수집업무 -->
 		<typeAlias alias="botEngineerConstructionVO" type="com.kcc.biz.model.BotEngineerConstructionVO" />
-		<!-- BOT 기술인협회 설계시공 수집업무 -->
+		<!-- BOT 인지세 납부확인증 수집업무 -->
 		<typeAlias alias="botStampTaxSlipDataVO" type="com.kcc.biz.model.BotStampTaxSlipDataVO" />
+		<!-- BOT 기술인 신고내용 수집 -->
+		<typeAlias alias="botEngineerRegisterVO" type="com.kcc.biz.model.BotEngineerRegisterVO" />
 	</typeAliases>
 	
 </configuration>

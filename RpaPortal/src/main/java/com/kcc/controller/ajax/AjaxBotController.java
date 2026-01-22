@@ -68,6 +68,7 @@ import com.kcc.biz.model.BotSensoryTemperatureVO;
 import com.kcc.biz.model.BotCorpCardSendVO;
 import com.kcc.biz.model.BotEngineerConstructionVO;
 import com.kcc.biz.model.BotStampTaxSlipDataVO;
+import com.kcc.biz.model.BotEngineerRegisterVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -99,6 +100,7 @@ import com.kcc.biz.service.IBotCorpCardSendService;
 import com.kcc.biz.service.IBotEngineerConstructionService;
 import com.kcc.biz.service.IBotContractElecStampTaxService;
 import com.kcc.biz.service.IBotStampTaxSlipDataService;
+import com.kcc.biz.service.IBotEngineerRegisterService;
 
 
 import com.kcc.controller.base.BaseController;
@@ -207,6 +209,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botStampTaxSlipDataService")
 	private IBotStampTaxSlipDataService botStampTaxSlipDataService;
+	
+	@Resource(name="botEngineerRegisterService")
+	private IBotEngineerRegisterService botEngineerRegisterService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1714,4 +1719,24 @@ public class AjaxBotController extends BaseController {
 		
 		return map;
 	}
+	
+	// 기술인 신고내용 수집
+		@PostMapping("/ListEngineerRegisterResult.do")
+		public @ResponseBody Map<String, Object> ListEngineerRegisterResult(@RequestBody BotEngineerRegisterVO vo) {
+			logger.info("/AjaxBot/ListEngineerRegisterResult.do");
+
+			List<BotEngineerRegisterVO> outListBotEngineerRegisterVO = new ArrayList<BotEngineerRegisterVO>();
+			
+			try {
+				outListBotEngineerRegisterVO = botEngineerRegisterService.listEngineerRegisterResult(vo);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			Map map = new HashMap<String, Object>();
+			map.put("data", outListBotEngineerRegisterVO);
+			
+			return map;
+		}
 }
