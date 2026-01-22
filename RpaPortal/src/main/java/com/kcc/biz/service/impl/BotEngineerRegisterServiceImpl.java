@@ -21,7 +21,7 @@ public class BotEngineerRegisterServiceImpl implements IBotEngineerRegisterServi
 	@Resource(name="botEngineerRegisterRepository")
 	private BotEngineerRegisterRepository botEngineerRegisterRepository;
 	
-	public List<BotEngineerRegisterVO> listEngineerRegisterResult(BotEngineerRegisterVO vo) throws Exception {
-		return botEngineerRegisterRepository.listEngineerRegisterResult(vo);
+	public List<BotEngineerRegisterVO> listBotEngineerRegisterResult(BotEngineerRegisterVO vo) throws Exception {
+		return botEngineerRegisterRepository.listBotEngineerRegisterResult(vo);
 	}
 }

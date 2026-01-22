@@ -23,40 +23,40 @@ public class BotEngineerRegisterVO {
 	public void setRequestNo(String requestNo) {
 		RequestNo = requestNo;
 	}
-	public String getContractNo() {
+	public String getSeq() {
 		return Seq;
 	}
-	public void setContractNo(String seq) {
+	public void setSeq(String seq) {
 		Seq = seq;
 	}
-	public String getChgSeq() {
+	public String getRegisterDate() {
 		return RegisterDate;
 	}
-	public void setChgSeq(String registerDate) {
+	public void setRegisterDate(String registerDate) {
 		RegisterDate = registerDate;
 	}
-	public String getContractNm() {
+	public String getUserNm() {
 		return UserNm;
 	}
-	public void setContractNm(String userNm) {
+	public void setUserNm(String userNm) {
 		UserNm = userNm;
 	}
-	public String getVendorCd() {
+	public String getRegisterType() {
 		return RegisterType;
 	}
-	public void setVendorCd(String registerType) {
+	public void setRegisterType(String registerType) {
 		RegisterType = registerType;
 	}
-	public String getBizNo() {
+	public String getSiteNm() {
 		return SiteNm;
 	}
-	public void setBizNo(String siteNm) {
+	public void setSiteNm(String siteNm) {
 		SiteNm = siteNm;
 	}
-	public String getVendorNm() {
+	public String getEtc() {
 		return Etc;
 	}
-	public void setVendorNm(String etc) {
+	public void setEtc(String etc) {
 		Etc = etc;
 	}
 

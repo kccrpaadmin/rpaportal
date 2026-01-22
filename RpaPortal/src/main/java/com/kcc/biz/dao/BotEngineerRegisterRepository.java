@@ -9,5 +9,5 @@ import com.kcc.biz.model.BotStampTaxSlipDataVO;
 
 @Repository("botEngineerRegisterRepository")
 public interface BotEngineerRegisterRepository {
-	List<BotEngineerRegisterVO> listEngineerRegisterResult(BotEngineerRegisterVO vo) throws Exception;
+	List<BotEngineerRegisterVO> listBotEngineerRegisterResult(BotEngineerRegisterVO vo) throws Exception;
 }

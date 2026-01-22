@@ -3,7 +3,7 @@
 
 <mapper namespace="com.kcc.biz.dao.BotEngineerRegisterRepository">
 	
-	<select id="listEngineerRegister" statementType="CALLABLE" parameterType="botEngineerRegisterVO" resultType="botEngineerRegisterVO">
+	<select id="listBotEngineerRegisterResult" statementType="CALLABLE" parameterType="botEngineerRegisterVO" resultType="botEngineerRegisterVO">
 		<![CDATA[
 			{ 
 	            call PRA_Bot_listBotEngineerRegisterResult

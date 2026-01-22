@@ -1721,14 +1721,14 @@ public class AjaxBotController extends BaseController {
 	}
 	
 	// 기술인 신고내용 수집
-		@PostMapping("/ListEngineerRegisterResult.do")
-		public @ResponseBody Map<String, Object> ListEngineerRegisterResult(@RequestBody BotEngineerRegisterVO vo) {
-			logger.info("/AjaxBot/ListEngineerRegisterResult.do");
+		@PostMapping("/ListBotEngineerRegisterResult.do")
+		public @ResponseBody Map<String, Object> ListBotEngineerRegisterResult(@RequestBody BotEngineerRegisterVO vo) {
+			logger.info("/AjaxBot/ListBotEngineerRegisterResult.do");
 
 			List<BotEngineerRegisterVO> outListBotEngineerRegisterVO = new ArrayList<BotEngineerRegisterVO>();
 			
 			try {
-				outListBotEngineerRegisterVO = botEngineerRegisterService.listEngineerRegisterResult(vo);
+				outListBotEngineerRegisterVO = botEngineerRegisterService.listBotEngineerRegisterResult(vo);
 			} 
 			catch (Exception e) {
 				e.printStackTrace();

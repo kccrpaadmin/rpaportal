@@ -18,13 +18,13 @@
 	
 	// 페이지 로드 
 	$(document).ready(function (e) {
-		ListEngineerRegisterResult(requestNo);
+		ListBotEngineerRegisterResult(requestNo);
 	});
 	
 	//  인지세 납부확인증 수집대상 결과 조회
-	function ListEngineerRegisterResult(pRequestNo) {
+	function ListBotEngineerRegisterResult(pRequestNo) {
 		$.ajax({
-			url: "/AjaxBot/ListEngineerRegisterResult.do",
+			url: "/AjaxBot/ListBotEngineerRegisterResult.do",
 			type: "POST",
 			contentType : "application/json; charset=utf-8",
 			data : JSON.stringify({ "requestNo": pRequestNo }),
@@ -52,12 +52,12 @@
         initdata.HeaderMode = { Sort: 1, ColMove: 1, ColResize: 1, HeaderCheck: 0 };
         initdata.Cols = [
             //{ Header: "요청번호", Type: "Text", Width: 100, SaveName: "requestNo", hidden:true},
-            { Header: "연번", Type: "Text", Width: 50, SaveName: "Seq", Align: "Center" },
-            { Header: "신고일자", Type: "Text", Width: 100, SaveName: "RegisterDate", Align: "Center" },
-            { Header: "성명", Type: "Text", Width: 80, SaveName: "UserNm", Align: "Center" },
-            { Header: "신고유형", Type: "Text", Width: 100, SaveName: "RegisterType", Align: "Center" },
-            { Header: "현장명", Type: "Text", Width: 400, SaveName: "SiteNm", Align: "Center" },
-            { Header: "비고", Type: "Text", Width: 100, SaveName: "Etc", Align: "Left" },
+            { Header: "연번", Type: "Text", Width: 50, SaveName: "seq", Align: "Center" },
+            { Header: "신고일자", Type: "Text", Width: 100, SaveName: "registerDate", Align: "Center" },
+            { Header: "성명", Type: "Text", Width: 80, SaveName: "userNm", Align: "Center" },
+            { Header: "신고유형", Type: "Text", Width: 100, SaveName: "registerType", Align: "Center" },
+            { Header: "현장명", Type: "Text", Width: 400, SaveName: "siteNm", Align: "Left" },
+            { Header: "비고", Type: "Text", Width: 100, SaveName: "etc", Align: "Left" },
         ];
 
         IBS_InitSheet(mySheet, initdata);
