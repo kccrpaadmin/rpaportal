@@ -6,7 +6,7 @@
 	<select id="listEngineerRegister" statementType="CALLABLE" parameterType="botEngineerRegisterVO" resultType="botEngineerRegisterVO">
 		<![CDATA[
 			{ 
-	            call PRA_Bot_listEngineerRegisterResult
+	            call PRA_Bot_listBotEngineerRegisterResult
 	            (
 	               #{RequestNo}
 	            )
