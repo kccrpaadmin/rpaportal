@@ -157,7 +157,7 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 					
 					// 봇 수행 (진행중인 경우 수행 안함)
 					BotRequestVO outBotRequestVO = new BotRequestVO();
-					if("RA004007".equals(botScheduleVO.getMenuId().toString()) || "RA004022".equals(botScheduleVO.getMenuId().toString()) || "RA004025".equals(botScheduleVO.getMenuId().toString()) || "RA004029".equals(botScheduleVO.getMenuId().toString()))
+					if("RA004007".equals(botScheduleVO.getMenuId().toString()) || "RA004022".equals(botScheduleVO.getMenuId().toString()) || "RA004025".equals(botScheduleVO.getMenuId().toString()) || "RA004029".equals(botScheduleVO.getMenuId().toString()) || "RA004030".equals(botScheduleVO.getMenuId().toString()) )
 					{
 						outBotRequestVO = botUtilService.requestBotPa(inBotRequestVO);
 						
