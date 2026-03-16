@@ -69,6 +69,7 @@ import com.kcc.biz.model.BotCorpCardSendVO;
 import com.kcc.biz.model.BotEngineerConstructionVO;
 import com.kcc.biz.model.BotStampTaxSlipDataVO;
 import com.kcc.biz.model.BotEngineerRegisterVO;
+import com.kcc.biz.model.BotEcardVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -101,6 +102,7 @@ import com.kcc.biz.service.IBotEngineerConstructionService;
 import com.kcc.biz.service.IBotContractElecStampTaxService;
 import com.kcc.biz.service.IBotStampTaxSlipDataService;
 import com.kcc.biz.service.IBotEngineerRegisterService;
+import com.kcc.biz.service.IBotEcardService;
 
 
 import com.kcc.controller.base.BaseController;
@@ -212,6 +214,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botEngineerRegisterService")
 	private IBotEngineerRegisterService botEngineerRegisterService;
+	
+	@Resource(name="botEcardService")
+	private IBotEcardService botEcardService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1721,22 +1726,41 @@ public class AjaxBotController extends BaseController {
 	}
 	
 	// 기술인 신고내용 수집
-		@PostMapping("/ListBotEngineerRegisterResult.do")
-		public @ResponseBody Map<String, Object> ListBotEngineerRegisterResult(@RequestBody BotEngineerRegisterVO vo) {
-			logger.info("/AjaxBot/ListBotEngineerRegisterResult.do");
+	@PostMapping("/ListBotEngineerRegisterResult.do")
+	public @ResponseBody Map<String, Object> ListBotEngineerRegisterResult(@RequestBody BotEngineerRegisterVO vo) {
+		logger.info("/AjaxBot/ListBotEngineerRegisterResult.do");
 
-			List<BotEngineerRegisterVO> outListBotEngineerRegisterVO = new ArrayList<BotEngineerRegisterVO>();
-			
-			try {
-				outListBotEngineerRegisterVO = botEngineerRegisterService.listBotEngineerRegisterResult(vo);
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			Map map = new HashMap<String, Object>();
-			map.put("data", outListBotEngineerRegisterVO);
-			
-			return map;
+		List<BotEngineerRegisterVO> outListBotEngineerRegisterVO = new ArrayList<BotEngineerRegisterVO>();
+		
+		try {
+			outListBotEngineerRegisterVO = botEngineerRegisterService.listBotEngineerRegisterResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
 		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEngineerRegisterVO);
+		
+		return map;
+	}
+	
+	// 매입세 안분 검토 업무
+	@PostMapping("/ListEcardTargetDate.do")
+	public @ResponseBody Map<String, Object> ListEcardTargetDate(@RequestBody BotEcardVO vo) {
+		logger.info("/AjaxBot/ListEcardTargetDate.do");
+		
+		List<BotEcardVO> outListBotEcardTargetDateVO = new ArrayList<BotEcardVO>();
+		try {
+			outListBotEcardTargetDateVO = botEcardService.listBotEcardTargetDate(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotEcardTargetDateVO);
+		
+		return map;
+	}
 }

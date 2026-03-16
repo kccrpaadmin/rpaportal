@@ -597,4 +597,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/EngineerRegisterRunResult";
 	}
+	
+	@GetMapping("/EcardRunResult.do")
+	public String EcardRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/EcardRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/EcardRunResult";
+	}
 }

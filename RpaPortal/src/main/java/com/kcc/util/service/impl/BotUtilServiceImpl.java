@@ -63,6 +63,7 @@ import com.kcc.auth.UseCustomUserDetails;
 import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotRunVO;
 import com.kcc.biz.model.BotCostDivideVO;
+import com.kcc.biz.model.BotEcardVO;
 import com.kcc.biz.model.CrawlRequestVO;
 import com.kcc.biz.model.CrawlRunVO;
 import com.kcc.biz.service.IBotCostDivideService;
@@ -70,6 +71,7 @@ import com.kcc.biz.service.IBotRequestService;
 import com.kcc.biz.service.ICrawlRequestService;
 import com.kcc.util.service.IBotUtilService;
 import com.kcc.util.service.ICommonUtilService;
+import com.kcc.biz.service.IBotEcardService;
 import com.kcc.words.ConstWord;
 
 import lombok.RequiredArgsConstructor;
@@ -89,6 +91,9 @@ public class BotUtilServiceImpl implements IBotUtilService {
 	
 	@Resource(name="botCostDivideService")
 	private IBotCostDivideService botCostDivideService;
+	
+	@Resource(name="botEcardService")
+	private IBotEcardService botEcardService;
 	
 	// 봇 요청 공통 메소드
 	public BotRequestVO requestBot(BotRequestVO vo) {
@@ -275,6 +280,17 @@ public class BotUtilServiceImpl implements IBotUtilService {
 			inBotCostDivideVO.setRequestNo(vo.getRequestNo());
 			inBotCostDivideVO.setEmpNo(vo.getEmpNo());
 			botCostDivideService.createBotCostDivideTargetDate(inBotCostDivideVO);
+		} else if (vo.getMenuId().equals("RA004031") ) {
+			String[] arr = vo.getBotParam().split("‡");
+			
+			BotEcardVO inBotEcardVO = new BotEcardVO();
+			if(arr[0].toString() != "")
+			{
+				inBotEcardVO.setSiteCd(arr[0]);
+				inBotEcardVO.setRequestNo(vo.getRequestNo());
+				inBotEcardVO.setEmpNo(vo.getEmpNo());
+				botEcardService.createBotEcardRequestDate(inBotEcardVO);
+			}
 		}
 	}
 	

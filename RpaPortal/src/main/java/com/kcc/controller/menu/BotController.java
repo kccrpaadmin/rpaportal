@@ -1141,4 +1141,31 @@ public class BotController extends BaseController {
 		
 		return "Bot/EngineerRegisterRun";
 	}
+	
+	@GetMapping("/EcardRun.do")
+	public String EcardRun(String pMenuId, String pEmpNo, String pUserId, Model model) {
+		logger.info("/Bot/EcardRun.do");
+		
+		// MenuVO 입력
+		MenuVO inMenuVO = new MenuVO();
+		inMenuVO.setMenuId(pMenuId);
+		inMenuVO.setEmpNo(pEmpNo);
+		
+		// MenuVO 출력
+		MenuVO outMenuVO = new MenuVO();
+		
+		try {
+			// 메뉴 정보 상세 조회
+			outMenuVO = menuService.getBotMenu(inMenuVO);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 모델 정의
+		model.addAttribute("outMenuVO", outMenuVO);
+		model.addAttribute("siteCdComboBox", commonUtilService.getCodeProcedureSelectBox("site_cd", "PRA_Bot_listBotCostDivideTargetSiteCdCombo", pUserId, true, "", ""));
+		
+		return "Bot/EcardRun";
+	}
 }

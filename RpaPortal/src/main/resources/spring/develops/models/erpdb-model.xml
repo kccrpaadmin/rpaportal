@@ -116,6 +116,8 @@
 		<typeAlias alias="botStampTaxSlipDataVO" type="com.kcc.biz.model.BotStampTaxSlipDataVO" />
 		<!-- BOT 기술인 신고내용 수집 -->
 		<typeAlias alias="botEngineerRegisterVO" type="com.kcc.biz.model.BotEngineerRegisterVO" />
+		<!-- BOT 퇴직공제부금 과오납 방지 (전자카드출입 시스템) 수집 -->
+		<typeAlias alias="botEcardVO" type="com.kcc.biz.model.BotEcardVO" />
 	</typeAliases>
 	
 </configuration>
