@@ -42,6 +42,7 @@ import com.kcc.biz.model.BotRequestVO;
 import com.kcc.biz.model.BotSalesEseroVO;
 import com.kcc.biz.model.BotScheduleVO;
 import com.kcc.biz.model.CrawlG2bVO;
+import com.kcc.biz.model.CrawlSystemCheckVO;
 import com.kcc.biz.model.FileUploadVO;
 import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.model.BotMoneySendVO;
@@ -70,6 +71,7 @@ import com.kcc.biz.model.BotEngineerConstructionVO;
 import com.kcc.biz.model.BotStampTaxSlipDataVO;
 import com.kcc.biz.model.BotEngineerRegisterVO;
 import com.kcc.biz.model.BotEcardVO;
+import com.kcc.biz.model.BotSystemCheckVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -103,7 +105,7 @@ import com.kcc.biz.service.IBotContractElecStampTaxService;
 import com.kcc.biz.service.IBotStampTaxSlipDataService;
 import com.kcc.biz.service.IBotEngineerRegisterService;
 import com.kcc.biz.service.IBotEcardService;
-
+import com.kcc.biz.service.IBotSystemCheckService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -217,6 +219,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botEcardService")
 	private IBotEcardService botEcardService;
+	
+	@Resource(name="botSystemChcekService")
+	private IBotSystemCheckService botSystemChcekService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1760,6 +1765,25 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListBotEcardTargetDateVO);
+		
+		return map;
+	}
+	
+	// 시스템 체크 검토 업무
+	@PostMapping("/ListSystemCheckList.do")
+	public @ResponseBody Map<String, Object> ListSystemCheckList(@RequestBody BotSystemCheckVO vo) {
+		logger.info("/AjaxBot/ListSystemCheckList.do");
+		
+		List<BotSystemCheckVO> outListBotSystemCheckVO = new ArrayList<BotSystemCheckVO>();
+		try {
+			outListBotSystemCheckVO = botSystemChcekService.listBotSystemCheckResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotSystemCheckVO);
 		
 		return map;
 	}

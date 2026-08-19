@@ -607,4 +607,14 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/EcardRunResult";
 	}
+	
+	@GetMapping("/SystemCheckRunResult.do")
+	public String SystemCheckRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/SystemCheckRunResult.do");
+		
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/SystemCheckRunResult";
+	}
 }

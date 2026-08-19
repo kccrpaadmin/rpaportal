@@ -118,7 +118,8 @@
 		<typeAlias alias="botEngineerRegisterVO" type="com.kcc.biz.model.BotEngineerRegisterVO" />
 		<!-- BOT 퇴직공제부금 과오납 방지 (전자카드출입 시스템) 수집 -->
 		<typeAlias alias="botEcardVO" type="com.kcc.biz.model.BotEcardVO" />
-		
+		<!-- BOT 시스템체크 -->
+		<typeAlias alias="botSystemCheckVO" type="com.kcc.biz.model.BotSystemCheckVO" />
 		<!-- 카카오톡 -->
 		<typeAlias alias="KakaoVO" type="com.kcc.biz.model.KakaoVO" />
 	</typeAliases>
