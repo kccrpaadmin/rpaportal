@@ -88,5 +88,20 @@ public class AdminController extends BaseController {
 		return "Admin/AnalysisResult";
 	}
 	
+	@GetMapping("/KakaoManage.do")
+	public String KakaoManage(HttpServletRequest req, HttpServletResponse res, HttpSession session, Principal principal, Locale locale, Model model) {
+		logger.info("/Admin/KakaoManage.do");
+		
+		model.addAttribute("taskTypeComboCd", commonUtilService.getGridCodeCombo("RA004", "Cd"));
+		model.addAttribute("taskTypeComboCdNm", commonUtilService.getGridCodeCombo("RA004", "CdNm"));
+		model.addAttribute("execTypeComboCd", commonUtilService.getGridCodeCombo("RA007", "Cd"));
+		model.addAttribute("execTypeComboCdNm", commonUtilService.getGridCodeCombo("RA007", "CdNm"));
+		model.addAttribute("timeTypeComboCd", commonUtilService.getGridCodeCombo("RA003", "Cd"));
+		model.addAttribute("timeTypeComboCdNm", commonUtilService.getGridCodeCombo("RA003", "CdNm"));
+		model.addAttribute("botMenuTypeComboCd", commonUtilService.getGridCodeCombo("RA023", "Cd"));
+		model.addAttribute("botMenuTypeComboCdNm", commonUtilService.getGridCodeCombo("RA023", "CdNm"));
+		
+		return "Admin/KakaoManage";
+	}
 	
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kcc.biz.dao.KakaoRepository">
+
+	<select id="listKakaoTemplate" statementType="CALLABLE" parameterType="kakaoVO" resultType="kakaoVO">
+		<![CDATA[
+			{ 
+	            call PRA_Kakao_listKakaoTemplate
+			}
+		]]>
+	</select>
+	
+	<update id="saveKakaoManage" statementType="CALLABLE" parameterType="kakaoVO" >
+		<![CDATA[
+			{ 
+	            call PRA_Kakao_saveKakaoManage (
+	                #{Status}
+	               ,#{Kakao_Seq}
+	               ,#{Kakao_Plusid}
+	               ,#{Kakao_Task_Number}
+	               ,#{Kakao_Tempid}
+	               ,#{Kakao_Tempnm}
+	               ,#{Kakao_Tempcn}
+            	)
+			}
+		]]>
+	</update>
+</mapper>

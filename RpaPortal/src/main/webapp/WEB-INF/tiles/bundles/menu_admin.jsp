@@ -20,6 +20,7 @@
 			<a href="/Admin/AuthManage.do" class="btn_lnb_sub_menu">권한관리</a>
 			<a href="/Admin/AnalysisManage.do" class="btn_lnb_sub_menu">방문자통계</a>
 			<a href="/Admin/AnalysisResult.do" class="btn_lnb_sub_menu">누적 절감시간</a>
+			<a href="/Admin/KakaoManage.do" class="btn_lnb_sub_menu">카카오톡</a>
 		</div>		
 	</div>
 </div>
