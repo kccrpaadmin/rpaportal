@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kcc.biz.model.AnalysisVO;
 import com.kcc.biz.model.CodeVO;
+import com.kcc.biz.model.KakaoVO;
 import com.kcc.biz.model.MenuVO;
 import com.kcc.biz.model.StatusVO;
 import com.kcc.biz.service.IAnalysisService;
 import com.kcc.biz.service.ICodeService;
 import com.kcc.biz.service.IMenuService;
+import com.kcc.biz.service.IKakaoService;
 import com.kcc.controller.base.BaseController;
 
 @RequestMapping("/AjaxAdmin")
@@ -34,6 +36,9 @@ public class AjaxAdminController extends BaseController {
 	
 	@Resource(name="menuService")
 	private IMenuService menuService;
+	
+	@Resource(name="kakaoService")
+	private IKakaoService kakaoService;
 	
 	@Resource(name="analysisService")
 	private IAnalysisService analysisService;
@@ -385,4 +390,52 @@ public class AjaxAdminController extends BaseController {
 		
 		return analysisVO;
 	}
+	
+	// 카카오 템플릿 목록 조회
+	@PostMapping("/ListKakaoTemplate.do")
+	public @ResponseBody Map<String, Object> ListKakaoTemplate(@RequestBody KakaoVO vo) {
+		logger.info("/AjaxAdmin/ListKakaoTemplate.do");
+		
+		List<KakaoVO> listKakaoVO = new ArrayList<KakaoVO>();
+		try {
+			listKakaoVO = kakaoService.listKakaoTemplate(vo);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Map map = new HashMap<String, Object>();
+		map.put("data", listKakaoVO);
+		
+		return map;
+	}	
+	
+	// 카카오톡 템플릿 저장
+	@PostMapping("/SaveKakaoManage.do")
+	public @ResponseBody StatusVO SaveKakaoManage(@RequestBody KakaoVO[] vo) {
+		logger.info("/AjaxAdmin/SaveKakaoManage.do");
+		String status = "Success";
+		System.out.println("111111111111111");
+		System.out.println(vo);
+		List<KakaoVO> inListKakaoVO = new ArrayList<KakaoVO>();
+		System.out.println("22222222222222222");
+		// json-simple 사용시 배열 파라미터 사용 가능
+		for (KakaoVO kakaoVO : vo) {
+			System.out.println(kakaoVO.getKakao_Plusid());
+			inListKakaoVO.add(kakaoVO);
+		}
+		
+		try {
+			kakaoService.saveKakaoManage(inListKakaoVO);
+		} 
+		catch (Exception e) {
+			status = "SaveError";
+			e.printStackTrace();
+		}
+		
+		StatusVO statusVO = new StatusVO();
+		statusVO.setStatus(status);
+		
+		return statusVO;
+	}	
 }

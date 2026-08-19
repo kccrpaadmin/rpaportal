@@ -174,6 +174,10 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 						outBotRequestVO.setErrorMsg("Success");
 					} else
 					{
+						if("RA004031".equals(botScheduleVO.getMenuId().toString())){
+							inBotRequestVO.setBotParam("");
+						}
+						
 						outBotRequestVO = botUtilService.requestBot(inBotRequestVO);
 					}
 					
