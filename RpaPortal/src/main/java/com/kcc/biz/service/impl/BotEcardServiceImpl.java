@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kcc.biz.dao.BotEcardRepository;
 import com.kcc.biz.model.BotEcardVO;
+import com.kcc.biz.model.BotLaborVO;
 import com.kcc.biz.service.IBotEcardService;
 
 @Service("botEcardService")
@@ -24,5 +25,9 @@ public class BotEcardServiceImpl implements IBotEcardService {
 	
 	public List<BotEcardVO> listBotEcardTargetDate(BotEcardVO vo) throws Exception {
 		return botEcardRepository.listBotEcardTargetDate(vo);
+	}
+	
+	public List<BotLaborVO> listBotLaborTargetDate(BotLaborVO vo) throws Exception {
+		return botEcardRepository.listBotLaborTargetDate(vo);
 	}
 }

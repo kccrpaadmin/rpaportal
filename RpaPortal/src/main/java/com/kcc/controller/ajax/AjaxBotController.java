@@ -72,6 +72,7 @@ import com.kcc.biz.model.BotStampTaxSlipDataVO;
 import com.kcc.biz.model.BotEngineerRegisterVO;
 import com.kcc.biz.model.BotEcardVO;
 import com.kcc.biz.model.BotSystemCheckVO;
+import com.kcc.biz.model.BotLaborVO;
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -1750,7 +1751,7 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
-	// 매입세 안분 검토 업무
+	// 퇴직공제부금 과오납 리스트
 	@PostMapping("/ListEcardTargetDate.do")
 	public @ResponseBody Map<String, Object> ListEcardTargetDate(@RequestBody BotEcardVO vo) {
 		logger.info("/AjaxBot/ListEcardTargetDate.do");
@@ -1769,7 +1770,7 @@ public class AjaxBotController extends BaseController {
 		return map;
 	}
 	
-	// 시스템 체크 검토 업무
+	// 시스템 체크 업무
 	@PostMapping("/ListSystemCheckList.do")
 	public @ResponseBody Map<String, Object> ListSystemCheckList(@RequestBody BotSystemCheckVO vo) {
 		logger.info("/AjaxBot/ListSystemCheckList.do");
@@ -1784,6 +1785,25 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListBotSystemCheckVO);
+		
+		return map;
+	}
+	
+	// 퇴직공제부금 중복납부 리스트
+	@PostMapping("/ListLaborTargetDate.do")
+	public @ResponseBody Map<String, Object> ListLaborTargetDate(@RequestBody BotLaborVO vo) {
+		logger.info("/AjaxBot/ListLaborTargetDate.do");
+		
+		List<BotLaborVO> outListBotLaborTargetDateVO = new ArrayList<BotLaborVO>();
+		try {
+			outListBotLaborTargetDateVO = botEcardService.listBotLaborTargetDate(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotLaborTargetDateVO);
 		
 		return map;
 	}

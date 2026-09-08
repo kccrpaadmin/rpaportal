@@ -122,6 +122,8 @@
 		<typeAlias alias="botSystemCheckVO" type="com.kcc.biz.model.BotSystemCheckVO" />
 		<!-- 카카오톡 -->
 		<typeAlias alias="KakaoVO" type="com.kcc.biz.model.KakaoVO" />
+		<!-- BOT 퇴직공제부금 중복납부 알림 (전자카드출입 시스템) 수집 -->
+		<typeAlias alias="botLaborVO" type="com.kcc.biz.model.BotLaborVO" />
 	</typeAliases>
 	
 </configuration>

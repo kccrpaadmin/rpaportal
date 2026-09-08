@@ -25,4 +25,14 @@
 		]]>
 	</select>
 	
+	<select id="listBotLaborTargetDate" statementType="CALLABLE" parameterType="botLaborVO" resultType="botLaborVO">
+		<![CDATA[
+			{ 
+	            call PRA_Bot_listBotLaborTargetDate (
+            		#{RequestNo}
+            	)
+			}
+		]]>
+	</select>
+	
 </mapper>
