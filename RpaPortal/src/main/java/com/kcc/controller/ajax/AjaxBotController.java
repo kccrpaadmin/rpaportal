@@ -73,6 +73,8 @@ import com.kcc.biz.model.BotEngineerRegisterVO;
 import com.kcc.biz.model.BotEcardVO;
 import com.kcc.biz.model.BotSystemCheckVO;
 import com.kcc.biz.model.BotLaborVO;
+import com.kcc.biz.model.BotSubContractorApplyVO;
+
 
 import com.kcc.biz.service.IBotEseroService;
 import com.kcc.biz.service.IBotRequestService;
@@ -107,6 +109,7 @@ import com.kcc.biz.service.IBotStampTaxSlipDataService;
 import com.kcc.biz.service.IBotEngineerRegisterService;
 import com.kcc.biz.service.IBotEcardService;
 import com.kcc.biz.service.IBotSystemCheckService;
+import com.kcc.biz.service.IBotSubContractorApplyService;
 
 import com.kcc.controller.base.BaseController;
 import com.kcc.util.service.IBotUtilService;
@@ -223,6 +226,9 @@ public class AjaxBotController extends BaseController {
 	
 	@Resource(name="botSystemChcekService")
 	private IBotSystemCheckService botSystemChcekService;
+	
+	@Resource(name="botSubContractorApplyService")
+	private IBotSubContractorApplyService botSubContractorApplyService;
 	
 	@PostMapping("/RunBot.do")
 	public @ResponseBody BotRequestVO RunBot(@RequestBody BotRequestVO vo) {
@@ -1804,6 +1810,25 @@ public class AjaxBotController extends BaseController {
 		
 		Map map = new HashMap<String, Object>();
 		map.put("data", outListBotLaborTargetDateVO);
+		
+		return map;
+	}
+	
+	// 하수급인사업주 신청
+	@PostMapping("/ListSubContractorApplyList.do")
+	public @ResponseBody Map<String, Object> ListSystemCheckList(@RequestBody BotSubContractorApplyVO vo) {
+		logger.info("/AjaxBot/ListSubContractorApplyList.do");
+		
+		List<BotSubContractorApplyVO> outListBotBotSubContractorApplyVO = new ArrayList<BotSubContractorApplyVO>();
+		try {
+			outListBotBotSubContractorApplyVO = botSubContractorApplyService.listBotSubContractorApplyResult(vo);
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map map = new HashMap<String, Object>();
+		map.put("data", outListBotBotSubContractorApplyVO);
 		
 		return map;
 	}

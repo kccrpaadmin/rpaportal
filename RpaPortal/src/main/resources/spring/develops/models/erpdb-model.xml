@@ -124,6 +124,8 @@
 		<typeAlias alias="KakaoVO" type="com.kcc.biz.model.KakaoVO" />
 		<!-- BOT 퇴직공제부금 중복납부 알림 (전자카드출입 시스템) 수집 -->
 		<typeAlias alias="botLaborVO" type="com.kcc.biz.model.BotLaborVO" />
+		<!-- BOT 하수급인사업주 신청 -->
+		<typeAlias alias="botSubContractorApplyVO" type="com.kcc.biz.model.BotSubContractorApplyVO" />
 	</typeAliases>
 	
 </configuration>

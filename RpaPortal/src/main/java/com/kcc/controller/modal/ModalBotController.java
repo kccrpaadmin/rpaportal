@@ -627,4 +627,15 @@ public class ModalBotController extends BaseController {
 		
 		return "ModalBot/LaborRunResult";
 	}
+	
+	@GetMapping("/SubContractorApplyRunResult.do")
+	public String SubContractorApplyRunResult(String pMenuId, String pRequestNo, Model model) {
+		logger.info("/ModalBot/SubContractorApplyRunResult.do");
+
+		model.addAttribute("menuId", pMenuId);
+		model.addAttribute("requestNo", pRequestNo);
+		
+		return "ModalBot/SubContractorApplyRunResult";
+	}
+	
 }
