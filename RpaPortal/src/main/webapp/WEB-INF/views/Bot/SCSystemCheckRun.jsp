@@ -75,6 +75,7 @@
 	    <!-- 버튼영역 -->
 	    <div class="btn_box">
 	    	<a class="btn_common1" id="btn_immediate_call" >즉시실행</a>
+	    	<a class="btn_common1" id="btn_immediate_stop">실행중단</a>
 	    	<a class="btn_common1" id="btn_schedule_open" style="display:none;">예약실행</a>
 	    </div>
 	    <!-- 그리드영역 -->
@@ -134,6 +135,26 @@
 			}
 		});
 	}
+	
+	// 봇 실행중단
+	function stopBot(pMenuId, pEmpNo) {
+		$.ajax({
+			url: "/AjaxBot/StopBot.do",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			data : JSON.stringify({ "menuId": pMenuId, "empNo": pEmpNo }),
+			dataType : "json",
+			async: true,
+			success: function(data) {
+				openDialogStopBot(data.requestStatus);
+			},
+			error: function(xhr, status, err) {
+				commonFunc.handleErrorMsg(xhr, status, err);
+				return false;
+			}
+		});
+	}
+	
 	
 	// 버튼 활성화, 비활성화 함수
 	function enableButtonControl() {
@@ -212,6 +233,32 @@
 	$(document).on("click", "#btn_immediate_call", function (e) {
 		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "요청을 진행 하시겠습니까?", null, runBotConfirm, null);
 	});
+	
+	// 실행중단 전, 확인 함수
+	function stopBotConfirm(pOption) {
+		if (pOption.sdBtnKey == "o") {
+			stopBot(menuId, commonFunc.certInfo.empNo);
+		}
+	}
+	
+	// 실행중단 버튼 클릭 이벤트
+	$(document).on("click", "#btn_immediate_stop", function (e) {
+		libraryFunc.createDialog("Confirm", null, null, null, null, "알림", "진행중인 요청을 중단 하시겠습니까?", null, stopBotConfirm, null);
+	});
+	
+	// 실행중단 후, 대화상자 오픈 함수
+	function openDialogStopBot(pData) {
+		
+		if (pData == "Success") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청을 중단 하였습니다.", null, commonFunc.refreshPage, null);
+		}
+		else if (pData == "NotProgress") {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "진행중인 요청이 없습니다.", null, commonFunc.refreshPage, null);
+		}
+		else {
+			libraryFunc.createDialog("Alert", null, null, null, null, "알림", "요청 중단중 오류가 발생 하였습니다.", null, commonFunc.refreshPage, null);
+		}
+	}
 	
 	// 예약등록 버튼 클릭 이벤트
 	$(document).on("click", "#btn_schedule_open", function (e) {

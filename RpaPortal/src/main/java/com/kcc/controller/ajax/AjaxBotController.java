@@ -282,6 +282,47 @@ public class AjaxBotController extends BaseController {
 		return outBotRequestVO;
 	}
 	
+	@PostMapping("/StopBot.do")
+	public @ResponseBody BotRequestVO StopBot(@RequestBody BotRequestVO vo) {
+		logger.info("/AjaxBot/StopBot.do");
+		
+		BotRequestVO outBotRequestVO = new BotRequestVO();
+		outBotRequestVO.setRequestStatus("Fail");
+		
+		try {
+			// 요청 목록 조회 (최신순)
+			List<BotRequestVO> list = botRequestService.listBotRequest(vo);
+			
+			if (list != null && !list.isEmpty()) {
+				BotRequestVO latest = list.get(0);
+				
+				// 최근 요청이 요청/진행 상태일 때만 중단
+				if ("RA005001".equals(latest.getStatusCd()) || "RA005002".equals(latest.getStatusCd())) {
+					BotRequestVO upVO = new BotRequestVO();
+					upVO.setRequestNo(latest.getRequestNo());
+					upVO.setStatusCd("RA005003");
+					upVO.setErrorMsg("사용자가 중단하였습니다.");
+					upVO.setEmpNo(vo.getEmpNo());
+					
+					botRequestService.updateBotRequest(upVO);
+					outBotRequestVO.setRequestStatus("Success");
+				}
+				else {
+					outBotRequestVO.setRequestStatus("NotProgress");
+				}
+			}
+			else {
+				outBotRequestVO.setRequestStatus("NotProgress");
+			}
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			outBotRequestVO.setRequestStatus("Fail");
+		}
+		
+		return outBotRequestVO;
+	}
+	
 	@PostMapping("/CreateSchedule.do")
 	public @ResponseBody StatusVO CreateSchedule(@RequestBody BotScheduleVO vo) {
 		logger.info("/AjaxBot/CreateSchedule.do");

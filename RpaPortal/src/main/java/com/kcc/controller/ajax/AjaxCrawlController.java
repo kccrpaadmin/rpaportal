@@ -124,6 +124,47 @@ public class AjaxCrawlController extends BaseController {
 		return outCrawlRequestVO;
 	}
 	
+	@PostMapping("/StopCrawl.do")
+	public @ResponseBody CrawlRequestVO StopCrawl(@RequestBody CrawlRequestVO vo) {
+		logger.info("/AjaxCrawl/StopCrawl.do");
+		
+		CrawlRequestVO outCrawlRequestVO = new CrawlRequestVO();
+		outCrawlRequestVO.setRequestStatus("Fail");
+		
+		try {
+			// 요청 목록 조회 (최신순)
+			List<CrawlRequestVO> list = crawlRequestService.listCrawlRequest(vo);
+			
+			if (list != null && !list.isEmpty()) {
+				CrawlRequestVO latest = list.get(0);
+				
+				// 최근 요청이 요청/진행 상태일 때만 중단
+				if ("RA005001".equals(latest.getStatusCd()) || "RA005002".equals(latest.getStatusCd())) {
+					CrawlRequestVO upVO = new CrawlRequestVO();
+					upVO.setRequestNo(latest.getRequestNo());
+					upVO.setStatusCd("RA005003");
+					upVO.setErrorMsg("사용자가 중단하였습니다.");
+					upVO.setEmpNo(vo.getEmpNo());
+					
+					crawlRequestService.updateCrawlRequest(upVO);
+					outCrawlRequestVO.setRequestStatus("Success");
+				}
+				else {
+					outCrawlRequestVO.setRequestStatus("NotProgress");
+				}
+			}
+			else {
+				outCrawlRequestVO.setRequestStatus("NotProgress");
+			}
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			outCrawlRequestVO.setRequestStatus("Fail");
+		}
+		
+		return outCrawlRequestVO;
+	}
+	
 	@PostMapping("/CreateSchedule.do")
 	public @ResponseBody StatusVO CreateSchedule(@RequestBody CrawlScheduleVO vo) {
 		logger.info("/AjaxCrawl/CreateSchedule.do");
