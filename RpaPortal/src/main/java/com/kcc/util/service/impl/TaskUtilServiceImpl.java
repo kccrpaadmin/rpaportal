@@ -161,7 +161,7 @@ public class TaskUtilServiceImpl implements ITaskUtilService {
 							|| "RA004022".equals(botScheduleVO.getMenuId().toString()) || "RA004025".equals(botScheduleVO.getMenuId().toString()) 
 							|| "RA004026".equals(botScheduleVO.getMenuId().toString()) || "RA004029".equals(botScheduleVO.getMenuId().toString()) 
 							|| "RA004030".equals(botScheduleVO.getMenuId().toString()) || "RA004032".equals(botScheduleVO.getMenuId().toString())
-							|| "RA004034".equals(botScheduleVO.getMenuId().toString()) )
+							|| "RA004034".equals(botScheduleVO.getMenuId().toString()) || "RA004035".equals(botScheduleVO.getMenuId().toString()) )
 					{
 						outBotRequestVO = botUtilService.requestBotPa(inBotRequestVO);
 						
